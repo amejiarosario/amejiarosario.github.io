@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Tips | Adrian Mejia's Blog]]></title>
+  <link href="http://adrianmejia.com/blog/categories/tips/atom.xml" rel="self"/>
+  <link href="http://adrianmejia.com/"/>
+  <updated>2014-09-28T18:55:51-04:00</updated>
+  <id>http://adrianmejia.com/</id>
+  <author>
+    <name><![CDATA[Adrian Mejia]]></name>
+    <email><![CDATA[me@adrianmejia.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[C#'s GetManifestResourceStream Gotcha]]></title>
+    <link href="http://adrianmejia.com/blog/2011/07/18/cs-getmanifestresourcestream-gotcha/"/>
+    <updated>2011-07-18T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2011/07/18/cs-getmanifestresourcestream-gotcha</id>
+    <content type="html"><![CDATA[<p>In the .NET framework, the method Assembly -&gt; Get Manifest Resource Stream has a gotcha that could take some time to figure out why is not working as intented. I was working in a piece of code (show below), and the GetManifestResourceStream always returned NULL exception error. Even though the file was there&#8230;</p>
+
+
+<p>C# example:</p>
+
+
+<div>
+    <pre>public XmlTextReader GetSyntaxModeFile(SyntaxMode syntaxMode)
+{
+&nbsp;&nbsp; &nbsp;Assembly assembly = typeof(SyntaxMode).Assembly;
+&nbsp;&nbsp; &nbsp;var stream = assembly.GetManifestResourceStream("ICSharpCode.TextEditor.Resources." + syntaxMode.FileName);
+&nbsp;&nbsp; &nbsp;if(stream == null)
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;throw new Exception("The resource "+syntaxMode.FileName+" was not loaded properly.");
+&nbsp;&nbsp; &nbsp;return new XmlTextReader(stream);
+}</pre>
+</div>
+
+
+<p><strong>Solution:</strong></p>
+
+
+<p>The GetManifestResourceStream method will always returns NULL if the resource &#8217;<strong>built action</strong>&#8217; property is not set to &#8217;<strong>embedded resource</strong>&#8217;</p>
+
+
+<p><img alt="Build action property set to embedded resource" src="http://adrianmejiarosario.com/sites/default/files/pictures/GetManifestResourceStream.JPG" style="width: 488px; height: 332px;"></p>
+
+
+<p>After setting this property with all the needed files assembly.<u><strong>GetManifestResourceStream</strong></u> starts returning the corrent stream instead of NULL</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Faster Windows XP Removing Msmpeng.Exe and Other Programs]]></title>
+    <link href="http://adrianmejia.com/blog/2011/07/15/faster-windows-xp-removing-msmpeng-exe-and-other-programs/"/>
+    <updated>2011-07-15T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2011/07/15/faster-windows-xp-removing-msmpeng-exe-and-other-programs</id>
+    <content type="html"><![CDATA[<p>At work, I use an Windows XP machine and it some times get really slowly. I noticed from the task manager (ctrl+shift+esc) that the process MsMpEng.exe is consuming most of my CPU time!</p>
+
+
+<p><strong>MsMpEng.exe</strong> is a process associated to <em>Windows Defender</em> that help you to &#8221;<em>protected</em>&#8221; the computer, but sometimes it requires too much resources. So, if eating up your available CPU it is better to disable it.</p>
+
+
+<p>Disable <strong>MsMpEng.exe</strong>:</p>
+
+
+<ol>
+    <li>start menu -&gt; <strong>run&nbsp; </strong>(windows key + r)</li>
+    <li>write <strong>services.msc</strong> and enter</li>
+    <li><strong>Stop </strong>the following services: &#8220;Microsoft Forefront Client Security Antimalware Service&#8221; and &#8220;Microsoft Forefront Client Security State Assessment Service&#8221; doing a right click.</li>
+    <li>Set the &#8220;Startup Type&#8221;&nbsp; to &#8220;Manual&#8221; of both services doing double click on them.</li>
+    <li>You can repeate the same steps 1-4 to remove safely services, like &#8220;Indexing Service&#8221; which slow down your computer, too. And memory consuming processes.&nbsp;</li>
+    <li>Enjoy a faster computer!</li>
+</ol>
+
+
+<p>&nbsp;</p>
+
+
+<p>Here is a screenshot of how the serivices are disabled:</p>
+
+
+<p><img alt="windows services" src="http://www.adrianmejiarosario.com/sites/default/files/pictures/MsMpEngEXE.PNG" style="width: 594px; height: 52px; "></p>
+
+
+<p>&nbsp;</p>
+
+
+<p>Note: &nbsp;You can find other programs/processes that are slowing down you computer doing the following:</p>
+
+
+<ol>
+    <li>Open Task Manager (Ctrl+shift+Esc)</li>
+    <li>Click in the &#8220;Processes&#8221; tab.</li>
+    <li>Menu &#8220;View&#8221;, click &#8220;Select Columns&#8230;&#8221;, check &#8220;CPU Time&#8221;, click OK. (figure below)</li>
+    <li>Click on CPU time, and you will see the process that consume most of your CPU (and make your PC slower)</li>
+    <li>Search on internet what are this process used for, before removing them.</li>
+    <li>Use the steps above to remove them if they are not really needed (be careful).</li>
+</ol>
+
+
+<p><img alt="Selecting CPU Time from Task Manager" src="http://www.adrianmejiarosario.com/sites/default/files/viewCPUTime.JPG" style="width: 586px; height: 550px; "></p>
+
+]]></content>
+  </entry>
+  
+</feed>

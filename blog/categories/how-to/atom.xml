@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: How-to | Adrian Mejia's Blog]]></title>
+  <link href="http://adrianmejia.com/blog/categories/how-to/atom.xml" rel="self"/>
+  <link href="http://adrianmejia.com/"/>
+  <updated>2014-09-28T18:55:51-04:00</updated>
+  <id>http://adrianmejia.com/</id>
+  <author>
+    <name><![CDATA[Adrian Mejia]]></name>
+    <email><![CDATA[me@adrianmejia.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Blog Migration Explained: Drupal 7 to Jekyll]]></title>
+    <link href="http://adrianmejia.com/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll/"/>
+    <updated>2012-04-27T22:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll</id>
+    <content type="html"><![CDATA[<p>This post is a guide on how to extract your blog posts information from Drupal 7 to other systems. And also automatically create a redirect files from the old blog to the new one. In this case, I migrated to Jerkyll/Octopress blog but from the data extracted in with my script you can migrate any other blog system. Hopefully, this will save you a lot of time if you need to do the same task. If you run into troubles go to last section of the post it has some suggestions.</p>
+
+<h2>Extract data from Drupal 7 site</h2>
+
+<h3>SQL extraction</h3>
+
+<p>You need to extract the data from your Drupal 7, there are several ways. You can connect to your web host via ssh and generate SQL dump.</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysqldump</span> <span class="err">–</span><span class="n">uUSERNAME</span> <span class="err">–</span><span class="n">pPASSWORD</span> <span class="k">DATABASE</span> <span class="o">&gt;</span> <span class="n">FILENAME</span><span class="p">.</span><span class="k">sql</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>(replace the UPPERCASE letters with your settings)</p>
+
+<p>You can download the file *.sql to your computer and run the following command to install to upload the data in your local database.</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysql</span> <span class="err">–</span><span class="n">uUSERNAME</span> <span class="err">–</span><span class="n">pPASSWORD</span> <span class="k">DATABASE</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">FILENAME</span><span class="p">.</span><span class="k">sql</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>If you have a access to you phpmyadmin in your host server you can download your sql dump file through that also. Other method is to use a local port fordwarding using SSH… anyways, get access to your database.</p>
+
+<h3>Run the script</h3>
+
+<p>The 2nd and final step is to run the script that does all the magic. Below I will explain how it works in case that you want to customize.</p>
+
+<p><div><script src='https://gist.github.com/2515239.js?file=drupal2jekyll.rb'></script>
+<noscript><pre><code># 
+# Jekyll migrator for Drupal 7+
+# adrianmejia.com
+#
+
+require &#39;rubygems&#39;
+require &#39;sequel&#39;
+require &#39;fileutils&#39;
+require &#39;yaml&#39;
+
+# NOTE: This converter requires Sequel and the MySQL gems.
+# The MySQL gem can be difficult to install on OS X. Once you have MySQL
+# installed, running the following commands should work:
+# $ sudo gem install sequel
+# $ sudo gem install mysql -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
+#
+# UPDATE:
+# Install mysql2 as well you might need it as well.
+# $ gem install mysql2 -- --with-mysql-config=/usr/local/mysql/bin/mysql_config
+#
+
+OLD_DOMAIN = &quot;http://adrianmejiarosario.com&quot;  ## TODO replace this out
+NEW_DOMAIN = &quot;http://adrianmejia.com&quot;         ## TODO replace this out
+
+
+module Jekyll
+  module Drupal
+    # Reads a MySQL database via Sequel and creates a post file for each post
+    # in wp_posts that has post_status = &#39;publish&#39;. This restriction is made
+    # because &#39;draft&#39; posts are not guaranteed to have valid dates.
+    
+    QUERY =&lt;&lt;SQL 
+    SELECT 
+    n.nid, 
+    n.title, 
+    n.created, 
+    n.changed, 
+    b.body_value AS &#39;body&#39;, 
+    b.body_summary, 
+    b.body_format, 
+    n.status, 
+    l.alias AS &#39;slug&#39;, 
+    GROUP_CONCAT( d.name SEPARATOR &#39;, &#39; ) AS &#39;tags&#39;
+    
+    FROM dr_url_alias l, dr_node n
+    JOIN dr_field_data_body b ON b.entity_id = n.nid
+    JOIN dr_taxonomy_index t ON t.nid = n.nid
+    JOIN dr_taxonomy_term_data d ON t.tid = d.tid
+
+    WHERE n.type = &#39;blog&#39;
+    AND b.revision_id = n.vid
+    AND l.source = CONCAT( &#39;node/&#39;, n.nid ) 
+
+    GROUP BY n.nid
+SQL
+
+    #
+    # Main script
+    # 
+    def self.process(dbname, user, pass, host = &#39;localhost&#39;)
+      db = Sequel.mysql(dbname, :user =&gt; user, :password =&gt; pass, :host =&gt; host, :encoding =&gt; &#39;utf8&#39;)
+
+      drupal_path = &quot;drupal_redirect&quot;
+      FileUtils.mkdir_p drupal_path
+           
+      File.open(&quot;#{drupal_path}/index.php&quot;, &quot;w&quot;) { |f| f.puts permanent_redirect_to (&quot;&quot;) }
+      FileUtils.mkdir_p &quot;_posts&quot;
+      FileUtils.mkdir_p &quot;_drafts&quot;
+
+
+      db[QUERY].each do |post|
+        # Get required fields and construct Jekyll compatible name
+        node_id = post[:nid]
+        title = post[:title]
+        
+        # complete relatives URLs
+        content = post[:body].gsub(&quot;\&quot;/sites/default/files/&quot;, &quot;\&quot;#{OLD_DOMAIN}/sites/default/files/&quot;)
+        
+        created = post[:created]
+        tags = post[:tags].downcase.strip
+        drupal_slug = post[:slug]
+        time = Time.at(created)
+        is_published = post[:status] == 1
+        dir = is_published ? &quot;_posts&quot; : &quot;_drafts&quot;
+        slug = title.strip.downcase.gsub(/(&amp;|&amp;amp;)/, &#39; and &#39;).gsub(/[\s\.\/\\]/, &#39;-&#39;).gsub(/[^\w-]/, &#39;&#39;).gsub(/[-_]{2,}/, &#39;-&#39;).gsub(/^[-_]/, &#39;&#39;).gsub(/[-_]$/, &#39;&#39;)
+        name = time.strftime(&quot;%Y-%m-%d-&quot;) + slug + &#39;.md&#39;
+
+        # Get the relevant fields as a hash, delete empty fields and convert
+        # to YAML for the header
+        data = {
+           &#39;layout&#39; =&gt; &#39;post&#39;,
+           &#39;title&#39; =&gt; title.to_s,
+           &#39;created&#39; =&gt; created,
+           &#39;comments&#39; =&gt; true,
+           &#39;categories&#39; =&gt; tags
+         }.delete_if { |k,v| v.nil? || v == &#39;&#39;}.to_yaml
+
+        # Write out the data and content to file
+        File.open(&quot;#{dir}/#{name}&quot;, &quot;w&quot;) do |f|
+          f.puts data.gsub /categories:\W+(.+)/, &#39;categories: [\1]&#39;
+          f.puts &quot;---&quot;
+          f.puts content
+        end
+
+        # 
+        # Make a file to redirect from the old Drupal URL
+        # Make refresh dirs &amp; files according to entries in url_alias table in drupal 7+
+        # Copy the content to your drupal_redirect to the root of your all blog and that&#39;s it. It will redirect to your new site.
+        #
+        if is_published
+          ddir = &quot;#{drupal_path}/#{drupal_slug}&quot;
+          FileUtils.mkdir_p ddir
+          File.open(&quot;#{ddir}/index.php&quot;, &quot;w&quot;) do |f|
+            puts &quot;#{ddir}/index.php&quot;
+            f.puts permanent_redirect_to &quot;blog/#{time.strftime(&quot;%Y/%m/%d/&quot;) + slug}&quot;
+          end
+        end
+      end
+
+      # TODO: Make dirs &amp; files for nodes of type &#39;page&#39;
+      # Make refresh pages for these as well
+    end    
+  end
+end
+
+#
+# PHP code to redirect permanently your users from your old website to your new
+#
+def permanent_redirect_to(location)
+  &quot;&lt;?php\nheader(\&quot;HTTP/1.1 301 Moved Permanently\&quot;);\nheader(\&quot;Location: #{NEW_DOMAIN}/#{location}\&quot;);\necho \&quot;redirecting...\&quot;\n ?&gt;&quot;
+end
+
+Jekyll::Drupal.process(ENV[&#39;DRUPAL_DATABASE&#39;],ENV[&#39;DB_USER&#39;],ENV[&#39;DB_PASSWORD&#39;])</code></pre></noscript></div>
+</p>
+
+<p>Replace the place holders with your actual values:</p>
+
+<ul>
+<li>OLD_DOMAIN</li>
+<li>NEW_DOMAIN</li>
+<li>ENV[&lsquo;DRUPAL_DATABASE&rsquo;]</li>
+<li>ENV[&lsquo;DB_USER&rsquo;]</li>
+<li>ENV[&lsquo;DB_PASSWORD&rsquo;]</li>
+</ul>
+
+
+<p>After you run it, it will generate 3 folders:</p>
+
+<ul>
+<li>_post: has all your post in the Jekyll style (categories and tags and everything)</li>
+<li>_draft: not published posts if any</li>
+<li>drupal_redirect: for each url of your posts it has a folder with a redirect index.php file to your new domain.</li>
+</ul>
+
+
+<p>Copy each of this folder to their respective places. Copy the content to your drupal_redirect to the root of your old blog and that&rsquo;s it. It will redirect all your all blog URLs to your new site.</p>
+
+<h3>Behind the scenes…</h3>
+
+<p>First, you need to extract the data from your Drupal site. I reversed engineer the database in order to extract the post, title, url alias (slug), tags, publish info, format and the last version of the post. The query that does all the magic is the following one:</p>
+
+<p><figure class='code'><figcaption><span>Drupal 7 Query to extract all the post info </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">n</span><span class="p">.</span><span class="n">nid</span><span class="p">,</span>
+</span><span class='line'><span class="n">n</span><span class="p">.</span><span class="n">title</span><span class="p">,</span>
+</span><span class='line'><span class="n">n</span><span class="p">.</span><span class="n">created</span><span class="p">,</span>
+</span><span class='line'><span class="n">n</span><span class="p">.</span><span class="n">changed</span><span class="p">,</span>
+</span><span class='line'><span class="n">b</span><span class="p">.</span><span class="n">body_value</span> <span class="k">AS</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">body</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
+</span><span class='line'><span class="n">b</span><span class="p">.</span><span class="n">body_summary</span><span class="p">,</span>
+</span><span class='line'><span class="n">b</span><span class="p">.</span><span class="n">body_format</span><span class="p">,</span>
+</span><span class='line'><span class="n">n</span><span class="p">.</span><span class="n">status</span><span class="p">,</span>
+</span><span class='line'><span class="n">l</span><span class="p">.</span><span class="k">alias</span> <span class="k">AS</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">slug</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;,</span>
+</span><span class='line'><span class="n">GROUP_CONCAT</span><span class="p">(</span> <span class="n">d</span><span class="p">.</span><span class="n">name</span> <span class="n">SEPARATOR</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">)</span> <span class="k">AS</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">tags</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">FROM</span> <span class="n">url_alias</span> <span class="n">l</span><span class="p">,</span> <span class="n">node</span> <span class="n">n</span>
+</span><span class='line'><span class="k">JOIN</span> <span class="n">field_data_body</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">b</span><span class="p">.</span><span class="n">entity_id</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">nid</span>
+</span><span class='line'><span class="k">JOIN</span> <span class="n">taxonomy_index</span> <span class="n">t</span> <span class="k">ON</span> <span class="n">t</span><span class="p">.</span><span class="n">nid</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">nid</span>
+</span><span class='line'><span class="k">JOIN</span> <span class="n">taxonomy_term_data</span> <span class="n">d</span> <span class="k">ON</span> <span class="n">t</span><span class="p">.</span><span class="n">tid</span> <span class="o">=</span> <span class="n">d</span><span class="p">.</span><span class="n">tid</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">WHERE</span> <span class="n">n</span><span class="p">.</span><span class="k">type</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">blog</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'><span class="k">AND</span> <span class="n">b</span><span class="p">.</span><span class="n">revision_id</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">vid</span>
+</span><span class='line'><span class="k">AND</span> <span class="n">l</span><span class="p">.</span><span class="k">source</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">node</span><span class="o">/&amp;</span><span class="n">rsquo</span><span class="p">;,</span> <span class="n">n</span><span class="p">.</span><span class="n">nid</span> <span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">GROUP</span> <span class="k">BY</span> <span class="n">n</span><span class="p">.</span><span class="n">nid</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>As might notice, it concatenates all the tags separated by comma and also finds the alias of the url if is called node. Also you can also find the url alias for other pages such as terms or taxonomies. But let’s keep it simple and get the posts urls.</p>
+
+<p>Finally, the script will use the data from this query to generate the new posts files and also to create the redirect files.</p>
+
+<p>As might notice, it concatenates all the tags separated by comma and also finds the alias of the url if is called node. Also you can also find the url alias for other pages such as terms or taxonomies. But let’s keep it simple and get the posts urls.</p>
+
+<p>Finally, the script will use the data from this query to generate the new posts files and also to create the redirect files.</p>
+
+<h3>Troubleshooting</h3>
+
+<p>I had a hard time having the mysql gem work with seqel in my Mac OS X 10.7 (Lion) and ruby 1.9.2.</p>
+
+<p>I got the following errors:</p>
+
+<ul>
+<li>Library not loaded: libmysqlclient.18.dylib (LoadError)
+Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL server has gone away mysql2 ruby</li>
+<li>&ldquo;LoadError: require &lsquo;mysql&rsquo; did not define Mysql::CLIENT_MULTI_RESULTS!&rdquo;</li>
+<li>&ldquo;You are probably using the pure ruby mysql.rb driver, which Sequel does not support. You need to install the C based adapter, and make sure that the mysql.so file is loaded instead of the mysql.rb file.&rdquo;</li>
+<li>Sequel::AdapterNotFound: LoadError: require &lsquo;mysql&rsquo; did not define Mysql::CLIENT_MULTI_RESULTS! You are probably using the pure ruby mysql.rb driver, which Sequel does not support. You need to install the C based adapter, and make sure that the mysql.so file is loaded instead of the mysql.rb file.</li>
+<li>And others…</li>
+</ul>
+
+
+<h4>Solution:</h4>
+
+<p>The mysql gem have been abandoned, so you also need mysql2 to work propery with sequel</p>
+
+<p><figure class='code'><figcaption><span>bash Install MySQL gems </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo gem install sequel
+</span><span class='line'><span class="nv">$ </span>sudo gem install mysql <span class="p">&amp;</span>ndash<span class="p">;</span> <span class="p">&amp;</span>ndash<span class="p">;</span>with-mysql-config<span class="o">=</span>/usr/local/mysql/bin/mysql_config
+</span><span class='line'><span class="nv">$ </span>sudo gem install mysql2 <span class="p">&amp;</span>ndash<span class="p">;</span> <span class="p">&amp;</span>ndash<span class="p">;</span>with-mysql-config<span class="o">=</span>/usr/local/mysql/bin/mysql_config
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>also  you need to copy the following lib:</p>
+
+<p><figure class='code'><figcaption><span>Reference needed libs </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>That should work.</p>
+
+<p>Just if you are courious there is another gem called ruby-mysql, with which you can connect to mysql. But it doesn’t work with sequel</p>
+
+<p><figure class='code'><figcaption><span>Alternative gem to connect to mysql (ruby-mysql) </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install ruby-mysql <span class="p">&amp;</span>ndash<span class="p">;</span> <span class="p">&amp;</span>ndash<span class="p">;</span>with-mysql-config<span class="o">=</span>/usr/local/mysql/bin/mysql_config
+</span><span class='line'><span class="nv">$ </span>irb&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;blockquote&gt;&lt;p&gt;require <span class="p">&amp;</span>lsquo<span class="p">;</span>mysql<span class="p">&amp;</span>rsquo<span class="p">;</span>
+</span><span class='line'><span class="nv">db</span> <span class="o">=</span> Mysql.real_connect<span class="o">(</span><span class="p">&amp;</span>ldquo<span class="p">;</span>SERVER<span class="p">&amp;</span>rdquo<span class="p">;</span>,<span class="p">&amp;</span>ldquo<span class="p">;</span>USER<span class="p">&amp;</span>rdquo<span class="p">;</span>,<span class="p">&amp;</span>ldquo<span class="p">;</span>PASSWORD<span class="p">&amp;</span>rdquo<span class="p">;</span>,<span class="p">&amp;</span>ldquo<span class="p">;</span>DATABASE<span class="p">&amp;</span>rdquo<span class="p">;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How Do I Change the Ruby/Python Version Textmate Uses?]]></title>
+    <link href="http://adrianmejia.com/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/"/>
+    <updated>2012-02-09T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses</id>
+    <content type="html"><![CDATA[<p>&nbsp;</p>
+
+
+<p>I&#39;m using textMate to develop ruby code. It&#39;s very handy because I can run it just pressing (cmd-R). But by default it&#39;s running ruby 1.8.7 and I want 1.9.2 version.</p>
+
+
+<p>This is the steps to change it:</p>
+
+
+<p>Find the right path with</p>
+
+
+<div>
+    <div>
+        <strong>~$ &nbsp;which rvm-auto-ruby</strong></div>
+    <div>
+        /Users/adrian/.rvm/bin/rvm-auto-ruby</div>
+</div>
+
+
+<div>
+    <strong>~$ &nbsp;which python3.2</strong></div>
+
+
+<div>
+    /usr/local/bin/python3.2</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<p>Then copy it to TextMate preferences in a new variable called &quot;TM_RUBY&quot;, and &quot;TM_PYTHON&quot; as shown bellow:</p>
+
+
+<p><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202012-02-09%20at%201.50.41%20AM.png" style="width: 792px; height: 402px; " /></p>
+
+
+<p><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202012-02-09%20at%2012.48.17%20AM.png" style="width: 600px; height: 320px; " /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Get Started With the Web Crawler Apache Nutch 1.x]]></title>
+    <link href="http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/"/>
+    <updated>2012-02-04T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x</id>
+    <content type="html"><![CDATA[<p>Apache Nutch is an open source <strong>scalable</strong> Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [<a href="http://en.wikipedia.org/wiki/Nutch">*</a>]</p>
+
+
+<div>
+    <u><strong>Motivation</strong></u></div>
+
+
+<div>
+    By using Nutch, we can find web page hyperlinks in an automated manner, reduce lots of maintenance work, for example checking broken links, and create a copy of all the visited pages for searching over. That&rsquo;s where Apache Solr comes in. Solr is an open source full text search framework, with Solr we can search the visited pages from Nutch. Luckily, integration between Nutch and Solr is pretty straightforward.</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    Whole-web crawling is designed to handle very large crawls which may take weeks to complete, running on multiple machines. This also permits more control over the crawl process, and incremental crawling. It is important to note that whole web crawling does not necessarily mean crawling the entire world wide web. We can limit a whole web crawl to just a list of the URLs we want to crawl. This is done by using a filter just like we the one we used when we did the crawl command. [<a href="http://wiki.apache.org/nutch/NutchTutorial">*</a>]</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    Some of the advantages of Nutch, when compared to a simple Fetcher</div>
+
+
+<ul>
+    <li>
+        highly scalable and relatively feature rich crawler</li>
+    <li>
+        features like politeness which obeys robots.txt rules</li>
+    <li>
+        robust and scalable - you can run Nutch on a cluster of 100 machines</li>
+    <li>
+        quality - you can bias the crawling to fetch &ldquo;important&rdquo; pages first</li>
+</ul>
+
+
+<p><u><strong>Basics about Nutch</strong></u></p>
+
+
+<p>First you need to know that, Nutch data is composed of:</p>
+
+
+<ul>
+    <li>
+        The crawl database, or <strong>crawldb</strong>. This contains information about every url known to Nutch, including whether it was fetched, and, if so, when.</li>
+    <li>
+        The link database, or <strong>linkdb</strong>. This contains the list of known links to each url, including both the source url and anchor text of the link.</li>
+    <li>
+        A set of <strong>segments</strong>. Each segment is a set of urls that are fetched as a unit. Segments are directories with the following subdirectories:</li>
+</ul>
+
+
+<ol>
+    <li>
+        <strong>crawl_generate</strong> names a set of urls to be fetche</li>
+    <li>
+        <strong>crawl_fetch</strong> contains the status of fetching each url</li>
+    <li>
+        <strong>content</strong> contains the raw content retrieved from each url</li>
+    <li>
+        <strong>parse_text</strong> contains the parsed text of each url</li>
+    <li>
+        <strong>parse_data</strong> contains outlinks and metadata parsed from each url</li>
+    <li>
+        <strong>crawl_parse</strong> contains the outlink urls, used to update the crawldb</li>
+</ol>
+
+
+<p><u><strong>Nutch and Hadoop</strong></u></p>
+
+
+<p>As of the official Nutch 1.3 release the source code architecture has been greatly simplified to allow us to run Nutch in one of two modes; namely local and deploy. By default, Nutch no longer comes with a Hadoop distribution, however when run in local mode e.g. running Nutch in a single process on one machine, then we use Hadoop as a dependency. This may suit you fine if you have a small site to crawl and index, but most people choose Nutch because of its capability to run on in deploy mode, within a Hadoop cluster. This gives you the benefit of a distributed file system (HDFS) and MapReduce processing style. &nbsp;If you are interested in deployed mode <a href="http://wiki.apache.org/nutch/NutchHadoopTutorial">read here</a>.</p>
+
+
+<p><u><strong>Getting hands dirt with Nutch</strong></u></p>
+
+
+<p><strong>1 Setup Nutch from binary distribution</strong></p>
+
+
+<ol>
+    <li>
+        Unzip your binary Nutch package to $HOME/nutch-1.3</li>
+    <li>
+        cd $HOME/nutch-1.3/runtime/local</li>
+    <li>
+        From now on, we are going to use ${NUTCH_RUNTIME_HOME} to refer to the current directory.</li>
+</ol>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    <strong>2. Verify your Nutch installation</strong></div>
+
+
+<ol>
+    <li>
+        run &quot;bin/nutch&quot;</li>
+    <li>
+        You can confirm a correct installation if you seeing the following: &nbsp;Usage: nutch [-core] COMMAND</li>
+</ol>
+
+
+<div>
+    <u>Some troubleshooting tips:</u></div>
+
+
+<div>
+    Run the following command if you are seeing &quot;Permission denied&quot;:</div>
+
+
+<div>
+    chmod +x bin/nutch</div>
+
+
+<div>
+    Setup JAVA_HOME if you are seeing JAVA_HOME not set. On Mac, you can run the following command or add it to ~/.bashrc:</div>
+
+
+<div>
+    export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home #mac</div>
+
+
+<div>
+    Ubuntu:</div>
+
+
+<div>
+    export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk&nbsp;</div>
+
+
+<div>
+    export NUTCH_HOME=/var/www/nutch-1.3/runtime/local</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    <u>Example of using Nutch to crawl wikipedia pages:</u></div>
+
+
+<div>
+    Here we are try to crawl&nbsp;<span class="s2"><a href="http://en.wikipedia.org/wiki/Collective_intelligence">http://en.wikipedia.org/wiki/Collective_intelligence</a>&nbsp;and sublinks in the same domain.</span></div>
+
+
+<ol class="ol1">
+    <li class="li1">
+        $ cd NUTCH_HOME/runtime/local</li>
+    <li class="li2">
+        <span class="s1">$ echo &quot;<a href="http://en.wikipedia.org/wiki/Collective_intelligence"><span class="s2">http://en.wikipedia.org/wiki/Collective_intelligence</span></a>&quot; &gt; urls</span></li>
+    <li class="li1">
+        add: `+^http://([a-z0-9]*&#46;)*wikipedia.org/` in&nbsp;conf/regex-urlfilter.txt</li>
+    <li class="li1">
+        $ bin/nutch crawl urls -dir crawl-wiki-ci -depth 2</li>
+    <li class="li1">
+        <b>statistics associated with the crawldb</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readdb crawl-wiki-ci/crawldb/ -stats
+                <ol class="ol1">
+                    <li class="li1">
+                        CrawlDb statistics start: crawl-wiki-ci/crawldb/Statistics for CrawlDb: crawl-wiki-ci/crawldb/<br />
+                        TOTAL urls:&nbsp;&nbsp;&nbsp;&nbsp; 2727<br />
+                        retry 0:&nbsp;&nbsp;&nbsp;&nbsp; 2727<br />
+                        min score:&nbsp;&nbsp;&nbsp;&nbsp; 0.0<br />
+                        avg score:&nbsp;&nbsp;&nbsp;&nbsp; 8.107811E-4<br />
+                        max score:&nbsp;&nbsp;&nbsp;&nbsp; 1.341<br />
+                        status 1 (db_unfetched):&nbsp;&nbsp;&nbsp;&nbsp; 2665<br />
+                        status 2 (db_fetched):&nbsp;&nbsp;&nbsp;&nbsp; 61<br />
+                        status 3 (db_gone):&nbsp;&nbsp;&nbsp;&nbsp; 1<br />
+                        CrawlDb statistics: done</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li class="li1">
+        <b>Dump of the URLs from the crawldb</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readdb crawl-wiki-ci/crawldb/ -dump crawl-wiki-ci/stats
+                <ol class="ol1">
+                    <li class="li1">
+                        <span class="s3"><a href="http://en.wikipedia.org/wiki/Special:RecentChangesLinked/MIT_Center_for_Collective_Intelligence"><span class="s2">http://en.wikipedia.org/wiki/Special:RecentChangesLinked/MIT_Center_for_Collective_Intelligence</span></a></span>&nbsp;&nbsp;&nbsp;&nbsp; Version: 7Status: 1 (db_unfetched)<br />
+                        Fetch time: Sat Feb 04 00:50:50 EST 2012<br />
+                        Modified time: Wed Dec 31 19:00:00 EST 1969<br />
+                        Retries since fetch: 0<br />
+                        Retry interval: 2592000 seconds (30 days)<br />
+                        Score: 1.9607843E-4<br />
+                        Signature: null<br />
+                        Metadata:<br />
+                        &hellip;.&nbsp;</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li class="li1">
+        <b>Top 10 highest rate links</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readdb crawl-wiki-ci/crawldb/ -topN 10 crawl-wiki-ci/stats/top10/
+                <ol class="ol1">
+                    <li class="li2">
+                        <span class="s1">1.3416613&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Collective_intelligence"><span class="s2">http://en.wikipedia.org/wiki/Collective_intelligence</span></a>0.030499997&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Howard_Bloom"><span class="s2">http://en.wikipedia.org/wiki/Howard_Bloom</span></a><br />
+                        0.02763889&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Groupthink"><span class="s2">http://en.wikipedia.org/wiki/Groupthink</span></a><br />
+                        0.02591739&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Wikipedia"><span class="s2">http://en.wikipedia.org/wiki/Wikipedia</span></a><br />
+                        0.024347823&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Pierre_L%C3%A9vy_(philosopher)"><span class="s2">http://en.wikipedia.org/wiki/Pierre_L%C3%A9vy_(philosopher)</span></a><br />
+                        0.023733648&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Wikipedia:Citation_needed"><span class="s2">http://en.wikipedia.org/wiki/Wikipedia:Citation_needed</span></a><br />
+                        0.017142152&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/w/opensearch_desc.php"><span class="s2">http://en.wikipedia.org/w/opensearch_desc.php</span></a><br />
+                        0.016599996&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Artificial_intelligence"><span class="s2">http://en.wikipedia.org/wiki/Artificial_intelligence</span></a><br />
+                        0.016499996&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Consensus_decision_making"><span class="s2">http://en.wikipedia.org/wiki/Consensus_decision_making</span></a><br />
+                        0.015199998&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Group_selection"><span class="s2">http://en.wikipedia.org/wiki/Group_selection</span></a></span></li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li class="li1">
+        <b>Dump of a Nutch segment</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readseg -dump crawl-wiki-ci/segments/20120204004509/ crawl-wiki-ci/stats/segments
+                <ol class="ol1">
+                    <li class="li1">
+                        CrawlDatum::Version: 7<br />
+                        Status: 1 (db_unfetched)<br />
+                        Fetch time: Sat Feb 04 00:45:03 EST 2012<br />
+                        Modified time: Wed Dec 31 19:00:00 EST 1969<br />
+                        Retries since fetch: 0<br />
+                        Retry interval: 2592000 seconds (30 days)<br />
+                        Score: 1.0<br />
+                        Signature: null<br />
+                        Metadata: _ngt_: 1328334307529</li>
+                    <li class="li1">
+                        <br />
+                        Content::<br />
+                        Version: -1<br />
+                        url: <a href="http://en.wikipedia.org/wiki/Collective_intelligence"><span class="s4">http://en.wikipedia.org/wiki/Collective_intelligence</span></a><br />
+                        base: <a href="http://en.wikipedia.org/wiki/Collective_intelligence"><span class="s4">http://en.wikipedia.org/wiki/Collective_intelligence</span></a><br />
+                        contentType: application/xhtml+xml<br />
+                        metadata: Content-Language=en Age=52614 Content-Length=29341 Last-Modified=Sat, 28 Jan 2012 17:27:22 GMT _fst_=33 nutch.segment.name=20120204004509 Connection=close X-Cache-Lookup=MISS from <a href="http://sq72.wikimedia.org/"><span class="s4">sq72.wikimedia.org:80</span></a> Server=Apache X-Cache=MISS from <a href="http://sq72.wikimedia.org/"><span class="s4">sq72.wikimedia.org</span></a> X-Content-Type-Options=nosniff Cache-Control=private, s-maxage=0, max-age=0, must-revalidate Vary=Accept-Encoding,Cookie Date=Fri, 03 Feb 2012 15:08:18 GMT Content-Encoding=gzip nutch.crawl.score=1.0 Content-Type=text/html; charset=UTF-8<br />
+                        Content:<br />
+                        &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><span class="s4">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</span></a>&quot;&gt;<br />
+                        &lt;html lang=&quot;en&quot; dir=&quot;ltr&quot; class=&quot;client-nojs&quot; xmlns=&quot;<a href="http://www.w3.org/1999/xhtml"><span class="s4">http://www.w3.org/1999/xhtml</span></a>&quot;&gt;<br />
+                        &lt;head&gt;<br />
+                        &lt;title&gt;Collective intelligence - Wikipedia, the free encyclopedia&lt;/title&gt;<br />
+                        &lt;meta &hellip;.<b>&nbsp;</b></li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+</ol>
+
+
+<p class="li1">&nbsp;</p>
+
+
+<p class="li1"><b>References:</b></p>
+
+
+<ul>
+    <li class="li1">
+        http://wiki.apache.org/nutch/NutchTutorial</li>
+    <li class="li1">
+        http://en.wikipedia.org/wiki/Nutch</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Remove Programs From the Start Up in Mac OS X]]></title>
+    <link href="http://adrianmejia.com/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/"/>
+    <updated>2011-11-18T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x</id>
+    <content type="html"><![CDATA[<p>Well&#8230; I have done this so many times in Windows (it&#39;s just executing &quot;msconfig&quot; you can edit the startup items).&nbsp;Today, I had the need to do the same in the Mac OS X Lion.</p>
+
+
+<p>Here is how to do it</p>
+
+
+<ol>
+    <li>
+        System Preferences &gt; Users &amp; Groups</li>
+    <li>
+        Tab &quot;Login Items&quot;</li>
+    <li>
+        You can remove the programs (-) from the list and they won&#39;t show up in the next startup.</li>
+</ol>
+
+
+<p><img alt="Login Items Mac" src="http://adrianmejiarosario.com/sites/default/files/loginItems.png" style="width: 669px; height: 501px; " /></p>
+
+
+<p>&nbsp;</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Execute SQL Statements on MS Access?]]></title>
+    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
+    <updated>2011-11-09T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access</id>
+    <content type="html"><![CDATA[<p>Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.</p>
+
+<p>Here are the steps of how to create a new table programmatically in Access (2007):</p>
+
+<ol>
+<li>Open/create your database on MS Access</li>
+<li>Menu: &lsquo;Databases Tools&rsquo; > &lsquo;Visual Basic&rsquo; (this will open the visual basic editor</li>
+<li>in the Visual Basic Editor, Menu: Run</li>
+<li>Insert the name of your macro and click &lsquo;create&rsquo; button</li>
+<li>Insert a code similar to the shown below. Replace the path in &lsquo;OpenDatabase&rsquo; with your database path; and fill &lsquo;dbs.Execute&rsquo; with your own SQL statements</li>
+</ol>
+
+
+<p>Sub createdb()
+    Dim dbs As Database</p>
+
+<pre><code>' Modify this line to include the path to Northwind
+' on your computer.
+Set dbs = OpenDatabase("C:\\amr\\projects\\sites\\files\\tf_pledge_reminder_email.accdb")
+
+' Create a table with two text fields.
+dbs.Execute "create table RIT_TF_PLG_REM_EMAIL_TEST2 (   pref_mail_name  VARCHAR(60), pd_to_date      NUMBER,   this_payment    NUMBER )"
+
+dbs.Close
+</code></pre>
+
+<p>End Sub</p>
+
+<ol>
+<li>Menu: Run</li>
+<li>You are all set.</li>
+</ol>
+
+
+<p>If you have any questions you can contact me or write a comment</p>
+]]></content>
+  </entry>
+  
+</feed>

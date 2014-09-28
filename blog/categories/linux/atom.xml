@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Adrian Mejia's Blog]]></title>
+  <link href="http://adrianmejia.com/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://adrianmejia.com/"/>
+  <updated>2014-09-28T18:55:51-04:00</updated>
+  <id>http://adrianmejia.com/</id>
+  <author>
+    <name><![CDATA[Adrian Mejia]]></name>
+    <email><![CDATA[me@adrianmejia.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SSH Login Without Password]]></title>
+    <link href="http://adrianmejia.com/blog/2012/01/19/ssh-login-without-password/"/>
+    <updated>2012-01-19T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2012/01/19/ssh-login-without-password</id>
+    <content type="html"><![CDATA[<p>If you want to login to a remote server using SSH and don&#39;t have to type the password again and again, here is a little trick</p>
+
+
+<p>$&nbsp;cat ~/.ssh/id_rsa.pub | ssh &lt;user&gt;@&lt;server.domain&gt; &#39;cat &gt;&gt; .ssh/authorized_keys&#39;</p>
+
+
+<p>After you run this and enter your password (for the last time), you can login to your server just typing:</p>
+
+
+<p>$ ssh &lt;user&gt;@&lt;server.domain&gt;</p>
+
+
+<p>You are all set.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Set Up Samba in Ubuntu/Linux, and Access It in Mac OS and Windows]]></title>
+    <link href="http://adrianmejia.com/blog/2011/07/12/how-to-set-up-samba-in-ubuntu-linux-and-access-it-in-mac-os-and-windows/"/>
+    <updated>2011-07-12T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2011/07/12/how-to-set-up-samba-in-ubuntu-linux-and-access-it-in-mac-os-and-windows</id>
+    <content type="html"><![CDATA[<p>Samba allows to share files and printers with other computers remotely, regardless their operating system (linux, windows, Mac, &#8230;).&nbsp;This guide show how to intall and configure the Samba service in a Ubuntu machine and access it through windows and mac.</p>
+
+
+<p><strong><u>Setting up the Samba File Server on Ubuntu/Linux:</u></strong></p>
+
+
+<ol>
+    <li>Open the terminal</li>
+    <li>Install samba with the following command: &nbsp; <code>sudo apt-get install samba smbfs</code></li>
+    <li>Configure samba typing: <code>vi /etc/samba/smb.conf</code></li>
+    <li>Set your workgroup (if necesary). Go down in the file, until you see :
+        <div>
+            <blockquote>
+                <pre># Change this to the workgroup/NT-domain name your Samba server will part of
+   workgroup = WORKGROUP</pre>
+            </blockquote>
+        </div>
+    </li>
+    <li>Set your share folders. Do something like this (change your path and comments)
+        <div>
+            <blockquote>
+                <pre># Adrian's share
+[MyShare]
+  comment = YOUR COMMENTS
+  path = /your-share-folder
+  read only = no
+  guest ok = yes
+</pre>
+            </blockquote>
+        </div>
+    </li>
+    <li>Restart samba. type:&nbsp;/etc/init.d/smbd restart</li>
+    <li>Create the share folder: sudo mkdir /your-share-folder</li>
+    <li>Set the&nbsp;permissions: sudo chmod 0777 /your-share-folder</li>
+    <li>you are all set in ubuntu</li>
+</ol>
+
+
+<div><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; "><u style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; text-decoration: underline; ">Accessing Samba Server Files from:</u></strong></div>
+
+
+<div><span style="text-decoration: underline;">Mac OS</span></div>
+
+
+<div>
+    <ol>
+        <li>Open finder</li>
+        <li>Menu Go -&gt; Connect to server (command-k)</li>
+        <li>In the &#8220;Server Address&#8221; textbox, type: smb://&lt;your-ip-address-to-ubuntu&gt;</li>
+        <li>Connect</li>
+        <li>Select guest and OK</li>
+        <li>Your all set, you&#8217;ll be able to see /&lt;your-share-folder&gt; from here.</li>
+    </ol>
+    <div><span style="text-decoration: underline;">Windows</span></div>
+    <div>
+        <ol>
+            <li>Start button -&gt; Run</li>
+            <li>Type: &#92;&lt;your-ip-address-to-ubuntu&gt;\&lt;your-share-folder&gt;</li>
+            <li>All set</li>
+        </ol>
+    </div>
+</div>
+
+
+<div>If you need to enable the samba ports in your firewall these are the ports:</div>
+
+
+<div>
+    <blockquote>
+        <pre>port type  port no
+udp     137
+udp     138
+tcp     139
+tcp     445</pre>
+    </blockquote>
+</div>
+
+
+<p>&nbsp;</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Unified Modelling Language (Uml) | Adrian Mejia's Blog]]></title>
+  <link href="http://adrianmejia.com/blog/categories/unified-modelling-language-uml/atom.xml" rel="self"/>
+  <link href="http://adrianmejia.com/"/>
+  <updated>2014-09-28T18:55:51-04:00</updated>
+  <id>http://adrianmejia.com/</id>
+  <author>
+    <name><![CDATA[Adrian Mejia]]></name>
+    <email><![CDATA[me@adrianmejia.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Determining Granularity of Independent Tasks for Reengineering a Legacy System Into an OO System - Paper Review]]></title>
+    <link href="http://adrianmejia.com/blog/2011/09/14/determining-granularity-of-independent-tasks-for-reengineering-a-legacy-system-into-an-oo-system-paper-review/"/>
+    <updated>2011-09-14T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2011/09/14/determining-granularity-of-independent-tasks-for-reengineering-a-legacy-system-into-an-oo-system-paper-review</id>
+    <content type="html"><![CDATA[<p>In this work [1] the authors explain the process of reengineering a legacy system in COBOL for object-oriented. Reengineering is a multi-step process to convert sequential and procedural-driven system into object-oriented and event-driven system. The proposed method [1] to accomplish this task is to transform the legacy system source code into an intermediary language: Wide Spectrum Language (WSL). The WSL code is used to apply an algorithm to identify the optimal granular unit for independent tasks taking into consideration factors as size, dependencies, and coupling. The detailed techniques used to determine the level of granularity are the following four: Determining Data and Control Dependencies (determine the dependency, if any, between data, variables, and controls), Program Block Identification (identify logical unit of execution of the legacy system), Individual Code line Evaluation (is the minimal granular unit of the legacy system: an code statement), and Procedure Granularity (is the largest self-contained granular units possible).</p>
+
+<p>In my opinion, It’s a good idea to transform legacy system into an intermediary language. This way the process will be language independent. However, they should explain in more detail about the WSL intermediary language. And also, give more details in the transformation from COBOL to WSL and how it can be transform to OO systems.</p>
+
+<p>Reference:
+[1] Millham, R.; Ward, M.; Hongji Yang; , &ldquo;Determining granularity of independent tasks for reengineering a legacy system into an OO system,&rdquo; Computer Software and Applications Conference, 2003. COMPSAC 2003. Proceedings. 27th Annual International , vol., no., pp. 342- 347, 3-6 Nov. 2003</p>
+]]></content>
+  </entry>
+  
+</feed>

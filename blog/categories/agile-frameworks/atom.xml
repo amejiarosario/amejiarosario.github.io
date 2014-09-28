@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Agile Frameworks | Adrian Mejia's Blog]]></title>
+  <link href="http://adrianmejia.com/blog/categories/agile-frameworks/atom.xml" rel="self"/>
+  <link href="http://adrianmejia.com/"/>
+  <updated>2014-09-28T18:55:51-04:00</updated>
+  <id>http://adrianmejia.com/</id>
+  <author>
+    <name><![CDATA[Adrian Mejia]]></name>
+    <email><![CDATA[me@adrianmejia.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 4: Routers)]]></title>
+    <link href="http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/"/>
+    <updated>2012-09-13T14:41:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4</id>
+    <content type="html"><![CDATA[<p>The part 3 of this tutorial is <a href="/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">here</a>.</p>
+
+<h2>2.6 Backbone.Router</h2>
+
+<p>You could build web application without using the routers.  However, if you want to make reference to certain ‘state’ or location of the web application, you need a reference (link/URL) to it. This is where routers come to rescue.</p>
+
+<p>Routing in most of JS application are achieved by hash-tags. E.g. If you take a look of Gmail URL you will see something like:</p>
+
+<p><code>https://mail.google.com/mail/u/0/#inbox/139c0d48e11d986b</code></p>
+
+<p>where the <code>#inbox/139c0d48e11d986b</code> is the hash-tag which reference some email location.</p>
+
+<p>In backbone, routes are hash maps that match URL patterns to functions. You can use parameter parts, such as <code>todos/:id</code>, or using splats <code>file/*path</code> you will match all the parameters from the splat on. For that reason, the splat parameter should be always the last matcher.</p>
+
+<h3>2.6.1 Initializing the Router</h3>
+
+<p>In our Todo app, we are going to use routers to filter between the tasks that are pending and the ones that have been completed. So, let&rsquo;s initialize the routes this way:</p>
+
+<p><figure class='code'><figcaption><span>Define Router <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">app</span><span class="p">.</span><span class="nx">Router</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;*filter&#39;</span> <span class="o">:</span> <span class="s1">&#39;setFilter&#39;</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">setFilter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;app.router.params = &#39;</span> <span class="o">+</span> <span class="nx">params</span><span class="p">);</span> <span class="c1">// just for didactical purposes.</span>
+</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">filter</span> <span class="o">=</span> <span class="nx">params</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">app</span><span class="p">.</span><span class="nx">todoList</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;reset&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Now, you need to initialize it, adding this lines:</p>
+
+<p><figure class='code'><figcaption><span>Initialize router <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt; //--------------
+</span><span class='line'> // Initializers
+</span><span class='line'> //--------------
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt; app.router = new app.Router();&lt;/li&gt;
+</span><span class='line'>&lt;li&gt; Backbone.history.start();  &lt;br/&gt;
+</span><span class='line'> app.appView = new app.AppView();&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>You can test that you router is working just typing <code>#anything/that/you/want</code> and seeing the parameter in you browser&rsquo;s console.</p>
+
+<h3>2.6.1 Processing the routes</h3>
+
+<p>Before rendering the list of items, you need to check the parameters to wether show only the pending ones, or the completed or show them all. As shown in the code snipet below.</p>
+
+<p><figure class='code'><figcaption><span>Processing the routes in app.AppView <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@@ -164,7 +177,18 @@
+</span><span class='line'>       },
+</span><span class='line'>       addAll: function(){
+</span><span class='line'>         this.$(&amp;lsquo;#todo-list&amp;rsquo;).html(&amp;lsquo;&amp;rsquo;); // clean the todo list
+</span><span class='line'><span class="gd">-        app.todoList.each(this.addOne, this);</span>
+</span><span class='line'><span class="gi">+        // filter todo item list</span>
+</span><span class='line'><span class="gi">+        switch(window.filter){</span>
+</span><span class='line'><span class="gi">+          case &amp;lsquo;pending&amp;rsquo;:</span>
+</span><span class='line'><span class="gi">+            &lt;em&gt;.each(app.todoList.remaining(), this.addOne);</span>
+</span><span class='line'><span class="gi">+            break;</span>
+</span><span class='line'><span class="gi">+          case &amp;lsquo;completed&amp;rsquo;:</span>
+</span><span class='line'><span class="gi">+            &lt;/em&gt;.each(app.todoList.completed(), this.addOne);</span>
+</span><span class='line'><span class="gi">+            break;          &lt;br/&gt;</span>
+</span><span class='line'><span class="gi">+          default:</span>
+</span><span class='line'><span class="gi">+            app.todoList.each(this.addOne, this);</span>
+</span><span class='line'><span class="gi">+            break;</span>
+</span><span class='line'><span class="gi">+        }</span>
+</span><span class='line'>       },
+</span><span class='line'>       newAttributes: function(){
+</span><span class='line'>         return {&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>If you try adding the words <code>#/pending</code> or <code>#/completed</code> at the end of the URL you&rsquo;ll get an error!. That&rsquo;s a good sign, it means the routes are working, but we haven&rsquo;t implemented the <code>app.todoList.remaining()</code> and <code>app.todoList.completed()</code>. So, that&rsquo;s next:</p>
+
+<p><figure class='code'><figcaption><span>Defining &lsquo;completed&rsquo; and &lsquo;remaining&rsquo; functions in app.TodoList <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@@ -85,7 +90,15 @@
+</span><span class='line'>     //&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;
+</span><span class='line'>     app.TodoList = Backbone.Collection.extend({
+</span><span class='line'>       model: app.Todo,
+</span><span class='line'><span class="gd">-      localStorage: new Store(&amp;ldquo;backbone-todo&amp;rdquo;)</span>
+</span><span class='line'><span class="gi">+      localStorage: new Store(&amp;ldquo;backbone-todo&amp;rdquo;),</span>
+</span><span class='line'><span class="gi">+      completed: function() {</span>
+</span><span class='line'><span class="gi">+        return this.filter(function( todo ) {</span>
+</span><span class='line'><span class="gi">+          return todo.get(&amp;lsquo;completed&amp;rsquo;);</span>
+</span><span class='line'><span class="gi">+        });</span>
+</span><span class='line'><span class="gi">+      },</span>
+</span><span class='line'><span class="gi">+      remaining: function() {</span>
+</span><span class='line'><span class="gi">+        return this.without.apply( this, this.completed() );</span>
+</span><span class='line'><span class="gi">+      }    &lt;br/&gt;</span>
+</span><span class='line'>     });&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Now, if you try again adding the hash-tags it will work! But, it will be better if the user can have links to that instead of typing URLs. So, let&rsquo;s add them.</p>
+
+<p><figure class='code'><figcaption><span>Show routes&#8217; links <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@@ -32,6 +32,11 @@
+</span><span class='line'>     &lt;header id=&quot;header&quot;&gt;
+</span><span class='line'>       &lt;h1&gt;Todos&lt;/h1&gt;
+</span><span class='line'>       &lt;input id=&quot;new-todo&quot; placeholder=&quot;What needs to be done?&quot; autofocus&gt;
+</span><span class='line'><span class="gi">+      &lt;div&gt;</span>
+</span><span class='line'><span class="gi">+        &lt;a href=&quot;#/&quot;&gt;show all&lt;/a&gt; |</span>
+</span><span class='line'><span class="gi">+        &lt;a href=&quot;#/pending&quot;&gt;show pending&lt;/a&gt; |</span>
+</span><span class='line'><span class="gi">+        &lt;a href=&quot;#/completed&quot;&gt;show completed&lt;/a&gt;</span>
+</span><span class='line'><span class="gi">+      &lt;/div&gt;    &lt;br/&gt;</span>
+</span><span class='line'>     &lt;/header&gt;
+</span><span class='line'>     &lt;section id=&quot;main&quot;&gt;
+</span><span class='line'>       &lt;ul id=&quot;todo-list&quot;&gt;&lt;/ul&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Well, that&rsquo;s all! If completed these 4 parts tutorial you will be familiar with the main Backbone modules (Models, Collections, Views, Events, and Routes). To increase you knowledge you can follow the following resources:</p>
+
+<ul>
+<li><a href="https://github.com/documentcloud/backbone/blob/master/backbone.js">Backbone&rsquo;s Source code - it&rsquo;s the ultimate source of true</a></li>
+<li><a href="http://backbonejs.org/?utm_source=adrianmejia.com">Official documentation</a></li>
+</ul>
+
+
+<p>Hope it was helpful!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 3: CRUD)]]></title>
+    <link href="http://adrianmejia.com/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/"/>
+    <updated>2012-09-13T01:37:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3</id>
+    <content type="html"><![CDATA[<p>The part 2 of this tutorial is <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">here</a>.</p>
+
+<h2>2.5 Todo item list CRUD</h2>
+
+<p>There are a couple of features that we could improve. Let’s implement the CRUD (Create-Read-Update-Delete) for the item list.</p>
+
+<h3>2.5.1. C-reate</h3>
+
+<p>We are already can create item list from the console (2.3) and also from the UI (2.4.3). So, it’s done.</p>
+
+<h3>2.5.2. U-pdate</h3>
+
+<p>What if you make a mistake and want to change the text on some of your to-do list. Furthermore, you can notice that the checkboxes states are not persistent when you reload the pages. Let’s fix both problems.</p>
+
+<p>1.- You want to respond to a double click event showing up a text box, where the user can change the text. First, let’s add the HTML in the <code>item-template</code> template below the label tag.</p>
+
+<p><code>&lt;input class="edit" value="&lt;%- title %&gt;"&gt;</code></p>
+
+<p>2.- If you refresh, you will notice that there are both displaying at the same time. So, you can hide them properly with the following CSS.
+<figure class='code'><figcaption><span>CSS <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/3840dc802d6f311528298639150a5f52364c1975/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/3840dc802d6f311528298639150a5f52364c1975/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">pre</span><span class="o">&gt;&lt;</span><span class="nt">code</span><span class="o">&gt;</span><span class="nf">#todo-list</span> <span class="nt">input</span><span class="nc">.edit</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="c">/* Hides input box*/</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nf">#todo-list</span> <span class="nc">.editing</span> <span class="nt">label</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="c">/* Hides label text when .editing*/</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nf">#todo-list</span> <span class="nc">.editing</span> <span class="nt">input</span><span class="nc">.edit</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="k">inline</span><span class="p">;</span> <span class="c">/* Shows input text box when .editing*/</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="nt">code</span><span class="o">&gt;&lt;/</span><span class="nt">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>3.- Then, we need to add the events to the TodoView class to respond to the changes.</p>
+
+<p><figure class='code'><figcaption><span>Todo Model <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/3840dc802d6f311528298639150a5f52364c1975/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/3840dc802d6f311528298639150a5f52364c1975/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// renders individual todo items list (li)</span>
+</span><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">TodoView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">tagName</span><span class="o">:</span> <span class="s1">&#39;li&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#item-template&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">()),</span>
+</span><span class='line'>  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()));</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">input</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.edit&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="c1">// enable chained calls</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;dblclick label&#39;</span> <span class="o">:</span> <span class="s1">&#39;edit&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s1">&#39;keypress .edit&#39;</span> <span class="o">:</span> <span class="s1">&#39;updateOnEnter&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s1">&#39;blur .edit&#39;</span> <span class="o">:</span> <span class="s1">&#39;close&#39;</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">edit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;editing&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">close</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">trim</span><span class="p">();</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">save</span><span class="p">({</span><span class="nx">title</span><span class="o">:</span> <span class="nx">value</span><span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;editing&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">updateOnEnter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">which</span> <span class="o">==</span> <span class="mi">13</span><span class="p">){</span>
+</span><span class='line'>      <span class="k">this</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>You can find the <a href="https://github.com/amejiarosario/Backbone-tutorial/commit/3840dc802d6f311528298639150a5f52364c1975">diff</a> that were added to implement the update feature.</p>
+
+<p><a href="https://github.com/amejiarosario/Backbone-tutorial/commit/19fa69e654ae5d370385675e4ffed615532b9934">Here</a> are the changes to fix the update for the checkboxes.</p>
+
+<h3>2.5.2. D-elete</h3>
+
+<p>To be able to remove to-do items, we need to add a remove button in each item and listen to the click event on it, which will trigger the destroy function in the selected todo object.</p>
+
+<p>1.- Add the HTML markup for the remove button.</p>
+
+<p><figure class='code'><figcaption><span>Remove Button into &lsquo;item template&rsquo; <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@@ -47,6 +47,7 @@
+</span><span class='line'>       &lt;input class=&quot;toggle&quot; type=&quot;checkbox&quot; &lt;%= completed ? &#39;checked&#39; : &#39;&#39; %&gt;&gt;
+</span><span class='line'>       &lt;label&gt;&amp;lt;%- title %&gt;&lt;/label&gt;
+</span><span class='line'>       &lt;input class=&quot;edit&quot; value=&quot;&lt;%- title %&gt;&amp;ldquo;&gt;
+</span><span class='line'><span class="gi">+      &lt;button class=&quot;destroy&quot;&gt;remove&lt;/button&gt;</span>
+</span><span class='line'>     &lt;/div&gt;
+</span><span class='line'>   &lt;/script&gt;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>2.- Listen for the click event in the button that you just created.</p>
+
+<p><figure class='code'><figcaption><span>Add event listeners for the Remove Button in &lsquo;app.TodoView&rsquo; <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@@ -105,12 +106,14 @@
+</span><span class='line'>       },
+</span><span class='line'>       initialize: function(){
+</span><span class='line'>         this.model.on(&amp;lsquo;change&amp;rsquo;, this.render, this);
+</span><span class='line'><span class="gi">+        this.model.on(&amp;lsquo;destroy&amp;rsquo;, this.remove, this); // remove: Convenience Backbone&#39;</span>
+</span><span class='line'>       },    &lt;br/&gt;
+</span><span class='line'>       events: {
+</span><span class='line'>         &amp;lsquo;dblclick label&amp;rsquo; : &amp;lsquo;edit&amp;rsquo;,
+</span><span class='line'>         &amp;lsquo;keypress .edit&amp;rsquo; : &amp;lsquo;updateOnEnter&amp;rsquo;,
+</span><span class='line'>         &amp;lsquo;blur .edit&amp;rsquo; : &amp;lsquo;close&amp;rsquo;,
+</span><span class='line'><span class="gd">-        &amp;lsquo;click .toggle&amp;rsquo;: &amp;lsquo;toggleCompleted&amp;rsquo;</span>
+</span><span class='line'><span class="gi">+        &amp;lsquo;click .toggle&amp;rsquo;: &amp;lsquo;toggleCompleted&amp;rsquo;,</span>
+</span><span class='line'><span class="gi">+        &amp;lsquo;click .destroy&amp;rsquo;: &amp;lsquo;destroy&amp;rsquo;</span>
+</span><span class='line'>       },
+</span><span class='line'>       edit: function(){
+</span><span class='line'>         this.$el.addClass(&amp;lsquo;editing&amp;rsquo;);&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>3.- Add the destroy method to the TodoView.</p>
+
+<p><figure class='code'><figcaption><span>Add the destroy method to &lsquo;app.TodoView&rsquo; <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;@@ -130,7 +133,10 @@
+</span><span class='line'>       },
+</span><span class='line'>       toggleCompleted: function(){
+</span><span class='line'>         this.model.toggle();
+</span><span class='line'><span class="gd">-      }</span>
+</span><span class='line'><span class="gi">+      },</span>
+</span><span class='line'><span class="gi">+      destroy: function(){</span>
+</span><span class='line'><span class="gi">+        this.model.destroy();</span>
+</span><span class='line'><span class="gi">+      }    &lt;br/&gt;</span>
+</span><span class='line'>     });&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>You can download the full working code so far in <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html">here</a> and you can visualize the changes needed to implement the delete feature in <a href="https://github.com/amejiarosario/Backbone-tutorial/commit/1267e531ae3ef508eb32e5308c2cc965f02d1b45">here</a></p>
+
+<h3>Continue with the <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/">4th part</a> and learn about Backbone&rsquo;s Routes!</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 2: Models, Collections and Views)]]></title>
+    <link href="http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/"/>
+    <updated>2012-09-13T00:08:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2</id>
+    <content type="html"><![CDATA[<p>The part 1 of this tutorial is <a href="/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">here</a></p>
+
+<h2>2. Todo App in Backbone (Models, Collections, View and Events)</h2>
+
+<p>After completing this example app, you will have experience and basic understanding of all the modules of Backbone!</p>
+
+<p>(Updated: 2013-02-02, 2013-11-24)
+Notice: This tutorial was written using Backbone v.0.9.x, now version 1.1.x or later are out. However, all the principles exaplained here applies for both.</p>
+
+<h3>2.1.- Todo app Boiler plate</h3>
+
+<p>Let&rsquo;s start again with the initial <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/439ff34409dfc01adca7f9f96efcd726295f1aac/backbone-tutorial.html">HTML file</a> used on 1.1. Now, instead of div#container let&rsquo;s add the following HTML code:</p>
+
+<p><figure class='code'><figcaption><span>HTML Structure <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">&quot;todoapp&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;header</span> <span class="na">id=</span><span class="s">&quot;header&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h1&gt;</span>Todos<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;new-todo&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;What needs to be done?&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/header&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">&quot;main&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;todo-list&quot;</span><span class="nt">&gt;&lt;/ul&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/section&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>We are going to implement a To-do list, which is basically un-ordered list (ul) of elements with checkboxes.</p>
+
+<h3>2.2.- Backbone.Model</h3>
+
+<p>Models are the heart of every application. It contains the interactive data and the logic surrounding it, such as data validation, getters and setters, default values, data initialization, conversions and so on.
+For our example, we are going to create a model called <code>Todo</code>, which will store a string of text (title) and whether the task has been completed or not.</p>
+
+<p><figure class='code'><figcaption><span>Todo Model <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// create namespace for our app</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">Todo</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Notice, that for convention classes names are capitalize, while instance variables and objects are not. Another important aspect of models it’s that their properties are dynamic; they can be created on the fly and doesn’t have any specific type associated.</p>
+
+<p><strong>Test what you just coded!</strong></p>
+
+<p>After you completed the code snippet above you can open your browser console (chrome&rsquo;s console: ctrl+shift+i -or- ⌘+alt+i) and try this out, to get familiar with the models:</p>
+
+<p><figure class='code'><figcaption><span>Practice in your Browser\&rsquo;s console </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">todo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">app</span><span class="p">.</span><span class="nx">Todo</span><span class="p">({</span><span class="nx">title</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">Learn</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">js</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span> <span class="c1">// create object with the attributes specified.</span>
+</span><span class='line'><span class="nx">todo</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">title</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;);</span> <span class="c1">// &amp;ldquo;Learn Backbone.js&amp;rdquo;</span>
+</span><span class='line'><span class="nx">todo</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">completed</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;);</span> <span class="c1">// false</span>
+</span><span class='line'><span class="nx">todo</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">created_at</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;);</span> <span class="c1">// undefined</span>
+</span><span class='line'><span class="nx">todo</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">created_at</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nb">Date</span><span class="p">());</span>
+</span><span class='line'><span class="nx">todo</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">created_at</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;);</span> <span class="c1">// &amp;ldquo;Wed Sep 12 2012 12:51:17 GMT-0400 (EDT)&amp;rdquo;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h3>2.3.- Backbone.Collection</h3>
+
+<p>As its name indicates, collections are ordered sets of models, where you can get and set models in the collection, listen for events when any element in the collection changes, and fetching for model’s data from the server.</p>
+
+<p>E.g.: <code>todoList.fetch();</code></p>
+
+<p>Collections allows to save data (in database, file, memory), and it requires a reference to it. Therefore, you need to specify the <code>url</code> parameter with a relative url, where the model’s resource would be located on the server. Otherwise, you will get errors like:</p>
+
+<p><code>A "url" property or function must be specified</code></p>
+
+<p>We are not going to use a backend server for simplicity (I will do a new post for that); instead we are going to use HTML5’s local storage for persistence through a Backbone’s plugin. So, we need to define the localStorage property instead of URL. You need to include the backbone-localstorage.js with the rest of your libs as <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html">shown in the full code</a>:</p>
+
+<p><code>&lt;script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js" type="text/javascript"&gt;</code></p>
+
+<p><figure class='code'><figcaption><span>Todo list Collection <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">app</span><span class="p">.</span><span class="nx">TodoList</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">model</span><span class="o">:</span> <span class="nx">app</span><span class="p">.</span><span class="nx">Todo</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">localStorage</span><span class="o">:</span> <span class="k">new</span> <span class="nx">Store</span><span class="p">(</span><span class="s2">&quot;backbone-todo&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// instance of the Collection</span>
+</span><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">todoList</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">app</span><span class="p">.</span><span class="nx">TodoList</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><strong>Test what you just your coded!</strong></p>
+
+<p>(Google&rsquo;s Chrome console shortcuts: ctrl+shift+i -or- ⌘+alt+i)</p>
+
+<p><figure class='code'><figcaption><span>Practice in your Browser\&rsquo;s console </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">todoList</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">app</span><span class="p">.</span><span class="nx">TodoList</span><span class="p">()</span>
+</span><span class='line'><span class="nx">todoList</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="nx">title</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">Learn</span> <span class="nx">Backbone</span><span class="err">\</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;</span><span class="nx">s</span> <span class="nx">Collection</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;});</span> <span class="c1">// notice: that &lt;code&gt;completed&lt;/code&gt; will be set to false by default.</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">lmodel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">app</span><span class="p">.</span><span class="nx">Todo</span><span class="p">({</span><span class="nx">title</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">Learn</span> <span class="nx">Models</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">completed</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+</span><span class='line'><span class="nx">todoList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">lmodel</span><span class="p">);</span>
+</span><span class='line'><span class="nx">todoList</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">title</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;);</span>     <span class="c1">// [&amp;ldquo;Learn Backbone&amp;rsquo;s Collection&amp;rdquo;, &amp;ldquo;Learn Models&amp;rdquo;]</span>
+</span><span class='line'><span class="nx">todoList</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">completed</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;);</span> <span class="c1">// [false, true]</span>
+</span><span class='line'><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">todoList</span><span class="p">);</span>    <span class="c1">// &amp;ldquo;[{&quot;title&amp;rdquo;:&amp;ldquo;Learn Backbone&amp;rsquo;s Collection&amp;rdquo;,&amp;ldquo;completed&amp;rdquo;:false,&amp;ldquo;id&amp;rdquo;:&amp;ldquo;d9763e99-2267-75f5-62c3-9d7e40742aa6&amp;rdquo;},{&amp;ldquo;title&amp;rdquo;:&amp;ldquo;Learn Models&amp;rdquo;,&amp;ldquo;completed&amp;rdquo;:true}]&amp;ldquo;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>2.4.- Backbone.View</h2>
+
+<p>As mentioned in <a href="/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/#1.2">1.2</a>, Views doesn’t have the HTML markups for our application, but instead (It&rsquo;s like the controller in MVC frameworks) process data and link it to templates and it finally render HTML based on events or data changes.</p>
+
+<h3>2.4.1.- Basic Properties</h3>
+
+<p>There are 4 basic properties in a view: el, initialize, render, and events.</p>
+
+<p>We have already seen the first 3 and will see later the fourth one. Do you remember the Hello World View from <a href="/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/#1.2">1.2</a>?</p>
+
+<p><figure class='code'><figcaption><span>Example of a Backbone.View </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="kd">var</span> <span class="nx">AppView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>      <span class="c1">// el - stands for element. Every view has a element associate in with HTML</span>
+</span><span class='line'>      <span class="c1">//      content will be rendered.</span>
+</span><span class='line'>      <span class="nx">el</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="err">#</span><span class="nx">container</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span>
+</span><span class='line'>      <span class="c1">// It&amp;rsquo;s the first function called when this view it&amp;rsquo;s instantiated.</span>
+</span><span class='line'>      <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="c1">// $el - it&amp;rsquo;s a cached jQuery object (el), in which you can use jQuery functions</span>
+</span><span class='line'>      <span class="c1">//       to push content. Like the Hello World in this case.</span>
+</span><span class='line'>      <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h3>2.4.1.1.- <code>view.el</code></h3>
+
+<p>Every view needs to reference a DOM at all times. Therefore, the view will inject content into this element. This is the <code>el</code> property. <code>this.el</code> is created from view’s <code>el</code>,<code>tagName</code>, <code>className</code>, <code>id</code> or <code>attributes</code> properties. If none of these are specified, then this.el is an empty <code>div</code>. The <code>view.$el</code> it’s a cached jQuery object of the view’s element (view.el).</p>
+
+<h3>2.4.1.2.- Initialize/construtor</h3>
+
+<p>Here you have the option to pass parameters that will be attached to a model, collection or view.el.</p>
+
+<h3>2.4.1.3.- <code>render</code></h3>
+
+<p>This function injects the markup into the elements. Not all views require having a render function, as you are going to see in the sample code, they can call other view’s render functions.</p>
+
+<h3>2.4.1.5.- delegated events</h3>
+
+<p>Events are written in the following format:</p>
+
+<p><code>{"&lt;EVENT_TYPE&gt; &lt;ELEMENT_ID&gt;": "&lt;CALLBACK_FUNTION&gt;"}</code></p>
+
+<p>E.g.</p>
+
+<p><code>events: {'keypress #new-todo': 'createTodoOnEnter'}</code></p>
+
+<p>in jQuery it would be something like:</p>
+
+<p><code>$('#new-todo').keypress(createTodoOnEnter);</code></p>
+
+<h2>2.4.2.- Todo View</h2>
+
+<p>Now back to our To-do application: We need a view that renders each of the todo model objects into the page. The <code>item-template</code> and <code>app.TodoView</code> will render each todo item.</p>
+
+<p><figure class='code'><figcaption><span>item-template <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span>  <span class="ni">&amp;lt;</span>script type=&quot;text/template&quot; id=&quot;item-template&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>div class=&quot;view&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'>      <span class="ni">&amp;lt;</span>input class=&quot;toggle&quot; type=&quot;checkbox&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'>      <span class="ni">&amp;lt;</span>label<span class="ni">&amp;gt;&amp;lt;</span>%- title %<span class="ni">&amp;gt;&amp;lt;</span>/label<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>/div<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>/script<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>In the following block of code we have the Backbone.View which uses the above template (<code>#item-template</code>) to fill it out the title from the <code>model</code> we pass along.</p>
+
+<p><figure class='code'><figcaption><span>Todo View <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// renders individual todo items list (li)</span>
+</span><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">TodoView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">tagName</span><span class="o">:</span> <span class="s1">&#39;li&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#item-template&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">()),</span>
+</span><span class='line'>  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()));</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">this</span><span class="p">;</span> <span class="c1">// enable chained calls</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>When we instanciate the views, they can receive any parameter that we need. In our case we call it <code>model</code> so we need to instanciated with a model (e.g. todo):</p>
+
+<p><code>var view = new app.TodoView({model: todo});</code></p>
+
+<p>Also notice that it&rsquo;s using a <code>tagName: li</code> instead of the just <code>el</code> from before. This mean that the new render elements will be wrapped around a <code>&lt;li&gt;&lt;/li&gt;</code></p>
+
+<h2>2.5.- Backbone.Events</h2>
+
+<p>This module can be mixed with any object and give it the pub/sub (observer patter) behaviour. Events provides a couple of methods from which we are going to discuss: <code>on</code>, <code>off</code> and <code>trigger</code>. (If this you are familiar with then in jQuery, they will work the same way + some nice built-in features)</p>
+
+<h3>2.5.1 on</h3>
+
+<p><code>object.on(event, callback, [context])</code></p>
+
+<p>Also called bind. It binds an object to an event and a callback. When that event it&rsquo;s triggered it executes the callback.</p>
+
+<p>E.g.
+<code>todoList.on('add', this.addAll, this);</code></p>
+
+<p>Everytime a new item is <code>add</code>ed to a Backbone.Collection the event <code>add</code> is triggered. In the example above, after the event is triggered the todoList&rsquo;s callback <code>addAll()</code> is executed and the current object is passed with <code>this</code> as a <code>context</code>.</p>
+
+<p>Events can also be set on arbitrary objects using underscore.js <code>extend</code> function:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="nx">callback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">Triggered</span> <span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span> <span class="o">+</span> <span class="nx">msg</span><span class="p">);</span> <span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Events</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">object</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">my_event</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;,</span> <span class="nx">callback</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">object</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">my_event</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">my</span> <span class="nx">custom</span> <span class="nx">event</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;);</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>App View</h2>
+
+<p>Now, we need another view that take a collection and render each of the individual items. We are going to call it ‘AppView’. Take a look through this code and try to identify each of the elements (we have already describe them in the previous sections).</p>
+
+<p><figure class='code'><figcaption><span>Todo View <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// renders the full list of todo items calling TodoView for each one.</span>
+</span><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">AppView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#todoapp&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">input</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#new-todo&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">// when new elements are added to the collection render then with addOne</span>
+</span><span class='line'>    <span class="nx">app</span><span class="p">.</span><span class="nx">todoList</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">addOne</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">app</span><span class="p">.</span><span class="nx">todoList</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">addAll</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">app</span><span class="p">.</span><span class="nx">todoList</span><span class="p">.</span><span class="nx">fetch</span><span class="p">();</span> <span class="c1">// Loads list from local storage</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;keypress #new-todo&#39;</span><span class="o">:</span> <span class="s1">&#39;createTodoOnEnter&#39;</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">createTodoOnEnter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span> <span class="nx">e</span><span class="p">.</span><span class="nx">which</span> <span class="o">!==</span> <span class="mi">13</span> <span class="o">||</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">trim</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span> <span class="c1">// ENTER_KEY = 13</span>
+</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">app</span><span class="p">.</span><span class="nx">todoList</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">newAttributes</span><span class="p">());</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span> <span class="c1">// clean input box</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">addOne</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">todo</span><span class="p">){</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">app</span><span class="p">.</span><span class="nx">TodoView</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span> <span class="nx">todo</span><span class="p">});</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#todo-list&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">view</span><span class="p">.</span><span class="nx">render</span><span class="p">().</span><span class="nx">el</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">addAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#todo-list&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span> <span class="c1">// clean the todo list</span>
+</span><span class='line'>    <span class="nx">app</span><span class="p">.</span><span class="nx">todoList</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">addOne</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">newAttributes</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">title</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">val</span><span class="p">().</span><span class="nx">trim</span><span class="p">(),</span>
+</span><span class='line'>      <span class="nx">completed</span><span class="o">:</span> <span class="kc">false</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//--------------</span>
+</span><span class='line'><span class="c1">// Initializers</span>
+</span><span class='line'><span class="c1">//--------------   </span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">appView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">app</span><span class="p">.</span><span class="nx">AppView</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h3>Continue with the <a href="/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">3rd part</a> and learn how to make CRUD for your models!</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 1: Intro)]]></title>
+    <link href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/"/>
+    <updated>2012-09-11T22:50:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started</id>
+    <content type="html"><![CDATA[<p>Backbone.js is a JavaScript framework, among many others, that is gaining special attention in the web development community because it&rsquo;s ease of use and the structure that it provides to JavaScript applications.</p>
+
+<p>(Updated: 2013-02-02, 2013-11-24)</p>
+
+<h3>Brief Background (optional reading)</h3>
+
+<p><a href="#start">TL; DR</a>: You need to use JavaScript heavily in order to make responsive and interactive web applications. <a href="#start">Jump to this and get started.</a></p>
+
+<p>The web application development process has been evolving over the years. In the beginning web applications were just static HTML pages, which required programmers to change the code (HTML, CSS, JS) in order to change the content. Later, in web 2.0, server side programming languages (like PHP, Ruby, Java, …) were added to generate HTML pages dynamically based on user input and data stored in database. That was a huge improvement, and most of the pages served today use this approach. However, to provide the web site with even more responsiveness, speed, and enhanced user interaction, it requires bringing the logic closer to the client (browser).  There are a couple of languages that can run in the browsers besides JS, such as Java, Flash and others. However, these require extra plugins and are not as ubiquitous as JavaScript.</p>
+
+<p>Web applications nowadays require heavy use of JavaScript to generate content on the fly. The user needn&rsquo;t wait between requests and page refreshes. A lot of the logic/code that used to be on the server side is being moved to the client side. JS allows web sites to render only content that changes without needing to reload the full-page on every request. Examples of this kind of web applicqtion are Gmail, Pandora, Pinterest, Nokia Maps 3D and others.</p>
+
+<p>A common problem with large JS web application developed is that they can become pretty messy really quickly. The lack of structure makes the code hard to maintain. This is where Backbone comes into play. It provides structure to organize the code and increase maintainability. Backbone is not the only framework like this; in fact, there are many JS frameworks that attempt to offer similar benefits, like Ember.js, Angular.js and so on. However, I choose Backbone because it&rsquo;s one of the most widely used frameworks in its category. It has a vibrant community and it’s also being fully used in production for a considerable number of big companies like: Wal-Mart mobile, Groupon, Khan Academy, Pandora, Wordpress, Foursquare, and so on.</p>
+
+<p><a id="start"></a></p>
+
+<h2>Just enough to get started with Backbone.js</h2>
+
+<p>Backbone.js has hard dependency on underscore.js and a soft dependency on jQuery. It’s made up of the following modules:</p>
+
+<ul>
+<li> Views</li>
+<li> Events</li>
+<li> Models</li>
+<li> Collections</li>
+<li> Routers</li>
+</ul>
+
+
+<h2>Shut up and show me the code!</h2>
+
+<p>Alright! the way we are going to explore all of these modules is through examples. This is a practical tutorial that I wished I had it when I stared learning. This is a fat-free walkthrough of Backbone.js, as simple as possible, with all the code in one file for didactical purposes (no hidden magic tricks, all cards are on the table).</p>
+
+<p>The first example is a ‘Hello World’ app in Backbone and the second is a &lsquo;to do&rsquo; app. After working through these two example apps, you’ll see every Backbone module and have a practical understanding about them.</p>
+
+<h2>1. Hello World in Backbone.js</h2>
+
+<p>You can follow along with this tutorial&rsquo;s code in this <a href="https://github.com/amejiarosario/Backbone-tutorial/commits/">repository</a>. Each feature implemented is a new commit, so you can easily see what changed in every step.</p>
+
+<p><strong>1.1.- Simple HTML5 and Backbone boilerplate</strong></p>
+
+<p>To get started, download <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/439ff34409dfc01adca7f9f96efcd726295f1aac/backbone-tutorial.html">this simple html file</a>. This file  contains the libraries that you&rsquo;ll need (jQuery, Underscore.js, Backbone.js and Backbone-localStorage.js) and the placeholders for your HTML and JS code. Don&rsquo;t worry about the libraries, we are going to explain them as we need them.</p>
+
+<p>After downloading the aformentioned file, notice the HTML where your entire page will be built using Backbone.Views!</p>
+
+<p>Your entire js app will be loaded here:</p>
+
+<p><code>&lt;div id="container"&gt;Loading...&lt;/div&gt;</code></p>
+
+<p><a id="1.2"></a>
+<strong>1.2.- Backbone&rsquo;s Views</strong></p>
+
+<p>Backbone&rsquo;s Views are the equivalent of ‘controllers’ on MVC frameworks (like Ruby on Rails), if you are not familiar with MVC frameworks, that&rsquo;s okay. Backbone&rsquo;s Views glue together user events (clicks, pressed keys, etc.), render HTML views and templates, and interact with models which contains the data of the application.</p>
+
+<p>Here is an example of a Backbone.view: READ THE CODE AND COMMENTS, then insert this code in the javascript block of the HTML file you downloaded.</p>
+
+<p><figure class='code'><figcaption><span>Simple Backbone.View <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/0bf69185f4463a75cb2d5553f8d1ea197323ccff/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/0bf69185f4463a75cb2d5553f8d1ea197323ccff/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="kd">var</span> <span class="nx">AppView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>      <span class="c1">// el - stands for element. Every view has a element associate in with HTML</span>
+</span><span class='line'>      <span class="c1">//      content will be rendered.</span>
+</span><span class='line'>      <span class="nx">el</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="err">#</span><span class="nx">container</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span>
+</span><span class='line'>      <span class="c1">// It&amp;rsquo;s the first function called when this view it&amp;rsquo;s instantiated.</span>
+</span><span class='line'>      <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="c1">// $el - it&amp;rsquo;s a cached jQuery object (el), in which you can use jQuery functions</span>
+</span><span class='line'>      <span class="c1">//       to push content. Like the Hello World in this case.</span>
+</span><span class='line'>      <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><strong>1.3.- Test the app</strong></p>
+
+<p>After copying the code, open the file, refresh the browser and you should see the &lsquo;Hello World&rsquo; message, right? Wait, if you&rsquo;re just seeing the &lsquo;Loading…&rsquo; it&rsquo;s because you need to initialize the view first.</p>
+
+<p><code>var appView = new AppView();</code></p>
+
+<p>Yay! You have your &ldquo;Hello Wold&rdquo; in Backbone and an introduction to the View module. (Full code is <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/0bf69185f4463a75cb2d5553f8d1ea197323ccff/backbone-tutorial.html">here</a>)</p>
+
+<p><strong>1.4.- Backbone&rsquo;s Templates</strong></p>
+
+<p>Backbone has a utility/helper library called <a href="http://underscorejs.org/?utm_source=adrianmejia.com">underscore.js</a> and you can use their template solution out of box. You can also use any other template solution that you want like <a href="https://github.com/janl/mustache.js">mustache</a> or <a href="https://github.com/wycats/handlebars.js">handlerbars</a>. Let&rsquo;s stick with _.js for simplicity&rsquo;s sake.</p>
+
+<p>_.js templates have the following syntax,</p>
+
+<p><code>_.template(templateString, [data], [settings])</code></p>
+
+<p>where in the <code>templateString</code> you use the place holder <code>&lt;%= %&gt;</code> and <code>&lt;%- %&gt;</code> to dynamically insert data. The later allows for HTML escape while the first one doesn&rsquo;t. Moreover, you can use <code>&lt;% %&gt;</code> to run any javascript code.</p>
+
+<p>Let’s see it in action and rewrite our &ldquo;Hello World&rdquo; using a _.js template instead.</p>
+
+<p><figure class='code'><figcaption><span>Simple Backbone.View and Templates <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/c5b131278ecde92f33882c9a2c22ee4119e57d77/backbone-tutorial.html">https://raw.github.com/amejiarosario/Backbone-tutorial/c5b131278ecde92f33882c9a2c22ee4119e57d77/backbone-tutorial.html</a> Full Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="kd">var</span> <span class="nx">AppView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">el</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="err">#</span><span class="nx">container</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;),</span>
+</span><span class='line'>      <span class="c1">// template which has the placeholder &amp;lsquo;who&amp;rsquo; to be substitute later</span>
+</span><span class='line'>      <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">%=</span> <span class="nx">who</span> <span class="o">%&gt;&lt;</span><span class="nx">h3</span><span class="o">&gt;&amp;</span><span class="nx">rdquo</span><span class="p">;),</span>
+</span><span class='line'>      <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="c1">// render the function using substituting the varible &amp;lsquo;who&amp;rsquo; for &amp;lsquo;world!&amp;rsquo;.</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">({</span><span class="nx">who</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">world</span><span class="o">!&amp;</span><span class="nx">rsquo</span><span class="p">;}));</span>
+</span><span class='line'>        <span class="c1">//***Try putting your name instead of world.</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">appView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AppView</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Run the app again and verify that it&rsquo;s working with the template.</p>
+
+<h3>Continue with the <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">2nd part</a> and learn more about Backbone&rsquo;s Models, Collections, View and Events!</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby on Rails Architectural Design]]></title>
+    <link href="http://adrianmejia.com/blog/2011/08/11/ruby-on-rails-architectural-design/"/>
+    <updated>2011-08-11T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2011/08/11/ruby-on-rails-architectural-design</id>
+    <content type="html"><![CDATA[<p>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Introduction</p>
+
+
+<p>Ruby on Rails (RoR) is open source web framework written in the Ruby programming language, and all the applications in Rails are written in Ruby. Ruby on Rails is focused on productivity and enforces agile web development.</p>
+
+
+<p>Rails framework leverages the features of the Ruby language. Yukishiro Matzumoto designed this language in 1995 influence by Perl, Eiffel, Python, Smalltalk and others. It’s a dynamically typed, fully object-oriented, general-purpose scripting language. Ruby was designed to have an elegant syntax and made as human readable as possible, for instance it does not need colons and parenthesis around parameters. Some parts of the code are read like English declarations.</p>
+
+
+<p>The Ruby on Rails framework was designed for database-backed web applications. It was created as a response to heavy web frameworks such as J2EE and the .NET framework. In order to make the development process faster, Ruby on Rails uses conventions and assumptions that are considered best ways to accomplish tasks, and it’s designed to encourage those. This convention eliminates configuration code and increases productivity. Many of the common tasks for web development are built-in in the framework to work out-of-the-box. This includes email management, object-database mappers, file structures, code generation, how the elements are named and organized and so on. All of these conventions allow developers to write less code and develop agile applications. Additionally, the enhance maintainability and understandability around the Ruby on Rails developers’ community.</p>
+
+
+<p>Ruby on Rails architecture has the following features:</p>
+
+
+<ul>
+    <li>Model-View-Controller architecture.</li>
+    <li>Representational State Transfer (REST) for web services.</li>
+    <li>Supports the major databases (MySQL, Oracle, MS SQL Server, PostgreSQL, IBM DB2, and more).</li>
+    <li>Open-source server side scripting language.</li>
+    <li>Convention over configuration</li>
+    <li>Scripts generators to automate tasks.</li>
+    <li>Use of YAML machine, which is a human-readable data serialization format.</li>
+</ul>
+
+
+<p>The above-described features are distributed in the following Rails’ components and the Fig. 2 shows the interaction between some of these components:</p>
+
+
+<ul>
+    <li>Action Mailer</li>
+    <li>Action Pack
+        <ul style="list-style-type:circle;">
+            <li>Action Controller</li>
+            <li>Action Dispatcher</li>
+            <li>Action View</li>
+        </ul>
+    </li>
+    <li>Active Model</li>
+    <li>Active Record</li>
+    <li>Active Resource</li>
+    <li>Active Support</li>
+    <li>Railties</li>
+</ul>
+
+
+<p>&nbsp;</p>
+
+
+<p><img alt="Ruby on Rails Architecture Diagram" src="https://lh4.googleusercontent.com/-qUDi3Wiv6A0/RwGSHOH-OWI/AAAAAAAAAEI/_WrLZZLVsR0/s640/Rails2.png" style="width: 640px; height: 483px; "></p>
+
+
+<p><strong>Figure 2. Reference model depicting the overall framework architecture [<a href="https://picasaweb.google.com/Dikiwinky/Ruby#5116531304417868130">source</a>]</strong></p>
+
+
+<h2>1.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Model-View-Controller Pattern</h2>
+
+
+<p>Ruby on Rails uses the Model-View-Controller (MVC) architectural pattern in order to improve the maintainability of the application. The Model centralizes the business logic, the View manages the display logic, while the Controller deals with the application flow. The MVC allows a clean separation of concerns, in the way that it keeps the business logic separated from HTML views. Additionally, it improves decoupling and testing.</p>
+
+
+<h3>1.1.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Model</h3>
+
+
+<p>The Model layer carries the business logic of the application and the rules to manipulate the data. In Ruby on Rails, the models are used to manage the interaction with their corresponding elements in the database. The Models represent the information in the database and do the appropriate validations.</p>
+
+
+<h3>1.1.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; View</h3>
+
+
+<p>The view is the front-end of the application, representing the user interface. In Ruby on Rails, views are HTML files with embedded Ruby code. The embedded Ruby code in the HTMLs is fairly simple (loops and conditionals). It is only used to display data to the user in the form of views. Views are used to provide the data to the browsers that requested the web pages. Views can server content in several formats, such as HTML, PDF, XML, RSS and more.</p>
+
+
+<h3>1.1.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Controller</h3>
+
+
+<p>Controllers interact with models and views. The incoming requests from the browsers are processed by the controllers, which process the data from the models and pass it to the views for presentation.</p>
+
+
+<p>&nbsp;</p>
+
+
+<h2>1.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rails Modules</h2>
+
+
+<h3>1.2.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Action Mailer</h3>
+
+
+<p>This module is responsible for providing e-mail services. It processes incoming mails and creates new ones. This module can handle simple text or complex rich-format emails. Also it has common tasks built-in, such as, sending out forgotten passwords, welcome messages, and fulfilling any other written-communication’s need. Action Mailer is wrapped around the Action Controller. It provides ways to make email with templates in the same way that Action View uses it to render web pages.</p>
+
+
+<h3>1.2.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Action Pack</h3>
+
+
+<p>The Action Pack module provides the controller and view layers of the MVC patterns. These modules capture the user requests made by the browser and map these requests to actions. These actions are defined in the controllers layer and later the actions render a view that is displayed in the browser. Action Pack is divided in 3 sub-modules, which are: Action Dispatch, Action Controller, and Action View.</p>
+
+
+<ul>
+    <li><strong>Action Dispatch:</strong> handles routing of web browser request. It parses the web request and does advanced processing around HTTP, such as handling cookies, sessions, request methods, and so forth.</li>
+    <li><strong>Action Controller:</strong> after the action dispatch has processed the request it makes the routing to its corresponding controller. This module provides a base controller from which all the other controllers can inherit. Action Controller contains actions to controls model and view. This module makes data available as needed, controls views rendering and redirection. Additionally, it manages the user sessions, application flow, caching features, helper modules and implement filters for the pre, during and post processing hooks.</li>
+    <li><strong>Action View:</strong> it is call by the Action Controller. It renders the presentation of the web page requested. Action View provides master layouts, templates lookups and view helpers that assist the generation of the HTML, feeds and other presentation formats. There are three templates schemas in Rails, which are rhtml, rxml, and rjs. The rhtml format generates HTML views to the users with ERB (embedded ruby code in HTML). The rxml is used to construct XML documents using Ruby, and rjs allow creating dynamic JavaScript code in Ruby useful to implement AJAX functionality.</li>
+</ul>
+
+
+<h3>1.2.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Active Model</h3>
+
+
+<p>Define the interface between the Action Pack and the Active Record modules. Also, Action Record interfaces can be used outside of Rails framework to provide Object-relational mapping (ORM) functionalities.</p>
+
+
+<h3>1.2.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Active Record</h3>
+
+
+<p>Active record is an architectural pattern used to manage data in relational databases through objects. In Ruby on Rails the Active Record module provides object-relational mapping to classes. This module builds the Model layer that connects the database tables with its representation in ruby classes. Rails provide tools to implement the CRUD functionality with zero-configuration. CRUD allows creating, reading, updating and deleting records from the database through ruby objects. An object represents each row in a database tables. Additionally, it also provides advance search capabilities and the ability to create relationships or associations between models. Active Records relies heavily on conventions on how the classes should be named, the tables in the database, the foreign keys and primary keys. However, the database mapping can be accomplished using configuration, but it is highly encouraged to follow the rails convention, such as active record modules.</p>
+
+
+<p>This modules is used to create model classes, which contains the business logic, handle validations and relationships, automatically maps to a table and encapsulates data access, provides getters and setters, callbacks and also supports several databases.</p>
+
+
+<h3>1.2.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Active Resource</h3>
+
+
+<p>Active Resource module is used for managing the connection between RESTful web services and business objects. It follows the same principle of Active Record that is to reduce the amount of code needed to map resources. Active Resources maps model classes to remote REST resources in the same way that Active Record maps model classes to database tables. Active Resource leverages the HTTP protocol and adds code conventions to make it easy to infer complex structures and relations. Active Record also provides proxy capabilities between an Active Resource (client) and a RESTful service. This is accomplished implementing an object-relational mapping for REST web services. When a request to a remote resource is made, a REST XML is generated and transmitted, and then the result is parsed into a ruby object.</p>
+
+
+<p>1.2.6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RESTful Architecture</p>
+
+
+<p>REST stands for Representational State Transfer. REST is an alternative to web services, such as SOAP and WSDL. It relies in the HTTP protocol for all the CRUD operations: create, read, update and delete. RESTful web services are appropriated when the web services are completely stateless, limited bandwidth (it’s very useful for mobile devices since it doesn’t the the overhead of other protocols like SOAP), when the data is not generated dynamically so it could be cached to improve performance and when there is a mutual understanding between the service producer and the consumer.</p>
+
+
+<h3>1.2.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Active Support</h3>
+
+
+<p>It is a collection of utility classes and standard Ruby libraries extensions that are useful for the development on Ruby on Rails. It includes a rich support for multi-bytes strings, internationalization, time zones and testing.</p>
+
+
+<h3>1.2.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Railties</h3>
+
+
+<p>Railties is the Rails’ core code that builds new applications. It is responsible for “glue”-ing all the above-describe modules all together. Additionally, it handles all the bootstrapping process, the command line interface and provides the Rails’ code generators. Rake is one of the command lines used to perform database tasks, deployment, documentation, testing and cleanups. Rails also supply a built-in testing framework that generates test stubs automatically when code is generated, provides unit testing, functional testing for views and controls, test fixtures and supply test data using YAML.</p>
+
+
+<p>&nbsp;</p>
+
+
+<h1>2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Architectural Solution</h1>
+
+
+<p>The selected views to analyze this architecture are Module Views and Component and Connector (C&amp;C) Views. The Module View will contain UML diagrams which represent a static view of all the components, while the Component &amp; Connector View will show the UML diagram that presents a run-time view of a system&#8217;s architecture: what components exist at run-time and how do these components communicate with one another.</p>
+
+
+<p>2.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Connect and Component View</p>
+
+
+<p>The Component-and-Connector View is a dynamic view of the system and presents the components, interfaces, connectors and systems. In the interfaces representation we choose to present the Interfaces as UML interfaces. This provides a compact representation of the interfaces and avoids crowding the diagram. The connector types will be represented as associations and connector instances as links to be the consistent with the UML notation that we are using the for the interfaces representation. In the same way the systems will be presented as UML subsystems. Fig. 3</p>
+
+
+<h2><img alt="Ruby on Rails component view diagram" src="http://www.adrianmejiarosario.com/sites/default/files/pictures/ror-component-view.JPG" style="width: 696px; height: 495px; "></h2>
+
+
+<p><strong>Figure 3. &nbsp;Dynamic View: Ruby on Rails Connector and Component View</strong></p>
+
+
+<h2>2.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Modules View</h2>
+
+
+<p>The Module View shows the code or implementation as modules and presents the interfaces and their relations between each other. The Module View contains the following: modules, interfaces, aggregations, generalizations and dependencies. These views are an appropriate way to show a static view of the architecture. Fig. 4</p>
+
+
+<p align="left"><img alt="Ruby on Rails static view diagram" src="http://www.adrianmejiarosario.com/sites/default/files/pictures/ror-statict-view.JPG" style="width: 873px; height: 561px; "></p>
+
+
+<p><strong>Figure 4. Static View: Ruby on Rails Module View</strong></p>
+
+
+<p>&nbsp;</p>
+
+
+<p>The Module View shows the code or implementation as modules and presents the interfaces and their relations between each other. The Module View contains the following: modules, interfaces, aggregations, generalizations and relationships. This view is appropriate way to show static view of the architecture.</p>
+
+
+<p>&nbsp;</p>
+
+
+<h1>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pitfalls of the Ruby on Rails Architecture</h1>
+
+
+<p>Since Rails is built on the Ruby language it inherits the goodness and weakness of that language. Ruby is a dynamic scripting language with an elegant syntax and fully object-oriented. Because it is an interpreted language it is slower than other languages that are compiled like Java or C++. In most cases, this difference in speed is not a problem but when the web application needs to scale to millions of concurrent users this performance starts to degrade. The Ruby language is not suited for high concurrency applications, because it is not optimized for speed computing. It was designed to be elegant, simply and for rapid development. Ruby doesn’t have good thread support yet and, like many other scripting languages, Ruby has trouble dealing with long-lived processes. But other languages, like Java, are really good at that because they have been optimized for year to handle threads efficiently. Another weakness is the Ruby’s garbage collector is not as good as Java’s in that each process requires much more memory. In terms of deployment, a web application on Ruby on Rails could be harder to deploy than sites that are using more common technologies, such as PHP. That’s because not all the hosting providers support Rails, but in time the support of Rails is increasing.</p>
+
+
+<p>There are some kinds applications in which Ruby on Rails is not suitable for:</p>
+
+
+<ul>
+    <li>Static web sites.</li>
+    <li>Content Management Systems.</li>
+    <li>Sites that depend on large amount of existing code or legacy code.</li>
+    <li>Sites with legacy databases.</li>
+    <li>Multi-site servers, situations that require dozens or hundreds of websites residing in a single server.</li>
+    <li>Very large-scale web applications (millions of concurrent users) that need to deliver high-performance.</li>
+</ul>
+
+
+<p>The Rails architecture sacrifices some flexibility in configuration to increase productivity based on conventions that are considered best practices. This could make experienced developers in other languages feel tied to things in “the Rails way”. On the other hand, Ruby sacrifices speed and resource management to favor elegant syntax, productivity and maintainability. However, most of the small and mid-size enterprise web applications do little computing and factors such as latency, bandwidth and database performance are not very crucial. These factors start to matter in high-traffic websites with millions of concurrent users.</p>
+
+
+<p>3.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Twitter case study</p>
+
+
+<p>A study case of high-traffic web application using Rails is Twitter. They started using Ruby on Rails but they reached a point that the scaling of their platform was not cost-effective. This was mainly because Ruby on Rails has poor multi-threading support. As in 2011, they have more than 1 billion tweets per week and 200 million users. In 2011 they reported [1], that are moving their back-end applications from Ruby on Rails to Java, which perform 3x faster searches and handle high concurrency better.</p>
+
+
+<p>As the Twitter Engineering team stated in [<a href="http://engineering.twitter.com/2011/05/engineering-behind-twitters-new-search.html">1</a>] and [<a href="http://engineering.twitter.com/2011/04/twitter-search-is-now-3x-faster_1656.html">2</a>]:“<em>As part of the effort, we launched a new </em><a href="http://engineering.twitter.com/2010/10/twitters-new-search-architecture.html"><em>real-time search engine</em></a><em>, changing our back-end from MySQL to a real-time version of </em><a href="http://lucene.apache.org/java/docs/index.html"><em>Lucene</em></a><em>. Last week, we launched a replacement for our Ruby-on-Rails front-end: a Java server we call Blender. We are pleased to announce that this change has produced a 3x drop in search latencies and will enable us to rapidly iterate on search features in the coming months.</em>” … And later… “<em>In April 2011, we launched a replacement, called Blender, which improved our search latencies by 3x, gave us 10x throughput, and allowed us to remove Ruby on Rails from the search infrastructure. Today, we are indexing an average of 2,200 TPS while serving 18,000 QPS (1.6B queries per day!). More importantly, Blender completed the infrastructure necessary to make the most significant user-facing change to Twitter search since the acquisition of Summize.”</em></p>
+
+
+<p>3.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yellopages.com case study</p>
+
+
+<p>Yellowpages.com on the other hand moved from Java to Ruby on Rails framework. The rationale behind this decision is that they pursued to increase their maintainability, absolute control of URLs, no sessions, and be more agile.&nbsp; They have 170 million page views per month and 2.5 million searches per day.</p>
+
+
+<p><a href="http://www.brianburridge.com/2008/06/08/yellowpagescom-on-rails/comment-page-1/#comment-15463">Brian Burridge</a> summarizes the process in the following way “YellowPages.com’s move from Java to Rails. They serve up to 23 million visitors a month. The conversion resulted in 20,000 lines of Ruby code instead of 125,000 lines of Java code, and most importantly eased the difficulty they had in maintaining it. Once complete, and optimized their site is now faster than before. They also completed the rewrite in three months with four developers.”</p>
+
+
+<p>&nbsp;</p>
+
+
+<h1>4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Summary</h1>
+
+
+<p>Ruby on Rails has received widespread support throughout the software development industry, more specifically the open-source community. This support reflects, to a certain extent, that the framework was able to provide a fairly robust architecture somewhat consistent with the goals that the architect envisioned.</p>
+
+
+<p>The framework successfully exhibits must of its intended quality attributes. The responsibility of maintaining some of these qualities are deferred to third party components, as is the case of the performance quality, which is deferred to whichever web-server is configured at development or deployment time. The biggest strength of the framework is the way it leverages the Convention over Configuration and Don’t Repeat Yourself principles. This principle enables intuitive approaches when dealing with certain tactics to achieve some of the quality attributes. For instance, modifiability becomes less hassle due to the isolation or centralization of certain changes since the framework relies on default places where certain functionality should be located.</p>
+
+
+<p>On the other hand, Rails inherits some of the weaknesses of the language used to build it. More specifically, poor concurrency support hinders the scalability potential of an application built using Ruby on Rails. Furthermore, memory management is not as efficient as other languages available. For instance, Java exhibits a much better garbage collector behavior when compared with Ruby on Rails.</p>
+
+
+<p>Overall, it would be safe to say that the framework architecture meets most of its intended goals, but not without its caveats. The level and speed of adoption in industry and the open-source community could be used as validation of the potential the framework has, but at the same time we see limitations emerging when using the framework. Some of these limitations are part of the driven force behind the ongoing evolution of Ruby on Rails.</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Learning Algorithms From Scratch / Algorithms for Dummies - Adrian Mejia&#8217;s Blog</title>
+  <meta name="author" content="Adrian Mejia">
+
+  
+  <meta name="description" content="update: graphs are gone. Checkout my new post with new content and images: http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Adrian Mejia's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24183929-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adrian Mejia&#8217;s Blog</a></h1>
+  
+    <h2>var life = { &#8216;work_hard&#8217;, &#8216;have_fun&#8217;, &#8216;make_history&#8217; };</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:adrianmejia.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Learning Algorithms From Scratch / Algorithms for Dummies</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-12-22T00:00:00-04:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://adrianmejia.com">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>update: graphs are gone. Checkout my new post with new content and images: <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/"><a href="http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a></a></p>
+
+<p>When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest.</p>
+
+
+<p class="p1"><b>Why should you care for efficiency?</b></p>
+
+
+<p class="p1">Solutions to the same problem might take years with certain algorithm, and just minutes using efficient algorithms. For instance, if you have applications that are used for thousands of people over internet, every fraction of second counts. Therefore, efficient algorithms is a must.</p>
+
+
+<p class="p1"><b>How I do my algorithms more efficient?</b></p>
+
+
+<p class="p1">To improve something you first need to know the actual state. In this case you need to measure the actual effectiveness of your algorithm in other to improve it. It&#39;s very common to use running time analysis to measure the speed of algorithms independently from the hardware used (old pc, supercomputer it doesn&#39;t matter).&nbsp;</p>
+
+
+<p class="p1"><b>Run-time analysis</b></p>
+
+
+<p class="p1">A common way to analyze the algorithms is using the big-O notation. The good thing about this notation is that is independent from the computer used to run the algorithm. You know that if you use a very slow computer (e.g. pentium I) v.s. a supercomputer use in NASA, the latter will run the program much faster. Big-O notation abstract the hardware and just focus in the algorithm per se. The only variable in the big-O notation gives the relative time needed to process an algorithm in function of the input n. Let&#39;s clarify this with an example.</p>
+
+
+<p class="p1"><strong>Ex.1</strong> - You want to sort an array A of n integers.&nbsp;</p>
+
+
+<p class="p1">Depending in the algorithm used to do that you may have:</p>
+
+
+<ul>
+    <li class="p1">
+        <b>selection</b> sort has a running time of O(n^2);</li>
+    <li class="p1">
+        <b>merge sort</b> &#8211;&gt; O(n log n)</li>
+</ul>
+
+
+<p class="p1">Right now, it doesn&#39;t matter if are not familiar with these algorithms (we will cover this the next lessons), the point here is that we have n integer and big-O notations give us a mathematical expression that is in function of the input n. If you&nbsp;<a href="http://fooplot.com/index.php?&amp;type0=0&amp;type1=0&amp;type2=0&amp;type3=0&amp;type4=0&amp;y0=x%5E2&amp;y1=x*log%28x%29&amp;y2=&amp;y3=&amp;y4=&amp;r0=&amp;r1=&amp;r2=&amp;r3=&amp;r4=&amp;px0=&amp;px1=&amp;px2=&amp;px3=&amp;px4=&amp;py0=&amp;py1=&amp;py2=&amp;py3=&amp;py4=&amp;smin0=0&amp;smin1=0&amp;smin2=0&amp;smin3=0&amp;smin4=0&amp;smax0=2pi&amp;smax1=2pi&amp;smax2=2pi&amp;smax3=2pi&amp;smax4=2pi&amp;thetamin0=0&amp;thetamin1=0&amp;thetamin2=0&amp;thetamin3=0&amp;thetamin4=0&amp;thetamax0=2pi&amp;thetamax1=2pi&amp;thetamax2=2pi&amp;thetamax3=2pi&amp;thetamax4=2pi&amp;ipw=0&amp;ixmin=-5&amp;ixmax=5&amp;iymin=-3&amp;iymax=3&amp;igx=1&amp;igy=1&amp;igl=1&amp;igs=0&amp;iax=1&amp;ila=1&amp;xmin=-5&amp;xmax=5&amp;ymin=-3&amp;ymax=3"><span class="s1">plot in a graph n^2 and n log n</span></a>. You&#39;ll see that n^2 grows much faster than n log(n). That means that the algorithm n^2 will take longer than n*log(n) to process as the size of the array n increases.</p>
+
+
+<p class="p1"><b>Common order of Growth</b></p>
+
+
+<p class="p1">To give you an idea of the common order of growth of runtime expressions. Take a look at the following graph and table. The slower the function growth the better is the algorithm. In order from better performance to worst is:</p>
+
+
+<p class="p1">1 &#8211; log n &#8211; n &#8211; n log n &#8211; n^2 &#8211; n^3 &#8211; 2^n &#8211; n! &#8230;</p>
+
+
+<p class="p2"><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.22.12%20PM.png" style="width: 300px; height: 306px; " /></p>
+
+
+<p class="p2">&nbsp;</p>
+
+
+<p class="p2"><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.23.45%20PM.png" style="width: 300px; height: 257px; " /></p>
+
+
+<p class="p2">&nbsp;</p>
+
+
+<p class="p1">&nbsp;</p>
+
+
+<p class="p1"><b>Approximate growth rate from code.</b></p>
+
+
+<p class="p1">There are a whole theory and math behind the Big-O notation and other notations related. At this time, just take a look of the typical code and its growth order.</p>
+
+
+<p class="p1"><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%204.51.48%20PM.png" style="width: 600px; height: 427px; " /></p>
+
+
+<p>&nbsp;</p>
+
+
+<p><strong>Cases (the good, the bad, and the ugly)</strong></p>
+
+
+<p>Remember that n is the number of elements in the input. All this runtime growth rate are in function of the input elements. There is another important thing to consider about the input elements: the order! The order of the input elements matters, and that&#39;s why algorithms are analyzed in 3 different cases:</p>
+
+
+<ol>
+    <li>
+        Worst-case performance: the input is distributed as worst as it could be for an algorithm. &nbsp;&nbsp;</li>
+    <li>
+        Average-case scenario: approximation of the most common arrange of inputs.</li>
+    <li>
+        Best-case scenario: most favorable distribution of the inputs.</li>
+    <li>
+        One more: Space. this is how much space the algorithm cosume to execute.&nbsp;</li>
+</ol>
+
+
+<p class="p2">If you want more depth in these topic read here:&nbsp;</p>
+
+
+<ul>
+    <li class="p2">
+        <span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">Analysis (</span><a href="http://gcu.googlecode.com/files/02Analysis.pdf" style="color: rgb(85, 26, 139); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">pdf</a><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">) (</span><a href="http://gcu.googlecode.com/files/02Analysis.key.zip" style="color: rgb(85, 26, 139); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">keynote</a><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">)</span></li>
+    <li class="p2">
+        <span style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-size: small; line-height: 16px; ">Algorithm @&nbsp;</span>ocw.mit.edu: lectures <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-1-administrivia-introduction-analysis-of-algorithms-insertion-sort-mergesort">1 </a>and <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-2-asymptotic-notation-recurrences-substitution-master-method">2</a></li>
+    <li class="p2">
+        http://algs4.cs.princeton.edu/home/</li>
+</ul>
+
+
+<p class="p2">&nbsp;</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Adrian Mejia</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-12-22T00:00:00-04:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/algorithms/'>algorithms</a>, <a class='category' href='/blog/categories/analysis-of-algorithm/'>analysis of algorithm</a>, <a class='category' href='/blog/categories/big-o/'>big-o</a>, <a class='category' href='/blog/categories/for-dummies/'>for dummies</a>, <a class='category' href='/blog/categories/runtime-analysis/'>runtime analysis</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/" data-via="amejiarosario" data-counturl="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/" title="Previous Post: How to remove programs from the start up in Mac OS X">&laquo; How to remove programs from the start up in Mac OS X</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/" title="Next Post: Concentration problems? Procastination? You're not the only one.">Concentration problems? Procastination? You&#8217;re not the only one. &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/09/how-company-x-make-money/">How Company X Make Money?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/">Cheap Airplay Receiver With Raspberry Pi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">Algorithms for Dummies (Part 1): Big-O Notation and Sorting</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/">Backbone.js for Absolute Beginners - Getting Started (Part 4: Routers)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">Backbone.js for Absolute Beginners - Getting Started (Part 3: CRUD)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/amejiarosario">@amejiarosario</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amejiarosario',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/105957252272382685246?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Adrian Mejia -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'adrianmejia';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/';
+        var disqus_url = 'http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Cli | Adrian Mejia's Blog]]></title>
+  <link href="http://adrianmejia.com/blog/categories/cli/atom.xml" rel="self"/>
+  <link href="http://adrianmejia.com/"/>
+  <updated>2014-09-28T18:55:51-04:00</updated>
+  <id>http://adrianmejia.com/</id>
+  <author>
+    <name><![CDATA[Adrian Mejia]]></name>
+    <email><![CDATA[me@adrianmejia.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SSH Login Without Password]]></title>
+    <link href="http://adrianmejia.com/blog/2012/01/19/ssh-login-without-password/"/>
+    <updated>2012-01-19T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2012/01/19/ssh-login-without-password</id>
+    <content type="html"><![CDATA[<p>If you want to login to a remote server using SSH and don&#39;t have to type the password again and again, here is a little trick</p>
+
+
+<p>$&nbsp;cat ~/.ssh/id_rsa.pub | ssh &lt;user&gt;@&lt;server.domain&gt; &#39;cat &gt;&gt; .ssh/authorized_keys&#39;</p>
+
+
+<p>After you run this and enter your password (for the last time), you can login to your server just typing:</p>
+
+
+<p>$ ssh &lt;user&gt;@&lt;server.domain&gt;</p>
+
+
+<p>You are all set.</p>
+
+]]></content>
+  </entry>
+  
+</feed>

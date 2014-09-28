@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hypertext Generation | Adrian Mejia's Blog]]></title>
+  <link href="http://adrianmejia.com/blog/categories/hypertext-generation/atom.xml" rel="self"/>
+  <link href="http://adrianmejia.com/"/>
+  <updated>2014-09-28T18:55:51-04:00</updated>
+  <id>http://adrianmejia.com/</id>
+  <author>
+    <name><![CDATA[Adrian Mejia]]></name>
+    <email><![CDATA[me@adrianmejia.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Dynamic Hypertext Generation for Reusing Open Corpus Content - Paper Review]]></title>
+    <link href="http://adrianmejia.com/blog/2011/09/22/dynamic-hypertext-generation-for-reusing-open-corpus-content-paper-review/"/>
+    <updated>2011-09-22T00:00:00-04:00</updated>
+    <id>http://adrianmejia.com/blog/2011/09/22/dynamic-hypertext-generation-for-reusing-open-corpus-content-paper-review</id>
+    <content type="html"><![CDATA[<ol type="a">
+<li>Steichen, S. Lawless, V. Wade et al. (2009) [1] proposed an Adaptive Hypermedia (AH) for dynamic hypertext generation of learning content. This system provides personalized learning services, which aims to enrich the learning process and the satisfaction of the learners. In order to accomplish these tasks: the system perform open courses harvesting and identification, generate dynamically hyperlinks based on the learner experience and appropriated learning strategies, and present the content in a uniform presentation across heterogeneous content. National digital content repositories cross institution sharing of learning resources and universities open courseware seed the identification task. Web crawlers are used to harvest the open corpus. Focused crawlers, such as Nalanda and Combine are mentioned and Heritix is recommended.  The harvested data is later indexed to make it more discoverable with open sources solutions, such as Nutch and Swish-e and then retrieve using search engines like Lucene and Lemur. For the metadata classification there are 3 approaches: (i) extraction of the metadata from files that already have it; (ii) infer and generate metadata automatically. Semtag from IBM perform can do this using a Taxonomy Based Disambiguation (TBD) algorithm. Also Klarity and DC.dot are metadata generators. (iii) Use of social bookmarking (digg, flickr, facebook,…) to extract the metadata/content description. For the dynamic hypertext generation a system was develop on top of the Adaptive Personalized eLearning Service (APeLS). This facilitates students to learn about specific concepts using query of keywords. In [2] can found be found also the results of this system.</li>
+</ol>
+
+
+<p>[1] Steichen, B., Lawless, S., O’Connor, A., &amp; Wade, V. (2009). Dynamic Hypertext Generation for Reusing Open Corpus Content. HT’09, June 29–July 1, 2009, Torino, Italy, 119-128. ACM.</p>
+]]></content>
+  </entry>
+  
+</feed>

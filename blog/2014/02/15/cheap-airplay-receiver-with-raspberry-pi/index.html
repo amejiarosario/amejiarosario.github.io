@@ -1,0 +1,415 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Cheap Airplay Receiver With Raspberry Pi - Adrian Mejia&#8217;s Blog</title>
+  <meta name="author" content="Adrian Mejia">
+
+  
+  <meta name="description" content="I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Adrian Mejia's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24183929-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adrian Mejia&#8217;s Blog</a></h1>
+  
+    <h2>var life = { &#8216;work_hard&#8217;, &#8216;have_fun&#8217;, &#8216;make_history&#8217; };</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:adrianmejia.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Cheap Airplay Receiver With Raspberry Pi</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-02-15T13:59:26-04:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>1:59 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://adrianmejia.com">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it&hellip; So I make it a Airplay receiver to play music remotely from any of my apple devices!</p>
+
+<p><img src="/images/RaspiModelB.png"></p>
+
+<p>There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(<a href="http://www.raspberrypi.org/downloads">http://www.raspberrypi.org/downloads</a>)
+You can even turn it into a home theater (<a href="http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/">http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/</a>).
+However, I&rsquo;m not going to explain any of those ways because just installing them gives you 99% of the functionality. As a developer, I want to have control of the computers, and I&rsquo;m not afraid of the console. So, I installed Raspbian instead, which is a lightweight Ubuntu/Debian Linux optimized for Raspberry Pi.</p>
+
+<h1>Getting started</h1>
+
+<p><strong>1. Install Raspbian “wheezy”</strong></p>
+
+<p>Download the image from <a href="http://www.raspberrypi.org/downloads">http://www.raspberrypi.org/downloads</a> and follow the instructions. You have to format the SD card and &ldquo;copy&rdquo; the image. You can download this formatting tool: <a href="https://www.sdcard.org/downloads/formatter_4.">https://www.sdcard.org/downloads/formatter_4.</a> After that, plug the SD card in Raspberry, also the Ethernet cable and power cord. For more instructions follow <a href="http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi" target="_blank"><a href="http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi">http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi</a></a>.</p>
+
+<p><strong>2.  Setup Pi</strong></p>
+
+<p>You need to connect it to an HDMI display to set it up using a USB mouse and keyboard or you can use SSH if you had set that up.</p>
+
+<p><strong>3. Access the Terminal</strong></p>
+
+<p>From the terminal type the following commands in you Raspberry Pi:</p>
+
+<p>Become root and update the system</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>3. Setup Audio</strong></p>
+
+<p>Audio ports could either be bind to the HDMI connection or to the audio output jack (you need sudo to execute any sound command).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo amixer cset <span class="nv">numid</span><span class="o">=</span><span class="m">3</span> 1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Connect the speakers to you Raspberry Pi. You can test that they work with these:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo speaker-test -t pink -l 1
+</span><span class='line'>sudo speaker-test -t sine -l 1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can also adjust the volume</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo alsamixer
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>4. Install Airplay software</strong></p>
+
+<p>I tested with 2 different programs, both of them did the trick for me.</p>
+
+<ul>
+<li><a href="https://github.com/juhovh/shairplay">https://github.com/juhovh/shairplay</a></li>
+<li><a href="https://github.com/abrasive/shairport">https://github.com/abrasive/shairport</a></li>
+</ul>
+
+
+<p>The latter is more popular so I will give the instructions for that one:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install -y libssl-dev libavahi-client-dev libasound2-dev git
+</span><span class='line'>git clone https://github.com/abrasive/shairport.git
+</span><span class='line'><span class="nb">cd </span>shairport
+</span><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'>./shairport -a <span class="s1">&#39;AirPi&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>5. Run Airplay (shairport) on boot.</strong></p>
+
+<p>It&rsquo;s nice to run airport receiver automatically when you connect your Pi.</p>
+
+<p>Create a file to start shairport</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nano /etc/init.d/airplay
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Type the following into <code>airplay</code>:</p>
+
+<figure class='code'><figcaption><span>airplay </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'>/usr/local/bin/shairport -a <span class="s2">&quot;AirPi&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Close the editing mode and exit the file. Then register the script to be run on boot.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod a+x /etc/init.d/airplay
+</span><span class='line'>update-rc.d airplay defaults
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reboot your Pi and you are good to go!
+(If you have any questions you can write a comment below)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Adrian Mejia</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-02-15T13:59:26-04:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>1:59 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/airplay/'>airplay</a>, <a class='category' href='/blog/categories/apple/'>apple</a>, <a class='category' href='/blog/categories/raspberry-pi/'>raspberry pi</a>, <a class='category' href='/blog/categories/raspbian/'>raspbian</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/" data-via="amejiarosario" data-counturl="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/" title="Previous Post: Algorithms for dummies (Part 1): Big-O Notation and Sorting">&laquo; Algorithms for dummies (Part 1): Big-O Notation and Sorting</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/03/09/how-company-x-make-money/" title="Next Post: How company X make money?">How company X make money? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/09/how-company-x-make-money/">How Company X Make Money?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/">Cheap Airplay Receiver With Raspberry Pi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">Algorithms for Dummies (Part 1): Big-O Notation and Sorting</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/">Backbone.js for Absolute Beginners - Getting Started (Part 4: Routers)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">Backbone.js for Absolute Beginners - Getting Started (Part 3: CRUD)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/amejiarosario">@amejiarosario</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amejiarosario',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/105957252272382685246?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Adrian Mejia -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'adrianmejia';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/';
+        var disqus_url = 'http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
