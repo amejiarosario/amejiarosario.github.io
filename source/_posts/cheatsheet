@@ -1,0 +1,5 @@
+rake generate                  # Generate jekyll site
+rake preview                   # preview the site in a web browser
+git add ~/Dropbox/octopress/ -v
+git commit -m 'updates blog'
+git push heroku

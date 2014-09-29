@@ -1,0 +1,13 @@
+http://octopress.org/docs/deploying/github/
+http://octopress.org/docs/theme/styles/
+http://octopress.org/docs/blogging/
+
+rake new_post["title"]
+rake new_page[super-awesome]
+rake generate preview
+
+git add .
+git commit -m 'your message'
+git push origin source
+
+rake generate deploy
