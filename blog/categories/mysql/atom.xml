@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Mysql | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/mysql/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Blog Migration Explained: Drupal 7 to Jekyll]]></title>
-    <link href="http://adrianmejia.com/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll/"/>
     <updated>2012-04-27T22:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll</id>
+    <id>http://amejiarosario.github.io/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll</id>
     <content type="html"><![CDATA[<p>This post is a guide on how to extract your blog posts information from Drupal 7 to other systems. And also automatically create a redirect files from the old blog to the new one. In this case, I migrated to Jerkyll/Octopress blog but from the data extracted in with my script you can migrate any other blog system. Hopefully, this will save you a lot of time if you need to do the same task. If you run into troubles go to last section of the post it has some suggestions.</p>
 
 <h2>Extract data from Drupal 7 site</h2>

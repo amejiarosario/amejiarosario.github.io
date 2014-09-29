@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Csv | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/csv/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/csv/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Regular Expressions in C# and Java - CSV Example]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/"/>
     <updated>2011-11-10T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example</id>
     <content type="html"><![CDATA[<p>Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;</p>
 
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Zune | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/zune/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/zune/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Microsoft Zune Failure Analysis]]></title>
-    <link href="http://adrianmejia.com/blog/2011/08/08/microsoft-zune-failure-analysis/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/08/08/microsoft-zune-failure-analysis/"/>
     <updated>2011-08-08T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/08/08/microsoft-zune-failure-analysis</id>
+    <id>http://amejiarosario.github.io/blog/2011/08/08/microsoft-zune-failure-analysis</id>
     <content type="html"><![CDATA[<p>All the Zune 30 froze, precisely at 12:01 A.M. on December 31, 2008. These devices got stuck with an irresponsive Zune logo. This bug that didn’t allow users to use the device was cause by a bug in the internal clock driver that handled improperly the last day of a year leap. The Zune 30 model 2006 was the only one affected by this bug; all the other models keep working ok, such as the Zune: 80 and 120 GB with hard drive, and 4, 8, 16 GB with flash drive, because they did not have the component with the error.</p>
 
 <p>At the core of the Zune 30 music players, there is the Freescale iMX31L Multimedia processor and the MC13783 Power Management Chip. These components are also used in many other products like GPS, cellphones, pace makers, etc. Also the bug froze up the Toshiba Gigabeat S media players, since it was using the MC13783 chip. The driver written by Freescale for their MC13783 caused all of the problems in all the devices that were using it. The official solution from Microsoft to this bug was to let the Zune run out of battery completely, and reset it on January 1st. This bug was dissolved successfully by itself the first day of the 2009.</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Linux | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/linux/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[SSH Login Without Password]]></title>
-    <link href="http://adrianmejia.com/blog/2012/01/19/ssh-login-without-password/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/01/19/ssh-login-without-password/"/>
     <updated>2012-01-19T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/01/19/ssh-login-without-password</id>
+    <id>http://amejiarosario.github.io/blog/2012/01/19/ssh-login-without-password</id>
     <content type="html"><![CDATA[<p>If you want to login to a remote server using SSH and don&#39;t have to type the password again and again, here is a little trick</p>
 
 
@@ -37,9 +37,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Set Up Samba in Ubuntu/Linux, and Access It in Mac OS and Windows]]></title>
-    <link href="http://adrianmejia.com/blog/2011/07/12/how-to-set-up-samba-in-ubuntu-linux-and-access-it-in-mac-os-and-windows/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/07/12/how-to-set-up-samba-in-ubuntu-linux-and-access-it-in-mac-os-and-windows/"/>
     <updated>2011-07-12T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/07/12/how-to-set-up-samba-in-ubuntu-linux-and-access-it-in-mac-os-and-windows</id>
+    <id>http://amejiarosario.github.io/blog/2011/07/12/how-to-set-up-samba-in-ubuntu-linux-and-access-it-in-mac-os-and-windows</id>
     <content type="html"><![CDATA[<p>Samba allows to share files and printers with other computers remotely, regardless their operating system (linux, windows, Mac, &#8230;).&nbsp;This guide show how to intall and configure the Samba service in a Ubuntu machine and access it through windows and mac.</p>
 
 

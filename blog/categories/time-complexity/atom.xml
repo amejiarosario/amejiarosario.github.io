@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Time Complexity | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/time-complexity/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/time-complexity/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Algorithms for Dummies (Part 1): Big-O Notation and Sorting]]></title>
-    <link href="http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/"/>
+    <link href="http://amejiarosario.github.io/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/"/>
     <updated>2014-02-13T09:28:51-04:00</updated>
-    <id>http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting</id>
+    <id>http://amejiarosario.github.io/blog/2014/02/13/algorithms-for-dummies-part-1-sorting</id>
     <content type="html"><![CDATA[<p>After being developing software for a while,  I realized that there is a couple of ways to become better at it. One it&rsquo;s through your experience: writing code, working on projects, getting hands dirty&hellip; Other one it&rsquo;s learning algorithms and design patterns. In other words through leveraging the experience of other computer scientists. Learning to use algorithms efficiently can instantly add to you the equivalent of 10 years of experience or more. Let&rsquo;s get started and add new tools to our arsenal!</p>
 
 <p>How do you know a piece of code that you just wrote is good enough?  When you modify a program, how do you know if it is better as you found it? How do scale programs to handle huge amount of data? In fact, You cannot improve what you can&rsquo;t measure.</p>

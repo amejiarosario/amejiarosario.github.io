@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Social-media | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/social-media/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/social-media/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Instagram Mobile Design Secrets Revealed]]></title>
-    <link href="http://adrianmejia.com/blog/2012/05/06/instagram-mobile-design-secrets-revealed/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/05/06/instagram-mobile-design-secrets-revealed/"/>
     <updated>2012-05-06T21:45:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/05/06/instagram-mobile-design-secrets-revealed</id>
+    <id>http://amejiarosario.github.io/blog/2012/05/06/instagram-mobile-design-secrets-revealed</id>
     <content type="html"><![CDATA[<p>Instagram is a very nice iPhone App. It allows you to give effects to your photos easily. Additionally, it’s blazing fast to upload your photos, and share them in other social networks such as Facebook, Twitter and/or Foursquare.</p>
 
 <p>This app went from 0 to 12 million users in just 12 months! And today 30+ million users in less than 2 years. Go through the slideshows bellow and you can see why. This app has some design features that that improves a lot the user experience. One of them, it’s responding to the user actions instantly even though the task is still performing in the background… more details in the slide:</p>

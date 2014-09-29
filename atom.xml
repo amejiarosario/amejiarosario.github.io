@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How Company X Make Money?]]></title>
-    <link href="http://adrianmejia.com/blog/2014/03/09/how-company-x-make-money/"/>
+    <link href="http://amejiarosario.github.io/blog/2014/03/09/how-company-x-make-money/"/>
     <updated>2014-03-09T21:39:42-04:00</updated>
-    <id>http://adrianmejia.com/blog/2014/03/09/how-company-x-make-money</id>
+    <id>http://amejiarosario.github.io/blog/2014/03/09/how-company-x-make-money</id>
     <content type="html"><![CDATA[<p>Have you ever wonder how the companies that offer free services make money? Such as Instagram, Evernote, Facebook, Twitter, LinkedIn, Google Maps, so on&hellip; or if it is even profitable to keep free users using their services. We would go through several revenue models and hopefully, it will throw you some light next time you decide to roll your own startup.</p>
 
 <p><a href="#start">TL; DR</a>: Go to the interactive company revenue checker.</a></p>
@@ -26,7 +26,7 @@
 
 <p>Let’s start first giving some perspective what models are actually giving the most revenues. In 2013, App Store, reported that free apps brought the 71% of the revenue! Even more than paid apps… how’s that even possible!?</p>
 
-<p><img src="http://adrianmejia.com/images/revenue-breakdown.png"></p>
+<p><img src="http://amejiarosario.github.io/images/revenue-breakdown.png"></p>
 
 <div style="clear:both"></div>
 
@@ -35,7 +35,7 @@
 <a href="http://techcrunch.com/2013/03/28/in-app-purchase-revenue-hits-record-high-accounts-for-76-of-u-s-iphone-app-revenue-90-in-asian-markets/" target="_blank">techcrunch</a>
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/css/base/jquery.ui.all.min.css">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<link rel="stylesheet" type="text/css" href="http://adrianmejia.com/stylesheets/company_revenue.css">
+<link rel="stylesheet" type="text/css" href="http://amejiarosario.github.io/stylesheets/company_revenue.css">
 )</p>
 
 <p>Ok, let’s discuss some revenue models to understand this. There are 3 main models</p>
@@ -100,7 +100,7 @@
   <li class="company-item">
     <a href="#<%= name %>" class="company-icon" data-company="<%= name %>" title="How does <%= name.titleize() %> make money?">
       <span>
-          <img src="http://adrianmejia.com/images/logo_<%= name %>.png" alt="<%= name %>">
+          <img src="http://amejiarosario.github.io/images/logo_<%= name %>.png" alt="<%= name %>">
       </span>
     </a>
   </li>
@@ -556,12 +556,12 @@ $(function(){
   
   <entry>
     <title type="html"><![CDATA[Cheap Airplay Receiver With Raspberry Pi]]></title>
-    <link href="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/"/>
+    <link href="http://amejiarosario.github.io/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/"/>
     <updated>2014-02-15T13:59:26-04:00</updated>
-    <id>http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi</id>
+    <id>http://amejiarosario.github.io/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi</id>
     <content type="html"><![CDATA[<p>I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it&hellip; So I make it a Airplay receiver to play music remotely from any of my apple devices!</p>
 
-<p><img src="http://adrianmejia.com/images/RaspiModelB.png"></p>
+<p><img src="http://amejiarosario.github.io/images/RaspiModelB.png"></p>
 
 <p>There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(<a href="http://www.raspberrypi.org/downloads">http://www.raspberrypi.org/downloads</a>)
 You can even turn it into a home theater (<a href="http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/">http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/</a>).
@@ -679,9 +679,9 @@ However, I&rsquo;m not going to explain any of those ways because just installin
   
   <entry>
     <title type="html"><![CDATA[Algorithms for Dummies (Part 1): Big-O Notation and Sorting]]></title>
-    <link href="http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/"/>
+    <link href="http://amejiarosario.github.io/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/"/>
     <updated>2014-02-13T09:28:51-04:00</updated>
-    <id>http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting</id>
+    <id>http://amejiarosario.github.io/blog/2014/02/13/algorithms-for-dummies-part-1-sorting</id>
     <content type="html"><![CDATA[<p>After being developing software for a while,  I realized that there is a couple of ways to become better at it. One it&rsquo;s through your experience: writing code, working on projects, getting hands dirty&hellip; Other one it&rsquo;s learning algorithms and design patterns. In other words through leveraging the experience of other computer scientists. Learning to use algorithms efficiently can instantly add to you the equivalent of 10 years of experience or more. Let&rsquo;s get started and add new tools to our arsenal!</p>
 
 <p>How do you know a piece of code that you just wrote is good enough?  When you modify a program, how do you know if it is better as you found it? How do scale programs to handle huge amount of data? In fact, You cannot improve what you can&rsquo;t measure.</p>
@@ -721,7 +721,7 @@ However, I&rsquo;m not going to explain any of those ways because just installin
 
 <p>A more efficient algorithm is the Merge sort. It uses the principle of divide and conquer to solve the problem faster. The idea is the follows:</p>
 
-<p><img src="http://adrianmejia.com/images/mergesort.gif"></p>
+<p><img src="http://amejiarosario.github.io/images/mergesort.gif"></p>
 
 <ul>
 <li>Divide the array in half</li>
@@ -804,7 +804,7 @@ However, I&rsquo;m not going to explain any of those ways because just installin
 
 <p>Even though the code is much longer, the algorithm is much more efficient.</p>
 
-<p><img src="http://adrianmejia.com/images/insertion_vs_mergsort.png"></p>
+<p><img src="http://amejiarosario.github.io/images/insertion_vs_mergsort.png"></p>
 
 <p>It would take some more knowledge to derive the running time mathematically, and we haven&rsquo;t covered that yet. However, bear with me, it&rsquo;s O(n log(n)). Let&rsquo;s sum up:</p>
 
@@ -904,10 +904,10 @@ for(c=0; c&lt;n; c++){
   
   <entry>
     <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 4: Routers)]]></title>
-    <link href="http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/"/>
     <updated>2012-09-13T14:41:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4</id>
-    <content type="html"><![CDATA[<p>The part 3 of this tutorial is <a href="http://adrianmejia.com/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">here</a>.</p>
+    <id>http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4</id>
+    <content type="html"><![CDATA[<p>The part 3 of this tutorial is <a href="http://amejiarosario.github.io/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">here</a>.</p>
 
 <h2>2.6 Backbone.Router</h2>
 
@@ -1100,10 +1100,10 @@ for(c=0; c&lt;n; c++){
   
   <entry>
     <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 3: CRUD)]]></title>
-    <link href="http://adrianmejia.com/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/"/>
     <updated>2012-09-13T01:37:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3</id>
-    <content type="html"><![CDATA[<p>The part 2 of this tutorial is <a href="http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">here</a>.</p>
+    <id>http://amejiarosario.github.io/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3</id>
+    <content type="html"><![CDATA[<p>The part 2 of this tutorial is <a href="http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">here</a>.</p>
 
 <h2>2.5 Todo item list CRUD</h2>
 
@@ -1312,16 +1312,16 @@ for(c=0; c&lt;n; c++){
 
 <p>You can download the full working code so far in <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html">here</a> and you can visualize the changes needed to implement the delete feature in <a href="https://github.com/amejiarosario/Backbone-tutorial/commit/1267e531ae3ef508eb32e5308c2cc965f02d1b45">here</a></p>
 
-<h3>Continue with the <a href="http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/">4th part</a> and learn about Backbone&rsquo;s Routes!</h3>
+<h3>Continue with the <a href="http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/">4th part</a> and learn about Backbone&rsquo;s Routes!</h3>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 2: Models, Collections and Views)]]></title>
-    <link href="http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/"/>
     <updated>2012-09-13T00:08:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2</id>
-    <content type="html"><![CDATA[<p>The part 1 of this tutorial is <a href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">here</a></p>
+    <id>http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2</id>
+    <content type="html"><![CDATA[<p>The part 1 of this tutorial is <a href="http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">here</a></p>
 
 <h2>2. Todo App in Backbone (Models, Collections, View and Events)</h2>
 
@@ -1462,13 +1462,13 @@ For our example, we are going to create a model called <code>Todo</code>, which 
 
 <h2>2.4.- Backbone.View</h2>
 
-<p>As mentioned in <a href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/#1.2">1.2</a>, Views doesn’t have the HTML markups for our application, but instead (It&rsquo;s like the controller in MVC frameworks) process data and link it to templates and it finally render HTML based on events or data changes.</p>
+<p>As mentioned in <a href="http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/#1.2">1.2</a>, Views doesn’t have the HTML markups for our application, but instead (It&rsquo;s like the controller in MVC frameworks) process data and link it to templates and it finally render HTML based on events or data changes.</p>
 
 <h3>2.4.1.- Basic Properties</h3>
 
 <p>There are 4 basic properties in a view: el, initialize, render, and events.</p>
 
-<p>We have already seen the first 3 and will see later the fourth one. Do you remember the Hello World View from <a href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/#1.2">1.2</a>?</p>
+<p>We have already seen the first 3 and will see later the fourth one. Do you remember the Hello World View from <a href="http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/#1.2">1.2</a>?</p>
 
 <figure class='code'><figcaption><span>Example of a Backbone.View </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1701,15 +1701,15 @@ For our example, we are going to create a model called <code>Todo</code>, which 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Continue with the <a href="http://adrianmejia.com/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">3rd part</a> and learn how to make CRUD for your models!</h3>
+<h3>Continue with the <a href="http://amejiarosario.github.io/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">3rd part</a> and learn how to make CRUD for your models!</h3>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 1: Intro)]]></title>
-    <link href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/"/>
     <updated>2012-09-11T22:50:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started</id>
+    <id>http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started</id>
     <content type="html"><![CDATA[<p>Backbone.js is a JavaScript framework, among many others, that is gaining special attention in the web development community because it&rsquo;s ease of use and the structure that it provides to JavaScript applications.</p>
 
 <p>(Updated: 2013-02-02, 2013-11-24)</p>
@@ -1852,15 +1852,15 @@ For our example, we are going to create a model called <code>Todo</code>, which 
 
 <p>Run the app again and verify that it&rsquo;s working with the template.</p>
 
-<h3>Continue with the <a href="http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">2nd part</a> and learn more about Backbone&rsquo;s Models, Collections, View and Events!</h3>
+<h3>Continue with the <a href="http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">2nd part</a> and learn more about Backbone&rsquo;s Models, Collections, View and Events!</h3>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Instagram Mobile Design Secrets Revealed]]></title>
-    <link href="http://adrianmejia.com/blog/2012/05/06/instagram-mobile-design-secrets-revealed/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/05/06/instagram-mobile-design-secrets-revealed/"/>
     <updated>2012-05-06T21:45:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/05/06/instagram-mobile-design-secrets-revealed</id>
+    <id>http://amejiarosario.github.io/blog/2012/05/06/instagram-mobile-design-secrets-revealed</id>
     <content type="html"><![CDATA[<p>Instagram is a very nice iPhone App. It allows you to give effects to your photos easily. Additionally, it’s blazing fast to upload your photos, and share them in other social networks such as Facebook, Twitter and/or Foursquare.</p>
 
 <p>This app went from 0 to 12 million users in just 12 months! And today 30+ million users in less than 2 years. Go through the slideshows bellow and you can see why. This app has some design features that that improves a lot the user experience. One of them, it’s responding to the user actions instantly even though the task is still performing in the background… more details in the slide:</p>
@@ -1879,9 +1879,9 @@ For our example, we are going to create a model called <code>Todo</code>, which 
   
   <entry>
     <title type="html"><![CDATA[Blog Migration Explained: Drupal 7 to Jekyll]]></title>
-    <link href="http://adrianmejia.com/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll/"/>
     <updated>2012-04-27T22:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll</id>
+    <id>http://amejiarosario.github.io/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll</id>
     <content type="html"><![CDATA[<p>This post is a guide on how to extract your blog posts information from Drupal 7 to other systems. And also automatically create a redirect files from the old blog to the new one. In this case, I migrated to Jerkyll/Octopress blog but from the data extracted in with my script you can migrate any other blog system. Hopefully, this will save you a lot of time if you need to do the same task. If you run into troubles go to last section of the post it has some suggestions.</p>
 
 <h2>Extract data from Drupal 7 site</h2>
@@ -2186,9 +2186,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[Spring MVC 3 + AJAX (getJSON) and Solving 406 Not Accepted]]></title>
-    <link href="http://adrianmejia.com/blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted/"/>
     <updated>2012-04-27T02:17:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted</id>
+    <id>http://amejiarosario.github.io/blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted</id>
     <content type="html"><![CDATA[<p>I wanted to add AJAX to Spring MVC application. So, I did what most us do, go through the documentation or blog of the Spring Source. But, after playing around I didn&#8217;t get it to work properly so here are some details that might save you some time.</p>
 
 
@@ -2259,9 +2259,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[Adding Subversion (SVN) Properties to Your Code]]></title>
-    <link href="http://adrianmejia.com/blog/2012/02/11/adding-subversion-svn-properties-to-your-code/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/02/11/adding-subversion-svn-properties-to-your-code/"/>
     <updated>2012-02-11T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/02/11/adding-subversion-svn-properties-to-your-code</id>
+    <id>http://amejiarosario.github.io/blog/2012/02/11/adding-subversion-svn-properties-to-your-code</id>
     <content type="html"><![CDATA[<p>When you are coding in a team enviroment it&#39;s good to have the subversion properties in your files, that way any other developer can see quickly who made the last changes and when.</p>
 
 
@@ -2390,9 +2390,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[How Do I Change the Ruby/Python Version Textmate Uses?]]></title>
-    <link href="http://adrianmejia.com/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/"/>
     <updated>2012-02-09T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses</id>
+    <id>http://amejiarosario.github.io/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses</id>
     <content type="html"><![CDATA[<p>&nbsp;</p>
 
 
@@ -2438,9 +2438,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[Get Started With the Web Crawler Apache Nutch 1.x]]></title>
-    <link href="http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/"/>
     <updated>2012-02-04T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x</id>
+    <id>http://amejiarosario.github.io/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x</id>
     <content type="html"><![CDATA[<p>Apache Nutch is an open source <strong>scalable</strong> Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [<a href="http://en.wikipedia.org/wiki/Nutch">*</a>]</p>
 
 
@@ -2719,9 +2719,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[SSH Login Without Password]]></title>
-    <link href="http://adrianmejia.com/blog/2012/01/19/ssh-login-without-password/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/01/19/ssh-login-without-password/"/>
     <updated>2012-01-19T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/01/19/ssh-login-without-password</id>
+    <id>http://amejiarosario.github.io/blog/2012/01/19/ssh-login-without-password</id>
     <content type="html"><![CDATA[<p>If you want to login to a remote server using SSH and don&#39;t have to type the password again and again, here is a little trick</p>
 
 
@@ -2741,9 +2741,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[Concentration Problems? Procastination? You're Not the Only One.]]></title>
-    <link href="http://adrianmejia.com/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/"/>
     <updated>2012-01-04T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one</id>
+    <id>http://amejiarosario.github.io/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one</id>
     <content type="html"><![CDATA[<p>&nbsp;</p>
 
 
@@ -2836,10 +2836,10 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[Learning Algorithms From Scratch / Algorithms for Dummies]]></title>
-    <link href="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/"/>
     <updated>2011-12-22T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies</id>
-    <content type="html"><![CDATA[<p>update: graphs are gone. Checkout my new post with new content and images: <a href="http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/"><a href="http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a></a></p>
+    <id>http://amejiarosario.github.io/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies</id>
+    <content type="html"><![CDATA[<p>update: graphs are gone. Checkout my new post with new content and images: <a href="http://amejiarosario.github.io/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/"><a href="http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a></a></p>
 
 <p>When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest.</p>
 
@@ -2953,9 +2953,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[How to Remove Programs From the Start Up in Mac OS X]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/"/>
     <updated>2011-11-18T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x</id>
     <content type="html"><![CDATA[<p>Well&#8230; I have done this so many times in Windows (it&#39;s just executing &quot;msconfig&quot; you can edit the startup items).&nbsp;Today, I had the need to do the same in the Mac OS X Lion.</p>
 
 
@@ -2982,9 +2982,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[Regular Expressions in C# and Java - CSV Example]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/"/>
     <updated>2011-11-10T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example</id>
     <content type="html"><![CDATA[<p>Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;</p>
 
 
@@ -3081,9 +3081,9 @@ name,line1,line2,city,zip code,country</pre>
   
   <entry>
     <title type="html"><![CDATA[How to Setup Drupal WYSIWYG and Images Uploading?]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
     <updated>2011-11-09T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading</id>
     <content type="html"><![CDATA[<p>It have been a pain for me to upload images and deal with tons of WYSIWYG editors&#8230; After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</p>
 
 
@@ -3203,9 +3203,9 @@ name,line1,line2,city,zip code,country</pre>
   
   <entry>
     <title type="html"><![CDATA[How to Execute SQL Statements on MS Access?]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
     <updated>2011-11-09T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access</id>
     <content type="html"><![CDATA[<p>Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.</p>
 
 <p>Here are the steps of how to create a new table programmatically in Access (2007):</p>

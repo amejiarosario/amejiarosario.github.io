@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Raspberry Pi | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/raspberry-pi/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/raspberry-pi/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Cheap Airplay Receiver With Raspberry Pi]]></title>
-    <link href="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/"/>
+    <link href="http://amejiarosario.github.io/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/"/>
     <updated>2014-02-15T13:59:26-04:00</updated>
-    <id>http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi</id>
+    <id>http://amejiarosario.github.io/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi</id>
     <content type="html"><![CDATA[<p>I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it&hellip; So I make it a Airplay receiver to play music remotely from any of my apple devices!</p>
 
 <p><img src="/images/RaspiModelB.png"></p>

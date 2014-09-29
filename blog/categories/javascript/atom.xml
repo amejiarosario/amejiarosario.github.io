@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Javascript | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/javascript/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 4: Routers)]]></title>
-    <link href="http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/"/>
     <updated>2012-09-13T14:41:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4</id>
+    <id>http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4</id>
     <content type="html"><![CDATA[<p>The part 3 of this tutorial is <a href="/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">here</a>.</p>
 
 <h2>2.6 Backbone.Router</h2>
@@ -255,9 +255,9 @@
   
   <entry>
     <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 3: CRUD)]]></title>
-    <link href="http://adrianmejia.com/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/"/>
     <updated>2012-09-13T01:37:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3</id>
+    <id>http://amejiarosario.github.io/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3</id>
     <content type="html"><![CDATA[<p>The part 2 of this tutorial is <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">here</a>.</p>
 
 <h2>2.5 Todo item list CRUD</h2>
@@ -512,9 +512,9 @@
   
   <entry>
     <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 2: Models, Collections and Views)]]></title>
-    <link href="http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/"/>
     <updated>2012-09-13T00:08:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2</id>
+    <id>http://amejiarosario.github.io/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2</id>
     <content type="html"><![CDATA[<p>The part 1 of this tutorial is <a href="/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">here</a></p>
 
 <h2>2. Todo App in Backbone (Models, Collections, View and Events)</h2>
@@ -951,9 +951,9 @@ For our example, we are going to create a model called <code>Todo</code>, which 
   
   <entry>
     <title type="html"><![CDATA[Backbone.js for Absolute Beginners - Getting Started (Part 1: Intro)]]></title>
-    <link href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/"/>
     <updated>2012-09-11T22:50:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started</id>
+    <id>http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started</id>
     <content type="html"><![CDATA[<p>Backbone.js is a JavaScript framework, among many others, that is gaining special attention in the web development community because it&rsquo;s ease of use and the structure that it provides to JavaScript applications.</p>
 
 <p>(Updated: 2013-02-02, 2013-11-24)</p>

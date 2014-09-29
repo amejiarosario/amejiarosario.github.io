@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Search Engines | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/search-engines/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/search-engines/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Get Started With the Web Crawler Apache Nutch 1.x]]></title>
-    <link href="http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/"/>
     <updated>2012-02-04T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x</id>
+    <id>http://amejiarosario.github.io/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x</id>
     <content type="html"><![CDATA[<p>Apache Nutch is an open source <strong>scalable</strong> Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [<a href="http://en.wikipedia.org/wiki/Nutch">*</a>]</p>
 
 

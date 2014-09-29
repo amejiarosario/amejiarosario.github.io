@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Crontab | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/crontab/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/crontab/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Git Auto-commit With Crontab]]></title>
-    <link href="http://adrianmejia.com/blog/2011/08/15/git-auto-commit-with-crontab/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/08/15/git-auto-commit-with-crontab/"/>
     <updated>2011-08-15T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/08/15/git-auto-commit-with-crontab</id>
+    <id>http://amejiarosario.github.io/blog/2011/08/15/git-auto-commit-with-crontab</id>
     <content type="html"><![CDATA[<p>You might want to commit from a git repository from time to time for several purposes (backup, control version, continuous integration, etc). One way to accomplish that is using the CronTab (Cron is used to run periodic task in Unix-like systems).</p>
 
 <p>Here is an example.</p>

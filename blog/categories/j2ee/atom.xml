@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: J2ee | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/j2ee/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/j2ee/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Spring MVC 3 + AJAX (getJSON) and Solving 406 Not Accepted]]></title>
-    <link href="http://adrianmejia.com/blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted/"/>
     <updated>2012-04-27T02:17:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted</id>
+    <id>http://amejiarosario.github.io/blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted</id>
     <content type="html"><![CDATA[<p>I wanted to add AJAX to Spring MVC application. So, I did what most us do, go through the documentation or blog of the Spring Source. But, after playing around I didn&#8217;t get it to work properly so here are some details that might save you some time.</p>
 
 

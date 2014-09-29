@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Mac | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/mac/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Remove Programs From the Start Up in Mac OS X]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/"/>
     <updated>2011-11-18T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x</id>
     <content type="html"><![CDATA[<p>Well&#8230; I have done this so many times in Windows (it&#39;s just executing &quot;msconfig&quot; you can edit the startup items).&nbsp;Today, I had the need to do the same in the Mac OS X Lion.</p>
 
 

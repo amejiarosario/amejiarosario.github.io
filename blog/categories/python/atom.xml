@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Python | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/python/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How Do I Change the Ruby/Python Version Textmate Uses?]]></title>
-    <link href="http://adrianmejia.com/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/"/>
     <updated>2012-02-09T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses</id>
+    <id>http://amejiarosario.github.io/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses</id>
     <content type="html"><![CDATA[<p>&nbsp;</p>
 
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Learning Object Management | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/learning-object-management/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/learning-object-management/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[On Line Course Organization - Paper Review]]></title>
-    <link href="http://adrianmejia.com/blog/2011/09/17/on-line-course-organization-paper-review/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/09/17/on-line-course-organization-paper-review/"/>
     <updated>2011-09-17T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/09/17/on-line-course-organization-paper-review</id>
+    <id>http://amejiarosario.github.io/blog/2011/09/17/on-line-course-organization-paper-review</id>
     <content type="html"><![CDATA[<p>This paper [1] proposed a specialized search engine, called Fusion, which index meta-information about available courses. Google can be used to perform this search, but the result will be too broad. Fusion provides specialized results only. In order to accomplish this task, Fusion used the web crawler Nutch, which is used to extract the content of courses. The crawler does real-time decisions to parse and store only the necessary data instead of the whole content. The extraction of the metadata is done using the following technologies: NekoHTML (HTML document parser), Xalan (XSLT for transforming XML to HTML), XPath (used to navigate through elements in the XML). After all the course metadata is extracted, the information is classified according to the IEEE-LTSC LOM (Learning Object Metadata). Finally all the data is stored and used for the web portal.</p>
 
 

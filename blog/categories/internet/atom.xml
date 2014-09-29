@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Internet | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/internet/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/internet/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[What Technologies Are Using the Most Influential Internet Companies?]]></title>
-    <link href="http://adrianmejia.com/blog/2011/07/12/what-technologies-are-using-the-most-influential-internet-companies/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/07/12/what-technologies-are-using-the-most-influential-internet-companies/"/>
     <updated>2011-07-12T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/07/12/what-technologies-are-using-the-most-influential-internet-companies</id>
+    <id>http://amejiarosario.github.io/blog/2011/07/12/what-technologies-are-using-the-most-influential-internet-companies</id>
     <content type="html"><![CDATA[<div>Google, Facebook, YouTube, Yahoo, Wikipedia, Hotmail (Windows Live), Twitter, LinkedIn, Amazon.com, WordPress.com, eBay, Bing&#8230; You may know probably all these companies; we use some on our daily basis. They bring services to around 2 billion people! And influence our lives everyday. The most influential Internet companies are in the search engine and social media category, so I will focus the analysis in these two. &nbsp;</div>
 
 

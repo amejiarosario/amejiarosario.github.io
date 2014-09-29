@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Social Bookmarking | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/social-bookmarking/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/social-bookmarking/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[eLearning 2.0 and Social, Practice-Oriented Communities to Improve Knowledge in Companies - Paper Review]]></title>
-    <link href="http://adrianmejia.com/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review/"/>
     <updated>2011-09-27T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review</id>
+    <id>http://amejiarosario.github.io/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review</id>
     <content type="html"><![CDATA[<ol type="a">
 <li><ol type="a">
 <li>Kruk et al. (2007) [1] implemented a social bookmarking system called Social Semantic Collaborative Filtering (SSCF). The goal of the SSCF is to enhance individual bookmarks with shared knowledge of the community. It also presents how digital libraries can be combined with social semantic information sources and it exemplifies how these techniques can improve e-Learning. Digital Libraries and other open courses can leverage their potential with the collaborative architectures. Learners can use it to exchange information, and express and synthetize knowledge e-Learning environments. It also makes use of the social bookmarking, web semantics and ontology services in other to organize and classify knowledge.</li>

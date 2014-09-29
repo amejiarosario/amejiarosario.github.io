@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Github | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/github/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Set Up Git / Github in Windows]]></title>
-    <link href="http://adrianmejia.com/blog/2011/07/21/how-to-set-up-git-github-in-windows/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/07/21/how-to-set-up-git-github-in-windows/"/>
     <updated>2011-07-21T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/07/21/how-to-set-up-git-github-in-windows</id>
+    <id>http://amejiarosario.github.io/blog/2011/07/21/how-to-set-up-git-github-in-windows</id>
     <content type="html"><![CDATA[<p>Installing Git in Windows is not as straight forward as in a *nix machine like Linux and Mac. This guide help you to get started quickly.</p>
 
 

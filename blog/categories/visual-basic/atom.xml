@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Visual Basic | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/visual-basic/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/visual-basic/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Execute SQL Statements on MS Access?]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
     <updated>2011-11-09T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access</id>
     <content type="html"><![CDATA[<p>Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.</p>
 
 <p>Here are the steps of how to create a new table programmatically in Access (2007):</p>

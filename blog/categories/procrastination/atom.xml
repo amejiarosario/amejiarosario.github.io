@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Procrastination | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/procrastination/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/procrastination/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Concentration Problems? Procastination? You're Not the Only One.]]></title>
-    <link href="http://adrianmejia.com/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/"/>
     <updated>2012-01-04T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one</id>
+    <id>http://amejiarosario.github.io/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one</id>
     <content type="html"><![CDATA[<p>&nbsp;</p>
 
 

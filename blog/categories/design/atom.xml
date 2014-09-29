@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Design | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/design/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/design/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How Company X Make Money?]]></title>
-    <link href="http://adrianmejia.com/blog/2014/03/09/how-company-x-make-money/"/>
+    <link href="http://amejiarosario.github.io/blog/2014/03/09/how-company-x-make-money/"/>
     <updated>2014-03-09T21:39:42-04:00</updated>
-    <id>http://adrianmejia.com/blog/2014/03/09/how-company-x-make-money</id>
+    <id>http://amejiarosario.github.io/blog/2014/03/09/how-company-x-make-money</id>
     <content type="html"><![CDATA[<p>Have you ever wonder how the companies that offer free services make money? Such as Instagram, Evernote, Facebook, Twitter, LinkedIn, Google Maps, so on&hellip; or if it is even profitable to keep free users using their services. We would go through several revenue models and hopefully, it will throw you some light next time you decide to roll your own startup.</p>
 
 <p><a href="#start">TL; DR</a>: Go to the interactive company revenue checker.</a></p>
@@ -35,7 +35,7 @@
 <a href="http://techcrunch.com/2013/03/28/in-app-purchase-revenue-hits-record-high-accounts-for-76-of-u-s-iphone-app-revenue-90-in-asian-markets/" target="_blank">techcrunch</a>
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/css/base/jquery.ui.all.min.css">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<link rel="stylesheet" type="text/css" href="http://adrianmejia.com/stylesheets/company_revenue.css">
+<link rel="stylesheet" type="text/css" href="http://amejiarosario.github.io/stylesheets/company_revenue.css">
 )</p>
 
 <p>Ok, let’s discuss some revenue models to understand this. There are 3 main models</p>
@@ -100,7 +100,7 @@
   <li class="company-item">
     <a href="#<%= name %>" class="company-icon" data-company="<%= name %>" title="How does <%= name.titleize() %> make money?">
       <span>
-          <img src="http://adrianmejia.com/images/logo_<%= name %>.png" alt="<%= name %>">
+          <img src="http://amejiarosario.github.io/images/logo_<%= name %>.png" alt="<%= name %>">
       </span>
     </a>
   </li>
@@ -556,9 +556,9 @@ $(function(){
   
   <entry>
     <title type="html"><![CDATA[Instagram Mobile Design Secrets Revealed]]></title>
-    <link href="http://adrianmejia.com/blog/2012/05/06/instagram-mobile-design-secrets-revealed/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/05/06/instagram-mobile-design-secrets-revealed/"/>
     <updated>2012-05-06T21:45:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/05/06/instagram-mobile-design-secrets-revealed</id>
+    <id>http://amejiarosario.github.io/blog/2012/05/06/instagram-mobile-design-secrets-revealed</id>
     <content type="html"><![CDATA[<p>Instagram is a very nice iPhone App. It allows you to give effects to your photos easily. Additionally, it’s blazing fast to upload your photos, and share them in other social networks such as Facebook, Twitter and/or Foursquare.</p>
 
 <p>This app went from 0 to 12 million users in just 12 months! And today 30+ million users in less than 2 years. Go through the slideshows bellow and you can see why. This app has some design features that that improves a lot the user experience. One of them, it’s responding to the user actions instantly even though the task is still performing in the background… more details in the slide:</p>

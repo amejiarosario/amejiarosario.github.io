@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Drupal | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/drupal/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/drupal/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Blog Migration Explained: Drupal 7 to Jekyll]]></title>
-    <link href="http://adrianmejia.com/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll/"/>
+    <link href="http://amejiarosario.github.io/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll/"/>
     <updated>2012-04-27T22:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll</id>
+    <id>http://amejiarosario.github.io/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll</id>
     <content type="html"><![CDATA[<p>This post is a guide on how to extract your blog posts information from Drupal 7 to other systems. And also automatically create a redirect files from the old blog to the new one. In this case, I migrated to Jerkyll/Octopress blog but from the data extracted in with my script you can migrate any other blog system. Hopefully, this will save you a lot of time if you need to do the same task. If you run into troubles go to last section of the post it has some suggestions.</p>
 
 <h2>Extract data from Drupal 7 site</h2>
@@ -318,9 +318,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[How to Setup Drupal WYSIWYG and Images Uploading?]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
     <updated>2011-11-09T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading</id>
     <content type="html"><![CDATA[<p>It have been a pain for me to upload images and deal with tons of WYSIWYG editors&#8230; After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</p>
 
 
@@ -440,9 +440,9 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
   
   <entry>
     <title type="html"><![CDATA[Git+ftp: Publish Git Repository Over FTP]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
     <updated>2011-11-09T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/09/gitftp-publish-git-repository-over-ftp</id>
     <content type="html"><![CDATA[<p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
 
 
@@ -532,9 +532,9 @@ sites/*/private</pre>
   
   <entry>
     <title type="html"><![CDATA[Update Drupal Sites]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/04/update-drupal-sites/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/04/update-drupal-sites/"/>
     <updated>2011-11-04T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/04/update-drupal-sites</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/04/update-drupal-sites</id>
     <content type="html"><![CDATA[<p>The better way to learn is by a concrete example. I update a site called &ldquo;heyshuga&rdquo; from Drupal 7.8 to 7.9. Here are the steps</p>
 
 <ol>
@@ -567,9 +567,9 @@ $ tar -zxvf drupal-x.y.tar.gz</p>
   
   <entry>
     <title type="html"><![CDATA[Git Auto-commit With Crontab]]></title>
-    <link href="http://adrianmejia.com/blog/2011/08/15/git-auto-commit-with-crontab/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/08/15/git-auto-commit-with-crontab/"/>
     <updated>2011-08-15T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/08/15/git-auto-commit-with-crontab</id>
+    <id>http://amejiarosario.github.io/blog/2011/08/15/git-auto-commit-with-crontab</id>
     <content type="html"><![CDATA[<p>You might want to commit from a git repository from time to time for several purposes (backup, control version, continuous integration, etc). One way to accomplish that is using the CronTab (Cron is used to run periodic task in Unix-like systems).</p>
 
 <p>Here is an example.</p>

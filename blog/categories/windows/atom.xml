@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Windows | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/windows/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/windows/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Faster Windows XP Removing Msmpeng.Exe and Other Programs]]></title>
-    <link href="http://adrianmejia.com/blog/2011/07/15/faster-windows-xp-removing-msmpeng-exe-and-other-programs/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/07/15/faster-windows-xp-removing-msmpeng-exe-and-other-programs/"/>
     <updated>2011-07-15T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/07/15/faster-windows-xp-removing-msmpeng-exe-and-other-programs</id>
+    <id>http://amejiarosario.github.io/blog/2011/07/15/faster-windows-xp-removing-msmpeng-exe-and-other-programs</id>
     <content type="html"><![CDATA[<p>At work, I use an Windows XP machine and it some times get really slowly. I noticed from the task manager (ctrl+shift+esc) that the process MsMpEng.exe is consuming most of my CPU time!</p>
 
 

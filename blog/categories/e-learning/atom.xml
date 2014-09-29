@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: E-learning | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/e-learning/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/e-learning/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Integration of Visualization Techniques and Completion Strategy to Improve Learning in Computer Programming]]></title>
-    <link href="http://adrianmejia.com/blog/2011/10/26/integration-of-visualization-techniques-and-completion-strategy-to-improve-learning-in-computer-programming/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/10/26/integration-of-visualization-techniques-and-completion-strategy-to-improve-learning-in-computer-programming/"/>
     <updated>2011-10-26T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/10/26/integration-of-visualization-techniques-and-completion-strategy-to-improve-learning-in-computer-programming</id>
+    <id>http://amejiarosario.github.io/blog/2011/10/26/integration-of-visualization-techniques-and-completion-strategy-to-improve-learning-in-computer-programming</id>
     <content type="html"><![CDATA[<p>The advantages of different presentation media are explored in the work of N. Hashim and S. Salam in “Integration of Visualization Techniques and Completion Strategy to Improve Learning in Computer Programming” [1]. They compare the advantages of Mobile-based training (MBT) over Web-based training (WBT) for learning computer programming. Additionally, they explain some features that aid the learning process, such as visualization techniques and completion strategy. Visualization techniques refers to the use of static (images and text) and dynamic (animation, voice and videos) presentation. Completion strategy is an assessment technique in which the learner have to prove their knowledge gained. This is done by filling blanks of incomplete code snippets, rewrite programs to improve performance, and so forth.</p>
 
 <p>Reference
@@ -27,9 +27,9 @@
   
   <entry>
     <title type="html"><![CDATA[An Approach to Annotation of Learning Texts on Programming Within a Web-Based Educational System - Paper Review]]></title>
-    <link href="http://adrianmejia.com/blog/2011/10/26/an-approach-to-annotation-of-learning-texts-on-programming-within-a-web-based-educational-system-paper-review/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/10/26/an-approach-to-annotation-of-learning-texts-on-programming-within-a-web-based-educational-system-paper-review/"/>
     <updated>2011-10-26T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/10/26/an-approach-to-annotation-of-learning-texts-on-programming-within-a-web-based-educational-system-paper-review</id>
+    <id>http://amejiarosario.github.io/blog/2011/10/26/an-approach-to-annotation-of-learning-texts-on-programming-within-a-web-based-educational-system-paper-review</id>
     <content type="html"><![CDATA[<ol type="a">
 <li>Mihál and M. Bieliková presents “An Approach to Annotation of Learning Texts on Programming within a Web-Based Educational System”. This work leverage the usage of annotation to enhance programming learning experience. Annotations provide to learners supplementary information that they otherwise will have to find by themselves somewhere else.  They describe different types of annotation: manual and automatic. For the manual annotations the user the user provides insert related notes to material. Automatic annotation are done without human intervention. It uses ontologies and language processing to identify related content and insert it in the appropriated place.</li>
 </ol>
@@ -42,9 +42,9 @@ V. Mihál and M. Bieliková, “An Approach to Annotation of Learning Texts on P
   
   <entry>
     <title type="html"><![CDATA[Focused Crawling for Automatic Service Discovery, Annotation, and Classification in Industrial Digital Ecosystems - Paper Review]]></title>
-    <link href="http://adrianmejia.com/blog/2011/10/04/focused-crawling-for-automatic-service-discovery-annotation-and-classification-in-industrial-digital-ecosystems-paper-review/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/10/04/focused-crawling-for-automatic-service-discovery-annotation-and-classification-in-industrial-digital-ecosystems-paper-review/"/>
     <updated>2011-10-04T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/10/04/focused-crawling-for-automatic-service-discovery-annotation-and-classification-in-industrial-digital-ecosystems-paper-review</id>
+    <id>http://amejiarosario.github.io/blog/2011/10/04/focused-crawling-for-automatic-service-discovery-annotation-and-classification-in-industrial-digital-ecosystems-paper-review</id>
     <content type="html"><![CDATA[<ol type="a">
 <li>Dong et al. (2011) [1] introduce an approach to enhance disperse and heterogeneous industrial digital ecosystem for e-Learning. Its target is to discover and classify the industrial information automatically using focused crawlers. The focused crawler perform 5 operations: webpage fetcher (multithreading web crawling given a URL list), policy center  (fetching boundaries, max. depth, multithreading priority), webpage pool (store data as plain text), webpage parser (use heuristics rules on website layouts to extract desired data), service metadata generator (produce metadata and in ontology markup language), and service metadata classifier (used structured domains of knowledge to classify the data). [4] also explain in detail the Ontology Markup Language (OML) and perform several test and performance measures, such as harvest rate, precision, recall, harmony, f-measure, fallout rate, and more.</li>
 </ol>
@@ -58,9 +58,9 @@ V. Mihál and M. Bieliková, “An Approach to Annotation of Learning Texts on P
   
   <entry>
     <title type="html"><![CDATA[OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educational Content From Open Corpus Sources - Paper Review]]></title>
-    <link href="http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/"/>
     <updated>2011-09-27T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review</id>
+    <id>http://amejiarosario.github.io/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review</id>
     <content type="html"><![CDATA[<ol type="a">
 <li>Lawless, V. Wade et al. (2008) [1] introduces the Open Corpus Content Service (OCCS), which is a system to discover, harvest, classify and index educational content from the Internet. It aims to provide a dynamic learning object generation based on the background of the learner. The OCCS employs Heritrix (open source, web-scale, archival web crawler) for discovery educational content available in the WWW. Heritrix uses languages guessers (JTCL) and text classifier (Rainbow) to classify the extracted data. All the content is indexed in ARC files with NutchWAX and Hadoop. Finally the data is presented to the users using WERA (WEb aRchive Access). Additionally, the OCCS system is evaluated using a specific topic and the results are shown in [1].</li>
 </ol>
@@ -79,9 +79,9 @@ V. Mihál and M. Bieliková, “An Approach to Annotation of Learning Texts on P
   
   <entry>
     <title type="html"><![CDATA[eLearning 2.0 and Social, Practice-Oriented Communities to Improve Knowledge in Companies - Paper Review]]></title>
-    <link href="http://adrianmejia.com/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review/"/>
     <updated>2011-09-27T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review</id>
+    <id>http://amejiarosario.github.io/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review</id>
     <content type="html"><![CDATA[<ol type="a">
 <li><ol type="a">
 <li>Kruk et al. (2007) [1] implemented a social bookmarking system called Social Semantic Collaborative Filtering (SSCF). The goal of the SSCF is to enhance individual bookmarks with shared knowledge of the community. It also presents how digital libraries can be combined with social semantic information sources and it exemplifies how these techniques can improve e-Learning. Digital Libraries and other open courses can leverage their potential with the collaborative architectures. Learners can use it to exchange information, and express and synthetize knowledge e-Learning environments. It also makes use of the social bookmarking, web semantics and ontology services in other to organize and classify knowledge.</li>

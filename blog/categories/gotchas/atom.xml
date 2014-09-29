@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Gotchas | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/gotchas/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/gotchas/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[C#'s GetManifestResourceStream Gotcha]]></title>
-    <link href="http://adrianmejia.com/blog/2011/07/18/cs-getmanifestresourcestream-gotcha/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/07/18/cs-getmanifestresourcestream-gotcha/"/>
     <updated>2011-07-18T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/07/18/cs-getmanifestresourcestream-gotcha</id>
+    <id>http://amejiarosario.github.io/blog/2011/07/18/cs-getmanifestresourcestream-gotcha</id>
     <content type="html"><![CDATA[<p>In the .NET framework, the method Assembly -&gt; Get Manifest Resource Stream has a gotcha that could take some time to figure out why is not working as intented. I was working in a piece of code (show below), and the GetManifestResourceStream always returned NULL exception error. Even though the file was there&#8230;</p>
 
 

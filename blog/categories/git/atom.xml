@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Git | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/git/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Git+ftp: Publish Git Repository Over FTP]]></title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
     <updated>2011-11-09T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp</id>
+    <id>http://amejiarosario.github.io/blog/2011/11/09/gitftp-publish-git-repository-over-ftp</id>
     <content type="html"><![CDATA[<p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
 
 
@@ -107,9 +107,9 @@ sites/*/private</pre>
   
   <entry>
     <title type="html"><![CDATA[Git Auto-commit With Crontab]]></title>
-    <link href="http://adrianmejia.com/blog/2011/08/15/git-auto-commit-with-crontab/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/08/15/git-auto-commit-with-crontab/"/>
     <updated>2011-08-15T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/08/15/git-auto-commit-with-crontab</id>
+    <id>http://amejiarosario.github.io/blog/2011/08/15/git-auto-commit-with-crontab</id>
     <content type="html"><![CDATA[<p>You might want to commit from a git repository from time to time for several purposes (backup, control version, continuous integration, etc). One way to accomplish that is using the CronTab (Cron is used to run periodic task in Unix-like systems).</p>
 
 <p>Here is an example.</p>
@@ -149,9 +149,9 @@ cd /home/adrimej0/www && /home/adrimej0/opt/bin/git push origin master</code>
   
   <entry>
     <title type="html"><![CDATA[How to Set Up Git / Github in Windows]]></title>
-    <link href="http://adrianmejia.com/blog/2011/07/21/how-to-set-up-git-github-in-windows/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/07/21/how-to-set-up-git-github-in-windows/"/>
     <updated>2011-07-21T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/07/21/how-to-set-up-git-github-in-windows</id>
+    <id>http://amejiarosario.github.io/blog/2011/07/21/how-to-set-up-git-github-in-windows</id>
     <content type="html"><![CDATA[<p>Installing Git in Windows is not as straight forward as in a *nix machine like Linux and Mac. This guide help you to get started quickly.</p>
 
 

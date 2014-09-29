@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Seo | Adrian Mejia's Blog]]></title>
-  <link href="http://adrianmejia.com/blog/categories/seo/atom.xml" rel="self"/>
-  <link href="http://adrianmejia.com/"/>
-  <updated>2014-09-28T18:55:51-04:00</updated>
-  <id>http://adrianmejia.com/</id>
+  <link href="http://amejiarosario.github.io/blog/categories/seo/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
   <author>
     <name><![CDATA[Adrian Mejia]]></name>
     <email><![CDATA[me@adrianmejia.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Drupal Modules for SEO Optimation]]></title>
-    <link href="http://adrianmejia.com/blog/2011/07/12/drupal-modules-for-seo-optimation/"/>
+    <link href="http://amejiarosario.github.io/blog/2011/07/12/drupal-modules-for-seo-optimation/"/>
     <updated>2011-07-12T00:00:00-04:00</updated>
-    <id>http://adrianmejia.com/blog/2011/07/12/drupal-modules-for-seo-optimation</id>
+    <id>http://amejiarosario.github.io/blog/2011/07/12/drupal-modules-for-seo-optimation</id>
     <content type="html"><![CDATA[<p>Search Engine Optimizations (SEO) could be quite challenging for beginners. It&#8217;s overwhelming the amount of information that a webmaster need to understand in order to make his websites visible, in search engines like Google, Bing, Yahoo, &#8230; Moreover most of this information is quite disperse. The idea here is to provided all the needed information in one place. Starting from steps for all websites and then focusing on Drupal SEO modules. &nbsp; <strong>General Steps:</strong></p>
 
 
