@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Reverse Engineering | Adrian Mejia's Blog]]></title>
+  <link href="http://amejiarosario.github.io/blog/categories/reverse-engineering/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
+  <author>
+    <name><![CDATA[Adrian Mejia]]></name>
+    <email><![CDATA[me@adrianmejia.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Determining Granularity of Independent Tasks for Reengineering a Legacy System Into an OO System - Paper Review]]></title>
+    <link href="http://amejiarosario.github.io/blog/2011/09/14/determining-granularity-of-independent-tasks-for-reengineering-a-legacy-system-into-an-oo-system-paper-review/"/>
+    <updated>2011-09-14T00:00:00-04:00</updated>
+    <id>http://amejiarosario.github.io/blog/2011/09/14/determining-granularity-of-independent-tasks-for-reengineering-a-legacy-system-into-an-oo-system-paper-review</id>
+    <content type="html"><![CDATA[<p>In this work [1] the authors explain the process of reengineering a legacy system in COBOL for object-oriented. Reengineering is a multi-step process to convert sequential and procedural-driven system into object-oriented and event-driven system. The proposed method [1] to accomplish this task is to transform the legacy system source code into an intermediary language: Wide Spectrum Language (WSL). The WSL code is used to apply an algorithm to identify the optimal granular unit for independent tasks taking into consideration factors as size, dependencies, and coupling. The detailed techniques used to determine the level of granularity are the following four: Determining Data and Control Dependencies (determine the dependency, if any, between data, variables, and controls), Program Block Identification (identify logical unit of execution of the legacy system), Individual Code line Evaluation (is the minimal granular unit of the legacy system: an code statement), and Procedure Granularity (is the largest self-contained granular units possible).</p>
+
+<p>In my opinion, It’s a good idea to transform legacy system into an intermediary language. This way the process will be language independent. However, they should explain in more detail about the WSL intermediary language. And also, give more details in the transformation from COBOL to WSL and how it can be transform to OO systems.</p>
+
+<p>Reference:
+[1] Millham, R.; Ward, M.; Hongji Yang; , &ldquo;Determining granularity of independent tasks for reengineering a legacy system into an OO system,&rdquo; Computer Software and Applications Conference, 2003. COMPSAC 2003. Proceedings. 27th Annual International , vol., no., pp. 342- 347, 3-6 Nov. 2003</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automated Reverse Engineering Java-Swing GUI - Paper Review]]></title>
+    <link href="http://amejiarosario.github.io/blog/2011/09/07/automated-reverse-engineering-java-swing-gui-paper-review/"/>
+    <updated>2011-09-07T00:00:00-04:00</updated>
+    <id>http://amejiarosario.github.io/blog/2011/09/07/automated-reverse-engineering-java-swing-gui-paper-review</id>
+    <content type="html"><![CDATA[<p>The extraction of Java-Swing GUI information using AspectJ seems like an way to do Reverse Engineering. The extracted information could be use later to migrate applications Java-Swing applications to the web, enhance program understating, generate UML diagrams and a myriad of other uses. This article will be summary of the paper about this topic [1].</p>
+
+<p>The authors of the paper [1] are using aspect oriented programming (AOP) to intercept the application while is running and extract desired information. The information wanted in this case is the following ones: user events, windows and widgets. This type of reverse engineering is performed dynamically. The information is gathered while the user is using the application as usual. The more time the user use the application the more information is gathered. For this task, AspectJ is used. AspectJ is aspect-oriented extension created for Java programming language. AspectJ can interact with java-compiled code (bytecode) and it intercepts specific function calls.  For instance to extract windows and widget the aspect code will detect the Java-Swing calls of: “showFrame()”, “setVisible()”, “show()” in the JFrames, JPanels and widgets. In order to extract the user events, the aspect code intercepts the calls to “JTextField.setText()” for user input in text fields and so forth. Finally, all the information extracted is stored in XML and then can be used for different uses: migration of java-swing applications to web, generate UML design diagrams, you name it!</p>
+
+<p>Something about the title of the paper [1], it&rsquo;s that it mention web migration; however, in the content of the paper there are not depth in that topic. It only explain in detail how to extract information needed for the reverse engineering, but there is no detail in how to use the extracted information to do it web-enabled.</p>
+
+<p>Reference
+[1] Samir, H.; Kamel, A.; , &ldquo;Automated reverse engineering of Java graphical user interfaces for web migration,&rdquo; Information and Communications Technology, 2007. ICICT 2007. ITI 5th International Conference on , vol., no., pp.157-162, 16-18 Dec. 2007</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Macros | Adrian Mejia's Blog]]></title>
+  <link href="http://amejiarosario.github.io/blog/categories/macros/atom.xml" rel="self"/>
+  <link href="http://amejiarosario.github.io/"/>
+  <updated>2014-09-28T20:25:14-04:00</updated>
+  <id>http://amejiarosario.github.io/</id>
+  <author>
+    <name><![CDATA[Adrian Mejia]]></name>
+    <email><![CDATA[me@adrianmejia.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Execute SQL Statements on MS Access?]]></title>
+    <link href="http://amejiarosario.github.io/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
+    <updated>2011-11-09T00:00:00-04:00</updated>
+    <id>http://amejiarosario.github.io/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access</id>
+    <content type="html"><![CDATA[<p>Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.</p>
+
+<p>Here are the steps of how to create a new table programmatically in Access (2007):</p>
+
+<ol>
+<li>Open/create your database on MS Access</li>
+<li>Menu: &lsquo;Databases Tools&rsquo; > &lsquo;Visual Basic&rsquo; (this will open the visual basic editor</li>
+<li>in the Visual Basic Editor, Menu: Run</li>
+<li>Insert the name of your macro and click &lsquo;create&rsquo; button</li>
+<li>Insert a code similar to the shown below. Replace the path in &lsquo;OpenDatabase&rsquo; with your database path; and fill &lsquo;dbs.Execute&rsquo; with your own SQL statements</li>
+</ol>
+
+
+<p>Sub createdb()
+    Dim dbs As Database</p>
+
+<pre><code>' Modify this line to include the path to Northwind
+' on your computer.
+Set dbs = OpenDatabase("C:\\amr\\projects\\sites\\files\\tf_pledge_reminder_email.accdb")
+
+' Create a table with two text fields.
+dbs.Execute "create table RIT_TF_PLG_REM_EMAIL_TEST2 (   pref_mail_name  VARCHAR(60), pd_to_date      NUMBER,   this_payment    NUMBER )"
+
+dbs.Close
+</code></pre>
+
+<p>End Sub</p>
+
+<ol>
+<li>Menu: Run</li>
+<li>You are all set.</li>
+</ol>
+
+
+<p>If you have any questions you can contact me or write a comment</p>
+]]></content>
+  </entry>
+  
+</feed>

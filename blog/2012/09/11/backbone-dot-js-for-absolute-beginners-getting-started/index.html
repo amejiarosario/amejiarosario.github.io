@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Backbone.js for Absolute Beginners - Getting Started (Part 1: Intro) - Adrian Mejia&#8217;s Blog</title>
+  <meta name="author" content="Adrian Mejia">
+
+  
+  <meta name="description" content="Backbone.js is a JavaScript framework, among many others, that is gaining special attention in the web development community because it&rsquo;s ease &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Adrian Mejia's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24183929-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adrian Mejia&#8217;s Blog</a></h1>
+  
+    <h2>var life = { &#8216;work_hard&#8217;, &#8216;have_fun&#8217;, &#8216;make_history&#8217; };</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:amejiarosario.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Backbone.js for Absolute Beginners - Getting Started (Part 1: Intro)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-09-11T22:50:00-04:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:50 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Backbone.js is a JavaScript framework, among many others, that is gaining special attention in the web development community because it&rsquo;s ease of use and the structure that it provides to JavaScript applications.</p>
+
+<p>(Updated: 2013-02-02, 2013-11-24)</p>
+
+<h3>Brief Background (optional reading)</h3>
+
+<p><a href="#start">TL; DR</a>: You need to use JavaScript heavily in order to make responsive and interactive web applications. <a href="#start">Jump to this and get started.</a></p>
+
+<p>The web application development process has been evolving over the years. In the beginning web applications were just static HTML pages, which required programmers to change the code (HTML, CSS, JS) in order to change the content. Later, in web 2.0, server side programming languages (like PHP, Ruby, Java, …) were added to generate HTML pages dynamically based on user input and data stored in database. That was a huge improvement, and most of the pages served today use this approach. However, to provide the web site with even more responsiveness, speed, and enhanced user interaction, it requires bringing the logic closer to the client (browser).  There are a couple of languages that can run in the browsers besides JS, such as Java, Flash and others. However, these require extra plugins and are not as ubiquitous as JavaScript.</p>
+
+<p>Web applications nowadays require heavy use of JavaScript to generate content on the fly. The user needn&rsquo;t wait between requests and page refreshes. A lot of the logic/code that used to be on the server side is being moved to the client side. JS allows web sites to render only content that changes without needing to reload the full-page on every request. Examples of this kind of web applicqtion are Gmail, Pandora, Pinterest, Nokia Maps 3D and others.</p>
+
+<p>A common problem with large JS web application developed is that they can become pretty messy really quickly. The lack of structure makes the code hard to maintain. This is where Backbone comes into play. It provides structure to organize the code and increase maintainability. Backbone is not the only framework like this; in fact, there are many JS frameworks that attempt to offer similar benefits, like Ember.js, Angular.js and so on. However, I choose Backbone because it&rsquo;s one of the most widely used frameworks in its category. It has a vibrant community and it’s also being fully used in production for a considerable number of big companies like: Wal-Mart mobile, Groupon, Khan Academy, Pandora, Wordpress, Foursquare, and so on.</p>
+
+<p><a id="start"></a></p>
+
+<h2>Just enough to get started with Backbone.js</h2>
+
+<p>Backbone.js has hard dependency on underscore.js and a soft dependency on jQuery. It’s made up of the following modules:</p>
+
+<ul>
+<li> Views</li>
+<li> Events</li>
+<li> Models</li>
+<li> Collections</li>
+<li> Routers</li>
+</ul>
+
+
+<h2>Shut up and show me the code!</h2>
+
+<p>Alright! the way we are going to explore all of these modules is through examples. This is a practical tutorial that I wished I had it when I stared learning. This is a fat-free walkthrough of Backbone.js, as simple as possible, with all the code in one file for didactical purposes (no hidden magic tricks, all cards are on the table).</p>
+
+<p>The first example is a ‘Hello World’ app in Backbone and the second is a &lsquo;to do&rsquo; app. After working through these two example apps, you’ll see every Backbone module and have a practical understanding about them.</p>
+
+<h2>1. Hello World in Backbone.js</h2>
+
+<p>You can follow along with this tutorial&rsquo;s code in this <a href="https://github.com/amejiarosario/Backbone-tutorial/commits/">repository</a>. Each feature implemented is a new commit, so you can easily see what changed in every step.</p>
+
+<p><strong>1.1.- Simple HTML5 and Backbone boilerplate</strong></p>
+
+<p>To get started, download <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/439ff34409dfc01adca7f9f96efcd726295f1aac/backbone-tutorial.html">this simple html file</a>. This file  contains the libraries that you&rsquo;ll need (jQuery, Underscore.js, Backbone.js and Backbone-localStorage.js) and the placeholders for your HTML and JS code. Don&rsquo;t worry about the libraries, we are going to explain them as we need them.</p>
+
+<p>After downloading the aformentioned file, notice the HTML where your entire page will be built using Backbone.Views!</p>
+
+<p>Your entire js app will be loaded here:</p>
+
+<p><code>&lt;div id="container"&gt;Loading...&lt;/div&gt;</code></p>
+
+<p><a id="1.2"></a>
+<strong>1.2.- Backbone&rsquo;s Views</strong></p>
+
+<p>Backbone&rsquo;s Views are the equivalent of ‘controllers’ on MVC frameworks (like Ruby on Rails), if you are not familiar with MVC frameworks, that&rsquo;s okay. Backbone&rsquo;s Views glue together user events (clicks, pressed keys, etc.), render HTML views and templates, and interact with models which contains the data of the application.</p>
+
+<p>Here is an example of a Backbone.view: READ THE CODE AND COMMENTS, then insert this code in the javascript block of the HTML file you downloaded.</p>
+
+<figure class='code'><figcaption><span>Simple Backbone.View</span><a href='https://raw.github.com/amejiarosario/Backbone-tutorial/0bf69185f4463a75cb2d5553f8d1ea197323ccff/backbone-tutorial.html'>Full Code </a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="kd">var</span> <span class="nx">AppView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>      <span class="c1">// el - stands for element. Every view has a element associate in with HTML </span>
+</span><span class='line'>      <span class="c1">//      content will be rendered.</span>
+</span><span class='line'>      <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#container&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="c1">// It&#39;s the first function called when this view it&#39;s instantiated.</span>
+</span><span class='line'>      <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="c1">// $el - it&#39;s a cached jQuery object (el), in which you can use jQuery functions </span>
+</span><span class='line'>      <span class="c1">//       to push content. Like the Hello World in this case.</span>
+</span><span class='line'>      <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>1.3.- Test the app</strong></p>
+
+<p>After copying the code, open the file, refresh the browser and you should see the &lsquo;Hello World&rsquo; message, right? Wait, if you&rsquo;re just seeing the &lsquo;Loading…&rsquo; it&rsquo;s because you need to initialize the view first.</p>
+
+<p><code>var appView = new AppView();</code></p>
+
+<p>Yay! You have your &ldquo;Hello Wold&rdquo; in Backbone and an introduction to the View module. (Full code is <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/0bf69185f4463a75cb2d5553f8d1ea197323ccff/backbone-tutorial.html">here</a>)</p>
+
+<p><strong>1.4.- Backbone&rsquo;s Templates</strong></p>
+
+<p>Backbone has a utility/helper library called <a href="http://underscorejs.org/?utm_source=adrianmejia.com">underscore.js</a> and you can use their template solution out of box. You can also use any other template solution that you want like <a href="https://github.com/janl/mustache.js">mustache</a> or <a href="https://github.com/wycats/handlebars.js">handlerbars</a>. Let&rsquo;s stick with _.js for simplicity&rsquo;s sake.</p>
+
+<p>_.js templates have the following syntax,</p>
+
+<p><code>_.template(templateString, [data], [settings])</code></p>
+
+<p>where in the <code>templateString</code> you use the place holder <code>&lt;%= %&gt;</code> and <code>&lt;%- %&gt;</code> to dynamically insert data. The later allows for HTML escape while the first one doesn&rsquo;t. Moreover, you can use <code>&lt;% %&gt;</code> to run any javascript code.</p>
+
+<p>Let’s see it in action and rewrite our &ldquo;Hello World&rdquo; using a _.js template instead.</p>
+
+<figure class='code'><figcaption><span>Simple Backbone.View and Templates</span><a href='https://raw.github.com/amejiarosario/Backbone-tutorial/c5b131278ecde92f33882c9a2c22ee4119e57d77/backbone-tutorial.html'>Full Code </a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>    <span class="kd">var</span> <span class="nx">AppView</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">el</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#container&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="c1">// template which has the placeholder &#39;who&#39; to be substitute later </span>
+</span><span class='line'>      <span class="nx">template</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s2">&quot;&lt;h3&gt;Hello &lt;%= who %&gt;&lt;h3&gt;&quot;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>        <span class="c1">// render the function using substituting the varible &#39;who&#39; for &#39;world!&#39;. </span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">({</span><span class="nx">who</span><span class="o">:</span> <span class="s1">&#39;world!&#39;</span><span class="p">}));</span>
+</span><span class='line'>        <span class="c1">//***Try putting your name instead of world.</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">appView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AppView</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Run the app again and verify that it&rsquo;s working with the template.</p>
+
+<h3>Continue with the <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">2nd part</a> and learn more about Backbone&rsquo;s Models, Collections, View and Events!</h3>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Adrian Mejia</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2012-09-11T22:50:00-04:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:50 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile-frameworks/'>agile frameworks</a>, <a class='category' href='/blog/categories/backbonejs/'>backbonejs</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/tutorials/'>tutorials</a>, <a class='category' href='/blog/categories/web-development/'>web development</a>, <a class='category' href='/blog/categories/web-frameworks/'>web frameworks</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/" data-via="amejiarosario" data-counturl="http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/06/instagram-mobile-design-secrets-revealed/" title="Previous Post: Instagram mobile design secrets revealed">&laquo; Instagram mobile design secrets revealed</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/" title="Next Post: Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views)">Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/09/how-company-x-make-money/">How Company X Make Money?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/">Cheap Airplay Receiver With Raspberry Pi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">Algorithms for Dummies (Part 1): Big-O Notation and Sorting</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/">Backbone.js for Absolute Beginners - Getting Started (Part 4: Routers)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">Backbone.js for Absolute Beginners - Getting Started (Part 3: CRUD)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="googleplus">
+  <h1>
+    <a href="http://www.linkedin.com/in/adrianmejia">
+      <img src="/images/linkedin.png" width="32" height="32">
+      Linkedin
+    </a>
+  </h1>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://github.com/amejiarosario">
+      <img src="/images/github.png" width="32" height="32">
+      Github
+    </a>
+  </h1>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://twitter.com/amejiarosario">
+      <img src="/images/twitter.png" width="32" height="32">
+      Twitter
+    </a>
+  </h1>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/105957252272382685246?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/amejiarosario">@amejiarosario</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amejiarosario',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Adrian Mejia -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'adrianmejia';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/';
+        var disqus_url = 'http://amejiarosario.github.io/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

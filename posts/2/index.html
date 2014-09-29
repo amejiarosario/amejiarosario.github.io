@@ -1,0 +1,1473 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adrian Mejia&#8217;s Blog</title>
+  <meta name="author" content="Adrian Mejia">
+
+  
+  <meta name="description" content="When you are coding in a team enviroment it&#39;s good to have the subversion properties in your files, that way any other developer can see quickly &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://amejiarosario.github.io/posts/2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Adrian Mejia's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24183929-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adrian Mejia&#8217;s Blog</a></h1>
+  
+    <h2>var life = { &#8216;work_hard&#8217;, &#8216;have_fun&#8217;, &#8216;make_history&#8217; };</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:amejiarosario.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/11/adding-subversion-svn-properties-to-your-code/">Adding Subversion (SVN) Properties to Your Code</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-11T00:00:00-04:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2012/02/11/adding-subversion-svn-properties-to-your-code/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2012/02/11/adding-subversion-svn-properties-to-your-code/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When you are coding in a team enviroment it&#39;s good to have the subversion properties in your files, that way any other developer can see quickly who made the last changes and when.</p>
+
+
+<p>You can add the following lines at the bottom of your code:</p>
+
+
+<div>
+    //&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</div>
+
+
+<div>
+    // &nbsp;REVISION HISTORY</div>
+
+
+<div>
+    // &nbsp;$LastChangedDate: $</div>
+
+
+<div>
+    // &nbsp;$Revision: $</div>
+
+
+<div>
+    // &nbsp;$LastChangedBy: $</div>
+
+
+<div>
+    // &nbsp;$Id: $</div>
+
+
+<div>
+    //&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    And when you perform your svn commit will be automatically populated something like this:</div>
+
+
+<div>
+    //&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</div>
+
+
+<div>
+    // &nbsp;REVISION HISTORY</div>
+
+
+<div>
+    // &nbsp;$LastChangedDate: 2012-02-11 18:24:39 -0500 (Sat, 11 Feb 2012) $</div>
+
+
+<div>
+    // &nbsp;$Revision: 61 $</div>
+
+
+<div>
+    // &nbsp;$LastChangedBy: adriansky $</div>
+
+
+<div>
+    // &nbsp;$Id: Heap.java 61 2012-02-11 23:24:39Z adriansky $</div>
+
+
+<div>
+    //&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    Also you need to set the SVN properties for that file. The Properties that you need are the following:</div>
+
+
+<ul>
+    <li>
+        svn:eol-style &nbsp;&#8212;&gt; LF</li>
+    <li>
+        svn:keywords &#8212;&gt; LastChangedDate Revision LastChangedBy Id</li>
+</ul>
+
+
+<div>
+    If you are using Eclipse you can edit it following this steps:</div>
+
+
+<ol>
+    <li>
+        right click file you want to add svn properties</li>
+    <li>
+        Menu team &gt; set properties (image bellow)</li>
+    <li>
+        Select the Property name from the combobox&nbsp;(image bellow)</li>
+    <li>
+        Add the text property in the text box&nbsp;(image bellow)</li>
+    <li>
+        You can also use files to avoid all the typing every time. right click and &#39;save as&#8230;&#39; to &lt;<a href="http://adrianmejiarosario.com/sites/default/files/svn-keywords.txt" target="_blank">svn-keywords</a>&gt; and&nbsp;&lt;<a href="http://adrianmejiarosario.com/sites/default/files/svn-eol-style.txt" onclick="window.open(this.href, '', 'resizable=no,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no'); return false;">svn-eol-property</a>&gt;.</li>
+    <li>
+        Commit and you are all set.</li>
+</ol>
+
+
+<p>Eclipse Menu to add svn properties</p>
+
+
+<p><img alt="Eclipse SVN Property Menu" src="http://adrianmejiarosario.com/sites/default/files/svnprop1.png" style="width: 600px; height: 564px; " /></p>
+
+
+<p>Adding SVN properties typing</p>
+
+
+<p><img alt="" src="http://adrianmejiarosario.com/sites/default/files/svnprop2.png" style="width: 525px; height: 520px; " /></p>
+
+
+<p>Adding SVN property from file</p>
+
+
+<p><img alt="SVN property from file" src="http://adrianmejiarosario.com/sites/default/files/svnprop3.png" style="width: 525px; height: 520px; " /></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/">How Do I Change the Ruby/Python Version Textmate Uses?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-09T00:00:00-04:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>&nbsp;</p>
+
+
+<p>I&#39;m using textMate to develop ruby code. It&#39;s very handy because I can run it just pressing (cmd-R). But by default it&#39;s running ruby 1.8.7 and I want 1.9.2 version.</p>
+
+
+<p>This is the steps to change it:</p>
+
+
+<p>Find the right path with</p>
+
+
+<div>
+    <div>
+        <strong>~$ &nbsp;which rvm-auto-ruby</strong></div>
+    <div>
+        /Users/adrian/.rvm/bin/rvm-auto-ruby</div>
+</div>
+
+
+<div>
+    <strong>~$ &nbsp;which python3.2</strong></div>
+
+
+<div>
+    /usr/local/bin/python3.2</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<p>Then copy it to TextMate preferences in a new variable called &quot;TM_RUBY&quot;, and &quot;TM_PYTHON&quot; as shown bellow:</p>
+
+
+<p><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202012-02-09%20at%201.50.41%20AM.png" style="width: 792px; height: 402px; " /></p>
+
+
+<p><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202012-02-09%20at%2012.48.17%20AM.png" style="width: 600px; height: 320px; " /></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/">Get Started With the Web Crawler Apache Nutch 1.x</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-04T00:00:00-04:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Apache Nutch is an open source <strong>scalable</strong> Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [<a href="http://en.wikipedia.org/wiki/Nutch">*</a>]</p>
+
+
+<div>
+    <u><strong>Motivation</strong></u></div>
+
+
+<div>
+    By using Nutch, we can find web page hyperlinks in an automated manner, reduce lots of maintenance work, for example checking broken links, and create a copy of all the visited pages for searching over. That&rsquo;s where Apache Solr comes in. Solr is an open source full text search framework, with Solr we can search the visited pages from Nutch. Luckily, integration between Nutch and Solr is pretty straightforward.</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    Whole-web crawling is designed to handle very large crawls which may take weeks to complete, running on multiple machines. This also permits more control over the crawl process, and incremental crawling. It is important to note that whole web crawling does not necessarily mean crawling the entire world wide web. We can limit a whole web crawl to just a list of the URLs we want to crawl. This is done by using a filter just like we the one we used when we did the crawl command. [<a href="http://wiki.apache.org/nutch/NutchTutorial">*</a>]</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    Some of the advantages of Nutch, when compared to a simple Fetcher</div>
+
+
+<ul>
+    <li>
+        highly scalable and relatively feature rich crawler</li>
+    <li>
+        features like politeness which obeys robots.txt rules</li>
+    <li>
+        robust and scalable - you can run Nutch on a cluster of 100 machines</li>
+    <li>
+        quality - you can bias the crawling to fetch &ldquo;important&rdquo; pages first</li>
+</ul>
+
+
+<p><u><strong>Basics about Nutch</strong></u></p>
+
+
+<p>First you need to know that, Nutch data is composed of:</p>
+
+
+<ul>
+    <li>
+        The crawl database, or <strong>crawldb</strong>. This contains information about every url known to Nutch, including whether it was fetched, and, if so, when.</li>
+    <li>
+        The link database, or <strong>linkdb</strong>. This contains the list of known links to each url, including both the source url and anchor text of the link.</li>
+    <li>
+        A set of <strong>segments</strong>. Each segment is a set of urls that are fetched as a unit. Segments are directories with the following subdirectories:</li>
+</ul>
+
+
+<ol>
+    <li>
+        <strong>crawl_generate</strong> names a set of urls to be fetche</li>
+    <li>
+        <strong>crawl_fetch</strong> contains the status of fetching each url</li>
+    <li>
+        <strong>content</strong> contains the raw content retrieved from each url</li>
+    <li>
+        <strong>parse_text</strong> contains the parsed text of each url</li>
+    <li>
+        <strong>parse_data</strong> contains outlinks and metadata parsed from each url</li>
+    <li>
+        <strong>crawl_parse</strong> contains the outlink urls, used to update the crawldb</li>
+</ol>
+
+
+<p><u><strong>Nutch and Hadoop</strong></u></p>
+
+
+<p>As of the official Nutch 1.3 release the source code architecture has been greatly simplified to allow us to run Nutch in one of two modes; namely local and deploy. By default, Nutch no longer comes with a Hadoop distribution, however when run in local mode e.g. running Nutch in a single process on one machine, then we use Hadoop as a dependency. This may suit you fine if you have a small site to crawl and index, but most people choose Nutch because of its capability to run on in deploy mode, within a Hadoop cluster. This gives you the benefit of a distributed file system (HDFS) and MapReduce processing style. &nbsp;If you are interested in deployed mode <a href="http://wiki.apache.org/nutch/NutchHadoopTutorial">read here</a>.</p>
+
+
+<p><u><strong>Getting hands dirt with Nutch</strong></u></p>
+
+
+<p><strong>1 Setup Nutch from binary distribution</strong></p>
+
+
+<ol>
+    <li>
+        Unzip your binary Nutch package to $HOME/nutch-1.3</li>
+    <li>
+        cd $HOME/nutch-1.3/runtime/local</li>
+    <li>
+        From now on, we are going to use ${NUTCH_RUNTIME_HOME} to refer to the current directory.</li>
+</ol>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    <strong>2. Verify your Nutch installation</strong></div>
+
+
+<ol>
+    <li>
+        run &quot;bin/nutch&quot;</li>
+    <li>
+        You can confirm a correct installation if you seeing the following: &nbsp;Usage: nutch [-core] COMMAND</li>
+</ol>
+
+
+<div>
+    <u>Some troubleshooting tips:</u></div>
+
+
+<div>
+    Run the following command if you are seeing &quot;Permission denied&quot;:</div>
+
+
+<div>
+    chmod +x bin/nutch</div>
+
+
+<div>
+    Setup JAVA_HOME if you are seeing JAVA_HOME not set. On Mac, you can run the following command or add it to ~/.bashrc:</div>
+
+
+<div>
+    export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home #mac</div>
+
+
+<div>
+    Ubuntu:</div>
+
+
+<div>
+    export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk&nbsp;</div>
+
+
+<div>
+    export NUTCH_HOME=/var/www/nutch-1.3/runtime/local</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    <u>Example of using Nutch to crawl wikipedia pages:</u></div>
+
+
+<div>
+    Here we are try to crawl&nbsp;<span class="s2"><a href="http://en.wikipedia.org/wiki/Collective_intelligence">http://en.wikipedia.org/wiki/Collective_intelligence</a>&nbsp;and sublinks in the same domain.</span></div>
+
+
+<ol class="ol1">
+    <li class="li1">
+        $ cd NUTCH_HOME/runtime/local</li>
+    <li class="li2">
+        <span class="s1">$ echo &quot;<a href="http://en.wikipedia.org/wiki/Collective_intelligence"><span class="s2">http://en.wikipedia.org/wiki/Collective_intelligence</span></a>&quot; &gt; urls</span></li>
+    <li class="li1">
+        add: `+^http://([a-z0-9]*&#46;)*wikipedia.org/` in&nbsp;conf/regex-urlfilter.txt</li>
+    <li class="li1">
+        $ bin/nutch crawl urls -dir crawl-wiki-ci -depth 2</li>
+    <li class="li1">
+        <b>statistics associated with the crawldb</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readdb crawl-wiki-ci/crawldb/ -stats
+                <ol class="ol1">
+                    <li class="li1">
+                        CrawlDb statistics start: crawl-wiki-ci/crawldb/Statistics for CrawlDb: crawl-wiki-ci/crawldb/<br />
+                        TOTAL urls:&nbsp;&nbsp;&nbsp;&nbsp; 2727<br />
+                        retry 0:&nbsp;&nbsp;&nbsp;&nbsp; 2727<br />
+                        min score:&nbsp;&nbsp;&nbsp;&nbsp; 0.0<br />
+                        avg score:&nbsp;&nbsp;&nbsp;&nbsp; 8.107811E-4<br />
+                        max score:&nbsp;&nbsp;&nbsp;&nbsp; 1.341<br />
+                        status 1 (db_unfetched):&nbsp;&nbsp;&nbsp;&nbsp; 2665<br />
+                        status 2 (db_fetched):&nbsp;&nbsp;&nbsp;&nbsp; 61<br />
+                        status 3 (db_gone):&nbsp;&nbsp;&nbsp;&nbsp; 1<br />
+                        CrawlDb statistics: done</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li class="li1">
+        <b>Dump of the URLs from the crawldb</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readdb crawl-wiki-ci/crawldb/ -dump crawl-wiki-ci/stats
+                <ol class="ol1">
+                    <li class="li1">
+                        <span class="s3"><a href="http://en.wikipedia.org/wiki/Special:RecentChangesLinked/MIT_Center_for_Collective_Intelligence"><span class="s2">http://en.wikipedia.org/wiki/Special:RecentChangesLinked/MIT_Center_for_Collective_Intelligence</span></a></span>&nbsp;&nbsp;&nbsp;&nbsp; Version: 7Status: 1 (db_unfetched)<br />
+                        Fetch time: Sat Feb 04 00:50:50 EST 2012<br />
+                        Modified time: Wed Dec 31 19:00:00 EST 1969<br />
+                        Retries since fetch: 0<br />
+                        Retry interval: 2592000 seconds (30 days)<br />
+                        Score: 1.9607843E-4<br />
+                        Signature: null<br />
+                        Metadata:<br />
+                        &hellip;.&nbsp;</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li class="li1">
+        <b>Top 10 highest rate links</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readdb crawl-wiki-ci/crawldb/ -topN 10 crawl-wiki-ci/stats/top10/
+                <ol class="ol1">
+                    <li class="li2">
+                        <span class="s1">1.3416613&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Collective_intelligence"><span class="s2">http://en.wikipedia.org/wiki/Collective_intelligence</span></a>0.030499997&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Howard_Bloom"><span class="s2">http://en.wikipedia.org/wiki/Howard_Bloom</span></a><br />
+                        0.02763889&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Groupthink"><span class="s2">http://en.wikipedia.org/wiki/Groupthink</span></a><br />
+                        0.02591739&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Wikipedia"><span class="s2">http://en.wikipedia.org/wiki/Wikipedia</span></a><br />
+                        0.024347823&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Pierre_L%C3%A9vy_(philosopher)"><span class="s2">http://en.wikipedia.org/wiki/Pierre_L%C3%A9vy_(philosopher)</span></a><br />
+                        0.023733648&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Wikipedia:Citation_needed"><span class="s2">http://en.wikipedia.org/wiki/Wikipedia:Citation_needed</span></a><br />
+                        0.017142152&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/w/opensearch_desc.php"><span class="s2">http://en.wikipedia.org/w/opensearch_desc.php</span></a><br />
+                        0.016599996&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Artificial_intelligence"><span class="s2">http://en.wikipedia.org/wiki/Artificial_intelligence</span></a><br />
+                        0.016499996&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Consensus_decision_making"><span class="s2">http://en.wikipedia.org/wiki/Consensus_decision_making</span></a><br />
+                        0.015199998&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Group_selection"><span class="s2">http://en.wikipedia.org/wiki/Group_selection</span></a></span></li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li class="li1">
+        <b>Dump of a Nutch segment</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readseg -dump crawl-wiki-ci/segments/20120204004509/ crawl-wiki-ci/stats/segments
+                <ol class="ol1">
+                    <li class="li1">
+                        CrawlDatum::Version: 7<br />
+                        Status: 1 (db_unfetched)<br />
+                        Fetch time: Sat Feb 04 00:45:03 EST 2012<br />
+                        Modified time: Wed Dec 31 19:00:00 EST 1969<br />
+                        Retries since fetch: 0<br />
+                        Retry interval: 2592000 seconds (30 days)<br />
+                        Score: 1.0<br />
+                        Signature: null<br />
+                        Metadata: _ngt_: 1328334307529</li>
+                    <li class="li1">
+                        <br />
+                        Content::<br />
+                        Version: -1<br />
+                        url: <a href="http://en.wikipedia.org/wiki/Collective_intelligence"><span class="s4">http://en.wikipedia.org/wiki/Collective_intelligence</span></a><br />
+                        base: <a href="http://en.wikipedia.org/wiki/Collective_intelligence"><span class="s4">http://en.wikipedia.org/wiki/Collective_intelligence</span></a><br />
+                        contentType: application/xhtml+xml<br />
+                        metadata: Content-Language=en Age=52614 Content-Length=29341 Last-Modified=Sat, 28 Jan 2012 17:27:22 GMT _fst_=33 nutch.segment.name=20120204004509 Connection=close X-Cache-Lookup=MISS from <a href="http://sq72.wikimedia.org/"><span class="s4">sq72.wikimedia.org:80</span></a> Server=Apache X-Cache=MISS from <a href="http://sq72.wikimedia.org/"><span class="s4">sq72.wikimedia.org</span></a> X-Content-Type-Options=nosniff Cache-Control=private, s-maxage=0, max-age=0, must-revalidate Vary=Accept-Encoding,Cookie Date=Fri, 03 Feb 2012 15:08:18 GMT Content-Encoding=gzip nutch.crawl.score=1.0 Content-Type=text/html; charset=UTF-8<br />
+                        Content:<br />
+                        &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><span class="s4">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</span></a>&quot;&gt;<br />
+                        &lt;html lang=&quot;en&quot; dir=&quot;ltr&quot; class=&quot;client-nojs&quot; xmlns=&quot;<a href="http://www.w3.org/1999/xhtml"><span class="s4">http://www.w3.org/1999/xhtml</span></a>&quot;&gt;<br />
+                        &lt;head&gt;<br />
+                        &lt;title&gt;Collective intelligence - Wikipedia, the free encyclopedia&lt;/title&gt;<br />
+                        &lt;meta &hellip;.<b>&nbsp;</b></li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+</ol>
+
+
+<p class="li1">&nbsp;</p>
+
+
+<p class="li1"><b>References:</b></p>
+
+
+<ul>
+    <li class="li1">
+        http://wiki.apache.org/nutch/NutchTutorial</li>
+    <li class="li1">
+        http://en.wikipedia.org/wiki/Nutch</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/19/ssh-login-without-password/">SSH Login Without Password</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-01-19T00:00:00-04:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2012/01/19/ssh-login-without-password/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2012/01/19/ssh-login-without-password/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you want to login to a remote server using SSH and don&#39;t have to type the password again and again, here is a little trick</p>
+
+
+<p>$&nbsp;cat ~/.ssh/id_rsa.pub | ssh &lt;user&gt;@&lt;server.domain&gt; &#39;cat &gt;&gt; .ssh/authorized_keys&#39;</p>
+
+
+<p>After you run this and enter your password (for the last time), you can login to your server just typing:</p>
+
+
+<p>$ ssh &lt;user&gt;@&lt;server.domain&gt;</p>
+
+
+<p>You are all set.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/">Concentration Problems? Procastination? You&#8217;re Not the Only One.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-01-04T00:00:00-04:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>&nbsp;</p>
+
+
+<p>Procastination and concentration problems are big deals from a lot of people, specially for students. There are too many distractions that are more fun than our homework.</p>
+
+
+<p>I read an interesting&nbsp;<a href="http://altmedicine.about.com/od/optimumhealthessentials/a/Concentration.htm">article about concentration</a>&nbsp;that I&#39;d like to share a summary with my own notes:</p>
+
+
+<p>There is no substitute for paying attention&#8230; here are Five tips to improve your attention/concentration/focus/productivity:</p>
+
+
+<p><strong>F =&nbsp;</strong><u><strong>Five More Rule</strong></u></p>
+
+
+<div>
+    There are two kinds of people &#8211; those who have learned how to work through frustration, and those who wish they had. From now on, if you&#39;re in the middle of a task and tempted to give up &#8211; just do 5 MORE. Read 5 MORE pages. Finish 5 MORE math problems. Work 5 MORE minutes.</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    <strong>O =&nbsp;<u>One Think At a Time</u></strong></div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    Quite self-explantory, isn&#39;t it? We know the theory, now let&#39;s put in practice.</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    <div>
+        <strong>C =&nbsp;<u>Conquer Procrastination</u></strong></div>
+    <div>
+        &nbsp;</div>
+    <div>
+        Don&#39;t feel like concentrating? Are you putting off a task or project you&#39;re supposed to be working on? That&#39;s a form of procrastination. R. D. Clyde said, &quot;It&#39;s amazing how long it takes to complete something we&#39;re not working on.&quot; ~ Every time you catch yourself doing something that you are not suppose to be doing (facebook, twitter, 9gag) quite it right away, and get back to your homework/work.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>U =&nbsp;<u>Use Your Hands as Blinkers</u></strong></div>
+    <div>
+        &nbsp;</div>
+    <div>
+        Give multi-tasking a rest. Focus in one task at time!</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>S =&nbsp;<u>See As If For the First or Last Time</u></strong></div>
+    <div>
+        &nbsp;</div>
+    <div>
+        uhm&#8230; maybe not very useful but it says: Want to know how to be &quot;here and now&quot; and fully present instead of mindlessly rushing here, there, and everywhere? Frederick Franck said, &quot;When the eye wakes up to see again, it suddenly stops taking anything for granted.&quot; Evelyn Underhill said, &quot;For lack of attention, a thousand forms of loveliness elude us every day.&quot;</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <div>
+            <strong>What people have said about concentration</strong></div>
+        <ul>
+            <li>
+                &quot;I used to think the human brain was the most fascinating part of the body, and then I realized, &#39;What is telling me that?&#39;&quot; - Emo Phillips</li>
+            <li>
+                &quot;I&#39;m getting so absent-minded and forgetful. Sometimes in the middle of a sentence, I &#8230; &quot; - Milton Berle&nbsp;</li>
+            <li>
+                &quot;Iron rusts from disuse, stagnant water loses its purity and in cold weather becomes frozen, even so does inaction sap the vigors of the mind.&quot; Leonardo da Vinci&nbsp;</li>
+            <li>
+                &quot;Tell me to what you pay attention, and I will tell you who you are.&quot; - Jose Ortega y Gasset</li>
+            <li>
+                I would go without shirt or shoe sooner than lose for a minute the two separate sides of my head.&quot; - Rudyard Kipling</li>
+            <li>
+                &quot;It&#39;s not that I don&#39;t want to listen to people. I very much want to listen to people. I jut can&#39;t hear them over my talking.&quot; - Paula Poundstone</li>
+        </ul>
+    </div>
+</div>
+
+
+<p>&nbsp;</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/">Learning Algorithms From Scratch / Algorithms for Dummies</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-12-22T00:00:00-04:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>update: graphs are gone. Checkout my new post with new content and images: <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/"><a href="http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a></a></p>
+
+<p>When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest.</p>
+
+
+<p class="p1"><b>Why should you care for efficiency?</b></p>
+
+
+<p class="p1">Solutions to the same problem might take years with certain algorithm, and just minutes using efficient algorithms. For instance, if you have applications that are used for thousands of people over internet, every fraction of second counts. Therefore, efficient algorithms is a must.</p>
+
+
+<p class="p1"><b>How I do my algorithms more efficient?</b></p>
+
+
+<p class="p1">To improve something you first need to know the actual state. In this case you need to measure the actual effectiveness of your algorithm in other to improve it. It&#39;s very common to use running time analysis to measure the speed of algorithms independently from the hardware used (old pc, supercomputer it doesn&#39;t matter).&nbsp;</p>
+
+
+<p class="p1"><b>Run-time analysis</b></p>
+
+
+<p class="p1">A common way to analyze the algorithms is using the big-O notation. The good thing about this notation is that is independent from the computer used to run the algorithm. You know that if you use a very slow computer (e.g. pentium I) v.s. a supercomputer use in NASA, the latter will run the program much faster. Big-O notation abstract the hardware and just focus in the algorithm per se. The only variable in the big-O notation gives the relative time needed to process an algorithm in function of the input n. Let&#39;s clarify this with an example.</p>
+
+
+<p class="p1"><strong>Ex.1</strong> - You want to sort an array A of n integers.&nbsp;</p>
+
+
+<p class="p1">Depending in the algorithm used to do that you may have:</p>
+
+
+<ul>
+    <li class="p1">
+        <b>selection</b> sort has a running time of O(n^2);</li>
+    <li class="p1">
+        <b>merge sort</b> &#8211;&gt; O(n log n)</li>
+</ul>
+
+
+<p class="p1">Right now, it doesn&#39;t matter if are not familiar with these algorithms (we will cover this the next lessons), the point here is that we have n integer and big-O notations give us a mathematical expression that is in function of the input n. If you&nbsp;<a href="http://fooplot.com/index.php?&amp;type0=0&amp;type1=0&amp;type2=0&amp;type3=0&amp;type4=0&amp;y0=x%5E2&amp;y1=x*log%28x%29&amp;y2=&amp;y3=&amp;y4=&amp;r0=&amp;r1=&amp;r2=&amp;r3=&amp;r4=&amp;px0=&amp;px1=&amp;px2=&amp;px3=&amp;px4=&amp;py0=&amp;py1=&amp;py2=&amp;py3=&amp;py4=&amp;smin0=0&amp;smin1=0&amp;smin2=0&amp;smin3=0&amp;smin4=0&amp;smax0=2pi&amp;smax1=2pi&amp;smax2=2pi&amp;smax3=2pi&amp;smax4=2pi&amp;thetamin0=0&amp;thetamin1=0&amp;thetamin2=0&amp;thetamin3=0&amp;thetamin4=0&amp;thetamax0=2pi&amp;thetamax1=2pi&amp;thetamax2=2pi&amp;thetamax3=2pi&amp;thetamax4=2pi&amp;ipw=0&amp;ixmin=-5&amp;ixmax=5&amp;iymin=-3&amp;iymax=3&amp;igx=1&amp;igy=1&amp;igl=1&amp;igs=0&amp;iax=1&amp;ila=1&amp;xmin=-5&amp;xmax=5&amp;ymin=-3&amp;ymax=3"><span class="s1">plot in a graph n^2 and n log n</span></a>. You&#39;ll see that n^2 grows much faster than n log(n). That means that the algorithm n^2 will take longer than n*log(n) to process as the size of the array n increases.</p>
+
+
+<p class="p1"><b>Common order of Growth</b></p>
+
+
+<p class="p1">To give you an idea of the common order of growth of runtime expressions. Take a look at the following graph and table. The slower the function growth the better is the algorithm. In order from better performance to worst is:</p>
+
+
+<p class="p1">1 &#8211; log n &#8211; n &#8211; n log n &#8211; n^2 &#8211; n^3 &#8211; 2^n &#8211; n! &#8230;</p>
+
+
+<p class="p2"><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.22.12%20PM.png" style="width: 300px; height: 306px; " /></p>
+
+
+<p class="p2">&nbsp;</p>
+
+
+<p class="p2"><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.23.45%20PM.png" style="width: 300px; height: 257px; " /></p>
+
+
+<p class="p2">&nbsp;</p>
+
+
+<p class="p1">&nbsp;</p>
+
+
+<p class="p1"><b>Approximate growth rate from code.</b></p>
+
+
+<p class="p1">There are a whole theory and math behind the Big-O notation and other notations related. At this time, just take a look of the typical code and its growth order.</p>
+
+
+<p class="p1"><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%204.51.48%20PM.png" style="width: 600px; height: 427px; " /></p>
+
+
+<p>&nbsp;</p>
+
+
+<p><strong>Cases (the good, the bad, and the ugly)</strong></p>
+
+
+<p>Remember that n is the number of elements in the input. All this runtime growth rate are in function of the input elements. There is another important thing to consider about the input elements: the order! The order of the input elements matters, and that&#39;s why algorithms are analyzed in 3 different cases:</p>
+
+
+<ol>
+    <li>
+        Worst-case performance: the input is distributed as worst as it could be for an algorithm. &nbsp;&nbsp;</li>
+    <li>
+        Average-case scenario: approximation of the most common arrange of inputs.</li>
+    <li>
+        Best-case scenario: most favorable distribution of the inputs.</li>
+    <li>
+        One more: Space. this is how much space the algorithm cosume to execute.&nbsp;</li>
+</ol>
+
+
+<p class="p2">If you want more depth in these topic read here:&nbsp;</p>
+
+
+<ul>
+    <li class="p2">
+        <span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">Analysis (</span><a href="http://gcu.googlecode.com/files/02Analysis.pdf" style="color: rgb(85, 26, 139); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">pdf</a><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">) (</span><a href="http://gcu.googlecode.com/files/02Analysis.key.zip" style="color: rgb(85, 26, 139); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">keynote</a><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">)</span></li>
+    <li class="p2">
+        <span style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-size: small; line-height: 16px; ">Algorithm @&nbsp;</span>ocw.mit.edu: lectures <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-1-administrivia-introduction-analysis-of-algorithms-insertion-sort-mergesort">1 </a>and <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-2-asymptotic-notation-recurrences-substitution-master-method">2</a></li>
+    <li class="p2">
+        http://algs4.cs.princeton.edu/home/</li>
+</ul>
+
+
+<p class="p2">&nbsp;</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/">How to Remove Programs From the Start Up in Mac OS X</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-18T00:00:00-04:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Well&#8230; I have done this so many times in Windows (it&#39;s just executing &quot;msconfig&quot; you can edit the startup items).&nbsp;Today, I had the need to do the same in the Mac OS X Lion.</p>
+
+
+<p>Here is how to do it</p>
+
+
+<ol>
+    <li>
+        System Preferences &gt; Users &amp; Groups</li>
+    <li>
+        Tab &quot;Login Items&quot;</li>
+    <li>
+        You can remove the programs (-) from the list and they won&#39;t show up in the next startup.</li>
+</ol>
+
+
+<p><img alt="Login Items Mac" src="http://adrianmejiarosario.com/sites/default/files/loginItems.png" style="width: 669px; height: 501px; " /></p>
+
+
+<p>&nbsp;</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/">Regular Expressions in C# and Java - CSV Example</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-10T00:00:00-04:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;</p>
+
+
+<div>
+    <div>
+        CSV are files that all the data is separated by a comma. E.g:</div>
+    <pre>
+name,line1,line2,city,zip code,country</pre>
+    <div>
+        You cand easily use String.Split() in C# to get all the values. But, there are cases when the data can contain comma. E.g:</div>
+    <pre>
+&quot;Mr. John Doe, Jr.&quot;,7926 Glenbrook Dr., 14623</pre>
+    <div>
+        In this case a regular expression (regex) could be use to determine if the comma is inside a quote or not.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        C# Example:</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <pre>
+    public string[] parseCSV(string line)
+    {
+        List&lt;string&gt; datalist = new List&lt;string&gt;();
+
+        /*
+         * Define a regular expression for csv.
+         * This Pattern will match on either quoted text or text between commas, including
+         * whitespace, and accounting for beginning and end of line.
+         */
+
+        Regex rx = new Regex(&quot;\&quot;([^\&quot;]*)\&quot;|(?&lt;=,|^)([^,]*)(?:,|$)&quot;,
+          RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        // Find matches.
+        MatchCollection matches = rx.Matches(line);
+
+        // Report the number of matches found.
+        Console.WriteLine(&quot;{0} matches found.&quot;, matches.Count);
+
+        // Report on each match.
+        foreach (Match match in matches)
+        {
+            if (match.Groups[1].Value.Length &gt; 0)
+                datalist.Add(match.Groups[1].Value); // match csv values inside commas
+            else
+                datalist.Add(match.Groups[2].Value); // match csv values outside commas
+        }
+        return datalist.ToArray();
+    }</pre>
+    </div>
+    <div>
+        &nbsp;</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        Java Example:</div>
+    <div>
+        <pre>
+    public String[] parse(String csvLine) {
+        Pattern csvPattern = Pattern.compile(&quot;\&quot;([^\&quot;]*)\&quot;|(?&lt;=,|^)([^,]*)(?:,|$)&quot;);
+        matcher = csvPattern.matcher(csvLine);
+        allMatches.clear();
+        String match;
+
+        while (matcher.find()) {
+                match = matcher.group(1);
+
+                if (match!=null) {
+                        allMatches.add(match);
+                }
+                else {
+                        allMatches.add(matcher.group(2));
+                }
+        }
+
+        size = allMatches.size();               
+        if (size &gt; 0) {
+                return allMatches.toArray(new String[size]);
+        }
+        else {
+                return new String[0];
+        }                       
+    } </pre>
+    </div>
+</div>
+
+
+<p>&nbsp;</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/">How to Setup Drupal WYSIWYG and Images Uploading?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-09T00:00:00-04:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It have been a pain for me to upload images and deal with tons of WYSIWYG editors&#8230; After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</p>
+
+
+<div>
+    <strong>1. Install and enable the following modules:</strong></div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    http://drupal.org/project/ckeditor (disable the WYSIWYG module if you have it install it)</div>
+
+
+<div>
+    http://drupal.org/project/imce -or- http://drupal.org/project/elfinder</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    - optional -</div>
+
+
+<div>
+    http://drupal.org/project/ckeditor_link</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    <div>
+        How to setup Drupal WYSIWYG and Images uploading?</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        It have been a pain for me to upload images and deal with tons of WYSIWYG editors&#8230; After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>1. Install and enable the following modules:</strong></div>
+    <div>
+        &nbsp;</div>
+    <div>
+        http://drupal.org/project/ckeditor (disable the WYSIWYG module if you have it install it)</div>
+    <div>
+        http://drupal.org/project/imce -or- http://drupal.org/project/elfinder</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        - optional -</div>
+    <div>
+        http://drupal.org/project/ckeditor_link</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>2. Setting up IMCE</strong></div>
+    <div>
+        a. Install and enable the IMCE module at module administration page.</div>
+    <div>
+        b. Create configuration profiles and assign them to user roles at /?q=/admin/config/media/imce <strong>-or-</strong> Menu: Configuration &raquo; Media &raquo; IMCE&nbsp;</div>
+    <div>
+        c. Test it at /imce.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>3. Setup text formats. </strong>You can create two new ones to be used by the ckeditor (basic and full):</div>
+    <div>
+        a. Menu: Configuration &raquo; Content authoring &raquo; Text formats</div>
+    <div>
+        b. Click &quot;+ Add text format&quot; and add two new formats &quot;ckeditor-basic&quot; and &quot;ckeditor-full&quot; with the &quot;administrator&quot; and &quot;authenticated users&quot; check boxes marked. Everything else could remain in their default values.</div>
+    <div>
+        c. Back to Configuration &raquo; Content authoring, you can rearrange the order, the top most one will be the default.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>4. Setup CKEditor</strong></div>
+    <div>
+        After you install the CKEditor module, download the latest version of ckeditor from http://ckeditor.com/download</div>
+    <div>
+        a. &quot;Create a new profile&quot; link</div>
+    <div>
+        b. Setup the name in the &quot;Basic Setup&quot; section and choose one of Input format that you created in step (3)</div>
+    <div>
+        c. In &quot;Editor Appearance&quot; you can setup the toolbar load (basic, full, advance)</div>
+    <div>
+        d. In &quot;FILE BROWSER SETTINGS&quot; select &quot;IMCE&quot; as the &quot;File browser type&quot;</div>
+    <div>
+        e. Save and you can repeated this steps for full and basic.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>5. You are all set.&nbsp;</strong>When you add new content your Textbox and imaging uploading should look like this:</div>
+</div>
+
+
+<div>
+    &nbsp;</div>
+
+
+<div>
+    <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-11-09%20at%205.05.23%20PM.png" style="width: 500px; height: 325px; " /></div>
+
+
+<div>
+    &nbsp;</div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/">How to Execute SQL Statements on MS Access?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-09T00:00:00-04:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+           | <a href="/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/#disqus_thread"
+             data-disqus-identifier="http://amejiarosario.github.io/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.</p>
+
+<p>Here are the steps of how to create a new table programmatically in Access (2007):</p>
+
+<ol>
+<li>Open/create your database on MS Access</li>
+<li>Menu: &lsquo;Databases Tools&rsquo; > &lsquo;Visual Basic&rsquo; (this will open the visual basic editor</li>
+<li>in the Visual Basic Editor, Menu: Run</li>
+<li>Insert the name of your macro and click &lsquo;create&rsquo; button</li>
+<li>Insert a code similar to the shown below. Replace the path in &lsquo;OpenDatabase&rsquo; with your database path; and fill &lsquo;dbs.Execute&rsquo; with your own SQL statements</li>
+</ol>
+
+
+<p>Sub createdb()
+    Dim dbs As Database</p>
+
+<pre><code>' Modify this line to include the path to Northwind
+' on your computer.
+Set dbs = OpenDatabase("C:\\amr\\projects\\sites\\files\\tf_pledge_reminder_email.accdb")
+
+' Create a table with two text fields.
+dbs.Execute "create table RIT_TF_PLG_REM_EMAIL_TEST2 (   pref_mail_name  VARCHAR(60), pd_to_date      NUMBER,   this_payment    NUMBER )"
+
+dbs.Close
+</code></pre>
+
+<p>End Sub</p>
+
+<ol>
+<li>Menu: Run</li>
+<li>You are all set.</li>
+</ol>
+
+
+<p>If you have any questions you can contact me or write a comment</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/3">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/index.html">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/09/how-company-x-make-money/">How Company X Make Money?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/">Cheap Airplay Receiver With Raspberry Pi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">Algorithms for Dummies (Part 1): Big-O Notation and Sorting</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/">Backbone.js for Absolute Beginners - Getting Started (Part 4: Routers)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">Backbone.js for Absolute Beginners - Getting Started (Part 3: CRUD)</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="googleplus">
+  <h1>
+    <a href="http://www.linkedin.com/in/adrianmejia">
+      <img src="/images/linkedin.png" width="32" height="32">
+      Linkedin
+    </a>
+  </h1>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://github.com/amejiarosario">
+      <img src="/images/github.png" width="32" height="32">
+      Github
+    </a>
+  </h1>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://twitter.com/amejiarosario">
+      <img src="/images/twitter.png" width="32" height="32">
+      Twitter
+    </a>
+  </h1>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/105957252272382685246?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/amejiarosario">@amejiarosario</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'amejiarosario',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Adrian Mejia -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'adrianmejia';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
