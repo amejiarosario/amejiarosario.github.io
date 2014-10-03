@@ -1,0 +1,17 @@
+@mixin rounded-border($radius: 10px) {
+    border-radius: $radius;
+    -moz-border-radius: $radius;
+   padding: $radius;
+}
+
+@mixin centered($width: auto) {
+    width: $width !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+@mixin drop-shadow-right-bottom($width: 5px, $color: #999) {
+    box-shadow: $width $width $width $color;
+    -moz-box-shadow: $width $width $width $color;
+    -webkit-box-shadow: $width $width $width $color;
+}

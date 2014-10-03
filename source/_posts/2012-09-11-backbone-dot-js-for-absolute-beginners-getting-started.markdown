@@ -4,13 +4,16 @@ title: "Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)"
 date: 2012-09-11 22:50
 comments: true
 categories: [backbonejs, javascript, web frameworks, web development, agile frameworks, tutorials]
+toc: true
 ---
 
 Backbone.js is a JavaScript framework, among many others, that is gaining special attention in the web development community because it's ease of use and the structure that it provides to JavaScript applications.
 
+{% img /images/backbonejs.png %}
+
 (Updated: 2013-02-02, 2013-11-24)
 
-### Brief Background (optional reading)
+# Brief Background
 
 <a href="#start">TL; DR</a>: You need to use JavaScript heavily in order to make responsive and interactive web applications. <a href="#start">Jump to this and get started.</a>
 
@@ -21,6 +24,8 @@ Web applications nowadays require heavy use of JavaScript to generate content on
 A common problem with large JS web application developed is that they can become pretty messy really quickly. The lack of structure makes the code hard to maintain. This is where Backbone comes into play. It provides structure to organize the code and increase maintainability. Backbone is not the only framework like this; in fact, there are many JS frameworks that attempt to offer similar benefits, like Ember.js, Angular.js and so on. However, I choose Backbone because it's one of the most widely used frameworks in its category. It has a vibrant community and it’s also being fully used in production for a considerable number of big companies like: Wal-Mart mobile, Groupon, Khan Academy, Pandora, Wordpress, Foursquare, and so on.
 
 <a id="start"></a>
+
+# BackboneJS
 
 ## Just enough to get started with Backbone.js
 
@@ -33,7 +38,7 @@ Backbone.js has hard dependency on underscore.js and a soft dependency on jQuery
    * Routers
 
 ## Shut up and show me the code!
- 
+
 Alright! the way we are going to explore all of these modules is through examples. This is a practical tutorial that I wished I had it when I stared learning. This is a fat-free walkthrough of Backbone.js, as simple as possible, with all the code in one file for didactical purposes (no hidden magic tricks, all cards are on the table).
 
 The first example is a ‘Hello World’ app in Backbone and the second is a 'to do' app. After working through these two example apps, you’ll see every Backbone module and have a practical understanding about them.
@@ -63,14 +68,14 @@ Here is an example of a Backbone.view: READ THE CODE AND COMMENTS, then insert t
 
 {% codeblock Simple Backbone.View lang:js https://raw.github.com/amejiarosario/Backbone-tutorial/0bf69185f4463a75cb2d5553f8d1ea197323ccff/backbone-tutorial.html Full Code %}
     var AppView = Backbone.View.extend({
-      // el - stands for element. Every view has a element associate in with HTML 
+      // el - stands for element. Every view has a element associate in with HTML
       //      content will be rendered.
       el: '#container',
       // It's the first function called when this view it's instantiated.
       initialize: function(){
         this.render();
       },
-      // $el - it's a cached jQuery object (el), in which you can use jQuery functions 
+      // $el - it's a cached jQuery object (el), in which you can use jQuery functions
       //       to push content. Like the Hello World in this case.
       render: function(){
         this.$el.html("Hello World");
@@ -88,26 +93,26 @@ Yay! You have your "Hello Wold" in Backbone and an introduction to the View modu
 
 **1.4.- Backbone's Templates**
 
-Backbone has a utility/helper library called [underscore.js](http://underscorejs.org/?utm_source=adrianmejia.com) and you can use their template solution out of box. You can also use any other template solution that you want like [mustache](https://github.com/janl/mustache.js) or [handlerbars](https://github.com/wycats/handlebars.js). Let's stick with _.js for simplicity's sake.
+Backbone has a utility/helper library called [underscore.js](http://underscorejs.org/?utm_source=adrianmejia.com) and you can use their template solution out of box. You can also use any other template solution that you want like [mustache](https://github.com/janl/mustache.js) or [handlebars](https://github.com/wycats/handlebars.js). Let's stick with _.js for simplicity's sake.
 
 _.js templates have the following syntax,
 
-`_.template(templateString, [data], [settings])` 
+`_.template(templateString, [data], [settings])`
 
-where in the `templateString` you use the place holder `<%= %>` and `<%- %>` to dynamically insert data. The later allows for HTML escape while the first one doesn't. Moreover, you can use `<% %>` to run any javascript code. 
+where in the `templateString` you use the place holder `<%= %>` and `<%- %>` to dynamically insert data. The later allows for HTML escape while the first one doesn't. Moreover, you can use `<% %>` to run any javascript code.
 
 Let’s see it in action and rewrite our "Hello World" using a _.js template instead.
 
 {% codeblock Simple Backbone.View and Templates lang:js https://raw.github.com/amejiarosario/Backbone-tutorial/c5b131278ecde92f33882c9a2c22ee4119e57d77/backbone-tutorial.html Full Code %}
     var AppView = Backbone.View.extend({
       el: $('#container'),
-      // template which has the placeholder 'who' to be substitute later 
-      template: _.template("<h3>Hello <%= who %><h3>"),
+      // template which has the placeholder 'who' to be substitute later
+      template: _.template("<h3>Hello <%= who %></h3>"),
       initialize: function(){
         this.render();
       },
       render: function(){
-        // render the function using substituting the varible 'who' for 'world!'. 
+        // render the function using substituting the varible 'who' for 'world!'.
         this.$el.html(this.template({who: 'world!'}));
         //***Try putting your name instead of world.
       }

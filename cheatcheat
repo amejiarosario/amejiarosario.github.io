@@ -3,11 +3,9 @@ http://octopress.org/docs/theme/styles/
 http://octopress.org/docs/blogging/
 
 rake new_post["title"]
+noglob rake new_post['Angular.js tutorial for beginners with Node.js and MongoDB']
 rake new_page[super-awesome]
-rake generate preview
 
-git add .
-git commit -m 'your message'
-git push origin source
+rake generate preview
 
 rake generate deploy

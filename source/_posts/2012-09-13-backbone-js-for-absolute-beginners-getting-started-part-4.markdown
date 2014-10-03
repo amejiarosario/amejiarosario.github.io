@@ -4,7 +4,10 @@ title: "Backbone.js for absolute beginners - getting started (part 4: Routers)"
 date: 2012-09-13 14:41
 comments: true
 categories: [backbonejs, javascript, web frameworks, web development, agile frameworks, tutorials]
+toc: true
 ---
+
+# BackboneJS IV
 
 The part 3 of this tutorial is [here](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/).
 
@@ -35,7 +38,7 @@ In our Todo app, we are going to use routers to filter between the tasks that ar
         window.filter = params.trim() || '';
         app.todoList.trigger('reset');
       }
-    }); 
+    });
 
 {% endcodeblock %}
 
@@ -45,19 +48,19 @@ Now, you need to initialize it, adding this lines:
 
      //--------------
      // Initializers
-     //--------------   
- 
-+    app.router = new app.Router();
-+    Backbone.history.start();    
-     app.appView = new app.AppView(); 
+     //--------------
 
-{% endcodeblock %}    
++    app.router = new app.Router();
++    Backbone.history.start();
+     app.appView = new app.AppView();
+
+{% endcodeblock %}
 
 You can test that you router is working just typing `#anything/that/you/want` and seeing the parameter in you browser's console.
 
 ### 2.6.1 Processing the routes
 
-Before rendering the list of items, you need to check the parameters to wether show only the pending ones, or the completed or show them all. As shown in the code snipet below. 
+Before rendering the list of items, you need to check the parameters to wether show only the pending ones, or the completed or show them all. As shown in the code snipet below.
 
 {% codeblock Processing the routes in app.AppView  lang:diff https://raw.github.com/amejiarosario/Backbone-tutorial/327ac4fc4657e73fdf7157e230b1ed7cd1519667/backbone-tutorial.html Full Code %}
 
@@ -73,7 +76,7 @@ Before rendering the list of items, you need to check the parameters to wether s
 +            break;
 +          case 'completed':
 +            _.each(app.todoList.completed(), this.addOne);
-+            break;            
++            break;
 +          default:
 +            app.todoList.each(this.addOne, this);
 +            break;
@@ -83,7 +86,7 @@ Before rendering the list of items, you need to check the parameters to wether s
          return {
 
 
-{% endcodeblock %} 
+{% endcodeblock %}
 
 If you try adding the words `#/pending` or `#/completed` at the end of the URL you'll get an error!. That's a good sign, it means the routes are working, but we haven't implemented the `app.todoList.remaining()` and `app.todoList.completed()`. So, that's next:
 
@@ -102,10 +105,10 @@ If you try adding the words `#/pending` or `#/completed` at the end of the URL y
 +      },
 +      remaining: function() {
 +        return this.without.apply( this, this.completed() );
-+      }      
++      }
      });
 
-{% endcodeblock %} 
+{% endcodeblock %}
 
 Now, if you try again adding the hash-tags it will work! But, it will be better if the user can have links to that instead of typing URLs. So, let's add them.
 
@@ -120,7 +123,7 @@ Now, if you try again adding the hash-tags it will work! But, it will be better 
 +        <a href="#/">show all</a> |
 +        <a href="#/pending">show pending</a> |
 +        <a href="#/completed">show completed</a>
-+      </div>      
++      </div>
      </header>
      <section id="main">
        <ul id="todo-list"></ul>
@@ -132,5 +135,16 @@ Well, that's all! If completed these 4 parts tutorial you will be familiar with 
 
   * [Backbone's Source code - it's the ultimate source of true](https://github.com/documentcloud/backbone/blob/master/backbone.js)
   * [Official documentation](http://backbonejs.org/?utm_source=adrianmejia.com)
+
+# What's next?
+
+Write a server API in NodeJS to apply the learned here:
+
+* <a href="/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/" target="_blank">Creating a RESTful API with NodeJS and MongoDB</a>
+
+Now, do a Todo app in AngularJS:
+
+* <a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/" target="_blank">AngularJS tutorial for beginners with NodeJS ExpressJS and MongoDB</a>
+
 
 Hope it was helpful!

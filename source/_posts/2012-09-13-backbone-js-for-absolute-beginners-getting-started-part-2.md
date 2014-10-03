@@ -4,11 +4,14 @@ title: "Backbone.js for absolute beginners - getting started (part 2: Models, Co
 date: 2012-09-13 00:08
 comments: true
 categories: [backbonejs, javascript, web frameworks, web development, agile frameworks, tutorials]
+toc: true
 ---
+
+# BackboneJS II
 
 The part 1 of this tutorial is [here](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/)
 
-## 2. Todo App in Backbone (Models, Collections, View and Events)
+## 2. Todo App in Backbone
 
 After completing this example app, you will have experience and basic understanding of all the modules of Backbone!
 

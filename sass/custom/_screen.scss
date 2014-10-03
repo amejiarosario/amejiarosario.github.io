@@ -1,0 +1,37 @@
+@import "mixins";
+
+$toc-bg: #dfdfdf;
+
+$toc-incr: 5px;
+
+div#tocBlock {
+    @include drop-shadow-right-bottom(5px, #999);
+    @include rounded-border(10px);
+    float: right;
+    font-size: 10pt;
+    width: 300px;
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+
+    background: $toc-bg;
+    border: solid 1px #999999;
+    margin: 0 0 10px 15px;
+
+    .tocHeading {
+        font-weight: bold;
+        font-size: 125%;
+    }
+
+    #toc {
+        background: $toc-bg;
+        ul {
+            list-style: disc;
+            li {
+                margin-left: $toc-incr !important;
+                padding: 0 !important;
+            }
+        }
+    }
+}
