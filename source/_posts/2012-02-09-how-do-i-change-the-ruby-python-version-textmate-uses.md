@@ -7,6 +7,7 @@ categories: [ruby, textmate, how-to, python]
 ---
 <p>&nbsp;</p>
 <p>I&#39;m using textMate to develop ruby code. It&#39;s very handy because I can run it just pressing (cmd-R). But by default it&#39;s running ruby 1.8.7 and I want 1.9.2 version.</p>
+<!--More-->
 <p>This is the steps to change it:</p>
 <p>Find the right path with</p>
 <div>

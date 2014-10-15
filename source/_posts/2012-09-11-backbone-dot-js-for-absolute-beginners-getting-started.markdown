@@ -7,11 +7,17 @@ categories: [backbonejs, javascript, web frameworks, web development, agile fram
 toc: true
 ---
 
-Backbone.js is a JavaScript framework, among many others, that is gaining special attention in the web development community because it's ease of use and the structure that it provides to JavaScript applications.
+Backbone.js is a JavaScript library, among many others, that is gaining special attention in the web development community because it's ease of use and the structure that it provides to JavaScript applications. 
+
+Notice that BackboneJS is not a framework but a library. The difference is who is in control. Using a library YOU are in control, but using a framework there is an inversion of control: the framework calls you. Libraries give you a lot of flexibility, while frameworks has opinionated ways of doing things but can save you writing boiler plate code. Follow my [AngularJS](/blog/categories/angularjs/) tutorial series for a framework solution.
+
+Let's dive into BackboneJS! and see how this flexible library can bring order to your Javascript!
+
+<!--More-->
+
+(updated: 2014-10-13)
 
 {% img /images/backbonejs.png %}
-
-(Updated: 2013-02-02, 2013-11-24)
 
 # Brief Background
 

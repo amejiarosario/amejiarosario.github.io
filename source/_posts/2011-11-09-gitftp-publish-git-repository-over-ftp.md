@@ -6,6 +6,7 @@ comments: true
 categories: [git, ftp, web development, drupal, gitignore]
 ---
 <p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
+<!--More-->
 <div>
 	&nbsp;</div>
 <div>

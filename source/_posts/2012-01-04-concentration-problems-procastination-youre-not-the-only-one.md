@@ -7,6 +7,7 @@ categories: [concentration, procrastination, attention]
 ---
 <p>&nbsp;</p>
 <p>Procastination and concentration problems are big deals from a lot of people, specially for students. There are too many distractions that are more fun than our homework.</p>
+<!--More-->
 <p>I read an interesting&nbsp;<a href="http://altmedicine.about.com/od/optimumhealthessentials/a/Concentration.htm">article about concentration</a>&nbsp;that I&#39;d like to share a summary with my own notes:</p>
 <p>There is no substitute for paying attention... here are Five tips to improve your attention/concentration/focus/productivity:</p>
 <p><strong>F =&nbsp;</strong><u><strong>Five More Rule</strong></u></p>

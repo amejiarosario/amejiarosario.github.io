@@ -6,6 +6,7 @@ comments: true
 categories: [ms access, sql, visual basic, macros, how-to]
 ---
 Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
+<!--More-->
 
 Here are the steps of how to create a new table programmatically in Access (2007):
 

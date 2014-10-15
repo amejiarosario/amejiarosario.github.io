@@ -6,6 +6,7 @@ comments: true
 categories: [paper review, e-learning]
 ---
 <p>The paper [1] is proposing a social bookmarking system called Social Semantic Collaborative Filtering (SSCF). It presents how digital libraries can be combined with social semantic information sources and it exemplifies how these techniques can improve e-Learning. The goal of the SSCF is to enhance individual bookmarks with shared knowledge of the community. The Fig. 1 shows the dificulty (or time-consumptions) of bookmarking all the interested links and then share all of them in a blog for other users.</p>
+<!--More-->
 <p><img alt="Use Case Scenario for SSCF" src="http://www.adrianmejiarosario.com/sites/default/files/pictures/Screen%20shot%202011-09-21%20at%201.24.35%20PM.png" style="width: 600px; height: 222px; "></p>
 <p>Source: [1]</p>
 <p>In order to solve this problem, they [1] proposed a SSCF bookmarking system, which is based on JeremeDL. This platform joins 3 separated applications: blog, Digital Library, and bookmarking application (Fig. 3), to solve the problems above-mentioned.</p>

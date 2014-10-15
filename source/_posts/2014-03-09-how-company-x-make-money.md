@@ -8,6 +8,8 @@ categories: [mobile, apps, design, general, money, companies, social media]
 
 Have you ever wonder how the companies that offer free services make money? Such as Instagram, Evernote, Facebook, Twitter, LinkedIn, Google Maps, so on... or if it is even profitable to keep free users using their services. We would go through several revenue models and hopefully, it will throw you some light next time you decide to roll your own startup.
 
+<!--More-->
+
 <a href="#start">TL; DR</a>: Go to the interactive company revenue checker.</a>
 
 ### Revenues Models

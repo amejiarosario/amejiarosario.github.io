@@ -7,77 +7,54 @@ categories: [angularjs, javascript, web frameworks, web development, agile frame
 toc: true
 ---
 
-This tutorial is meant to be as clear as possible while at the same time teach you how to connect AngularJS with backend servers in Node.Js, Express.js and databases such as MongoDB, also known as the MEAN stack. Let’s start with angularJS!
+This tutorial is meant to be as clear as possible while at the same time teach you how to connect AngularJS with back-end servers in Node.Js, Express.js and databases such as MongoDB, also known as the MEAN stack. Let's start with angularJS!
 
-**Part I - [AngularJS](/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/)**
-
-{% img /images/angularjs.png 200 200 AngularJS %}
-
-
-Part II - [NodeJS/ExpressJS and MongoDB/Mongoose](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/)
-
-{% img /images/nodejs.png 200 200 NodeJS %}
-{% img /images/mongodb.png 200 200 MongoDB %}
-
-Part III - [MEAN Stack: Wiring all together (comming soon)](#comming-soon)
-
-{% img /images/MEAN_jarroba.png MEAN Stack %}
+<!--More-->
 
 # Part I: AngularJS
 
+We are going to start building all the examples in a single HTML file, which has embedded javascript and NO styles/CSS for simplicity. In the next tutorials we will learn how to use angularJS modules to break down the code, add testing to it and styles.
+
 ## What is Angular.js?
 
-Angular.js is a MVC open-source JavaScript web framework that facilitates the creation of single-page applications (SPA) and data-driven apps.
+{% img /images/angularjs.png 200 200 AngularJS %}
 
-# Brief Background 
+Angular.js is a MVW (Model-View-Whatever) open-source JavaScript web framework that facilitates the creation of single-page applications (SPA) and data-driven apps.
 
-## AngularJS vs jQuery vs BackboneJS vs EmberJS
+## Brief Background 
+
+### AngularJS vs jQuery vs BackboneJS vs EmberJS
 
 <a href="#start">TL; DR</a>: AngularJS is awesome for building testable single page applications (SPA), and also data driven and CRUD apps. <a href="#start">Show me the code!.</a>
 
-AngularJS motto is “HTML enhanced for web apps!”. It extends standard HTML tags and properties to bind events and data into it using JavaScript. It has a different approach to other libraries such as jQuery, Backbone.Js, Ember.js and similar… they are more leaned towards “Unobtrusive JavaScript”.
+AngularJS motto is “HTML enhanced for web apps!”. It extends standard HTML tags and properties to bind events and data into it using JavaScript. It has a different approach to other libraries such as jQuery, Backbone.Js, Ember.js and similar... they are more leaned towards “Unobtrusive JavaScript”.
 
 In the traditional unobtrusive JavaScript approach, instead of declaring the event handlers right in the element that they act upon, they are referenced using IDs and classes in the elements. That gives the advantage of separating structure (HTML) from behavior (Javascript). However, it does not do any better on code complexity and readability.
 
 Times have changed since then. Let’s examine how AngularJS tries to alleviate code complexity and readability:
 
 * **Unit testing** ready: JavaScript is, usually, very hard to unit test when you have DOM manipulations and business logic together (e.g. jQuery based code). AngularJS keeps DOM manipulation in the HTML and business logic separated. Data and dependencies are `$inject`ed as needed.
-
 * **DOM manipulation** where they are used. It decouples DOM manipulation from application logic.
-
 * AngularJS is also excellent for **single-page applications (SPA)**.
-
-* Different **browsers implements** features differently, but fret not. Angular’s directive (or HTML extensions) take care of the differences for you.
-
+* Different **browsers implements** features differently, but fret not. Angular's directive (or HTML extensions) take care of the differences for you.
 * **Global namespace** expressions and method definitions are scoped within controllers, so they do not pollute the global namespace.
-
 * **Data models** are plain old JavaScript objects (POJO).
-
 * Write less code: AngualarJS features like directives, filters and automatic data bindings save code writing. (More on that later ;)
-
 * AngularJS provides solution for writing modular code and dependencies management.
-
-Despite all the goodness of AngularJS, it is not fit for every kind of project. Here are some guidelines I used...
-
-* Need heavy DOM manipulations? Use jQuery or BackboneJS instead.
-* Data driven requirements (CRUD apps)? Use AngularJS.
-* Game programming? Use the canvas directly or game frameworks such as PhaserJS.
-* GUI editors? Use libraries with lower level of abstraction, such as jQuery.
-* Heavy RESTFul front-end app? Use Ember.js
 
 Without further ado, let’s dive in!
 
 <a id="start"></a>
 
-# AngularJS Tutorial by examples
+## AngularJS Main Components
 
-## AngularJS Directives
+### AngularJS Directives
 
 The first concept you need to know about AngularJS is what are directives.
 
-**Directives**  are extensions of HTML markups in form of attributes, element names, CSS class and so forth. When the AngularJS framework is loaded everything inside `ng-app` it’s compiled by Angular and the directives are bound to data, events and DOM transformations.
+**Directives**  are extensions of HTML markups in form of attributes, element names, CSS class and or even HTML comments. When the AngularJS framework is loaded everything inside `ng-app` it’s compiled by Angular and the directives are bound to data, events and DOM transformations.
 
-Notice two directive on the following example `ng-app` and `ng-model`.
+Notice in the following example that there are two directives: `ng-app` and `ng-model`.
 
 ```html Hello World in AngularJS http://codepen.io/amejiarosario/pen/KdLaq
 <html ng-app>
@@ -93,6 +70,8 @@ Notice two directive on the following example `ng-app` and `ng-model`.
 </html>
 ```
 
+We going to learn about some of the main built-in directives as we go:
+
 * **ng-app**: is a directive that bootstraps AngularJS and designates the caller element as the root. It’s usually placed on `<html>` or `<body>`.
 
 * **ng-model**: is a directive that binds form elements such as `input`, `select`, `checkboxes`, `textarea` or customs ones to a property called `$scope`. More on `$scope` and `data binding` in the next sections, for now bear in mind that the textbox value  it’s bound to `{% raw  %}{{ name }}{% endraw %}`
@@ -103,8 +82,41 @@ Data binding AngularJS example:
 
 <p data-height="268" data-theme-id="0" data-slug-hash="KdLaq" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/KdLaq/'>KdLaq</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
+You might be wondering if adding this directive will make the HTML validators to complain about unknown/non-standard attributes and you are right. However, this can be solve prefixing `data-` to every Angular.js directive and NOT using them as Elements but attributes, classes or comments. Let's see that in the next example and also let's create our own directives:
 
-## AngularJS Data Binding
+
+
+```html Directive types: elements, attributes, comments and classes
+
+  <hello>Element</hello> Element
+  <div data-hello>Attribute</div> data-Attribute
+  <div hello>Attribute</div> Attribute
+  <!-- directive: hello --> Comment
+  <p class="hello"></p> Class
+
+```
+
+
+```javascript Custom AngularJS directives
+var app = angular.module('app', []);
+
+app.directive('hello', [function () {
+  return {
+    restrict: 'CEMA', // C: class, E: element, M: comments, A: attributes
+    replace: true, // replaces original content with template
+    template: '<span><br>Hello</span>'
+  }
+}]);
+```
+
+Working example:
+
+<p data-height="268" data-theme-id="0" data-slug-hash="varAK" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/varAK/'>varAK</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+If you are interested in seeing more options for directives go [here](http://www.sitepoint.com/practical-guide-angularjs-directives/).
+
+
+### AngularJS Data Binding
 
 **Data binding** is an AngularJS feature that automatically synchronizes your model data with your HTML. That’s great because models is the "single source of truth" and you do not have to worry about updating them. Here’s a graph from docs.angularjs.org.
 
@@ -112,13 +124,13 @@ Data binding AngularJS example:
 
 Whenever the HTML is changed the model gets updated and wherever the model gets updated it is reflected in HTML. 
 
-## AngularJS Scope
+### AngularJS Scope
 
 `$scope` it is an object that contains all the data to which HTML is bound. They are the glue your javascript code (controllers) and the view (HTML). Everything that is attached to the `$scope`, it is automatically `$watch`ed by AngularJS and updated.
 
 Scopes can be bound to javascript functions and also you could have more than one `$scope` and inherit from outer ones. More on this, in the controllers section.
 
-## AngularJS Controllers
+### AngularJS Controllers
 
 Angular.js **controllers** are code that "controls" certain sections containing DOM elements in which they are declared. They encapsulate the behavior, callbacks and glue `$scope` models with views. Let's see an example to drive the concept home:
 
@@ -313,11 +325,26 @@ Notice that we are using `search.name` in the `ng-model` for search. That will l
 
 <p data-height="268" data-theme-id="0" data-slug-hash="ahwbz" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/ahwbz/'>ahwbz</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-<hr>
-# ng-test
-<hr>
+## What's next?
 
-Congrats, you have reached this far! It is time to test what you have learned. Test-Driven Learning (TDL). Open this <a href="https://gist.githubusercontent.com/amejiarosario/26751cb85d088fd59c28/raw/c2dde0797c8d47d359c2137fc9a15a9228c272ca/index.html" target="_blank">file</a> on your favorite code editor. Copy the boilerplate code and built the full app that we just build in the previous examples. Of course, you can take a peek from time to time if you get stuck ;)
+Congrats! You have completed part 1. We are going to build upon the things learned in here, in the next post we are going to setup a backend in NodeJS and MongoDB and connect it to AngularJS to provide a full featured CRUD app. Continue with:
+
+* Part II - [NodeJS/ExpressJS and MongoDB/Mongoose](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/)
+
+
+[{% img /images/nodejs.png 200 200 NodeJS %}](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/)
+[{% img /images/mongodb.png 200 200 MongoDB %}](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/)
+
+
+* Part III - [MEAN Stack: Wiring all together](/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/)
+
+I also have created BackboneJS tutorials check it out:
+
+* [BackboneJS Tutorials](/blog/categories/backbonejs)
+
+### ng-test
+
+Congrats, you have reached this far! It is time to test what you have learned. Test-Driven Learning (TDL) ;). Here's the challenge: open <a href="https://gist.githubusercontent.com/amejiarosario/26751cb85d088fd59c28/raw/c2dde0797c8d47d359c2137fc9a15a9228c272ca/index.html" target="_blank">this file</a> on your favorite code editor. Copy the boilerplate code and built the full app that we just build in the previous examples. Of course, you can take a peek from time to time if you get stuck ;)
 
 Download this file as...:
 
@@ -329,25 +356,12 @@ Fork and edit online:
 
 <p data-height="268" data-theme-id="0" data-slug-hash="degzC" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/degzC/'>degzC</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-<hr>
-# ng-solution
-<hr>
+### ng-solution
 
 This is the full solution and you can see it <a href="https://cdn.rawgit.com/amejiarosario/068143b53e54db43ef38/raw/b703b591bc84f2d59a2a483169294e2fb232419d/ngTodo.html#/" target="_blank">live in here</a>.
 
 {% gist 068143b53e54db43ef38 %}
 
-<hr>
-# What's next?
-<hr>
-
-We are going to build upon the things learned in here, in the next post we are going to setup a backend in NodeJS and MongoDB and connect it to AngularJS to provide a full featured CRUD app. Stay tuned for the next posts:
-
-* <a href="/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/" target="_blank">Creating a RESTful API with NodeJS and MongoDB</a>
-
-I also have created BackboneJS tutorials check it out:
-
-* <a href="/blog/categories/backbonejs" target="_blank">BackboneJS Tutorials</a>
 <script async src="//codepen.io/assets/embed/ei.js"></script>
 
 

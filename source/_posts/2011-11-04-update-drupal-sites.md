@@ -7,6 +7,8 @@ categories: [drupal]
 ---
 The better way to learn is by a concrete example. I update a site called "heyshuga" from Drupal 7.8 to 7.9. Here are the steps
 
+<!--More-->
+
 1. Download the latest version of drupal
 
 $ wget http://drupal.org/files/projects/drupal-x.y.tar.gz

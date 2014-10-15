@@ -6,6 +6,7 @@ comments: true
 categories: [blogs, drupal, ruby, jekyll, octopress, migration, scripts, how-to, mysql, gems]
 ---
 This post is a guide on how to extract your blog posts information from Drupal 7 to other systems. And also automatically create a redirect files from the old blog to the new one. In this case, I migrated to Jerkyll/Octopress blog but from the data extracted in with my script you can migrate any other blog system. Hopefully, this will save you a lot of time if you need to do the same task. If you run into troubles go to last section of the post it has some suggestions.
+<!--More-->
 
 ## Extract data from Drupal 7 site
 

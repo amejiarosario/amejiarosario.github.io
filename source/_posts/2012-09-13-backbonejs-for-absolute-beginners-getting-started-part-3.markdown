@@ -7,6 +7,11 @@ categories: [backbonejs, javascript, web frameworks, web development, agile fram
 toc: true
 ---
 
+In tutorial we are going to continue learning about BackboneJS: CRUD.
+
+<!--More-->
+(updated: 2014-10-13)
+
 # BackboneJS III
 
 The part 2 of this tutorial is [here](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/).

@@ -6,6 +6,7 @@ comments: true
 categories: [git, github, how-to]
 ---
 <p>Installing Git in Windows is not as straight forward as in a *nix machine like Linux and Mac. This guide help you to get started quickly.</p>
+<!--More-->
 <p>You will need the following tools:</p>
 <ul>
 	<li><strong>Putty</strong>: download <a href="http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip">latest version here</a>.</li>

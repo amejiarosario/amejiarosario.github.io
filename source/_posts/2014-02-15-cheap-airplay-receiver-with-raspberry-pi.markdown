@@ -8,6 +8,8 @@ categories: [raspberry pi, apple, airplay, raspbian]
 
 I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it... So I make it a Airplay receiver to play music remotely from any of my apple devices!
 
+<!--More-->
+
 {% img /images/RaspiModelB.png %}
 
 There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(http://www.raspberrypi.org/downloads) 

@@ -7,6 +7,12 @@ categories: [backbonejs, javascript, web frameworks, web development, agile fram
 toc: true
 ---
 
+This tutorial is about BackboneJS Routes.
+
+<!--More-->
+
+(updated: 2014-10-13)
+
 # BackboneJS IV
 
 The part 3 of this tutorial is [here](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/).

@@ -6,6 +6,7 @@ comments: true
 categories: [c#, csv, regex, java]
 ---
 <p>Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;</p>
+<!--More-->
 <div>
 	<div>
 		CSV are files that all the data is separated by a comma. E.g:</div>

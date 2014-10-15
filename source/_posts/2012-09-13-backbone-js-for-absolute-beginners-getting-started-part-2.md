@@ -7,6 +7,11 @@ categories: [backbonejs, javascript, web frameworks, web development, agile fram
 toc: true
 ---
 
+This tutorial builts on top of the first part and continue with BacboneJS's Models, Collections and Views. 
+
+<!--More-->
+(updated: 2014-10-13)
+
 # BackboneJS II
 
 The part 1 of this tutorial is [here](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/)

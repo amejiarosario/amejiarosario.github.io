@@ -7,6 +7,8 @@ categories: [product lines, bug, testing, microsoft, freescale, zune]
 ---
 All the Zune 30 froze, precisely at 12:01 A.M. on December 31, 2008. These devices got stuck with an irresponsive Zune logo. This bug that didn’t allow users to use the device was cause by a bug in the internal clock driver that handled improperly the last day of a year leap. The Zune 30 model 2006 was the only one affected by this bug; all the other models keep working ok, such as the Zune: 80 and 120 GB with hard drive, and 4, 8, 16 GB with flash drive, because they did not have the component with the error.
 
+<!--More-->
+
 At the core of the Zune 30 music players, there is the Freescale iMX31L Multimedia processor and the MC13783 Power Management Chip. These components are also used in many other products like GPS, cellphones, pace makers, etc. Also the bug froze up the Toshiba Gigabeat S media players, since it was using the MC13783 chip. The driver written by Freescale for their MC13783 caused all of the problems in all the devices that were using it. The official solution from Microsoft to this bug was to let the Zune run out of battery completely, and reset it on January 1st. This bug was dissolved successfully by itself the first day of the 2009. 
 
 SUGGESTED PRACTICES

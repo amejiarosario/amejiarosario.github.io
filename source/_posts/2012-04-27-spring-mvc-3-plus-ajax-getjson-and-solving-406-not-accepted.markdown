@@ -6,6 +6,7 @@ comments: true
 categories: [spring mvc, j2ee, jquery, ajax]
 ---
 <p>I wanted to add AJAX to Spring MVC application. So, I did what most us do, go through the documentation or blog of the Spring Source. But, after playing around I didn't get it to work properly so here are some details that might save you some time.</p>
+<!--More-->
 <p>After I follow the instructions in <a href="http://blog.springsource.org/2010/01/25/ajax-simplifications-in-spring-3-0/%20" target="_blank">AJAX in Spring 3.0</a> I got some error "406 Not Accepted", so let's explain how to make it work:</p>
 <h2>Server Side</h2>
 <p>First you need to setup the actions/methods that the ajax client will call and provide that data in a request. In the server side we are going to use Spring MVC and reply using a JSON format.</p>

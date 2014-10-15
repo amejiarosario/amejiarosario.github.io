@@ -6,9 +6,13 @@ comments: true
 categories: [algorithms, runtime analysis, analysis of algorithm, for dummies, big-o]
 ---
 
-update: graphs are gone. Checkout my new post with new content and images: <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a>
-
 <p>When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest.</p>
+
+<!--More-->
+
+**Update**: graphs are gone in this post, sorry. I re-made this post and added more information and images. Checkout it out at: <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a>
+
+
 <p class="p1"><b>Why should you care for efficiency?</b></p>
 <p class="p1">Solutions to the same problem might take years with certain algorithm, and just minutes using efficient algorithms. For instance, if you have applications that are used for thousands of people over internet, every fraction of second counts. Therefore, efficient algorithms is a must.</p>
 <p class="p1"><b>How I do my algorithms more efficient?</b></p>

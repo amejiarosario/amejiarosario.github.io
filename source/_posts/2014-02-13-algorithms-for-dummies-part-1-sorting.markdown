@@ -9,6 +9,8 @@ categories: [algorithms, runtime analysis, analysis of algorithm, for dummies, b
 
 After being developing software for a while,  I realized that there is a couple of ways to become better at it. One it's through your experience: writing code, working on projects, getting hands dirty... Other one it's learning algorithms and design patterns. In other words through leveraging the experience of other computer scientists. Learning to use algorithms efficiently can instantly add to you the equivalent of 10 years of experience or more. Let's get started and add new tools to our arsenal!
 
+<!--More-->
+
 How do you know a piece of code that you just wrote is good enough?  When you modify a program, how do you know if it is better as you found it? How do scale programs to handle huge amount of data? In fact, You cannot improve what you can't measure.
 
 How to measure them? We could count the number of seconds it takes to execute and compare it with other one. However, it's not just troublesome to timers around code but if we run it in different hardware (e.g. supercomputer) it will seem like more efficient when indeed it's exactly the same program. Let's illustrate a better way with an example. Let's say you want to sort an array of n integers.

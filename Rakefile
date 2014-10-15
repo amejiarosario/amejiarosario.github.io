@@ -168,6 +168,20 @@ task :isolate, :filename do |t, args|
   end
 end
 
+desc "Isolate [number] last modified posts"
+task :last, :number do |t, args|
+  args.with_defaults(:number => 1)
+  stash_dir = "#{source_dir}/#{stash_dir}"
+  FileUtils.mkdir(stash_dir) unless File.exist?(stash_dir)
+  Dir.glob("#{source_dir}/#{posts_dir}/*.*").sort_by{ |f| File.mtime(f) }.reverse.each_with_index do |post, i|
+    if i < args.number.to_i
+      puts "keeping: #{post}"
+    else
+      FileUtils.mv post, stash_dir
+    end
+  end
+end
+
 desc "Move all stashed posts back into the posts directory, ready for site generation."
 task :integrate do
   FileUtils.mv Dir.glob("#{source_dir}/#{stash_dir}/*.*"), "#{source_dir}/#{posts_dir}/"
@@ -252,7 +266,7 @@ desc "deploy public directory to github pages"
 multitask :push do
   puts "## Deploying branch to Github Pages "
   puts "## Pulling any updates from Github Pages "
-  cd "#{deploy_dir}" do 
+  cd "#{deploy_dir}" do
     Bundler.with_clean_env { system "git pull" }
   end
   (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
