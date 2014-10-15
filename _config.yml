@@ -4,10 +4,10 @@
 
 url: http://adrianmejia.com
 title: Adrian Mejia's Blog
-subtitle: var life = { 'work_hard', 'have_fun', 'make_history' };
+subtitle: var life = ['work_hard', 'have_fun', 'make_history'];
 author: Adrian Mejia
 simple_search: https://www.google.com/search
-description: Adrian's blog about Software Engineering, Computer Science, Javascript, Ruby and life.
+description: Adrian's blog about Software Engineering, Computer Science, Javascript, NodeJS Ruby and life.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -41,9 +41,9 @@ rdiscount:
     - smart
 highlighter: pygments # default python pygments have been replaced by pygments.rb
 
-paginate: 5          # Posts per page on the blog index
+paginate: 15          # Posts per page on the blog index
 paginate_path: "posts/:num"  # Directory base for pagination URLs eg. /posts/2/
-recent_posts: 10       # Posts in the sidebar Recent Posts section
+recent_posts: 5       # Posts in the sidebar Recent Posts section
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 excerpt_separator: "<!--more-->"
 
@@ -51,7 +51,8 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/linkedin.html, asides/github_profile.html, asides/twitter_profile.html, asides/googleplus.html, asides/github.html, asides/delicious.html, asides/pinboard.html]
+# custom/asides/tag_cloud.html,
+default_asides: [asides/recent_posts.html, asides/feedburner.html, asides/linkedin.html, asides/github_profile.html, asides/twitter_profile.html, asides/googleplus.html, asides/subscribe_mailchimp.html, asides/github.html, asides/delicious.html, asides/pinboard.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -99,3 +100,6 @@ google_analytics_tracking_id: UA-24183929-4
 
 # Facebook Like
 facebook_like: true
+
+# feedburner
+feedburner_user: AdrianMejiasBlog
