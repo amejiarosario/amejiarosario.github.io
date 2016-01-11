@@ -282,7 +282,7 @@ The following middlewares are not added by default, but It's nice to know they e
 
 * <a href="https://github.com/expressjs/compression" target="_blank">compression</a>: compress all request. e.g. `app.use(compression())`
 
-* <a href="https://github.com/expressjs/session" target="_blank">session</a>: create sessions. e.g. `app.use(session({secret: 'b@ndw1d7h'}))`
+* <a href="https://github.com/expressjs/session" target="_blank">session</a>: create sessions. e.g. `app.use(session({secret: 'Secr3t'}))`
 
 * <a href="https://github.com/expressjs/method-override" target="_blank">method-override</a>: `app.use(methodOverride('_method'))` Override methods to the one specified on the `_method` param. e.g. `GET /resource/1?_method=DELETE` will become `DELETE /resource/1`.
 
