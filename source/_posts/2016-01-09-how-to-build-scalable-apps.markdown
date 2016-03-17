@@ -9,9 +9,13 @@ categories: [apps, scalability, continuous deployment, cloud platforms]
 {% img /images/scalabilty_matryoshka.png Guidelines to scale apps %}
 <small>(external image)</small>
 
-One of the most dreaded question is: 'Would that scale?'. The following twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. This is very suitable for cloud platforms and continuous deployment.
+One of the most dreaded question is: 'Would that scale?'. The following are some guidelines to make scalable application in these 2016. Heroku people come with the [12 factor principles](http://12factor.net/) which is a good start. Also I'll expand on them and mention one of the most used tools in 2016 to achieve these principles.
 
 <!-- More -->
+
+# Twelve factor principle
+
+Twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. These are very suitable for cloud platforms and continuous deployment. Futhermore, these principles are language agnostic, so it will work everywhere.
 
 1. **One codebase per app, multiple deployments**
     * *DO*: One codebase to rule all deployment environments: production, staging, local and so on and differenciate them through config files (see #3).
@@ -52,5 +56,13 @@ One of the most dreaded question is: 'Would that scale?'. The following twelve s
 12. **Admin processes**
     * *DO*: favor languages/frameworks that uses REPL shell out of the box to do admin tasks such as migrating databases, running consoles or running one-time scripts.
 
+# Opinionated Workflow
 
-That's all for now. Hope it's helpful. This has been adapted from http://12factor.net/
+Web development is not easy, it requires more than programing skills to get all the process in line towards quality and scalability.
+
+
+The following are based on my experienced about how should be delivered these days.
+
+
+
+That's all for now. Hope it's helpful.
