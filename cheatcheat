@@ -9,3 +9,5 @@ rake new_page[super-awesome]
 rake generate preview
 
 rake generate deploy
+
+# images: copy them to `source/images/*` and not `/images/*`
