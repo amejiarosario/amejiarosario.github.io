@@ -1,9 +1,9 @@
---- 
+---
 layout: post
 title: Adding Subversion (SVN) Properties to your code
 created: 1329003331
 comments: true
-categories: [svn, subversion, eclipse, svn properties]
+categories: [subversion, eclipse]
 ---
 <p>When you are coding in a team enviroment it&#39;s good to have the subversion properties in your files, that way any other developer can see quickly who made the last changes and when.</p>
 <p>You can add the following lines at the bottom of your code:</p>

@@ -11,3 +11,5 @@ rake generate preview
 rake generate deploy
 
 # images: copy them to `source/images/*` and not `/images/*`
+rake last[number]              # Isolate [number] last modified posts
+rake integrate                 # Move all stashed posts back into the posts directory, ready for site generation

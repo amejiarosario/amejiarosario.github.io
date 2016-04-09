@@ -3,7 +3,7 @@ layout: post
 title: "Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)"
 date: 2014-10-01 17:26:42 -0400
 comments: true
-categories: [nodejs, javascript, web frameworks, web development, agile frameworks, tutorials, mongodb, mean stack, backbonejs, angularjs, restful]
+categories: [nodejs, javascript, tutorials, mongodb, mean stack]
 toc: true
 ---
 
@@ -34,10 +34,11 @@ Here's is a summary what we want to implement:
 | /todos  | create new task  | list tasks  | N/A (update all)  |  N/A (destroy all) |
 | /todos/1  |  error  | show task ID 1  | update task ID 1  |  destroy task ID 1 |
 
-**NOTES**: 
-* Format will be JSON. 
-* Bulk updates and bulk destroys are not safe, so we will not be implementing those.
-* POST, GET, PUT, DELETE == **C**REATE, **R**EAD, **U**PDATE, **D**ELETE == **CRUD**. 
+**NOTES**:
+
+  - Format will be JSON.
+  - Bulk updates and bulk destroys are not safe, so we will not be implementing those.
+  - POST, GET, PUT, DELETE == **C**REATE, **R**EAD, **U**PDATE, **D**ELETE == **CRUD**.
 
 ## Setup
 
@@ -253,7 +254,7 @@ app.use('/todos/:id', function (req, res, next) {
 
 And finally you can use `app.get` to catch GET request with maching route, reply the request with a `response.send` and end the middleware chain. Let's use what we learned on <a href="#mongoose-read-and-query">mongoose read</a> to reply with a user data matching the `id`.
 
-```javascript Middleware mounted on "/todos/:id" and returns 
+```javascript Middleware mounted on "/todos/:id" and returns
 app.get('/todos/:id', function (req, res, next) {
   Todo.findById(req.params.id, function(err, todo){
     if(err) res.send(err);
@@ -264,7 +265,7 @@ app.get('/todos/:id', function (req, res, next) {
 
 Notice that all previous middlewares called `next()` except this last one, because it sends a respond (in JSON) to the client with the requeste `todo` data.
 
-Hopefully, you don't have to develop a bunch of middlewares besides routes, since ExpressJS has a bunch of middlewares available. 
+Hopefully, you don't have to develop a bunch of middlewares besides routes, since ExpressJS has a bunch of middlewares available.
 
 #### Default Express 4.0 middlewares
 
@@ -391,7 +392,7 @@ mongoose.connect('mongodb://localhost/todoApp', function(err) {
 
 Now, When you run `npm start` or `./bin/www`, you will notice the message `connection successful`. Did you? Great!
 
-You can find the repository [here](https://github.com/amejiarosario/todoAPIjs) and the diff code at this point: 
+You can find the repository [here](https://github.com/amejiarosario/todoAPIjs) and the diff code at this point:
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/d3be6a287e8aff39ab862971da4f050d04e552a1)
 
 ### Creating the Todo model with Mongoose
@@ -493,7 +494,7 @@ DEBUG=todoApp ./bin/www
 
 # Test API (in other terminal tab)
 curl localhost:3000/todos
-# => []% 
+# => []%
 ```
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/54ab912ea9aa2b6633ae12816beb6e6c3d2702e6)
@@ -591,4 +592,3 @@ Connecting AngularJS with this endpoint:
 * Part I - [AngularJS](/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/)
 * Part III - [MEAN Stack: Wiring all together](/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/)
 * [BackboneJS Tutorials](/blog/categories/backbonejs)
-

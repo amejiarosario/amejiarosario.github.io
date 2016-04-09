@@ -3,7 +3,7 @@ layout: post
 title: "MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)"
 date: 2014-10-03 06:59:34 -0400
 comments: true
-categories: [angularjs, javascript, web frameworks, web development, agile frameworks, tutorials, nodejs, mongodb, mean stack, apache, linux, mysql, lamp]
+categories: [angularjs, javascript, nodejs, mongodb, mean stack]
 toc: true
 ---
 This is the last part of [three-series tutorial](/blog/categories/mean-stack/). We are going to build a full-stack Todo App using the MEAN (MongoDB, ExpressJS, AngularJS and NodeJS).
@@ -18,12 +18,12 @@ This is the last part of [three-series tutorial](/blog/categories/mean-stack/). 
 
 <a href="#start">TL; DR</a>: NodeJS has been built from bottom up a non-blocking I/O paradigm, which gives you more efficiency per CPU core than using threads in other languages like [Java](http://strongloop.com/strongblog/node-js-is-faster-than-java/). <a href="#start">Get started here</a>.
 
-LAMP (Linux-Apache-MySQL-PHP) has dominated web application stack for many years now. Well-known platforms such as Wikipedia, Wordpress, and even Facebook uses it or started with it. Enterprise, usually, used go down the Java path: Hibernate, Spring, Struts, JBoss. More agile frameworks also have been widely used such as Ruby on Rails and for Python Django and Pylon. 
+LAMP (Linux-Apache-MySQL-PHP) has dominated web application stack for many years now. Well-known platforms such as Wikipedia, Wordpress, and even Facebook uses it or started with it. Enterprise, usually, used go down the Java path: Hibernate, Spring, Struts, JBoss. More agile frameworks also have been widely used such as Ruby on Rails and for Python Django and Pylon.
 
 {% img /images/lamp_vs_mean.jpg %}
 <small>(Image from [backand.com](http://blog.backand.com/mean-vs-lamp/))</small>
 
-Why MEAN stack then? 
+Why MEAN stack then?
 
 **Ubiquitous**
 
@@ -31,7 +31,7 @@ Well, it turns out, that JavaScript it is everywhere: smartphones, computers, in
 
 **Non-blocking architecture**
 
-JavaScript is a dynamic, object-oriented, and functional scripting language. One of the features that make it win over Java Applets in the browser scripting war decades ago, it was its lightness and non-blocking event loop. 
+JavaScript is a dynamic, object-oriented, and functional scripting language. One of the features that make it win over Java Applets in the browser scripting war decades ago, it was its lightness and non-blocking event loop.
 Bocking means that when one line of code is executing the rest of it is locked waiting to finish. On the other hand, non-blocking gives to each line of code a shot and then through callbacks it can come back when an event happens.
 Programming languages that are blocking (Java, Ruby, Python, PHP, ...) overcomes concurrency using multiple threads of execution while JavaScript handles it using non-blocking event loop in a single thread.
 
@@ -348,17 +348,17 @@ index 9c3ef46..afb37e1 100644
            <a ng-show="!editing[$index]" href="#/{{todo._id}}">{{todo.name}}</a>
            <button ng-show="!editing[$index]" ng-click="edit($index)">edit</button>
 +          <button ng-show="!editing[$index]" ng-click="remove($index)">remove</button>
- 
+
            <input ng-show="editing[$index]" type="text" ng-model="todo.name">
            <button ng-show="editing[$index]" ng-click="update($index)">update</button>
 @@ -37,6 +38,7 @@
        note: <textarea ng-model="todo.note"></textarea><br><br>
- 
+
        <button ng-click="update()">update</button>
 +      <button ng-click="remove()">remove</button>
        <a href="/">Cancel</a>
      </script>
- 
+
 @@ -85,6 +87,13 @@
              $scope.todos[index] = angular.copy($scope.editing[index]);
              $scope.editing[index] = false;
@@ -371,7 +371,7 @@ index 9c3ef46..afb37e1 100644
 +            });
 +          }
          }])
- 
+
          .controller('TodoDetailCtrl', ['$scope', '$routeParams', 'Todos', '$location', function ($scope, $routeParams, Todos, $location) {
 @@ -95,6 +104,12 @@
                $location.url('/');
@@ -384,7 +384,7 @@ index 9c3ef46..afb37e1 100644
 +            });
 +          }
          }])
- 
+
          //---------------
 ```
 
@@ -419,4 +419,3 @@ What we did in these three series tutorial could have been done with just few ke
 for your next web application.
 * [Yahoo! Mojito](https://developer.yahoo.com/cocktails/mojito/) - A JavaScript MVC framework for mobile applications, one of the Yahoo! Cocktails.
 * [Tower.js](http://towerjs.org) - Small components for building apps, manipulating data, and automating a distributed infrastructure.
-

@@ -4,7 +4,7 @@ title: "Grunt JS tutorial from Beginner to Ninja"
 date: 2014-10-07 10:41:13 -0400
 comments: true
 toc: true
-categories: [javascript, web development, agile frameworks, tutorials, nodejs, gruntjs, build tools]
+categories: [javascript, nodejs, gruntjs, build tools]
 ---
 
 Sometimes you find yourself doing the same tasks again and again, especially during web development. It is time to automate repetitive tasks and use that time in more creative activities. This is where Grunt comes in. Grunt is a popular task runner that runs on NodeJS. It can minify CSS/JavaScript, run linting tools (JSHint, JSlint, CSSlint), deploy to server, and run test cases when you change a file to name a few. All the information I found about Grunt and similar Javascript test runners were too verbose and not very helpful to get started quickly. So, I decided to make this tutorial.
@@ -21,7 +21,7 @@ Grunt.js is a Javascript task runner. At its bare core it does file manipulation
 
 ### Hello Wold from GruntJS
 
-You need to [install Node.js and NPM](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/#nodejs) to follow along with this example. 
+You need to [install Node.js and NPM](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/#nodejs) to follow along with this example.
 
 ```bash
 mkdir grunt101 && cd grunt101
@@ -101,13 +101,13 @@ Here are some of the methods that we have used so far and some more that we will
 #### Grunt tasks
 
 * [grunt.registerTask(taskName[, description], taskFunction)](http://gruntjs.com/api/grunt.task#grunt.task.registertask): register a task.
-    *  **taskName**: required to register the task and it allows the task to be e executed with `grunt taskName` or called by other grunt task. 
+    *  **taskName**: required to register the task and it allows the task to be e executed with `grunt taskName` or called by other grunt task.
     *  **description**: (optional) string describing task.
     *  **taskFunction**: function which can accept parameters separated by colons (:). E.g. `grunt taskName:arg1:arg2`
 
 
 * [grunt.task.registerTask(taskName, taskList)](http://gruntjs.com/api/grunt.task#grunt.task.registertask): register task.
-    *  **taskName**: required to register the task and it allows the task to be e executed with `grunt taskName` or called by other grunt task. 
+    *  **taskName**: required to register the task and it allows the task to be e executed with `grunt taskName` or called by other grunt task.
     *  **taskList**: array of taskNames to be executed, in the order specified, when the taskName is called. E.g.: `grunt.registerTask('concatAll', ['concat:templates', 'concat:javascripts', 'concat:stylesheets']);`
 
 
@@ -225,7 +225,7 @@ The following methods adds a ">>" before the message in the screen which could b
 
 **Files**
 
-All has an optional attributes `options` that could be `encoding` among others. 
+All has an optional attributes `options` that could be `encoding` among others.
 
 * [grunt.file.write(filepath, contents [, options])](http://gruntjs.com/api/grunt.file#grunt.file.write): writes contents to file, creates path if necessary.
 * [grunt.file.read(filepath [, options])](http://gruntjs.com/api/grunt.file#grunt.file.read): returns file content.
@@ -362,7 +362,7 @@ grunt multiTaskName
 #     ext: '.min.css',
 #     orig: { src: [Object], dest: 'public', ext: '.min.css' } } ]
 # this.filesSrc [ 'stylesheets/h1.css', 'stylesheets/h2.css' ]
-# 
+#
 # Running "multiTaskName:target2" (multiTaskName) task
 # this.options { gzip: false }
 # this.data { src: '*.js', dest: 'public', ext: '.min.js' }
@@ -375,7 +375,7 @@ grunt multiTaskName
 
 * [this.target](http://gruntjs.com/inside-tasks#this.target): name of the target current target. If you call it `grunt multiTaskName`, it will run like multiple tasks calling each target one at a time. `this.target` will be equal to `target1` and then `target2`.
 
-* [this.files](http://gruntjs.com/inside-tasks#this.files): return a (single) array that has all the properties for the current target. Take a look the the output above. 
+* [this.files](http://gruntjs.com/inside-tasks#this.files): return a (single) array that has all the properties for the current target. Take a look the the output above.
 
 * [this.filesSrc](http://gruntjs.com/inside-tasks#this.filessrc): it expands files and paths against `src` and return an array with them.
 
@@ -387,7 +387,7 @@ Chances are that there is a plugin for most of your needs. Last time I checked t
 
 ### Installing a grunt plugin
 
-Let's say we want to install jshint. 
+Let's say we want to install jshint.
 
 1. Get the plugin module
 
@@ -403,7 +403,7 @@ or from github:
 
 `grunt.loadNpmTasks('grunt-contrib-jshint');`
 
-or 
+or
 
 `grunt.loadNpmTasks('grunt-contrib-YOUR-PLUGIN');`
 
@@ -437,7 +437,7 @@ watch: {
 },
 ```
 
-3- [uglify](https://github.com/gruntjs/grunt-contrib-uglify): minifies javascript files. 
+3- [uglify](https://github.com/gruntjs/grunt-contrib-uglify): minifies javascript files.
 ```javascript grunt.config.init (example)
 uglify: {
   my_target: {

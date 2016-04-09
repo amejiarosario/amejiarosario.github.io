@@ -3,7 +3,7 @@ layout: post
 title: "AngularJS tutorial for beginners with NodeJS ExpressJS and MongoDB (Part I)"
 date: 2014-09-28 23:50:24 -0400
 comments: true
-categories: [angularjs, javascript, web frameworks, web development, agile frameworks, tutorials, nodejs, mongodb, mean stack]
+categories: [angularjs, javascript, nodejs, mongodb, mean stack]
 toc: true
 ---
 
@@ -21,7 +21,7 @@ We are going to start building all the examples in a single HTML file, which has
 
 Angular.js is a MVW (Model-View-Whatever) open-source JavaScript web framework that facilitates the creation of single-page applications (SPA) and data-driven apps.
 
-## Brief Background 
+## Brief Background
 
 ### AngularJS vs jQuery vs BackboneJS vs EmberJS
 
@@ -122,7 +122,7 @@ If you are interested in seeing more options for directives go [here](http://www
 
 {% img /images/Two_Way_Data_Binding.png Two Data Binding in Angular Templates %}
 
-Whenever the HTML is changed the model gets updated and wherever the model gets updated it is reflected in HTML. 
+Whenever the HTML is changed the model gets updated and wherever the model gets updated it is reflected in HTML.
 
 ### AngularJS Scope
 
@@ -175,7 +175,7 @@ As you might notice we have new friends: `ng-controller`, `ng-repeat` and `$scop
 
 ## AngularJS Modules
 
-Modules are a way to encapsulate different parts of your application (directives, controllers, factories, …) and reuse them in other places.  Here's an example of how to rewrite our controller using modules. 
+Modules are a way to encapsulate different parts of your application (directives, controllers, factories, …) and reuse them in other places.  Here's an example of how to rewrite our controller using modules.
 
 ```javascript AngularJS Module Example http://codepen.io/amejiarosario/pen/spuCm
 angular.module('app', [])
@@ -301,7 +301,7 @@ Filters allow you to format and transform the output of expressions inside the c
 * *JSON*: converts javascript objects to JSON strings.
 * *lowercase*/*uppercase*: converts strings to lowercase/uppercase.
 * *limitTo*: number of elements from an array to show.
-* *orderBy*: order array of objects by key that you specify. 
+* *orderBy*: order array of objects by key that you specify.
 
 **Note** you can also chain multiple filters and also define your own filters.
 
@@ -350,7 +350,7 @@ Download this file as...:
 
 [index.html](https://gist.githubusercontent.com/amejiarosario/26751cb85d088fd59c28/raw/c2dde0797c8d47d359c2137fc9a15a9228c272ca/index.html)
 
--OR- 
+-OR-
 
 Fork and edit online:
 
@@ -363,12 +363,3 @@ This is the full solution and you can see it <a href="https://cdn.rawgit.com/ame
 {% gist 068143b53e54db43ef38 %}
 
 <script async src="//codepen.io/assets/embed/ei.js"></script>
-
-
-
-
-
-
-
-
-

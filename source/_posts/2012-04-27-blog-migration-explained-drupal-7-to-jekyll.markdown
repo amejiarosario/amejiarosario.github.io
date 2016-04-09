@@ -3,7 +3,7 @@ layout: post
 title: "Blog migration explained: Drupal 7 to Jekyll"
 date: 2012-04-27 22:00
 comments: true
-categories: [blogs, drupal, ruby, jekyll, octopress, migration, scripts, how-to, mysql, gems]
+categories: [drupal, ruby, jekyll, octopress]
 ---
 This post is a guide on how to extract your blog posts information from Drupal 7 to other systems. And also automatically create a redirect files from the old blog to the new one. In this case, I migrated to Jerkyll/Octopress blog but from the data extracted in with my script you can migrate any other blog system. Hopefully, this will save you a lot of time if you need to do the same task. If you run into troubles go to last section of the post it has some suggestions.
 <!--More-->
@@ -56,16 +56,16 @@ Copy each of this folder to their respective places. Copy the content to your dr
 First, you need to extract the data from your Drupal site. I reversed engineer the database in order to extract the post, title, url alias (slug), tags, publish info, format and the last version of the post. The query that does all the magic is the following one:
 
 {% codeblock Drupal 7 Query to extract all the post info lang:sql %}
-SELECT 
-n.nid, 
-n.title, 
-n.created, 
-n.changed, 
-b.body_value AS 'body', 
-b.body_summary, 
-b.body_format, 
-n.status, 
-l.alias AS 'slug', 
+SELECT
+n.nid,
+n.title,
+n.created,
+n.changed,
+b.body_value AS 'body',
+b.body_summary,
+b.body_format,
+n.status,
+l.alias AS 'slug',
 GROUP_CONCAT( d.name SEPARATOR ', ' ) AS 'tags'
 
 FROM url_alias l, node n
@@ -75,7 +75,7 @@ JOIN taxonomy_term_data d ON t.tid = d.tid
 
 WHERE n.type = 'blog'
 AND b.revision_id = n.vid
-AND l.source = CONCAT( 'node/', n.nid ) 
+AND l.source = CONCAT( 'node/', n.nid )
 
 GROUP BY n.nid
 {% endcodeblock %}
@@ -90,13 +90,13 @@ Finally, the script will use the data from this query to generate the new posts 
 
 ### Troubleshooting
 
-I had a hard time having the mysql gem work with seqel in my Mac OS X 10.7 (Lion) and ruby 1.9.2. 
+I had a hard time having the mysql gem work with seqel in my Mac OS X 10.7 (Lion) and ruby 1.9.2.
 
 I got the following errors:
 
 * Library not loaded: libmysqlclient.18.dylib (LoadError)
 Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL server has gone away mysql2 ruby
-* "LoadError: require 'mysql' did not define Mysql::CLIENT_MULTI_RESULTS!" 
+* "LoadError: require 'mysql' did not define Mysql::CLIENT_MULTI_RESULTS!"
 * "You are probably using the pure ruby mysql.rb driver, which Sequel does not support. You need to install the C based adapter, and make sure that the mysql.so file is loaded instead of the mysql.rb file."
 * Sequel::AdapterNotFound: LoadError: require 'mysql' did not define Mysql::CLIENT_MULTI_RESULTS! You are probably using the pure ruby mysql.rb driver, which Sequel does not support. You need to install the C based adapter, and make sure that the mysql.so file is loaded instead of the mysql.rb file.
 * And others…

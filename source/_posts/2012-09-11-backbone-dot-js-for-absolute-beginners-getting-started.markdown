@@ -3,11 +3,11 @@ layout: post
 title: "Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)"
 date: 2012-09-11 22:50
 comments: true
-categories: [backbonejs, javascript, web frameworks, web development, agile frameworks, tutorials]
+categories: [backbonejs, javascript]
 toc: true
 ---
 
-Backbone.js is a JavaScript library, among many others, that is gaining special attention in the web development community because it's ease of use and the structure that it provides to JavaScript applications. 
+Backbone.js is a JavaScript library, among many others, that is gaining special attention in the web development community because it's ease of use and the structure that it provides to JavaScript applications.
 
 Notice that BackboneJS is not a framework but a library. The difference is who is in control. Using a library YOU are in control, but using a framework there is an inversion of control: the framework calls you. Libraries give you a lot of flexibility, while frameworks has opinionated ways of doing things but can save you writing boiler plate code. Follow my [AngularJS](/blog/categories/angularjs/) tutorial series for a framework solution.
 

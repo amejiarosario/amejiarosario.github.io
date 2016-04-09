@@ -3,7 +3,7 @@ layout: post
 title: "Algorithms for dummies (Part 1): Big-O Notation and Sorting"
 date: 2014-02-13 09:28:51 -0400
 comments: true
-categories: [algorithms, runtime analysis, analysis of algorithm, for dummies, big-o, time complexity, sorting, merge sort]
+categories: [algorithms, big-o, sorting, merge sort]
 ---
 
 
@@ -161,7 +161,3 @@ for(c=0; c&lt;n; c++){
 </table>
 
 That's all for this first part 1. I will continue publishing this tutorials every week or so. Stay tune!
-
-
-
-

@@ -3,7 +3,7 @@ layout: post
 title: "How company X make money?"
 date: 2014-03-09 21:39:42 -0400
 comments: true
-categories: [mobile, apps, design, general, money, companies, social media]
+categories: [startups, revenue models]
 ---
 
 Have you ever wonder how the companies that offer free services make money? Such as Instagram, Evernote, Facebook, Twitter, LinkedIn, Google Maps, so on... or if it is even profitable to keep free users using their services. We would go through several revenue models and hopefully, it will throw you some light next time you decide to roll your own startup.
@@ -516,4 +516,3 @@ $(function(){
 });
 
 </script>
-

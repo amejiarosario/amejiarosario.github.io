@@ -1,9 +1,9 @@
---- 
+---
 layout: post
 title: How do I change the Ruby/Python version Textmate uses?
 created: 1328766604
 comments: true
-categories: [ruby, textmate, how-to, python]
+categories: [ruby, textmate, python]
 ---
 <p>&nbsp;</p>
 <p>I&#39;m using textMate to develop ruby code. It&#39;s very handy because I can run it just pressing (cmd-R). But by default it&#39;s running ruby 1.8.7 and I want 1.9.2 version.</p>

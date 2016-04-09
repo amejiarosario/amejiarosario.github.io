@@ -3,7 +3,7 @@ layout: post
 title: "Cheap Airplay receiver with Raspberry Pi"
 date: 2014-02-15 13:59:26 -0400
 comments: true
-categories: [raspberry pi, apple, airplay, raspbian]
+categories: [raspberry pi, apple, airplay]
 ---
 
 I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it... So I make it a Airplay receiver to play music remotely from any of my apple devices!
@@ -12,7 +12,7 @@ I got excited about the idea of having a Raspberry Pi. It is in essence one of t
 
 {% img /images/RaspiModelB.png %}
 
-There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(http://www.raspberrypi.org/downloads) 
+There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(http://www.raspberrypi.org/downloads)
 You can even turn it into a home theater (http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/).
 However, I'm not going to explain any of those ways because just installing them gives you 99% of the functionality. As a developer, I want to have control of the computers, and I'm not afraid of the console. So, I installed Raspbian instead, which is a lightweight Ubuntu/Debian Linux optimized for Raspberry Pi.
 
@@ -40,7 +40,7 @@ sudo apt-get update && sudo apt-get upgrade
 Audio ports could either be bind to the HDMI connection or to the audio output jack (you need sudo to execute any sound command).
 ```bash
 sudo amixer cset numid=3 1
-``` 
+```
 
 Connect the speakers to you Raspberry Pi. You can test that they work with these:
 
@@ -93,5 +93,5 @@ chmod a+x /etc/init.d/airplay
 update-rc.d airplay defaults
 ```
 
-Reboot your Pi and you are good to go! 
+Reboot your Pi and you are good to go!
 (If you have any questions you can write a comment below)
