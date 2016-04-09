@@ -159,7 +159,8 @@ Finally, we start using our new directive! It takes two attributes the title and
 
 That’s all you need to make it work. Now try it!
 
-<iframe style="width: 100%; height: 360px" src="//embed.plnkr.co/7ZDRclRJaJyTtRBKjIa3/" frameborder="0" allowfullscren="allowfullscren"></iframe>
+<iframe style="width: 100%; height: 400px;" src="//embed.plnkr.co/7ZDRclRJaJyTtRBKjIa3/" frameborder="0" allowfullscren="allowfullscren"></iframe>
+
 
 # Next steps
 
