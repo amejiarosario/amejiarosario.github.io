@@ -1,9 +1,13 @@
---- 
+---
 layout: post
 title: eLearning 2.0 and Social, Practice-Oriented Communities to Improve Knowledge in Companies - Paper Review
 created: 1317137273
 comments: true
-categories: [paper review, social bookmarking, e-learning, web semantics]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+#categories: [paper review, social bookmarking, e-learning, web semantics]
 ---
 S. R. Kruk et al. (2007) [1] implemented a social bookmarking system called Social Semantic Collaborative Filtering (SSCF). The goal of the SSCF is to enhance individual bookmarks with shared knowledge of the community. It also presents how digital libraries can be combined with social semantic information sources and it exemplifies how these techniques can improve e-Learning. Digital Libraries and other open courses can leverage their potential with the collaborative architectures. Learners can use it to exchange information, and express and synthetize knowledge e-Learning environments. It also makes use of the social bookmarking, web semantics and ontology services in other to organize and classify knowledge.
 <!--More-->

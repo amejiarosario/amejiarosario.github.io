@@ -3,7 +3,15 @@ layout: post
 title: "Blog migration explained: Drupal 7 to Jekyll"
 date: 2012-04-27 22:00
 comments: true
-categories: [drupal, ruby, jekyll, octopress]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+tags:
+  - drupal
+categories:
+  - Technologies
+#categories: [drupal, ruby, jekyll, octopress]
 ---
 This post is a guide on how to extract your blog posts information from Drupal 7 to other systems. And also automatically create a redirect files from the old blog to the new one. In this case, I migrated to Jerkyll/Octopress blog but from the data extracted in with my script you can migrate any other blog system. Hopefully, this will save you a lot of time if you need to do the same task. If you run into troubles go to last section of the post it has some suggestions.
 <!--More-->

@@ -1,9 +1,16 @@
---- 
+---
 layout: post
 title: What technologies are using the most influential Internet companies?
 created: 1310520950
 comments: true
-categories: [google, twitter, facebook, programming, social media, internet]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+tags:
+  - startups
+categories:
+  - Technologies
 ---
 <div>Google, Facebook, YouTube, Yahoo, Wikipedia, Hotmail (Windows Live), Twitter, LinkedIn, Amazon.com, WordPress.com, eBay, Bing... You may know probably all these companies; we use some on our daily basis. They bring services to around 2 billion people! And influence our lives everyday. The most influential Internet companies are in the search engine and social media category, so I will focus the analysis in these two. &nbsp;</div>
 <div>&nbsp;</div>

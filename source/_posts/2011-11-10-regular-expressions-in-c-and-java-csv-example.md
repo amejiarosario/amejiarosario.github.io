@@ -1,9 +1,18 @@
---- 
+---
 layout: post
 title: Regular Expressions in C# and Java - CSV Example
 created: 1320937797
 comments: true
-categories: [c#, csv, regex, java]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+tags:
+  - java
+  - c#
+categories:
+  - Technologies
+#categories: [c#, csv, regex, java]
 ---
 <p>Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;</p>
 <!--More-->
@@ -81,13 +90,13 @@ name,line1,line2,city,zip code,country</pre>
                 }
         }
 
-        size = allMatches.size();               
+        size = allMatches.size();
         if (size &gt; 0) {
                 return allMatches.toArray(new String[size]);
         }
         else {
                 return new String[0];
-        }                       
+        }
     } </pre>
 	</div>
 </div>

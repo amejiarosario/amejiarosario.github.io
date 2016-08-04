@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Blog Archive</h1>
+
+  <div class="row">
+    <section class="col-md-9 p-a-2">
+      <div class="row">
+        <!--.sort('pageviews__total', -1)-->
+        <% page.posts.each(function(post, i){ %>
+          <%- partial('_partials/post-thumbnail', { post: post, klass: 'col-md-4 col-sm-6 card' }) %>
+        <% }) %>
+      </div>
+    </section>
+
+    <aside class="col-md-3 p-a-2">
+      <% theme.asides.forEach(function(widget){ %>
+        <%- partial('_asides/' + widget) %>
+      <% }) %>
+    </aside>
+  </div>
+
+  <section class="row p-a-4">
+    <%- paginator() %>
+  </section>
+</div>

@@ -3,7 +3,11 @@ layout: post
 title: Adding Subversion (SVN) Properties to your code
 created: 1329003331
 comments: true
-categories: [subversion, eclipse]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+#categories: [subversion, eclipse]
 ---
 <p>When you are coding in a team enviroment it&#39;s good to have the subversion properties in your files, that way any other developer can see quickly who made the last changes and when.</p>
 <p>You can add the following lines at the bottom of your code:</p>
@@ -67,8 +71,14 @@ categories: [subversion, eclipse]
 		Commit and you are all set.</li>
 </ol>
 <p>Eclipse Menu to add svn properties</p>
-<p><img alt="Eclipse SVN Property Menu" src="http://adrianmejiarosario.com/sites/default/files/svnprop1.png" style="width: 600px; height: 564px; " /></p>
+<p>
+<!-- <img alt="Eclipse SVN Property Menu" src="http://adrianmejiarosario.com/sites/default/files/svnprop1.png" style="width: 600px; height: 564px; " /> -->
+</p>
 <p>Adding SVN properties typing</p>
-<p><img alt="" src="http://adrianmejiarosario.com/sites/default/files/svnprop2.png" style="width: 525px; height: 520px; " /></p>
+<p>
+<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/svnprop2.png" style="width: 525px; height: 520px; " /> -->
+</p>
 <p>Adding SVN property from file</p>
-<p><img alt="SVN property from file" src="http://adrianmejiarosario.com/sites/default/files/svnprop3.png" style="width: 525px; height: 520px; " /></p>
+<p>
+<!-- <img alt="SVN property from file" src="http://adrianmejiarosario.com/sites/default/files/svnprop3.png" style="width: 525px; height: 520px; " /> -->
+</p>

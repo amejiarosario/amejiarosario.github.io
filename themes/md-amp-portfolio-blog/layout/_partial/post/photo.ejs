@@ -1,0 +1,5 @@
+<% if (post.photos && post.photos.length){ %>
+  <a class="article-gallery-img fancybox" href="<%- url_for(post.photos[0]) %>" rel="gallery_<%= post._id %>">
+    <img src="<%- url_for(post.photos[0]) %>" itemprop="image">
+  </a>
+<% } %>

@@ -3,29 +3,40 @@ layout: post
 title: "Backbone.js for absolute beginners - getting started (part 3: CRUD)"
 date: 2012-09-13 01:37
 comments: true
-categories: [backbonejs, javascript]
+pageviews__total: 69570
+pageviews__recent: 152  
+pageviews__avg_time: 1807
 toc: true
+#categories: [backbonejs, javascript
+photos:
+- /images/Backbone_for_beginners_part3_300x250.png
+- /images/BackbonesforBeginners_728x360.png
+tutorial__order: 3
+tags:
+  - backbonejs
+  - javascript
+  - tutorial_backbonejs
+categories:
+  - Technologies
+  - Web Development
 ---
 
 In tutorial we are going to continue learning about BackboneJS: CRUD.
 
 <!--More-->
-(updated: 2014-10-13)
-
-# BackboneJS III
 
 The part 2 of this tutorial is [here](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/).
 
-## 2.5 Todo item list CRUD
+# Todo item list CRUD
 There are a couple of features that we could improve. Let’s implement the CRUD (Create-Read-Update-Delete) for the item list.
 
-### 2.5.1. C-reate
+## C-reate
 
 
 We are already can create item list from the console (2.3) and also from the UI (2.4.3). So, it’s done.
 
 
-### 2.5.2. U-pdate
+## U-pdate
 
 
 What if you make a mistake and want to change the text on some of your to-do list. Furthermore, you can notice that the checkboxes states are not persistent when you reload the pages. Let’s fix both problems.
@@ -94,7 +105,7 @@ You can find the [diff](https://github.com/amejiarosario/Backbone-tutorial/commi
 
 [Here](https://github.com/amejiarosario/Backbone-tutorial/commit/19fa69e654ae5d370385675e4ffed615532b9934) are the changes to fix the update for the checkboxes.
 
-### 2.5.2. D-elete
+## D-elete
 
 To be able to remove to-do items, we need to add a remove button in each item and listen to the click event on it, which will trigger the destroy function in the selected todo object.
 
@@ -154,4 +165,6 @@ To be able to remove to-do items, we need to add a remove button in each item an
 
 You can download the full working code so far in [here](https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html) and you can visualize the changes needed to implement the delete feature in [here](https://github.com/amejiarosario/Backbone-tutorial/commit/1267e531ae3ef508eb32e5308c2cc965f02d1b45)
 
-### Continue with the [4th part](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/) and learn about Backbone's Routes!
+# What's next?
+
+Continue with the [4th part](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/) and learn about Backbone's Routes!

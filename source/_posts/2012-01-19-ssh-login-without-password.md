@@ -1,9 +1,13 @@
---- 
-layout: post
+---
+layout: snippet
 title: SSH login without password
 created: 1327004823
 comments: true
-categories: [ssh, ubuntu, linux, cli, command line]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+#categories: [ssh, ubuntu, linux, cli, command line]
 ---
 <p>If you want to login to a remote server using SSH and don&#39;t have to type the password again and again, here is a little trick</p>
 

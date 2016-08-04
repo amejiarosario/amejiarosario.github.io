@@ -1,0 +1,61 @@
+// ------------------------
+// Index
+// ------------------------
+
+#home {
+
+}
+
+#trending-posts {
+
+}
+
+#subscribe {
+
+}
+
+#about {
+
+}
+
+.light-background {
+  background-color: $light-background;
+}
+
+.art-container {
+  width: 100%;
+  color: white;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    max-height: 400px;
+  }
+}
+
+.hero {
+  margin: 3em 0;
+
+  h1 {
+    margin: 0.5em 0;
+  }
+}
+
+.muted {
+  color: gray;
+  a {
+    color: gray;
+  }
+}
+
+
+.post-content {
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #e7e9ee;
+
+  // responsive images
+  img {
+  	display: block;
+  	max-width: 90%;
+  }
+}

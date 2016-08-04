@@ -3,15 +3,26 @@ layout: post
 title: Learning Algorithms from Scratch / Algorithms for Dummies
 created: 1324582027
 comments: true
-categories: [algorithms, runtime analysis, analysis of algorithm, for dummies, big-o]
+pageviews__total: 26912
+pageviews__recent: 169
+pageviews__avg_time: 648
+tutorial__order: 0
+tags:
+  - big o
+  - algorithms
+categories:
+  - Technologies
+  - Algorithms
 ---
 
 <p>When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest.</p>
 
 <!--More-->
+<hr>
+**Update**
 
-**Update**: graphs are gone in this post, sorry. I re-made this post and added more information and images. Checkout it out at: <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a>
-
+Graphs are gone in this post. I re-made this post and added more information and images. Checkout it out at: <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a>
+<hr>
 
 <p class="p1"><b>Why should you care for efficiency?</b></p>
 <p class="p1">Solutions to the same problem might take years with certain algorithm, and just minutes using efficient algorithms. For instance, if you have applications that are used for thousands of people over internet, every fraction of second counts. Therefore, efficient algorithms is a must.</p>
@@ -31,15 +42,29 @@ categories: [algorithms, runtime analysis, analysis of algorithm, for dummies, b
 <p class="p1"><b>Common order of Growth</b></p>
 <p class="p1">To give you an idea of the common order of growth of runtime expressions. Take a look at the following graph and table. The slower the function growth the better is the algorithm. In order from better performance to worst is:</p>
 <p class="p1">1 -- log n -- n -- n log n -- n^2 -- n^3 -- 2^n -- n! ...</p>
-<p class="p2"><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.22.12%20PM.png" style="width: 300px; height: 306px; " /></p>
-<p class="p2">&nbsp;</p>
-<p class="p2"><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.23.45%20PM.png" style="width: 300px; height: 257px; " /></p>
-<p class="p2">&nbsp;</p>
-<p class="p1">&nbsp;</p>
+<p class="p2">
+
+
+<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.22.12%20PM.png"  /> -->
+
+
+</p>
+<p class="p2">
+
+
+<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.23.45%20PM.png"  /> -->
+
+
+</p>
 <p class="p1"><b>Approximate growth rate from code.</b></p>
 <p class="p1">There are a whole theory and math behind the Big-O notation and other notations related. At this time, just take a look of the typical code and its growth order.</p>
-<p class="p1"><img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%204.51.48%20PM.png" style="width: 600px; height: 427px; " /></p>
-<p>&nbsp;</p>
+<p class="p1">
+
+
+<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%204.51.48%20PM.png"  /> -->
+
+
+</p>
 <p><strong>Cases (the good, the bad, and the ugly)</strong></p>
 <p>Remember that n is the number of elements in the input. All this runtime growth rate are in function of the input elements. There is another important thing to consider about the input elements: the order! The order of the input elements matters, and that&#39;s why algorithms are analyzed in 3 different cases:</p>
 <ol>
@@ -55,9 +80,9 @@ categories: [algorithms, runtime analysis, analysis of algorithm, for dummies, b
 <p class="p2">If you want more depth in these topic read here:&nbsp;</p>
 <ul>
 	<li class="p2">
-		<span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">Analysis (</span><a href="http://gcu.googlecode.com/files/02Analysis.pdf" style="color: rgb(85, 26, 139); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">pdf</a><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">) (</span><a href="http://gcu.googlecode.com/files/02Analysis.key.zip" style="color: rgb(85, 26, 139); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">keynote</a><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; line-height: 16px; background-color: rgb(255, 255, 255); font-size: small; ">)</span></li>
+		<span >Analysis (</span><a href="http://gcu.googlecode.com/files/02Analysis.pdf" >pdf</a><span >) (</span><a href="http://gcu.googlecode.com/files/02Analysis.key.zip" >keynote</a><span >)</span></li>
 	<li class="p2">
-		<span style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-family: Helvetica, Arial, sans-serif; font-size: small; line-height: 16px; ">Algorithm @&nbsp;</span>ocw.mit.edu: lectures <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-1-administrivia-introduction-analysis-of-algorithms-insertion-sort-mergesort">1 </a>and <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-2-asymptotic-notation-recurrences-substitution-master-method">2</a></li>
+		<span >Algorithm @&nbsp;</span>ocw.mit.edu: lectures <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-1-administrivia-introduction-analysis-of-algorithms-insertion-sort-mergesort">1 </a>and <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-2-asymptotic-notation-recurrences-substitution-master-method">2</a></li>
 	<li class="p2">
 		http://algs4.cs.princeton.edu/home/</li>
 </ul>

@@ -1,9 +1,17 @@
---- 
+---
 layout: post
 title: How to set up Git / github in windows
 created: 1311267147
 comments: true
-categories: [git, github, how-to]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+tags:
+  - git
+categories:
+  - Technologies
+# categories: [git, github, how-to]
 ---
 <p>Installing Git in Windows is not as straight forward as in a *nix machine like Linux and Mac. This guide help you to get started quickly.</p>
 <!--More-->
@@ -25,5 +33,7 @@ categories: [git, github, how-to]
 	<li>Config TortoiseGit: do right click and in the contextual menu: TortoiseGit -&gt; Settings -&gt; Git -&gt; config (set your name and password)</li>
 	<li>Set remote git server: Settings -&gt; Git -&gt; Remote. Fill it up with your Git server info (e.g. Github, Google code, ...)</li>
 </ol>
-<p><img alt="GitTortoise Remote Configuration" src="http://adrianmejiarosario.com/sites/default/files/pictures/gitTortoise-RemoteConfig.JPG"><br>
-	&nbsp;</p>
+<p>
+
+
+<!-- <img alt="GitTortoise Remote Configuration" src="http://adrianmejiarosario.com/sites/default/files/pictures/gitTortoise-RemoteConfig.JPG"> -->

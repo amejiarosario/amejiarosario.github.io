@@ -1,0 +1,33 @@
+<article class="<%= klass || 'col-md-3 col-sm-6 card' %>">
+  <a href="<%- url_for(post.path) %>">
+    <% if(post.photos[0]) { %>
+      <img src="<%= post.photos[0] %>" width="300" height="250">
+      <section class="p-a-1">
+        <h3><%= post.title %></h3>
+      </section>
+    <% } else if(post.layout === 'snippet') { %>
+      <section class="p-a-1">
+        <h3><%= post.title %></h3>
+        <%- post.content %>
+      </section>
+    <% } else { %>
+      <section class="thumbnail-300x250 background-text--dark-color-<%= Math.floor(Math.random()*10) %>">
+        <p><%= post.title %></p>
+      </section>
+      <section class="p-a-1">
+        <% if (post.tags && post.tags.length){ %>
+          <% post.tags.each(function(tag){ %>
+            <a href="<%- url_for(tag.path) %>">#<%- tag.name %> </a>
+          <% }) %>
+        <% } %>
+      </section>
+      <section class="p-a-1">
+        <% if (post.categories && post.categories.length){ %>
+          <% post.categories.each(function(cat){ %>
+            &raquo; <a href="<%- url_for(cat.path) %>"><%- cat.name %></a>
+          <% }) %>
+        <% } %>
+      </section>
+    <% } %>
+  </a>
+</article>

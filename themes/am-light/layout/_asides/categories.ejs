@@ -1,0 +1,16 @@
+<% if (site.posts.length){ %>
+  <section>
+    <h3>Categories</h3>
+    <%- list_categories() %>
+    <!-- <ul>
+
+      <% site.categories.each(function(cat){ %>
+        <li>
+          <a href="<%- url_for(cat.path) %>">
+            <%- cat.name %> <sup><%- cat.length %></sup>
+          </a>
+        </li>
+      <% }) %>
+    </ul> -->
+  </section>
+<% } %>

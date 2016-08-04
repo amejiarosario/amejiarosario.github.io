@@ -1,0 +1,219 @@
+// -------------------
+// paginator
+// -------------------
+
+// borders (shared by prev and next)
+.extend {
+  align-self: center;
+  &:hover {
+    @extend .animation--bounce-in;
+    font-size: 2em;
+  }
+}
+
+.next {
+  &::after {
+    content: ' »'
+  }
+}
+
+.prev {
+  &::before {
+    content: '« '
+  }
+}
+
+.page-number {
+  align-self: center;
+  &:hover {
+    @extend .animation--bounce-in;
+    font-size: 2em;
+  }
+}
+
+.current {
+  font-size: 2em;
+  align-self: center;
+}
+
+.list-count {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+// -------------------
+// list_categories
+// -------------------
+
+.category-list {
+  .category-list-item {
+    .category-list-link {
+    }
+
+    .category-list-count {
+      @extend .list-count;
+    }
+
+    .category-list-child {
+    }
+  }
+}
+
+// -------------------
+// list_archives
+// -------------------
+
+.archive-list {
+  .archive-list-item {
+    .archive-list-link {
+
+    }
+    .archive-list-count {
+      @extend .list-count;
+    }
+  }
+}
+
+// -------------------
+// list_tags
+// -------------------
+
+.tag-list {
+  &::before {
+    font-family: FontAwesome;
+    content: '\f02c'; // tags icon
+    margin-right: 10px;
+  }
+
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
+
+  .tag-list-item {
+    display: inline;
+    margin-right: 3px;
+    text-transform: lowercase;
+  }
+
+  .tag-list-link {
+    color: inherit;
+    &::before {
+      font-family: FontAwesome;
+      font-size: 0.8em;
+      content: '\f292';
+    }
+  }
+
+  .tag-list-count {
+    display: none;
+  }
+}
+
+// toc
+.toc-content {
+  counter-reset: section;
+
+  h1 {
+      counter-reset: subsection;
+  }
+
+  h1:before {
+      counter-increment: section;
+      content: counter(section) ". ";
+  }
+
+  h2:before {
+      counter-increment: subsection;
+      content: counter(section) "." counter(subsection) " ";
+  }
+}
+
+.toc-title {
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.toc {
+  padding: 0;
+
+  .toc-item {
+    list-style-type: none;
+
+    &.active {
+      .toc-item {
+        display: list-item;
+      }
+    }
+
+    a {
+      color: inherit;
+      padding: 5px 10px;
+
+      &:hover, &.active {
+        font-weight: bold;
+        border-left: 2px solid $primary-color;
+      }
+    }
+  }
+
+  .toc-level-1 {
+
+  }
+
+  .toc-level-2 {
+    display: none;
+  }
+
+  .toc-level-3 {
+    display: none;
+  }
+}
+
+.sticky-element--fixed {
+  position: fixed;
+  top: 0;
+}
+
+// Previous and next article
+
+.article-nav {
+  display: flex;
+  justify-content: space-between;
+
+  .article-nav-caption {
+    color: gray;
+    text-transform: uppercase;
+  }
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+// needs https://github.com/amejiarosario/hexo-renderer-marked/tree/patch-1
+
+h1, h2, h3, h4 {
+  &:hover {
+    .headerlink {
+      &::after {
+        font-family: FontAwesome;
+        // content: '\f13d'; // anchor
+        content: '\f0c1'; // link
+        font-size: .7em;
+        color: #444;
+        margin-left: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# Header
+menu:
+  Home: '/#home'
+  Trending: '/#trending-posts'
+  About: '/#about'
+  Blog: /blog
+
+asides:
+  - tagcloud
+  - categories
+  - archives
+
+disqus_id: adrianmejia
+fb_app_id: 761831487293468
+fb_admins: 895685163

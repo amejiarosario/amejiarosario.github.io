@@ -1,9 +1,19 @@
---- 
+---
 layout: post
 title: How to set up Samba in Ubuntu/Linux, and access it in Mac OS and Windows
 created: 1310520455
 comments: true
-categories: [samba, ubuntu, linux]
+pageviews__total: 6144
+pageviews__recent: 435
+pageviews__avg_time: 403
+tutorial__order: 0
+tags:
+  - samba
+  - windows
+  - mac
+categories:
+  - Technologies
+  - Troubleshooting
 ---
 <p>Samba allows to share files and printers with other computers remotely, regardless their operating system (linux, windows, Mac, ...).&nbsp;This guide show how to intall and configure the Samba service in a Ubuntu machine and access it through windows and mac.</p>
 <!--More-->
@@ -14,15 +24,15 @@ categories: [samba, ubuntu, linux]
 	<li>Configure samba typing: <code>vi /etc/samba/smb.conf</code></li>
 	<li>Set your workgroup (if necesary). Go down in the file, until you see :
 		<div>
-			<blockquote>
+			<br>
 				<pre># Change this to the workgroup/NT-domain name your Samba server will part of
    workgroup = WORKGROUP</pre>
-			</blockquote>
+			<br>
 		</div>
 	</li>
 	<li>Set your share folders. Do something like this (change your path and comments)
 		<div>
-			<blockquote>
+			<br>
 				<pre># Adrian's share
 [MyShare]
   comment = YOUR COMMENTS
@@ -30,7 +40,7 @@ categories: [samba, ubuntu, linux]
   read only = no
   guest ok = yes
 </pre>
-			</blockquote>
+			<br>
 		</div>
 	</li>
 	<li>Restart samba. type:&nbsp;/etc/init.d/smbd restart</li>
@@ -60,12 +70,12 @@ categories: [samba, ubuntu, linux]
 </div>
 <div>If you need to enable the samba ports in your firewall these are the ports:</div>
 <div>
-	<blockquote>
+	<br>
 		<pre>port type	port no
 udp		137
 udp		138
 tcp		139
 tcp		445</pre>
-	</blockquote>
+	<br>
 </div>
 <p>&nbsp;</p>

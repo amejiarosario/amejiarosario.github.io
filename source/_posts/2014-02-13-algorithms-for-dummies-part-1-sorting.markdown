@@ -3,9 +3,23 @@ layout: post
 title: "Algorithms for dummies (Part 1): Big-O Notation and Sorting"
 date: 2014-02-13 09:28:51 -0400
 comments: true
-categories: [algorithms, big-o, sorting, merge sort]
+toc: true
+pageviews__total: 43787
+pageviews__recent: 247  
+pageviews__avg_time: 2327
+#categories: [algorithms, big-o, sorting, merge sort]
+photos:
+  - /images/AlgorithmsForDummies_300x350.png
+  - /images/AlgorithmsForDummies_728x360.png
+photos__background_color: '#F2ED5B'
+tutorial__order: 0
+tags:
+  - big o
+  - algorithms
+categories:
+  - Technologies
+  - Algorithms
 ---
-
 
 After being developing software for a while,  I realized that there is a couple of ways to become better at it. One it's through your experience: writing code, working on projects, getting hands dirty... Other one it's learning algorithms and design patterns. In other words through leveraging the experience of other computer scientists. Learning to use algorithms efficiently can instantly add to you the equivalent of 10 years of experience or more. Let's get started and add new tools to our arsenal!
 
@@ -92,62 +106,91 @@ Even though the code is much longer, the algorithm is much more efficient.
 It would take some more knowledge to derive the running time mathematically, and we haven't covered that yet. However, bear with me, it's O(n log(n)). Let's sum up:
 
 Algorithm | best | average | worst | space complexity
- |
 Insertion Sort | O(n) | O(n^2) | O(n^2) | O(1)
 Merge sort | O(n log(n)) | O(n log(n)) | O(n log(n)) | O(n)
 
 Notice that the table has also the space complexity. How much space does the algorithms take is also an important parameter to compare algorithms. The merge sort uses an additional array that's way its space complexity is `O(n)`, however, the insertion sort uses `O(1)` because it does the sorting in-place.
 
-Big O Notation
+# Big O Notation
 
 Big O is defined as the asymptotic upper limit of a function. In plain english, it means that is a function that cover the maximum values a function could take. As we saw a little earlier this notation help us to predict performance and compare algorithms.
 
-{% comment %}
-  {% img /images/growth_table.png %}
-  {% img /images/growthcurves.png %}
-{% endcomment %}
 
-<table border=1>
-<tr><th>Growth Rate</th><th>Name</th></tr>
-<tr><td>1</td><td>Constant</td></tr>
-<tr><td>log(n)</td><td>Logarithmic</td></tr>
-<tr><td>n</td><td>Linear</td></tr>
-<tr><td>n*log(n)</td><td>Linearithmic</td></tr>
-<tr><td>n^2</td><td>Quadratic</td></tr>
-<tr><td>n^3</td><td>Cubic</td></tr>
-<tr><td>2^n</td><td>Exponential</td></tr>
-</table>
+
+| Growth Rate | Name         |
+|-------------|--------------|
+| 1           | Constant     |
+| log(n)      | Logarithmic  |
+| n           | Linear       |
+| n log(n)    | Linearithmic |
+| n^2         | Quadratic    |
+| n^3         | Cubic        |
+| 2^n         | Exponential  |
+
 
 This is kinda abstract let's see what it means in code:
 
-<table border=1>
-<tr><td>Growth Rate</td><td>Name</td><td>Code e.g.</td><td>description</td></tr>
-<tr><td>1</td><td>Constant</td><td>a+=1;</td><td>statement (one line of code)</td></tr>
-<tr><td>log(n)</td><td>Logarithmic</td><td>
-<pre>
-while(n>1){
-  n=n/2;
-}
-</pre>
-</td><td>Divide in half (binary search)</td></tr>
-<tr><td>n</td><td>Linear</td><td>
-<pre>
+<table>
+  <tr>
+    <th>Growth Rate</th>
+    <th>Name</th>
+    <th>Code Example</th>
+    <th>description</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Constant</td>
+    <td><pre>a= b + 1;</pre></td>
+    <td>statement (one line of code)</td>
+  </tr>
+  <tr>
+    <td>log(n)</td>
+    <td>Logarithmic</td>
+    <td>
+      <pre>
+      while(n>1){
+        n=n/2;
+      }
+      </pre>
+    </td>
+    <td>Divide in half (binary search)</td>
+  </tr>
+  <tr>
+    <td>n</td>
+    <td>Linear</td>
+    <td>
+      <pre>
 for(c=0; c&lt;n; c++){
   a+=1;
 }
-</pre></td><td>Loop</td></tr>
-<tr><td>n*log(n)</td><td>Linearithmic</td><td>Mergesort, Quicksort, ...</td><td>Effective sorting algorithms</td></tr>
-<tr><td>n^2</td><td>Quadratic</td><td>
-<pre>
+</pre></td>
+    <td>Loop</td>
+  </tr>
+  <tr>
+    <td>n*log(n)</td>
+    <td>Linearithmic</td>
+    <td>Mergesort, Quicksort, ...</td>
+    <td>Effective sorting algorithms</td>
+  </tr>
+  <tr>
+    <td>n^2</td>
+    <td>Quadratic</td>
+    <td>
+      <pre>
 for(c=0; c&lt;n; c++){
   for(i=0; i&lt;n; i++){
     a+=1;
   }
 }
 </pre>
-</td><td>Double loop</td></tr>
-<tr><td>n^3</td><td>Cubic</td><td>
-<pre>
+    </td>
+    <td>Double loop</td>
+  </tr>
+  <tr>
+    <td>n^3</td>
+    <td>Cubic</td>
+    <td>
+      <pre>
 for(c=0; c&lt;n; c++){
   for(i=0; i&lt;n; i++){
     for(x=0; x&lt;n; x++){
@@ -156,8 +199,15 @@ for(c=0; c&lt;n; c++){
   }
 }
 </pre>
-</td><td>Triple loop</td></tr>
-<tr><td>2^n</td><td>Exponential</td><td>Trying to braeak a password generating all possible combinations</td><td>Exhaustive search</td></tr>
+    </td>
+    <td>Triple loop</td>
+  </tr>
+  <tr>
+    <td>2^n</td>
+    <td>Exponential</td>
+    <td>Trying to braeak a password generating all possible combinations</td>
+    <td>Exhaustive search</td>
+  </tr>
 </table>
 
 That's all for this first part 1. I will continue publishing this tutorials every week or so. Stay tune!

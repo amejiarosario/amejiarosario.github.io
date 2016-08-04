@@ -1,0 +1,22 @@
+<div id="container">
+  <div id="wrap">
+
+    <%- partial('_partial/md-header', null, {cache: !config.relative_link}) %>
+
+    <div class="outer">
+
+      <section id="main"><%- body %></section>
+
+      <% var has_sidebar = !is_home()  %>
+      <% if (has_sidebar && theme.sidebar && theme.sidebar !== 'bottom'){ %>
+        <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
+      <% } %>
+
+    </div>
+
+    <%- partial('_partial/md-footer', null, {cache: !config.relative_link}) %>
+  </div>
+
+  <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
+  <%- partial('_partial/after-footer') %>
+</div>

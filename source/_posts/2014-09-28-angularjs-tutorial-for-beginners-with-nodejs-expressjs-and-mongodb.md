@@ -3,27 +3,36 @@ layout: post
 title: "AngularJS tutorial for beginners with NodeJS ExpressJS and MongoDB (Part I)"
 date: 2014-09-28 23:50:24 -0400
 comments: true
-categories: [angularjs, javascript, nodejs, mongodb, mean stack]
 toc: true
+pageviews__total: 294049  
+pageviews__recent: 244  
+pageviews__avg_time: 17303
+photos__background_color: '#25A9DD'
+bitly: 'http://bit.ly/angular-4-beginners'
+photos:
+  - /images/AngularJSTutorial_300x250.png
+  - /images/AngularJSTutorial_728x360.png
+tutorial__order: 1
+tags:
+  - angularjs
+  - javascript
+  - Tutorial_MEAN-Stack
+categories:
+  - Technologies
+  - Web Development
 ---
 
 This tutorial is meant to be as clear as possible while at the same time teach you how to connect AngularJS with back-end servers in Node.Js, Express.js and databases such as MongoDB, also known as the MEAN stack. Let's start with angularJS!
 
 <!--More-->
 
-# Part I: AngularJS
-
 We are going to start building all the examples in a single HTML file, which has embedded javascript and NO styles/CSS for simplicity. In the next tutorials we will learn how to use angularJS modules to break down the code, add testing to it and styles.
 
-## What is Angular.js?
-
-{% img /images/angularjs.png 200 200 AngularJS %}
+# What is Angular.js?
 
 Angular.js is a MVW (Model-View-Whatever) open-source JavaScript web framework that facilitates the creation of single-page applications (SPA) and data-driven apps.
 
-## Brief Background
-
-### AngularJS vs jQuery vs BackboneJS vs EmberJS
+## AngularJS vs jQuery vs BackboneJS vs EmberJS
 
 <a href="#start">TL; DR</a>: AngularJS is awesome for building testable single page applications (SPA), and also data driven and CRUD apps. <a href="#start">Show me the code!.</a>
 
@@ -46,9 +55,11 @@ Without further ado, let’s dive in!
 
 <a id="start"></a>
 
-## AngularJS Main Components
+# AngularJS Main Components
 
-### AngularJS Directives
+AngularJS has an <a href="https://docs.angularjs.org/api" target="_blank">extensive API</a> and components. In this tutorial we are going to focus on the most important ones, such as directives, modules, services, controllers and related concepts.
+
+## AngularJS Directives
 
 The first concept you need to know about AngularJS is what are directives.
 
@@ -116,7 +127,7 @@ Working example:
 If you are interested in seeing more options for directives go [here](http://www.sitepoint.com/practical-guide-angularjs-directives/).
 
 
-### AngularJS Data Binding
+## AngularJS Data Binding
 
 **Data binding** is an AngularJS feature that automatically synchronizes your model data with your HTML. That’s great because models is the "single source of truth" and you do not have to worry about updating them. Here’s a graph from docs.angularjs.org.
 
@@ -124,13 +135,13 @@ If you are interested in seeing more options for directives go [here](http://www
 
 Whenever the HTML is changed the model gets updated and wherever the model gets updated it is reflected in HTML.
 
-### AngularJS Scope
+## AngularJS Scope
 
 `$scope` it is an object that contains all the data to which HTML is bound. They are the glue your javascript code (controllers) and the view (HTML). Everything that is attached to the `$scope`, it is automatically `$watch`ed by AngularJS and updated.
 
 Scopes can be bound to javascript functions and also you could have more than one `$scope` and inherit from outer ones. More on this, in the controllers section.
 
-### AngularJS Controllers
+## AngularJS Controllers
 
 Angular.js **controllers** are code that "controls" certain sections containing DOM elements in which they are declared. They encapsulate the behavior, callbacks and glue `$scope` models with views. Let's see an example to drive the concept home:
 
@@ -245,7 +256,7 @@ angular.module('app', ['ngRoute'])
 
 * `ngView` is a directive used by `$routeProvider` to render HTML into it. Every time the URL changes, it will inject a new HTML template and controller into ngView.
 
-## AngularJS Services (factory)
+## AngularJS Services (Factories)
 
 Notice that if you want to create a 2nd controller and share $scope.todos it is not possible right now. That is when services become handy. Services are a way to inject data dependencies into controllers. They are created through factories. Let's see it in action:
 
@@ -325,16 +336,11 @@ Notice that we are using `search.name` in the `ng-model` for search. That will l
 
 <p data-height="268" data-theme-id="0" data-slug-hash="ahwbz" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/ahwbz/'>ahwbz</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-## What's next?
+# What's next?
 
-Congrats! You have completed part 1. We are going to build upon the things learned in here, in the next post we are going to setup a backend in NodeJS and MongoDB and connect it to AngularJS to provide a full featured CRUD app. Continue with:
+Congrats! You have completed part 1 of this [3 part series](/tags/Tutorial-MEAN-Stack/). We are going to build upon the things learned in here, in the next post we are going to setup a backend in NodeJS and MongoDB and connect it to AngularJS to provide a full featured CRUD app. Continue with:
 
 * Part II - [NodeJS/ExpressJS and MongoDB/Mongoose](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/)
-
-
-[{% img /images/nodejs.png 200 200 NodeJS %}](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/)
-[{% img /images/mongodb.png 200 200 MongoDB %}](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/)
-
 
 * Part III - [MEAN Stack: Wiring all together](/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/)
 

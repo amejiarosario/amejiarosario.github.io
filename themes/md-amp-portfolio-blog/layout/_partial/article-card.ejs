@@ -1,0 +1,34 @@
+<!-- <article> -->
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__media">
+      <img src="<%- url_for(post.photos[0]) %>" width="336" height="280">
+    </div>
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">
+        <a href="<%- url_for(post.path) %>">
+          <%- post.title %>
+        </a>
+      </h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <%- partial('post/date', {class_name: 'archive-article-date', date_format: 'MMM D'}) %>
+      <%- truncate(post.excerpt, {length: 140}) %>
+      <p>
+        visits: <%- post.visits %>
+      </p>
+      <% post.tags.each(function(tag){ %>
+        <a href="<%- url_for(tag.path) %>">#<%- tag.name %><sup><%- tag.length %></sup></a>
+      <% }) %>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a href="<%- url_for(post.path) %>#more" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        read more
+      </a>
+    </div>
+    <div class="mdl-card__menu">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+        <i class="material-icons">share</i>
+      </button>
+    </div>
+  </div>
+<!-- </article> -->

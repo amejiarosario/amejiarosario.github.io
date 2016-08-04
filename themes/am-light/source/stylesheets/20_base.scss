@@ -1,0 +1,116 @@
+// ------------------------
+// Base styles
+// ------------------------
+
+html {
+  box-sizing: border-box;
+  font-size: 18px;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+// ------------------------
+// Body
+// ------------------------
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font-family: $font-copy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-header;
+}
+
+h1 {
+  font-size: 3em; // 34px
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 2.125em; // 34px
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 1.5em; // 24px
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 1em; // 16 px
+}
+
+p {
+  line-height: 150%;
+}
+
+acronym, abbr {
+  border-bottom: 1px $primary-color dotted;
+}
+
+
+// blockquote
+
+blockquote{
+  display:block;
+  padding: 15px 20px 15px 45px;
+  margin: 0 0 20px;
+  position: relative;
+
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #666;
+  text-align: justify;
+
+  /*Borders - (Optional)*/
+  //border-left: 5px solid $primary-color;
+  //border-right: 1px solid $primary-color;
+  border-left: 10px solid $primary-color;
+
+  /*Box Shadow - (Optional)*/
+  //-moz-box-shadow: 2px 2px 15px #ccc;
+  //-webkit-box-shadow: 2px 2px 15px #ccc;
+  //box-shadow: 2px 2px 15px #ccc;
+  background: #f9f9f9;
+}
+
+blockquote::before{
+  content: "\201C"; /*Unicode for Left Double Quote*/
+
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #999;
+
+  /*Positioning*/
+  position: absolute;
+  left: 10px;
+  top:5px;
+}
+
+blockquote::after{
+  /*Reset to make sure*/
+  content: "";
+}
+
+blockquote a{
+  text-decoration: none;
+  background: #eee;
+  cursor: pointer;
+  padding: 0 3px;
+  color: $primary-color;
+}
+
+blockquote a:hover{
+  color: #666;
+}
+
+blockquote em{
+  font-style: italic;
+}

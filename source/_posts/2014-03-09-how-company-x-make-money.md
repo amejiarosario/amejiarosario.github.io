@@ -3,7 +3,15 @@ layout: post
 title: "How company X make money?"
 date: 2014-03-09 21:39:42 -0400
 comments: true
-categories: [startups, revenue models]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+tags:
+  - startups
+categories:
+  - Technologies
+
 ---
 
 Have you ever wonder how the companies that offer free services make money? Such as Instagram, Evernote, Facebook, Twitter, LinkedIn, Google Maps, so on... or if it is even profitable to keep free users using their services. We would go through several revenue models and hopefully, it will throw you some light next time you decide to roll your own startup.
@@ -17,33 +25,41 @@ Have you ever wonder how the companies that offer free services make money? Such
 Let’s start first giving some perspective what models are actually giving the most revenues. In 2013, App Store, reported that free apps brought the 71% of the revenue! Even more than paid apps… how’s that even possible!?
 
 {% img /images/revenue-breakdown.png %}
+
 <div style="clear:both"></div>
-(source:
-<a href="http://techcrunch.com/2013/03/28/in-app-purchase-revenue-hits-record-high-accounts-for-76-of-u-s-iphone-app-revenue-90-in-asian-markets/" target="_blank">techcrunch</a>
+
+(source: <a href="http://techcrunch.com/2013/03/28/in-app-purchase-revenue-hits-record-high-accounts-for-76-of-u-s-iphone-app-revenue-90-in-asian-markets/" target="_blank">techcrunch</a>)
+
+
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/css/base/jquery.ui.all.min.css">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/stylesheets/company_revenue.css">
-)
 
-Ok, let’s discuss some revenue models to understand this. There are 3 main models
 
-   - **Freemium**: apps are free to download and use. However, quite often some different features are sold separately (e.g. new levels, specialized functions, remove ads, more capacity, and so on). E.g. Pandora, Hulu, Google Docs.
 
-   - **Premium**: users paid upfront a fixed price for the application. After you pay for it, you are able to download it. Usually new software updates are free. E.g. MS Office 365.
+Ok, let’s discuss some revenue models to understand this. There are 3 main models:
 
-   - **Subscription**: users paid a fixed price which is automatically charged every certain time. Magazines in the iOS Newsstand are a good example of this subscription based model. Subscriptions have generally lower prices than premium accounts. E.g. Netfix.
 
-Freemium is not as "free" as it might seem in the surface, there are indirect ways of getting revenues from it.
+  - **Freemium**: apps are free to download and use. However, quite often some different features are sold separately (e.g. new levels, specialized functions, remove ads, more capacity, and so on). E.g. Pandora, Hulu, Google Docs.
 
-   - **Advertising**: the application/service is free to use, but it contains ads or  interruption banners for an couple of minutes in order to raise revenue. This model is usually applied along with freemium apps and to remove the  ads users have to pay a subscription. E.g. Spotify.
+  - **Premium**: users paid upfront a fixed price for the application. After you pay for it, you are able to download it. Usually new software updates are free. E.g. MS Office 365.
 
-   - **Selling data**:  user information and behavior inside the application is sell to interested 3rd-parties. Usually used with freemium apps and specified in the terms of used.
+  - **Subscription**: users paid a fixed price which is automatically charged every certain time. Magazines in the iOS Newsstand are a good example of this subscription based model. Subscriptions have generally lower prices than premium accounts. E.g. Netfix.
 
-   - **Transaction**: the application is free to use generally and charges a percentage or fixed fee with every users’ transaction made. For example, it allows you to publish your item on their site for free but when you sell it, it charges you a fee. Or publish a project in a site and when it reaches certain goal a percentage fee is applied. E.g. eBay, Kickstarter.
 
-   - **Online lead generation**:  collects user’s information sometimes in an exchange of a product or service and then resell the information to companies interested indirectly. It’s different from the selling data model because the information is not sold to 3rd party directly, but indirectly. Influencing users desitions based on 3rd party companies affiliated and users' interests, likes and behaviors. E.g. Mint, LinkedIn.
+Freemium is not as "free" as it might seem in the surface, there are indirect ways of getting revenues from it:
 
-   - **Donations**: (it's self-explanatory) Services/apps are free, but it encourages users to contribute throughout donations to support the development.
+
+ - **Advertising**: the application/service is free to use, but it contains ads or  interruption banners for an couple of minutes in order to raise revenue. This model is usually applied along with freemium apps and to remove the  ads users have to pay a subscription. E.g. Spotify.
+
+ - **Selling data**:  user information and behavior inside the application is sell to interested 3rd-parties. Usually used with freemium apps and specified in the terms of used.
+
+ - **Transaction**: the application is free to use generally and charges a percentage or fixed fee with every users’ transaction made. For example, it allows you to publish your item on their site for free but when you sell it, it charges you a fee. Or publish a project in a site and when it reaches certain goal a percentage fee is applied. E.g. eBay, Kickstarter.
+
+ - **Online lead generation**:  collects user’s information sometimes in an exchange of a product or service and then resell the information to companies interested indirectly. It’s different from the selling data model because the information is not sold to 3rd party directly, but indirectly. Influencing users desitions based on 3rd party companies affiliated and users' interests, likes and behaviors. E.g. Mint, LinkedIn.
+
+ - **Donations**: (it's self-explanatory) Services/apps are free, but it encourages users to contribute throughout donations to support the development.
+
 
 
 After reading these, you might have more clues why free apps are so much win nowadays. They helped to create those million-dollar-per-day games! (remembered FlappyBird, Candycrush, Farmville...) In a market where there is enough competition, having a free option will take you to large numbers of users quicker and broader, because of the low barrier to entry. For instance, Whatsapp had at certain point 10k of daily downloads, after moving it to $1 it download rate drops 10 times, they finally opted for yearly subscriptions.
@@ -60,7 +76,7 @@ Subscription-based revenue are also a model worth doing a special mention. It br
 
 <div style="clear:both"></div>
 
-
+<script src="https://code.jquery.com/jquery-1.7.1.min.js" integrity="sha256-iBcUE/x23aI6syuqF7EeT/+JFBxjPs5zeFJEXxumwb0=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
 

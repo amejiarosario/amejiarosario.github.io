@@ -1,9 +1,18 @@
---- 
+---
 layout: post
 title: Faster Windows XP removing Msmpeng.Exe and other programs
 created: 1310735883
 comments: true
-categories: [windows, tips, how-to]
+pageviews__total: 35350
+pageviews__recent: 256
+pageviews__avg_time: 101
+# categories: [windows, tips, how-to]
+tutorial__order: 0
+tags:
+  - windows
+categories:
+  - Technologies
+  - Troubleshooting
 ---
 <p>At work, I use an Windows XP machine and it some times get really slowly. I noticed from the task manager (ctrl+shift+esc) that the process MsMpEng.exe is consuming most of my CPU time!</p>
 <p><strong>MsMpEng.exe</strong> is a process associated to <em>Windows Defender</em> that help you to "<em>protected</em>" the computer, but sometimes it requires too much resources. So, if eating up your available CPU it is better to disable it.</p>
@@ -17,9 +26,11 @@ categories: [windows, tips, how-to]
 	<li>You can repeate the same steps 1-4 to remove safely services, like "Indexing Service" which slow down your computer, too. And memory consuming processes.&nbsp;</li>
 	<li>Enjoy a faster computer!</li>
 </ol>
-<p>&nbsp;</p>
-<p>Here is a screenshot of how the serivices are disabled:</p>
-<p><img alt="windows services" src="http://www.adrianmejiarosario.com/sites/default/files/pictures/MsMpEngEXE.PNG" style="width: 594px; height: 52px; "></p>
+<!-- <p>&nbsp;</p> -->
+<!-- <p>Here is a screenshot of how the serivices are disabled:</p> -->
+<!-- <p>
+<!-- <img alt="windows services" src="http://www.adrianmejiarosario.com/sites/default/files/pictures/MsMpEngEXE.PNG" style="width: 594px; height: 52px; "> -->
+<!--</p> -->
 <p>&nbsp;</p>
 <p>Note: &nbsp;You can find other programs/processes that are slowing down you computer doing the following:</p>
 <ol>
@@ -30,4 +41,6 @@ categories: [windows, tips, how-to]
 	<li>Search on internet what are this process used for, before removing them.</li>
 	<li>Use the steps above to remove them if they are not really needed (be careful).</li>
 </ol>
-<p><img alt="Selecting CPU Time from Task Manager" src="http://www.adrianmejiarosario.com/sites/default/files/viewCPUTime.JPG" style="width: 586px; height: 550px; "></p>
+
+<!-- <img alt="Selecting CPU Time from Task Manager" src="http://www.adrianmejiarosario.com/sites/default/files/viewCPUTime.JPG" style="width: 586px; height: 550px; "> -->
+

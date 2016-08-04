@@ -3,14 +3,23 @@ layout: post
 title: "Cheap Airplay receiver with Raspberry Pi"
 date: 2014-02-15 13:59:26 -0400
 comments: true
-categories: [raspberry pi, apple, airplay]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+photos__background_color: '#E4F4FD'
+photos:
+ - /images/RaspiModelB.png
+ - /images/RaspiModelB.png
+tags:
+  - raspberrypi
+categories:
+  - Technologies
 ---
 
 I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it... So I make it a Airplay receiver to play music remotely from any of my apple devices!
 
 <!--More-->
-
-{% img /images/RaspiModelB.png %}
 
 There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(http://www.raspberrypi.org/downloads)
 You can even turn it into a home theater (http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/).

@@ -1,9 +1,13 @@
---- 
+---
 layout: post
 title: Concentration problems? Procastination? You're not the only one.
 created: 1325695584
 comments: true
-categories: [concentration, procrastination, attention]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+#categories: [concentration, procrastination, attention]
 ---
 <p>&nbsp;</p>
 <p>Procastination and concentration problems are big deals from a lot of people, specially for students. There are too many distractions that are more fun than our homework.</p>

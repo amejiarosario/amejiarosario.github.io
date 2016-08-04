@@ -3,21 +3,31 @@ layout: post
 title: "Backbone.js for absolute beginners - getting started (part 4: Routers)"
 date: 2012-09-13 14:41
 comments: true
-categories: [backbonejs, javascript]
+pageviews__total: 49288
+pageviews__recent: 201  
+pageviews__avg_time: 1292
 toc: true
+#categories: [backbonejs, javascript]
+photos:
+- /images/Backbone_for_beginners_part4_300x250.png
+- /images/BackbonesforBeginners_728x360.png
+tutorial__order: 4
+tags:
+  - backbonejs
+  - javascript
+  - tutorial_backbonejs
+categories:
+  - Technologies
+  - Web Development
 ---
 
 This tutorial is about BackboneJS Routes.
 
 <!--More-->
 
-(updated: 2014-10-13)
-
-# BackboneJS IV
-
 The part 3 of this tutorial is [here](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/).
 
-## 2.6 Backbone.Router
+# Backbone.Router
 
 You could build web application without using the routers.  However, if you want to make reference to certain ‘state’ or location of the web application, you need a reference (link/URL) to it. This is where routers come to rescue.
 
@@ -29,7 +39,7 @@ where the `#inbox/139c0d48e11d986b ` is the hash-tag which reference some email 
 
 In backbone, routes are hash maps that match URL patterns to functions. You can use parameter parts, such as `todos/:id`, or using splats `file/*path` you will match all the parameters from the splat on. For that reason, the splat parameter should be always the last matcher.
 
-### 2.6.1 Initializing the Router
+## Initializing the Router
 
 In our Todo app, we are going to use routers to filter between the tasks that are pending and the ones that have been completed. So, let's initialize the routes this way:
 
@@ -64,7 +74,7 @@ Now, you need to initialize it, adding this lines:
 
 You can test that you router is working just typing `#anything/that/you/want` and seeing the parameter in you browser's console.
 
-### 2.6.1 Processing the routes
+## 2.6.1 Processing the routes
 
 Before rendering the list of items, you need to check the parameters to wether show only the pending ones, or the completed or show them all. As shown in the code snipet below.
 

@@ -1,9 +1,17 @@
---- 
+---
 layout: post
 title: Update Drupal sites
 created: 1320386664
 comments: true
-categories: [drupal]
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+tags:
+  - drupal
+categories:
+  - Technologies
+#categories: [drupal]
 ---
 The better way to learn is by a concrete example. I update a site called "heyshuga" from Drupal 7.8 to 7.9. Here are the steps
 

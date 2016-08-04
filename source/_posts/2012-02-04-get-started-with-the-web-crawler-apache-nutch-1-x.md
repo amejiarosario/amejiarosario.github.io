@@ -1,14 +1,28 @@
---- 
+---
 layout: post
 title: "Get Started with the web crawler Apache Nutch 1.x "
 created: 1328337152
 comments: true
-categories: [how-to, apache, nutch, search engines, web crawlers]
+toc: true
+pageviews__total: 4899  
+pageviews__recent: 539  
+pageviews__avg_time: 159
+# categories: [how-to, apache, nutch, search engines, web crawlers]
+photos:
+  - /images/apache_nutch_web_crawler_300x250.png
+  - /images/apache_nutch_web_crawler_728x360.png
+photos__background_color: '#E08300'
+tutorial__order: 0
+tags:
+  - web crawlers
+categories:
+  - Technologies
 ---
 <p>Apache Nutch is an open source <strong>scalable</strong> Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [<a href="http://en.wikipedia.org/wiki/Nutch">*</a>]</p>
 <!--More-->
-<div>
-	<u><strong>Motivation</strong></u></div>
+
+# Motivation
+
 <div>
 	By using Nutch, we can find web page hyperlinks in an automated manner, reduce lots of maintenance work, for example checking broken links, and create a copy of all the visited pages for searching over. That&rsquo;s where Apache Solr comes in. Solr is an open source full text search framework, with Solr we can search the visited pages from Nutch. Luckily, integration between Nutch and Solr is pretty straightforward.</div>
 <div>
@@ -29,34 +43,32 @@ categories: [how-to, apache, nutch, search engines, web crawlers]
 	<li>
 		quality - you can bias the crawling to fetch &ldquo;important&rdquo; pages first</li>
 </ul>
-<p><u><strong>Basics about Nutch</strong></u></p>
-<p>First you need to know that, Nutch data is composed of:</p>
-<ul>
-	<li>
-		The crawl database, or <strong>crawldb</strong>. This contains information about every url known to Nutch, including whether it was fetched, and, if so, when.</li>
-	<li>
-		The link database, or <strong>linkdb</strong>. This contains the list of known links to each url, including both the source url and anchor text of the link.</li>
-	<li>
-		A set of <strong>segments</strong>. Each segment is a set of urls that are fetched as a unit. Segments are directories with the following subdirectories:</li>
-</ul>
-<ol>
-	<li>
-		<strong>crawl_generate</strong> names a set of urls to be fetche</li>
-	<li>
-		<strong>crawl_fetch</strong> contains the status of fetching each url</li>
-	<li>
-		<strong>content</strong> contains the raw content retrieved from each url</li>
-	<li>
-		<strong>parse_text</strong> contains the parsed text of each url</li>
-	<li>
-		<strong>parse_data</strong> contains outlinks and metadata parsed from each url</li>
-	<li>
-		<strong>crawl_parse</strong> contains the outlink urls, used to update the crawldb</li>
-</ol>
-<p><u><strong>Nutch and Hadoop</strong></u></p>
-<p>As of the official Nutch 1.3 release the source code architecture has been greatly simplified to allow us to run Nutch in one of two modes; namely local and deploy. By default, Nutch no longer comes with a Hadoop distribution, however when run in local mode e.g. running Nutch in a single process on one machine, then we use Hadoop as a dependency. This may suit you fine if you have a small site to crawl and index, but most people choose Nutch because of its capability to run on in deploy mode, within a Hadoop cluster. This gives you the benefit of a distributed file system (HDFS) and MapReduce processing style. &nbsp;If you are interested in deployed mode <a href="http://wiki.apache.org/nutch/NutchHadoopTutorial">read here</a>.</p>
-<p><u><strong>Getting hands dirt with Nutch</strong></u></p>
-<p><strong>1 Setup Nutch from binary distribution</strong></p>
+
+## Basics about Nutch
+
+First you need to know that, Nutch data is composed of:
+
+*   The crawl database, or **crawldb**. This contains information about every url known to Nutch, including whether it was fetched, and, if so, when.
+*   The link database, or **linkdb**. This contains the list of known links to each url, including both the source url and anchor text of the link.
+*   A set of **segments**. Each segment is a set of urls that are fetched as a unit. Segments are directories with the following subdirectories:
+
+1.  **crawl_generate** names a set of urls to be fetche
+2.  **crawl_fetch** contains the status of fetching each url
+3.  **content** contains the raw content retrieved from each url
+4.  **parse_text** contains the parsed text of each url
+5.  **parse_data** contains outlinks and metadata parsed from each url
+6.  **crawl_parse** contains the outlink urls, used to update the crawldb
+
+
+## Nutch and Hadoop
+
+As of the official Nutch 1.3 release the source code architecture has been greatly simplified to allow us to run Nutch in one of two modes; namely local and deploy. By default, Nutch no longer comes with a Hadoop distribution, however when run in local mode e.g. running Nutch in a single process on one machine, then we use Hadoop as a dependency. This may suit you fine if you have a small site to crawl and index, but most people choose Nutch because of its capability to run on in deploy mode, within a Hadoop cluster. This gives you the benefit of a distributed file system (HDFS) and MapReduce processing style. &nbsp;If you are interested in deployed mode <a href="http://wiki.apache.org/nutch/NutchHadoopTutorial" target="_blank">read here</a>.
+
+
+# Getting hands dirt with Nutch
+
+## Setup Nutch from binary distribution
+
 <ol>
 	<li>
 		Unzip your binary Nutch package to $HOME/nutch-1.3</li>
@@ -68,7 +80,9 @@ categories: [how-to, apache, nutch, search engines, web crawlers]
 <div>
 	&nbsp;</div>
 <div>
-	<strong>2. Verify your Nutch installation</strong></div>
+
+## Verify your Nutch installation
+
 <ol>
 	<li>
 		run &quot;bin/nutch&quot;</li>

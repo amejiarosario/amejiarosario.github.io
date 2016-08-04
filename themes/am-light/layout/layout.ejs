@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="<%= config.description %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Adrian Mejia's Blog" href="/feed.xml"/>
+
+    <%
+    var title = page.title;
+
+    if (is_archive()){
+      title = 'Archives';
+
+      if (is_month()){
+        title += ': ' + page.year + '/' + page.month;
+      } else if (is_year()){
+        title += ': ' + page.year;
+      }
+    } else if (is_category()){
+      title = 'Category' + ': ' + page.category;
+    } else if (is_tag()){
+      title = 'Tag' + ': ' + page.tag;
+    }
+    %>
+    <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="<%- url %>" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="<%- url %>" />
+    <meta property="og:site_name" content="<%- config.title %>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="<%- strip_html(page.excerpt || config.description) %>" />
+    <meta property="og:image" content="<%- page.photos ? `${config.url}${page.photos[1] || page.photos[0]}` : `${config.url}${config.logo}` %>" />
+    <meta property="og:title" content="<%- page.title || config.title %>" />
+    <meta property="fb:app_id" content="<%- theme.fb_app_id %>" />
+    <meta property="fb:admins" content="<%- theme.fb_admins %>"/>
+    <!-- /Open Graph -->
+
+    <%- partial('_widgets/google_analytics') %>
+
+    <!-- Styles -->
+    <%- css('stylesheets/main') -%>
+    <%- css('stylesheets/font-awesome.min') -%>
+  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center">
+              <img src="/images/logo-adrianmejia.png" alt="" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down m-x-1 logo">
+                <span class="animation--bounce-in">Adrian</span>
+                <span class="animation--bounce-in">Mejia</span>
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              <% for (var i in theme.menu){ %>
+                <a href="<%- url_for(theme.menu[i]) %>" class="animation--radial-out" id="<%- i %>"><%= i %></a>
+              <% } %>
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </nav>
+
+            <div class="hidden-mobile-up">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        <% for (var i in theme.menu){ %>
+          <a href="<%- url_for(theme.menu[i]) %>" class="animation--underline-from-center"><%= i %></a>
+        <% } %>
+      </div>
+    </nav>
+
+    <main>
+      <%- body %>
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; <%= new Date().getFullYear() %> <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="<%- new Date() %>">#<%- parseInt(new Date()/1e3, 10).toString(36) %></span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script id="dsq-count-scr" src="//<%- theme.disqus_id %>.disqus.com/count.js" async></script>
+    <%- js('js/main') -%>
+
+    <!-- social scripts -->
+    <% if(is_home()){ %>
+      <script async defer src="https://apis.google.com/js/platform.js" ></script>
+      <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <!--<script async defer src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>-->
+    <% } %>
+
+    <% if(is_post()){ %>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <%- js('js/posts') -%>
+    <% } %>
+  </body>
+</html>

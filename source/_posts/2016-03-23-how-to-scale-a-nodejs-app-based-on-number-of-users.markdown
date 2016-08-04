@@ -3,30 +3,40 @@ layout: post
 title: "How to scale a Nodejs app based on number of users"
 date: 2016-03-23 17:34:11 -0400
 comments: true
-categories: [production, scalability, aws, node, nginx]
+pageviews__total: 523
+pageviews__recent: 359  
+pageviews__avg_time: 257
+photos:
+  - /images/scalabilty_matryoshka_300x250.png
+  - /images/scalabilty_matryoshka_728x383.png
+#categories: [production, scalability, aws, node, nginx]
+toc: true
+tutorial__order: 0
+tags:
+  - scalability
+  - production
+categories:
+  - Technologies
 ---
-
-{% img /images/scalabilty_matryoshka.png Guidelines to scale apps %}
-<small>(external image)</small>
 
 Massive success is the best that could happen to any application. However, it could be a blessing and a curse for developers. Dealing with downtimes, high availability and trying to scale to the new number of users. One of the most dreaded questions is: 'Would that scale?'. The following is a guideline on how to grow the web applications as the number of users grows. Scaling an application too early is more painful than beneficial. This guide provides a way how to start simple and scale as the number of users grows.
 
 <!-- More -->
 
-# Common Server Setups For Scaling Your Web Application
+**Common Server Setups For Scaling Your Web Application**
 
 The examples and solutions will be as practical as possible. We might use references to Amazon Web Services (AWS), Digital Ocean or other cloud solutions. Also, there are some NodeJS/Nginx references, but they could easily be translated to other technologies.
 
 You may notice, that the measurement we are using is "concurrent user", which means all users are hitting the web app at the same time. It's different from the number of users supported (which might be higher) since it's unlikely that all users are hitting the app at the same time. However, we are going to use "concurrent user" since it's easier to explain.
 
 
-## Local host (1 concurrent users)
+# Local host (1 concurrent users)
 
 You are the only one using your app on your localhost.
 
 There is no need to worry about scale.
 
-## Single Server (2 - 9 concurrent users)
+# Single Server (2 - 9 concurrent users)
 
 You deployed your app to the wild! 👏🏻 You and your colleges (and maybe close friends) are the only users so far.
 
@@ -38,7 +48,7 @@ Your app should be a monolith (single app) right now, and it’s fine. No need t
 
 The "Single Server Setup" is the simplest. Web application and database share the same resources (CPU, Memory RAM, I/O).
 
-## Vertical Scaling (10 - 99 concurrent users)
+# Vertical Scaling (10 - 99 concurrent users)
 
 You decided to talk about your app in your social networks 👍🏻. Your friends from Facebook and other social network start clicking the link to your web app at once and you are getting around 100 users.
 
@@ -53,7 +63,7 @@ This setup has several improvements over the previous one:
 - Nginx takes care of users requests and accomplish two functions: static filers server and reverse proxy. It serve by itself all static files (CSS, JS, Images) without touching the web app. The request that needs the app to resolve are redirected it, this is called reverse proxy.
 - Zero-downtime upgrades.
 
-## Horizontal Scaling (100 - 999 concurrent users)
+# Horizontal Scaling (100 - 999 concurrent users)
 
 Looks like the hard work has paid off and your app continue growing to around 1,000 users! 🙌🏻
 
@@ -74,7 +84,7 @@ At this point, it's better to start scaling horizontally rather than vertically.
 
 Since the Node is very efficient, it will spend most of the time waiting for the database to return data. So, the main limitation will be dictated by the network limits. You might need to play also with `/etc/security/limits.d` and `/etc/sysctl.conf` based on your needs. For instance the maximum number of requests queued are determined by `net.core.somaxconn`, which defaults to 128. Change it to `1024` so we can meet the 100 - 999 range of users. From now on, let's handle 1000 users per application server.
 
-## Multi-servers (1,000+ concurrent users)
+# Multi-servers (1,000+ concurrent users)
 
 The app keeps growing and now we need to prepare to support around 10k users!
 
@@ -93,7 +103,7 @@ In this server setup, we started growing horizontally rather than vertically. In
 
 The cons is that getting this setup is more complicated. Furthermore, since app and db are not in the same server performance issues might arise due to network latency or bandwidth limits. It maximize performance, it's recommended to use private networks with low latency and high speed links.
 
-## Microservices (100,000+ concurrent users)
+# Microservices (100,000+ concurrent users)
 
 This is it! We need to plan the infrastructure to allow us to grow to infinity! ∞
 
@@ -105,7 +115,7 @@ It's time to take down our web app monolith and break it down into multiple smal
 
 If you notice, we have three new components that can scale independently as needed: Users, Products Catalog, and Orders for instance. Another advantages of having microservices is that we can have split the database as well.
 
-## Automate Chores (1,000,000+ concurrent users)
+# Automate Chores (1,000,000+ concurrent users)
 
 OMG! That's so many people, get you champagne bottle out and celebrate 🎉after you automate!
 

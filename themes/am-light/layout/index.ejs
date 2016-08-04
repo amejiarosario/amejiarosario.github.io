@@ -1,0 +1,122 @@
+<section id="home" class="p-y-3">
+  <div class="container">
+    <div class="row row-justify-content--center">
+      <h1 class="m-b-0">Software is eating the world</h1>
+    </div>
+    <div class="row row-justify-content--center">
+      <h2>Let's eat it together!</h2>
+    </div>
+    <div class="row row-justify-content--center overflow--hidden">
+      <!-- <img src="http://placehold.it/728x90"> -->
+
+
+      <!-- <picture> -->
+        <!-- <source media="(min-width: 1800px)" srcset="/images/occupations-droid.png"> -->
+        <!-- <source srcset="/images/occupations.png"> -->
+        <img src="/images/occupations.png" alt="adrian mejia blog cover image">
+      <!-- </picture> -->
+
+    </div>
+  </div>
+</section>
+
+<section id="trending-posts" class="p-y-2 light-background">
+  <div class="container">
+
+    <h1>Latest</h1>
+    <div class="row">
+      <% site.posts.sort('date', -1).limit(4).each(function(post, i){ %>
+      <%- partial('_partials/post-thumbnail', { post: post, klass: false }) %>
+      <% }) %>
+    </div>
+
+    <h1>Trending</h1>
+    <div class="row">
+        <% site.posts.sort('pageviews__total', -1).limit(4).each(function(post, i){ %>
+          <%- partial('_partials/post-thumbnail', { post: post, klass: false }) %>
+        <% }) %>
+      </div>
+  </div>
+</section>
+
+<section id="about" class="p-y-3">
+  <div class="container">
+    <h1>About</h1>
+    <h2>Hello, my name is Adrian</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <img class="img-responsive" src="/images/adrian-about.png">
+      </div>
+      <div class="col-md-6">
+        <p>
+          Who am I? I'm a software and electronics engineer, full-stack web developer,
+          author, blogger, introvert, Spanish speaker, traveler,
+          originally
+          from a beautiful island in the Caribbean: Dominican Republic.
+          Currently, I'm a Software Engineer at Cisco Systems in Boston, USA.
+          I've written
+            <a href="https://www.packtpub.com/web-development/building-e-commerce-application-mean" target="_blank">
+              a book about the MEAN stack
+            </a>
+            for Packt Publishing. I hold a
+            MS Software Engineering from
+            <a href="http://www.rit.edu/" target="_blank">
+              Roschester Institute of Technology (RIT)
+            </a>
+            in New York
+            and a
+            BS in Electronics Engineering from
+            <a href="https://www.intec.edu.do/" target="_blank">
+              INTEC
+            </a>
+            .
+        </p>
+        <p>
+          My purpose with this website is helping people to learn new technologies.
+          You can find tutorials about frameworks, scaling websites and how-to guides.
+          There's a ton of information out there already, but it is often hard to find
+          and follow. This site tries to fill this gap. You can also find series of
+          guides about topics and books. Video tutorials are coming soon!
+        </p>
+
+        <p>
+          During my <%= new Date().getFullYear() - 2008 %> years of professional
+          experience, my journey has had some turns. It started with Electronics
+          Engineering, designing electronics systems and programming them.
+          Slowly, I was getting more and more involved into the Software aspect.
+          Finally ended up
+          focusing mostly on Web Development. This journey hasn't finished yet, looking
+          forward what new endeavors awaits ahead!
+        </p>
+
+        <p>I'd love to hear from you, drop me a line
+          <a href="https://github.com/amejiarosario/ama" target="_blank"
+          class="animation--bounce-in">here!</a>
+        </p>
+
+        <%- partial('_widgets/social_follow') %>
+        <%- partial('microformats/person') %>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="subscribe" class="p-y-2 light-background">
+  <div class="container">
+    <h1>Want to learn more?</h1>
+    <div class="row row-justify-content--space-around">
+      <section class="col-sm-4">
+        <p>Get a free sample of my books, video tutorials and post updates as they come out</p>
+        <%- partial('_widgets/subscribe') %>
+        <p>
+          Technology is always changing, so keep up to date with latest posts, video tutorials and books as they become available. Sign up now!
+        </p>
+      </section>
+
+      <section class="col-sm-4">
+        <img src="/images/meanshop-book1.png" alt="meanshop book" height="300"/>
+      </section>
+    </div>
+  </div>
+</section>

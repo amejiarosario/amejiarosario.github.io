@@ -3,27 +3,38 @@ layout: post
 title: "MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)"
 date: 2014-10-03 06:59:34 -0400
 comments: true
-categories: [angularjs, javascript, nodejs, mongodb, mean stack]
+pageviews__total: 136946  
+pageviews__recent: 237  
+pageviews__avg_time: 8032
 toc: true
+#categories: [angularjs, javascript, nodejs, mongodb, mean stack]
+photos:
+  - /images/mean_300x250.png
+  - /images/mean_728x360.png
+photos__background_color: '#7EBE42'
+tutorial__order: 3
+tags:
+  - angularjs
+  - mean stack
+  - javascript
+  - Tutorial_MEAN-Stack
+categories:
+  - Technologies
+  - Web Development
 ---
-This is the last part of [three-series tutorial](/blog/categories/mean-stack/). We are going to build a full-stack Todo App using the MEAN (MongoDB, ExpressJS, AngularJS and NodeJS).
+This is the last part of [three-post series tutorial](/tags/Tutorial-MEAN-Stack/). We are going to build a full stack Todo App using the MEAN (MongoDB, ExpressJS, AngularJS and NodeJS).
 
 <!--More-->
 
-# Part III: MEAN Stack
+Before completing the app, let's cover some background about the this stack. If you rather jump to the hands-on part click here to <a href="#start">get started</a>.
 
-{% img /images/MEAN_jarroba.png MEAN Stack %}
+# Why MEAN stack?
 
-## Brief Background
-
-<a href="#start">TL; DR</a>: NodeJS has been built from bottom up a non-blocking I/O paradigm, which gives you more efficiency per CPU core than using threads in other languages like [Java](http://strongloop.com/strongblog/node-js-is-faster-than-java/). <a href="#start">Get started here</a>.
+<a href="#start">TL; DR</a>: NodeJS has been built from bottom up a non-blocking I/O paradigm, which gives you more efficiency per CPU core than using threads in other languages like [Java](http://strongloop.com/strongblog/node-js-is-faster-than-java/).
 
 LAMP (Linux-Apache-MySQL-PHP) has dominated web application stack for many years now. Well-known platforms such as Wikipedia, Wordpress, and even Facebook uses it or started with it. Enterprise, usually, used go down the Java path: Hibernate, Spring, Struts, JBoss. More agile frameworks also have been widely used such as Ruby on Rails and for Python Django and Pylon.
 
-{% img /images/lamp_vs_mean.jpg %}
-<small>(Image from [backand.com](http://blog.backand.com/mean-vs-lamp/))</small>
-
-Why MEAN stack then?
+{% img /images/mean_vs_lamp_stack.png 'LAMP vs MEAN stack' %}
 
 **Ubiquitous**
 
@@ -32,12 +43,12 @@ Well, it turns out, that JavaScript it is everywhere: smartphones, computers, in
 **Non-blocking architecture**
 
 JavaScript is a dynamic, object-oriented, and functional scripting language. One of the features that make it win over Java Applets in the browser scripting war decades ago, it was its lightness and non-blocking event loop.
-Bocking means that when one line of code is executing the rest of it is locked waiting to finish. On the other hand, non-blocking gives to each line of code a shot and then through callbacks it can come back when an event happens.
+Blocking means that when one line of code is executing the rest of it is locked waiting to finish. On the other hand, non-blocking gives to each line of code a shot and then through callbacks it can come back when an event happens.
 Programming languages that are blocking (Java, Ruby, Python, PHP, ...) overcomes concurrency using multiple threads of execution while JavaScript handles it using non-blocking event loop in a single thread.
 
-{% img /images/threading_java.png  %}
-{% img /images/threading_node.png %}
-<small>Image from [strongloop.com](http://strongloop.com/strongblog/node-js-is-faster-than-java/)</small>
+{% img /images/blocking_vs_non_blocking_io.png  %}
+
+As you can see, a single thread of execution in Node can handle perform multiple tasks vs a non-blocking style that execute each one sequentially. You can read more about it in <a href="[strongloop.com](http://strongloop.com/strongblog/node-js-is-faster-than-java/)" target="_blank">NodeJS faster than Java</a> article.
 
 Some companies like [Paypal](https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/) moved from Java backend to NodeJS and reported a increased performance, lower average response times, and development speed gains.  Similarly happens to [Groupon](https://engineering.groupon.com/2013/misc/i-tier-dismantling-the-monoliths/) that came from Java/Rails monoliths.
 
@@ -46,9 +57,11 @@ Some companies like [Paypal](https://www.paypal-engineering.com/2013/11/22/node-
 The community behind Javascript is quite vibrant and has permeated in almost all the fields of technology: data visualization, client-side frameworks, server-side frameworks, databases, robotics, building tools and many more.
 
 <a id="start"></a>
-## Setup
+# TODO app with MEAN
 
-### MEN for MongoDB, ExpressJS and NodeJS
+In this section are going to put together everything that we learnt in the [two](/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/) [previous](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/) tutorials.
+
+## MEAN Backend with MongoDB, ExpressJS and NodeJS
 
 In the [previous post](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/), we have gone through the process of building a RESTful API and we are going to be building on top of that. [Repository here](https://github.com/amejiarosario/todoAPIjs).
 
@@ -57,7 +70,7 @@ In the [previous post](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nod
 git clone https://github.com/amejiarosario/todoAPIjs.git
 ```
 
-### A for AngularJS
+## MEAN stack front-end with AngularJS
 
 Similarly, we have build a very lean todoApp in the [first part](/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/) of this tutorial. You can [download the file](https://gist.githubusercontent.com/amejiarosario/068143b53e54db43ef38/raw/ngTodo.html) to follow along and see it in action [here](https://cdn.rawgit.com/amejiarosario/068143b53e54db43ef38/raw/ngTodo.html). You might notice the angularJS app is very simple and even it is entirely in one file for simplicity sake. In further tutorials, we are going to make it more modular, split in files, add tests and stylesheets.
 
@@ -86,11 +99,9 @@ The best place to load our `./views/index.ejs`. So let's copy the body content f
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/ebf20f4093aa20c867777b4b3db825429b54a20d)
 
-## Wiring it together
+# Wiring up the App
 
-### AngularJS CRUD
-
-#### AngularJS Read with $http
+## AngularJS Read with $http
 
 As you might notice, in the factory, we have a fixed array. We need to change it to communicate with the API that we just build.
 
@@ -137,7 +148,7 @@ If you have data in MongoDB you see them listed in the main page. If you not you
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/0221aebd62e88445629debe4f132684686cf48ec)
 
-#### AngularJS Read with $resource
+## AngularJS Read with $resource
 
 If you click in one of the Todo elements and get redirected to the detail page, you will not see anything yet. We need to update the `TodoDetailCtrl` first. Even though, we already have the GET verb working, we have a slightly different URL requirement for `/todos/:id`. There’s an Angular service that has a higher level of abstraction to deal with RESTful requests: `$resource`.
 
@@ -186,7 +197,7 @@ Notice that `$resource` does not return a promise like `$http` but an empty refe
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/2aff6fe004bf7f7b2cd1b91d53e6958c3b158a20)
 
-#### AngularJS Create
+## AngularJS Create
 
 We will need to create a new text box, a button to send a `POST` request to server and add it to the `$scope`.
 
@@ -216,7 +227,7 @@ Notice that we are using a new directive `ng-click`, this one executes a functio
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/46dd14023e2d9eff72d1366dbba9c9c8c872e07b)
 
-#### Show Todo details
+## Show Todo details
 
 Every time you click a todo link, it is showing an empty fields. Let's fix that. First we need set the real `_id` to the links instead of `$index`.
 
@@ -237,7 +248,7 @@ Now you should be able to see the details :)
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/2484107294163a25621fba3785601adb32229ae9)
 
-#### AngularJS Update (in-line editing)
+## AngularJS Update (in-line editing)
 
 This is going to be a very cool feature. Meet these new directives:
 
@@ -334,7 +345,7 @@ Similarly, we added an update method. However, this time we do not need to pass 
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/b6394448e1e1e8384815877df764507d6562dc4d)
 
-#### AngularJS Delete
+## AngularJS Delete
 
 These are the changes added to implement the remove functionality. Pretty straight forward. Notice when we remove elements from the todos array `$scope.todos.splice(index, 1)` they also disappear from the DOM. Very cool, huh?
 
@@ -392,7 +403,7 @@ index 9c3ef46..afb37e1 100644
 
 **Congratulations! You are now a MEAN developer!**
 
-## What's next?
+# What's next?
 
 Learn how to use GruntJS to automate repetitive tasks in your MEAN Stack workflow.
 
@@ -404,15 +415,15 @@ Also, you can learn more about full-stack framework solutions.
 
 What we did in these three series tutorial could have been done with just few keystrokes in the comamnd line ;). However, it's good to know what's going on. But at this point you do. So, I will introduce you to some frameworks that can save you a lot of time.
 
-### Using MEAN.io
+**Using MEAN.io**
 
 [MeanIO](http://mean.io) uses a customized CLI tool: ‘mean’. Its approach for modularity is leaned towards self-contained packages that have code for both client and server files. At moment of writing this, it has nine packages ranging from MEAN-Admin, Translation, file uploads, image crop and more.
 
-### Using MEAN.js
+**Using MEAN.js**
 
 [MeanJS](http://meanjs.org/) it is a fork from the creator of MEAN.IO, it uses Yeoman generators to generate Angular’s CRUD modules, routes, controllers, views, services, and more. Also has generators for Express: models, controllers, routes and tests. It has excellent documentation.
 
-### Others Frameworks to look at
+## Others Frameworks to look at
 
 * [Meteor](https://www.meteor.com/) - Meteor is an open-source platform for building top-quality web apps in a fraction of the time, whether you're an expert developer or just getting started.
 * [Sails](http://sailsjs.org/) - The web framework of your dreams.

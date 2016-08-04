@@ -3,7 +3,21 @@ layout: post
 title: "Creating custom AngularJS directives for beginners"
 date: 2016-04-08 16:41:32 -0400
 comments: true
-categories: [angularjs, javascript, tutorials]
+toc: true
+pageviews__total: 295
+pageviews__recent: 98
+pageviews__avg_time: 219
+photos:
+  - /images/angularjs_directives_300x250.png
+  - /images/angularjs_directives_728x360.png
+photos__background_color: '#B12928'
+tutorial__order: 0
+tags:
+  - angularjs
+  - javascript
+categories:
+  - Technologies
+  - Web Development
 ---
 
 Directives are the most important concept to understand in Angular. This framework relies heavily on them to teach the browser new HTML tags. Directives are a powerful tool to create reusable web components. Directives not only could be defined as new HTML tags but also as attributes, CSS classes or even HTML comments. Angular comes with many built-in (core) directives that offer numerous functionalities to your web applications right away. Furthermore, it also allows us to define our own through custom directives. We are going to focus on the later.

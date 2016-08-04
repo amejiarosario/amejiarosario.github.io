@@ -1,0 +1,33 @@
+<section>
+  <a name="home"></a>
+  <i>hero section</i>
+</section>
+
+<section>
+  <a name="featured"></a>
+  <h1>Featured</h1>
+  <div class="mdl-grid">
+      <% site.posts.sort('visits', -1).limit(4).each(function(post, i){ %>
+        <div class="mdl-cell mdl-cell--3-col">
+          <%- partial('_partial/article-card', {post: post, even: i % 2 == 0, index: true}) %>
+        </div>
+      <% }) %>
+  </div>
+  <h1>Latest</h1>
+  <div class="mdl-grid">
+      <% site.posts.sort('date', -1).limit(4).each(function(post, i){ %>
+        <div class="mdl-cell mdl-cell--3-col">
+          <%- partial('_partial/article-card', {post: post, even: i % 2 == 0, index: true}) %>
+        </div>
+      <% }) %>
+  </div>
+</section>
+
+<section>
+  <a name="about"></a>
+  <h1>About</h1>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">text</div>
+    <div class="mdl-cell mdl-cell--6-col">image</div>
+  </div>
+</section>

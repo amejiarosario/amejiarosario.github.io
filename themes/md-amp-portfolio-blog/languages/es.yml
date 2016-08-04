@@ -1,0 +1,24 @@
+categories: Categorias
+search: Búsqueda
+tags: Etiquetas
+tagcloud: Nube de etiquetas
+tweets: Tweets
+prev: Anterior
+next: Próximo
+comment: Commentarios
+archive_a: Archivos
+archive_b: "Archivos: %s"
+page: Página %d
+recent_posts: Publicaciones recientes
+newer: Nuevos
+older: Viejos
+share: Compartir
+powered_by: Hecho con
+rss_feed: RSS
+category: Categorias
+tag: Etiquetas
+"Read More": Leer más
+
+# Menu
+Home: Inicio
+Archives: Blog

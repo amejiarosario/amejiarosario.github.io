@@ -3,8 +3,24 @@ layout: post
 title: "Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)"
 date: 2012-09-11 22:50
 comments: true
-categories: [backbonejs, javascript]
+pageviews__total: 244039  
+pageviews__recent: 316  
+pageviews__avg_time: 6766
+photos__background_color: 'white'
+bitly: 'http://bit.ly/backbone-1'
+photos:
+  - /images/Backbonesforbeginners_300x250.png
+  - /images/BackbonesforBeginners_728x360.png
 toc: true
+#categories: [backbonejs, javascript]
+tutorial__order: 1
+tags:
+  - backbonejs
+  - javascript
+  - tutorial_backbonejs
+categories:
+  - Technologies
+  - Web Development
 ---
 
 Backbone.js is a JavaScript library, among many others, that is gaining special attention in the web development community because it's ease of use and the structure that it provides to JavaScript applications.
@@ -14,10 +30,6 @@ Notice that BackboneJS is not a framework but a library. The difference is who i
 Let's dive into BackboneJS! and see how this flexible library can bring order to your Javascript!
 
 <!--More-->
-
-(updated: 2014-10-13)
-
-{% img /images/backbonejs.png %}
 
 # Brief Background
 
@@ -31,9 +43,9 @@ A common problem with large JS web application developed is that they can become
 
 <a id="start"></a>
 
-# BackboneJS
+# BackboneJS Overview
 
-## Just enough to get started with Backbone.js
+**Just enough to get started with Backbone.js**
 
 Backbone.js has hard dependency on underscore.js and a soft dependency on jQuery. It’s made up of the following modules:
 
@@ -43,18 +55,18 @@ Backbone.js has hard dependency on underscore.js and a soft dependency on jQuery
    * Collections
    * Routers
 
-## Shut up and show me the code!
+**Shut up and show me the code!**
 
 Alright! the way we are going to explore all of these modules is through examples. This is a practical tutorial that I wished I had it when I stared learning. This is a fat-free walkthrough of Backbone.js, as simple as possible, with all the code in one file for didactical purposes (no hidden magic tricks, all cards are on the table).
 
 The first example is a ‘Hello World’ app in Backbone and the second is a 'to do' app. After working through these two example apps, you’ll see every Backbone module and have a practical understanding about them.
 
 
-## 1. Hello World in Backbone.js
+# Hello World in Backbone.js
 
 You can follow along with this tutorial's code in this [repository](https://github.com/amejiarosario/Backbone-tutorial/commits/). Each feature implemented is a new commit, so you can easily see what changed in every step.
 
-**1.1.- Simple HTML5 and Backbone boilerplate**
+**Simple HTML5 and Backbone boilerplate**
 
 To get started, download [this simple html file](https://raw.github.com/amejiarosario/Backbone-tutorial/439ff34409dfc01adca7f9f96efcd726295f1aac/backbone-tutorial.html). This file  contains the libraries that you'll need (jQuery, Underscore.js, Backbone.js and Backbone-localStorage.js) and the placeholders for your HTML and JS code. Don't worry about the libraries, we are going to explain them as we need them.
 
@@ -64,9 +76,7 @@ Your entire js app will be loaded here:
 
 `<div id="container">Loading...</div>`
 
-
-<a id="1.2"></a>
-**1.2.- Backbone's Views**
+## Backbone's Views
 
 Backbone's Views are the equivalent of ‘controllers’ on MVC frameworks (like Ruby on Rails), if you are not familiar with MVC frameworks, that's okay. Backbone's Views glue together user events (clicks, pressed keys, etc.), render HTML views and templates, and interact with models which contains the data of the application.
 
@@ -89,7 +99,7 @@ Here is an example of a Backbone.view: READ THE CODE AND COMMENTS, then insert t
     });
 {% endcodeblock %}
 
-**1.3.- Test the app**
+## Test the app
 
 After copying the code, open the file, refresh the browser and you should see the 'Hello World' message, right? Wait, if you're just seeing the 'Loading…' it's because you need to initialize the view first.
 
@@ -97,7 +107,7 @@ After copying the code, open the file, refresh the browser and you should see th
 
 Yay! You have your "Hello Wold" in Backbone and an introduction to the View module. (Full code is [here](https://raw.github.com/amejiarosario/Backbone-tutorial/0bf69185f4463a75cb2d5553f8d1ea197323ccff/backbone-tutorial.html))
 
-**1.4.- Backbone's Templates**
+## Backbone's Templates
 
 Backbone has a utility/helper library called [underscore.js](http://underscorejs.org/?utm_source=adrianmejia.com) and you can use their template solution out of box. You can also use any other template solution that you want like [mustache](https://github.com/janl/mustache.js) or [handlebars](https://github.com/wycats/handlebars.js). Let's stick with _.js for simplicity's sake.
 
@@ -129,4 +139,5 @@ Let’s see it in action and rewrite our "Hello World" using a _.js template ins
 
 Run the app again and verify that it's working with the template.
 
-### Continue with the [2nd part](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/) and learn more about Backbone's Models, Collections, View and Events!
+# What's next?
+Continue with the [2nd part](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/) and learn more about Backbone's Models, Collections, View and Events!
