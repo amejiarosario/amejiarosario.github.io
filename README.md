@@ -121,10 +121,6 @@ Around 5 tags per page
     - course_angular
     - course_e-commerce-app-with-mean
 
-
-
-
-
 Types (DON'T USE)
     - snippets
     - articles

@@ -1,4 +1,4 @@
-// Global functions
+// GA: Global functions
 function createFunctionWithTimeout(callback, opt_timeout) {
   var called = false;
   function fn() {
@@ -9,4 +9,11 @@ function createFunctionWithTimeout(callback, opt_timeout) {
   }
   setTimeout(fn, opt_timeout || 1000);
   return fn;
+}
+
+var trackOutboundLink = function(url) {
+   ga('send', 'event', 'outbound', 'click', 'url', url, {
+     'transport': 'beacon',
+     'hitCallback': function(){ document.location = url; }
+   });
 }
