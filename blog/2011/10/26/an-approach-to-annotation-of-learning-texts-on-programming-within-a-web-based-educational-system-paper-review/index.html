@@ -213,11 +213,23 @@ V. Mihál and M. Bieliková, “An Approach to Annotation of Learning Texts on P
 	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" onclick="ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname);"></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
     </div>
 </form>
 </div>
 <!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname, {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
 
         </div>
 
@@ -283,19 +295,19 @@ V. Mihál and M. Bieliková, “An Approach to Annotation of Learning Texts on P
   
   <div class="article-nav m-y-4">
     
-      <a href="/blog/2011/10/26/integration-of-visualization-techniques-and-completion-strategy-to-improve-learning-in-computer-programming/" class="article-nav-newer" class="article-nav-link-wrap">
+      <a href="/blog/2011/11/04/update-drupal-sites/" class="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
         <div class="article-nav-title">
           
-            Integration of Visualization Techniques and Completion Strategy to Improve Learning in Computer Programming
+            Update Drupal sites
           
         </div>
       </a>
     
     
-      <a href="/blog/2011/10/04/focused-crawling-for-automatic-service-discovery-annotation-and-classification-in-industrial-digital-ecosystems-paper-review/" class="article-nav-older" class="article-nav-link-wrap">
+      <a href="/blog/2011/10/26/integration-of-visualization-techniques-and-completion-strategy-to-improve-learning-in-computer-programming/" class="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
-        <div class="article-nav-title">Focused Crawling for Automatic Service Discovery, Annotation, and Classification in Industrial Digital Ecosystems - Paper Review</div>
+        <div class="article-nav-title">Integration of Visualization Techniques and Completion Strategy to Improve Learning in Computer Programming</div>
       </a>
     
   </div>
@@ -331,7 +343,7 @@ V. Mihál and M. Bieliková, “An Approach to Annotation of Learning Texts on P
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Wed Aug 03 2016 21:38:30 GMT-0400 (EDT)">#obd386</span>
+          <span class="muted m-x-4" title="Wed Aug 03 2016 22:05:00 GMT-0400 (EDT)">#obd4gc</span>
         </div>
       </div>
     </footer>
