@@ -1,11 +1,12 @@
 // ------------------------
 // headers, footers and navigation
 // ------------------------
-.titlebar, .page-footer, nav {
+.titlebar,
+.page-footer,
+nav {
   background-color: $light-background;
   // padding: $content-padding;
 }
-
 // .titlebar, nav {
 //   display: flex;
 //   align-items: center;
@@ -16,18 +17,14 @@
 //   padding-top: 0.5em;
 //   padding-bottom: 0em;
 // }
-
 .navbar--is-active {
   border-bottom: 4px solid $primary-color;
 }
-
 // .navbar {
 //   a {
 //     padding: 10px;
 //   }
 // }
-
-
 .page-footer {
   // margin-top: 3em;
   background-color: $dark-background;
@@ -40,60 +37,47 @@
     // font-weight: bold;
   }
 }
-
 a {
   text-decoration: none;
   color: $primary-color;
 }
-
-
 // main > * {
 //   padding: $content-padding;
 //   padding-top: 0.4em;
 //   padding-bottom: 0.4em;
 // }
-
 .logo {
   font-size: 3em; // 34px
   font-weight: 500;
 }
-
 .logo--bounce-in {
   -webkit-transform: scale(1.2);
   transform: scale(1.2);
   -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
   transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
-
 .logo {
   font-family: $font-logo;
   font-size: 30px;
-
   span:first-child {
     color: $primary-color;
   }
-
   span:last-child {
     color: $accent-color;
   }
 }
-
-
 //------------------
 // Cards
 // -----------------
-
 .card {
   @extend .mdl-shadow--3dp;
   max-width: 300px;
-
   & :hover {
     // @extend .mdl-shadow--6dp;
   }
 }
-
 $index: 0;
-@each $color in #D24D57 #C93756 #34495E #5D3F6A #4B77BE #87D37C #D9B611 #6C7A89 #7A7E8A #00A187 #89C4F4  {
+@each $color in #D24D57 #C93756 #34495E #5D3F6A #4B77BE #87D37C #D9B611 #6C7A89 #7A7E8A #00A187 #89C4F4 {
   .background-text--dark-color-#{$index} {
     background-color: $color;
     p {
@@ -102,12 +86,11 @@ $index: 0;
   }
   $index: $index + 1;
 }
-
 .thumbnail-300x250 {
   width: 300px;
   height: 250px;
   p {
-    margin: 0px;
+    margin: 0;
     font-size: 24px;
     font-family: Verdana;
     font-weight: normal;
@@ -115,11 +98,50 @@ $index: 0;
     padding: 30px;
   }
 }
-
 .bio-box {
   border: 2px solid #e7e9ee;
   display: flex;
   .muted a {
     color: $primary-color;
+  }
+}
+.overlay {
+  background-color: rgba(0,0,0,.8);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 16777270;
+  display: none;
+
+  .close-btn {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    z-index: 16777274;
+    background: none;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    color: rgba(0,0,0,.8);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    span {
+      font-size: 28px;
+      line-height: 0;
+      vertical-align: initial;
+      padding-left: 3px;
+    }
+    &:after {
+      content: '';
+      display: inline-block;
+      height: 22px;
+    }
   }
 }

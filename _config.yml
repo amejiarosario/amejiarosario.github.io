@@ -92,3 +92,26 @@ marked:
 # https://github.com/hexojs/hexo-generator-sitemap
 sitemap:
   path: sitemap.xml
+
+# https://github.com/LouisBarranqueiro/hexo-algoliasearch
+algolia:
+  appId: <%- process.env['ALGOLIA_APP_ID'] || "7M9S763HKU" %>
+  apiKey: <%- process.env['ALGOLIA_API_KEY'] || "33db42bbc1d2631fd68f26ebefa35aa8" %>
+  adminApiKey: <%- process.env['ALGOLIA_ADMIN_KEY'] %>
+  chunkSize: 5000
+  indexName: "adrianmejia-blog"
+  fields:
+    - title
+    - tags
+    - slug
+    - path
+    - permalink
+    - excerpt
+    - excerpt:strip
+    - content:strip
+    - photos
+    - categories
+    - pageviews__total
+    - pageviews__avg_time
+    - date
+    - updated
