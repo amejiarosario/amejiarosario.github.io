@@ -49,9 +49,9 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="canonical" href="<%- url %>" />
+    <link rel="canonical" href="<%- url.replace('index.html', '') %>" />
     <!-- Open Graph -->
-    <meta property="og:url" content="<%- url %>" />
+    <meta property="og:url" content="<%- url.replace('index.html', '') %>" />
     <meta property="og:site_name" content="<%- config.title %>" />
     <meta property="og:type" content="article" />
     <meta property="og:description" content="<%- strip_html(page.excerpt || config.description) %>" />

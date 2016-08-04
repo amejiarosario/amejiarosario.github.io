@@ -1,5 +1,23 @@
 <div class="container">
-  <h1>Blog Archive</h1>
+  <%
+    var title = '';
+
+    if (is_archive()){
+      title = 'Archives';
+
+      if (is_month()){
+        title += ': ' + page.year + '/' + page.month;
+      } else if (is_year()){
+        title += ': ' + page.year;
+      }
+    } else if (is_category()){
+      title = 'Category' + ': ' + page.category;
+    } else if (is_tag()){
+      title = 'Tag' + ': ' + page.tag;
+    }
+  %>
+
+  <h1>Blog <%- title %></h1>
 
   <div class="row">
     <section class="col-md-9 p-a-2">
