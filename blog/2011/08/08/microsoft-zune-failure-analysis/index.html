@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Adrian Mejia's Blog" href="/feed.xml"/>
+
+    
+    <title>Microsoft Zune Failure Analysis | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2011/08/08/microsoft-zune-failure-analysis/index.html" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2011/08/08/microsoft-zune-failure-analysis/index.html" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="All the Zune 30 froze, precisely at 12:01 A.M. on December 31, 2008. These devices got stuck with an irresponsive Zune logo. This bug that didn’t allow users to use the device was cause by a bug in the internal clock driver that handled improperly the last day of a year leap. The Zune 30 model 2006 was the only one affected by this bug; all the other models keep working ok, such as the Zune: 80 and 120 GB with hard drive, and 4, 8, 16 GB with flash drive, because they did not have the component with the error." />
+    <meta property="og:image" content="http://adrianmejia.comundefined" />
+    <meta property="og:title" content="Microsoft Zune Failure Analysis" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/stylesheets/main.css">    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center">
+              <img src="/images/logo-adrianmejia.png" alt="" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down m-x-1 logo">
+                <span class="animation--bounce-in">Adrian</span>
+                <span class="animation--bounce-in">Mejia</span>
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
+              
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </nav>
+
+            <div class="hidden-mobile-up">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Microsoft Zune Failure Analysis",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "http://adrianmejia.comundefined",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2011-08-08T00:00:00-04:00",
+  "dateModified": "2016-07-30T19:08:58-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://adrianmejia.com/images/logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "description": "All the Zune 30 froze, precisely at 12:01 A.M. on December 31, 2008. These devices got stuck with an irresponsive Zune logo. This bug that didn’t allow users to use the device was cause by a bug in the internal clock driver that handled improperly the last day of a year leap. The Zune 30 model 2006 was the only one affected by this bug; all the other models keep working ok, such as the Zune: 80 and 120 GB with hard drive, and 4, 8, 16 GB with flash drive, because they did not have the component with the error."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Technologies/">Technologies</a>
+    </div>
+    <h1>Microsoft Zune Failure Analysis</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2016-07-30T23:08:58.000Z" itemprop="dateUpdated">July 30th 2016</time>
+      </span>
+
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2011/08/08/microsoft-zune-failure-analysis/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/startups/">startups</a><span class="tag-list-count">4</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: ">
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content ">
+        <p>All the Zune 30 froze, precisely at 12:01 A.M. on December 31, 2008. These devices got stuck with an irresponsive Zune logo. This bug that didn’t allow users to use the device was cause by a bug in the internal clock driver that handled improperly the last day of a year leap. The Zune 30 model 2006 was the only one affected by this bug; all the other models keep working ok, such as the Zune: 80 and 120 GB with hard drive, and 4, 8, 16 GB with flash drive, because they did not have the component with the error.</p>
+<a id="more"></a>
+<p>At the core of the Zune 30 music players, there is the Freescale iMX31L Multimedia processor and the MC13783 Power Management Chip. These components are also used in many other products like GPS, cellphones, pace makers, etc. Also the bug froze up the Toshiba Gigabeat S media players, since it was using the MC13783 chip. The driver written by Freescale for their MC13783 caused all of the problems in all the devices that were using it. The official solution from Microsoft to this bug was to let the Zune run out of battery completely, and reset it on January 1st. This bug was dissolved successfully by itself the first day of the 2009.</p>
+<p>SUGGESTED PRACTICES</p>
+<p>The error occurred with the Microsoft’s Zune 30 could be avoided with effective test coverage. Microsoft and Toshiba relied in the correctness of the components of their supplier Freescale. But, all the components should not be considered reliable until they are properly tested.</p>
+<p>Even though, it is not practical to test all the possible alternatives, good unit testing should test representative input values using equivalent partitioning and boundary-value analysis. Equivalence partitioning is the testing technique that divides the possible inputs into different equivalent classes. All the possible inputs are classified and grouped in equivalent classes, which are a reduced representation of all the kinds of inputs possible and have produce similar outputs. After, the equivalent classes are identified; the cases are generated applying the boundary-value analysis. Since most of the errors in software are located in the boundaries, the boundary-value analysis is an effective technique for testing. Boundary testing is test cases where the inputs are generated from the maximum and minimum input domain, such as typical values, error values, special values, values just inside and outside the boundaries.</p>
+<p>Another good practice that might have detected this problem is the use of peer reviews. The purpose of the peer review is to detect and correct defects in software artifacts, and prevent leakage into final product. In peer reviews, the author examined his own code and one or more developers also examined it. The colleges evaluate and make recommendations to author’s code. This not only favors error detection, but also the college’s suggestion might helps to refactor code and increase performance and quality. The described combination of testing techniques might have revealed the leap-year bug on time.</p>
+<p>ENSURING PRODUCT LINES QUALITY</p>
+<p>The Zune 30 was not the only product affected by the MC13783 Freescale’s driver’s bug. Also all the devices using this chip experienced the same problem. For instance, the Toshiba’s Gigabeat product line was affected as well. The bug also froze up their Toshiba Gigabeat S due the leap year.</p>
+<p>Microsoft Zune’s product line has the following products: Zune: 30, 80 and 120 GB with hard drive, and Zune 4, 8, 16 GB with flash drive.  The only one affected was the Zune 30, because it was the only one using the MC13783 component, which driver happen to had a bug. This individual variability in the product line was not correctly managed.</p>
+<p>Software product lines have the purposes of reduce costs, improve quality, and reduce time to market. These goals will be achieved only if the quality attributes are present since the beginning of the project. Testing product lines is one way for assuring quality attributes. Product lines tests vary in scope from involving the entire product line (common components) to specific product variabilities.</p>
+<p>This study case reveals the importance of performing proper testing to the all the variables in a product line. A proper variability management is necessary to ensure the quality of all the products in a product line. All the variabilities, components and features that are varied, should be individually be tested, as well as the common components.</p>
+<p>CONCLUSION</p>
+<p>There are some lessons that can be learnt from the study case of the Zune 30 Failure. One is the importance of the unit tests coverage. Even 3rd-party component interfaces should be tested properly to verify its correctness. Testing techniques such as boundary-value analysis and equivalence classes can improve the quality of unit test and will increase the likelihood of catching bugs. The correct product line management is important too. Software product lines reduce costs, time to market and increase quality. Also, test to should be adapted to product lines. All the common components in a product line should be tested as well as the individual variabilities.</p>
+
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a Software Engineer passionated about Web Development. He has worked professionally for more than 8 years and taught about them through books, posts and videos. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear p-y-1"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" onclick="ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname);"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2011-08-08-microsoft-zune-failure-analysis.md" class="p-x-3" title="Improve this post"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+      <a href="/blog/2011/08/11/ruby-on-rails-architectural-design/" class="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+        <div class="article-nav-title">
+          
+            Ruby on Rails Architectural Design
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2011/08/06/php-dom-explained-and-exemplified/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">PHP DOM: explained and exemplified</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2011/08/08/microsoft-zune-failure-analysis/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Wed Aug 03 2016 20:32:42 GMT-0400 (EDT)">#obd06i</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <script src="/js/main.js"></script>
+    <!-- social scripts -->
+    
+
+    
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>

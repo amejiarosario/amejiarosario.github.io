@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Adrian Mejia's Blog" href="/feed.xml"/>
+
+    
+    <title>PHP DOM: explained and exemplified | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2011/08/06/php-dom-explained-and-exemplified/index.html" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2011/08/06/php-dom-explained-and-exemplified/index.html" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="This is guide to get started with PHP DOM or a quick reminder to those who have a little while since the last time they used it.&nbsp;The extended documentation is in&nbsp;PHP.net, but it is quite long. Here you might found a quick reference to get started in no time." />
+    <meta property="og:image" content="http://adrianmejia.comundefined" />
+    <meta property="og:title" content="PHP DOM: explained and exemplified" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/stylesheets/main.css">    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center">
+              <img src="/images/logo-adrianmejia.png" alt="" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down m-x-1 logo">
+                <span class="animation--bounce-in">Adrian</span>
+                <span class="animation--bounce-in">Mejia</span>
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
+              
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </nav>
+
+            <div class="hidden-mobile-up">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "PHP DOM: explained and exemplified",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "http://adrianmejia.comundefined",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2011-08-06T00:00:00-04:00",
+  "dateModified": "2016-07-30T19:09:08-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://adrianmejia.com/images/logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "description": "This is guide to get started with PHP DOM or a quick reminder to those who have a little while since the last time they used it.&nbsp;The extended documentation is in&nbsp;PHP.net, but it is quite long. Here you might found a quick reference to get started in no time."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Technologies/">Technologies</a>
+    </div>
+    <h1>PHP DOM: explained and exemplified</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2016-07-30T23:09:08.000Z" itemprop="dateUpdated">July 30th 2016</time>
+      </span>
+
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2011/08/06/php-dom-explained-and-exemplified/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: ">
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content ">
+        <p></p><p>This is guide to get started with PHP DOM or a quick reminder to those who have a little while since the last time they used it.&nbsp;The extended documentation is in&nbsp;<a href="http://www.php.net/manual/en/book.dom.php" onclick="window.open(this.href, '', 'resizable=no,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no'); return false;" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; color: rgb(0, 116, 189); text-decoration: none; " target="_blank" rel="external">PHP.net</a>, but it is quite long. Here you might found a quick reference to get started in no time.</p>
+<a id="more"></a><p></p>
+<p></p><p>Purpose of the DOM (Docuement Object Model): It is a convention used to represent and manipulate objects in XML, XHTML and HTML documents. Parsing XML and HTML files is very useful. It allows to manipulate RSS Feeds, interact with APIs and web services through XML (e.g. Google Maps, Facebook and Twitter APIs, etc.), extract information from websites (web crawling) and more.&nbsp;</p><p></p>
+<p></p><h2>Getting Started</h2><p></p>
+<p></p><p>The DOM implementation in PHP have more than 15 classes! But don’t get afraid, for most cases, you might just end up using these ones: DOMNode, DOMDocument, DOMNodeList and DOMElement. In the following UML class diagram of PHP’s DOM&nbsp;you will see how these classes are related to each other and them the explanation of each one.</p><p></p>
+<p></p><p>
+<!-- <img alt="PHP DOM UML Class Diagram (lean)" src="http://www.adrianmejiarosario.com/sites/default/files/pictures/PHP_DOM__UML_%28lean%29_Class_Diagram.gif" style="width: 541px; height: 345px; "> -->
+</p><p></p>
+<div>Fig 1.&nbsp;&nbsp;PHP DOM: UML Class Diagram</div>
+<div>&nbsp;</div>
+<h3>Loading and Saving DOM Documents</h3>
+<p><a href="http://www.php.net/manual/en/class.domdocument.php" target="_blank" rel="external">DOMDocument</a>&nbsp;— The DOMDocument class which exteds from DOMNode. This class contains the XML (or HTML) elements and configurations. It has configurations attributes, such as format output, preserve white spaces, versions, etc.</p>
+<p><u>DOMDocument must-know methods (part 1: load and save)</u></p>
+<ul>
+    <li><strong>Load</strong>: load XML (or HTML) documents. There are different types of loads (quite self-explanatories)
+        <ul>
+            <li>mixed&nbsp;<a href="http://us.php.net/manual/en/domdocument.load.php" target="_blank" rel="external">DOMDocument::load</a>&nbsp;(&nbsp;string&nbsp;$filename&nbsp;)&nbsp;— Load XML from a file</li>
+            <li>bool&nbsp;<a href="http://us.php.net/manual/en/domdocument.loadhtml.php" target="_blank" rel="external">DOMDocument::loadHTML</a>&nbsp;(&nbsp;string&nbsp;$source&nbsp;)&nbsp;— Load HTML from a string</li>
+            <li>bool&nbsp;<a href="http://us.php.net/manual/en/domdocument.loadhtmlfile.php" target="_blank" rel="external">DOMDocument::loadHTMLFile</a>&nbsp;(&nbsp;string&nbsp;$filename&nbsp;)&nbsp;— Load HTML from a file</li>
+            <li>mixed&nbsp;<a href="http://us.php.net/manual/en/domdocument.loadxml.php" target="_blank" rel="external">DOMDocument::loadXML</a>&nbsp;(&nbsp;string&nbsp;$source&nbsp;)&nbsp;— Load XML from a string</li>
+        </ul>
+    </li>
+    <li><strong>Save</strong>:&nbsp;it is used to present (screen or file) the whole DOM document.
+        <ul>
+            <li>int&nbsp;<a href="http://us.php.net/manual/en/domdocument.save.php" target="_blank" rel="external">DOMDocument::save</a>&nbsp;(&nbsp;string&nbsp;$filename&nbsp;)&nbsp;— Dumps the internal XML tree back into a file</li>
+            <li>string&nbsp;<a href="http://us.php.net/manual/en/domdocument.savehtml.php" target="_blank" rel="external">DOMDocument::saveHTML</a>&nbsp;(&nbsp;)&nbsp;— Dumps the internal document into a string using HTML formatting</li>
+            <li>int&nbsp;<a href="http://us.php.net/manual/en/domdocument.savehtmlfile.php" target="_blank" rel="external">DOMDocument::saveHTMLFile</a>&nbsp;(&nbsp;string&nbsp;$filename&nbsp;)&nbsp;— Dumps the internal document into a file using HTML formatting</li>
+            <li>string&nbsp;<a href="http://us.php.net/manual/en/domdocument.savexml.php" target="_blank" rel="external">DOMDocument::saveXML</a>&nbsp;(&nbsp;)&nbsp;— Dumps the internal XML tree back into a string</li>
+        </ul>
+    </li>
+</ul>
+<p>&nbsp;Example using DOMDocument for loading and showing HTML:</p>
+<div><code>&lt;?php</code></div>
+<div><code>&nbsp; $dom = new DOMDocuement;</code></div>
+<div><code>&nbsp; $dom-&gt;loadHTML(‘<a href="http://www.adrianmejiarosario.com" target="_blank" rel="external">http://www.adrianmejiarosario.com</a>‘); &nbsp;// load website content to DOM&nbsp;</code></div>
+<div><code>&nbsp; echo $dom-&gt;save(); &nbsp;// print to screen</code></div>
+<div><code>?&gt;</code></div>
+<div>&nbsp;</div>
+<h3>Iterating through DOM Elements</h3>
+<p>The first thing you need to do after loading the XML that you want to process, it’s to select the data that you are intereted in. To search for you data you need to iterate through the DOM elements and you need to know what methods and objects are using in this process.</p>
+<p><u>DOMDocument must-know methods (part 2: get data)</u></p>
+<ul>
+    <li>DOMElement&nbsp;<a href="http://us.php.net/manual/en/domdocument.getelementbyid.php" target="_blank" rel="external">DOMDocument::getElementById</a>&nbsp;(&nbsp;string&nbsp;$elementId&nbsp;)&nbsp;— Searches for an element with a certain id.</li>
+    <li>DOMNodeList&nbsp;<a href="http://us.php.net/manual/en/domdocument.getelementsbytagname.php" target="_blank" rel="external">DOMDocument::getElementsByTagName</a>&nbsp;(&nbsp;string&nbsp;$elementName&nbsp;)— Searches for all elements with given tag name.</li>
+</ul>
+<div>&nbsp;</div>
+<div>You may notice that the above methods returns DOMElement and DOMNodeList objects. Now we will explore the properties and attributes that you need to know in order to get the data.</div>
+<div>&nbsp;</div>
+<div><a href="http://www.php.net/manual/en/class.domnodelist.php" target="_blank" rel="external">DOMNodeList</a>&nbsp;— class that contains DOMNodes collection.</div>
+<div>&nbsp;</div>
+<div><u style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; text-decoration: underline; "><u style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; text-decoration: underline; border-style: initial; border-color: initial; ">DOMNodeList must-know elements (part 3: get data from nodes collection)</u></u></div>
+<div>&nbsp;</div>
+<ul>
+    <li><a href="http://us.php.net/manual/en/domnodelist.item.php" target="_blank" rel="external">DOMNodelist::item</a>&nbsp;(&nbsp;int&nbsp;$index&nbsp;)&nbsp;— Retrieves a node specified by index</li>
+    <li>int&nbsp;<a href="http://us.php.net/manual/en/class.domnodelist.php#domnodelist.props.length" target="_blank" rel="external">$DOMNodeList-&gt;length</a>&nbsp;- Node list length</li>
+</ul>
+<div>&nbsp;</div>
+<div><a href="http://www.php.net/manual/en/class.domelement.php" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; color: rgb(0, 116, 189); text-decoration: none; " target="_blank" rel="external">DOMElement</a>&nbsp;— class that extends DOMNode and add new methods but we don’t need those for iterating through nodes.</div>
+<div><a href="http://www.php.net/manual/en/class.domnode.php" target="_blank" rel="external">DOMNode</a>&nbsp;— The DOMNode class is the pillar class and it is used by all others classes directly or indirectly by one of its children classes.</div>
+<div>&nbsp;</div>
+<div><u style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; text-decoration: underline; border-style: initial; border-color: initial; "><u style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; text-decoration: underline; border-style: initial; border-color: initial; border-style: initial; border-color: initial; ">DOMNode must-know properties (part 4: get node data)</u></u></div>
+<ul>
+    <li>string&nbsp;<a href="http://us.php.net/manual/en/class.domnode.php#domnode.props.nodename" target="_blank" rel="external">$DOMNode-&gt;nodeName</a>&nbsp;&nbsp;— Returns node name</li>
+    <li>string&nbsp;<a href="http://us.php.net/manual/en/class.domnode.php#domnode.props.nodevalue" target="_blank" rel="external">$</a><a href="http://us.php.net/manual/en/class.domnode.php#domnode.props.nodename" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; color: rgb(0, 116, 189); text-decoration: none; " target="_blank" rel="external">DOMNode-&gt;nodeValue</a>&nbsp;&nbsp;— Returns node name</li>
+    <li><a href="http://us.php.net/manual/en/class.domnodelist.php" target="_blank" rel="external">DOMNodeList</a>&nbsp;<a href="http://us.php.net/manual/en/class.domnode.php#domnode.props.childnodes" target="_blank" rel="external">$</a><a href="http://us.php.net/manual/en/class.domnode.php#domnode.props.nodename" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; color: rgb(0, 116, 189); text-decoration: none; " target="_blank" rel="external">DOMNode-&gt;childNodes</a>&nbsp;&nbsp;— Returns list of nodes</li>
+</ul>
+<div>&nbsp;</div>
+<div>Example using DOMDocument for loading and showing HTML</div>
+<div><code>&lt;?php</code></div>
+<div><code>&nbsp; //TODO</code></div>
+<div><code>?&gt;</code></div>
+<div>(status: not finished yet)</div>
+<div>&nbsp;</div>
+
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a Software Engineer passionated about Web Development. He has worked professionally for more than 8 years and taught about them through books, posts and videos. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear p-y-1"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" onclick="ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname);"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2011-08-06-php-dom-explained-and-exemplified.md" class="p-x-3" title="Improve this post"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+      <a href="/blog/2011/08/08/microsoft-zune-failure-analysis/" class="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+        <div class="article-nav-title">
+          
+            Microsoft Zune Failure Analysis
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2011/07/21/how-to-set-up-git-github-in-windows/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">How to set up Git / github in windows</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2011/08/06/php-dom-explained-and-exemplified/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Wed Aug 03 2016 20:32:42 GMT-0400 (EDT)">#obd06i</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <script src="/js/main.js"></script>
+    <!-- social scripts -->
+    
+
+    
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>

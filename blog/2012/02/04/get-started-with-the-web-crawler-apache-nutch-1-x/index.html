@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Adrian Mejia's Blog" href="/feed.xml"/>
+
+    
+    <title>Get Started with the web crawler Apache Nutch 1.x  | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/index.html" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/index.html" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Apache Nutch is an open source scalable Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [*]" />
+    <meta property="og:image" content="http://adrianmejia.com/images/apache_nutch_web_crawler_728x360.png" />
+    <meta property="og:title" content="Get Started with the web crawler Apache Nutch 1.x " />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/stylesheets/main.css">    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center">
+              <img src="/images/logo-adrianmejia.png" alt="" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down m-x-1 logo">
+                <span class="animation--bounce-in">Adrian</span>
+                <span class="animation--bounce-in">Mejia</span>
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
+              
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </nav>
+
+            <div class="hidden-mobile-up">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Get Started with the web crawler Apache Nutch 1.x ",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "http://adrianmejia.com/images/apache_nutch_web_crawler_728x360.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2012-02-04T00:00:00-05:00",
+  "dateModified": "2016-07-15T16:56:03-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://adrianmejia.com/images/logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "description": "Apache Nutch is an open source scalable Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [*]"
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Technologies/">Technologies</a>
+    </div>
+    <h1>Get Started with the web crawler Apache Nutch 1.x </h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2016-07-15T20:56:03.000Z" itemprop="dateUpdated">July 15th 2016</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          4.9k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-crawlers/">web crawlers</a><span class="tag-list-count">1</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #E08300">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/apache_nutch_web_crawler_728x360.png">
+        <source srcset="/images/apache_nutch_web_crawler_300x250.png">
+        <img src="/images/apache_nutch_web_crawler_728x360.png" alt="Get Started with the web crawler Apache Nutch 1.x ">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p></p><p>Apache Nutch is an open source <strong>scalable</strong> Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [<a href="http://en.wikipedia.org/wiki/Nutch" target="_blank" rel="external">*</a>]</p>
+<a id="more"></a><p></p>
+<h1 id="Motivation">Motivation<a href="#Motivation" class="headerlink" title="Motivation"></a></h1><p><div>
+    By using Nutch, we can find web page hyperlinks in an automated manner, reduce lots of maintenance work, for example checking broken links, and create a copy of all the visited pages for searching over. That&rsquo;s where Apache Solr comes in. Solr is an open source full text search framework, with Solr we can search the visited pages from Nutch. Luckily, integration between Nutch and Solr is pretty straightforward.</div></p>
+<p><div>
+    &nbsp;</div></p>
+<p><div>
+    Whole-web crawling is designed to handle very large crawls which may take weeks to complete, running on multiple machines. This also permits more control over the crawl process, and incremental crawling. It is important to note that whole web crawling does not necessarily mean crawling the entire world wide web. We can limit a whole web crawl to just a list of the URLs we want to crawl. This is done by using a filter just like we the one we used when we did the crawl command. [<a href="http://wiki.apache.org/nutch/NutchTutorial" target="_blank" rel="external">*</a>]</div></p>
+<p><div>
+    &nbsp;</div></p>
+<p><div>
+    Some of the advantages of Nutch, when compared to a simple Fetcher</div></p>
+<ul>
+    <li>
+        highly scalable and relatively feature rich crawler</li>
+    <li>
+        features like politeness which obeys robots.txt rules</li>
+    <li>
+        robust and scalable - you can run Nutch on a cluster of 100 machines</li>
+    <li>
+        quality - you can bias the crawling to fetch &ldquo;important&rdquo; pages first</li>
+</ul>
+
+<h2 id="Basics-about-Nutch">Basics about Nutch<a href="#Basics-about-Nutch" class="headerlink" title="Basics about Nutch"></a></h2><p>First you need to know that, Nutch data is composed of:</p>
+<ul>
+<li>The crawl database, or <strong>crawldb</strong>. This contains information about every url known to Nutch, including whether it was fetched, and, if so, when.</li>
+<li>The link database, or <strong>linkdb</strong>. This contains the list of known links to each url, including both the source url and anchor text of the link.</li>
+<li>A set of <strong>segments</strong>. Each segment is a set of urls that are fetched as a unit. Segments are directories with the following subdirectories:</li>
+</ul>
+<ol>
+<li><strong>crawl_generate</strong> names a set of urls to be fetche</li>
+<li><strong>crawl_fetch</strong> contains the status of fetching each url</li>
+<li><strong>content</strong> contains the raw content retrieved from each url</li>
+<li><strong>parse_text</strong> contains the parsed text of each url</li>
+<li><strong>parse_data</strong> contains outlinks and metadata parsed from each url</li>
+<li><strong>crawl_parse</strong> contains the outlink urls, used to update the crawldb</li>
+</ol>
+<h2 id="Nutch-and-Hadoop">Nutch and Hadoop<a href="#Nutch-and-Hadoop" class="headerlink" title="Nutch and Hadoop"></a></h2><p>As of the official Nutch 1.3 release the source code architecture has been greatly simplified to allow us to run Nutch in one of two modes; namely local and deploy. By default, Nutch no longer comes with a Hadoop distribution, however when run in local mode e.g. running Nutch in a single process on one machine, then we use Hadoop as a dependency. This may suit you fine if you have a small site to crawl and index, but most people choose Nutch because of its capability to run on in deploy mode, within a Hadoop cluster. This gives you the benefit of a distributed file system (HDFS) and MapReduce processing style. &nbsp;If you are interested in deployed mode <a href="http://wiki.apache.org/nutch/NutchHadoopTutorial" target="_blank">read here</a>.</p>
+<h1 id="Getting-hands-dirt-with-Nutch">Getting hands dirt with Nutch<a href="#Getting-hands-dirt-with-Nutch" class="headerlink" title="Getting hands dirt with Nutch"></a></h1><h2 id="Setup-Nutch-from-binary-distribution">Setup Nutch from binary distribution<a href="#Setup-Nutch-from-binary-distribution" class="headerlink" title="Setup Nutch from binary distribution"></a></h2><p><ol>
+    <li>
+        Unzip your binary Nutch package to $HOME/nutch-1.3</li>
+    <li>
+        cd $HOME/nutch-1.3/runtime/local</li>
+    <li>
+        From now on, we are going to use ${NUTCH_RUNTIME_HOME} to refer to the current directory.</li>
+</ol></p>
+<p><div>
+    &nbsp;</div></p>
+<div>
+
+<h2 id="Verify-your-Nutch-installation">Verify your Nutch installation<a href="#Verify-your-Nutch-installation" class="headerlink" title="Verify your Nutch installation"></a></h2><p><ol>
+    <li>
+        run &quot;bin/nutch&quot;</li>
+    <li>
+        You can confirm a correct installation if you seeing the following: &nbsp;Usage: nutch [-core] COMMAND</li>
+</ol></p>
+<p><div>
+    <u>Some troubleshooting tips:</u></div></p>
+<p><div>
+    Run the following command if you are seeing &quot;Permission denied&quot;:</div></p>
+<p><div>
+    chmod +x bin/nutch</div></p>
+<p><div>
+    Setup JAVA_HOME if you are seeing JAVA_HOME not set. On Mac, you can run the following command or add it to ~/.bashrc:</div></p>
+<p><div>
+    export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home #mac</div></p>
+<p><div>
+    Ubuntu:</div></p>
+<p><div>
+    export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk&nbsp;</div></p>
+<p><div>
+    export NUTCH_HOME=/var/www/nutch-1.3/runtime/local</div></p>
+<p><div>
+    &nbsp;</div></p>
+<p><div>
+    <u>Example of using Nutch to crawl wikipedia pages:</u></div></p>
+<p><div>
+    Here we are try to crawl&nbsp;<span class="s2"><a href="http://en.wikipedia.org/wiki/Collective_intelligence" target="_blank" rel="external">http://en.wikipedia.org/wiki/Collective_intelligence</a>&nbsp;and sublinks in the same domain.</span></div></p>
+<p><ol class="ol1">
+    <li class="li1">
+        $ cd NUTCH_HOME/runtime/local</li>
+    <li class="li2">
+        <span class="s1">$ echo &quot;<a href="http://en.wikipedia.org/wiki/Collective_intelligence" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Collective_intelligence</span></a>&quot; &gt; urls</span></li>
+    <li class="li1">
+        add: <code>+^http://([a-z0-9]*\.)*wikipedia.org/</code> in&nbsp;conf/regex-urlfilter.txt</li>
+    <li class="li1">
+        $ bin/nutch crawl urls -dir crawl-wiki-ci -depth 2</li>
+    <li class="li1">
+        <b>statistics associated with the crawldb</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readdb crawl-wiki-ci/crawldb/ -stats
+                <ol class="ol1">
+                    <li class="li1">
+                        CrawlDb statistics start: crawl-wiki-ci/crawldb/Statistics for CrawlDb: crawl-wiki-ci/crawldb/<br>
+                        TOTAL urls:&nbsp;&nbsp;&nbsp;&nbsp; 2727<br>
+                        retry 0:&nbsp;&nbsp;&nbsp;&nbsp; 2727<br>
+                        min score:&nbsp;&nbsp;&nbsp;&nbsp; 0.0<br>
+                        avg score:&nbsp;&nbsp;&nbsp;&nbsp; 8.107811E-4<br>
+                        max score:&nbsp;&nbsp;&nbsp;&nbsp; 1.341<br>
+                        status 1 (db_unfetched):&nbsp;&nbsp;&nbsp;&nbsp; 2665<br>
+                        status 2 (db_fetched):&nbsp;&nbsp;&nbsp;&nbsp; 61<br>
+                        status 3 (db_gone):&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+                        CrawlDb statistics: done</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li class="li1">
+        <b>Dump of the URLs from the crawldb</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readdb crawl-wiki-ci/crawldb/ -dump crawl-wiki-ci/stats
+                <ol class="ol1">
+                    <li class="li1">
+                        <span class="s3"><a href="http://en.wikipedia.org/wiki/Special:RecentChangesLinked/MIT_Center_for_Collective_Intelligence" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Special:RecentChangesLinked/MIT_Center_for_Collective_Intelligence</span></a></span>&nbsp;&nbsp;&nbsp;&nbsp; Version: 7Status: 1 (db_unfetched)<br>
+                        Fetch time: Sat Feb 04 00:50:50 EST 2012<br>
+                        Modified time: Wed Dec 31 19:00:00 EST 1969<br>
+                        Retries since fetch: 0<br>
+                        Retry interval: 2592000 seconds (30 days)<br>
+                        Score: 1.9607843E-4<br>
+                        Signature: null<br>
+                        Metadata:<br>
+                        &hellip;.&nbsp;</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li class="li1">
+        <b>Top 10 highest rate links</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readdb crawl-wiki-ci/crawldb/ -topN 10 crawl-wiki-ci/stats/top10/
+                <ol class="ol1">
+                    <li class="li2">
+                        <span class="s1">1.3416613&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Collective_intelligence" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Collective_intelligence</span></a>0.030499997&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Howard_Bloom" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Howard_Bloom</span></a><br>
+                        0.02763889&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Groupthink" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Groupthink</span></a><br>
+                        0.02591739&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Wikipedia" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Wikipedia</span></a><br>
+                        0.024347823&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Pierre_L%C3%A9vy_(philosopher)" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Pierre<em>L%C3%A9vy</em>(philosopher)</span></a><br>
+                        0.023733648&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Wikipedia:Citation_needed" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Wikipedia:Citation_needed</span></a><br>
+                        0.017142152&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/w/opensearch_desc.php" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/w/opensearch_desc.php</span></a><br>
+                        0.016599996&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Artificial_intelligence</span></a><br>
+                        0.016499996&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Consensus_decision_making" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Consensus_decision_making</span></a><br>
+                        0.015199998&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Group_selection" target="_blank" rel="external"><span class="s2">http://en.wikipedia.org/wiki/Group_selection</span></a></span></li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+    <li class="li1">
+        <b>Dump of a Nutch segment</b>
+        <ol class="ol1">
+            <li class="li1">
+                $ nutch readseg -dump crawl-wiki-ci/segments/20120204004509/ crawl-wiki-ci/stats/segments
+                <ol class="ol1">
+                    <li class="li1">
+                        CrawlDatum::Version: 7<br>
+                        Status: 1 (db_unfetched)<br>
+                        Fetch time: Sat Feb 04 00:45:03 EST 2012<br>
+                        Modified time: Wed Dec 31 19:00:00 EST 1969<br>
+                        Retries since fetch: 0<br>
+                        Retry interval: 2592000 seconds (30 days)<br>
+                        Score: 1.0<br>
+                        Signature: null<br>
+                        Metadata: <em>ngt</em>: 1328334307529</li>
+                    <li class="li1">
+                        <br>
+                        Content::<br>
+                        Version: -1<br>
+                        url: <a href="http://en.wikipedia.org/wiki/Collective_intelligence" target="_blank" rel="external"><span class="s4">http://en.wikipedia.org/wiki/Collective_intelligence</span></a><br>
+                        base: <a href="http://en.wikipedia.org/wiki/Collective_intelligence" target="_blank" rel="external"><span class="s4">http://en.wikipedia.org/wiki/Collective_intelligence</span></a><br>
+                        contentType: application/xhtml+xml<br>
+                        metadata: Content-Language=en Age=52614 Content-Length=29341 Last-Modified=Sat, 28 Jan 2012 17:27:22 GMT <em>fst</em>=33 nutch.segment.name=20120204004509 Connection=close X-Cache-Lookup=MISS from <a href="http://sq72.wikimedia.org/" target="_blank" rel="external"><span class="s4">sq72.wikimedia.org:80</span></a> Server=Apache X-Cache=MISS from <a href="http://sq72.wikimedia.org/" target="_blank" rel="external"><span class="s4">sq72.wikimedia.org</span></a> X-Content-Type-Options=nosniff Cache-Control=private, s-maxage=0, max-age=0, must-revalidate Vary=Accept-Encoding,Cookie Date=Fri, 03 Feb 2012 15:08:18 GMT Content-Encoding=gzip nutch.crawl.score=1.0 Content-Type=text/html; charset=UTF-8<br>
+                        Content:<br>
+                        &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<a href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" target="_blank" rel="external"><span class="s4">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</span></a>&quot;&gt;<br>
+                        &lt;html lang=&quot;en&quot; dir=&quot;ltr&quot; class=&quot;client-nojs&quot; xmlns=&quot;<a href="http://www.w3.org/1999/xhtml" target="_blank" rel="external"><span class="s4">http://www.w3.org/1999/xhtml</span></a>&quot;&gt;<br>
+                        &lt;head&gt;<br>
+                        &lt;title&gt;Collective intelligence - Wikipedia, the free encyclopedia&lt;/title&gt;<br>
+                        &lt;meta &hellip;.<b>&nbsp;</b></li>
+                </ol>
+            </li>
+        </ol>
+    </li>
+</ol></p>
+<p></p><p class="li1">&nbsp;</p><p></p>
+<p></p><p class="li1"><b>References:</b></p><p></p>
+<ul>
+    <li class="li1">
+        <a href="http://wiki.apache.org/nutch/NutchTutorial" target="_blank" rel="external">http://wiki.apache.org/nutch/NutchTutorial</a></li>
+    <li class="li1">
+        <a href="http://en.wikipedia.org/wiki/Nutch" target="_blank" rel="external">http://en.wikipedia.org/wiki/Nutch</a></li>
+</ul>
+</div>
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a Software Engineer passionated about Web Development. He has worked professionally for more than 8 years and taught about them through books, posts and videos. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear p-y-1"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" onclick="ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname);"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2012-02-04-get-started-with-the-web-crawler-apache-nutch-1-x.md" class="p-x-3" title="Improve this post"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Motivation"><span class="toc-number">1.</span> <span class="toc-text">Motivation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basics-about-Nutch"><span class="toc-number">1.1.</span> <span class="toc-text">Basics about Nutch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nutch-and-Hadoop"><span class="toc-number">1.2.</span> <span class="toc-text">Nutch and Hadoop</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Getting-hands-dirt-with-Nutch"><span class="toc-number">2.</span> <span class="toc-text">Getting hands dirt with Nutch</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setup-Nutch-from-binary-distribution"><span class="toc-number">2.1.</span> <span class="toc-text">Setup Nutch from binary distribution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Verify-your-Nutch-installation"><span class="toc-number">2.2.</span> <span class="toc-text">Verify your Nutch installation</span></a></li></ol></li></ol>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:inline-block;width:300px;height:600px;"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+      <a href="/blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/" class="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+        <div class="article-nav-title">
+          
+            How do I change the Ruby/Python version Textmate uses?
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2012/01/19/ssh-login-without-password/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">SSH login without password</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Wed Aug 03 2016 20:32:42 GMT-0400 (EDT)">#obd06i</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <script src="/js/main.js"></script>
+    <!-- social scripts -->
+    
+
+    
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>

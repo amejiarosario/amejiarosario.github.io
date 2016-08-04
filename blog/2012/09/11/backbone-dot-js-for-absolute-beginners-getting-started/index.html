@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Adrian Mejia's Blog" href="/feed.xml"/>
+
+    
+    <title>Backbone.js for Absolute Beginners - Getting started (Part 1: Intro) | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/index.html" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/index.html" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Backbone.js is a JavaScript library, among many others, that is gaining special attention in the web development community because it’s ease of use and the structure that it provides to JavaScript applications.
+Notice that BackboneJS is not a framework but a library. The difference is who is in control. Using a library YOU are in control, but using a framework there is an inversion of control: the framework calls you. Libraries give you a lot of flexibility, while frameworks has opinionated ways of doing things but can save you writing boiler plate code. Follow my AngularJS tutorial series for a framework solution.
+Let’s dive into BackboneJS! and see how this flexible library can bring order to your Javascript!" />
+    <meta property="og:image" content="http://adrianmejia.com/images/BackbonesforBeginners_728x360.png" />
+    <meta property="og:title" content="Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/stylesheets/main.css">    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center">
+              <img src="/images/logo-adrianmejia.png" alt="" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down m-x-1 logo">
+                <span class="animation--bounce-in">Adrian</span>
+                <span class="animation--bounce-in">Mejia</span>
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
+              
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </nav>
+
+            <div class="hidden-mobile-up">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "http://adrianmejia.com/images/BackbonesforBeginners_728x360.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2012-09-11T22:50:00-04:00",
+  "dateModified": "2016-07-28T16:18:03-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://adrianmejia.com/images/logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "description": "Backbone.js is a JavaScript library, among many others, that is gaining special attention in the web development community because it’s ease of use and the structure that it provides to JavaScript applications.
+Notice that BackboneJS is not a framework but a library. The difference is who is in control. Using a library YOU are in control, but using a framework there is an inversion of control: the framework calls you. Libraries give you a lot of flexibility, while frameworks has opinionated ways of doing things but can save you writing boiler plate code. Follow my AngularJS tutorial series for a framework solution.
+Let’s dive into BackboneJS! and see how this flexible library can bring order to your Javascript!"
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Technologies/">Technologies</a> > <a class="category-link" href="/categories/Technologies/Web-Development/">Web Development</a>
+    </div>
+    <h1>Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2016-07-28T20:18:03.000Z" itemprop="dateUpdated">July 28th 2016</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          244.0k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbonejs/">backbonejs</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-backbonejs/">tutorial_backbonejs</a><span class="tag-list-count">4</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: white">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/BackbonesforBeginners_728x360.png">
+        <source srcset="/images/Backbonesforbeginners_300x250.png">
+        <img src="/images/BackbonesforBeginners_728x360.png" alt="Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>Backbone.js is a JavaScript library, among many others, that is gaining special attention in the web development community because it’s ease of use and the structure that it provides to JavaScript applications.</p>
+<p>Notice that BackboneJS is not a framework but a library. The difference is who is in control. Using a library YOU are in control, but using a framework there is an inversion of control: the framework calls you. Libraries give you a lot of flexibility, while frameworks has opinionated ways of doing things but can save you writing boiler plate code. Follow my <a href="/blog/categories/angularjs/">AngularJS</a> tutorial series for a framework solution.</p>
+<p>Let’s dive into BackboneJS! and see how this flexible library can bring order to your Javascript!</p>
+<a id="more"></a>
+<h1 id="Brief-Background">Brief Background<a href="#Brief-Background" class="headerlink" title="Brief Background"></a></h1><p><a href="#start">TL; DR</a>: You need to use JavaScript heavily in order to make responsive and interactive web applications. <a href="#start">Jump to this and get started.</a></p>
+<p>The web application development process has been evolving over the years. In the beginning web applications were just static HTML pages, which required programmers to change the code (HTML, CSS, JS) in order to change the content. Later, in web 2.0, server side programming languages (like PHP, Ruby, Java, …) were added to generate HTML pages dynamically based on user input and data stored in database. That was a huge improvement, and most of the pages served today use this approach. However, to provide the web site with even more responsiveness, speed, and enhanced user interaction, it requires bringing the logic closer to the client (browser).  There are a couple of languages that can run in the browsers besides JS, such as Java, Flash and others. However, these require extra plugins and are not as ubiquitous as JavaScript.</p>
+<p>Web applications nowadays require heavy use of JavaScript to generate content on the fly. The user needn’t wait between requests and page refreshes. A lot of the logic/code that used to be on the server side is being moved to the client side. JS allows web sites to render only content that changes without needing to reload the full-page on every request. Examples of this kind of web applicqtion are Gmail, Pandora, Pinterest, Nokia Maps 3D and others.</p>
+<p>A common problem with large JS web application developed is that they can become pretty messy really quickly. The lack of structure makes the code hard to maintain. This is where Backbone comes into play. It provides structure to organize the code and increase maintainability. Backbone is not the only framework like this; in fact, there are many JS frameworks that attempt to offer similar benefits, like Ember.js, Angular.js and so on. However, I choose Backbone because it’s one of the most widely used frameworks in its category. It has a vibrant community and it’s also being fully used in production for a considerable number of big companies like: Wal-Mart mobile, Groupon, Khan Academy, Pandora, Wordpress, Foursquare, and so on.</p>
+<p><a id="start"></a></p>
+<h1 id="BackboneJS-Overview">BackboneJS Overview<a href="#BackboneJS-Overview" class="headerlink" title="BackboneJS Overview"></a></h1><p><strong>Just enough to get started with Backbone.js</strong></p>
+<p>Backbone.js has hard dependency on underscore.js and a soft dependency on jQuery. It’s made up of the following modules:</p>
+<ul>
+<li>Views</li>
+<li>Events</li>
+<li>Models</li>
+<li>Collections</li>
+<li>Routers</li>
+</ul>
+<p><strong>Shut up and show me the code!</strong></p>
+<p>Alright! the way we are going to explore all of these modules is through examples. This is a practical tutorial that I wished I had it when I stared learning. This is a fat-free walkthrough of Backbone.js, as simple as possible, with all the code in one file for didactical purposes (no hidden magic tricks, all cards are on the table).</p>
+<p>The first example is a ‘Hello World’ app in Backbone and the second is a ‘to do’ app. After working through these two example apps, you’ll see every Backbone module and have a practical understanding about them.</p>
+<h1 id="Hello-World-in-Backbone-js">Hello World in Backbone.js<a href="#Hello-World-in-Backbone-js" class="headerlink" title="Hello World in Backbone.js"></a></h1><p>You can follow along with this tutorial’s code in this <a href="https://github.com/amejiarosario/Backbone-tutorial/commits/" target="_blank" rel="external">repository</a>. Each feature implemented is a new commit, so you can easily see what changed in every step.</p>
+<p><strong>Simple HTML5 and Backbone boilerplate</strong></p>
+<p>To get started, download <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/439ff34409dfc01adca7f9f96efcd726295f1aac/backbone-tutorial.html" target="_blank" rel="external">this simple html file</a>. This file  contains the libraries that you’ll need (jQuery, Underscore.js, Backbone.js and Backbone-localStorage.js) and the placeholders for your HTML and JS code. Don’t worry about the libraries, we are going to explain them as we need them.</p>
+<p>After downloading the aformentioned file, notice the HTML where your entire page will be built using Backbone.Views!</p>
+<p>Your entire js app will be loaded here:</p>
+<p><code>&lt;div id=&quot;container&quot;&gt;Loading...&lt;/div&gt;</code></p>
+<h2 id="Backbone’s-Views">Backbone’s Views<a href="#Backbone’s-Views" class="headerlink" title="Backbone’s Views"></a></h2><p>Backbone’s Views are the equivalent of ‘controllers’ on MVC frameworks (like Ruby on Rails), if you are not familiar with MVC frameworks, that’s okay. Backbone’s Views glue together user events (clicks, pressed keys, etc.), render HTML views and templates, and interact with models which contains the data of the application.</p>
+<p>Here is an example of a Backbone.view: READ THE CODE AND COMMENTS, then insert this code in the javascript block of the HTML file you downloaded.</p>
+<figure class="highlight js"><figcaption><span>Simple Backbone.View</span><a href="https://raw.github.com/amejiarosario/Backbone-tutorial/0bf69185f4463a75cb2d5553f8d1ea197323ccff/backbone-tutorial.html" target="_blank" rel="external">Full Code</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> AppView = Backbone.View.extend(&#123;</div><div class="line">  <span class="comment">// el - stands for element. Every view has a element associate in with HTML</span></div><div class="line">  <span class="comment">//      content will be rendered.</span></div><div class="line">  el: <span class="string">'#container'</span>,</div><div class="line">  <span class="comment">// It's the first function called when this view it's instantiated.</span></div><div class="line">  initialize: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.render();</div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// $el - it's a cached jQuery object (el), in which you can use jQuery functions</span></div><div class="line">  <span class="comment">//       to push content. Like the Hello World in this case.</span></div><div class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.$el.html(<span class="string">"Hello World"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Test-the-app">Test the app<a href="#Test-the-app" class="headerlink" title="Test the app"></a></h2><p>After copying the code, open the file, refresh the browser and you should see the ‘Hello World’ message, right? Wait, if you’re just seeing the ‘Loading…’ it’s because you need to initialize the view first.</p>
+<p><code>var appView = new AppView();</code></p>
+<p>Yay! You have your “Hello Wold” in Backbone and an introduction to the View module. (Full code is <a href="https://raw.github.com/amejiarosario/Backbone-tutorial/0bf69185f4463a75cb2d5553f8d1ea197323ccff/backbone-tutorial.html" target="_blank" rel="external">here</a>)</p>
+<h2 id="Backbone’s-Templates">Backbone’s Templates<a href="#Backbone’s-Templates" class="headerlink" title="Backbone’s Templates"></a></h2><p>Backbone has a utility/helper library called <a href="http://underscorejs.org/?utm_source=adrianmejia.com" target="_blank" rel="external">underscore.js</a> and you can use their template solution out of box. You can also use any other template solution that you want like <a href="https://github.com/janl/mustache.js" target="_blank" rel="external">mustache</a> or <a href="https://github.com/wycats/handlebars.js" target="_blank" rel="external">handlebars</a>. Let’s stick with _.js for simplicity’s sake.</p>
+<p>_.js templates have the following syntax,</p>
+<p><code>_.template(templateString, [data], [settings])</code></p>
+<p>where in the <code>templateString</code> you use the place holder <code>&lt;%= %&gt;</code> and <code>&lt;%- %&gt;</code> to dynamically insert data. The later allows for HTML escape while the first one doesn’t. Moreover, you can use <code>&lt;% %&gt;</code> to run any javascript code.</p>
+<p>Let’s see it in action and rewrite our “Hello World” using a _.js template instead.</p>
+<figure class="highlight js"><figcaption><span>Simple Backbone.View and Templates</span><a href="https://raw.github.com/amejiarosario/Backbone-tutorial/c5b131278ecde92f33882c9a2c22ee4119e57d77/backbone-tutorial.html" target="_blank" rel="external">Full Code</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> AppView = Backbone.View.extend(&#123;</div><div class="line">  el: $(<span class="string">'#container'</span>),</div><div class="line">  <span class="comment">// template which has the placeholder 'who' to be substitute later</span></div><div class="line">  template: _.template(<span class="string">"&lt;h3&gt;Hello &lt;%= who %&gt;&lt;/h3&gt;"</span>),</div><div class="line">  initialize: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.render();</div><div class="line">  &#125;,</div><div class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// render the function using substituting the varible 'who' for 'world!'.</span></div><div class="line">    <span class="keyword">this</span>.$el.html(<span class="keyword">this</span>.template(&#123;who: <span class="string">'world!'</span>&#125;));</div><div class="line">    <span class="comment">//***Try putting your name instead of world.</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> appView = <span class="keyword">new</span> AppView();</div></pre></td></tr></table></figure>
+<p>Run the app again and verify that it’s working with the template.</p>
+<h1 id="What’s-next">What’s next?<a href="#What’s-next" class="headerlink" title="What’s next?"></a></h1><p>Continue with the <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">2nd part</a> and learn more about Backbone’s Models, Collections, View and Events!</p>
+
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a Software Engineer passionated about Web Development. He has worked professionally for more than 8 years and taught about them through books, posts and videos. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear p-y-1"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" onclick="ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname);"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+              
+              <div class="container">
+              <h1 class="capitalize">tutorial backbonejs Series</h1>
+              <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">
+    
+      <img src="/images/Backbonesforbeginners_300x250.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/">
+    
+      <img src="/images/Backbone_for_beginners_part2_300x250.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views)</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/">
+    
+      <img src="/images/Backbone_for_beginners_part3_300x250.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Backbone.js for absolute beginners - getting started (part 3: CRUD)</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/">
+    
+      <img src="/images/Backbone_for_beginners_part4_300x250.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Backbone.js for absolute beginners - getting started (part 4: Routers)</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2012-09-11-backbone-dot-js-for-absolute-beginners-getting-started.markdown" class="p-x-3" title="Improve this post"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Brief-Background"><span class="toc-number">1.</span> <span class="toc-text">Brief Background</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BackboneJS-Overview"><span class="toc-number">2.</span> <span class="toc-text">BackboneJS Overview</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-World-in-Backbone-js"><span class="toc-number">3.</span> <span class="toc-text">Hello World in Backbone.js</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Backbone’s-Views"><span class="toc-number">3.1.</span> <span class="toc-text">Backbone’s Views</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Test-the-app"><span class="toc-number">3.2.</span> <span class="toc-text">Test the app</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Backbone’s-Templates"><span class="toc-number">3.3.</span> <span class="toc-text">Backbone’s Templates</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What’s-next"><span class="toc-number">4.</span> <span class="toc-text">What’s next?</span></a></li></ol>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:inline-block;width:300px;height:600px;"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+      <a href="/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/" class="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+        <div class="article-nav-title">
+          
+            Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views)
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2012/05/06/instagram-mobile-design-secrets-revealed/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">Instagram mobile design secrets revealed</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Wed Aug 03 2016 20:32:42 GMT-0400 (EDT)">#obd06i</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <script src="/js/main.js"></script>
+    <!-- social scripts -->
+    
+
+    
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>
