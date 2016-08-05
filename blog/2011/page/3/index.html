@@ -52,7 +52,7 @@ ga('set', 'transport', 'beacon');
 ga('set', 'appName', 'adrianmejia.com');
 ga('send', 'pageview');
 ga('send', 'screenview', {screenName: document.title });
-</script><script async src='https://www.google-analytics.com/analytics.js'></script>
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
 
 
     <!-- Styles -->
@@ -84,21 +84,13 @@ ga('send', 'screenview', {screenName: document.title });
               
                 <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
               
-
-              <a href="#" id="search-modal">
-  <i class="fa fa-search" aria-hidden="true"></i>
-</a>
-
-<div id="search-overlay" class="overlay">
-  <button class="close-btn" id="close-search-overlay">
-    <span><i class="fa fa-close"></i></span>
-  </button>
-</div>
-
             </nav>
 
-            <div class="hidden-mobile-up">
-              <a href="#" id="search-modal">
+            <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+<script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+<a href="#" id="search-modal">
   <i class="fa fa-search" aria-hidden="true"></i>
 </a>
 
@@ -106,11 +98,100 @@ ga('send', 'screenview', {screenName: document.title });
   <button class="close-btn" id="close-search-overlay">
     <span><i class="fa fa-close"></i></span>
   </button>
+
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <!--
+          <span class="movie-year">
+            {{year}}
+          </span>
+          -->
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+        <div class="facet">
+          <div class="facet-title">Tags</div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">Categories</div>
+          <div id="categories"></div>
+        </div>
+
+  <!--
+        <div class="facet">
+          <div class="facet-title">Popularity</div>
+          <div id="ratings"></div>
+        </div> -->
+
+  <!--
+        https://community.algolia.com/instantsearch.js/documentation/#rangeslider
+
+        <div class="facet">
+          <div class="facet-title">Year</div>
+          <div id="year"></div>
+        </div> -->
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-            </div>
-          <!-- </div> -->
-        <!-- </div> -->
+<script src="/js/search.js"></script>
+
       </div>
     </header>
     <nav class="hidden-mobile-up mdl-shadow--2dp">
@@ -141,7 +222,7 @@ ga('send', 'screenview', {screenName: document.title });
           <article class="col-md-4 col-sm-6 card">
   <a href="/blog/2011/08/06/php-dom-explained-and-exemplified/">
     
-      <section class="thumbnail-300x250 background-text--dark-color-9">
+      <section class="thumbnail-300x250 background-text--dark-color-0">
         <p>PHP DOM: explained and exemplified</p>
       </section>
       <section class="p-a-1">
@@ -166,7 +247,7 @@ ga('send', 'screenview', {screenName: document.title });
           <article class="col-md-4 col-sm-6 card">
   <a href="/blog/2011/07/21/how-to-set-up-git-github-in-windows/">
     
-      <section class="thumbnail-300x250 background-text--dark-color-2">
+      <section class="thumbnail-300x250 background-text--dark-color-7">
         <p>How to set up Git / github in windows</p>
       </section>
       <section class="p-a-1">
@@ -191,7 +272,7 @@ ga('send', 'screenview', {screenName: document.title });
           <article class="col-md-4 col-sm-6 card">
   <a href="/blog/2011/07/18/cs-getmanifestresourcestream-gotcha/">
     
-      <section class="thumbnail-300x250 background-text--dark-color-5">
+      <section class="thumbnail-300x250 background-text--dark-color-8">
         <p>C#&#39;s GetManifestResourceStream Gotcha</p>
       </section>
       <section class="p-a-1">
@@ -218,7 +299,7 @@ ga('send', 'screenview', {screenName: document.title });
           <article class="col-md-4 col-sm-6 card">
   <a href="/blog/2011/07/15/faster-windows-xp-removing-msmpeng-exe-and-other-programs/">
     
-      <section class="thumbnail-300x250 background-text--dark-color-2">
+      <section class="thumbnail-300x250 background-text--dark-color-5">
         <p>Faster Windows XP removing Msmpeng.Exe and other programs</p>
       </section>
       <section class="p-a-1">
@@ -243,19 +324,15 @@ ga('send', 'screenview', {screenName: document.title });
 
         
           <article class="col-md-4 col-sm-6 card">
-  <a href="/blog/2011/07/12/how-to-set-up-samba-in-ubuntu-linux-and-access-it-in-mac-os-and-windows/">
+  <a href="/blog/2011/07/12/drupal-modules-for-seo-optimation/">
     
-      <section class="thumbnail-300x250 background-text--dark-color-6">
-        <p>How to set up Samba in Ubuntu/Linux, and access it in Mac OS and Windows</p>
+      <section class="thumbnail-300x250 background-text--dark-color-1">
+        <p>Drupal Modules for SEO optimation</p>
       </section>
       <section class="p-a-1">
         
           
-            <a href="/tags/samba/">#samba </a>
-          
-            <a href="/tags/windows/">#windows </a>
-          
-            <a href="/tags/mac/">#mac </a>
+            <a href="/tags/drupal/">#drupal </a>
           
         
       </section>
@@ -263,8 +340,6 @@ ga('send', 'screenview', {screenName: document.title });
         
           
             &raquo; <a href="/categories/Technologies/">Technologies</a>
-          
-            &raquo; <a href="/categories/Technologies/Troubleshooting/">Troubleshooting</a>
           
         
       </section>
@@ -276,7 +351,7 @@ ga('send', 'screenview', {screenName: document.title });
           <article class="col-md-4 col-sm-6 card">
   <a href="/blog/2011/07/12/what-technologies-are-using-the-most-influential-internet-companies/">
     
-      <section class="thumbnail-300x250 background-text--dark-color-3">
+      <section class="thumbnail-300x250 background-text--dark-color-1">
         <p>What technologies are using the most influential Internet companies?</p>
       </section>
       <section class="p-a-1">
@@ -299,15 +374,19 @@ ga('send', 'screenview', {screenName: document.title });
 
         
           <article class="col-md-4 col-sm-6 card">
-  <a href="/blog/2011/07/12/drupal-modules-for-seo-optimation/">
+  <a href="/blog/2011/07/12/how-to-set-up-samba-in-ubuntu-linux-and-access-it-in-mac-os-and-windows/">
     
-      <section class="thumbnail-300x250 background-text--dark-color-6">
-        <p>Drupal Modules for SEO optimation</p>
+      <section class="thumbnail-300x250 background-text--dark-color-7">
+        <p>How to set up Samba in Ubuntu/Linux, and access it in Mac OS and Windows</p>
       </section>
       <section class="p-a-1">
         
           
-            <a href="/tags/drupal/">#drupal </a>
+            <a href="/tags/samba/">#samba </a>
+          
+            <a href="/tags/windows/">#windows </a>
+          
+            <a href="/tags/mac/">#mac </a>
           
         
       </section>
@@ -315,6 +394,8 @@ ga('send', 'screenview', {screenName: document.title });
         
           
             &raquo; <a href="/categories/Technologies/">Technologies</a>
+          
+            &raquo; <a href="/categories/Technologies/Troubleshooting/">Troubleshooting</a>
           
         
       </section>
@@ -406,7 +487,7 @@ ga('send', 'screenview', {screenName: document.title });
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Fri Aug 05 2016 08:55:09 GMT-0400 (EDT)">#obft7x</span>
+          <span class="muted m-x-4" title="Fri Aug 05 2016 17:30:50 GMT-0400 (EDT)">#obgh3e</span>
         </div>
       </div>
     </footer>
@@ -423,16 +504,16 @@ ga('send', 'screenview', {screenName: document.title });
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 
-    <!-- https://www.algolia.com/getstarted#/step4
+<!--
+    // https://codepen.io/amejiarosario/pen/dXgrXR
 
-https://www.algolia.com/doc/guides/search/auto-complete#ui
+    https://community.algolia.com/instantsearch.js/documentation/#rangeslider
+    https://www.algolia.com/getstarted#/step4
+    https://www.algolia.com/doc/guides/search/auto-complete#ui
+-->
 
-    <li class="results">
-      <img src="https://image.tmdb.org/t/p/w154/{{ hit.image_path }}" />
-      <h3>{{{ hit._highlightResult.name.value }}}</h3>
-      {{ hit.alternative_name }}
-    </li> -->
     <script>
+      //
       // var client = algoliasearch('<%- process.env['ALGOLIA_APP_ID'] || "7M9S763HKU" %>', "<%- process.env['ALGOLIA_API_KEY'] || "33db42bbc1d2631fd68f26ebefa35aa8" %>")
       // var index = client.initIndex('adrianmejia-blog');
       // autocomplete('#search-input', {hint: false}, [
