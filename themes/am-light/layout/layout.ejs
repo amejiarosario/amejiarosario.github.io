@@ -141,16 +141,16 @@
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 
-    <!-- https://www.algolia.com/getstarted#/step4
+<!--
+    // https://codepen.io/amejiarosario/pen/dXgrXR
 
-https://www.algolia.com/doc/guides/search/auto-complete#ui
+    https://community.algolia.com/instantsearch.js/documentation/#rangeslider
+    https://www.algolia.com/getstarted#/step4
+    https://www.algolia.com/doc/guides/search/auto-complete#ui
+-->
 
-    <li class="results">
-      <img src="https://image.tmdb.org/t/p/w154/{{ hit.image_path }}" />
-      <h3>{{{ hit._highlightResult.name.value }}}</h3>
-      {{ hit.alternative_name }}
-    </li> -->
     <script>
+      //
       // var client = algoliasearch('<%- config.algolia.appId %>', "<%- config.algolia.apiKey %>")
       // var index = client.initIndex('<%- config.algolia.indexName %>');
       // autocomplete('#search-input', {hint: false}, [
