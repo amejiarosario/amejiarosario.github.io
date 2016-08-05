@@ -2060,7 +2060,9 @@ blockquote em {
       -ms-flex-item-align: stretch;
           align-self: stretch; } }
 
-.titlebar, .page-footer, nav {
+.titlebar,
+.page-footer,
+nav {
   background-color: #f9f9f9; }
 
 .navbar--is-active {
@@ -2156,7 +2158,7 @@ a {
   width: 300px;
   height: 250px; }
   .thumbnail-300x250 p {
-    margin: 0px;
+    margin: 0;
     font-size: 24px;
     font-family: Verdana;
     font-weight: normal;
@@ -2170,6 +2172,43 @@ a {
   display: flex; }
   .bio-box .muted a {
     color: #0E557E; }
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 16777270;
+  display: none; }
+  .overlay .close-btn {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    z-index: 16777274;
+    background: none;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 11px;
+    cursor: pointer;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease; }
+    .overlay .close-btn span {
+      font-size: 28px;
+      line-height: 0;
+      vertical-align: initial;
+      padding-left: 3px; }
+    .overlay .close-btn:after {
+      content: '';
+      display: inline-block;
+      height: 22px; }
 
 article pre {
   background: #2d2d2d;
@@ -3215,31 +3254,3 @@ h1:hover .headerlink::after, h2:hover .headerlink::after, h3:hover .headerlink::
   .post-content img {
     display: block;
     max-width: 90%; }
-
-.algolia-autocomplete {
-  width: 100%; }
-
-.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-  width: 100%;
-  min-height: 30px;
-  text-indent: 10px; }
-
-.algolia-autocomplete .aa-hint {
-  color: #999; }
-
-.algolia-autocomplete .aa-dropdown-menu {
-  width: 100%;
-  background-color: #fff;
-  border: 1px solid #999;
-  border-top: none; }
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-  cursor: pointer;
-  padding: 5px 4px; }
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-  background-color: #B2D7FF; }
-
-.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-  font-weight: bold;
-  font-style: normal; }

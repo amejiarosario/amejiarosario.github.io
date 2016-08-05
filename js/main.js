@@ -21,3 +21,27 @@ var trackOutboundLink = function trackOutboundLink(url) {
     }
   });
 };
+
+var searchButton = document.getElementById("search-modal");
+if (searchButton) {
+  searchButton.addEventListener("click", openModal);
+}
+
+function openModal() {
+  var overlay = document.getElementById("search-overlay");
+  if (overlay) {
+    overlay.style.display = "block";
+  }
+}
+
+function closeModal() {
+  var overlay = document.getElementById("search-overlay");
+  if (overlay) {
+    overlay.style.display = "none";
+  }
+}
+
+var closeOverlay = document.getElementById("close-search-overlay");
+if (closeOverlay) {
+  closeOverlay.addEventListener("click", closeModal);
+}

@@ -85,11 +85,7 @@ ga('send', 'screenview', {screenName: document.title });
                 <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
               
 
-              <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
-<script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
-<link rel="stylesheet" href="/stylesheets/55_search.css">
-
-<a href="#" id="search-modal">
+              <a href="#" id="search-modal">
   <i class="fa fa-search" aria-hidden="true"></i>
 </a>
 
@@ -97,108 +93,12 @@ ga('send', 'screenview', {screenName: document.title });
   <button class="close-btn" id="close-search-overlay">
     <span><i class="fa fa-close"></i></span>
   </button>
-
-
-  <script id="movie" type="text/x-handlebars-template">
-    <article class="movie">
-      {{#photos.0}}
-      <a href="/{{path}}">
-        <img class="movie-image" src="{{photos.0}}" />
-      </a>
-      {{/photos.0}}
-
-      <div class="movie-meta">
-        <div class="movie-title">
-          <a href="/{{path}}">
-            {{{_highlightResult.title.value}}}
-          </a>
-          <!--
-          <span class="movie-year">
-            {{year}}
-          </span>
-          -->
-        </div>
-
-        <div class="movie-rating">
-          {{#stars}}
-            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
-            </span>
-          {{/stars}}
-        </div>
-
-        <p>
-          {{{_highlightResult.excerptStrip.value}}}
-        </p>
-
-        <div class="movie-genres">
-          {{#tags}}
-            <div class="movie-genre">
-              {{.}}
-            </div>
-          {{/tags}}
-        </div>
-      </div>
-    </article>
-  </script>
-
-  <div class="search-container">
-
-    <div class="top">
-      <div class="search-button">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="input-container">
-        <input type="text" id="search-box" />
-        <div id="stats"></div>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="facets">
-        <div class="facet">
-          <div class="facet-title">Tags</div>
-          <div id="tags"></div>
-        </div>
-
-        <div class="facet">
-          <div class="facet-title">Categories</div>
-          <div id="categories"></div>
-        </div>
-
-  <!--
-        <div class="facet">
-          <div class="facet-title">Popularity</div>
-          <div id="ratings"></div>
-        </div> -->
-
-  <!--
-        https://community.algolia.com/instantsearch.js/documentation/#rangeslider
-
-        <div class="facet">
-          <div class="facet-title">Year</div>
-          <div id="year"></div>
-        </div> -->
-      </div>
-
-      <div class="canvas">
-        <div id="hits"></div>
-
-        <div id="pagination"></div>
-      </div>
-    </div>
-  </div>
 </div>
-
-<script src="/js/search.js"></script>
 
             </nav>
 
             <div class="hidden-mobile-up">
-              <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
-<script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
-<link rel="stylesheet" href="/stylesheets/55_search.css">
-
-<a href="#" id="search-modal">
+              <a href="#" id="search-modal">
   <i class="fa fa-search" aria-hidden="true"></i>
 </a>
 
@@ -206,99 +106,7 @@ ga('send', 'screenview', {screenName: document.title });
   <button class="close-btn" id="close-search-overlay">
     <span><i class="fa fa-close"></i></span>
   </button>
-
-
-  <script id="movie" type="text/x-handlebars-template">
-    <article class="movie">
-      {{#photos.0}}
-      <a href="/{{path}}">
-        <img class="movie-image" src="{{photos.0}}" />
-      </a>
-      {{/photos.0}}
-
-      <div class="movie-meta">
-        <div class="movie-title">
-          <a href="/{{path}}">
-            {{{_highlightResult.title.value}}}
-          </a>
-          <!--
-          <span class="movie-year">
-            {{year}}
-          </span>
-          -->
-        </div>
-
-        <div class="movie-rating">
-          {{#stars}}
-            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
-            </span>
-          {{/stars}}
-        </div>
-
-        <p>
-          {{{_highlightResult.excerptStrip.value}}}
-        </p>
-
-        <div class="movie-genres">
-          {{#tags}}
-            <div class="movie-genre">
-              {{.}}
-            </div>
-          {{/tags}}
-        </div>
-      </div>
-    </article>
-  </script>
-
-  <div class="search-container">
-
-    <div class="top">
-      <div class="search-button">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="input-container">
-        <input type="text" id="search-box" />
-        <div id="stats"></div>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="facets">
-        <div class="facet">
-          <div class="facet-title">Tags</div>
-          <div id="tags"></div>
-        </div>
-
-        <div class="facet">
-          <div class="facet-title">Categories</div>
-          <div id="categories"></div>
-        </div>
-
-  <!--
-        <div class="facet">
-          <div class="facet-title">Popularity</div>
-          <div id="ratings"></div>
-        </div> -->
-
-  <!--
-        https://community.algolia.com/instantsearch.js/documentation/#rangeslider
-
-        <div class="facet">
-          <div class="facet-title">Year</div>
-          <div id="year"></div>
-        </div> -->
-      </div>
-
-      <div class="canvas">
-        <div id="hits"></div>
-
-        <div id="pagination"></div>
-      </div>
-    </div>
-  </div>
 </div>
-
-<script src="/js/search.js"></script>
 
             </div>
           <!-- </div> -->
@@ -495,7 +303,7 @@ ga('send', 'screenview', {screenName: document.title });
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Fri Aug 05 2016 08:53:41 GMT-0400 (EDT)">#obft5h</span>
+          <span class="muted m-x-4" title="Fri Aug 05 2016 08:55:09 GMT-0400 (EDT)">#obft7x</span>
         </div>
       </div>
     </footer>
@@ -514,16 +322,16 @@ ga('send', 'screenview', {screenName: document.title });
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 
-<!--
-    // https://codepen.io/amejiarosario/pen/dXgrXR
+    <!-- https://www.algolia.com/getstarted#/step4
 
-    https://community.algolia.com/instantsearch.js/documentation/#rangeslider
-    https://www.algolia.com/getstarted#/step4
-    https://www.algolia.com/doc/guides/search/auto-complete#ui
--->
+https://www.algolia.com/doc/guides/search/auto-complete#ui
 
+    <li class="results">
+      <img src="https://image.tmdb.org/t/p/w154/{{ hit.image_path }}" />
+      <h3>{{{ hit._highlightResult.name.value }}}</h3>
+      {{ hit.alternative_name }}
+    </li> -->
     <script>
-      //
       // var client = algoliasearch('<%- process.env['ALGOLIA_APP_ID'] || "7M9S763HKU" %>', "<%- process.env['ALGOLIA_API_KEY'] || "33db42bbc1d2631fd68f26ebefa35aa8" %>")
       // var index = client.initIndex('adrianmejia-blog');
       // autocomplete('#search-input', {hint: false}, [
