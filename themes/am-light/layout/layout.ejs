@@ -86,17 +86,11 @@
 
             <nav class="hidden-mobile-down navbar">
               <% for (var i in theme.menu){ %>
-                <a href="<%- url_for(theme.menu[i]) %>" class="animation--radial-out" id="<%- i %>"><%= i %></a>
+                <a href="<%- url_for(theme.menu[i]) %>" class="animation--radial-out" id="<%- i %>" onclick="track('<%- url_for(theme.menu[i]) %>', 'menu', true)"><%= i %></a>
               <% } %>
-
-              <%- partial('_partials/search_algolia') %>
             </nav>
 
-            <div class="hidden-mobile-up">
-              <%- partial('_partials/search_algolia') %>
-            </div>
-          <!-- </div> -->
-        <!-- </div> -->
+            <%- partial('_partials/search_algolia') %>
       </div>
     </header>
     <nav class="hidden-mobile-up mdl-shadow--2dp">
@@ -133,6 +127,12 @@
     <% } %>
 
     <% if(is_post()){ %>
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
       <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
       <%- js('js/posts') -%>
     <% } %>

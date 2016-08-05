@@ -287,7 +287,10 @@ We are now injecting the data dependency `Todo` into the controllers. This way w
 Let's say we want to show the details of the task when we click on it. For that, we need to create a 2nd controller, template and route that uses this service:
 
 <p data-height="268" data-theme-id="0" data-slug-hash="pGkhg" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/pGkhg/'>pGkhg</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+
+
 (NOTE: Click on the links and it will take you to the todo details. Use backspace key to go back to the main menu)
+
 
 This is what is happening:
 
