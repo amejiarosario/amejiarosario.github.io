@@ -76,13 +76,13 @@ ga('send', 'screenview', {screenName: document.title });
 
             <nav class="hidden-mobile-down navbar">
               
-                <a href="/#home" class="animation--radial-out" id="Home">Home</a>
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
               
-                <a href="/#trending-posts" class="animation--radial-out" id="Trending">Trending</a>
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
               
-                <a href="/#about" class="animation--radial-out" id="About">About</a>
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
               
-                <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
               
             </nav>
 
@@ -90,7 +90,7 @@ ga('send', 'screenview', {screenName: document.title });
 <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
 <link rel="stylesheet" href="/stylesheets/55_search.css">
 
-<a href="#" id="search-modal">
+<a href="#" id="search-modal" onclick="track('#search', 'search', true)">
   <i class="fa fa-search" aria-hidden="true"></i>
 </a>
 
@@ -397,7 +397,7 @@ dbs.Close
         <div class="muted">
           <div class="p-y-1">
             <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
-            <a href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2011-11-09-how-to-execute-sql-statements-on-ms-access.md" class="p-x-3" title="Improve this post"><i class="fa fa-pencil"></i> Improve</a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2011-11-09-how-to-execute-sql-statements-on-ms-access.md')"><i class="fa fa-pencil"></i> Improve</a>
             <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
             <!--<div class="p-y-1">-->
               <!---->
@@ -417,19 +417,19 @@ dbs.Close
   
   <div class="article-nav m-y-4">
     
-      <a href="/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/" class="article-nav-newer" class="article-nav-link-wrap">
+      <a href="/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/" class="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
         <div class="article-nav-title">
           
-            Regular Expressions in C# and Java - CSV Example
+            git+ftp: Publish Git repository over FTP 
           
         </div>
       </a>
     
     
-      <a href="/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/" class="article-nav-older" class="article-nav-link-wrap">
+      <a href="/blog/2011/11/04/update-drupal-sites/" class="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
-        <div class="article-nav-title">git+ftp: Publish Git repository over FTP </div>
+        <div class="article-nav-title">Update Drupal sites</div>
       </a>
     
   </div>
@@ -465,7 +465,7 @@ dbs.Close
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Fri Aug 05 2016 17:30:50 GMT-0400 (EDT)">#obgh3e</span>
+          <span class="muted m-x-4" title="Fri Aug 05 2016 18:46:22 GMT-0400 (EDT)">#obgkla</span>
         </div>
       </div>
     </footer>
@@ -477,6 +477,12 @@ dbs.Close
     
 
     
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
       <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
       <script src="/js/posts.js"></script>    
 

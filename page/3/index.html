@@ -76,13 +76,13 @@ ga('send', 'screenview', {screenName: document.title });
 
             <nav class="hidden-mobile-down navbar">
               
-                <a href="/#home" class="animation--radial-out" id="Home">Home</a>
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
               
-                <a href="/#trending-posts" class="animation--radial-out" id="Trending">Trending</a>
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
               
-                <a href="/#about" class="animation--radial-out" id="About">About</a>
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
               
-                <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
               
             </nav>
 
@@ -90,7 +90,7 @@ ga('send', 'screenview', {screenName: document.title });
 <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
 <link rel="stylesheet" href="/stylesheets/55_search.css">
 
-<a href="#" id="search-modal">
+<a href="#" id="search-modal" onclick="track('#search', 'search', true)">
   <i class="fa fa-search" aria-hidden="true"></i>
 </a>
 
@@ -296,7 +296,7 @@ ga('send', 'screenview', {screenName: document.title });
     
       <img src="/images/RESTfulAPIs_NodeJS__mongodb_320x250.png" width="300" height="250">
       <section class="p-a-1">
-        <h3>Creating RESTful APIs with NodeJS and MongoDB Tutorial</h3>
+        <h3>Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)</h3>
       </section>
     
   </a>
@@ -394,13 +394,13 @@ ga('send', 'screenview', {screenName: document.title });
         </p>
 
         <p>I'd love to hear from you, drop me a line
-          <a href="https://github.com/amejiarosario/ama" target="_blank"
+          <a onclick="track('https://github.com/amejiarosario/ama', 'ama')"
           class="animation--bounce-in">here!</a>
         </p>
 
-        <a href="https://twitter.com/amejiarosario" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false" onclick="ga('send', 'social', 'Twitter', 'follow');">Follow @amejiarosario</a>
-<div id="googleplus-follow-button" class="g-follow" data-annotation="bubble" data-height="20" data-href="//plus.google.com/u/0/105957252272382685246" data-rel="author" onclick="ga('send', 'social', 'Google+', 'follow');"></div>
-<a id="github-follow-button" class="github-button" href="https://github.com/amejiarosario" data-count-href="/amejiarosario/followers" data-count-api="/users/amejiarosario#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @amejiarosario on GitHub" onclick="trackOutboundLink('https://github.com/amejiarosario');return false;">Follow @amejiarosario</a>
+        <a href="https://twitter.com/amejiarosario" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @amejiarosario</a>
+<div id="googleplus-follow-button" class="g-follow" data-annotation="bubble" data-height="20" data-href="//plus.google.com/u/0/105957252272382685246" data-rel="author"></div>
+<a id="github-follow-button" class="github-button" href="https://github.com/amejiarosario" data-count-href="/amejiarosario/followers" data-count-api="/users/amejiarosario#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @amejiarosario on GitHub">Follow @amejiarosario</a>
 
         <script type="application/ld+json">
 {
@@ -474,7 +474,7 @@ ga('send', 'screenview', {screenName: document.title });
       </section>
 
       <section class="col-sm-4">
-        <a href="https://www.packtpub.com/web-development/building-e-commerce-application-mean" id="meanshop-book" onclick="trackOutboundLink('https://www.packtpub.com/web-development/building-e-commerce-application-mean');return false;">
+        <a href="https://www.packtpub.com/web-development/building-e-commerce-application-mean" id="meanshop-book" onclick="track('https://www.packtpub.com/web-development/building-e-commerce-application-mean', 'book');return false;">
           <img src="/images/meanshop-book1.png" alt="meanshop book" height="300"/>
         </a>
       </section>
@@ -488,7 +488,7 @@ ga('send', 'screenview', {screenName: document.title });
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Fri Aug 05 2016 17:30:50 GMT-0400 (EDT)">#obgh3e</span>
+          <span class="muted m-x-4" title="Fri Aug 05 2016 18:46:22 GMT-0400 (EDT)">#obgkla</span>
         </div>
       </div>
     </footer>

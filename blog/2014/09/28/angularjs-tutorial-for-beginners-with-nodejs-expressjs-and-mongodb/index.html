@@ -76,13 +76,13 @@ ga('send', 'screenview', {screenName: document.title });
 
             <nav class="hidden-mobile-down navbar">
               
-                <a href="/#home" class="animation--radial-out" id="Home">Home</a>
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
               
-                <a href="/#trending-posts" class="animation--radial-out" id="Trending">Trending</a>
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
               
-                <a href="/#about" class="animation--radial-out" id="About">About</a>
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
               
-                <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
               
             </nav>
 
@@ -90,7 +90,7 @@ ga('send', 'screenview', {screenName: document.title });
 <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
 <link rel="stylesheet" href="/stylesheets/55_search.css">
 
-<a href="#" id="search-modal">
+<a href="#" id="search-modal" onclick="track('#search', 'search', true)">
   <i class="fa fa-search" aria-hidden="true"></i>
 </a>
 
@@ -228,7 +228,7 @@ ga('send', 'screenview', {screenName: document.title });
   },
   
   "datePublished": "2014-09-28T23:50:24-04:00",
-  "dateModified": "2016-07-28T16:16:23-04:00",
+  "dateModified": "2016-08-05T17:54:16-04:00",
   "author": {
     "@type": "Person",
     "name": "Adrian Mejia"
@@ -259,7 +259,7 @@ ga('send', 'screenview', {screenName: document.title });
       <span title="Last time this post was updated">
         <i class="fa fa-calendar" aria-hidden="true"></i>
         Last update
-        <time datetime="2016-07-28T20:16:23.000Z" itemprop="dateUpdated">July 28th 2016</time>
+        <time datetime="2016-08-05T21:54:16.000Z" itemprop="dateUpdated">August 5th 2016</time>
       </span>
 
       
@@ -392,35 +392,31 @@ ga('send', 'screenview', {screenName: document.title });
 <p>We are now injecting the data dependency <code>Todo</code> into the controllers. This way we could reuse the data to any controller or module that we need to. This is not only used for static data like the array, but we could also do server calls using <code>$http</code> or even RESTful  <code>$resource</code>.</p>
 <p>Let’s say we want to show the details of the task when we click on it. For that, we need to create a 2nd controller, template and route that uses this service:</p>
 <p data-height="268" data-theme-id="0" data-slug-hash="pGkhg" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/pGkhg/" target="_blank" rel="external">pGkhg</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
-(NOTE: Click on the links and it will take you to the todo details. Use backspace key to go back to the main menu)
 
-This is what is happening:
 
-1. In the <code>HTML</code> tab we created a second template <code>/todoDetails.html</code> which contains the todo details we want to show.
-2. Also, in our previous template <code>/todos.html</code> we want to have a link that points to the <code>todo</code> detail. We are using the <code>$index</code> which is the corresponding order number in a <code>ng-repeat</code>.
-2. In the <code>JS</code> tab, we created a new <code>$routeProvider</code> which points to a new controller <code>TodoDetailCtrl</code> and the template that we created on #1. The <code>:id</code> parameter it is accessible in the controllers through <code>$routeParams</code>.
-3. Created the new controller <code>TodoDetailCtrl</code> and inject the dependencies which are <code>$scope</code>, <code>Todos</code> (factory), and <code>$routeParams</code> which will have the <code>id</code> param.
-4. Set the <code>$scope</code> in the new controller. Instead of using the whole array, we are going to select only the one that we need using the <code>id</code> that we set in step #2.
-
-NOTE: in codepen, you will not see the URL. If you want to see it changing, you can download the whole example an open it from <a href="https://gist.github.com/amejiarosario/f0a82c7a0eec4786f1c9" target="_blank">here</a>.
-
-## AngularJS Filters
-
-Filters allow you to format and transform the output of expressions inside the curly braces. AngularJS comes with a bunch of useful filters.
-
-<strong>Built-in Filters</strong>:
-
-<em> </em>filter<em>: search for a given string in an array and return matches.
-</em> <em>Number</em>: adds comma-separated 1000’s and two decimal places.
-<em> </em>Currency<em>: the same as </em>Number<em> and adds a $ in front.
-</em> <em>Date</em>: takes a Unix timestamp (e.g. 1288323623006) or date string and output it in the format that you specify (e.g. ‘longDate’ or fragments ‘yyyy’ for four-digit year). For a full list see <a href="https://docs.angularjs.org/api/ng/filter/date" target="_blank">here</a>.
-<em> </em>JSON<em>: converts javascript objects to JSON strings.
-</em> <em>lowercase</em>/<em>uppercase</em>: converts strings to lowercase/uppercase.
-<em> </em>limitTo<em>: number of elements from an array to show.
-</em> <em>orderBy</em>: order array of objects by key that you specify.
-
-<strong>Note</strong> you can also chain multiple filters and also define your own filters.
-
+<p>(NOTE: Click on the links and it will take you to the todo details. Use backspace key to go back to the main menu)</p>
+<p>This is what is happening:</p>
+<ol>
+<li>In the <code>HTML</code> tab we created a second template <code>/todoDetails.html</code> which contains the todo details we want to show.</li>
+<li>Also, in our previous template <code>/todos.html</code> we want to have a link that points to the <code>todo</code> detail. We are using the <code>$index</code> which is the corresponding order number in a <code>ng-repeat</code>.</li>
+<li>In the <code>JS</code> tab, we created a new <code>$routeProvider</code> which points to a new controller <code>TodoDetailCtrl</code> and the template that we created on #1. The <code>:id</code> parameter it is accessible in the controllers through <code>$routeParams</code>.</li>
+<li>Created the new controller <code>TodoDetailCtrl</code> and inject the dependencies which are <code>$scope</code>, <code>Todos</code> (factory), and <code>$routeParams</code> which will have the <code>id</code> param.</li>
+<li>Set the <code>$scope</code> in the new controller. Instead of using the whole array, we are going to select only the one that we need using the <code>id</code> that we set in step #2.</li>
+</ol>
+<p>NOTE: in codepen, you will not see the URL. If you want to see it changing, you can download the whole example an open it from <a href="https://gist.github.com/amejiarosario/f0a82c7a0eec4786f1c9" target="_blank">here</a>.</p>
+<h2 id="AngularJS-Filters">AngularJS Filters<a href="#AngularJS-Filters" class="headerlink" title="AngularJS Filters"></a></h2><p>Filters allow you to format and transform the output of expressions inside the curly braces. AngularJS comes with a bunch of useful filters.</p>
+<p><strong>Built-in Filters</strong>:</p>
+<ul>
+<li><em>filter</em>: search for a given string in an array and return matches.</li>
+<li><em>Number</em>: adds comma-separated 1000’s and two decimal places.</li>
+<li><em>Currency</em>: the same as <em>Number</em> and adds a $ in front.</li>
+<li><em>Date</em>: takes a Unix timestamp (e.g. 1288323623006) or date string and output it in the format that you specify (e.g. ‘longDate’ or fragments ‘yyyy’ for four-digit year). For a full list see <a href="https://docs.angularjs.org/api/ng/filter/date" target="_blank">here</a>.</li>
+<li><em>JSON</em>: converts javascript objects to JSON strings.</li>
+<li><em>lowercase</em>/<em>uppercase</em>: converts strings to lowercase/uppercase.</li>
+<li><em>limitTo</em>: number of elements from an array to show.</li>
+<li><em>orderBy</em>: order array of objects by key that you specify.</li>
+</ul>
+<p><strong>Note</strong> you can also chain multiple filters and also define your own filters.</p>
 <p data-height="268" data-theme-id="0" data-slug-hash="tyuDK" data-default-tab="result" data-user="amejiarosario" class="codepen">See the Pen <a href="http://codepen.io/amejiarosario/pen/tyuDK/" target="_blank" rel="external">tyuDK</a> by Adrian Mejia (<a href="http://codepen.io/amejiarosario" target="_blank" rel="external">@amejiarosario</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p>
 
 <p><strong>NEW FEATURE</strong>: Search todo tasks by name. Let’s use a filter to solve that problem.</p>
@@ -528,7 +524,7 @@ Filters allow you to format and transform the output of expressions inside the c
     
       <img src="/images/RESTfulAPIs_NodeJS__mongodb_320x250.png" width="300" height="250">
       <section class="p-a-1">
-        <h3>Creating RESTful APIs with NodeJS and MongoDB Tutorial</h3>
+        <h3>Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)</h3>
       </section>
     
   </a>
@@ -598,7 +594,7 @@ Filters allow you to format and transform the output of expressions inside the c
         <div class="muted">
           <div class="p-y-1">
             <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
-            <a href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2014-09-28-angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb.md" class="p-x-3" title="Improve this post"><i class="fa fa-pencil"></i> Improve</a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2014-09-28-angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb.md')"><i class="fa fa-pencil"></i> Improve</a>
             <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
             <!--<div class="p-y-1">-->
               <!---->
@@ -610,7 +606,7 @@ Filters allow you to format and transform the output of expressions inside the c
 
           
             <h3 class="toc-title">Contents</h3>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Angular-js"><span class="toc-number">1.</span> <span class="toc-text">What is Angular.js?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-vs-jQuery-vs-BackboneJS-vs-EmberJS"><span class="toc-number">1.1.</span> <span class="toc-text">AngularJS vs jQuery vs BackboneJS vs EmberJS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AngularJS-Main-Components"><span class="toc-number">2.</span> <span class="toc-text">AngularJS Main Components</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Directives"><span class="toc-number">2.1.</span> <span class="toc-text">AngularJS Directives</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Data-Binding"><span class="toc-number">2.2.</span> <span class="toc-text">AngularJS Data Binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Scope"><span class="toc-number">2.3.</span> <span class="toc-text">AngularJS Scope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Controllers"><span class="toc-number">2.4.</span> <span class="toc-text">AngularJS Controllers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Modules"><span class="toc-number">2.5.</span> <span class="toc-text">AngularJS Modules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Templates"><span class="toc-number">2.6.</span> <span class="toc-text">AngularJS Templates</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Routes-ngRoutes"><span class="toc-number">2.7.</span> <span class="toc-text">AngularJS Routes (ngRoutes)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Services-Factories"><span class="toc-number">2.8.</span> <span class="toc-text">AngularJS Services (Factories)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What’s-next"><span class="toc-number">3.</span> <span class="toc-text">What’s next?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ng-test"><span class="toc-number">3.0.1.</span> <span class="toc-text">ng-test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ng-solution"><span class="toc-number">3.0.2.</span> <span class="toc-text">ng-solution</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Angular-js"><span class="toc-number">1.</span> <span class="toc-text">What is Angular.js?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-vs-jQuery-vs-BackboneJS-vs-EmberJS"><span class="toc-number">1.1.</span> <span class="toc-text">AngularJS vs jQuery vs BackboneJS vs EmberJS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AngularJS-Main-Components"><span class="toc-number">2.</span> <span class="toc-text">AngularJS Main Components</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Directives"><span class="toc-number">2.1.</span> <span class="toc-text">AngularJS Directives</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Data-Binding"><span class="toc-number">2.2.</span> <span class="toc-text">AngularJS Data Binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Scope"><span class="toc-number">2.3.</span> <span class="toc-text">AngularJS Scope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Controllers"><span class="toc-number">2.4.</span> <span class="toc-text">AngularJS Controllers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Modules"><span class="toc-number">2.5.</span> <span class="toc-text">AngularJS Modules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Templates"><span class="toc-number">2.6.</span> <span class="toc-text">AngularJS Templates</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Routes-ngRoutes"><span class="toc-number">2.7.</span> <span class="toc-text">AngularJS Routes (ngRoutes)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Services-Factories"><span class="toc-number">2.8.</span> <span class="toc-text">AngularJS Services (Factories)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Filters"><span class="toc-number">2.9.</span> <span class="toc-text">AngularJS Filters</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What’s-next"><span class="toc-number">3.</span> <span class="toc-text">What’s next?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ng-test"><span class="toc-number">3.0.1.</span> <span class="toc-text">ng-test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ng-solution"><span class="toc-number">3.0.2.</span> <span class="toc-text">ng-solution</span></a></li></ol></li></ol></li></ol>
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      data-ad-client="ca-pub-9725767907287651"
@@ -636,7 +632,7 @@ Filters allow you to format and transform the output of expressions inside the c
         <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
         <div class="article-nav-title">
           
-            Creating RESTful APIs with NodeJS and MongoDB Tutorial
+            Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)
           
         </div>
       </a>
@@ -680,7 +676,7 @@ Filters allow you to format and transform the output of expressions inside the c
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Fri Aug 05 2016 17:30:50 GMT-0400 (EDT)">#obgh3e</span>
+          <span class="muted m-x-4" title="Fri Aug 05 2016 18:46:22 GMT-0400 (EDT)">#obgkla</span>
         </div>
       </div>
     </footer>
@@ -692,6 +688,12 @@ Filters allow you to format and transform the output of expressions inside the c
     
 
     
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
       <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
       <script src="/js/posts.js"></script>    
 

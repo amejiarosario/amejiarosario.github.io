@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://adrianmejia.com/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/</loc>
+    
+    <lastmod>2016-08-05T21:54:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/</loc>
+    
+    <lastmod>2016-08-05T21:41:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://adrianmejia.com/blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll/</loc>
     
     <lastmod>2016-07-30T23:23:40.000Z</lastmod>
@@ -229,20 +243,6 @@
     <loc>http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/</loc>
     
     <lastmod>2016-07-28T20:18:03.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://adrianmejia.com/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/</loc>
-    
-    <lastmod>2016-07-28T20:16:23.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/</loc>
-    
-    <lastmod>2016-07-28T20:12:38.000Z</lastmod>
     
   </url>
   

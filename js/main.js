@@ -3,6 +3,7 @@
 
 function createFunctionWithTimeout(callback, opt_timeout) {
   var called = false;
+
   function fn() {
     if (!called) {
       called = true;
@@ -13,11 +14,15 @@ function createFunctionWithTimeout(callback, opt_timeout) {
   return fn;
 }
 
-var trackOutboundLink = function trackOutboundLink(url) {
-  ga("send", "event", "outbound", "click", "url", url, {
+var track = function track(url, category, internal) {
+  category = category || "outbound";
+  ga("send", "event", category, "click", url, {
     transport: "beacon",
     hitCallback: function hitCallback() {
-      document.location = url;
+      if (!internal) {
+        window.open(url, "_blank"); // new tab
+        //  document.location = url; // same page
+      }
     }
   });
 };
