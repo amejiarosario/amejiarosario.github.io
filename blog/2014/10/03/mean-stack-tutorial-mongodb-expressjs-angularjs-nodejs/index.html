@@ -84,11 +84,222 @@ ga('send', 'screenview', {screenName: document.title });
               
                 <a href="/blog" class="animation--radial-out" id="Blog">Blog</a>
               
-              <i class="fa fa-search" aria-hidden="true"></i>
+
+              <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+<script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+<a href="#" id="search-modal">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay">
+  <button class="close-btn" id="close-search-overlay">
+    <span><i class="fa fa-close"></i></span>
+  </button>
+
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <!--
+          <span class="movie-year">
+            {{year}}
+          </span>
+          -->
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+        <div class="facet">
+          <div class="facet-title">Tags</div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">Categories</div>
+          <div id="categories"></div>
+        </div>
+
+  <!--
+        <div class="facet">
+          <div class="facet-title">Popularity</div>
+          <div id="ratings"></div>
+        </div> -->
+
+  <!--
+        https://community.algolia.com/instantsearch.js/documentation/#rangeslider
+
+        <div class="facet">
+          <div class="facet-title">Year</div>
+          <div id="year"></div>
+        </div> -->
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>
+
             </nav>
 
             <div class="hidden-mobile-up">
-              <i class="fa fa-search" aria-hidden="true"></i>
+              <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+<script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+<a href="#" id="search-modal">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay">
+  <button class="close-btn" id="close-search-overlay">
+    <span><i class="fa fa-close"></i></span>
+  </button>
+
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <!--
+          <span class="movie-year">
+            {{year}}
+          </span>
+          -->
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+        <div class="facet">
+          <div class="facet-title">Tags</div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">Categories</div>
+          <div id="categories"></div>
+        </div>
+
+  <!--
+        <div class="facet">
+          <div class="facet-title">Popularity</div>
+          <div id="ratings"></div>
+        </div> -->
+
+  <!--
+        https://community.algolia.com/instantsearch.js/documentation/#rangeslider
+
+        <div class="facet">
+          <div class="facet-title">Year</div>
+          <div id="year"></div>
+        </div> -->
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>
+
             </div>
           <!-- </div> -->
         <!-- </div> -->
@@ -226,7 +437,7 @@ Programming languages that are blocking (Java, Ruby, Python, PHP, …) overcomes
 <li>The root path (<code>/</code>) is mounted on the <code>routes/index.js</code></li>
 <li><code>routes/index.js</code> sets the variable title and renders <code>index.ejs</code>.</li>
 </ol>
-<figure class="highlight javascript"><figcaption><span>Tracing ExpressJS index route</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app.js</span></div><div class="line"><span class="keyword">var</span> routes = <span class="built_in">require</span>(<span class="string">'./routes/index'</span>);</div><div class="line">app.use(<span class="string">'/'</span>, routes);</div><div class="line"></div><div class="line"><span class="comment">// ./routes/index.js</span></div><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.render(<span class="string">'index'</span>, &#123; title: <span class="string">'Express'</span> &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// ./views/index.ejs</span></div><div class="line">    &lt;h1&gt;<span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">title</span> %&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">    &lt;p&gt;Welcome to &lt;%= title %&gt;<span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><figcaption><span>Tracing ExpressJS index route</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// app.js</span></div><div class="line"><span class="keyword">var</span> routes = <span class="built_in">require</span>(<span class="string">'./routes/index'</span>);</div><div class="line">app.use(<span class="string">'/'</span>, routes);</div><div class="line"></div><div class="line"><span class="comment">// ./routes/index.js</span></div><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.render(<span class="string">'index'</span>, &#123; title: <span class="string">'Express'</span> &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// ./views/index.ejs</span></div><div class="line">    &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;</div><div class="line">    &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;</div></pre></td></tr></table></figure>
 <p>The best place to load our <code>./views/index.ejs</code>. So let’s copy the body content from ngTodo.html content in there and change in <code>./routes/index.js</code> title to “ngTodo App”. Don’t forget to add ng-app on the top. <code>&lt;html ng-app=&quot;app&quot;&gt;</code>.</p>
 <p><a href="https://github.com/amejiarosario/todoAPIjs/commit/ebf20f4093aa20c867777b4b3db825429b54a20d" target="_blank" rel="external">diff</a></p>
 <h1 id="Wiring-up-the-App">Wiring up the App<a href="#Wiring-up-the-App" class="headerlink" title="Wiring up the App"></a></h1><h2 id="AngularJS-Read-with-http">AngularJS Read with $http<a href="#AngularJS-Read-with-http" class="headerlink" title="AngularJS Read with $http"></a></h2><p>As you might notice, in the factory, we have a fixed array. We need to change it to communicate with the API that we just build.</p>
@@ -533,7 +744,7 @@ for your next web application.</li>
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Wed Aug 03 2016 22:11:40 GMT-0400 (EDT)">#obd4rg</span>
+          <span class="muted m-x-4" title="Fri Aug 05 2016 08:53:41 GMT-0400 (EDT)">#obft5h</span>
         </div>
       </div>
     </footer>
@@ -547,5 +758,37 @@ for your next web application.</li>
     
       <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
       <script src="/js/posts.js"></script>    
+
+
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
+<!--
+    // https://codepen.io/amejiarosario/pen/dXgrXR
+
+    https://community.algolia.com/instantsearch.js/documentation/#rangeslider
+    https://www.algolia.com/getstarted#/step4
+    https://www.algolia.com/doc/guides/search/auto-complete#ui
+-->
+
+    <script>
+      //
+      // var client = algoliasearch('<%- process.env['ALGOLIA_APP_ID'] || "7M9S763HKU" %>', "<%- process.env['ALGOLIA_API_KEY'] || "33db42bbc1d2631fd68f26ebefa35aa8" %>")
+      // var index = client.initIndex('adrianmejia-blog');
+      // autocomplete('#search-input', {hint: false}, [
+      //   {
+      //     source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+      //     displayKey: 'title',
+      //     templates: {
+      //       suggestion: function(suggestion) {
+      //         return suggestion._highlightResult.title.value;
+      //       }
+      //     }
+      //   }
+      // ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+      //   console.log(suggestion, dataset);
+      // });
+    </script>
+
   </body>
 </html>
