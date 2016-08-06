@@ -28,11 +28,14 @@ categories:
 
 Welcome to this RESTful API using Node.js (Express.js) and MongoDB (mongoose) tutorial. You can follow alone to make a stand alone API endpoint, or you could also check out our <a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb" target="_blank">AngularJS</a> or <a href="/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started" target="_blank">BackboneJS</a> tutorials to build a javascript-client that connects with the endpoint we are going to built.
 
+- Restful APIs
+- Installing MongoDB, NodeJS, ExpressJS
+
 <!--More-->
 
 # What is a RESTful API?
 
-REST stands for Representational State Transfer. It is an architecture that allows `client-server` communication through a uniform interface. They are also `stateless`, `cachable` and has property called `idempotence`, which means that the side effect of multiple identical requests have the same effect as the same single request.
+REST stands for Representational State Transfer. It is an architecture that allows `client-server` communication through a uniform interface. They are also `stateless`, `cachable` and has property called `idempotence`. It means that the side effect of identical requests have the same effect as the same single request.
 
 HTTP RESTful API's are compose of:
 
@@ -48,25 +51,37 @@ Here's is a summary what we want to implement:
 | /todos  | create new task  | list tasks  | N/A (update all)  |  N/A (destroy all) |
 | /todos/1  |  error  | show task ID 1  | update task ID 1  |  destroy task ID 1 |
 
-**NOTES**:
+**NOTE** for this tutorial:
 
   - Format will be JSON.
   - Bulk updates and bulk destroys are not safe, so we will not be implementing those.
-  - POST, GET, PUT, DELETE == **C**REATE, **R**EAD, **U**PDATE, **D**ELETE == **CRUD**.
+  - **CRUD** functionality: POST == **C**REATE, GET == **R**EAD, PUT == **U**PDATE, DELETE == **D**ELETE.
 
 # Installing the MEAN Stack Backend
 
-In this section we are going to install the backend components of the MEAN stack: MongoDB, NodeJS and ExpressJS.
-
-Note: If already have installed NodeJS, MongoDB (Mongoose), ExpressJS and knows about them separately then you can jump to <a href="#wiring-up-the-mean-stack">wiring the stack</a>, which is where the hands on start. Otherwise, if you want to review/learn about each member of the stack then follow alone and enjoy the ride!
+In this section, we are going to install the backend components of the MEAN stack: MongoDB, NodeJS and ExpressJS. If you already are familiar with them, then jump to <a href="#wiring-up-the-mean-stack">wiring the stack</a>. Otherwise, enjoy the ride!
 
 ## Installing MongoDB
 
 MongoDB is a document-oriented NoSQL database (Big Data ready). It stores data in JSON-like format and allows to perform SQL-like queries against it.
 
-You can installed following the <a href="http://docs.mongodb.org/manual/installation/" target="_blank">instructions here</a>. If you have a Mac and <a href="http://brew.sh/" target="_blank">brew</a> it's just: `brew install mongodb && mongod`. In ubuntu `sudo apt-get -y install mongodb`.
+You can installed following the <a href="http://docs.mongodb.org/manual/installation/" target="_blank">instructions here</a>.
 
-Check version:
+If you have a **Mac** and <a href="http://brew.sh/" target="_blank">brew</a> it's just:
+
+```bash
+brew install mongodb && mongod
+```
+
+In **Ubuntu**:
+
+```bash
+sudo apt-get -y install mongodb
+```
+
+
+After you have them installed, check version as follows:
+
 ```bash
 # Mac
 mongod --version
@@ -81,92 +96,145 @@ mongod --version
 
 ## Installing NodeJS
 
-For short NodeJS is Javascript running outside the browser, in this case in the server.
+The Node official definition is:
 
-To install it, you can go to <a href="http://nodejs.org/" target="_blank">NodeJS Website</a>. But if you are using Mac and <a href="http://brew.sh" target="_blank">brew</a> you can do `brew install nodejs` and in ubuntu use <a href="https://github.com/creationix/nvm">nvm</a> to install it. Once you have continue.
+{% blockquote Node.js Website https://nodejs.org %}
+Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
+{% endblockquote %}
 
-Check node version and npm (node package manager) version:
+In short, NodeJS allows you to run Javascript outside the browser, in this case, on the web server. <abbr title="Node Package Manager">NPM</abbr> allows you to install/publish node packages with ease.
+
+To install it, you can go to <a href="http://nodejs.org/" target="_blank">NodeJS Website</a>.
+
+Since Node versions changes very often. You can use the <abbr title="Node Version Manager">NVM</abbr> (Node Version Manager) on **Ubuntu** and Mac with:
+
+```bash
+# download NPM
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
+
+# load NPM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+# Install latest stable version
+nvm install stable
+```
+
+Check out <a href="https://github.com/creationix/nvm" target="_blank">https://github.com/creationix/nvm</a> for more details.
+
+Also, on **Mac** and <a href="http://brew.sh" target="_blank">brew</a> you can do:
+
+```
+brew install nodejs
+```
+
+
+After you got it installed, check node version and npm (node package manager) version:
 ```bash
 node -v
-# => v0.10.30
+# => v6.2.2
 
 npm -v
-# => 2.0.0-alpha-5
+# => 3.9.5
 ```
 
 ## Installing ExpressJS
 
-ExpressJS is web application framework that runs on NodeJS. Allows you to build web applications and APIs endpoints. (mode details later).
+ExpressJS is web application framework that runs on NodeJS. Allows you to build web applications and APIs endpoints (mode details later).
 
-Install it using npm:
+We are going to create a project folder first, and then add `express` as a dependency.
+Let's use <abbr title="Node Package Manager">NPM</abbr> init command to get us started.
+
 ```bash
-npm install -g express
+# create project folder
+mkdir todo-app
+
+# move to the folder and initialize the project
+cd todo-app
+npm init .  # press enter multiple times to accept all defaults
+
+# install express v4.14 and save it as dependency
+npm install express@4.14 --save
 ```
 
-Notice `-g`. It will install `express` globally and add it the `PATH`, so you can run it from anywhere.
-
-Check version:
-```
-express -V
-# => 4.9.0
-```
+Notice that after the last command, `express` should be added to package.json with the version `4.14.x`.
 
 # Using MongoDB with Mongoose
 
-Mongoose is an NPM package that allows to interact with MongoDB. You can install it as follows:
+Mongoose is an <abbr title="Node Package Manager">NPM</abbr> package that allows to interact with MongoDB. You can install it as follows:
 
 ```bash
-npm install mongoose
+npm install mongoose@4.5.8 --save
 ```
 
-If follow the previous steps you should have all you need to complete this tutorial. Basically, we are going to build an API that allow users to CRUD (Create-Read-Update-Delete) Todo tasks from database.
+If follow the previous steps you should have all you need to complete this tutorial. We are going to build an API that allow users to CRUD (Create-Read-Update-Delete) Todo tasks from database.
 
 ## Mongoose CRUD
 
-CRUD = **C**reate-**R**ead-**U**pdate-**D**elete
+CRUD == **C**reate-**R**ead-**U**pdate-**D**elete
 
-We can play with Mongoose in the console. In the `todoApp` type `node` to enter in the node CLI. Then:
+We are going to create, read, update and delete data from MongoDB using Mongoose/Node. First, you need to have mongodb up and running:
+
+```bash
+# run mongo daemon
+mongod
+```
+
+Keep mongo running in a terminal window and while in the folder `todoApp` type `node` to enter in the node CLI. Then:
 
 ```javascript
-/* prompt> */ var mongoose = require('mongoose');
+// Load mongoose package
+var mongoose = require('mongoose');
 
-/* prompt> */ mongoose.connect('mongodb://localhost/test3');
+// Connect to MongoDB and create/use database called todoAppTest
+mongoose.connect('mongodb://localhost/todoAppTest');
 
-/* prompt> */ var TodoSchema = new mongoose.Schema({
+// Create a schema
+var TodoSchema = new mongoose.Schema({
   name: String,
   completed: Boolean,
   note: String,
   updated_at: { type: Date, default: Date.now },
 });
 
-/* prompt> */ var Todo = mongoose.model('Todo', TodoSchema);
-
+// Create a model based on the schema
+var Todo = mongoose.model('Todo', TodoSchema);
 ```
+
+Great! Now, let's test that we can save and edit data.
 
 ## Mongoose Create
 
 ```javascript
-/* prompt> */ var todo = new Todo({name: 'Master NodeJS', completed: false, note: 'Getting there...'});
 
-/* prompt> */ todo.save(function(err){
-    if(err)
-        console.log(err);
-    else
-        console.log(todo);
+// Create a todo in memory
+var todo = new Todo({name: 'Master NodeJS', completed: false, note: 'Getting there...'});
+
+// Save it to database
+todo.save(function(err){
+  if(err)
+    console.log(err);
+  else
+    console.log(todo);
 });
 ```
+
+If you take a look to Mongo you will notice that we just created an entry. You can easily visualize data using <a href="https://robomongo.org/" target="_blank">Robomongo</a>:
+
+{% img http://i.imgur.com/DI6Vxwq.png Viewing data with Robomongo %}
 
 You can also build the object and save in one step using `create`:
 
 ```javascript
-/* prompt> */ Todo.create({name: 'Master Javscript', completed: true, note: 'Getting better everyday'}, function(err, todo){
-    if(err) console.log(err);
-    else console.log(todo);
+Todo.create({name: 'Create something with Mongoose', completed: true, note: 'this is one'}, function(err, todo){
+  if(err) console.log(err);
+  else console.log(todo);
 });
 ```
 
 ## Mongoose Read and Query
 
+So far we have been able to save data, now we are going explore how to query the information.
 There are multiple options for reading/querying data:
 
 * Model.find(conditions, [fields], [options], [callback])
@@ -176,66 +244,97 @@ There are multiple options for reading/querying data:
 Some examples:
 
 ```javascript Find all
-/* prompt> */ Todo.find(function (err, todos) {
+// Find all data in the Todo collection
+Todo.find(function (err, todos) {
   if (err) return console.error(err);
   console.log(todos)
 });
 ```
 
+The result is something like this:
+``` Todo.find results
+[ { _id: 57a6116427f107adef36c2f2,
+    name: 'Master NodeJS',
+    completed: false,
+    note: 'Getting there...',
+    __v: 0,
+    updated_at: 2016-08-06T16:33:40.606Z },
+  { _id: 57a6142127f107adef36c2f3,
+    name: 'Create something with Mongoose',
+    completed: true,
+    note: 'this is one',
+    __v: 0,
+    updated_at: 2016-08-06T16:45:21.143Z } ]
+```
+
 You can also add queries
 
 ```javascript Find with queries
-/* prompt> */ var callback = function (err, data) {
-  if (err) return console.error(err);
-  else console.log(data);
+// callback function to avoid duplicating it all over
+var callback = function (err, data) {
+  if (err) { return console.error(err); }
+  else { console.log(data); }
 }
 
-// Get all completed tasks
-/* prompt> */ Todo.find({completed: true }, callback);
+// Get ONLY completed tasks
+Todo.find({completed: true }, callback);
 
 // Get all tasks ending with `JS`
-/* prompt> */ Todo.find({name: /JS$/ }, callback);
+Todo.find({name: /JS$/ }, callback);
 ```
 
 You can chain multiple queries, e.g.:
 
 ```javascript Chaining queries
-/* prompt> */ var oneYearAgo = new Date();
+var oneYearAgo = new Date();
 oneYearAgo.setYear(oneYearAgo.getFullYear() - 1);
 
 // Get all tasks staring with `Master`, completed
-/* prompt> */ Todo.find({name: /^Master/, completed: true }, callback);
+Todo.find({name: /^Master/, completed: true }, callback);
 
 // Get all tasks staring with `Master`, not completed and created from year ago to now...
-/* prompt> */ Todo.find({name: /^Master/, completed: false }).where('updated_at').gt(oneYearAgo).exec(callback);
+Todo.find({name: /^Master/, completed: false }).where('updated_at').gt(oneYearAgo).exec(callback);
 ```
+
+MongoDB query language is very powerful. We can combine regular expressions, date comparison and more!
 
 ## Mongoose Update
 
-Each model has an `update` method which accepts multiple updates (for batch updates because doesn’t return an array with data). Alternatively, the method `findOneAndUpdate` could be used to update just one and return an object.
+Moving on, we are now going to explore how to update data.
+Each model has an `update` method which accepts multiple queries, the first one is the find query and the second one is the update fields.
+
 
 * Model.update(conditions, update, [options], [callback])
 * Model.findByIdAndUpdate(id, [update], [options], [callback])
 * Model.findOneAndUpdate([conditions], [update], [options], [callback])
+
+Alternatively, the method `findOneAndUpdate` could be used to update just one and return an object.
 
 ```javascript Todo.update and Todo.findOneAndUpdate
 
 // Model.update(conditions, update, [options], [callback])
 // update `multi`ple tasks from complete false to true
 
-/* prompt> */ Todo.update({ completed: false }, { completed: true }, { multi: true }, function (err, numberAffected, raw) {
-  if (err) return handleError(err);
-  console.log('The number of updated documents was %d', numberAffected);
-  console.log('The raw response from Mongo was ', raw);
-});
+Todo.update({ name: /master/i }, { completed: true }, { multi: true }, callback);
 
 //Model.findOneAndUpdate([conditions], [update], [options], [callback])
-/* prompt> */ Todo.findOneAndUpdate({name: /JS$/ }, {completed: false}, callback);
+Todo.findOneAndUpdate({name: /JS$/ }, {completed: false}, callback);
 ```
+
+As you might noticed the batch updates (`multi: true`) doesn't show the data, rather shows the number of fields that were modified.
+
+```javascript
+{ ok: 1, nModified: 1, n: 1 }
+```
+
+Here is what they mean:
+
+- `n` means the number of records that matches the query
+- `nModified` represents the number of documents that were modified with update query.
 
 ## Mongoose Delete
 
-`update` and `remove` mongoose API are identical, the only difference it is that no elements are returned.
+`update` and `remove` mongoose API are identical, the only difference it is that no elements are returned. Try it on your own ;)
 
 * Model.remove(conditions, [callback])
 * Model.findByIdAndRemove(id, [options], [callback])
@@ -245,14 +344,16 @@ Each model has an `update` method which accepts multiple updates (for batch upda
 
 ExpressJS is a complete web framework solution. It has HTML template solutions (jade, ejs, handlebars, hogan.js) and CSS precompilers (less, stylus, compass). Through middlewares layers, it handles: cookies, sessions, caching, CSRF, compression and many more.
 
-**Middlewares** are a stack of processors that runs on each request made to the server. You can have any number of middlewares that will process the request one by one in a serial fashion. Some might alter the request input, log outputs, add data and pass it to the `next()` middleware in the chain.
+**Middlewares** are pluggable processors that runs on each request made to the server. You can have any number of middlewares that will process the request one by one in a serial fashion. Some middlewares might alter the request input. Others, might create log outputs, add data and pass it to the `next()` middleware in the chain.
 
-Middlewares are added to ExpressJS stack using `app.use` for any method or the app.VERB (e.g., `app.get`, `app.delete`, `app.post`, `app.update`, ...)
+We can use the middlewares using `app.use`. That will apply for all request. If you want to be more specific, you can use `app.verb`. For instance: app.get, app.delete, app.post, app.update, ...
 
 
 ![ExpressJS Middlewares](/images/express-middlewares.png)
 
-Let's say you want to log the IP of the client on each request:
+Let's give some examples of middlewares to drive the point home.
+
+Say you want to log the IP of the client on each request:
 
 ```javascript Log the client IP on every request
 app.use(function (req, res, next) {
@@ -261,6 +362,12 @@ app.use(function (req, res, next) {
   next();
 });
 ```
+
+Notice that each middleware has 3 parameters:
+
+- `req`: contain all the requests objects like URLs, path, ...
+- `res`: is the response object where we can send the reply back to the client.
+- `next`: continue with the next middleware in the chain.
 
 You can also specify a path that you want the middleware to activate on.
 
@@ -271,7 +378,7 @@ app.use('/todos/:id', function (req, res, next) {
 });
 ```
 
-And finally you can use `app.get` to catch GET request with maching route, reply the request with a `response.send` and end the middleware chain. Let's use what we learned on <a href="#mongoose-read-and-query">mongoose read</a> to reply with a user data matching the `id`.
+And finally you can use `app.get` to catch GET request with matching route, reply the request with a `response.send` and end the middleware chain. Let's use what we learned on <a href="#mongoose-read-and-query">mongoose read</a> to reply with a user data matching the `id`.
 
 ```javascript Middleware mounted on "/todos/:id" and returns
 app.get('/todos/:id', function (req, res, next) {
@@ -342,47 +449,65 @@ Probably this is the main consumers of the APIs. You can interact with RESTful A
 
 In the end, we are going to explain how to use AngularJS to interact with this API.
 
-{% img /images/api_consumers.png API Consumers %}
-<small class="muted">Image from CodeSchool</small>
-
 # Wiring up the MEAN Stack
+
+In the next sections, we are going to put together everything that we learn from and build an API. They can be consume by browsers, mobile apps and even other servers.
+{% img /images/api_uses.png API Consumers %}
 
 ## Bootstrapping ExpressJS
 
 After a detour in Node CLI, MongoDB, Mongoose, tools and middlewares land we are back to our express todoApp. This time to create the routes and finalize our RESTful API.
 
-Create the app typing `express -e todoApp`, install dependencies `cd todoApp && npm install` and run the app `DEBUG=todoApp ./bin/www`:
+Express has a separate package called `express-generator`, which can help us to get started with out API.
+
+```bash Install and run "express-generator"
+# install it globally using -g
+npm install express-generator -g
+
+# create todo-app API
+express todo-api
+
+#   create : todo-api
+#   create : todo-api/package.json
+#   create : todo-api/app.js
+#   create : todo-api/public
+#   create : todo-api/public/javascripts
+#   create : todo-api/routes
+#   create : todo-api/routes/index.js
+#   create : todo-api/routes/users.js
+#   create : todo-api/public/stylesheets
+#   create : todo-api/public/stylesheets/style.css
+#   create : todo-api/views
+#   create : todo-api/views/index.jade
+#   create : todo-api/views/layout.jade
+#   create : todo-api/views/error.jade
+#   create : todo-api/public/images
+#   create : todo-api/bin
+#   create : todo-api/bin/www
+#
+#   install dependencies:
+#     $ cd todo-api && npm install
+#
+#   run the app:
+#     $ DEBUG=todo-app:* npm start
+```
+
+This will create a new folder called `todo-api`. Let's go ahead and install the dependencies and run the app:
 
 ```bash
-express -e todoApp
+# install dependencies
+cd todo-api && npm install
 
-# =>   create : todoApp                  # app directory  
-# =>   create : todoApp/package.json     # file containing all the dependencies
-# =>   create : todoApp/app.js           # Entry point of the application: defines middleware, initialize database connections, routes and more.
-# =>   create : todoApp/public           # all files contained here are accessible through to public (browser or API calls).
-# =>   create : todoApp/public/javascripts
-# =>   create : todoApp/public/images
-# =>   create : todoApp/public/stylesheets
-# =>   create : todoApp/public/stylesheets/style.css
-# =>   create : todoApp/routes           # containes all the routes files
-# =>   create : todoApp/routes/index.js
-# =>   create : todoApp/routes/users.js
-# =>   create : todoApp/views            # contains all the HTML templates
-# =>   create : todoApp/views/index.ejs
-# =>   create : todoApp/views/error.ejs
-# =>   create : todoApp/bin              # contains executable files
-# =>   create : todoApp/bin/www          # bootstrap the app: loads app.js, and set the port for the webserver.
-# =>
-# =>   install dependencies:
-# =>     $ cd todoApp && npm install
-# =>
-# =>   run the app:
-# =>     $ DEBUG=todoApp ./bin/www
+# run the app
+PORT=4000 npm start
 ```
+
+Use your browser to go to http://0.0.0.0:4000, and you should see a message "Welcome to Express"
+
 
 ## Connect ExpressJS to MongoDB
 
-Hopefully, you have installed MongoDB in the <a href="#mongodb">setup section</a>, and you can start it typing:
+In this section we are going to access MongoDB using our newly created express app. Hopefully, you have installed MongoDB in the <a href="#mongodb">setup section</a>, and you can start it typing (if you haven't yet):
 
 ```bash
 mongod
@@ -394,25 +519,27 @@ Install the MongoDB driver for NodeJS called mongoose:
 npm install mongoose --save
 ```
 
-Notice `--save`. It will add it to the `todoApp/package.json`
+Notice `--save`. It will add it to the `todo-api/package.json`
 
-Next, you need to require mongoose in the `todoApp/app.js`
+Next, you need to require mongoose in the `todo-api/app.js`
 
-```javascript
+```javascript Add to app.js
+// load mongoose package
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/todoApp', function(err) {
-    if(err) {
-        console.log('connection error', err);
-    } else {
-        console.log('connection successful');
-    }
-});
+
+// Use native Node promises
+mongoose.Promise = global.Promise;
+
+// connect to MongoDB
+mongoose.connect('mongodb://localhost/todo-api')
+  .then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));
 ```
 
-Now, When you run `npm start` or `./bin/www`, you will notice the message `connection successful`. Did you? Great!
+Now, When you run `npm start` or `./bin/www`, you will notice the message `connection successful`. Great!
 
 You can find the repository [here](https://github.com/amejiarosario/todoAPIjs) and the diff code at this point:
-[diff](https://github.com/amejiarosario/todoAPIjs/commit/d3be6a287e8aff39ab862971da4f050d04e552a1)
+[diff](https://github.com/amejiarosario/todoAPIjs/commit/948a32391d208dd1303d67b443456a377e93fb8d)
 
 ## Creating the Todo model with Mongoose
 
@@ -509,7 +636,7 @@ Harvest time! We don't have any task in database but at least we verify it is wo
 mongod
 
 # Start Webserver (in other terminal tab)
-DEBUG=todoApp ./bin/www
+npm start
 
 # Test API (in other terminal tab)
 curl localhost:3000/todos
@@ -540,7 +667,17 @@ router.post('/', function(req, res, next) {
 Few things:
 
 * We are using the `router.post` instead of `router.get`.
-* You have to stop and run the server again: `DEBUG=todoApp ./bin/www`. From now on, use `nodemon` to refresh automatically. `npm install nodemon` and then run `nodemon`.
+* You have to stop and run the server again: `npm start`.
+
+Everytime you change a file you have to stop and start the web server. Let's fix that using `nodemon` to refresh automatically:
+
+```bash Nodemon
+# install nodemon globally
+npm install nodemon -g
+
+# Run web server with nodemon
+nodemon
+```
 
 ## Show: GET /todos/:id
 
@@ -559,7 +696,24 @@ router.get('/:id', function(req, res, next) {
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/7d8bc67178a4f162858395845c076d9223926bf8)
 
 
-Test it in *POST*MAN using an `_id` from you created elements. E.g. `localhost:3000/todos/542d7d290a705126360ac635`.
+Let's test what we have so far!
+
+```bash Testing the API with Curl
+# Start Web Server on port 4000 (default is 3000)
+PORT=4000 nodemon
+
+# Create a todo using the API
+curl -XPOST http://localhost:4000/todos -d 'name=Master%20Routes&completed=false&note=soon...'
+# => {"__v":0,"name":"Master Routes","completed":false,"note":"soon...","_id":"57a655997d2241695585ecf8"}%
+
+# Get todo by ID (use the _id from the previous request, in my case "57a655997d2241695585ecf8")
+curl -XGET http://localhost:4000/todos/57a655997d2241695585ecf8
+{"_id":"57a655997d2241695585ecf8","name":"Master Routes","completed":false,"note":"soon...","__v":0}%
+
+# Get all elements (notice it is an array)
+curl -XGET http://localhost:4000/todos
+[{"_id":"57a655997d2241695585ecf8","name":"Master Routes","completed":false,"note":"soon...","__v":0}]%
+```
 
 ## Update: PUT /todos/:id
 
@@ -577,7 +731,11 @@ router.put('/:id', function(req, res, next) {
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/00dafe491e0d0b59fa53e86d8c187c42d7824200)
 
-Test it in *POST*MAN :)
+```bash curl update
+# Use the ID from the todo, in my case 57a655997d2241695585ecf8
+curl -XPUT http://localhost:4000/todos/57a655997d2241695585ecf8 -d "note=hola"
+# => {"_id":"57a655997d2241695585ecf8","name":"Master Routes","completed":true,"note":"hola","__v":0}%
+```
 
 ## Destroy: DELETE /todos/:id
 

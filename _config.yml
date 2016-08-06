@@ -125,3 +125,9 @@ js_minifier:
   enable: false
 image_minifier:
   enable: false
+
+# https://github.com/hexojs/hexo-generator-feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 30
