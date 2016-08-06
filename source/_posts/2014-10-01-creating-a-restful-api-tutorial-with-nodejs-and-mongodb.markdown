@@ -2,7 +2,7 @@
 layout: post
 title: "Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)"
 date: 2014-10-01 17:26:42 -0400
-updated: 2016-08-06 17:44:37 -0400
+updated: 2016-08-06 18:26:37 -0400
 comments: true
 pageviews__total: 315420  
 pageviews__recent: 294  
@@ -26,10 +26,7 @@ categories:
   - Web Development
 ---
 
-Welcome to this RESTful API using Node.js (Express.js) and MongoDB (mongoose) tutorial. You can follow alone to make a stand alone API endpoint, or you could also check out our <a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb" target="_blank">AngularJS</a> or <a href="/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started" target="_blank">BackboneJS</a> tutorials to build a javascript-client that connects with the endpoint we are going to built.
-
-- Restful APIs
-- Installing MongoDB, NodeJS, ExpressJS
+Welcome to this RESTful API using Node.js (Express.js) and MongoDB (mongoose) tutorial! We are going to learn how to install and use each component individually and then proceed to create a RESTful API.
 
 <!--More-->
 

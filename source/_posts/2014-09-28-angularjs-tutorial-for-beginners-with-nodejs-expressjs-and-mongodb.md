@@ -2,7 +2,7 @@
 layout: post
 title: "AngularJS tutorial for beginners with NodeJS ExpressJS and MongoDB (Part I)"
 date: 2014-09-28 23:50:24 -0400
-updated: 2014-09-28 23:50:24 -0400
+updated: 2016-08-06 19:31:57 -0400
 comments: true
 toc: true
 pageviews__total: 294049  
@@ -23,11 +23,12 @@ categories:
   - Web Development
 ---
 
-This tutorial is meant to be as clear as possible while at the same time teach you how to connect AngularJS with back-end servers in Node.Js, Express.js and databases such as MongoDB, also known as the MEAN stack. Let's start with angularJS!
+This tutorial is meant to be as clear as possible. At the same time, we are going to cover the concepts that you will need most of the time. All the good stuff without the fat :)
 
 <!--More-->
 
-We are going to start building all the examples in a single HTML file, which has embedded javascript and NO styles/CSS for simplicity. In the next tutorials we will learn how to use angularJS modules to break down the code, add testing to it and styles.
+We are going to start building all the examples in a single HTML file! It embedded JavaScript and NO styles/CSS for **simplicity**. Don't worry, in the next tutorials, we will learn how to split use Angular modules. We are going to break down the code, add testing to it and styles.
+
 
 # What is Angular.js?
 
@@ -35,22 +36,27 @@ Angular.js is a MVW (Model-View-Whatever) open-source JavaScript web framework t
 
 ## AngularJS vs jQuery vs BackboneJS vs EmberJS
 
-<a href="#start">TL; DR</a>: AngularJS is awesome for building testable single page applications (SPA), and also data driven and CRUD apps. <a href="#start">Show me the code!.</a>
+<a href="#start">TL; DR</a>: AngularJS is awesome for building testable single page applications (SPA). Also, excel with data-driven and CRUD apps. <a href="#start">Show me the code!.</a>
 
-AngularJS motto is “HTML enhanced for web apps!”. It extends standard HTML tags and properties to bind events and data into it using JavaScript. It has a different approach to other libraries such as jQuery, Backbone.Js, Ember.js and similar... they are more leaned towards “Unobtrusive JavaScript”.
+AngularJS motto is
 
-In the traditional unobtrusive JavaScript approach, instead of declaring the event handlers right in the element that they act upon, they are referenced using IDs and classes in the elements. That gives the advantage of separating structure (HTML) from behavior (Javascript). However, it does not do any better on code complexity and readability.
+> HTML enhanced for web apps!
 
-Times have changed since then. Let’s examine how AngularJS tries to alleviate code complexity and readability:
+It extends standard HTML tags and properties to bind events and data into it using JavaScript. It has a different approach to other libraries. jQuery, Backbone.Js, Ember.js and similar… they are more leaned towards “Unobtrusive JavaScript”.
 
-* **Unit testing** ready: JavaScript is, usually, very hard to unit test when you have DOM manipulations and business logic together (e.g. jQuery based code). AngularJS keeps DOM manipulation in the HTML and business logic separated. Data and dependencies are `$inject`ed as needed.
+Traditional JavaScript frameworks, use IDs and classes in the elements. That gives the advantage of separating structure (HTML) from behavior (Javascript). Yet, it does not do any better on code complexity and readability. Angular instead declares the event handlers right in the element that they act upon.
+
+Times have changed since then. Let’s examine how AngularJS tries to ease code complexity and readability:
+
+
+* **Unit testing** ready: JavaScript is, usually, hard to unit test. When you have DOM manipulations and business logic together (e.g. jQuery based code). AngularJS keeps DOM manipulation in the HTML and business logic separated. Data and dependencies are `$injected` as needed.
 * **DOM manipulation** where they are used. It decouples DOM manipulation from application logic.
 * AngularJS is also excellent for **single-page applications (SPA)**.
-* Different **browsers implements** features differently, but fret not. Angular's directive (or HTML extensions) take care of the differences for you.
-* **Global namespace** expressions and method definitions are scoped within controllers, so they do not pollute the global namespace.
+* Different **browsers implement** features differently, but fret not. Angular's directive (or HTML extensions) take care of the differences for you.
+* **Global namespace** expressions and methods definitions are scoped within controllers. So, they do not pollute the global namespace.
 * **Data models** are plain old JavaScript objects (POJO).
-* Write less code: AngualarJS features like directives, filters and automatic data bindings save code writing. (More on that later ;)
-* AngularJS provides solution for writing modular code and dependencies management.
+* Write less code: AngualarJS features save you from much boilerplate code.
+* AngularJS provides solutions for writing modular code and dependencies management.
 
 Without further ado, let’s dive in!
 
@@ -64,7 +70,9 @@ AngularJS has an <a href="https://docs.angularjs.org/api" target="_blank">extens
 
 The first concept you need to know about AngularJS is what are directives.
 
-**Directives**  are extensions of HTML markups in form of attributes, element names, CSS class and or even HTML comments. When the AngularJS framework is loaded everything inside `ng-app` it’s compiled by Angular and the directives are bound to data, events and DOM transformations.
+**Directives** are extensions of HTML markups. They could take the form of attributes, element names, CSS class and or even HTML comments. When the AngularJS framework is loaded, everything inside `ng-app` it’s compiled. The directives are bound to data, events, and DOM transformations.
+
+Notice in the following example that there are two directives: ng-app and ng-model.
 
 Notice in the following example that there are two directives: `ng-app` and `ng-model`.
 
@@ -75,7 +83,7 @@ Notice in the following example that there are two directives: `ng-app` and `ng-
 </head>
 <body>
 
-<input ng-model="name"> Hello {% raw  %}{{ name }}{% endraw %}
+<input ng-model="name"> Hello {{ name }}
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 </body>
@@ -84,67 +92,35 @@ Notice in the following example that there are two directives: `ng-app` and `ng-
 
 We going to learn about some of the main built-in directives as we go:
 
-* **ng-app**: is a directive that bootstraps AngularJS and designates the caller element as the root. It’s usually placed on `<html>` or `<body>`.
+* **ng-app**: is a directive that bootstraps AngularJS. It designates the caller element as the root. It’s usually placed on `<html>` or `<body>`.
 
-* **ng-model**: is a directive that binds form elements such as `input`, `select`, `checkboxes`, `textarea` or customs ones to a property called `$scope`. More on `$scope` and `data binding` in the next sections, for now bear in mind that the textbox value  it’s bound to `{% raw  %}{{ name }}{% endraw %}`
+* **ng-model**: is a directive that binds usually form elements. For instance, `input`, `select`, `checkboxes`, `textarea`. They keep data (model) and visual elements (HTML) in sync.
 
-* **{% raw  %}{{ name }}{% endraw %}** `{% raw  %}{{ }}{% endraw %}` are a way of binding models to elements in HTML. In the example above the `ng-model` name is bound to the placeholder `{% raw  %}{{ name }}{% endraw %}`. Play with the example bellow to see how the placeholder is updated real-time to whatever you type in the textbox.
+* **{% raw  %}{{ name }}{% endraw %}** `{% raw  %}{{ }}{% endraw %}` are a way of binding models to elements in HTML. In the example above, the `ng-model` name is bound to the placeholder `{% raw  %}{{ name }}{% endraw %}`. Play with the example below to see how the placeholder is updated real-time to whatever you type in the textbox.
 
 Data binding AngularJS example:
 
 <p data-height="268" data-theme-id="0" data-slug-hash="KdLaq" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/KdLaq/'>KdLaq</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-You might be wondering if adding this directive will make the HTML validators to complain about unknown/non-standard attributes and you are right. However, this can be solve prefixing `data-` to every Angular.js directive and NOT using them as Elements but attributes, classes or comments. Let's see that in the next example and also let's create our own directives:
-
-
-
-```html Directive types: elements, attributes, comments and classes
-
-  <hello>Element</hello> Element
-  <div data-hello>Attribute</div> data-Attribute
-  <div hello>Attribute</div> Attribute
-  <!-- directive: hello --> Comment
-  <p class="hello"></p> Class
-
-```
-
-
-```javascript Custom AngularJS directives
-var app = angular.module('app', []);
-
-app.directive('hello', [function () {
-  return {
-    restrict: 'CEMA', // C: class, E: element, M: comments, A: attributes
-    replace: true, // replaces original content with template
-    template: '<span><br>Hello</span>'
-  }
-}]);
-```
-
-Working example:
-
-<p data-height="268" data-theme-id="0" data-slug-hash="varAK" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/varAK/'>varAK</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-
-If you are interested in seeing more options for directives go [here](http://www.sitepoint.com/practical-guide-angularjs-directives/).
-
+You can create your own directives. Checkout the this tutorial for more: [creating-custom-angularjs-directives-for-beginners](/blog/2016/04/08/creating-custom-angularjs-directives-for-beginners/). It will go deeper into directives.
 
 ## AngularJS Data Binding
 
-**Data binding** is an AngularJS feature that automatically synchronizes your model data with your HTML. That’s great because models is the "single source of truth" and you do not have to worry about updating them. Here’s a graph from docs.angularjs.org.
+**Data binding** is an AngularJS feature that synchronizes your model data with your HTML. That’s great because models are the "single source of truth". You do not have to worry about updating them. Here’s a graph from <a href="http://docs.angularjs.org" target="_blank">docs.angularjs.org</a>.
 
 {% img /images/Two_Way_Data_Binding.png Two Data Binding in Angular Templates %}
 
-Whenever the HTML is changed the model gets updated and wherever the model gets updated it is reflected in HTML.
+Whenever the HTML is changed, the model gets updated. Wherever the model gets updated it is reflected in HTML.
 
 ## AngularJS Scope
 
-`$scope` it is an object that contains all the data to which HTML is bound. They are the glue your javascript code (controllers) and the view (HTML). Everything that is attached to the `$scope`, it is automatically `$watch`ed by AngularJS and updated.
+`$scope` it is an object that contains all the data to which HTML is bound. They are the glue your javascript code (controllers) and the view (HTML). Everything that is attached to the `$scope`, it is  `$watch`ed by AngularJS and updated.
 
-Scopes can be bound to javascript functions and also you could have more than one `$scope` and inherit from outer ones. More on this, in the controllers section.
+Scopes can be bound to javascript functions. Also, you could have more than one `$scope` and inherit from outer ones. More on this, in the controller's section.
 
 ## AngularJS Controllers
 
-Angular.js **controllers** are code that "controls" certain sections containing DOM elements in which they are declared. They encapsulate the behavior, callbacks and glue `$scope` models with views. Let's see an example to drive the concept home:
+Angular.js **controllers** are code that "controls" certain sections containing DOM elements. They encapsulate the behavior, callbacks and glue `$scope` models with views. Let's see an example to drive the concept home:
 
 ```html AngularJS Controller Example http://codepen.io/amejiarosario/pen/spuCm
 <body ng-controller="TodoController">
@@ -182,12 +158,11 @@ As you might notice we have new friends: `ng-controller`, `ng-repeat` and `$scop
 
 * **`ng-repeat`** as its name implies, it is going to “repeat” the element and sub-elements where this directive is declared. It is going to iterate for each element in the `$scope.todos` array.
 
-* **`ng-model`** notice that the checkbox is bound to the `todo.completed`. If `todo.completed` is true, then the checkbox is going to be checked automatically and vice versa.
-
+* **`ng-model`** notice that the checkbox is bound to the `todo.completed`. If `todo.completed` is true, then the checkbox is going to be checked and vice versa.
 
 ## AngularJS Modules
 
-Modules are a way to encapsulate different parts of your application (directives, controllers, factories, …) and reuse them in other places.  Here's an example of how to rewrite our controller using modules.
+Modules are a way to encapsulate different parts of your application. They allow reusing code in other places.  Here's an example of how to rewrite our controller using modules.
 
 ```javascript AngularJS Module Example http://codepen.io/amejiarosario/pen/spuCm
 angular.module('app', [])
@@ -202,11 +177,11 @@ angular.module('app', [])
   }]);
 ```
 
-Notice the `<html ng-app="app">` in the example bellow
+Notice the `<html ng-app="app">` in the example below
 
 <p data-height="268" data-theme-id="0" data-slug-hash="uFfqG" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/uFfqG/'>uFfqG</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-Using modules brings many advantages such as modules can be loaded in any order, parallel dependency loading, tests can only load the required modules and keep it fast, clear view of the dependencies.
+Using modules brings many advantages. They can be loaded in any order, and parallel dependency loading. Also, tests can only load the required modules and keep it fast, clear view of the dependencies.
 
 ## AngularJS Templates
 
@@ -283,9 +258,9 @@ Notice that if you want to create a 2nd controller and share $scope.todos it is 
     }])
 ```
 
-We are now injecting the data dependency `Todo` into the controllers. This way we could reuse the data to any controller or module that we need to. This is not only used for static data like the array, but we could also do server calls using `$http` or even RESTful  `$resource`.
+We are now injecting the data dependency `Todo` into the controllers. This way we could reuse the data to any controller or module that we need to. This is not only used for static data like the array. But we could also do server calls using `$http` or even RESTful  `$resource`.
 
-Let's say we want to show the details of the task when we click on it. For that, we need to create a 2nd controller, template and route that uses this service:
+Let's say we want to show the details of the task when we click on it. For that, we need to create a 2nd controller, template, and route that uses this service:
 
 <p data-height="268" data-theme-id="0" data-slug-hash="pGkhg" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/pGkhg/'>pGkhg</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
@@ -295,34 +270,34 @@ Let's say we want to show the details of the task when we click on it. For that,
 
 This is what is happening:
 
-1. In the `HTML` tab we created a second template `/todoDetails.html` which contains the todo details we want to show.
+1. In the `HTML` tab, we created a second template `/todoDetails.html` which contains the todo details we want to show.
 2. Also, in our previous template `/todos.html` we want to have a link that points to the `todo` detail. We are using the `$index` which is the corresponding order number in a `ng-repeat`.
-2. In the `JS` tab, we created a new `$routeProvider` which points to a new controller `TodoDetailCtrl` and the template that we created on #1. The `:id` parameter it is accessible in the controllers through `$routeParams`.
-3. Created the new controller `TodoDetailCtrl` and inject the dependencies which are `$scope`, `Todos` (factory), and `$routeParams` which will have the `id` param.
+2. In the `JS` tab, we created a new `$routeProvider` . It points to a new controller `TodoDetailCtrl` and the template that we created on #1. The `:id` parameter it is accessible in the controllers through `$routeParams`.
+3. We Created the new controller `TodoDetailCtrl`. Also, we injected the dependencies which are `$scope`, `Todos` (factory), and `$routeParams` which will have the `id` param.
 4. Set the `$scope` in the new controller. Instead of using the whole array, we are going to select only the one that we need using the `id` that we set in step #2.
 
 NOTE: in codepen, you will not see the URL. If you want to see it changing, you can download the whole example an open it from <a href="https://gist.github.com/amejiarosario/f0a82c7a0eec4786f1c9" target="_blank">here</a>.
 
 ## AngularJS Filters
 
-Filters allow you to format and transform the output of expressions inside the curly braces. AngularJS comes with a bunch of useful filters.
+Filters allow you to format and transform data. They change the output of expressions inside the curly braces. AngularJS comes with a bunch of useful filters.
 
 **Built-in Filters**:
 
 * *filter*: search for a given string in an array and return matches.
 * *Number*: adds comma-separated 1000's and two decimal places.
 * *Currency*: the same as *Number* and adds a $ in front.
-* *Date*: takes a Unix timestamp (e.g. 1288323623006) or date string and output it in the format that you specify (e.g. 'longDate' or fragments 'yyyy' for four-digit year). For a full list see <a href="https://docs.angularjs.org/api/ng/filter/date" target="_blank">here</a>.
+* *Date*: takes a Unix timestamp (e.g. 1288323623006) or date string and output it in the format that you specify (e.g. 'longDate' or fragments 'yyyy' for a four-digit year). For a full list see <a href="https://docs.angularjs.org/api/ng/filter/date" target="_blank">here</a>.
 * *JSON*: converts javascript objects to JSON strings.
 * *lowercase*/*uppercase*: converts strings to lowercase/uppercase.
 * *limitTo*: number of elements from an array to show.
-* *orderBy*: order array of objects by key that you specify.
+* *orderBy*: order array of objects by a key that you specify.
 
-**Note** you can also chain multiple filters and also define your own filters.
+**Note** you can also chain many filters and also define your own filters.
 
 <p data-height="268" data-theme-id="0" data-slug-hash="tyuDK" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/tyuDK/'>tyuDK</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-**NEW FEATURE**: Search todo tasks by name. Let's use a filter to solve that problem.
+> **NEW FEATURE**: Search todo tasks by name. Let's use a filter to solve that problem.
 
 ```html
   <script type="text/ng-template" id="/todos.html">
