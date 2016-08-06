@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Get Started with the web crawler Apache Nutch 1.x "
-created: 1328337152
+created: 1328337152000
+updated: 1328337152000
 comments: true
 toc: true
 pageviews__total: 4899  

@@ -2,6 +2,7 @@
 layout: post
 title: "Grunt JS tutorial from Beginner to Ninja"
 date: 2014-10-07 10:41:13 -0400
+updated: 2014-10-07 10:41:13 -0400
 comments: true
 toc: true
 pageviews__total: 36626

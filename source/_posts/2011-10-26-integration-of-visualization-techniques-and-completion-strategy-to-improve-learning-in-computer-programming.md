@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Integration of Visualization Techniques and Completion Strategy to Improve Learning in Computer Programming
-created: 1319647922
+created: 1319647922000
+updated: 1319647922000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

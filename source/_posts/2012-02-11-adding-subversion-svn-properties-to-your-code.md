@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Adding Subversion (SVN) Properties to your code
-created: 1329003331
+created: 1329003331000
+updated: 1329003331000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

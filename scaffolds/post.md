@@ -2,6 +2,7 @@
 layout: {{ layout }}
 title: {{ title }}
 date: {{ date }}
+updated: {{ date }}
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Microsoft Zune Failure Analysis
-created: 1312810976
+created: 1312810976000
+updated: 1312810976000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0
@@ -40,4 +41,3 @@ This study case reveals the importance of performing proper testing to the all t
 CONCLUSION
 
 There are some lessons that can be learnt from the study case of the Zune 30 Failure. One is the importance of the unit tests coverage. Even 3rd-party component interfaces should be tested properly to verify its correctness. Testing techniques such as boundary-value analysis and equivalence classes can improve the quality of unit test and will increase the likelihood of catching bugs. The correct product line management is important too. Software product lines reduce costs, time to market and increase quality. Also, test to should be adapted to product lines. All the common components in a product line should be tested as well as the individual variabilities.
-

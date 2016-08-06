@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "git+ftp: Publish Git repository over FTP "
-created: 1320896098
+created: 1320896098000
+updated: 1320896098000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

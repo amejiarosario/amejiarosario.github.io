@@ -2,6 +2,7 @@
 layout: post
 title: "How to scale a Nodejs app based on number of users"
 date: 2016-03-23 17:34:11 -0400
+updated: 2016-03-23 17:34:11 -0400
 comments: true
 pageviews__total: 523
 pageviews__recent: 359  

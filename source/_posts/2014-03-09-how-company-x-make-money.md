@@ -2,6 +2,7 @@
 layout: post
 title: "How company X make money?"
 date: 2014-03-09 21:39:42 -0400
+updated: 2014-03-09 21:39:42 -0400
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

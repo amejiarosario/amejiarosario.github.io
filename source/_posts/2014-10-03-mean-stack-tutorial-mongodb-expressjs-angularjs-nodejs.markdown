@@ -2,6 +2,7 @@
 layout: post
 title: "MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)"
 date: 2014-10-03 06:59:34 -0400
+updated: 2014-10-03 06:59:34 -0400
 comments: true
 pageviews__total: 136946  
 pageviews__recent: 237  

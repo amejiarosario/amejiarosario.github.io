@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Git auto-commit with Crontab
-created: 1313420094
+created: 1313420094000
+updated: 1313420094000
 comments: true
 pageviews__total: 3048  
 pageviews__recent: 364  

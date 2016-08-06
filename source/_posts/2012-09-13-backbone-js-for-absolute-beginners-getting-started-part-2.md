@@ -2,6 +2,7 @@
 layout: post
 title: "Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views)"
 date: 2012-09-13 00:08
+updated: 2012-09-13 00:08
 comments: true
 pageviews__total: 149923  
 pageviews__recent: 238  

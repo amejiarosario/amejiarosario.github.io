@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Ruby on Rails Architectural Design
-created: 1313082237
+created: 1313082237000
+updated: 1313082237000
 comments: true
 pageviews__total: 28444
 pageviews__recent: 336  

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Update Drupal sites
-created: 1320386664
+created: 1320386664000
+updated: 1320386664000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0
@@ -34,6 +35,3 @@ $ cp -R drupal-x.y/* drupal-x.y/.htaccess /path/to/your/installation
 3. Run the drupal update
 
 www.yousite.com/update.php
-
-
-

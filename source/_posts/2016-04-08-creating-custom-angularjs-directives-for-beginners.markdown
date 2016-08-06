@@ -2,6 +2,7 @@
 layout: post
 title: "Creating custom AngularJS directives for beginners"
 date: 2016-04-08 16:41:32 -0400
+updated: 2016-04-08 16:41:32 -0400
 comments: true
 toc: true
 pageviews__total: 295

@@ -2,6 +2,7 @@
 layout: post
 title: "AngularJS tutorial for beginners with NodeJS ExpressJS and MongoDB (Part I)"
 date: 2014-09-28 23:50:24 -0400
+updated: 2014-09-28 23:50:24 -0400
 comments: true
 toc: true
 pageviews__total: 294049  

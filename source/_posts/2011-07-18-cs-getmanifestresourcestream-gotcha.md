@@ -1,7 +1,8 @@
 ---
 layout: post
 title: C#'s GetManifestResourceStream Gotcha
-created: 1311000171
+created: 1311000171000
+updated: 1311000171000
 comments: true
 pageviews__total: 17326
 pageviews__recent: 262  

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Regular Expressions in C# and Java - CSV Example
-created: 1320937797
+created: 1320937797000
+updated: 1320937797000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

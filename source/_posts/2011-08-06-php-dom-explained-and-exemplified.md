@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "PHP DOM: explained and exemplified"
-created: 1312663045
+created: 1312663045000
+updated: 1312663045000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

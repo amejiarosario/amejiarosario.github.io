@@ -2,6 +2,7 @@
 layout: post
 title: "Spring MVC 3 + AJAX (getJSON) and solving 406 Not Accepted"
 date: 2012-04-27 02:17
+updated: 2012-04-27 02:17
 comments: true
 toc: true
 pageviews__total: 11250

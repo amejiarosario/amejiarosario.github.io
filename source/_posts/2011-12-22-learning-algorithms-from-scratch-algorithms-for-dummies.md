@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Learning Algorithms from Scratch / Algorithms for Dummies
-created: 1324582027
+created: 1324582027000
+updated: 1324582027000
 comments: true
 pageviews__total: 26912
 pageviews__recent: 169

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: How to setup Drupal WYSIWYG and Images uploading?
-created: 1320876440
+created: 1320876440000
+updated: 1320876440000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

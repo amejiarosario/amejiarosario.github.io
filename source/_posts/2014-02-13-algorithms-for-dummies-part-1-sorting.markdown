@@ -2,6 +2,7 @@
 layout: post
 title: "Algorithms for dummies (Part 1): Big-O Notation and Sorting"
 date: 2014-02-13 09:28:51 -0400
+updated: 2014-02-13 09:28:51 -0400
 comments: true
 toc: true
 pageviews__total: 43787

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Dynamic Hypertext Generation for Reusing Open Corpus Content - Paper Review
-created: 1316708046
+created: 1316708046000
+updated: 1316708046000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

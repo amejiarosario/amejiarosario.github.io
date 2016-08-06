@@ -1,7 +1,8 @@
 ---
 layout: post
 title: How to set up Git / github in windows
-created: 1311267147
+created: 1311267147000
+updated: 1311267147000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0

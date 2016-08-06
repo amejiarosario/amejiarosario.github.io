@@ -1,7 +1,8 @@
 ---
 layout: post
 title: eLearning 2.0 and Social, Practice-Oriented Communities to Improve Knowledge in Companies - Paper Review
-created: 1317137273
+created: 1317137273000
+updated: 1317137273000
 comments: true
 pageviews__total: 0
 pageviews__recent: 0
