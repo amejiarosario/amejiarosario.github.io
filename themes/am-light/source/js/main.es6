@@ -48,3 +48,8 @@ var closeOverlay = document.getElementById('close-search-overlay');
 if (closeOverlay) {
   closeOverlay.addEventListener('click', closeModal);
 }
+
+// Onload scripts
+window.onload = function () {
+  loadSearch();
+}

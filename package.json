@@ -8,6 +8,7 @@
   "dependencies": {
     "hexo": "^3.2.0",
     "hexo-algoliasearch": "0.2.1",
+    "hexo-all-minifier": "0.0.14",
     "hexo-autoprefixer": "^1.0.0",
     "hexo-browsersync": "^0.2.0",
     "hexo-deployer-git": "0.2.0",

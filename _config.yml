@@ -115,3 +115,13 @@ algolia:
     - pageviews__avg_time
     - date
     - updated
+
+# https://github.com/unhealthy/hexo-all-minifier
+html_minifier:
+  enable: true
+css_minifier:
+  enable: true
+js_minifier:
+  enable: true
+image_minifier:
+  enable: true

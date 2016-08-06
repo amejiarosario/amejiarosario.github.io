@@ -63,9 +63,31 @@
 
     <%- partial('_widgets/google_analytics') %>
 
-    <!-- Styles -->
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
     <%- css('stylesheets/main') -%>
-    <%- css('stylesheets/font-awesome.min') -%>
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      <%- css('stylesheets/font-awesome.min') -%>
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
   </head>
   <body>
     <header class="titlebar mdl-shadow--2dp">
@@ -115,8 +137,13 @@
     </footer>
 
     <!-- Scripts -->
-    <script id="dsq-count-scr" src="//<%- theme.disqus_id %>.disqus.com/count.js" async></script>
     <%- js('js/main') -%>
+    <script id="dsq-count-scr" src="//<%- theme.disqus_id %>.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <%- css('stylesheets/55_search') %>
+
 
     <!-- social scripts -->
     <% if(is_home()){ %>
@@ -136,37 +163,5 @@
       <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
       <%- js('js/posts') -%>
     <% } %>
-
-
-    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
-
-<!--
-    // https://codepen.io/amejiarosario/pen/dXgrXR
-
-    https://community.algolia.com/instantsearch.js/documentation/#rangeslider
-    https://www.algolia.com/getstarted#/step4
-    https://www.algolia.com/doc/guides/search/auto-complete#ui
--->
-
-    <script>
-      //
-      // var client = algoliasearch('<%- config.algolia.appId %>', "<%- config.algolia.apiKey %>")
-      // var index = client.initIndex('<%- config.algolia.indexName %>');
-      // autocomplete('#search-input', {hint: false}, [
-      //   {
-      //     source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
-      //     displayKey: 'title',
-      //     templates: {
-      //       suggestion: function(suggestion) {
-      //         return suggestion._highlightResult.title.value;
-      //       }
-      //     }
-      //   }
-      // ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-      //   console.log(suggestion, dataset);
-      // });
-    </script>
-
   </body>
 </html>
