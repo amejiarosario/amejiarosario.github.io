@@ -2,6 +2,7 @@
 // @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro|Noto+Sans|Noto+Serif);
 // alt: @import url(https://fonts.googleapis.com/css?family=Noto|Roboto+Slab|Orbitron);
 // all @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro|Noto+Sans|Noto+Serif|Roboto|Roboto+Slab|Roboto+Mono|Orbitron);
+// @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
 
 
 // ------------------------
@@ -13,11 +14,16 @@ $light-background: #f9f9f9;
 $dark-background: #424242;
 $content-padding: 0em 1.5em;
 
+$body-color: #555;
+$muted-color: #777;
+$headers-color: #333;
+
 $primary-color: #0E557E;
 $accent-color: #7E8183;
 
 // Fonts
-$font-copy: Arial, sans-serif;
+// $font-copy: "Roboto", "Helvetica", "Arial", sans-serif;
+$font-copy: "Helvetica", "Arial", sans-serif;
 // 'Noto Sans', 'Roboto', Helvetica, Arial, sans-serif;
 $font-header: Georgia, serif;
 // 'Noto Serif', 'Roboto Slab', Georgia, serif;
