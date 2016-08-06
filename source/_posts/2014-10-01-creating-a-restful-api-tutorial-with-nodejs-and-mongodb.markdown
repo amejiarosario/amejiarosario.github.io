@@ -2,7 +2,7 @@
 layout: post
 title: "Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)"
 date: 2014-10-01 17:26:42 -0400
-updated: 2014-10-01 17:26:42 -0400
+updated: 2016-08-06 17:44:37 -0400
 comments: true
 pageviews__total: 315420  
 pageviews__recent: 294  
@@ -423,32 +423,6 @@ The following middlewares are not added by default, but It's nice to know they e
 
 * <a href="https://github.com/expressjs/timeout" target="_blank">timeout</a>: halt execution if it takes more that a given time. e.g. `app.use(timeout('5s'));`. However you need to check by yourself under every request with a middleware that checks `if (!req.timedout) next();`.
 
-# API clients (Browser, Postman and curl)
-
-I know you have not created any route yet. However, in the next sections you will. These are just three ways to retrieve, change and delete data from your future API.
-
-## Curl
-
-```bash Create tasks
-# Create task
-curl -XPOST http://localhost:3000/todos -d 'name=Master%20Routes&completed=false&note=soon...'
-
-# List tasks
-curl -XGET http://localhost:3000/todos
-```
-
-## Browser and Postman
-
-If you open your browser and type `localhost:3000/todos` you will see all the tasks (when you implement it). However, you cannot do post commands by default. For further testing let’s use a Chrome plugin called <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en" target="_blank">Postman</a>. It allows you to use all the HTTP VERBS easily and check `x-www-form-urlencoded` for adding parameters.
-
-{% img /images/postman_post.png Postman POST example %}
-
-## Websites and Mobile Apps
-
-Probably this is the main consumers of the APIs. You can interact with RESTful APIs using jQuery's `$ajax` and its wrappers, BackboneJS's Collections/models, AngularJS's `$http` or `$resource`, among many other libraries/frameworks and mobile clients.
-
-In the end, we are going to explain how to use AngularJS to interact with this API.
-
 # Wiring up the MEAN Stack
 
 In the next sections, we are going to put together everything that we learn from and build an API. They can be consume by browsers, mobile apps and even other servers.
@@ -581,6 +555,35 @@ You can use the following types:
 * ObjectId
 * Mixed
 * Buffer
+
+# API clients (Browser, Postman and curl)
+
+I know you have not created any route yet. However, in the next sections you will. These are just three ways to retrieve, change and delete data from your future API.
+
+## Curl
+
+```bash Create tasks
+# Create task
+curl -XPOST http://localhost:3000/todos -d 'name=Master%20Routes&completed=false&note=soon...'
+
+# List tasks
+curl -XGET http://localhost:3000/todos
+```
+
+## Browser and Postman
+
+If you open your browser and type `localhost:3000/todos` you will see all the tasks (when you implement it). However, you cannot do post commands by default. For further testing let’s use a Chrome plugin called <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en" target="_blank">Postman</a>. It allows you to use all the HTTP VERBS easily and check `x-www-form-urlencoded` for adding parameters.
+
+{% img /images/postman_post.png Postman POST example %}
+
+> Don't forget to check `x-www-form-urlencoded` or it won't work ;)
+
+## Websites and Mobile Apps
+
+Probably this is the main consumers of the APIs. You can interact with RESTful APIs using jQuery's `$ajax` and its wrappers, BackboneJS's Collections/models, AngularJS's `$http` or `$resource`, among many other libraries/frameworks and mobile clients.
+
+In the end, we are going to explain how to use AngularJS to interact with this API.
+
 
 # ExpressJS Routes
 
