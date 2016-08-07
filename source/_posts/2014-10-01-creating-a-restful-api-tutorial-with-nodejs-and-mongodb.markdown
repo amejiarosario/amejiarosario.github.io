@@ -435,8 +435,8 @@ Express has a separate package called `express-generator`, which can help us to 
 # install it globally using -g
 npm install express-generator -g
 
-# create todo-app API
-express todo-api
+# create todo-app API with EJS views (instead the default Jade)
+express todo-api -e
 
 #   create : todo-api
 #   create : todo-api/package.json
@@ -449,9 +449,9 @@ express todo-api
 #   create : todo-api/public/stylesheets
 #   create : todo-api/public/stylesheets/style.css
 #   create : todo-api/views
-#   create : todo-api/views/index.jade
-#   create : todo-api/views/layout.jade
-#   create : todo-api/views/error.jade
+#   create : todo-api/views/index.ejs
+#   create : todo-api/views/layout.ejs
+#   create : todo-api/views/error.ejs
 #   create : todo-api/public/images
 #   create : todo-api/bin
 #   create : todo-api/bin/www
