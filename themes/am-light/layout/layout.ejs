@@ -131,7 +131,9 @@
       <div class="container">
         <div class="p-y-2">
           &copy; <%= new Date().getFullYear() %> <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="<%- new Date() %>">#<%- parseInt(new Date()/1e3, 10).toString(36) %></span>
+          <span class="muted m-x-4" title="<%- new Date() %>">
+            v.<%- parseInt(new Date()/1e3, 10).toString(36) %>
+          </span>
         </div>
       </div>
     </footer>
