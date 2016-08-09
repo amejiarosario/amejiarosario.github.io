@@ -1,5 +1,125 @@
-<!DOCTYPE html><html lang="en-US"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="author" content="Adrian Mejia"><link rel="author" href="humans.txt"><meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures."><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1"><link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml"><title>How to build scalable apps? | Adrian Mejia Blog</title><link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="http://adrianmejia.com/blog/2016/01/09/how-to-build-scalable-apps/"><meta property="og:url" content="http://adrianmejia.com/blog/2016/01/09/how-to-build-scalable-apps/"><meta property="og:site_name" content="Adrian Mejia Blog"><meta property="og:type" content="article"><meta property="og:description" content="Scaling application is not an easy topic to cover in one post. So in this first post, you can find “the mindset” to build scalable apps using the 12-factor principles. In the next post, you will find more down to earth examples one how to scale based on the number of users.
-The Twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. These are very suitable for cloud platforms and continuous deployment. Furthermore, these principles are language agnostic, so it will work with any framework."><meta property="og:image" content="http://adrianmejia.com/images/scaling_apps_2016_728x360.png"><meta property="og:title" content="How to build scalable apps?"><meta property="fb:app_id" content="761831487293468"><meta property="fb:admins" content="895685163"><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-24183929-4","auto"),ga("require","linkid"),ga("set","transport","beacon"),ga("set","appName","adrianmejia.com"),ga("send","pageview"),ga("send","screenview",{screenName:document.title})</script><script async defer src="https://www.google-analytics.com/analytics.js"></script><style media="screen">.overlay{display:none}</style><link rel="stylesheet" href="/stylesheets/main.css"><noscript id="deferred-styles"><link rel="stylesheet" href="/stylesheets/font-awesome.min.css"></noscript><script>var loadDeferredStyles=function(){var e=document.getElementById("deferred-styles"),t=document.createElement("div");t.innerHTML=e.textContent,document.body.appendChild(t),e.parentElement.removeChild(e)},raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;raf?raf(function(){window.setTimeout(loadDeferredStyles,0)}):window.addEventListener("load",loadDeferredStyles)</script></head><body><header class="titlebar mdl-shadow--2dp"><div class="container align-center flexbox--space-between"><span class="hidden-mobile-up"><i class="fa fa-bars" aria-hidden="true"></i> </span><a href="/" class="align-center"><img src="/images/logo-adrianmejia.png" alt="" class="animation--bounce-in"><h1 class="hidden-mobile-down m-x-1 logo"><span class="animation--bounce-in">Adrian</span> <span class="animation--bounce-in">Mejia</span></h1></a><nav class="hidden-mobile-down navbar"><a href="/#home" class="animation--radial-out" id="Home" onclick='track("/#home","menu",!0)'>Home</a> <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick='track("/#trending-posts","menu",!0)'>Trending</a> <a href="/#about" class="animation--radial-out" id="About" onclick='track("/#about","menu",!0)'>About</a> <a href="/blog" class="animation--radial-out" id="Blog" onclick='track("/blog","menu",!0)'>Blog</a></nav><a href="#" id="search-modal" onclick='track("#search","search",!0)'><i class="fa fa-search" aria-hidden="true"></i></a><div id="search-overlay" class="overlay"><button class="close-btn" id="close-search-overlay"><span><i class="fa fa-close"></i></span></button><script id="movie" type="text/x-handlebars-template"><article class="movie">
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>How to build scalable apps? | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2016/01/09/how-to-build-scalable-apps/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2016/01/09/how-to-build-scalable-apps/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures." />
+    <meta property="og:image" content="http://adrianmejia.com/images/scaling_apps_2016_728x360.png" />
+    <meta property="og:title" content="How to build scalable apps?" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center">
+              <img src="/images/logo-adrianmejia.png" alt="" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down m-x-1 logo">
+                <span class="animation--bounce-in">Adrian</span>
+                <span class="animation--bounce-in">Mejia</span>
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay">
+  <button class="close-btn" id="close-search-overlay">
+    <span><i class="fa fa-close"></i></span>
+  </button>
+
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
       {{#photos.0}}
       <a href="/{{path}}">
         <img class="movie-image" src="{{photos.0}}" />
@@ -37,7 +157,81 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
           {{/tags}}
         </div>
       </div>
-    </article></script><div class="search-container"><div class="top"><div class="search-button"><i class="fa fa-search"></i></div><div class="input-container"><input type="text" id="search-box"><div id="stats"></div></div></div><div class="content"><div class="facets"><div class="facet"><div class="facet-title">Tags</div><div id="tags"></div></div><div class="facet"><div class="facet-title">Categories</div><div id="categories"></div></div></div><div class="canvas"><div id="hits"></div><div id="pagination"></div></div></div></div></div><script src="/js/search.js"></script></div></header><nav class="hidden-mobile-up mdl-shadow--2dp"><div class="container flexbox--space-between navbar"><a href="/#home" class="animation--underline-from-center">Home</a> <a href="/#trending-posts" class="animation--underline-from-center">Trending</a> <a href="/#about" class="animation--underline-from-center">About</a> <a href="/blog" class="animation--underline-from-center">Blog</a></div></nav><main><script type="application/ld+json">{
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+        <div class="facet">
+          <div class="facet-title">Tags</div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">Categories</div>
+          <div id="categories"></div>
+        </div>
+
+  <!--
+        <div class="facet">
+          <div class="facet-title">Popularity</div>
+          <div id="ratings"></div>
+        </div> -->
+
+  <!--
+        https://community.algolia.com/instantsearch.js/documentation/#rangeslider
+
+        <div class="facet">
+          <div class="facet-title">Year</div>
+          <div id="year"></div>
+        </div> -->
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
   "@context": "http://schema.org",
   "@type": "NewsArticle",
   "mainEntityOfPage": {
@@ -69,6 +263,257 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
       "height": 60
     }
   },
-  "description": "Scaling application is not an easy topic to cover in one post. So in this first post, you can find “the mindset” to build scalable apps using the 12-factor principles. In the next post, you will find more down to earth examples one how to scale based on the number of users.
-The Twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. These are very suitable for cloud platforms and continuous deployment. Furthermore, these principles are language agnostic, so it will work with any framework."
-}</script><article class="container post"><section class="hero"><div class="muted"><a class="category-link" href="/categories/Technologies/">Technologies</a></div><h1>How to build scalable apps?</h1><div class="muted"><span title="Last time this post was updated"><i class="fa fa-calendar" aria-hidden="true"></i> Last update <time datetime="2016-01-09T15:43:27.000Z" itemprop="dateUpdated">January 9th 2016</time> </span><span class="m-x-2" title="Pageviews"><i class="fa fa-eye" aria-hidden="true"></i> 1.1k </span><span class="m-x-2" title="Click to go to the comments section"><a href="#disqus_thread"><i class="fa fa-comment-o" aria-hidden="true"></i> <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2016/01/09/how-to-build-scalable-apps/">0</span> </a></span><span><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scalability/">scalability</a><span class="tag-list-count">3</span></li></ul></span></div></section><div class="art-container" style="background-color:#9B59B6"><picture><source media="(min-width: 728px)" srcset="/images/scaling_apps_2016_728x360.png"><source srcset="/images/scaling_apps_2016_300x250.png"><img src="/images/scaling_apps_2016_728x360.png" alt="How to build scalable apps?"></picture></div><div class="row"><section class="col-sm-8 p-x-2"><div class="post-content toc-content"><p>Scaling application is not an easy topic to cover in one post. So in this first post, you can find “the mindset” to build scalable apps using the 12-factor principles. In the <a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/">next post</a>, you will find more down to earth examples one how to scale based on the number of users.</p><p>The Twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. These are very suitable for cloud platforms and continuous deployment. Furthermore, these principles are language agnostic, so it will work with any framework.</p><a id="more"></a><p><strong>The Twelve Factor Principles</strong></p><h1 id="One-codebase-per-app-multiple-deployments">One codebase per app, multiple deployments<a href="#One-codebase-per-app-multiple-deployments" class="headerlink" title="One codebase per app, multiple deployments"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>One codebase to rule all deployment environments: production, staging, local and so on and differentiate them from config files (see #3).</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Multiple apps sharing the same code. INSTEAD the common code should be extracted from a library and included through a dependency manager.</li></ul><h1 id="Declare-and-isolate-dependencies">Declare and isolate dependencies<a href="#Declare-and-isolate-dependencies" class="headerlink" title="Declare and isolate dependencies"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Have a dependency declaration manifest (e.g. packages.json, Gemfile)</li><li>Execute dependencies in isolation per app (e.g. bundle exec).</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Rely on implicit existence of system-wide packages (e.g. curl, ImageMagik). INSTEAD vendor them into the app.</li></ul><h1 id="Store-the-config-in-the-environment">Store the config in the environment<a href="#Store-the-config-in-the-environment" class="headerlink" title="Store the config in the environment"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Separate app’s config (AWS S3, passwords, Google/Fb/Tw/APIs credentials, deployment hostname) from the code.</li><li>Keep the code ready in a way that if were open source, it wouldn’t compromise any credentials.</li><li>Use/commit ‘config’ files with sensitive information into repository. INSTEAD use environmental variables (env, env vars) which are easily changed between deployments and without changing code.</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Group config variables by environment (e.g. AWS_S3_PRODUCTION, AWS_S3_TEST, AWS_S3_QA, AWS_S3_STAGING, AWS_S3_JOE…). INSTEAD use clean environment variables (e.g. AWS_S3) that are managed individually per deploy.</li></ul><h1 id="Swappable-local-and-third-party-services">Swappable local and third party services<a href="#Swappable-local-and-third-party-services" class="headerlink" title="Swappable local and third party services"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Services like databases (e.g. MongoDB, PostgreSQL), message queues (e.g. RabbitMQ, Beanstalkd) should be accessed via URL or locator/credential stored in config.</li><li>Swapping local to production services should be done without any code changes.</li></ul><h1 id="Build-and-runtime">Build and runtime<a href="#Build-and-runtime" class="headerlink" title="Build and runtime"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Code changes flows in one direction only development -&gt; build -&gt; run time environments.</li></ul><h1 id="Execute-the-app-as-share-nothing-stateless-processes">Execute the app as share-nothing stateless processes<a href="#Execute-the-app-as-share-nothing-stateless-processes" class="headerlink" title="Execute the app as share-nothing stateless processes"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Store any persistent data in external services (such as databases)</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Use the filesystem/memory to save states. INSTEAD any instance of the app should be able to handle requests.</li></ul><h1 id="Export-services-via-port-binding">Export services via port binding<a href="#Export-services-via-port-binding" class="headerlink" title="Export services via port binding"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>App is completely self-contained and communicates with other processes through port binding.</li></ul><h1 id="Scale-out-the-app-horizontally">Scale out the app horizontally<a href="#Scale-out-the-app-horizontally" class="headerlink" title="Scale out the app horizontally"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Scale app horizontally since the app is a stateless and share-nothing model.</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Daemonize. INSTEAD use operating system manager such as Upstart or init and Foreman in development.</li></ul><h1 id="Fast-startup-and-shutdown">Fast startup and shutdown<a href="#Fast-startup-and-shutdown" class="headerlink" title="Fast startup and shutdown"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>app start in few seconds to serve requests or jobs.</li><li>shut down gracefully after receiving SIGTERM signal (stop receiving new request/jobs, finish processing current request/job before stopping).</li></ul><h1 id="Keep-development-staging-and-production-as-similar-as-possible">Keep development, staging, and production as similar as possible<a href="#Keep-development-staging-and-production-as-similar-as-possible" class="headerlink" title="Keep development, staging, and production as similar as possible"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>design app for continuous deployment keeping the tools gaps and deployment times as minimum as possible.</li><li>code from development to production should take few hours or just few minutes.</li><li>developers who wrote the code should be able to deploy it to production.</li><li>keep production and development tool the same as possible</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>use different services on production and development (e.g. development using SQLite and production ProtgreSQL).</li></ul><h1 id="Logs-goes-to-stdout">Logs goes to stdout<a href="#Logs-goes-to-stdout" class="headerlink" title="Logs goes to stdout"></a></h1><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>write logs to a particular location in the filesystem. INSTEAD send them to STDOUT, so they can be routed as will depending the environment (e.g. output to terminal in development and output to log file in production)</li></ul><h1 id="Admin-processes">Admin processes<a href="#Admin-processes" class="headerlink" title="Admin processes"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>favor languages/frameworks that use REPL shell out of the box to do admin tasks such as migrating databases, running consoles or running one-time scripts.</li></ul><p>This is just the beginning follow up with <a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/">this next post</a>.</p></div><section class="bio-box"><img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia"><p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p></section><div class="m-y-4"><link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css"><style type="text/css">#mc_embed_signup{background:#fff;clear:left;font:14px Helvetica,Arial,sans-serif;width:100%}</style><div id="mc_embed_signup"><form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate><div id="mc_embed_signup_scroll"><label for="mce-EMAIL">Subscribe &amp; stay up to date!</label><input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required><div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1"></div><div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div></div></form></div><script type="text/javascript">var form=document.getElementById("mc-embedded-subscribe-form");form.addEventListener("submit",function(e){e.preventDefault(),ga("send","event","newsletter","signup","page",location.pathname,{hitCallback:createFunctionWithTimeout(function(){form.submit()})})})</script></div><footer><div class="m-y-4"></div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="2343826126" style="display:block" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></footer></section><aside class="col-sm-4 p-x-2 col-xs-order-1"><section><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="6894900521" style="display:inline-block;width:300px;height:250px"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></section><section class="sticky-element--start"><div class="muted"><div class="p-y-1"><a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a> <a href="#" class="p-x-3" title="Improve this post" onclick='track("https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-01-09-how-to-build-scalable-apps.markdown")'><i class="fa fa-pencil"></i> Improve</a></div><h3 class="toc-title">Contents</h3><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#One-codebase-per-app-multiple-deployments"><span class="toc-number">1.</span> <span class="toc-text">One codebase per app, multiple deployments</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Declare-and-isolate-dependencies"><span class="toc-number">2.</span> <span class="toc-text">Declare and isolate dependencies</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Store-the-config-in-the-environment"><span class="toc-number">3.</span> <span class="toc-text">Store the config in the environment</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Swappable-local-and-third-party-services"><span class="toc-number">4.</span> <span class="toc-text">Swappable local and third party services</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Build-and-runtime"><span class="toc-number">5.</span> <span class="toc-text">Build and runtime</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Execute-the-app-as-share-nothing-stateless-processes"><span class="toc-number">6.</span> <span class="toc-text">Execute the app as share-nothing stateless processes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Export-services-via-port-binding"><span class="toc-number">7.</span> <span class="toc-text">Export services via port binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scale-out-the-app-horizontally"><span class="toc-number">8.</span> <span class="toc-text">Scale out the app horizontally</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fast-startup-and-shutdown"><span class="toc-number">9.</span> <span class="toc-text">Fast startup and shutdown</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Keep-development-staging-and-production-as-similar-as-possible"><span class="toc-number">10.</span> <span class="toc-text">Keep development, staging, and production as similar as possible</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Logs-goes-to-stdout"><span class="toc-number">11.</span> <span class="toc-text">Logs goes to stdout</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Admin-processes"><span class="toc-number">12.</span> <span class="toc-text">Admin processes</span></a></li></ol><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="2343826126" style="display:inline-block;width:300px;height:600px"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></section></aside></div><div class="article-nav m-y-4"><a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/" class="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong><div class="article-nav-title">How to scale a Nodejs app based on number of users</div></a><a href="/blog/2014/10/07/grunt-js-tutorial-from-beginner-to-ninja/" class="article-nav-older" class="article-nav-link-wrap"><strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong><div class="article-nav-title">Grunt JS tutorial from Beginner to Ninja</div></a></div><footer class="row sticky-element--end"><div class="col-xs-12"><section><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://adrianmejia.com",this.page.identifier="http://adrianmejia.com/blog/2016/01/09/how-to-build-scalable-apps/"};!function(){var a=document,e=a.createElement("script");e.src="//adrianmejia.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></section></div></footer></article></main><footer class="page-footer"><div class="container"><div class="p-y-2">&copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a> <span class="muted m-x-4" title="Sat Aug 06 2016 21:46:05 GMT-0400 (EDT)">#obinkt</span></div></div></footer><script src="/js/main.js"></script><script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css"><script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script><link rel="stylesheet" href="/stylesheets/55_search.css"><script type="text/javascript">var addthis_config={data_ga_property:"UA-24183929-4",data_ga_social:!0}</script><script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script><script src="/js/posts.js"></script></body></html>
+  "description": ""
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Technologies/">Technologies</a>
+    </div>
+    <h1>How to build scalable apps?</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2016-01-09T15:43:27.000Z" itemprop="dateUpdated">January 9th 2016</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          1.1k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2016/01/09/how-to-build-scalable-apps/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scalability/">scalability</a><span class="tag-list-count">3</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #9B59B6">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/scaling_apps_2016_728x360.png">
+        <source srcset="/images/scaling_apps_2016_300x250.png">
+        <img src="/images/scaling_apps_2016_728x360.png" alt="How to build scalable apps?">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>Scaling application is not an easy topic to cover in one post. So in this first post, you can find “the mindset” to build scalable apps using the 12-factor principles. In the <a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/">next post</a>, you will find more down to earth examples one how to scale based on the number of users.</p><p>The Twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. These are very suitable for cloud platforms and continuous deployment. Furthermore, these principles are language agnostic, so it will work with any framework.</p><p><strong>The Twelve Factor Principles</strong></p><h1 id="One-codebase-per-app-multiple-deployments">One codebase per app, multiple deployments<a href="#One-codebase-per-app-multiple-deployments" class="headerlink" title="One codebase per app, multiple deployments"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>One codebase to rule all deployment environments: production, staging, local and so on and differentiate them from config files (see #3).</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Multiple apps sharing the same code. INSTEAD the common code should be extracted from a library and included through a dependency manager.</li></ul><h1 id="Declare-and-isolate-dependencies">Declare and isolate dependencies<a href="#Declare-and-isolate-dependencies" class="headerlink" title="Declare and isolate dependencies"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Have a dependency declaration manifest (e.g. packages.json, Gemfile)</li><li>Execute dependencies in isolation per app (e.g. bundle exec).</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Rely on implicit existence of system-wide packages (e.g. curl, ImageMagik). INSTEAD vendor them into the app.</li></ul><h1 id="Store-the-config-in-the-environment">Store the config in the environment<a href="#Store-the-config-in-the-environment" class="headerlink" title="Store the config in the environment"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Separate app’s config (AWS S3, passwords, Google/Fb/Tw/APIs credentials, deployment hostname) from the code.</li><li>Keep the code ready in a way that if were open source, it wouldn’t compromise any credentials.</li><li>Use/commit ‘config’ files with sensitive information into repository. INSTEAD use environmental variables (env, env vars) which are easily changed between deployments and without changing code.</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Group config variables by environment (e.g. AWS_S3_PRODUCTION, AWS_S3_TEST, AWS_S3_QA, AWS_S3_STAGING, AWS_S3_JOE…). INSTEAD use clean environment variables (e.g. AWS_S3) that are managed individually per deploy.</li></ul><h1 id="Swappable-local-and-third-party-services">Swappable local and third party services<a href="#Swappable-local-and-third-party-services" class="headerlink" title="Swappable local and third party services"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Services like databases (e.g. MongoDB, PostgreSQL), message queues (e.g. RabbitMQ, Beanstalkd) should be accessed via URL or locator/credential stored in config.</li><li>Swapping local to production services should be done without any code changes.</li></ul><h1 id="Build-and-runtime">Build and runtime<a href="#Build-and-runtime" class="headerlink" title="Build and runtime"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Code changes flows in one direction only development -&gt; build -&gt; run time environments.</li></ul><h1 id="Execute-the-app-as-share-nothing-stateless-processes">Execute the app as share-nothing stateless processes<a href="#Execute-the-app-as-share-nothing-stateless-processes" class="headerlink" title="Execute the app as share-nothing stateless processes"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Store any persistent data in external services (such as databases)</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Use the filesystem/memory to save states. INSTEAD any instance of the app should be able to handle requests.</li></ul><h1 id="Export-services-via-port-binding">Export services via port binding<a href="#Export-services-via-port-binding" class="headerlink" title="Export services via port binding"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>App is completely self-contained and communicates with other processes through port binding.</li></ul><h1 id="Scale-out-the-app-horizontally">Scale out the app horizontally<a href="#Scale-out-the-app-horizontally" class="headerlink" title="Scale out the app horizontally"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Scale app horizontally since the app is a stateless and share-nothing model.</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Daemonize. INSTEAD use operating system manager such as Upstart or init and Foreman in development.</li></ul><h1 id="Fast-startup-and-shutdown">Fast startup and shutdown<a href="#Fast-startup-and-shutdown" class="headerlink" title="Fast startup and shutdown"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>app start in few seconds to serve requests or jobs.</li><li>shut down gracefully after receiving SIGTERM signal (stop receiving new request/jobs, finish processing current request/job before stopping).</li></ul><h1 id="Keep-development-staging-and-production-as-similar-as-possible">Keep development, staging, and production as similar as possible<a href="#Keep-development-staging-and-production-as-similar-as-possible" class="headerlink" title="Keep development, staging, and production as similar as possible"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>design app for continuous deployment keeping the tools gaps and deployment times as minimum as possible.</li><li>code from development to production should take few hours or just few minutes.</li><li>developers who wrote the code should be able to deploy it to production.</li><li>keep production and development tool the same as possible</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>use different services on production and development (e.g. development using SQLite and production ProtgreSQL).</li></ul><h1 id="Logs-goes-to-stdout">Logs goes to stdout<a href="#Logs-goes-to-stdout" class="headerlink" title="Logs goes to stdout"></a></h1><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>write logs to a particular location in the filesystem. INSTEAD send them to STDOUT, so they can be routed as will depending the environment (e.g. output to terminal in development and output to log file in production)</li></ul><h1 id="Admin-processes">Admin processes<a href="#Admin-processes" class="headerlink" title="Admin processes"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>favor languages/frameworks that use REPL shell out of the box to do admin tasks such as migrating databases, running consoles or running one-time scripts.</li></ul><p>This is just the beginning follow up with <a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/">this next post</a>.</p>
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname, {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-01-09-how-to-build-scalable-apps.markdown')"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#One-codebase-per-app-multiple-deployments"><span class="toc-number">1.</span> <span class="toc-text">One codebase per app, multiple deployments</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Declare-and-isolate-dependencies"><span class="toc-number">2.</span> <span class="toc-text">Declare and isolate dependencies</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Store-the-config-in-the-environment"><span class="toc-number">3.</span> <span class="toc-text">Store the config in the environment</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Swappable-local-and-third-party-services"><span class="toc-number">4.</span> <span class="toc-text">Swappable local and third party services</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Build-and-runtime"><span class="toc-number">5.</span> <span class="toc-text">Build and runtime</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Execute-the-app-as-share-nothing-stateless-processes"><span class="toc-number">6.</span> <span class="toc-text">Execute the app as share-nothing stateless processes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Export-services-via-port-binding"><span class="toc-number">7.</span> <span class="toc-text">Export services via port binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scale-out-the-app-horizontally"><span class="toc-number">8.</span> <span class="toc-text">Scale out the app horizontally</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fast-startup-and-shutdown"><span class="toc-number">9.</span> <span class="toc-text">Fast startup and shutdown</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Keep-development-staging-and-production-as-similar-as-possible"><span class="toc-number">10.</span> <span class="toc-text">Keep development, staging, and production as similar as possible</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Logs-goes-to-stdout"><span class="toc-number">11.</span> <span class="toc-text">Logs goes to stdout</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Admin-processes"><span class="toc-number">12.</span> <span class="toc-text">Admin processes</span></a></li></ol>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:inline-block;width:300px;height:600px;"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+      <a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/" class="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+        <div class="article-nav-title">
+          
+            How to scale a Nodejs app based on number of users
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2014/10/07/grunt-js-tutorial-from-beginner-to-ninja/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">Grunt JS tutorial from Beginner to Ninja</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2016/01/09/how-to-build-scalable-apps/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 08 2016 21:48:58 GMT-0400 (EDT)">
+            v.obmd1m
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+    <!-- social scripts -->
+    
+
+    
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>

@@ -1,4 +1,125 @@
-<!DOCTYPE html><html lang="en-US"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="author" content="Adrian Mejia"><link rel="author" href="humans.txt"><meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures."><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1"><link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml"><title>Cheap Airplay receiver with Raspberry Pi | Adrian Mejia Blog</title><link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/"><meta property="og:url" content="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/"><meta property="og:site_name" content="Adrian Mejia Blog"><meta property="og:type" content="article"><meta property="og:description" content="I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it… So I make it a Airplay receiver to play music remotely from any of my apple devices!"><meta property="og:image" content="http://adrianmejia.com/images/RaspiModelB.png"><meta property="og:title" content="Cheap Airplay receiver with Raspberry Pi"><meta property="fb:app_id" content="761831487293468"><meta property="fb:admins" content="895685163"><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-24183929-4","auto"),ga("require","linkid"),ga("set","transport","beacon"),ga("set","appName","adrianmejia.com"),ga("send","pageview"),ga("send","screenview",{screenName:document.title})</script><script async defer src="https://www.google-analytics.com/analytics.js"></script><style media="screen">.overlay{display:none}</style><link rel="stylesheet" href="/stylesheets/main.css"><noscript id="deferred-styles"><link rel="stylesheet" href="/stylesheets/font-awesome.min.css"></noscript><script>var loadDeferredStyles=function(){var e=document.getElementById("deferred-styles"),t=document.createElement("div");t.innerHTML=e.textContent,document.body.appendChild(t),e.parentElement.removeChild(e)},raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;raf?raf(function(){window.setTimeout(loadDeferredStyles,0)}):window.addEventListener("load",loadDeferredStyles)</script></head><body><header class="titlebar mdl-shadow--2dp"><div class="container align-center flexbox--space-between"><span class="hidden-mobile-up"><i class="fa fa-bars" aria-hidden="true"></i> </span><a href="/" class="align-center"><img src="/images/logo-adrianmejia.png" alt="" class="animation--bounce-in"><h1 class="hidden-mobile-down m-x-1 logo"><span class="animation--bounce-in">Adrian</span> <span class="animation--bounce-in">Mejia</span></h1></a><nav class="hidden-mobile-down navbar"><a href="/#home" class="animation--radial-out" id="Home" onclick='track("/#home","menu",!0)'>Home</a> <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick='track("/#trending-posts","menu",!0)'>Trending</a> <a href="/#about" class="animation--radial-out" id="About" onclick='track("/#about","menu",!0)'>About</a> <a href="/blog" class="animation--radial-out" id="Blog" onclick='track("/blog","menu",!0)'>Blog</a></nav><a href="#" id="search-modal" onclick='track("#search","search",!0)'><i class="fa fa-search" aria-hidden="true"></i></a><div id="search-overlay" class="overlay"><button class="close-btn" id="close-search-overlay"><span><i class="fa fa-close"></i></span></button><script id="movie" type="text/x-handlebars-template"><article class="movie">
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Cheap Airplay receiver with Raspberry Pi | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures." />
+    <meta property="og:image" content="http://adrianmejia.com/images/RaspiModelB.png" />
+    <meta property="og:title" content="Cheap Airplay receiver with Raspberry Pi" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center">
+              <img src="/images/logo-adrianmejia.png" alt="" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down m-x-1 logo">
+                <span class="animation--bounce-in">Adrian</span>
+                <span class="animation--bounce-in">Mejia</span>
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay">
+  <button class="close-btn" id="close-search-overlay">
+    <span><i class="fa fa-close"></i></span>
+  </button>
+
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
       {{#photos.0}}
       <a href="/{{path}}">
         <img class="movie-image" src="{{photos.0}}" />
@@ -36,7 +157,81 @@
           {{/tags}}
         </div>
       </div>
-    </article></script><div class="search-container"><div class="top"><div class="search-button"><i class="fa fa-search"></i></div><div class="input-container"><input type="text" id="search-box"><div id="stats"></div></div></div><div class="content"><div class="facets"><div class="facet"><div class="facet-title">Tags</div><div id="tags"></div></div><div class="facet"><div class="facet-title">Categories</div><div id="categories"></div></div></div><div class="canvas"><div id="hits"></div><div id="pagination"></div></div></div></div></div><script src="/js/search.js"></script></div></header><nav class="hidden-mobile-up mdl-shadow--2dp"><div class="container flexbox--space-between navbar"><a href="/#home" class="animation--underline-from-center">Home</a> <a href="/#trending-posts" class="animation--underline-from-center">Trending</a> <a href="/#about" class="animation--underline-from-center">About</a> <a href="/blog" class="animation--underline-from-center">Blog</a></div></nav><main><script type="application/ld+json">{
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+        <div class="facet">
+          <div class="facet-title">Tags</div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">Categories</div>
+          <div id="categories"></div>
+        </div>
+
+  <!--
+        <div class="facet">
+          <div class="facet-title">Popularity</div>
+          <div id="ratings"></div>
+        </div> -->
+
+  <!--
+        https://community.algolia.com/instantsearch.js/documentation/#rangeslider
+
+        <div class="facet">
+          <div class="facet-title">Year</div>
+          <div id="year"></div>
+        </div> -->
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
   "@context": "http://schema.org",
   "@type": "NewsArticle",
   "mainEntityOfPage": {
@@ -68,5 +263,238 @@
       "height": 60
     }
   },
-  "description": "I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it… So I make it a Airplay receiver to play music remotely from any of my apple devices!"
-}</script><article class="container post"><section class="hero"><div class="muted"><a class="category-link" href="/categories/Technologies/">Technologies</a></div><h1>Cheap Airplay receiver with Raspberry Pi</h1><div class="muted"><span title="Last time this post was updated"><i class="fa fa-calendar" aria-hidden="true"></i> Last update <time datetime="2014-02-15T17:59:26.000Z" itemprop="dateUpdated">February 15th 2014</time> </span><span class="m-x-2" title="Click to go to the comments section"><a href="#disqus_thread"><i class="fa fa-comment-o" aria-hidden="true"></i> <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/">0</span> </a></span><span><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberrypi/">raspberrypi</a><span class="tag-list-count">1</span></li></ul></span></div></section><div class="art-container" style="background-color:#E4F4FD"><picture><source media="(min-width: 728px)" srcset="/images/RaspiModelB.png"><source srcset="/images/RaspiModelB.png"><img src="/images/RaspiModelB.png" alt="Cheap Airplay receiver with Raspberry Pi"></picture></div><div class="row"><section class="col-sm-8 p-x-2"><div class="post-content"><p>I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it… So I make it a Airplay receiver to play music remotely from any of my apple devices!</p><a id="more"></a><p>There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(<a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">http://www.raspberrypi.org/downloads</a>) You can even turn it into a home theater (<a href="http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/" target="_blank" rel="external">http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/</a>). However, I’m not going to explain any of those ways because just installing them gives you 99% of the functionality. As a developer, I want to have control of the computers, and I’m not afraid of the console. So, I installed Raspbian instead, which is a lightweight Ubuntu/Debian Linux optimized for Raspberry Pi.</p><p>#Getting started</p><p><strong>1. Install Raspbian “wheezy”</strong></p><p>Download the image from <a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">http://www.raspberrypi.org/downloads</a> and follow the instructions. You have to format the SD card and “copy” the image. You can download this formatting tool: <a href="https://www.sdcard.org/downloads/formatter_4" target="_blank" rel="external">https://www.sdcard.org/downloads/formatter_4</a>. After that, plug the SD card in Raspberry, also the Ethernet cable and power cord. For more instructions follow <a href="http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi" target="_blank">http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi</a>.</p><p><strong>2. Setup Pi</strong></p><p>You need to connect it to an HDMI display to set it up using a USB mouse and keyboard or you can use SSH if you had set that up.</p><p><strong>3. Access the Terminal</strong></p><p>From the terminal type the following commands in you Raspberry Pi:</p><p>Become root and update the system</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade</div></pre></td></tr></table></figure><p></p><p><strong>3. Setup Audio</strong></p><p>Audio ports could either be bind to the HDMI connection or to the audio output jack (you need sudo to execute any sound command).</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo amixer cset numid=3 1</div></pre></td></tr></table></figure><p></p><p>Connect the speakers to you Raspberry Pi. You can test that they work with these:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo speaker-test -t pink -l 1</div><div class="line">sudo speaker-test -t sine -l 1</div></pre></td></tr></table></figure><p>You can also adjust the volume</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo alsamixer</div></pre></td></tr></table></figure><p></p><p><strong>4. Install Airplay software</strong></p><p>I tested with 2 different programs, both of them did the trick for me.</p><ul><li><a href="https://github.com/juhovh/shairplay" target="_blank" rel="external">https://github.com/juhovh/shairplay</a></li><li><a href="https://github.com/abrasive/shairport" target="_blank" rel="external">https://github.com/abrasive/shairport</a></li></ul><p>The latter is more popular so I will give the instructions for that one:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apt-get install -y libssl-dev libavahi-client-dev libasound2-dev git</div><div class="line">git <span class="built_in">clone</span> https://github.com/abrasive/shairport.git</div><div class="line"><span class="built_in">cd</span> shairport</div><div class="line">./configure</div><div class="line">make</div><div class="line">./shairport <span class="_">-a</span> <span class="string">'AirPi'</span></div></pre></td></tr></table></figure><p><strong>5. Run Airplay (shairport) on boot.</strong></p><p>It’s nice to run airport receiver automatically when you connect your Pi.</p><p>Create a file to start shairport</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nano /etc/init.d/airplay</div></pre></td></tr></table></figure><p></p><p>Type the following into <code>airplay</code>:</p><figure class="highlight bash"><figcaption><span>airplay</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">/usr/<span class="built_in">local</span>/bin/shairport <span class="_">-a</span> <span class="string">"AirPi"</span></div></pre></td></tr></table></figure><p>Close the editing mode and exit the file. Then register the script to be run on boot.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod a+x /etc/init.d/airplay</div><div class="line">update-rc.d airplay defaults</div></pre></td></tr></table></figure><p></p><p>Reboot your Pi and you are good to go! (If you have any questions you can write a comment below)</p></div><section class="bio-box"><img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia"><p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p></section><div class="m-y-4"><link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css"><style type="text/css">#mc_embed_signup{background:#fff;clear:left;font:14px Helvetica,Arial,sans-serif;width:100%}</style><div id="mc_embed_signup"><form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate><div id="mc_embed_signup_scroll"><label for="mce-EMAIL">Subscribe &amp; stay up to date!</label><input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required><div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1"></div><div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div></div></form></div><script type="text/javascript">var form=document.getElementById("mc-embedded-subscribe-form");form.addEventListener("submit",function(e){e.preventDefault(),ga("send","event","newsletter","signup","page",location.pathname,{hitCallback:createFunctionWithTimeout(function(){form.submit()})})})</script></div><footer><div class="m-y-4"></div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="2343826126" style="display:block" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></footer></section><aside class="col-sm-4 p-x-2 col-xs-order-1"><section><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="6894900521" style="display:inline-block;width:300px;height:250px"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></section><section class="sticky-element--start"><div class="muted"><div class="p-y-1"><a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a> <a href="#" class="p-x-3" title="Improve this post" onclick='track("https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2014-02-15-cheap-airplay-receiver-with-raspberry-pi.markdown")'><i class="fa fa-pencil"></i> Improve</a></div></div></section></aside></div><div class="article-nav m-y-4"><a href="/blog/2014/03/09/how-company-x-make-money/" class="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong><div class="article-nav-title">How company X make money?</div></a><a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/" class="article-nav-older" class="article-nav-link-wrap"><strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong><div class="article-nav-title">Algorithms for dummies (Part 1): Big-O Notation and Sorting</div></a></div><footer class="row sticky-element--end"><div class="col-xs-12"><section><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://adrianmejia.com",this.page.identifier="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/"};!function(){var e=document,a=e.createElement("script");a.src="//adrianmejia.disqus.com/embed.js",a.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(a)}()</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></section></div></footer></article></main><footer class="page-footer"><div class="container"><div class="p-y-2">&copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a> <span class="muted m-x-4" title="Sat Aug 06 2016 21:46:05 GMT-0400 (EDT)">#obinkt</span></div></div></footer><script src="/js/main.js"></script><script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css"><script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script><link rel="stylesheet" href="/stylesheets/55_search.css"><script type="text/javascript">var addthis_config={data_ga_property:"UA-24183929-4",data_ga_social:!0}</script><script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script><script src="/js/posts.js"></script></body></html>
+  "description": ""
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Technologies/">Technologies</a>
+    </div>
+    <h1>Cheap Airplay receiver with Raspberry Pi</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2014-02-15T17:59:26.000Z" itemprop="dateUpdated">February 15th 2014</time>
+      </span>
+
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberrypi/">raspberrypi</a><span class="tag-list-count">1</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #E4F4FD">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/RaspiModelB.png">
+        <source srcset="/images/RaspiModelB.png">
+        <img src="/images/RaspiModelB.png" alt="Cheap Airplay receiver with Raspberry Pi">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content ">
+        <p>I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it… So I make it a Airplay receiver to play music remotely from any of my apple devices!</p><p>There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(<a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">http://www.raspberrypi.org/downloads</a>) You can even turn it into a home theater (<a href="http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/" target="_blank" rel="external">http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/</a>). However, I’m not going to explain any of those ways because just installing them gives you 99% of the functionality. As a developer, I want to have control of the computers, and I’m not afraid of the console. So, I installed Raspbian instead, which is a lightweight Ubuntu/Debian Linux optimized for Raspberry Pi.</p><p>#Getting started</p><p><strong>1. Install Raspbian “wheezy”</strong></p><p>Download the image from <a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">http://www.raspberrypi.org/downloads</a> and follow the instructions. You have to format the SD card and “copy” the image. You can download this formatting tool: <a href="https://www.sdcard.org/downloads/formatter_4" target="_blank" rel="external">https://www.sdcard.org/downloads/formatter_4</a>. After that, plug the SD card in Raspberry, also the Ethernet cable and power cord. For more instructions follow <a href="http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi" target="_blank">http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi</a>.</p><p><strong>2. Setup Pi</strong></p><p>You need to connect it to an HDMI display to set it up using a USB mouse and keyboard or you can use SSH if you had set that up.</p><p><strong>3. Access the Terminal</strong></p><p>From the terminal type the following commands in you Raspberry Pi:</p><p>Become root and update the system</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade</div></pre></td></tr></table></figure><p></p><p><strong>3. Setup Audio</strong></p><p>Audio ports could either be bind to the HDMI connection or to the audio output jack (you need sudo to execute any sound command).</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo amixer cset numid=3 1</div></pre></td></tr></table></figure><p></p><p>Connect the speakers to you Raspberry Pi. You can test that they work with these:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo speaker-test -t pink -l 1</div><div class="line">sudo speaker-test -t sine -l 1</div></pre></td></tr></table></figure><p>You can also adjust the volume</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo alsamixer</div></pre></td></tr></table></figure><p></p><p><strong>4. Install Airplay software</strong></p><p>I tested with 2 different programs, both of them did the trick for me.</p><ul><li><a href="https://github.com/juhovh/shairplay" target="_blank" rel="external">https://github.com/juhovh/shairplay</a></li><li><a href="https://github.com/abrasive/shairport" target="_blank" rel="external">https://github.com/abrasive/shairport</a></li></ul><p>The latter is more popular so I will give the instructions for that one:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apt-get install -y libssl-dev libavahi-client-dev libasound2-dev git</div><div class="line">git <span class="built_in">clone</span> https://github.com/abrasive/shairport.git</div><div class="line"><span class="built_in">cd</span> shairport</div><div class="line">./configure</div><div class="line">make</div><div class="line">./shairport <span class="_">-a</span> <span class="string">'AirPi'</span></div></pre></td></tr></table></figure><p><strong>5. Run Airplay (shairport) on boot.</strong></p><p>It’s nice to run airport receiver automatically when you connect your Pi.</p><p>Create a file to start shairport</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nano /etc/init.d/airplay</div></pre></td></tr></table></figure><p></p><p>Type the following into <code>airplay</code>:</p><figure class="highlight bash"><figcaption><span>airplay</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">/usr/<span class="built_in">local</span>/bin/shairport <span class="_">-a</span> <span class="string">"AirPi"</span></div></pre></td></tr></table></figure><p>Close the editing mode and exit the file. Then register the script to be run on boot.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod a+x /etc/init.d/airplay</div><div class="line">update-rc.d airplay defaults</div></pre></td></tr></table></figure><p></p><p>Reboot your Pi and you are good to go! (If you have any questions you can write a comment below)</p>
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname, {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2014-02-15-cheap-airplay-receiver-with-raspberry-pi.markdown')"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+      <a href="/blog/2014/03/09/how-company-x-make-money/" class="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+        <div class="article-nav-title">
+          
+            How company X make money?
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">Algorithms for dummies (Part 1): Big-O Notation and Sorting</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 08 2016 21:48:58 GMT-0400 (EDT)">
+            v.obmd1m
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+    <!-- social scripts -->
+    
+
+    
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>
