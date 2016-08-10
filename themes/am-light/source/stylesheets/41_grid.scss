@@ -99,7 +99,8 @@ $flexbox-child: (
     .container {
       // border: 2px solid violet;
 
-      max-width: $max-width;
+      width: $max-width;
+      max-width: 1336px;
       padding-left:  ($gutter / 2);
       padding-right: ($gutter / 2);
       margin-left: auto;

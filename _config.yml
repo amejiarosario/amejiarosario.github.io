@@ -118,13 +118,13 @@ algolia:
 
 # https://github.com/unhealthy/hexo-all-minifier
 html_minifier:
-  enable: true
+  enable: false
 css_minifier:
-  enable: true
+  enable: false
 js_minifier:
-  enable: true
+  enable: false
 image_minifier:
-  enable: true
+  enable: false
 
 # https://github.com/hexojs/hexo-generator-feed
 feed:
