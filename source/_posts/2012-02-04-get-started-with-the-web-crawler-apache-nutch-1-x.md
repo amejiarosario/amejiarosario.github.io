@@ -10,8 +10,8 @@ pageviews__recent: 539
 pageviews__avg_time: 159
 # categories: [how-to, apache, nutch, search engines, web crawlers]
 photos:
-  - /images/apache_nutch_web_crawler_300x250.png
-  - /images/apache_nutch_web_crawler_728x360.png
+  - /images/apache_nutch_web_crawler_small.png
+  - /images/apache_nutch_web_crawler_large.png
 photos__background_color: '#E08300'
 tutorial__order: 0
 tags:

@@ -10,8 +10,8 @@ pageviews__avg_time: 849
 toc: true
 # categories: [ruby on rails, software architecture, web frameworks, web development, agile frameworks, twitter]
 photos:
-  - /images/ruby_on_rails_architecture_300x250.png
-  - /images/ruby_on_rails_architecture_728x360.png
+  - /images/ruby_on_rails_architecture_small.png
+  - /images/ruby_on_rails_architecture_large.png
 photos__background_color: '#B42738'
 tutorial__order: 0
 tags:

@@ -11,8 +11,8 @@ toc: true
 # tags: [production, scalability]
 photos__background_color: '#9B59B6'
 photos:
-  - /images/scaling_apps_2016_300x250.png
-  - /images/scaling_apps_2016_728x360.png
+  - /images/scaling_apps_2016_small.png
+  - /images/scaling_apps_2016_large.png
 tutorial__order: 0
 tags:
   - scalability

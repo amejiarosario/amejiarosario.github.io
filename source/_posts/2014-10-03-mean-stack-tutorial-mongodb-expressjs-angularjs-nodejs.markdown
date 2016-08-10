@@ -10,8 +10,8 @@ pageviews__avg_time: 8032
 toc: true
 #categories: [angularjs, javascript, nodejs, mongodb, mean stack]
 photos:
-  - /images/mean_300x250.png
-  - /images/mean_728x360.png
+  - /images/mean_small.png
+  - /images/mean_large.png
 photos__background_color: '#7EBE42'
 tutorial__order: 3
 tags:

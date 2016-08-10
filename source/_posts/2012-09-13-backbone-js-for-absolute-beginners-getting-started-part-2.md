@@ -8,8 +8,8 @@ pageviews__total: 149923
 pageviews__recent: 238  
 pageviews__avg_time: 3846
 photos:
-  - /images/Backbone_for_beginners_part2_300x250.png
-  - /images/BackbonesforBeginners_728x360.png
+  - /images/Backbone_for_beginners_part2_small.png
+  - /images/BackbonesforBeginners_large.png
 toc: true
 #categories: [backbonejs, javascript]
 tutorial__order: 2

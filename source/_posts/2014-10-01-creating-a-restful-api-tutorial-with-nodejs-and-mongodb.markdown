@@ -9,7 +9,7 @@ pageviews__recent: 294
 pageviews__avg_time: 17258
 photos:
   - /images/RESTfulAPIs_NodeJS__mongodb_320x250.png
-  - /images/RESTfulAPIs_NodeJS__mongodb_728x360.png
+  - /images/RESTfulAPIs_NodeJS__mongodb_large.png
 photos__background_color: '#4C4D4E'
 bitly: 'http://bit.ly/creating-node-api1'
 toc: true

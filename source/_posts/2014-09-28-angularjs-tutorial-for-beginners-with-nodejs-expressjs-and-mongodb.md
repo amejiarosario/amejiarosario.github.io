@@ -11,8 +11,8 @@ pageviews__avg_time: 17303
 photos__background_color: '#25A9DD'
 bitly: 'http://bit.ly/angular-4-beginners'
 photos:
-  - /images/AngularJSTutorial_300x250.png
-  - /images/AngularJSTutorial_728x360.png
+  - /images/AngularJSTutorial_small.png
+  - /images/AngularJSTutorial_large.png
 tutorial__order: 1
 tags:
   - angularjs

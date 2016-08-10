@@ -10,8 +10,8 @@ pageviews__avg_time: 1807
 toc: true
 #categories: [backbonejs, javascript
 photos:
-- /images/Backbone_for_beginners_part3_300x250.png
-- /images/BackbonesforBeginners_728x360.png
+- /images/Backbone_for_beginners_part3_small.png
+- /images/BackbonesforBeginners_large.png
 tutorial__order: 3
 tags:
   - backbonejs

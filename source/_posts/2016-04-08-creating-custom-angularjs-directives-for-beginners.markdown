@@ -9,8 +9,8 @@ pageviews__total: 295
 pageviews__recent: 98
 pageviews__avg_time: 219
 photos:
-  - /images/angularjs_directives_300x250.png
-  - /images/angularjs_directives_728x360.png
+  - /images/angularjs_directives_small.png
+  - /images/angularjs_directives_large.png
 photos__background_color: '#B12928'
 tutorial__order: 0
 tags:

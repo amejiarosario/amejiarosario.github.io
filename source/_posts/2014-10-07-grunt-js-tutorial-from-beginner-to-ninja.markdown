@@ -10,8 +10,8 @@ pageviews__recent: 279
 pageviews__avg_time: 1735
 # categories: [javascript, nodejs, gruntjs, build tools]
 photos:
-  - /images/gruntjs_300x250.png
-  - /images/gruntjs_728x360.png
+  - /images/gruntjs_small.png
+  - /images/gruntjs_large.png
 photos__background_color: '#D27B2E'
 tutorial__order: 0
 tags:

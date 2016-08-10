@@ -11,7 +11,7 @@ pageviews__avg_time: 2327
 #categories: [algorithms, big-o, sorting, merge sort]
 photos:
   - /images/AlgorithmsForDummies_300x350.png
-  - /images/AlgorithmsForDummies_728x360.png
+  - /images/AlgorithmsForDummies_large.png
 photos__background_color: '#F2ED5B'
 tutorial__order: 0
 tags:

@@ -10,8 +10,8 @@ pageviews__avg_time: 6766
 photos__background_color: 'white'
 bitly: 'http://bit.ly/backbone-1'
 photos:
-  - /images/Backbonesforbeginners_300x250.png
-  - /images/BackbonesforBeginners_728x360.png
+  - /images/Backbonesforbeginners_small.png
+  - /images/BackbonesforBeginners_large.png
 toc: true
 #categories: [backbonejs, javascript]
 tutorial__order: 1
