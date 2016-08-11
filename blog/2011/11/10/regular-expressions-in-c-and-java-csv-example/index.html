@@ -38,7 +38,7 @@
     <meta property="og:url" content="http://adrianmejia.com/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/" />
     <meta property="og:site_name" content="Adrian Mejia Blog" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures." />
+    <meta property="og:description" content="Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;" />
     <meta property="og:image" content="http://adrianmejia.comundefined" />
     <meta property="og:title" content="Regular Expressions in C# and Java - CSV Example" />
     <meta property="fb:app_id" content="761831487293468" />
@@ -263,7 +263,7 @@ ga('send', 'screenview', {screenName: document.title });
       "height": 60
     }
   },
-  "description": ""
+  "description": "Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;"
 }
 </script>
 
@@ -307,9 +307,27 @@ ga('send', 'screenview', {screenName: document.title });
     <section class="col-sm-8 p-x-2">
 
       <div class="post-content ">
-        <p>Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;</p><div><div>CSV are files that all the data is separated by a comma. E.g:</div><pre>
-name,line1,line2,city,zip code,country</pre><div>You cand easily use String.Split() in C# to get all the values. But, there are cases when the data can contain comma. E.g:</div><pre>
-&quot;Mr. John Doe, Jr.&quot;,7926 Glenbrook Dr., 14623</pre><div>In this case a regular expression (regex) could be use to determine if the comma is inside a quote or not.</div><div>&nbsp;</div><div>C# Example:</div><div>&nbsp;</div><div><pre>
+        <p>Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;</p>
+<a id="more"></a>
+<div>
+    <div>
+        CSV are files that all the data is separated by a comma. E.g:</div>
+    <pre>
+name,line1,line2,city,zip code,country</pre>
+    <div>
+        You cand easily use String.Split() in C# to get all the values. But, there are cases when the data can contain comma. E.g:</div>
+    <pre>
+&quot;Mr. John Doe, Jr.&quot;,7926 Glenbrook Dr., 14623</pre>
+    <div>
+        In this case a regular expression (regex) could be use to determine if the comma is inside a quote or not.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        C# Example:</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <pre>
     public string[] parseCSV(string line)
     {
         List&lt;string&gt; datalist = new List&lt;string&gt;();
@@ -338,7 +356,16 @@ name,line1,line2,city,zip code,country</pre><div>You cand easily use String.Spli
                 datalist.Add(match.Groups[2].Value); // match csv values outside commas
         }
         return datalist.ToArray();
-    }</em></pre></div><div>&nbsp;</div><div>&nbsp;</div><div>Java Example:</div><div><pre>
+    }</em></pre>
+    </div>
+    <div>
+        &nbsp;</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        Java Example:</div>
+    <div>
+        <pre>
     public String[] parse(String csvLine) {
         Pattern csvPattern = Pattern.compile(&quot;\&quot;([^\&quot;])\&quot;|(?&lt;=,|^)([^,]*)(?:,|$)&quot;);
         matcher = csvPattern.matcher(csvLine);
@@ -363,7 +390,11 @@ name,line1,line2,city,zip code,country</pre><div>You cand easily use String.Spli
         else {
                 return new String[0];
         }
-    } </pre></div></div><p>&nbsp;</p>
+    } </pre>
+    </div>
+</div>
+<p>&nbsp;</p>
+
       </div>
 
       
@@ -481,9 +512,9 @@ name,line1,line2,city,zip code,country</pre><div>You cand easily use String.Spli
       </a>
     
     
-      <a href="/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/" class="article-nav-older" class="article-nav-link-wrap">
+      <a href="/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/" class="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
-        <div class="article-nav-title">How to execute SQL statements on MS Access?</div>
+        <div class="article-nav-title">git+ftp: Publish Git repository over FTP </div>
       </a>
     
   </div>
@@ -519,8 +550,8 @@ name,line1,line2,city,zip code,country</pre><div>You cand easily use String.Spli
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 08 2016 21:48:58 GMT-0400 (EDT)">
-            v.obmd1m
+          <span class="muted m-x-4" title="Thu Aug 11 2016 07:53:42 GMT-0400 (EDT)">
+            v.obqudi
           </span>
         </div>
       </div>

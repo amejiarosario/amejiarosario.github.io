@@ -38,7 +38,7 @@
     <meta property="og:url" content="http://adrianmejia.com/blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/" />
     <meta property="og:site_name" content="Adrian Mejia Blog" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures." />
+    <meta property="og:description" content="I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it… So I make it a Airplay receiver to play music remotely from any of my apple devices!" />
     <meta property="og:image" content="http://adrianmejia.com/images/RaspiModelB.png" />
     <meta property="og:title" content="Cheap Airplay receiver with Raspberry Pi" />
     <meta property="fb:app_id" content="761831487293468" />
@@ -263,7 +263,7 @@ ga('send', 'screenview', {screenName: document.title });
       "height": 60
     }
   },
-  "description": ""
+  "description": "I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it… So I make it a Airplay receiver to play music remotely from any of my apple devices!"
 }
 </script>
 
@@ -313,7 +313,46 @@ ga('send', 'screenview', {screenName: document.title });
     <section class="col-sm-8 p-x-2">
 
       <div class="post-content ">
-        <p>I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it… So I make it a Airplay receiver to play music remotely from any of my apple devices!</p><p>There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(<a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">http://www.raspberrypi.org/downloads</a>) You can even turn it into a home theater (<a href="http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/" target="_blank" rel="external">http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/</a>). However, I’m not going to explain any of those ways because just installing them gives you 99% of the functionality. As a developer, I want to have control of the computers, and I’m not afraid of the console. So, I installed Raspbian instead, which is a lightweight Ubuntu/Debian Linux optimized for Raspberry Pi.</p><p>#Getting started</p><p><strong>1. Install Raspbian “wheezy”</strong></p><p>Download the image from <a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">http://www.raspberrypi.org/downloads</a> and follow the instructions. You have to format the SD card and “copy” the image. You can download this formatting tool: <a href="https://www.sdcard.org/downloads/formatter_4" target="_blank" rel="external">https://www.sdcard.org/downloads/formatter_4</a>. After that, plug the SD card in Raspberry, also the Ethernet cable and power cord. For more instructions follow <a href="http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi" target="_blank">http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi</a>.</p><p><strong>2. Setup Pi</strong></p><p>You need to connect it to an HDMI display to set it up using a USB mouse and keyboard or you can use SSH if you had set that up.</p><p><strong>3. Access the Terminal</strong></p><p>From the terminal type the following commands in you Raspberry Pi:</p><p>Become root and update the system</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade</div></pre></td></tr></table></figure><p></p><p><strong>3. Setup Audio</strong></p><p>Audio ports could either be bind to the HDMI connection or to the audio output jack (you need sudo to execute any sound command).</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo amixer cset numid=3 1</div></pre></td></tr></table></figure><p></p><p>Connect the speakers to you Raspberry Pi. You can test that they work with these:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo speaker-test -t pink -l 1</div><div class="line">sudo speaker-test -t sine -l 1</div></pre></td></tr></table></figure><p>You can also adjust the volume</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo alsamixer</div></pre></td></tr></table></figure><p></p><p><strong>4. Install Airplay software</strong></p><p>I tested with 2 different programs, both of them did the trick for me.</p><ul><li><a href="https://github.com/juhovh/shairplay" target="_blank" rel="external">https://github.com/juhovh/shairplay</a></li><li><a href="https://github.com/abrasive/shairport" target="_blank" rel="external">https://github.com/abrasive/shairport</a></li></ul><p>The latter is more popular so I will give the instructions for that one:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apt-get install -y libssl-dev libavahi-client-dev libasound2-dev git</div><div class="line">git <span class="built_in">clone</span> https://github.com/abrasive/shairport.git</div><div class="line"><span class="built_in">cd</span> shairport</div><div class="line">./configure</div><div class="line">make</div><div class="line">./shairport <span class="_">-a</span> <span class="string">'AirPi'</span></div></pre></td></tr></table></figure><p><strong>5. Run Airplay (shairport) on boot.</strong></p><p>It’s nice to run airport receiver automatically when you connect your Pi.</p><p>Create a file to start shairport</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nano /etc/init.d/airplay</div></pre></td></tr></table></figure><p></p><p>Type the following into <code>airplay</code>:</p><figure class="highlight bash"><figcaption><span>airplay</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">/usr/<span class="built_in">local</span>/bin/shairport <span class="_">-a</span> <span class="string">"AirPi"</span></div></pre></td></tr></table></figure><p>Close the editing mode and exit the file. Then register the script to be run on boot.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod a+x /etc/init.d/airplay</div><div class="line">update-rc.d airplay defaults</div></pre></td></tr></table></figure><p></p><p>Reboot your Pi and you are good to go! (If you have any questions you can write a comment below)</p>
+        <p>I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it… So I make it a Airplay receiver to play music remotely from any of my apple devices!</p>
+<a id="more"></a>
+<p>There is a couple of ways to make it work. The easiest one is to install the RaspBMC, a popular media center.(<a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">http://www.raspberrypi.org/downloads</a>)
+You can even turn it into a home theater (<a href="http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/" target="_blank" rel="external">http://www.makeuseof.com/tag/raspberry-pi-home-theater-system/</a>).
+However, I’m not going to explain any of those ways because just installing them gives you 99% of the functionality. As a developer, I want to have control of the computers, and I’m not afraid of the console. So, I installed Raspbian instead, which is a lightweight Ubuntu/Debian Linux optimized for Raspberry Pi.</p>
+<p>#Getting started</p>
+<p><strong>1. Install Raspbian “wheezy”</strong></p>
+<p>Download the image from <a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">http://www.raspberrypi.org/downloads</a> and follow the instructions. You have to format the SD card and “copy” the image. You can download this formatting tool: <a href="https://www.sdcard.org/downloads/formatter_4" target="_blank" rel="external">https://www.sdcard.org/downloads/formatter_4</a>. After that, plug the SD card in Raspberry, also the Ethernet cable and power cord. For more instructions follow <a href="http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi" target="_blank">http://lifehacker.com/5976912/a-beginners-guide-to-diying-with-the-raspberry-pi</a>.</p>
+<p><strong>2.  Setup Pi</strong></p>
+<p>You need to connect it to an HDMI display to set it up using a USB mouse and keyboard or you can use SSH if you had set that up.</p>
+<p><strong>3. Access the Terminal</strong></p>
+<p>From the terminal type the following commands in you Raspberry Pi:</p>
+<p>Become root and update the system
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade</div></pre></td></tr></table></figure></p>
+<p><strong>3. Setup Audio</strong></p>
+<p>Audio ports could either be bind to the HDMI connection or to the audio output jack (you need sudo to execute any sound command).
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo amixer cset numid=3 1</div></pre></td></tr></table></figure></p>
+<p>Connect the speakers to you Raspberry Pi. You can test that they work with these:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo speaker-test -t pink -l 1</div><div class="line">sudo speaker-test -t sine -l 1</div></pre></td></tr></table></figure>
+<p>You can also adjust the volume
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo alsamixer</div></pre></td></tr></table></figure></p>
+<p><strong>4. Install Airplay software</strong></p>
+<p>I tested with 2 different programs, both of them did the trick for me.</p>
+<ul>
+<li><a href="https://github.com/juhovh/shairplay" target="_blank" rel="external">https://github.com/juhovh/shairplay</a></li>
+<li><a href="https://github.com/abrasive/shairport" target="_blank" rel="external">https://github.com/abrasive/shairport</a></li>
+</ul>
+<p>The latter is more popular so I will give the instructions for that one:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apt-get install -y libssl-dev libavahi-client-dev libasound2-dev git</div><div class="line">git <span class="built_in">clone</span> https://github.com/abrasive/shairport.git</div><div class="line"><span class="built_in">cd</span> shairport</div><div class="line">./configure</div><div class="line">make</div><div class="line">./shairport <span class="_">-a</span> <span class="string">'AirPi'</span></div></pre></td></tr></table></figure>
+<p><strong>5. Run Airplay (shairport) on boot.</strong></p>
+<p>It’s nice to run airport receiver automatically when you connect your Pi.</p>
+<p>Create a file to start shairport
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nano /etc/init.d/airplay</div></pre></td></tr></table></figure></p>
+<p>Type the following into <code>airplay</code>:</p>
+<figure class="highlight bash"><figcaption><span>airplay</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">/usr/<span class="built_in">local</span>/bin/shairport <span class="_">-a</span> <span class="string">"AirPi"</span></div></pre></td></tr></table></figure>
+<p>Close the editing mode and exit the file. Then register the script to be run on boot.
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod a+x /etc/init.d/airplay</div><div class="line">update-rc.d airplay defaults</div></pre></td></tr></table></figure></p>
+<p>Reboot your Pi and you are good to go!
+(If you have any questions you can write a comment below)</p>
+
       </div>
 
       
@@ -469,8 +508,8 @@ ga('send', 'screenview', {screenName: document.title });
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 08 2016 21:48:58 GMT-0400 (EDT)">
-            v.obmd1m
+          <span class="muted m-x-4" title="Thu Aug 11 2016 07:53:42 GMT-0400 (EDT)">
+            v.obqudi
           </span>
         </div>
       </div>

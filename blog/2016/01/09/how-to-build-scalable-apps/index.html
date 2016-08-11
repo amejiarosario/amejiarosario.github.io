@@ -38,8 +38,9 @@
     <meta property="og:url" content="http://adrianmejia.com/blog/2016/01/09/how-to-build-scalable-apps/" />
     <meta property="og:site_name" content="Adrian Mejia Blog" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures." />
-    <meta property="og:image" content="http://adrianmejia.com/images/scaling_apps_2016_728x360.png" />
+    <meta property="og:description" content="Scaling application is not an easy topic to cover in one post. So in this first post, you can find “the mindset” to build scalable apps using the 12-factor principles. In the next post, you will find more down to earth examples one how to scale based on the number of users.
+The Twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. These are very suitable for cloud platforms and continuous deployment. Furthermore, these principles are language agnostic, so it will work with any framework." />
+    <meta property="og:image" content="http://adrianmejia.com/images/scaling_apps_2016_large.png" />
     <meta property="og:title" content="How to build scalable apps?" />
     <meta property="fb:app_id" content="761831487293468" />
     <meta property="fb:admins" content="895685163"/>
@@ -242,7 +243,7 @@ ga('send', 'screenview', {screenName: document.title });
   
   "image": {
     "@type": "ImageObject",
-    "url": "http://adrianmejia.com/images/scaling_apps_2016_728x360.png",
+    "url": "http://adrianmejia.com/images/scaling_apps_2016_large.png",
     "height": 360,
     "width": 728
   },
@@ -263,7 +264,8 @@ ga('send', 'screenview', {screenName: document.title });
       "height": 60
     }
   },
-  "description": ""
+  "description": "Scaling application is not an easy topic to cover in one post. So in this first post, you can find “the mindset” to build scalable apps using the 12-factor principles. In the next post, you will find more down to earth examples one how to scale based on the number of users.
+The Twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. These are very suitable for cloud platforms and continuous deployment. Furthermore, these principles are language agnostic, so it will work with any framework."
 }
 </script>
 
@@ -307,9 +309,9 @@ ga('send', 'screenview', {screenName: document.title });
   <div class="art-container" style="background-color: #9B59B6">
     
       <picture>
-        <source media="(min-width: 728px)" srcset="/images/scaling_apps_2016_728x360.png">
-        <source srcset="/images/scaling_apps_2016_300x250.png">
-        <img src="/images/scaling_apps_2016_728x360.png" alt="How to build scalable apps?">
+        <source media="(min-width: 728px)" srcset="/images/scaling_apps_2016_large.png">
+        <source srcset="/images/scaling_apps_2016_small.png">
+        <img src="/images/scaling_apps_2016_large.png" alt="How to build scalable apps?">
       </picture>
     
   </div>
@@ -318,7 +320,92 @@ ga('send', 'screenview', {screenName: document.title });
     <section class="col-sm-8 p-x-2">
 
       <div class="post-content  toc-content ">
-        <p>Scaling application is not an easy topic to cover in one post. So in this first post, you can find “the mindset” to build scalable apps using the 12-factor principles. In the <a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/">next post</a>, you will find more down to earth examples one how to scale based on the number of users.</p><p>The Twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. These are very suitable for cloud platforms and continuous deployment. Furthermore, these principles are language agnostic, so it will work with any framework.</p><p><strong>The Twelve Factor Principles</strong></p><h1 id="One-codebase-per-app-multiple-deployments">One codebase per app, multiple deployments<a href="#One-codebase-per-app-multiple-deployments" class="headerlink" title="One codebase per app, multiple deployments"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>One codebase to rule all deployment environments: production, staging, local and so on and differentiate them from config files (see #3).</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Multiple apps sharing the same code. INSTEAD the common code should be extracted from a library and included through a dependency manager.</li></ul><h1 id="Declare-and-isolate-dependencies">Declare and isolate dependencies<a href="#Declare-and-isolate-dependencies" class="headerlink" title="Declare and isolate dependencies"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Have a dependency declaration manifest (e.g. packages.json, Gemfile)</li><li>Execute dependencies in isolation per app (e.g. bundle exec).</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Rely on implicit existence of system-wide packages (e.g. curl, ImageMagik). INSTEAD vendor them into the app.</li></ul><h1 id="Store-the-config-in-the-environment">Store the config in the environment<a href="#Store-the-config-in-the-environment" class="headerlink" title="Store the config in the environment"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Separate app’s config (AWS S3, passwords, Google/Fb/Tw/APIs credentials, deployment hostname) from the code.</li><li>Keep the code ready in a way that if were open source, it wouldn’t compromise any credentials.</li><li>Use/commit ‘config’ files with sensitive information into repository. INSTEAD use environmental variables (env, env vars) which are easily changed between deployments and without changing code.</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Group config variables by environment (e.g. AWS_S3_PRODUCTION, AWS_S3_TEST, AWS_S3_QA, AWS_S3_STAGING, AWS_S3_JOE…). INSTEAD use clean environment variables (e.g. AWS_S3) that are managed individually per deploy.</li></ul><h1 id="Swappable-local-and-third-party-services">Swappable local and third party services<a href="#Swappable-local-and-third-party-services" class="headerlink" title="Swappable local and third party services"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Services like databases (e.g. MongoDB, PostgreSQL), message queues (e.g. RabbitMQ, Beanstalkd) should be accessed via URL or locator/credential stored in config.</li><li>Swapping local to production services should be done without any code changes.</li></ul><h1 id="Build-and-runtime">Build and runtime<a href="#Build-and-runtime" class="headerlink" title="Build and runtime"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Code changes flows in one direction only development -&gt; build -&gt; run time environments.</li></ul><h1 id="Execute-the-app-as-share-nothing-stateless-processes">Execute the app as share-nothing stateless processes<a href="#Execute-the-app-as-share-nothing-stateless-processes" class="headerlink" title="Execute the app as share-nothing stateless processes"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Store any persistent data in external services (such as databases)</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Use the filesystem/memory to save states. INSTEAD any instance of the app should be able to handle requests.</li></ul><h1 id="Export-services-via-port-binding">Export services via port binding<a href="#Export-services-via-port-binding" class="headerlink" title="Export services via port binding"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>App is completely self-contained and communicates with other processes through port binding.</li></ul><h1 id="Scale-out-the-app-horizontally">Scale out the app horizontally<a href="#Scale-out-the-app-horizontally" class="headerlink" title="Scale out the app horizontally"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>Scale app horizontally since the app is a stateless and share-nothing model.</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>Daemonize. INSTEAD use operating system manager such as Upstart or init and Foreman in development.</li></ul><h1 id="Fast-startup-and-shutdown">Fast startup and shutdown<a href="#Fast-startup-and-shutdown" class="headerlink" title="Fast startup and shutdown"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>app start in few seconds to serve requests or jobs.</li><li>shut down gracefully after receiving SIGTERM signal (stop receiving new request/jobs, finish processing current request/job before stopping).</li></ul><h1 id="Keep-development-staging-and-production-as-similar-as-possible">Keep development, staging, and production as similar as possible<a href="#Keep-development-staging-and-production-as-similar-as-possible" class="headerlink" title="Keep development, staging, and production as similar as possible"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>design app for continuous deployment keeping the tools gaps and deployment times as minimum as possible.</li><li>code from development to production should take few hours or just few minutes.</li><li>developers who wrote the code should be able to deploy it to production.</li><li>keep production and development tool the same as possible</li></ul><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>use different services on production and development (e.g. development using SQLite and production ProtgreSQL).</li></ul><h1 id="Logs-goes-to-stdout">Logs goes to stdout<a href="#Logs-goes-to-stdout" class="headerlink" title="Logs goes to stdout"></a></h1><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p><ul><li>write logs to a particular location in the filesystem. INSTEAD send them to STDOUT, so they can be routed as will depending the environment (e.g. output to terminal in development and output to log file in production)</li></ul><h1 id="Admin-processes">Admin processes<a href="#Admin-processes" class="headerlink" title="Admin processes"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p><ul><li>favor languages/frameworks that use REPL shell out of the box to do admin tasks such as migrating databases, running consoles or running one-time scripts.</li></ul><p>This is just the beginning follow up with <a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/">this next post</a>.</p>
+        <p>Scaling application is not an easy topic to cover in one post. So in this first post, you can find “the mindset” to build scalable apps using the 12-factor principles. In the <a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/">next post</a>, you will find more down to earth examples one how to scale based on the number of users.</p>
+<p>The Twelve steps are a compilation of guidelines to ensure apps can scale up without significant changes and tooling. These are very suitable for cloud platforms and continuous deployment. Furthermore, these principles are language agnostic, so it will work with any framework.</p>
+<a id="more"></a>
+<p><strong>The Twelve Factor Principles</strong></p>
+<h1 id="One-codebase-per-app-multiple-deployments">One codebase per app, multiple deployments<a href="#One-codebase-per-app-multiple-deployments" class="headerlink" title="One codebase per app, multiple deployments"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>One codebase to rule all deployment environments: production, staging, local and so on and differentiate them from config files (see #3).</li>
+</ul>
+<p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p>
+<ul>
+<li>Multiple apps sharing the same code. INSTEAD the common code should be extracted from a library and included through a dependency manager.</li>
+</ul>
+<h1 id="Declare-and-isolate-dependencies">Declare and isolate dependencies<a href="#Declare-and-isolate-dependencies" class="headerlink" title="Declare and isolate dependencies"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>Have a dependency declaration manifest (e.g. packages.json, Gemfile)</li>
+<li>Execute dependencies in isolation per app (e.g. bundle exec).</li>
+</ul>
+<p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p>
+<ul>
+<li>Rely on implicit existence of system-wide packages (e.g. curl, ImageMagik). INSTEAD vendor them into the app.</li>
+</ul>
+<h1 id="Store-the-config-in-the-environment">Store the config in the environment<a href="#Store-the-config-in-the-environment" class="headerlink" title="Store the config in the environment"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>Separate app’s config (AWS S3, passwords, Google/Fb/Tw/APIs credentials, deployment hostname) from the code.</li>
+<li>Keep the code ready in a way that if were open source, it wouldn’t compromise any credentials.</li>
+<li>Use/commit ‘config’ files with sensitive information into repository. INSTEAD use environmental variables (env, env vars) which are easily changed between deployments and without changing code.</li>
+</ul>
+<p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p>
+<ul>
+<li>Group config variables by environment (e.g. AWS_S3_PRODUCTION, AWS_S3_TEST, AWS_S3_QA, AWS_S3_STAGING, AWS_S3_JOE…). INSTEAD use clean environment variables (e.g. AWS_S3) that are managed individually per deploy.</li>
+</ul>
+<h1 id="Swappable-local-and-third-party-services">Swappable local and third party services<a href="#Swappable-local-and-third-party-services" class="headerlink" title="Swappable local and third party services"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>Services like databases (e.g. MongoDB, PostgreSQL), message queues (e.g. RabbitMQ, Beanstalkd) should be accessed via URL or locator/credential stored in config.</li>
+<li>Swapping local to production services should be done without any code changes.</li>
+</ul>
+<h1 id="Build-and-runtime">Build and runtime<a href="#Build-and-runtime" class="headerlink" title="Build and runtime"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>Code changes flows in one direction only development -&gt; build -&gt; run time environments.</li>
+</ul>
+<h1 id="Execute-the-app-as-share-nothing-stateless-processes">Execute the app as share-nothing stateless processes<a href="#Execute-the-app-as-share-nothing-stateless-processes" class="headerlink" title="Execute the app as share-nothing stateless processes"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>Store any persistent data in external services (such as databases)</li>
+</ul>
+<p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p>
+<ul>
+<li>Use the filesystem/memory to save states. INSTEAD any instance of the app should be able to handle requests.</li>
+</ul>
+<h1 id="Export-services-via-port-binding">Export services via port binding<a href="#Export-services-via-port-binding" class="headerlink" title="Export services via port binding"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>App is completely self-contained and communicates with other processes through port binding.</li>
+</ul>
+<h1 id="Scale-out-the-app-horizontally">Scale out the app horizontally<a href="#Scale-out-the-app-horizontally" class="headerlink" title="Scale out the app horizontally"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>Scale app horizontally since the app is a stateless and share-nothing model.</li>
+</ul>
+<p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p>
+<ul>
+<li>Daemonize. INSTEAD use operating system manager such as Upstart or init and Foreman in development.</li>
+</ul>
+<h1 id="Fast-startup-and-shutdown">Fast startup and shutdown<a href="#Fast-startup-and-shutdown" class="headerlink" title="Fast startup and shutdown"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>app start in few seconds to serve requests or jobs.</li>
+<li>shut down gracefully after receiving SIGTERM signal  (stop receiving new request/jobs, finish processing current request/job before stopping).</li>
+</ul>
+<h1 id="Keep-development-staging-and-production-as-similar-as-possible">Keep development, staging, and production as similar as possible<a href="#Keep-development-staging-and-production-as-similar-as-possible" class="headerlink" title="Keep development, staging, and production as similar as possible"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>design app for continuous deployment keeping the tools gaps and deployment times as minimum as possible.</li>
+<li>code from development to production should take few hours or just few minutes.</li>
+<li>developers who wrote the code should be able to deploy it to production.</li>
+<li>keep production and development tool the same as possible</li>
+</ul>
+<p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p>
+<ul>
+<li>use different services on production and development (e.g. development using SQLite and production ProtgreSQL).</li>
+</ul>
+<h1 id="Logs-goes-to-stdout">Logs goes to stdout<a href="#Logs-goes-to-stdout" class="headerlink" title="Logs goes to stdout"></a></h1><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p>
+<ul>
+<li>write logs to a particular location in the filesystem. INSTEAD send them to STDOUT, so they can be routed as will depending the environment (e.g. output to terminal in development and output to log file in production)</li>
+</ul>
+<h1 id="Admin-processes">Admin processes<a href="#Admin-processes" class="headerlink" title="Admin processes"></a></h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<ul>
+<li>favor languages/frameworks that use REPL shell out of the box to do admin tasks such as migrating databases, running consoles or running one-time scripts.</li>
+</ul>
+<p>This is just the beginning follow up with <a href="/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/">this next post</a>.</p>
+
       </div>
 
       
@@ -488,8 +575,8 @@ ga('send', 'screenview', {screenName: document.title });
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 08 2016 21:48:58 GMT-0400 (EDT)">
-            v.obmd1m
+          <span class="muted m-x-4" title="Thu Aug 11 2016 07:53:42 GMT-0400 (EDT)">
+            v.obqudi
           </span>
         </div>
       </div>

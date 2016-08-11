@@ -38,8 +38,8 @@
     <meta property="og:url" content="http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/" />
     <meta property="og:site_name" content="Adrian Mejia Blog" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures." />
-    <meta property="og:image" content="http://adrianmejia.com/images/AlgorithmsForDummies_728x360.png" />
+    <meta property="og:description" content="After being developing software for a while,  I realized that there is a couple of ways to become better at it. One it’s through your experience: writing code, working on projects, getting hands dirty… Other one it’s learning algorithms and design patterns. In other words through leveraging the experience of other computer scientists. Learning to use algorithms efficiently can instantly add to you the equivalent of 10 years of experience or more. Let’s get started and add new tools to our arsenal!" />
+    <meta property="og:image" content="http://adrianmejia.com/images/AlgorithmsForDummies_large.png" />
     <meta property="og:title" content="Algorithms for dummies (Part 1): Big-O Notation and Sorting" />
     <meta property="fb:app_id" content="761831487293468" />
     <meta property="fb:admins" content="895685163"/>
@@ -242,7 +242,7 @@ ga('send', 'screenview', {screenName: document.title });
   
   "image": {
     "@type": "ImageObject",
-    "url": "http://adrianmejia.com/images/AlgorithmsForDummies_728x360.png",
+    "url": "http://adrianmejia.com/images/AlgorithmsForDummies_large.png",
     "height": 360,
     "width": 728
   },
@@ -263,7 +263,7 @@ ga('send', 'screenview', {screenName: document.title });
       "height": 60
     }
   },
-  "description": ""
+  "description": "After being developing software for a while,  I realized that there is a couple of ways to become better at it. One it’s through your experience: writing code, working on projects, getting hands dirty… Other one it’s learning algorithms and design patterns. In other words through leveraging the experience of other computer scientists. Learning to use algorithms efficiently can instantly add to you the equivalent of 10 years of experience or more. Let’s get started and add new tools to our arsenal!"
 }
 </script>
 
@@ -307,9 +307,9 @@ ga('send', 'screenview', {screenName: document.title });
   <div class="art-container" style="background-color: #F2ED5B">
     
       <picture>
-        <source media="(min-width: 728px)" srcset="/images/AlgorithmsForDummies_728x360.png">
+        <source media="(min-width: 728px)" srcset="/images/AlgorithmsForDummies_large.png">
         <source srcset="/images/AlgorithmsForDummies_300x350.png">
-        <img src="/images/AlgorithmsForDummies_728x360.png" alt="Algorithms for dummies (Part 1): Big-O Notation and Sorting">
+        <img src="/images/AlgorithmsForDummies_large.png" alt="Algorithms for dummies (Part 1): Big-O Notation and Sorting">
       </picture>
     
   </div>
@@ -318,21 +318,133 @@ ga('send', 'screenview', {screenName: document.title });
     <section class="col-sm-8 p-x-2">
 
       <div class="post-content  toc-content ">
-        <p>After being developing software for a while, I realized that there is a couple of ways to become better at it. One it’s through your experience: writing code, working on projects, getting hands dirty… Other one it’s learning algorithms and design patterns. In other words through leveraging the experience of other computer scientists. Learning to use algorithms efficiently can instantly add to you the equivalent of 10 years of experience or more. Let’s get started and add new tools to our arsenal!</p><p>How do you know a piece of code that you just wrote is good enough? When you modify a program, how do you know if it is better as you found it? How do scale programs to handle huge amount of data? In fact, You cannot improve what you can’t measure.</p><p>How to measure them? We could count the number of seconds it takes to execute and compare it with other one. However, it’s not just troublesome to timers around code but if we run it in different hardware (e.g. supercomputer) it will seem like more efficient when indeed it’s exactly the same program. Let’s illustrate a better way with an example. Let’s say you want to sort an array of n integers.</p><h1 id="Sorting-Algorithms">Sorting Algorithms<a href="#Sorting-Algorithms" class="headerlink" title="Sorting Algorithms"></a></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>; x &lt; arr.length; x++)</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> y=x; y &gt; <span class="number">0</span> &amp;&amp; arr[y-<span class="number">1</span>] &gt; arr[y]; y--)&#123;</div><div class="line">        <span class="keyword">int</span> t = arr[y];</div><div class="line">        arr[y] = arr[y-<span class="number">1</span>];</div><div class="line">        arr[y-<span class="number">1</span>] = t;</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>Do you recognize this algorithm? It’s called Insertion sort. It has two nested loops, which means that as the number of elements n in the array <code>arr</code> grows it will take approximately n * n longer to perform the sorting. In big-O notation, this will be represented like O(n^2). More on this notation later.</p><p>What would happen if the array arr is already sorted? That would be the best-case scenario. The inner for loop will never go through all the elements in the array then (because <code>arr[y-1] &gt; arr[y]</code> won’t be met). So the algorithm in run in O(n).</p><p>We are not living in an ideal world. So O(n^2) will be probably the average time complexity. Can you think a better way of sorting an array of elements?</p><p>Take some minutes to think and come back…</p><h2 id="Merge-Sort">Merge Sort<a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a></h2><p>A more efficient algorithm is the Merge sort. It uses the principle of divide and conquer to solve the problem faster. The idea is the follows:</p><img src="/images/mergesort.gif"><ul><li>Divide the array in half</li><li>Divide the halves by half until 2 or 3 elements are remaining</li><li>Sort each of these halves</li><li>Merge them back together</li></ul><p>Can you determine the time complexity of mergesort?</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">  <span class="keyword">int</span>[] helper = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</div><div class="line">  mergesort(arr, helper, <span class="number">0</span>, arr.length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergesort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span>[] helper, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(low &lt; high)&#123;</div><div class="line">    <span class="keyword">int</span> middle = (high+low)/<span class="number">2</span>;</div><div class="line">    mergesort(arr, helper, low, middle);</div><div class="line">    mergesort(arr, helper, middle+<span class="number">1</span>, high);</div><div class="line">    merge(arr, helper, low, middle, high);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span>[] helper, <span class="keyword">int</span> low, <span class="keyword">int</span> middle, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> x=low; x &lt;= high; x++) &#123;</div><div class="line">    helper[x] = arr[x];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">int</span> left = low;</div><div class="line">  <span class="keyword">int</span> curr = low;</div><div class="line">  <span class="keyword">int</span> right = middle+<span class="number">1</span>;</div><div class="line"></div><div class="line">  <span class="keyword">while</span>(left &lt;= middle &amp;&amp; right &lt;= high) &#123;</div><div class="line">    <span class="keyword">if</span>(helper[right] &gt; helper[left])</div><div class="line">      arr[curr++] = helper[left++];</div><div class="line">    <span class="keyword">else</span></div><div class="line">      arr[curr++] = helper[right++];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">while</span>(left &lt;= middle)</div><div class="line">    arr[curr++] = helper[left++];</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>Even though the code is much longer, the algorithm is much more efficient.</p><img src="/images/insertion_vs_mergsort.png"><p>It would take some more knowledge to derive the running time mathematically, and we haven’t covered that yet. However, bear with me, it’s O(n log(n)). Let’s sum up:</p><p>Algorithm | best | average | worst | space complexity Insertion Sort | O(n) | O(n^2) | O(n^2) | O(1) Merge sort | O(n log(n)) | O(n log(n)) | O(n log(n)) | O(n)</p><p>Notice that the table has also the space complexity. How much space does the algorithms take is also an important parameter to compare algorithms. The merge sort uses an additional array that’s way its space complexity is <code>O(n)</code>, however, the insertion sort uses <code>O(1)</code> because it does the sorting in-place.</p><h1 id="Big-O-Notation">Big O Notation<a href="#Big-O-Notation" class="headerlink" title="Big O Notation"></a></h1><p>Big O is defined as the asymptotic upper limit of a function. In plain english, it means that is a function that cover the maximum values a function could take. As we saw a little earlier this notation help us to predict performance and compare algorithms.</p><table><thead><tr><th>Growth Rate</th><th>Name</th></tr></thead><tbody><tr><td>1</td><td>Constant</td></tr><tr><td>log(n)</td><td>Logarithmic</td></tr><tr><td>n</td><td>Linear</td></tr><tr><td>n log(n)</td><td>Linearithmic</td></tr><tr><td>n^2</td><td>Quadratic</td></tr><tr><td>n^3</td><td>Cubic</td></tr><tr><td>2^n</td><td>Exponential</td></tr></tbody></table><p>This is kinda abstract let’s see what it means in code:</p><table><tr><th>Growth Rate</th><th>Name</th><th>Code Example</th><th>description</th></tr><tr><td>1</td><td>Constant</td><td><pre>a= b + 1;</pre></td><td>statement (one line of code)</td></tr><tr><td>log(n)</td><td>Logarithmic</td><td><pre>
+        <p>After being developing software for a while,  I realized that there is a couple of ways to become better at it. One it’s through your experience: writing code, working on projects, getting hands dirty… Other one it’s learning algorithms and design patterns. In other words through leveraging the experience of other computer scientists. Learning to use algorithms efficiently can instantly add to you the equivalent of 10 years of experience or more. Let’s get started and add new tools to our arsenal!</p>
+<a id="more"></a>
+<p>How do you know a piece of code that you just wrote is good enough?  When you modify a program, how do you know if it is better as you found it? How do scale programs to handle huge amount of data? In fact, You cannot improve what you can’t measure.</p>
+<p>How to measure them? We could count the number of seconds it takes to execute and compare it with other one. However, it’s not just troublesome to timers around code but if we run it in different hardware (e.g. supercomputer) it will seem like more efficient when indeed it’s exactly the same program. Let’s illustrate a better way with an example. Let’s say you want to sort an array of n integers.</p>
+<h1 id="Sorting-Algorithms">Sorting Algorithms<a href="#Sorting-Algorithms" class="headerlink" title="Sorting Algorithms"></a></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>; x &lt; arr.length; x++)</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> y=x; y &gt; <span class="number">0</span> &amp;&amp; arr[y-<span class="number">1</span>] &gt; arr[y]; y--)&#123;</div><div class="line">        <span class="keyword">int</span> t = arr[y];</div><div class="line">        arr[y] = arr[y-<span class="number">1</span>];</div><div class="line">        arr[y-<span class="number">1</span>] = t;</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Do you recognize this algorithm? It’s called Insertion sort. It has two nested loops, which means that as the number of elements n in the array <code>arr</code> grows it will take approximately n * n longer to perform the sorting. In big-O notation, this will be represented like O(n^2). More on this notation later.</p>
+<p>What would happen if the array arr is already sorted? That would be the best-case scenario. The inner for loop will never go through all the elements in the array then (because <code>arr[y-1] &gt; arr[y]</code>  won’t be met). So the algorithm in run in O(n).</p>
+<p>We are not living in an ideal world. So O(n^2) will be probably the average time complexity. Can you think a better way of sorting an array of elements?</p>
+<p>Take some minutes to think and come back…</p>
+<h2 id="Merge-Sort">Merge Sort<a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a></h2><p>A more efficient algorithm is the Merge sort. It uses the principle of divide and conquer to solve the problem faster. The idea is the follows:</p>
+<img src="/images/mergesort.gif">
+<ul>
+<li>Divide the array in half</li>
+<li>Divide the halves by half until 2 or 3 elements are remaining</li>
+<li>Sort each of these halves</li>
+<li>Merge them back together</li>
+</ul>
+<p>Can you determine the time complexity of mergesort?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">  <span class="keyword">int</span>[] helper = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</div><div class="line">  mergesort(arr, helper, <span class="number">0</span>, arr.length-<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergesort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span>[] helper, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(low &lt; high)&#123;</div><div class="line">    <span class="keyword">int</span> middle = (high+low)/<span class="number">2</span>;</div><div class="line">    mergesort(arr, helper, low, middle);</div><div class="line">    mergesort(arr, helper, middle+<span class="number">1</span>, high);</div><div class="line">    merge(arr, helper, low, middle, high);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span>[] helper, <span class="keyword">int</span> low, <span class="keyword">int</span> middle, <span class="keyword">int</span> high)</span></span>&#123;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> x=low; x &lt;= high; x++) &#123;</div><div class="line">    helper[x] = arr[x];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">int</span> left = low;</div><div class="line">  <span class="keyword">int</span> curr = low;</div><div class="line">  <span class="keyword">int</span> right = middle+<span class="number">1</span>;</div><div class="line"></div><div class="line">  <span class="keyword">while</span>(left &lt;= middle &amp;&amp; right &lt;= high) &#123;</div><div class="line">    <span class="keyword">if</span>(helper[right] &gt; helper[left])</div><div class="line">      arr[curr++] = helper[left++];</div><div class="line">    <span class="keyword">else</span></div><div class="line">      arr[curr++] = helper[right++];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">while</span>(left &lt;= middle)</div><div class="line">    arr[curr++] = helper[left++];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Even though the code is much longer, the algorithm is much more efficient.</p>
+<img src="/images/insertion_vs_mergsort.png">
+<p>It would take some more knowledge to derive the running time mathematically, and we haven’t covered that yet. However, bear with me, it’s O(n log(n)). Let’s sum up:</p>
+<p>Algorithm | best | average | worst | space complexity
+Insertion Sort | O(n) | O(n^2) | O(n^2) | O(1)
+Merge sort | O(n log(n)) | O(n log(n)) | O(n log(n)) | O(n)</p>
+<p>Notice that the table has also the space complexity. How much space does the algorithms take is also an important parameter to compare algorithms. The merge sort uses an additional array that’s way its space complexity is <code>O(n)</code>, however, the insertion sort uses <code>O(1)</code> because it does the sorting in-place.</p>
+<h1 id="Big-O-Notation">Big O Notation<a href="#Big-O-Notation" class="headerlink" title="Big O Notation"></a></h1><p>Big O is defined as the asymptotic upper limit of a function. In plain english, it means that is a function that cover the maximum values a function could take. As we saw a little earlier this notation help us to predict performance and compare algorithms.</p>
+<table>
+<thead>
+<tr>
+<th>Growth Rate</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Constant</td>
+</tr>
+<tr>
+<td>log(n)</td>
+<td>Logarithmic</td>
+</tr>
+<tr>
+<td>n</td>
+<td>Linear</td>
+</tr>
+<tr>
+<td>n log(n)</td>
+<td>Linearithmic</td>
+</tr>
+<tr>
+<td>n^2</td>
+<td>Quadratic</td>
+</tr>
+<tr>
+<td>n^3</td>
+<td>Cubic</td>
+</tr>
+<tr>
+<td>2^n</td>
+<td>Exponential</td>
+</tr>
+</tbody>
+</table>
+<p>This is kinda abstract let’s see what it means in code:</p>
+<table>
+  <tr>
+    <th>Growth Rate</th>
+    <th>Name</th>
+    <th>Code Example</th>
+    <th>description</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Constant</td>
+    <td><pre>a= b + 1;</pre></td>
+    <td>statement (one line of code)</td>
+  </tr>
+  <tr>
+    <td>log(n)</td>
+    <td>Logarithmic</td>
+    <td>
+      <pre>
       while(n&gt;1){
         n=n/2;
       }
-      </pre></td><td>Divide in half (binary search)</td></tr><tr><td>n</td><td>Linear</td><td><pre>
+      </pre>
+    </td>
+    <td>Divide in half (binary search)</td>
+  </tr>
+  <tr>
+    <td>n</td>
+    <td>Linear</td>
+    <td>
+      <pre>
 for(c=0; c&lt;n; c++){
   a+=1;
 }
-</pre></td><td>Loop</td></tr><tr><td>n*log(n)</td><td>Linearithmic</td><td>Mergesort, Quicksort, …</td><td>Effective sorting algorithms</td></tr><tr><td>n^2</td><td>Quadratic</td><td><pre>
+</pre></td>
+    <td>Loop</td>
+  </tr>
+  <tr>
+    <td>n*log(n)</td>
+    <td>Linearithmic</td>
+    <td>Mergesort, Quicksort, …</td>
+    <td>Effective sorting algorithms</td>
+  </tr>
+  <tr>
+    <td>n^2</td>
+    <td>Quadratic</td>
+    <td>
+      <pre>
 for(c=0; c&lt;n; c++){
   for(i=0; i&lt;n; i++){
     a+=1;
   }
 }
-</pre></td><td>Double loop</td></tr><tr><td>n^3</td><td>Cubic</td><td><pre>
+</pre>
+    </td>
+    <td>Double loop</td>
+  </tr>
+  <tr>
+    <td>n^3</td>
+    <td>Cubic</td>
+    <td>
+      <pre>
 for(c=0; c&lt;n; c++){
   for(i=0; i&lt;n; i++){
     for(x=0; x&lt;n; x++){
@@ -340,7 +452,20 @@ for(c=0; c&lt;n; c++){
     }
   }
 }
-</pre></td><td>Triple loop</td></tr><tr><td>2^n</td><td>Exponential</td><td>Trying to braeak a password generating all possible combinations</td><td>Exhaustive search</td></tr></table><p>That’s all for this first part 1. I will continue publishing this tutorials every week or so. Stay tune!</p>
+</pre>
+    </td>
+    <td>Triple loop</td>
+  </tr>
+  <tr>
+    <td>2^n</td>
+    <td>Exponential</td>
+    <td>Trying to braeak a password generating all possible combinations</td>
+    <td>Exhaustive search</td>
+  </tr>
+</table>
+
+<p>That’s all for this first part 1. I will continue publishing this tutorials every week or so. Stay tune!</p>
+
       </div>
 
       
@@ -510,8 +635,8 @@ for(c=0; c&lt;n; c++){
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 08 2016 21:48:58 GMT-0400 (EDT)">
-            v.obmd1m
+          <span class="muted m-x-4" title="Thu Aug 11 2016 07:53:42 GMT-0400 (EDT)">
+            v.obqudi
           </span>
         </div>
       </div>

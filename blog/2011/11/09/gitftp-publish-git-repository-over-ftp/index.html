@@ -38,7 +38,7 @@
     <meta property="og:url" content="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/" />
     <meta property="og:site_name" content="Adrian Mejia Blog" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures." />
+    <meta property="og:description" content="I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes." />
     <meta property="og:image" content="http://adrianmejia.comundefined" />
     <meta property="og:title" content="git+ftp: Publish Git repository over FTP " />
     <meta property="fb:app_id" content="761831487293468" />
@@ -263,7 +263,7 @@ ga('send', 'screenview', {screenName: document.title });
       "height": 60
     }
   },
-  "description": ""
+  "description": "I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes."
 }
 </script>
 
@@ -303,7 +303,40 @@ ga('send', 'screenview', {screenName: document.title });
     <section class="col-sm-8 p-x-2">
 
       <div class="post-content ">
-        <p></p><p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p><p></p><div>&nbsp;</div><div>In order to use git for local development and ftp (for hosting that doesn&#39;t support git/ssh) there are some options:</div><div>&nbsp;</div><div><a href="https://github.com/resmo/git-ftp" target="_blank" rel="external">https://github.com/resmo/git-ftp</a> - Git powered FTP client written as shell script.</div><div><a href="https://github.com/ezyang/git-ftp" target="_blank" rel="external">https://github.com/ezyang/git-ftp</a> - A quick and efficient way of pushing changed files to a website via FTP using python.</div><div>&nbsp;</div><div>I have use ezyang/git-ftp to deploy my drupal websites with good results.</div><div>&nbsp;</div><div>1. Install &#39;git-python&#39; first from <a href="http://gitorious.org/git-python" target="_blank" rel="external">http://gitorious.org/git-python</a> -or- using <code>easy_install gitpython</code></div><div>2. git clone <a href="https://github.com/ezyang/git-ftp.git" target="_blank" rel="external">https://github.com/ezyang/git-ftp.git</a></div><div>3. You can create an alias for easy access in <code>~/.bash_profile</code> such as <code>alias git-ftp=&amp;quot;python ~/git-ftp/git-ftp.py &amp;quot;</code></div><div>4. Just run the command <code>python ~/git-ftp/git-ftp.py</code> where is your git repository that you want to upload. I will prompt all the ftp details and also will create the config file for you.</div><div>&nbsp;</div><div>You might want to setup files to ignore. If you are using drupal you should create a .gitignore file with a content similar to this:</div><div>&nbsp;</div><div><pre>
+        <p></p><p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
+<a id="more"></a><p></p>
+<div>
+    &nbsp;</div>
+<div>
+    In order to use git for local development and ftp (for hosting that doesn&#39;t support git/ssh) there are some options:</div>
+<div>
+    &nbsp;</div>
+<div>
+    <a href="https://github.com/resmo/git-ftp" target="_blank" rel="external">https://github.com/resmo/git-ftp</a> - Git powered FTP client written as shell script.</div>
+<div>
+    <a href="https://github.com/ezyang/git-ftp" target="_blank" rel="external">https://github.com/ezyang/git-ftp</a> - A quick and efficient way of pushing changed files to a website via FTP using python.</div>
+<div>
+    &nbsp;</div>
+<div>
+    I have use ezyang/git-ftp to deploy my drupal websites with good results.</div>
+<div>
+    &nbsp;</div>
+<div>
+    1. Install &#39;git-python&#39; first from <a href="http://gitorious.org/git-python" target="_blank" rel="external">http://gitorious.org/git-python</a> -or- using <code>easy_install gitpython</code></div>
+<div>
+    2. git clone <a href="https://github.com/ezyang/git-ftp.git" target="_blank" rel="external">https://github.com/ezyang/git-ftp.git</a></div>
+<div>
+    3. You can create an alias for easy access in <code>~/.bash_profile</code> such as <code>alias git-ftp=&amp;quot;python ~/git-ftp/git-ftp.py &amp;quot;</code></div>
+<div>
+    4. Just run the command <code>python ~/git-ftp/git-ftp.py</code> where is your git repository that you want to upload. I will prompt all the ftp details and also will create the config file for you.</div>
+<div>
+    &nbsp;</div>
+<div>
+    You might want to setup files to ignore. If you are using drupal you should create a .gitignore file with a content similar to this:</div>
+<div>
+    &nbsp;</div>
+<div>
+    <pre>
 .DS_Store<em>
 
 
@@ -316,7 +349,11 @@ sites/</em>/settings<em>.php
 
 sites/</em>/files
 
-sites/*/private</pre></div><div>&nbsp;</div>
+sites/*/private</pre>
+</div>
+<div>
+    &nbsp;</div>
+
       </div>
 
       
@@ -424,19 +461,19 @@ sites/*/private</pre></div><div>&nbsp;</div>
   
   <div class="article-nav m-y-4">
     
-      <a href="/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/" class="article-nav-newer" class="article-nav-link-wrap">
+      <a href="/blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/" class="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
         <div class="article-nav-title">
           
-            How to execute SQL statements on MS Access?
+            Regular Expressions in C# and Java - CSV Example
           
         </div>
       </a>
     
     
-      <a href="/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/" class="article-nav-older" class="article-nav-link-wrap">
+      <a href="/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/" class="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
-        <div class="article-nav-title">How to setup Drupal WYSIWYG and Images uploading?</div>
+        <div class="article-nav-title">How to execute SQL statements on MS Access?</div>
       </a>
     
   </div>
@@ -472,8 +509,8 @@ sites/*/private</pre></div><div>&nbsp;</div>
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 08 2016 21:48:58 GMT-0400 (EDT)">
-            v.obmd1m
+          <span class="muted m-x-4" title="Thu Aug 11 2016 07:53:42 GMT-0400 (EDT)">
+            v.obqudi
           </span>
         </div>
       </div>
