@@ -1,5 +1,5 @@
 ---
-layout: snippet
+layout: post
 title: SSH login without password
 created: 1327004823000
 updated: 1327004823000

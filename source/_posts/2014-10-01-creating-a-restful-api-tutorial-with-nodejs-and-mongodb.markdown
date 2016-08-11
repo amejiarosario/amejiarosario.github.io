@@ -4,11 +4,11 @@ title: "Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)"
 date: 2014-10-01 17:26:42 -0400
 updated: 2016-08-06 18:26:37 -0400
 comments: true
-pageviews__total: 315420  
-pageviews__recent: 294  
+pageviews__total: 315420
+pageviews__recent: 294
 pageviews__avg_time: 17258
 photos:
-  - /images/RESTfulAPIs_NodeJS__mongodb_320x250.png
+  - /images/RESTfulAPIs_NodeJS__mongodb_small.png
   - /images/RESTfulAPIs_NodeJS__mongodb_large.png
 photos__background_color: '#4C4D4E'
 bitly: 'http://bit.ly/creating-node-api1'

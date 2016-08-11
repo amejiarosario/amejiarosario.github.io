@@ -1,5 +1,5 @@
 ---
-layout: snippet
+layout: post
 title: How do I change the Ruby/Python version Textmate uses?
 created: 1328766604000
 updated: 1328766604000
