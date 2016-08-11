@@ -1,5 +1,5 @@
 ---
-layout: snippet
+layout: post
 title: How to remove programs from the start up in Mac OS X
 created: 1321636703000
 updated: 1321636703000
