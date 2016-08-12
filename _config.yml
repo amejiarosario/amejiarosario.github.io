@@ -95,9 +95,9 @@ sitemap:
 
 # https://github.com/LouisBarranqueiro/hexo-algoliasearch
 algolia:
-  appId: <%- process.env['ALGOLIA_APP_ID'] || "7M9S763HKU" %>
-  apiKey: <%- process.env['ALGOLIA_API_KEY'] || "33db42bbc1d2631fd68f26ebefa35aa8" %>
-  adminApiKey: <%- process.env['ALGOLIA_ADMIN_KEY'] %>
+  appId: 7M9S763HKU #<%- process.env['ALGOLIA_APP_ID'] || "7M9S763HKU" %>
+  apiKey: 33db42bbc1d2631fd68f26ebefa35aa8 #<%- process.env['ALGOLIA_API_KEY'] || "33db42bbc1d2631fd68f26ebefa35aa8" %>
+  adminApiKey: 52604a19cad0328f9ab2813dbfe91426 #<%- process.env['ALGOLIA_ADMIN_KEY'] %>
   chunkSize: 5000
   indexName: "adrianmejia-blog"
   fields:
@@ -115,6 +115,8 @@ algolia:
     - pageviews__avg_time
     - date
     - updated
+    - date:year
+    - updated:year
 
 # https://github.com/unhealthy/hexo-all-minifier
 html_minifier:

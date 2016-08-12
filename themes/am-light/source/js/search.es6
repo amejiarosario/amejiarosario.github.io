@@ -64,22 +64,32 @@ function loadSearch() {
     })
   );
 
-  // search.addWidget(
-  //   instantsearch.widgets.starRating({
-  //     container: '#ratings',
-  //     attributeName: 'rating',
-  //   })
-  // );
+  search.addWidget(
+    instantsearch.widgets.numericRefinementList({
+      container: '#ratings',
+      attributeName: 'pageviews__total',
+      options: [
+        {name: 'All'},
+        {end: 1000, name: 'less than 1k'},
+        {start: 1000, end: 10000, name: 'between 1k and 10k'},
+        {start: 10000, end: 100000, name: 'between 10k and 100k'},
+        {start: 100000, end: 200000, name: 'between 100k and 200k'},
+        {start: 200000, end: 300000, name: 'between 200k and 300k'},
+        {start: 300000, name: 'more than 300k'}
+      ]
+    })
+  );
 
-  // search.addWidget(
-  //   instantsearch.widgets.rangeSlider({
-  //     container: '#year',
-  //     attributeName: 'year',
-  //     tooltips: {
-  //       format: v => v && v.toLocaleString(),
-  //     },
-  //   })
-  // );
+
+  search.addWidget(
+    instantsearch.widgets.rangeSlider({
+      container: '#year',
+      attributeName: 'dateYear',
+      tooltips: {
+        format: v => v && v
+      },
+    })
+  );
 
   search.start();
 }
