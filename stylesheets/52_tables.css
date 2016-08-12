@@ -1,1 +1,44 @@
-.post-content>table{border:1px solid rgba(0,0,0,.12);border-collapse:collapse;background-color:#fff}.post-content>table thead{padding-bottom:1em}.post-content>table tbody tr{position:relative;height:48px;-webkit-transition-duration:.28s;transition-duration:.28s;-webkit-transition-timing-function:cubic-bezier(.4,0,.2,1);transition-timing-function:cubic-bezier(.4,0,.2,1);-webkit-transition-property:background-color;transition-property:background-color}.post-content>table tbody tr:hover{background-color:#eee}.post-content>table td,.post-content>table th{padding:0 18px 12px}.post-content>table td:first-of-type,.post-content>table th:first-of-type{padding-left:24px}.post-content>table td:last-of-type,.post-content>table th:last-of-type{padding-right:24px}.post-content>table td{position:relative;vertical-align:middle;height:48px;border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12);padding-top:12px;box-sizing:border-box}.post-content>table th{position:relative;vertical-align:bottom;text-overflow:ellipsis;font-size:1em;font-weight:700;line-height:24px;letter-spacing:0;height:3em;color:rgba(0,0,0,.54);padding-bottom:8px;box-sizing:border-box;background-color:#eee}
+.post-content > table {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+  background-color: white; }
+  .post-content > table thead {
+    padding-bottom: 1em; }
+  .post-content > table tbody tr {
+    position: relative;
+    height: 48px;
+    -webkit-transition-duration: 0.28s;
+            transition-duration: 0.28s;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition-property: background-color;
+    transition-property: background-color; }
+    .post-content > table tbody tr:hover {
+      background-color: #eeeeee; }
+  .post-content > table td, .post-content > table th {
+    padding: 0 18px 12px 18px; }
+  .post-content > table td:first-of-type, .post-content > table th:first-of-type {
+    padding-left: 24px; }
+  .post-content > table td:last-of-type, .post-content > table th:last-of-type {
+    padding-right: 24px; }
+  .post-content > table td {
+    position: relative;
+    vertical-align: middle;
+    height: 48px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding-top: 12px;
+    box-sizing: border-box; }
+  .post-content > table th {
+    position: relative;
+    vertical-align: bottom;
+    text-overflow: ellipsis;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 24px;
+    letter-spacing: 0;
+    height: 3em;
+    color: rgba(0, 0, 0, 0.54);
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: #eeeeee; }

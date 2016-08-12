@@ -236,9 +236,9 @@
       <category term="Technologies" scheme="http://adrianmejia.com/categories/Technologies/"/>
     
     
-      <category term="production" scheme="http://adrianmejia.com/tags/production/"/>
-    
       <category term="scalability" scheme="http://adrianmejia.com/tags/scalability/"/>
+    
+      <category term="production" scheme="http://adrianmejia.com/tags/production/"/>
     
   </entry>
   
@@ -346,9 +346,9 @@
       <category term="Technologies" scheme="http://adrianmejia.com/categories/Technologies/"/>
     
     
-      <category term="production" scheme="http://adrianmejia.com/tags/production/"/>
-    
       <category term="scalability" scheme="http://adrianmejia.com/tags/scalability/"/>
+    
+      <category term="production" scheme="http://adrianmejia.com/tags/production/"/>
     
   </entry>
   
@@ -695,9 +695,9 @@ for your next web application.</li>
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
-    
       <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
+    
+      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
     
       <category term="mean stack" scheme="http://adrianmejia.com/tags/mean-stack/"/>
     
@@ -1004,13 +1004,13 @@ Is NOT working? take a look at the <a href="https://github.com/amejiarosario/tod
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
+      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
+    
       <category term="NodeJS" scheme="http://adrianmejia.com/tags/NodeJS/"/>
     
       <category term="ExpressJS" scheme="http://adrianmejia.com/tags/ExpressJS/"/>
     
       <category term="MongoDB" scheme="http://adrianmejia.com/tags/MongoDB/"/>
-    
-      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
     
   </entry>
   
@@ -1184,9 +1184,9 @@ Is NOT working? take a look at the <a href="https://github.com/amejiarosario/tod
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
-    
       <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
+    
+      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
     
   </entry>
   
@@ -2249,9 +2249,9 @@ For our example, we are going to create a model called <code>Todo</code>, which 
     
       <category term="startups" scheme="http://adrianmejia.com/tags/startups/"/>
     
-      <category term="production" scheme="http://adrianmejia.com/tags/production/"/>
-    
       <category term="scalability" scheme="http://adrianmejia.com/tags/scalability/"/>
+    
+      <category term="production" scheme="http://adrianmejia.com/tags/production/"/>
     
   </entry>
   
@@ -3079,118 +3079,6 @@ name,line1,line2,city,zip code,country</pre>
   </entry>
   
   <entry>
-    <title>How to execute SQL statements on MS Access?</title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
-    <id>http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/</id>
-    <published>2011-11-09T05:00:00.000Z</published>
-    <updated>2011-11-09T16:12:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
-<a id="more"></a></p>
-<p>Here are the steps of how to create a new table programmatically in Access (2007):</p>
-<ol>
-<li>Open/create your database on MS Access</li>
-<li>Menu: ‘Databases Tools’ &gt; ‘Visual Basic’ (this will open the visual basic editor</li>
-<li>in the Visual Basic Editor, Menu: Run</li>
-<li>Insert the name of your macro and click ‘create’ button</li>
-<li>Insert a code similar to the shown below. Replace the path in ‘OpenDatabase’ with your database path; and fill ‘dbs.Execute’ with your own SQL statements</li>
-</ol>
-<p>Sub createdb()
-    Dim dbs As Database</p>
-<pre><code>&apos; Modify this line to include the path to Northwind
-&apos; on your computer.
-Set dbs = OpenDatabase(&quot;C:\\amr\\projects\\sites\\files\\tf_pledge_reminder_email.accdb&quot;)
-
-&apos; Create a table with two text fields.
-dbs.Execute &quot;create table RIT_TF_PLG_REM_EMAIL_TEST2 (   pref_mail_name  VARCHAR(60), pd_to_date      NUMBER,   this_payment    NUMBER )&quot;
-
-dbs.Close
-</code></pre><p>End Sub</p>
-<ol>
-<li>Menu: Run</li>
-<li>You are all set.</li>
-</ol>
-<p>If you have any questions you can contact me or write a comment</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>git+ftp: Publish Git repository over FTP </title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
-    <id>http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/</id>
-    <published>2011-11-09T05:00:00.000Z</published>
-    <updated>2011-11-10T03:34:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p></p><p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
-<a id="more"></a><p></p>
-<div>
-    &nbsp;</div>
-<div>
-    In order to use git for local development and ftp (for hosting that doesn&#39;t support git/ssh) there are some options:</div>
-<div>
-    &nbsp;</div>
-<div>
-    <a href="https://github.com/resmo/git-ftp" target="_blank" rel="external">https://github.com/resmo/git-ftp</a> - Git powered FTP client written as shell script.</div>
-<div>
-    <a href="https://github.com/ezyang/git-ftp" target="_blank" rel="external">https://github.com/ezyang/git-ftp</a> - A quick and efficient way of pushing changed files to a website via FTP using python.</div>
-<div>
-    &nbsp;</div>
-<div>
-    I have use ezyang/git-ftp to deploy my drupal websites with good results.</div>
-<div>
-    &nbsp;</div>
-<div>
-    1. Install &#39;git-python&#39; first from <a href="http://gitorious.org/git-python" target="_blank" rel="external">http://gitorious.org/git-python</a> -or- using <code>easy_install gitpython</code></div>
-<div>
-    2. git clone <a href="https://github.com/ezyang/git-ftp.git" target="_blank" rel="external">https://github.com/ezyang/git-ftp.git</a></div>
-<div>
-    3. You can create an alias for easy access in <code>~/.bash_profile</code> such as <code>alias git-ftp=&amp;quot;python ~/git-ftp/git-ftp.py &amp;quot;</code></div>
-<div>
-    4. Just run the command <code>python ~/git-ftp/git-ftp.py</code> where is your git repository that you want to upload. I will prompt all the ftp details and also will create the config file for you.</div>
-<div>
-    &nbsp;</div>
-<div>
-    You might want to setup files to ignore. If you are using drupal you should create a .gitignore file with a content similar to this:</div>
-<div>
-    &nbsp;</div>
-<div>
-    <pre>
-.DS_Store<em>
-
-
-# Ignore configuration files that may contain sensitive information.
-
-sites/</em>/settings<em>.php
-
-
-# Ignore paths that contain user-generated content.
-
-sites/</em>/files
-
-sites/*/private</pre>
-</div>
-<div>
-    &nbsp;</div>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;p&gt;I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &amp;nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>How to setup Drupal WYSIWYG and Images uploading?</title>
     <link href="http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
     <id>http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/</id>
@@ -3301,6 +3189,118 @@ sites/*/private</pre>
     
     
       <category term="drupal" scheme="http://adrianmejia.com/tags/drupal/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to execute SQL statements on MS Access?</title>
+    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
+    <id>http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/</id>
+    <published>2011-11-09T05:00:00.000Z</published>
+    <updated>2011-11-09T16:12:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
+<a id="more"></a></p>
+<p>Here are the steps of how to create a new table programmatically in Access (2007):</p>
+<ol>
+<li>Open/create your database on MS Access</li>
+<li>Menu: ‘Databases Tools’ &gt; ‘Visual Basic’ (this will open the visual basic editor</li>
+<li>in the Visual Basic Editor, Menu: Run</li>
+<li>Insert the name of your macro and click ‘create’ button</li>
+<li>Insert a code similar to the shown below. Replace the path in ‘OpenDatabase’ with your database path; and fill ‘dbs.Execute’ with your own SQL statements</li>
+</ol>
+<p>Sub createdb()
+    Dim dbs As Database</p>
+<pre><code>&apos; Modify this line to include the path to Northwind
+&apos; on your computer.
+Set dbs = OpenDatabase(&quot;C:\\amr\\projects\\sites\\files\\tf_pledge_reminder_email.accdb&quot;)
+
+&apos; Create a table with two text fields.
+dbs.Execute &quot;create table RIT_TF_PLG_REM_EMAIL_TEST2 (   pref_mail_name  VARCHAR(60), pd_to_date      NUMBER,   this_payment    NUMBER )&quot;
+
+dbs.Close
+</code></pre><p>End Sub</p>
+<ol>
+<li>Menu: Run</li>
+<li>You are all set.</li>
+</ol>
+<p>If you have any questions you can contact me or write a comment</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>git+ftp: Publish Git repository over FTP </title>
+    <link href="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
+    <id>http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/</id>
+    <published>2011-11-09T05:00:00.000Z</published>
+    <updated>2011-11-10T03:34:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p></p><p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
+<a id="more"></a><p></p>
+<div>
+    &nbsp;</div>
+<div>
+    In order to use git for local development and ftp (for hosting that doesn&#39;t support git/ssh) there are some options:</div>
+<div>
+    &nbsp;</div>
+<div>
+    <a href="https://github.com/resmo/git-ftp" target="_blank" rel="external">https://github.com/resmo/git-ftp</a> - Git powered FTP client written as shell script.</div>
+<div>
+    <a href="https://github.com/ezyang/git-ftp" target="_blank" rel="external">https://github.com/ezyang/git-ftp</a> - A quick and efficient way of pushing changed files to a website via FTP using python.</div>
+<div>
+    &nbsp;</div>
+<div>
+    I have use ezyang/git-ftp to deploy my drupal websites with good results.</div>
+<div>
+    &nbsp;</div>
+<div>
+    1. Install &#39;git-python&#39; first from <a href="http://gitorious.org/git-python" target="_blank" rel="external">http://gitorious.org/git-python</a> -or- using <code>easy_install gitpython</code></div>
+<div>
+    2. git clone <a href="https://github.com/ezyang/git-ftp.git" target="_blank" rel="external">https://github.com/ezyang/git-ftp.git</a></div>
+<div>
+    3. You can create an alias for easy access in <code>~/.bash_profile</code> such as <code>alias git-ftp=&amp;quot;python ~/git-ftp/git-ftp.py &amp;quot;</code></div>
+<div>
+    4. Just run the command <code>python ~/git-ftp/git-ftp.py</code> where is your git repository that you want to upload. I will prompt all the ftp details and also will create the config file for you.</div>
+<div>
+    &nbsp;</div>
+<div>
+    You might want to setup files to ignore. If you are using drupal you should create a .gitignore file with a content similar to this:</div>
+<div>
+    &nbsp;</div>
+<div>
+    <pre>
+.DS_Store<em>
+
+
+# Ignore configuration files that may contain sensitive information.
+
+sites/</em>/settings<em>.php
+
+
+# Ignore paths that contain user-generated content.
+
+sites/</em>/files
+
+sites/*/private</pre>
+</div>
+<div>
+    &nbsp;</div>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;p&gt;I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &amp;nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.&lt;/p&gt;
+    
+    </summary>
+    
     
   </entry>
   
