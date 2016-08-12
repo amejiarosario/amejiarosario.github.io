@@ -20,7 +20,7 @@
   </div>
 </section>
 
-<section id="trending-posts" class="p-y-2 light-background">
+<section class="p-y-2 light-background">
   <div class="container">
 
     <h1>Latest</h1>
@@ -30,7 +30,7 @@
       <% }) %>
     </div>
 
-    <h1>Trending</h1>
+    <h1 id="trending-posts">Trending</h1>
     <div class="row">
         <% site.posts.sort('pageviews__total', -1).limit(4).each(function(post, i){ %>
           <%- partial('_partials/post-thumbnail', { post: post, klass: false }) %>

@@ -3,14 +3,14 @@
 ## most used
 
 ```bash
-hexo serve -dp 9000
+hexo s -dp 9000
+hexo serve --draft -dp 9000
 hexo generate
 ```
 
 ## Commands
 
 hexo serve
-
 
 hexo new TITLE # saved on ```source/_posts```
 
