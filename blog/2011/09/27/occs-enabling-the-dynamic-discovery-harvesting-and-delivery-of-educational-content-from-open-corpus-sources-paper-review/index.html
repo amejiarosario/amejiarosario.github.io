@@ -1,4 +1,120 @@
-<!DOCTYPE html><html lang="en-US"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="author" content="Adrian Mejia"><link rel="author" href="humans.txt"><meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures."><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1"><link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml"><title>OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educational Content from Open Corpus Sources - Paper Review | Adrian Mejia Blog</title><link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/"><meta property="og:url" content="http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/"><meta property="og:site_name" content="Adrian Mejia Blog"><meta property="og:type" content="article"><meta property="og:description" content="S. Lawless, V. Wade et al. (2008) [1] introduces the Open Corpus Content Service (OCCS), which is a system to discover, harvest, classify and index educational content from the Internet. It aims to provide a dynamic learning object generation based on the background of the learner. The OCCS employs Heritrix (open source, web-scale, archival web crawler) for discovery educational content available in the WWW. Heritrix uses languages guessers (JTCL) and text classifier (Rainbow) to classify the extracted data. All the content is indexed in ARC files with NutchWAX and Hadoop. Finally the data is presented to the users using WERA (WEb aRchive Access). Additionally, the OCCS system is evaluated using a specific topic and the results are shown in [1]."><meta property="og:image" content="http://adrianmejia.comundefined"><meta property="og:title" content="OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educational Content from Open Corpus Sources - Paper Review"><meta property="fb:app_id" content="761831487293468"><meta property="fb:admins" content="895685163"><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-24183929-4","auto"),ga("require","linkid"),ga("set","transport","beacon"),ga("set","appName","adrianmejia.com"),ga("send","pageview"),ga("send","screenview",{screenName:document.title})</script><script async defer src="https://www.google-analytics.com/analytics.js"></script><style media="screen">.overlay{display:none}</style><link rel="stylesheet" href="/stylesheets/main.css"><noscript id="deferred-styles"><link rel="stylesheet" href="/stylesheets/font-awesome.min.css"></noscript><script>var loadDeferredStyles=function(){var e=document.getElementById("deferred-styles"),t=document.createElement("div");t.innerHTML=e.textContent,document.body.appendChild(t),e.parentElement.removeChild(e)},raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;raf?raf(function(){window.setTimeout(loadDeferredStyles,0)}):window.addEventListener("load",loadDeferredStyles)</script></head><body><header class="titlebar mdl-shadow--2dp"><div class="container align-center flexbox--space-between"><span class="hidden-mobile-up"><i class="fa fa-bars" aria-hidden="true"></i> </span><a href="/" class="align-center m-y-2"><img src="/images/adrianmejia-logo.svg" alt="Adrian Mejia Logo" class="animation--bounce-in"><h1 class="hidden-mobile-down hidden">Adrian Mejia</h1></a><nav class="hidden-mobile-down navbar"><a href="/#home" class="animation--radial-out" id="Home" onclick='track("/#home","menu",!0)'>Home</a> <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick='track("/#trending-posts","menu",!0)'>Trending</a> <a href="/#about" class="animation--radial-out" id="About" onclick='track("/#about","menu",!0)'>About</a> <a href="/blog" class="animation--radial-out" id="Blog" onclick='track("/blog","menu",!0)'>Blog</a></nav><a href="#" id="search-modal" onclick='track("#search","search",!0)' class="open-overlay"><i class="fa fa-search" aria-hidden="true"></i></a><div id="search-overlay" class="overlay" aria-hidden="true"><script id="movie" type="text/x-handlebars-template"><article class="movie">
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educational Content from Open Corpus Sources - Paper Review | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="S. Lawless, V. Wade et al. (2008) [1] introduces the Open Corpus Content Service (OCCS), which is a system to discover, harvest, classify and index educational content from the Internet. It aims to provide a dynamic learning object generation based on the background of the learner. The OCCS employs Heritrix (open source, web-scale, archival web crawler) for discovery educational content available in the WWW. Heritrix uses languages guessers (JTCL) and text classifier (Rainbow) to classify the extracted data. All the content is indexed in ARC files with NutchWAX and Hadoop. Finally the data is presented to the users using WERA (WEb aRchive Access). Additionally, the OCCS system is evaluated using a specific topic and the results are shown in [1]." />
+    <meta property="og:image" content="http://adrianmejia.comundefined" />
+    <meta property="og:title" content="OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educational Content from Open Corpus Sources - Paper Review" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.svg" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
       {{#photos.0}}
       <a href="/{{path}}">
         <img class="movie-image" src="{{photos.0}}" />
@@ -34,7 +150,96 @@
           {{/tags}}
         </div>
       </div>
-    </article></script><div class="search-container"><div class="top"><div class="search-button"><i class="fa fa-search"></i></div><div class="input-container"><input type="text" id="search-box"><div id="stats"></div></div><a href="#" class="close-overlay"><i class="fa fa-times"></i></a></div><div class="content"><div class="facets"><div class="facet"><div id="clear-all" class="facet-title"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-tags" aria-hidden="true"></i> Tags</div><div id="tags"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-folder-o" aria-hidden="true"></i> Categories</div><div id="categories"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-eye" aria-hidden="true"></i> Views</div><div id="ratings"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-calendar" aria-hidden="true"></i> Year</div><div id="year"></div></div></div><div class="canvas"><div id="hits"></div><div id="pagination"></div><div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div></div></div></div></div><script src="/js/search.js"></script></div></header><nav class="hidden-mobile-up mdl-shadow--2dp"><div class="container flexbox--space-between navbar"><a href="/#home" class="animation--underline-from-center">Home</a> <a href="/#trending-posts" class="animation--underline-from-center">Trending</a> <a href="/#about" class="animation--underline-from-center">About</a> <a href="/blog" class="animation--underline-from-center">Blog</a></div></nav><main><script type="application/ld+json">{
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
   "@context": "http://schema.org",
   "@type": "NewsArticle",
   "mainEntityOfPage": {
@@ -67,4 +272,235 @@
     }
   },
   "description": "S. Lawless, V. Wade et al. (2008) [1] introduces the Open Corpus Content Service (OCCS), which is a system to discover, harvest, classify and index educational content from the Internet. It aims to provide a dynamic learning object generation based on the background of the learner. The OCCS employs Heritrix (open source, web-scale, archival web crawler) for discovery educational content available in the WWW. Heritrix uses languages guessers (JTCL) and text classifier (Rainbow) to classify the extracted data. All the content is indexed in ARC files with NutchWAX and Hadoop. Finally the data is presented to the users using WERA (WEb aRchive Access). Additionally, the OCCS system is evaluated using a specific topic and the results are shown in [1]."
-}</script><article class="container post"><section class="hero"><div class="muted"></div><h1>OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educational Content from Open Corpus Sources - Paper Review</h1><div class="muted"><span title="Last time this post was updated"><i class="fa fa-calendar" aria-hidden="true"></i> Last update <time datetime="2011-09-27T15:25:56.000Z" itemprop="dateUpdated">September 27th 2011</time> </span><span class="m-x-2" title="Click to go to the comments section"><a href="#disqus_thread"><i class="fa fa-comment-o" aria-hidden="true"></i> <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/">0</span></a></span></div></section><div class="art-container"></div><div class="row"><section class="col-sm-8 p-x-2"><div class="post-content"><p>S. Lawless, V. Wade et al. (2008) [1] introduces the Open Corpus Content Service (OCCS), which is a system to discover, harvest, classify and index educational content from the Internet. It aims to provide a dynamic learning object generation based on the background of the learner. The OCCS employs Heritrix (open source, web-scale, archival web crawler) for discovery educational content available in the WWW. Heritrix uses languages guessers (JTCL) and text classifier (Rainbow) to classify the extracted data. All the content is indexed in ARC files with NutchWAX and Hadoop. Finally the data is presented to the users using WERA (WEb aRchive Access). Additionally, the OCCS system is evaluated using a specific topic and the results are shown in [1]. <a id="more"></a></p><p>Something that I like about this paper is that it mentions most of the tool used to implement the OCCS in all this stages. All these tools can be used by the reader to implement similar projects.</p><p>This paper seem to be the one of the earliest of a series of papers about the same topic by the same authors: [2] S. Lawless, L. Hederman, and V. Wade, “Enhancing Access to Open Corpus Educational Content : Learning in the Wild,” HT ’08 Proceedings of the nineteenth ACM conference on Hypertext and hypermedia, pp. 167-174, 2008. [3] <a href="http://www.adrianmejiarosario.com/content/dynamic-hypertext-generation-reusing-open-corpus-content-paper-review" target="_blank" rel="external">B. Steichen, S. Lawless, A. O’Connor, and V. Wade, “Dynamic Hypertext Generation for Reusing Open Corpus Content,” Proceedings of the 20th ACM conference on Hypertext and hypermedia HT 09, pp. 119-128, 2009.</a></p><p>Reference [1] S. Lawless, L. Hederman, and V. Wade, “OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educational Content from Open Corpus Sources,” 2008 Eighth IEEE International Conference on Advanced Learning Technologies, pp. 676-678, 2008.</p></div><section class="bio-box"><img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia"><p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p></section><div class="m-y-4"><link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css"><style type="text/css">#mc_embed_signup{background:#fff;clear:left;font:14px Helvetica,Arial,sans-serif;width:100%}</style><div id="mc_embed_signup"><form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate><div id="mc_embed_signup_scroll"><label for="mce-EMAIL">Subscribe &amp; stay up to date!</label><input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required><div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1"></div><div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div></div></form></div><script type="text/javascript">var form=document.getElementById("mc-embedded-subscribe-form");form.addEventListener("submit",function(e){e.preventDefault(),ga("send","event","newsletter","signup","page",location.pathname,{hitCallback:createFunctionWithTimeout(function(){form.submit()})})})</script></div><footer><div class="m-y-4"></div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="2343826126" style="display:block" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></footer></section><aside class="col-sm-4 p-x-2 col-xs-order-1"><section><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="6894900521" style="display:inline-block;width:300px;height:250px"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></section><section class="sticky-element--start"><div class="muted"><div class="p-y-1"><a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a> <a href="#" class="p-x-3" title="Improve this post" onclick='track("https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2011-09-27-occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review.md")'><i class="fa fa-pencil"></i> Improve</a></div></div></section></aside></div><div class="article-nav m-y-4"><a href="/blog/2011/10/04/focused-crawling-for-automatic-service-discovery-annotation-and-classification-in-industrial-digital-ecosystems-paper-review/" class="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong><div class="article-nav-title">Focused Crawling for Automatic Service Discovery, Annotation, and Classification in Industrial Digital Ecosystems - Paper Review</div></a><a href="/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review/" class="article-nav-older" class="article-nav-link-wrap"><strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong><div class="article-nav-title">eLearning 2.0 and Social, Practice-Oriented Communities to Improve Knowledge in Companies - Paper Review</div></a></div><footer class="row sticky-element--end"><div class="col-xs-12"><section><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://adrianmejia.com",this.page.identifier="http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/"};!function(){var e=document,a=e.createElement("script");a.src="//adrianmejia.disqus.com/embed.js",a.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(a)}()</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></section></div></footer></article></main><footer class="page-footer"><div class="container"><div class="p-y-2">&copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a> <span class="muted m-x-4" title="Thu Aug 11 2016 21:56:38 GMT-0400 (EDT)">v.obrxee</span></div></div></footer><script src="/js/main.js"></script><script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css"><script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script><link rel="stylesheet" href="/stylesheets/55_search.css"><script type="text/javascript">var addthis_config={data_ga_property:"UA-24183929-4",data_ga_social:!0}</script><script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script><script src="/js/posts.js"></script></body></html>
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      
+    </div>
+    <h1>OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educational Content from Open Corpus Sources - Paper Review</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2011-09-27T15:25:56.000Z" itemprop="dateUpdated">September 27th 2011</time>
+      </span>
+
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/">0</span>
+        </a>
+      </span>
+
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: ">
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content ">
+        <p>S. Lawless, V. Wade et al. (2008) [1] introduces the Open Corpus Content Service (OCCS), which is a system to discover, harvest, classify and index educational content from the Internet. It aims to provide a dynamic learning object generation based on the background of the learner. The OCCS employs Heritrix (open source, web-scale, archival web crawler) for discovery educational content available in the WWW. Heritrix uses languages guessers (JTCL) and text classifier (Rainbow) to classify the extracted data. All the content is indexed in ARC files with NutchWAX and Hadoop. Finally the data is presented to the users using WERA (WEb aRchive Access). Additionally, the OCCS system is evaluated using a specific topic and the results are shown in [1].
+<a id="more"></a></p>
+<p>Something that I like about this paper is that it mentions most of the tool used to implement the OCCS in all this stages. All these tools can be used by the reader to implement similar projects.</p>
+<p>This paper seem to be the one of the earliest of a series of papers about the same topic by the same authors:
+[2] S. Lawless, L. Hederman, and V. Wade, “Enhancing Access to Open Corpus Educational Content : Learning in the Wild,” HT  ’08 Proceedings of the nineteenth ACM conference on Hypertext and hypermedia, pp. 167-174, 2008.
+[3] <a href="http://www.adrianmejiarosario.com/content/dynamic-hypertext-generation-reusing-open-corpus-content-paper-review" target="_blank" rel="external">B. Steichen, S. Lawless, A. O’Connor, and V. Wade, “Dynamic Hypertext Generation for Reusing Open Corpus Content,” Proceedings of the 20th ACM conference on Hypertext and hypermedia HT 09, pp. 119-128, 2009.</a></p>
+<p>Reference
+[1] S. Lawless, L. Hederman, and V. Wade, “OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educational Content from Open Corpus Sources,” 2008 Eighth IEEE International Conference on Advanced Learning Technologies, pp. 676-678, 2008.</p>
+
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname, {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2011-09-27-occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review.md')"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+      <a href="/blog/2011/10/04/focused-crawling-for-automatic-service-discovery-annotation-and-classification-in-industrial-digital-ecosystems-paper-review/" class="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+        <div class="article-nav-title">
+          
+            Focused Crawling for Automatic Service Discovery, Annotation, and Classification in Industrial Digital Ecosystems - Paper Review
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2011/09/27/elearning-2-0-and-social-practice-oriented-communities-to-improve-knowledge-in-companies-paper-review/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">eLearning 2.0 and Social, Practice-Oriented Communities to Improve Knowledge in Companies - Paper Review</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2011/09/27/occs-enabling-the-dynamic-discovery-harvesting-and-delivery-of-educational-content-from-open-corpus-sources-paper-review/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Thu Aug 11 2016 22:00:00 GMT-0400 (EDT)">
+            v.obrxk0
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+    <!-- social scripts -->
+    
+
+    
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>

@@ -1,4 +1,120 @@
-<!DOCTYPE html><html lang="en-US"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="author" content="Adrian Mejia"><link rel="author" href="humans.txt"><meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures."><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1"><link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml"><title>Learning Algorithms from Scratch / Algorithms for Dummies | Adrian Mejia Blog</title><link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/"><meta property="og:url" content="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/"><meta property="og:site_name" content="Adrian Mejia Blog"><meta property="og:type" content="article"><meta property="og:description" content="When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest."><meta property="og:image" content="http://adrianmejia.comundefined"><meta property="og:title" content="Learning Algorithms from Scratch / Algorithms for Dummies"><meta property="fb:app_id" content="761831487293468"><meta property="fb:admins" content="895685163"><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-24183929-4","auto"),ga("require","linkid"),ga("set","transport","beacon"),ga("set","appName","adrianmejia.com"),ga("send","pageview"),ga("send","screenview",{screenName:document.title})</script><script async defer src="https://www.google-analytics.com/analytics.js"></script><style media="screen">.overlay{display:none}</style><link rel="stylesheet" href="/stylesheets/main.css"><noscript id="deferred-styles"><link rel="stylesheet" href="/stylesheets/font-awesome.min.css"></noscript><script>var loadDeferredStyles=function(){var e=document.getElementById("deferred-styles"),t=document.createElement("div");t.innerHTML=e.textContent,document.body.appendChild(t),e.parentElement.removeChild(e)},raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;raf?raf(function(){window.setTimeout(loadDeferredStyles,0)}):window.addEventListener("load",loadDeferredStyles)</script></head><body><header class="titlebar mdl-shadow--2dp"><div class="container align-center flexbox--space-between"><span class="hidden-mobile-up"><i class="fa fa-bars" aria-hidden="true"></i> </span><a href="/" class="align-center m-y-2"><img src="/images/adrianmejia-logo.svg" alt="Adrian Mejia Logo" class="animation--bounce-in"><h1 class="hidden-mobile-down hidden">Adrian Mejia</h1></a><nav class="hidden-mobile-down navbar"><a href="/#home" class="animation--radial-out" id="Home" onclick='track("/#home","menu",!0)'>Home</a> <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick='track("/#trending-posts","menu",!0)'>Trending</a> <a href="/#about" class="animation--radial-out" id="About" onclick='track("/#about","menu",!0)'>About</a> <a href="/blog" class="animation--radial-out" id="Blog" onclick='track("/blog","menu",!0)'>Blog</a></nav><a href="#" id="search-modal" onclick='track("#search","search",!0)' class="open-overlay"><i class="fa fa-search" aria-hidden="true"></i></a><div id="search-overlay" class="overlay" aria-hidden="true"><script id="movie" type="text/x-handlebars-template"><article class="movie">
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Learning Algorithms from Scratch / Algorithms for Dummies | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest." />
+    <meta property="og:image" content="http://adrianmejia.comundefined" />
+    <meta property="og:title" content="Learning Algorithms from Scratch / Algorithms for Dummies" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.svg" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
       {{#photos.0}}
       <a href="/{{path}}">
         <img class="movie-image" src="{{photos.0}}" />
@@ -34,7 +150,96 @@
           {{/tags}}
         </div>
       </div>
-    </article></script><div class="search-container"><div class="top"><div class="search-button"><i class="fa fa-search"></i></div><div class="input-container"><input type="text" id="search-box"><div id="stats"></div></div><a href="#" class="close-overlay"><i class="fa fa-times"></i></a></div><div class="content"><div class="facets"><div class="facet"><div id="clear-all" class="facet-title"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-tags" aria-hidden="true"></i> Tags</div><div id="tags"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-folder-o" aria-hidden="true"></i> Categories</div><div id="categories"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-eye" aria-hidden="true"></i> Views</div><div id="ratings"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-calendar" aria-hidden="true"></i> Year</div><div id="year"></div></div></div><div class="canvas"><div id="hits"></div><div id="pagination"></div><div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div></div></div></div></div><script src="/js/search.js"></script></div></header><nav class="hidden-mobile-up mdl-shadow--2dp"><div class="container flexbox--space-between navbar"><a href="/#home" class="animation--underline-from-center">Home</a> <a href="/#trending-posts" class="animation--underline-from-center">Trending</a> <a href="/#about" class="animation--underline-from-center">About</a> <a href="/blog" class="animation--underline-from-center">Blog</a></div></nav><main><script type="application/ld+json">{
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
   "@context": "http://schema.org",
   "@type": "NewsArticle",
   "mainEntityOfPage": {
@@ -67,4 +272,307 @@
     }
   },
   "description": "When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest."
-}</script><article class="container post"><section class="hero"><div class="muted"><a class="category-link" href="/categories/Technologies/">Technologies</a> > <a class="category-link" href="/categories/Technologies/Algorithms/">Algorithms</a></div><h1>Learning Algorithms from Scratch / Algorithms for Dummies</h1><div class="muted"><span title="Last time this post was updated"><i class="fa fa-calendar" aria-hidden="true"></i> Last update <time datetime="2011-12-22T19:27:07.000Z" itemprop="dateUpdated">December 22nd 2011</time> </span><span class="m-x-2" title="Pageviews"><i class="fa fa-eye" aria-hidden="true"></i> 26.9k </span><span class="m-x-2" title="Click to go to the comments section"><a href="#disqus_thread"><i class="fa fa-comment-o" aria-hidden="true"></i> <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/">0</span> </a></span><span><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithms/">algorithms</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/big-o/">big o</a><span class="tag-list-count">2</span></li></ul></span></div></section><div class="art-container"></div><div class="row"><section class="col-sm-8 p-x-2"><div class="post-content"><p>When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest.</p><a id="more"></a><p></p><hr><strong>Update</strong><p></p><p>Graphs are gone in this post. I re-made this post and added more information and images. Checkout it out at: <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a></p><hr><p class="p1"><b>Why should you care for efficiency?</b></p><p class="p1">Solutions to the same problem might take years with certain algorithm, and just minutes using efficient algorithms. For instance, if you have applications that are used for thousands of people over internet, every fraction of second counts. Therefore, efficient algorithms is a must.</p><p class="p1"><b>How I do my algorithms more efficient?</b></p><p class="p1">To improve something you first need to know the actual state. In this case you need to measure the actual effectiveness of your algorithm in other to improve it. It&#39;s very common to use running time analysis to measure the speed of algorithms independently from the hardware used (old pc, supercomputer it doesn&#39;t matter).&nbsp;</p><p class="p1"><b>Run-time analysis</b></p><p class="p1">A common way to analyze the algorithms is using the big-O notation. The good thing about this notation is that is independent from the computer used to run the algorithm. You know that if you use a very slow computer (e.g. pentium I) v.s. a supercomputer use in NASA, the latter will run the program much faster. Big-O notation abstract the hardware and just focus in the algorithm per se. The only variable in the big-O notation gives the relative time needed to process an algorithm in function of the input n. Let&#39;s clarify this with an example.</p><p class="p1"><strong>Ex.1</strong> - You want to sort an array A of n integers.&nbsp;</p><p class="p1">Depending in the algorithm used to do that you may have:</p><ul><li class="p1"><b>selection</b> sort has a running time of O(n^2);</li><li class="p1"><b>merge sort</b> –&gt; O(n log n)</li></ul><p class="p1">Right now, it doesn&#39;t matter if are not familiar with these algorithms (we will cover this the next lessons), the point here is that we have n integer and big-O notations give us a mathematical expression that is in function of the input n. If you&nbsp;<a href="http://fooplot.com/index.php?&amp;type0=0&amp;type1=0&amp;type2=0&amp;type3=0&amp;type4=0&amp;y0=x%5E2&amp;y1=x*log%28x%29&amp;y2=&amp;y3=&amp;y4=&amp;r0=&amp;r1=&amp;r2=&amp;r3=&amp;r4=&amp;px0=&amp;px1=&amp;px2=&amp;px3=&amp;px4=&amp;py0=&amp;py1=&amp;py2=&amp;py3=&amp;py4=&amp;smin0=0&amp;smin1=0&amp;smin2=0&amp;smin3=0&amp;smin4=0&amp;smax0=2pi&amp;smax1=2pi&amp;smax2=2pi&amp;smax3=2pi&amp;smax4=2pi&amp;thetamin0=0&amp;thetamin1=0&amp;thetamin2=0&amp;thetamin3=0&amp;thetamin4=0&amp;thetamax0=2pi&amp;thetamax1=2pi&amp;thetamax2=2pi&amp;thetamax3=2pi&amp;thetamax4=2pi&amp;ipw=0&amp;ixmin=-5&amp;ixmax=5&amp;iymin=-3&amp;iymax=3&amp;igx=1&amp;igy=1&amp;igl=1&amp;igs=0&amp;iax=1&amp;ila=1&amp;xmin=-5&amp;xmax=5&amp;ymin=-3&amp;ymax=3" target="_blank" rel="external"><span class="s1">plot in a graph n^2 and n log n</span></a>. You&#39;ll see that n^2 grows much faster than n log(n). That means that the algorithm n^2 will take longer than n*log(n) to process as the size of the array n increases.</p><p class="p1"><b>Common order of Growth</b></p><p class="p1">To give you an idea of the common order of growth of runtime expressions. Take a look at the following graph and table. The slower the function growth the better is the algorithm. In order from better performance to worst is:</p><p class="p1">1 – log n – n – n log n – n^2 – n^3 – 2^n – n! …</p><p class="p2"></p><p class="p2"></p><p class="p1"><b>Approximate growth rate from code.</b></p><p class="p1">There are a whole theory and math behind the Big-O notation and other notations related. At this time, just take a look of the typical code and its growth order.</p><p class="p1"></p><p><strong>Cases (the good, the bad, and the ugly)</strong></p><p>Remember that n is the number of elements in the input. All this runtime growth rate are in function of the input elements. There is another important thing to consider about the input elements: the order! The order of the input elements matters, and that&#39;s why algorithms are analyzed in 3 different cases:</p><ol><li>Worst-case performance: the input is distributed as worst as it could be for an algorithm. &nbsp;&nbsp;</li><li>Average-case scenario: approximation of the most common arrange of inputs.</li><li>Best-case scenario: most favorable distribution of the inputs.</li><li>One more: Space. this is how much space the algorithm cosume to execute.&nbsp;</li></ol><p class="p2">If you want more depth in these topic read here:&nbsp;</p><ul><li class="p2"><span>Analysis (</span><a href="http://gcu.googlecode.com/files/02Analysis.pdf" target="_blank" rel="external">pdf</a><span>) (</span><a href="http://gcu.googlecode.com/files/02Analysis.key.zip" target="_blank" rel="external">keynote</a><span>)</span></li><li class="p2"><span>Algorithm @&nbsp;</span>ocw.mit.edu: lectures <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-1-administrivia-introduction-analysis-of-algorithms-insertion-sort-mergesort" target="_blank" rel="external">1 </a>and <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-2-asymptotic-notation-recurrences-substitution-master-method" target="_blank" rel="external">2</a></li><li class="p2"><a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">http://algs4.cs.princeton.edu/home/</a></li></ul><p class="p2">&nbsp;</p></div><section class="bio-box"><img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia"><p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p></section><div class="m-y-4"><link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css"><style type="text/css">#mc_embed_signup{background:#fff;clear:left;font:14px Helvetica,Arial,sans-serif;width:100%}</style><div id="mc_embed_signup"><form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate><div id="mc_embed_signup_scroll"><label for="mce-EMAIL">Subscribe &amp; stay up to date!</label><input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required><div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1"></div><div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div></div></form></div><script type="text/javascript">var form=document.getElementById("mc-embedded-subscribe-form");form.addEventListener("submit",function(e){e.preventDefault(),ga("send","event","newsletter","signup","page",location.pathname,{hitCallback:createFunctionWithTimeout(function(){form.submit()})})})</script></div><footer><div class="m-y-4"></div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="2343826126" style="display:block" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></footer></section><aside class="col-sm-4 p-x-2 col-xs-order-1"><section><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="6894900521" style="display:inline-block;width:300px;height:250px"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></section><section class="sticky-element--start"><div class="muted"><div class="p-y-1"><a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a> <a href="#" class="p-x-3" title="Improve this post" onclick='track("https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2011-12-22-learning-algorithms-from-scratch-algorithms-for-dummies.md")'><i class="fa fa-pencil"></i> Improve</a></div></div></section></aside></div><div class="article-nav m-y-4"><a href="/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/" class="article-nav-newer" class="article-nav-link-wrap"><strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong><div class="article-nav-title">Concentration problems? Procastination? You&#39;re not the only one.</div></a><a href="/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/" class="article-nav-older" class="article-nav-link-wrap"><strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong><div class="article-nav-title">How to remove programs from the start up in Mac OS X</div></a></div><footer class="row sticky-element--end"><div class="col-xs-12"><section><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://adrianmejia.com",this.page.identifier="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/"};!function(){var a=document,i=a.createElement("script");i.src="//adrianmejia.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(i)}()</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></section></div></footer></article></main><footer class="page-footer"><div class="container"><div class="p-y-2">&copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a> <span class="muted m-x-4" title="Thu Aug 11 2016 21:56:38 GMT-0400 (EDT)">v.obrxee</span></div></div></footer><script src="/js/main.js"></script><script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css"><script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script><link rel="stylesheet" href="/stylesheets/55_search.css"><script type="text/javascript">var addthis_config={data_ga_property:"UA-24183929-4",data_ga_social:!0}</script><script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script><script src="/js/posts.js"></script></body></html>
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Technologies/">Technologies</a> > <a class="category-link" href="/categories/Technologies/Algorithms/">Algorithms</a>
+    </div>
+    <h1>Learning Algorithms from Scratch / Algorithms for Dummies</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2011-12-22T19:27:07.000Z" itemprop="dateUpdated">December 22nd 2011</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          26.9k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithms/">algorithms</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/big-o/">big o</a><span class="tag-list-count">2</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: ">
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content ">
+        <p>When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest.</p>
+
+<a id="more"></a>
+<p><hr>
+<strong>Update</strong></p>
+<p>Graphs are gone in this post. I re-made this post and added more information and images. Checkout it out at: <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a></p>
+<hr>
+
+<p class="p1"><b>Why should you care for efficiency?</b></p>
+<p class="p1">Solutions to the same problem might take years with certain algorithm, and just minutes using efficient algorithms. For instance, if you have applications that are used for thousands of people over internet, every fraction of second counts. Therefore, efficient algorithms is a must.</p>
+<p class="p1"><b>How I do my algorithms more efficient?</b></p>
+<p class="p1">To improve something you first need to know the actual state. In this case you need to measure the actual effectiveness of your algorithm in other to improve it. It&#39;s very common to use running time analysis to measure the speed of algorithms independently from the hardware used (old pc, supercomputer it doesn&#39;t matter).&nbsp;</p>
+<p class="p1"><b>Run-time analysis</b></p>
+<p class="p1">A common way to analyze the algorithms is using the big-O notation. The good thing about this notation is that is independent from the computer used to run the algorithm. You know that if you use a very slow computer (e.g. pentium I) v.s. a supercomputer use in NASA, the latter will run the program much faster. Big-O notation abstract the hardware and just focus in the algorithm per se. The only variable in the big-O notation gives the relative time needed to process an algorithm in function of the input n. Let&#39;s clarify this with an example.</p>
+<p class="p1"><strong>Ex.1</strong> - You want to sort an array A of n integers.&nbsp;</p>
+<p class="p1">Depending in the algorithm used to do that you may have:</p>
+<ul>
+    <li class="p1">
+        <b>selection</b> sort has a running time of O(n^2);</li>
+    <li class="p1">
+        <b>merge sort</b> –&gt; O(n log n)</li>
+</ul>
+<p class="p1">Right now, it doesn&#39;t matter if are not familiar with these algorithms (we will cover this the next lessons), the point here is that we have n integer and big-O notations give us a mathematical expression that is in function of the input n. If you&nbsp;<a href="http://fooplot.com/index.php?&amp;type0=0&amp;type1=0&amp;type2=0&amp;type3=0&amp;type4=0&amp;y0=x%5E2&amp;y1=x*log%28x%29&amp;y2=&amp;y3=&amp;y4=&amp;r0=&amp;r1=&amp;r2=&amp;r3=&amp;r4=&amp;px0=&amp;px1=&amp;px2=&amp;px3=&amp;px4=&amp;py0=&amp;py1=&amp;py2=&amp;py3=&amp;py4=&amp;smin0=0&amp;smin1=0&amp;smin2=0&amp;smin3=0&amp;smin4=0&amp;smax0=2pi&amp;smax1=2pi&amp;smax2=2pi&amp;smax3=2pi&amp;smax4=2pi&amp;thetamin0=0&amp;thetamin1=0&amp;thetamin2=0&amp;thetamin3=0&amp;thetamin4=0&amp;thetamax0=2pi&amp;thetamax1=2pi&amp;thetamax2=2pi&amp;thetamax3=2pi&amp;thetamax4=2pi&amp;ipw=0&amp;ixmin=-5&amp;ixmax=5&amp;iymin=-3&amp;iymax=3&amp;igx=1&amp;igy=1&amp;igl=1&amp;igs=0&amp;iax=1&amp;ila=1&amp;xmin=-5&amp;xmax=5&amp;ymin=-3&amp;ymax=3" target="_blank" rel="external"><span class="s1">plot in a graph n^2 and n log n</span></a>. You&#39;ll see that n^2 grows much faster than n log(n). That means that the algorithm n^2 will take longer than n*log(n) to process as the size of the array n increases.</p>
+<p class="p1"><b>Common order of Growth</b></p>
+<p class="p1">To give you an idea of the common order of growth of runtime expressions. Take a look at the following graph and table. The slower the function growth the better is the algorithm. In order from better performance to worst is:</p>
+<p class="p1">1 – log n – n – n log n – n^2 – n^3 – 2^n – n! …</p>
+<p class="p2">
+
+
+<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.22.12%20PM.png"  /> -->
+
+
+</p>
+<p class="p2">
+
+
+<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%203.23.45%20PM.png"  /> -->
+
+
+</p>
+<p class="p1"><b>Approximate growth rate from code.</b></p>
+<p class="p1">There are a whole theory and math behind the Big-O notation and other notations related. At this time, just take a look of the typical code and its growth order.</p>
+<p class="p1">
+
+
+<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-12-22%20at%204.51.48%20PM.png"  /> -->
+
+
+</p>
+<p><strong>Cases (the good, the bad, and the ugly)</strong></p>
+<p>Remember that n is the number of elements in the input. All this runtime growth rate are in function of the input elements. There is another important thing to consider about the input elements: the order! The order of the input elements matters, and that&#39;s why algorithms are analyzed in 3 different cases:</p>
+<ol>
+    <li>
+        Worst-case performance: the input is distributed as worst as it could be for an algorithm. &nbsp;&nbsp;</li>
+    <li>
+        Average-case scenario: approximation of the most common arrange of inputs.</li>
+    <li>
+        Best-case scenario: most favorable distribution of the inputs.</li>
+    <li>
+        One more: Space. this is how much space the algorithm cosume to execute.&nbsp;</li>
+</ol>
+<p class="p2">If you want more depth in these topic read here:&nbsp;</p>
+<ul>
+    <li class="p2">
+        <span>Analysis (</span><a href="http://gcu.googlecode.com/files/02Analysis.pdf" target="_blank" rel="external">pdf</a><span>) (</span><a href="http://gcu.googlecode.com/files/02Analysis.key.zip" target="_blank" rel="external">keynote</a><span>)</span></li>
+    <li class="p2">
+        <span>Algorithm @&nbsp;</span>ocw.mit.edu: lectures <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-1-administrivia-introduction-analysis-of-algorithms-insertion-sort-mergesort" target="_blank" rel="external">1 </a>and <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-2-asymptotic-notation-recurrences-substitution-master-method" target="_blank" rel="external">2</a></li>
+    <li class="p2">
+        <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">http://algs4.cs.princeton.edu/home/</a></li>
+</ul>
+<p class="p2">&nbsp;</p>
+
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname, {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2011-12-22-learning-algorithms-from-scratch-algorithms-for-dummies.md')"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+      <a href="/blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/" class="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+        <div class="article-nav-title">
+          
+            Concentration problems? Procastination? You&#39;re not the only one.
+          
+        </div>
+      </a>
+    
+    
+      <a href="/blog/2011/11/18/how-to-remove-programs-from-the-start-up-in-mac-os-x/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">How to remove programs from the start up in Mac OS X</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Thu Aug 11 2016 22:00:00 GMT-0400 (EDT)">
+            v.obrxk0
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+    <!-- social scripts -->
+    
+
+    
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>

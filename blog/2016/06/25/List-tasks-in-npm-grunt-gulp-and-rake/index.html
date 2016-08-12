@@ -1,4 +1,120 @@
-<!DOCTYPE html><html lang="en-US"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="author" content="Adrian Mejia"><link rel="author" href="humans.txt"><meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures."><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1"><link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml"><title>List tasks in NPM, Grunt, Gulp and Rake | Adrian Mejia Blog</title><link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/manifest.json"><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/"><meta property="og:url" content="http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/"><meta property="og:site_name" content="Adrian Mejia Blog"><meta property="og:type" content="article"><meta property="og:description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures."><meta property="og:image" content="http://adrianmejia.comundefined"><meta property="og:title" content="List tasks in NPM, Grunt, Gulp and Rake"><meta property="fb:app_id" content="761831487293468"><meta property="fb:admins" content="895685163"><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-24183929-4","auto"),ga("require","linkid"),ga("set","transport","beacon"),ga("set","appName","adrianmejia.com"),ga("send","pageview"),ga("send","screenview",{screenName:document.title})</script><script async defer src="https://www.google-analytics.com/analytics.js"></script><style media="screen">.overlay{display:none}</style><link rel="stylesheet" href="/stylesheets/main.css"><noscript id="deferred-styles"><link rel="stylesheet" href="/stylesheets/font-awesome.min.css"></noscript><script>var loadDeferredStyles=function(){var e=document.getElementById("deferred-styles"),t=document.createElement("div");t.innerHTML=e.textContent,document.body.appendChild(t),e.parentElement.removeChild(e)},raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;raf?raf(function(){window.setTimeout(loadDeferredStyles,0)}):window.addEventListener("load",loadDeferredStyles)</script></head><body><header class="titlebar mdl-shadow--2dp"><div class="container align-center flexbox--space-between"><span class="hidden-mobile-up"><i class="fa fa-bars" aria-hidden="true"></i> </span><a href="/" class="align-center m-y-2"><img src="/images/adrianmejia-logo.svg" alt="Adrian Mejia Logo" class="animation--bounce-in"><h1 class="hidden-mobile-down hidden">Adrian Mejia</h1></a><nav class="hidden-mobile-down navbar"><a href="/#home" class="animation--radial-out" id="Home" onclick='track("/#home","menu",!0)'>Home</a> <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick='track("/#trending-posts","menu",!0)'>Trending</a> <a href="/#about" class="animation--radial-out" id="About" onclick='track("/#about","menu",!0)'>About</a> <a href="/blog" class="animation--radial-out" id="Blog" onclick='track("/blog","menu",!0)'>Blog</a></nav><a href="#" id="search-modal" onclick='track("#search","search",!0)' class="open-overlay"><i class="fa fa-search" aria-hidden="true"></i></a><div id="search-overlay" class="overlay" aria-hidden="true"><script id="movie" type="text/x-handlebars-template"><article class="movie">
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>List tasks in NPM, Grunt, Gulp and Rake | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures." />
+    <meta property="og:image" content="http://adrianmejia.comundefined" />
+    <meta property="og:title" content="List tasks in NPM, Grunt, Gulp and Rake" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.svg" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
       {{#photos.0}}
       <a href="/{{path}}">
         <img class="movie-image" src="{{photos.0}}" />
@@ -34,7 +150,96 @@
           {{/tags}}
         </div>
       </div>
-    </article></script><div class="search-container"><div class="top"><div class="search-button"><i class="fa fa-search"></i></div><div class="input-container"><input type="text" id="search-box"><div id="stats"></div></div><a href="#" class="close-overlay"><i class="fa fa-times"></i></a></div><div class="content"><div class="facets"><div class="facet"><div id="clear-all" class="facet-title"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-tags" aria-hidden="true"></i> Tags</div><div id="tags"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-folder-o" aria-hidden="true"></i> Categories</div><div id="categories"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-eye" aria-hidden="true"></i> Views</div><div id="ratings"></div></div><div class="facet"><div class="facet-title"><i class="fa fa-calendar" aria-hidden="true"></i> Year</div><div id="year"></div></div></div><div class="canvas"><div id="hits"></div><div id="pagination"></div><div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div></div></div></div></div><script src="/js/search.js"></script></div></header><nav class="hidden-mobile-up mdl-shadow--2dp"><div class="container flexbox--space-between navbar"><a href="/#home" class="animation--underline-from-center">Home</a> <a href="/#trending-posts" class="animation--underline-from-center">Trending</a> <a href="/#about" class="animation--underline-from-center">About</a> <a href="/blog" class="animation--underline-from-center">Blog</a></div></nav><main><script type="application/ld+json">{
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
   "@context": "http://schema.org",
   "@type": "NewsArticle",
   "mainEntityOfPage": {
@@ -67,4 +272,161 @@
     }
   },
   "description": ""
-}</script><article class="container post"><section class="hero"><div class="muted"><a class="category-link" href="/categories/Programming/">Programming</a> > <a class="category-link" href="/categories/Programming/Web-Development/">Web Development</a></div><h1>List tasks in NPM, Grunt, Gulp and Rake</h1><div class="muted"><span title="Last time this post was updated"><i class="fa fa-calendar" aria-hidden="true"></i> Last update <time datetime="2016-08-07T02:24:26.000Z" itemprop="dateUpdated">August 6th 2016</time> </span><span class="m-x-2" title="Click to go to the comments section"><a href="#disqus_thread"><i class="fa fa-comment-o" aria-hidden="true"></i> <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/">0</span> </a></span><span><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/gruntjs/">gruntjs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulpjs/">gulpjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li></ul></span></div></section><div class="art-container"></div><div class="row"><section class="col-sm-8 p-x-2"><div class="post-content"><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm run</div><div class="line">grunt --help</div><div class="line">gulp --tasks</div><div class="line">rake --tasks</div></pre></td></tr></table></figure></div></section><aside class="col-sm-4 p-x-2 col-xs-order-1"><section><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" data-ad-client="ca-pub-9725767907287651" data-ad-slot="6894900521" style="display:inline-block;width:300px;height:250px"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></section><section class="sticky-element--start"><div class="muted"><div class="p-y-1"><a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a> <a href="#" class="p-x-3" title="Improve this post" onclick='track("https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-06-25-List-tasks-in-npm-grunt-gulp-and-rake.md")'><i class="fa fa-pencil"></i> Improve</a></div></div></section></aside></div><div class="article-nav m-y-4"><a href="/blog/2016/04/08/creating-custom-angularjs-directives-for-beginners/" class="article-nav-older" class="article-nav-link-wrap"><strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong><div class="article-nav-title">Creating custom AngularJS directives for beginners</div></a></div><footer class="row sticky-element--end"><div class="col-xs-12"><section><div id="disqus_thread"></div><script>var disqus_config=function(){this.page.url="http://adrianmejia.com",this.page.identifier="http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/"};!function(){var t=document,a=t.createElement("script");a.src="//adrianmejia.disqus.com/embed.js",a.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(a)}()</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></section></div></footer></article></main><footer class="page-footer"><div class="container"><div class="p-y-2">&copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a> <span class="muted m-x-4" title="Thu Aug 11 2016 21:56:38 GMT-0400 (EDT)">v.obrxee</span></div></div></footer><script src="/js/main.js"></script><script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css"><script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script><link rel="stylesheet" href="/stylesheets/55_search.css"><script type="text/javascript">var addthis_config={data_ga_property:"UA-24183929-4",data_ga_social:!0}</script><script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script><script src="/js/posts.js"></script></body></html>
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Programming/">Programming</a> > <a class="category-link" href="/categories/Programming/Web-Development/">Web Development</a>
+    </div>
+    <h1>List tasks in NPM, Grunt, Gulp and Rake</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2016-08-07T02:24:26.000Z" itemprop="dateUpdated">August 6th 2016</time>
+      </span>
+
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/gruntjs/">gruntjs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulpjs/">gulpjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">10</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: ">
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content ">
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm run</div><div class="line">grunt --help</div><div class="line">gulp --tasks</div><div class="line">rake --tasks</div></pre></td></tr></table></figure>
+
+      </div>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-06-25-List-tasks-in-npm-grunt-gulp-and-rake.md')"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+    
+      <a href="/blog/2016/04/08/creating-custom-angularjs-directives-for-beginners/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">Creating custom AngularJS directives for beginners</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Thu Aug 11 2016 22:00:00 GMT-0400 (EDT)">
+            v.obrxk0
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+    <!-- social scripts -->
+    
+
+    
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>
