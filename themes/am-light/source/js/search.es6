@@ -80,6 +80,16 @@ function loadSearch() {
     })
   );
 
+  search.addWidget(
+    instantsearch.widgets.clearAll({
+      container: '#clear-all',
+      templates: {
+        link: '<i class="fa fa-times-circle" aria-hidden="true"></i> Reset filters'
+      },
+      autoHideContainer: false
+    })
+  );
+
 
   search.addWidget(
     instantsearch.widgets.rangeSlider({

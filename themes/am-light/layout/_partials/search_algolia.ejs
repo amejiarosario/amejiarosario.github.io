@@ -1,12 +1,8 @@
-<a href="#" id="search-modal" onclick="track('#search', 'search', true)">
+<a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
   <i class="fa fa-search" aria-hidden="true"></i>
 </a>
 
-<div id="search-overlay" class="overlay">
-  <button class="close-btn" id="close-search-overlay">
-    <span><i class="fa fa-close"></i></span>
-  </button>
-
+<div id="search-overlay" class="overlay" aria-hidden="true">
 
   <script id="movie" type="text/x-handlebars-template">
     <article class="movie">
@@ -58,27 +54,46 @@
         <input type="text" id="search-box" />
         <div id="stats"></div>
       </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
     </div>
 
     <div class="content">
       <div class="facets">
+
         <div class="facet">
-          <div class="facet-title">Tags</div>
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
           <div id="tags"></div>
         </div>
 
         <div class="facet">
-          <div class="facet-title">Categories</div>
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
           <div id="categories"></div>
         </div>
 
         <div class="facet">
-          <div class="facet-title">Popularity</div>
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
           <div id="ratings"></div>
         </div>
 
         <div class="facet">
-          <div class="facet-title">Year</div>
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
           <div id="year"></div>
         </div>
       </div>
