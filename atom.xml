@@ -236,9 +236,9 @@
       <category term="Technologies" scheme="http://adrianmejia.com/categories/Technologies/"/>
     
     
-      <category term="scalability" scheme="http://adrianmejia.com/tags/scalability/"/>
-    
       <category term="production" scheme="http://adrianmejia.com/tags/production/"/>
+    
+      <category term="scalability" scheme="http://adrianmejia.com/tags/scalability/"/>
     
   </entry>
   
@@ -346,9 +346,9 @@
       <category term="Technologies" scheme="http://adrianmejia.com/categories/Technologies/"/>
     
     
-      <category term="scalability" scheme="http://adrianmejia.com/tags/scalability/"/>
-    
       <category term="production" scheme="http://adrianmejia.com/tags/production/"/>
+    
+      <category term="scalability" scheme="http://adrianmejia.com/tags/scalability/"/>
     
   </entry>
   
@@ -2249,9 +2249,9 @@ For our example, we are going to create a model called <code>Todo</code>, which 
     
       <category term="startups" scheme="http://adrianmejia.com/tags/startups/"/>
     
-      <category term="scalability" scheme="http://adrianmejia.com/tags/scalability/"/>
-    
       <category term="production" scheme="http://adrianmejia.com/tags/production/"/>
+    
+      <category term="scalability" scheme="http://adrianmejia.com/tags/scalability/"/>
     
   </entry>
   
@@ -3079,6 +3079,74 @@ name,line1,line2,city,zip code,country</pre>
   </entry>
   
   <entry>
+    <title>git+ftp: Publish Git repository over FTP </title>
+    <link href="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
+    <id>http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/</id>
+    <published>2011-11-09T05:00:00.000Z</published>
+    <updated>2011-11-10T03:34:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p></p><p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
+<a id="more"></a><p></p>
+<div>
+    &nbsp;</div>
+<div>
+    In order to use git for local development and ftp (for hosting that doesn&#39;t support git/ssh) there are some options:</div>
+<div>
+    &nbsp;</div>
+<div>
+    <a href="https://github.com/resmo/git-ftp" target="_blank" rel="external">https://github.com/resmo/git-ftp</a> - Git powered FTP client written as shell script.</div>
+<div>
+    <a href="https://github.com/ezyang/git-ftp" target="_blank" rel="external">https://github.com/ezyang/git-ftp</a> - A quick and efficient way of pushing changed files to a website via FTP using python.</div>
+<div>
+    &nbsp;</div>
+<div>
+    I have use ezyang/git-ftp to deploy my drupal websites with good results.</div>
+<div>
+    &nbsp;</div>
+<div>
+    1. Install &#39;git-python&#39; first from <a href="http://gitorious.org/git-python" target="_blank" rel="external">http://gitorious.org/git-python</a> -or- using <code>easy_install gitpython</code></div>
+<div>
+    2. git clone <a href="https://github.com/ezyang/git-ftp.git" target="_blank" rel="external">https://github.com/ezyang/git-ftp.git</a></div>
+<div>
+    3. You can create an alias for easy access in <code>~/.bash_profile</code> such as <code>alias git-ftp=&amp;quot;python ~/git-ftp/git-ftp.py &amp;quot;</code></div>
+<div>
+    4. Just run the command <code>python ~/git-ftp/git-ftp.py</code> where is your git repository that you want to upload. I will prompt all the ftp details and also will create the config file for you.</div>
+<div>
+    &nbsp;</div>
+<div>
+    You might want to setup files to ignore. If you are using drupal you should create a .gitignore file with a content similar to this:</div>
+<div>
+    &nbsp;</div>
+<div>
+    <pre>
+.DS_Store<em>
+
+
+# Ignore configuration files that may contain sensitive information.
+
+sites/</em>/settings<em>.php
+
+
+# Ignore paths that contain user-generated content.
+
+sites/</em>/files
+
+sites/*/private</pre>
+</div>
+<div>
+    &nbsp;</div>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;p&gt;I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &amp;nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>How to setup Drupal WYSIWYG and Images uploading?</title>
     <link href="http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
     <id>http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/</id>
@@ -3230,74 +3298,6 @@ dbs.Close
     <summary type="html">
     
       &lt;p&gt;Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>git+ftp: Publish Git repository over FTP </title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
-    <id>http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/</id>
-    <published>2011-11-09T05:00:00.000Z</published>
-    <updated>2011-11-10T03:34:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p></p><p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
-<a id="more"></a><p></p>
-<div>
-    &nbsp;</div>
-<div>
-    In order to use git for local development and ftp (for hosting that doesn&#39;t support git/ssh) there are some options:</div>
-<div>
-    &nbsp;</div>
-<div>
-    <a href="https://github.com/resmo/git-ftp" target="_blank" rel="external">https://github.com/resmo/git-ftp</a> - Git powered FTP client written as shell script.</div>
-<div>
-    <a href="https://github.com/ezyang/git-ftp" target="_blank" rel="external">https://github.com/ezyang/git-ftp</a> - A quick and efficient way of pushing changed files to a website via FTP using python.</div>
-<div>
-    &nbsp;</div>
-<div>
-    I have use ezyang/git-ftp to deploy my drupal websites with good results.</div>
-<div>
-    &nbsp;</div>
-<div>
-    1. Install &#39;git-python&#39; first from <a href="http://gitorious.org/git-python" target="_blank" rel="external">http://gitorious.org/git-python</a> -or- using <code>easy_install gitpython</code></div>
-<div>
-    2. git clone <a href="https://github.com/ezyang/git-ftp.git" target="_blank" rel="external">https://github.com/ezyang/git-ftp.git</a></div>
-<div>
-    3. You can create an alias for easy access in <code>~/.bash_profile</code> such as <code>alias git-ftp=&amp;quot;python ~/git-ftp/git-ftp.py &amp;quot;</code></div>
-<div>
-    4. Just run the command <code>python ~/git-ftp/git-ftp.py</code> where is your git repository that you want to upload. I will prompt all the ftp details and also will create the config file for you.</div>
-<div>
-    &nbsp;</div>
-<div>
-    You might want to setup files to ignore. If you are using drupal you should create a .gitignore file with a content similar to this:</div>
-<div>
-    &nbsp;</div>
-<div>
-    <pre>
-.DS_Store<em>
-
-
-# Ignore configuration files that may contain sensitive information.
-
-sites/</em>/settings<em>.php
-
-
-# Ignore paths that contain user-generated content.
-
-sites/</em>/files
-
-sites/*/private</pre>
-</div>
-<div>
-    &nbsp;</div>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;p&gt;I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &amp;nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.&lt;/p&gt;
     
     </summary>
     

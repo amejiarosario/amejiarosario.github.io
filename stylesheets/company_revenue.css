@@ -82,9 +82,6 @@ ul#companies-holder {
 #companies-holder li a:hover {
   background-color: rgba(170, 35, 0, 0.7);
   -webkit-transition: background-color 0.3s linear;
-  -moz-transition: background-color 0.3s linear;
-  -ms-transition: background-color 0.3s linear;
-  -o-transition: background-color 0.3s linear;
   transition: background-color 0.3s linear;
 }
 
@@ -92,13 +89,9 @@ ul#companies-holder {
   width: 104px;
   height: 104px;
   background: -webkit-gradient(linear, left top, left bottom, from(#d2d2d2), to(white)) 0 0;
-  background: -moz-linear-gradient(top, #d2d2d2, white) 0 0;
-  background: -ms-linear-gradient(top, #d2d2d2, white);
   background: -o-linear-gradient(top, #d2d2d2, white);
   border: 2px solid #fff;
   border-radius: 54px;
-  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   display: table-cell;
   vertical-align: middle;

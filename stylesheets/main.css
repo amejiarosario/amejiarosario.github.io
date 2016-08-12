@@ -2184,6 +2184,15 @@ a {
   .bio-box .muted a {
     color: #0E557E; }
 
+[aria-hidden="true"] {
+  display: none; }
+
+[aria-hidden="false"] {
+  display: block; }
+
+.noscroll {
+  overflow: hidden; }
+
 .overlay {
   background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
@@ -2191,35 +2200,7 @@ a {
   right: 0;
   left: 0;
   bottom: 0;
-  z-index: 16777270;
-  display: none; }
-  .overlay .close-btn {
-    position: fixed;
-    right: 20px;
-    top: 20px;
-    width: 30px;
-    height: 30px;
-    margin: 0;
-    padding: 0;
-    z-index: 16777274;
-    background: none;
-    background-color: #fff;
-    border: none;
-    border-radius: 50%;
-    color: rgba(0, 0, 0, 0.8);
-    font-size: 11px;
-    cursor: pointer;
-    -webkit-transition: all 0.4s ease;
-    transition: all 0.4s ease; }
-    .overlay .close-btn span {
-      font-size: 28px;
-      line-height: 0;
-      vertical-align: initial;
-      padding-left: 3px; }
-    .overlay .close-btn:after {
-      content: '';
-      display: inline-block;
-      height: 22px; }
+  overflow-y: scroll; }
 
 #mc_embed_signup input.email {
   width: 250px !important; }
