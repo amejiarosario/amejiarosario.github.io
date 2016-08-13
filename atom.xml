@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://adrianmejia.com/"/>
-  <updated>2016-08-07T02:24:26.000Z</updated>
+  <updated>2016-08-12T20:30:23.000Z</updated>
   <id>http://adrianmejia.com/</id>
   
   <author>
@@ -14,6 +14,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Getting started with Node.js modules: require, exports, imports and beyond</title>
+    <link href="http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/"/>
+    <id>http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/</id>
+    <published>2016-08-12T20:30:23.000Z</published>
+    <updated>2016-08-12T20:30:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using.</p>
+<a id="more"></a>
+<p>In this section, we are going to cover how to create Node modules and each one of its components:</p>
+<ul>
+<li>Require</li>
+<li>Exports</li>
+<li>Module.exports</li>
+</ul>
+<blockquote>
+<p>We are using Node 6+ for the examples and ES6 syntax. But the concepts are true for any version.</p>
+</blockquote>
+<h1 id="Require">Require<a href="#Require" class="headerlink" title="Require"></a></h1><p><code>require</code> are used to consume modules. It allows you to include modules into your programs. You can include built-in core Node.js modules, community-based modules (node_modules) and local modules.</p>
+<p>Let’s say we want to read a file from the filesystem. Node has a core module called ‘fs’:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line marked"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.readFile(<span class="string">'./file.txt'</span>, <span class="string">'utf-8'</span>, (err, data) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span>(err) &#123; <span class="keyword">throw</span> err; &#125;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'data: '</span>, data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>As you can see, we imported the “fs” module into our program. It allows us to any function attached to it, like “readFile”.</p>
+<p>Require will look for files in the following order:</p>
+<ol>
+<li>Built-in core Node.js modules (like <code>fs</code>)</li>
+<li>Modules in <code>node_modules</code> folder.</li>
+<li>If the module name has a <code>./</code>, <code>/</code> or <code>../</code>, it will look for the directory/file in the given path. It matches the extensions: <code>*.js</code>, <code>*.json</code> and <code>*.node</code>.</li>
+</ol>
+<h1 id="Exports">Exports<a href="#Exports" class="headerlink" title="Exports"></a></h1><p><code>exports</code> are used to create modules. It allows you to export your own objects and functions. Let’s do an example:</p>
+<figure class="highlight javascript"><figcaption><span>circle.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PI = <span class="number">3.14159265359</span>;</div><div class="line">exports.area = (radius) =&gt; <span class="built_in">Math</span>.pow(radius, <span class="number">2</span>) * PI;</div><div class="line">exports.circunference = (radius) =&gt; <span class="number">2</span> * radius * PI;</div></pre></td></tr></table></figure>
+<p>In the code below, we are exporting the <code>area</code> function. We defined the constant PI but this is only accessible within the module. Only the elements associated to <code>exports</code> are accessible outside the module.</p>
+<p>So, we can consume it using <code>require</code> in another file like follows:</p>
+<figure class="highlight javascript"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> circle = <span class="built_in">require</span>(<span class="string">'./circle'</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> r = <span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`Circle with radius <span class="subst">$&#123;r&#125;</span> has</span></div><div class="line">  area: <span class="subst">$&#123;circle.area(r)&#125;</span>;</div><div class="line">  circunference: <span class="subst">$&#123;circle.circunference(r)&#125;</span>`);</div></pre></td></tr></table></figure>
+<p>Noticed that this time we prefix the module name with ‘./‘. That indicates that the module is a local file.</p>
+<h1 id="Module-Wrapper">Module Wrapper<a href="#Module-Wrapper" class="headerlink" title="Module Wrapper"></a></h1><p>You can think of each module as self-contained function like the following one:</p>
+<figure class="highlight javascript"><figcaption><span>Module Wrapper</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</div><div class="line">  <span class="built_in">module</span>.exports = exports = &#123;&#125;;</div><div class="line"></div><div class="line">  <span class="comment">// Your module code ...</span></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>We have already covered <code>exports</code> and <code>require</code>. Notice the relationship between <code>module.exports</code> and <code>exports</code>. They points to the same reference. However, if you assign something directly to <code>exports</code> you will break its link to <code>module.exports</code>. More on that in the next section.</p>
+<p>For our convenience <code>__filename</code> and <code>__dirname</code> are defined. They provide the full path to the current file and directory. The latter excludes the filename and just print out the directory path.</p>
+<p>For instance, for our <code>./circle.js</code> module, it would be something like this:</p>
+<ul>
+<li><p><code>__filename</code>: <code>/User/adrian/code/circle.js</code></p>
+</li>
+<li><p><code>__dirname</code>: <code>/User/adrian/code</code></p>
+</li>
+</ul>
+<p>Ok, we have covered <code>exports</code>, <code>require</code>, <code>__filename</code>, and <code>__dirname</code>. The only one we haven’t cover is <code>module</code>. Let’s go for it!</p>
+<h1 id="Module-exports-vs-Exports">Module.exports vs Exports<a href="#Module-exports-vs-Exports" class="headerlink" title="Module.exports vs Exports"></a></h1><p>Module is not a global, it is local for each module. It contains metadata about a module, such as module id, exports, parent, children, …</p>
+<p><code>exports</code> is an alias of <code>module.exports</code>. So, whatever you assign to <code>exports</code> is also available on <code>module.exports</code>. However, if you assign something directly to exports, then you lose the shortcut to <code>module.exports</code>. E.g.</p>
+<figure class="highlight javascript"><figcaption><span>cat.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</div><div class="line">  makeSound() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'Meowww'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// exports = Cat; // It will not work</span></div><div class="line"><span class="built_in">module</span>.exports = Cat;</div></pre></td></tr></table></figure>
+<p>Try the following example with <code>exports</code> and then with <code>module.exports</code>.</p>
+<figure class="highlight javascript"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Cat = <span class="built_in">require</span>(<span class="string">'./cat'</span>);</div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat();</div><div class="line"><span class="built_in">console</span>.log(cat.makeSound());</div></pre></td></tr></table></figure>
+<p>To sum up, when to use <code>module.exports</code> vs <code>exports</code>:</p>
+<p>Use <code>exports</code> to:</p>
+<ul>
+<li>Export named function. e.g. <code>exports.area</code>, <code>exports.circunference</code>.</li>
+</ul>
+<p>Use <code>module.exports</code> to:</p>
+<ol>
+<li><p>If you want to export an object, class, function at the root level (e.g. <code>module.exports = Cat</code></p>
+</li>
+<li><p>If you want to return a single object that exposes multiple assignments. e.g.<code>module.exports = {area: area, circumference: circunference};</code></p>
+</li>
+</ol>
+<h1 id="Imports">Imports<a href="#Imports" class="headerlink" title="Imports"></a></h1><p>Imports are not available in Node as the version 6. However, it might come in future versions.</p>
+<figure class="highlight javascript"><figcaption><span>future of modules in javascript</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> circle <span class="keyword">from</span> <span class="string">'./circle'</span>;</div><div class="line"><span class="keyword">import</span> &#123;area, circumference&#125; <span class="keyword">from</span> <span class="string">'./circle'</span>;</div></pre></td></tr></table></figure>
+<p>You can use it today, using transpilers such as Traceur Compiler, Babel or Rollup. But, that will be for another post.</p>
+<h1 id="Summary">Summary<a href="#Summary" class="headerlink" title="Summary"></a></h1><p>We learned about how to create Node.js modules and use it in our code.  Modules allow us to reuse code easily. They provide functionality that is isolated from other modules. Required is used to load modules. Export and module exports allow defining what parts of our code we want to expose. We also explored the difference between module.exports and exports. Finally, we took a quick pick about what’s coming up for modules using <code>imports</code>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://adrianmejia.com/categories/Programming/"/>
+    
+      <category term="Web Development" scheme="http://adrianmejia.com/categories/Programming/Web-Development/"/>
+    
+    
+      <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
+    
+      <category term="NodeJS" scheme="http://adrianmejia.com/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>List tasks in NPM, Grunt, Gulp and Rake</title>
@@ -2003,9 +2089,9 @@ for(c=0; c&lt;n; c++){
       <category term="Web Development" scheme="http://adrianmejia.com/categories/Technologies/Web-Development/"/>
     
     
-      <category term="backbonejs" scheme="http://adrianmejia.com/tags/backbonejs/"/>
-    
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
+    
+      <category term="backbonejs" scheme="http://adrianmejia.com/tags/backbonejs/"/>
     
       <category term="tutorial_backbonejs" scheme="http://adrianmejia.com/tags/tutorial-backbonejs/"/>
     
@@ -2054,9 +2140,9 @@ for(c=0; c&lt;n; c++){
       <category term="Web Development" scheme="http://adrianmejia.com/categories/Technologies/Web-Development/"/>
     
     
-      <category term="backbonejs" scheme="http://adrianmejia.com/tags/backbonejs/"/>
-    
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
+    
+      <category term="backbonejs" scheme="http://adrianmejia.com/tags/backbonejs/"/>
     
       <category term="tutorial_backbonejs" scheme="http://adrianmejia.com/tags/tutorial-backbonejs/"/>
     
@@ -2140,9 +2226,9 @@ For our example, we are going to create a model called <code>Todo</code>, which 
       <category term="Web Development" scheme="http://adrianmejia.com/categories/Technologies/Web-Development/"/>
     
     
-      <category term="backbonejs" scheme="http://adrianmejia.com/tags/backbonejs/"/>
-    
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
+    
+      <category term="backbonejs" scheme="http://adrianmejia.com/tags/backbonejs/"/>
     
       <category term="tutorial_backbonejs" scheme="http://adrianmejia.com/tags/tutorial-backbonejs/"/>
     
@@ -2211,9 +2297,9 @@ For our example, we are going to create a model called <code>Todo</code>, which 
       <category term="Web Development" scheme="http://adrianmejia.com/categories/Technologies/Web-Development/"/>
     
     
-      <category term="backbonejs" scheme="http://adrianmejia.com/tags/backbonejs/"/>
-    
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
+    
+      <category term="backbonejs" scheme="http://adrianmejia.com/tags/backbonejs/"/>
     
       <category term="tutorial_backbonejs" scheme="http://adrianmejia.com/tags/tutorial-backbonejs/"/>
     
@@ -3079,74 +3165,6 @@ name,line1,line2,city,zip code,country</pre>
   </entry>
   
   <entry>
-    <title>git+ftp: Publish Git repository over FTP </title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
-    <id>http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/</id>
-    <published>2011-11-09T05:00:00.000Z</published>
-    <updated>2011-11-10T03:34:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p></p><p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
-<a id="more"></a><p></p>
-<div>
-    &nbsp;</div>
-<div>
-    In order to use git for local development and ftp (for hosting that doesn&#39;t support git/ssh) there are some options:</div>
-<div>
-    &nbsp;</div>
-<div>
-    <a href="https://github.com/resmo/git-ftp" target="_blank" rel="external">https://github.com/resmo/git-ftp</a> - Git powered FTP client written as shell script.</div>
-<div>
-    <a href="https://github.com/ezyang/git-ftp" target="_blank" rel="external">https://github.com/ezyang/git-ftp</a> - A quick and efficient way of pushing changed files to a website via FTP using python.</div>
-<div>
-    &nbsp;</div>
-<div>
-    I have use ezyang/git-ftp to deploy my drupal websites with good results.</div>
-<div>
-    &nbsp;</div>
-<div>
-    1. Install &#39;git-python&#39; first from <a href="http://gitorious.org/git-python" target="_blank" rel="external">http://gitorious.org/git-python</a> -or- using <code>easy_install gitpython</code></div>
-<div>
-    2. git clone <a href="https://github.com/ezyang/git-ftp.git" target="_blank" rel="external">https://github.com/ezyang/git-ftp.git</a></div>
-<div>
-    3. You can create an alias for easy access in <code>~/.bash_profile</code> such as <code>alias git-ftp=&amp;quot;python ~/git-ftp/git-ftp.py &amp;quot;</code></div>
-<div>
-    4. Just run the command <code>python ~/git-ftp/git-ftp.py</code> where is your git repository that you want to upload. I will prompt all the ftp details and also will create the config file for you.</div>
-<div>
-    &nbsp;</div>
-<div>
-    You might want to setup files to ignore. If you are using drupal you should create a .gitignore file with a content similar to this:</div>
-<div>
-    &nbsp;</div>
-<div>
-    <pre>
-.DS_Store<em>
-
-
-# Ignore configuration files that may contain sensitive information.
-
-sites/</em>/settings<em>.php
-
-
-# Ignore paths that contain user-generated content.
-
-sites/</em>/files
-
-sites/*/private</pre>
-</div>
-<div>
-    &nbsp;</div>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;p&gt;I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &amp;nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>How to setup Drupal WYSIWYG and Images uploading?</title>
     <link href="http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
     <id>http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/</id>
@@ -3261,6 +3279,74 @@ sites/*/private</pre>
   </entry>
   
   <entry>
+    <title>git+ftp: Publish Git repository over FTP </title>
+    <link href="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
+    <id>http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/</id>
+    <published>2011-11-09T05:00:00.000Z</published>
+    <updated>2011-11-10T03:34:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p></p><p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
+<a id="more"></a><p></p>
+<div>
+    &nbsp;</div>
+<div>
+    In order to use git for local development and ftp (for hosting that doesn&#39;t support git/ssh) there are some options:</div>
+<div>
+    &nbsp;</div>
+<div>
+    <a href="https://github.com/resmo/git-ftp" target="_blank" rel="external">https://github.com/resmo/git-ftp</a> - Git powered FTP client written as shell script.</div>
+<div>
+    <a href="https://github.com/ezyang/git-ftp" target="_blank" rel="external">https://github.com/ezyang/git-ftp</a> - A quick and efficient way of pushing changed files to a website via FTP using python.</div>
+<div>
+    &nbsp;</div>
+<div>
+    I have use ezyang/git-ftp to deploy my drupal websites with good results.</div>
+<div>
+    &nbsp;</div>
+<div>
+    1. Install &#39;git-python&#39; first from <a href="http://gitorious.org/git-python" target="_blank" rel="external">http://gitorious.org/git-python</a> -or- using <code>easy_install gitpython</code></div>
+<div>
+    2. git clone <a href="https://github.com/ezyang/git-ftp.git" target="_blank" rel="external">https://github.com/ezyang/git-ftp.git</a></div>
+<div>
+    3. You can create an alias for easy access in <code>~/.bash_profile</code> such as <code>alias git-ftp=&amp;quot;python ~/git-ftp/git-ftp.py &amp;quot;</code></div>
+<div>
+    4. Just run the command <code>python ~/git-ftp/git-ftp.py</code> where is your git repository that you want to upload. I will prompt all the ftp details and also will create the config file for you.</div>
+<div>
+    &nbsp;</div>
+<div>
+    You might want to setup files to ignore. If you are using drupal you should create a .gitignore file with a content similar to this:</div>
+<div>
+    &nbsp;</div>
+<div>
+    <pre>
+.DS_Store<em>
+
+
+# Ignore configuration files that may contain sensitive information.
+
+sites/</em>/settings<em>.php
+
+
+# Ignore paths that contain user-generated content.
+
+sites/</em>/files
+
+sites/*/private</pre>
+</div>
+<div>
+    &nbsp;</div>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;p&gt;I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &amp;nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>How to execute SQL statements on MS Access?</title>
     <link href="http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
     <id>http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/</id>
@@ -3301,45 +3387,6 @@ dbs.Close
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Update Drupal sites</title>
-    <link href="http://adrianmejia.com/blog/2011/11/04/update-drupal-sites/"/>
-    <id>http://adrianmejia.com/blog/2011/11/04/update-drupal-sites/</id>
-    <published>2011-11-04T04:00:00.000Z</published>
-    <updated>2011-11-04T06:04:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>The better way to learn is by a concrete example. I update a site called “heyshuga” from Drupal 7.8 to 7.9. Here are the steps</p>
-<a id="more"></a>
-<ol>
-<li>Download the latest version of drupal</li>
-</ol>
-<p>$ wget <a href="http://drupal.org/files/projects/drupal-x.y.tar.gz" target="_blank" rel="external">http://drupal.org/files/projects/drupal-x.y.tar.gz</a>
-$ tar -zxvf drupal-x.y.tar.gz</p>
-<p>-or using drush-</p>
-<p>$ drush dl drupal</p>
-<ol>
-<li>Copy the new files to the old directory</li>
-</ol>
-<p>$ cp -R drupal-x.y/* drupal-x.y/.htaccess /path/to/your/installation</p>
-<ol>
-<li>Run the drupal update</li>
-</ol>
-<p>www.yousite.com/update.php</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;The better way to learn is by a concrete example. I update a site called “heyshuga” from Drupal 7.8 to 7.9. Here are the steps&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Technologies" scheme="http://adrianmejia.com/categories/Technologies/"/>
-    
-    
-      <category term="drupal" scheme="http://adrianmejia.com/tags/drupal/"/>
     
   </entry>
   

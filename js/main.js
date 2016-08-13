@@ -1,6 +1,8 @@
-// GA: Global functions
 "use strict";
 
+var app = {};
+
+// GA: Global functions
 function createFunctionWithTimeout(callback, opt_timeout) {
   var called = false;
 
@@ -65,6 +67,11 @@ function loadOverlay() {
       /* Detect the button class name */
       var overlayOpen = this.className === "open-overlay";
 
+      // triggers search
+      if (overlayOpen && app.search && app.search.start) {
+        app.search.start();
+      }
+
       /* Toggle the aria-hidden state on the overlay and the
        no-scroll class on the body */
       overlay.setAttribute("aria-hidden", !overlayOpen);
@@ -80,6 +87,6 @@ function loadOverlay() {
 
 // Onload scripts
 window.onload = function () {
-  loadSearch();
+  app.search = loadSearch();
   loadOverlay();
 };

@@ -2,14 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/</loc>
+    <loc>http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/</loc>
+    
+    <lastmod>2016-08-12T20:30:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://adrianmejia.com/stylesheets/company_revenue.css</loc>
     
     <lastmod>2016-08-07T02:24:26.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://adrianmejia.com/stylesheets/company_revenue.css</loc>
+    <loc>http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/</loc>
     
     <lastmod>2016-08-07T02:24:26.000Z</lastmod>
     

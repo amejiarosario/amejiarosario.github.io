@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Getting started with Node.js modules: require, exports, imports and beyond | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using." />
+    <meta property="og:image" content="http://adrianmejia.com/images/node-modules-large.png" />
+    <meta property="og:title" content="Getting started with Node.js modules: require, exports, imports and beyond" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('require', 'linkid');
+ga('set', 'transport', 'beacon');
+ga('set', 'appName', 'adrianmejia.com');
+ga('send', 'pageview');
+ga('send', 'screenview', {screenName: document.title });
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.svg" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Getting started with Node.js modules: require, exports, imports and beyond",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "http://adrianmejia.com/images/node-modules-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2016-08-12T16:30:23-04:00",
+  "dateModified": "2016-08-12T16:30:23-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://adrianmejia.com/images/logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "description": "Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Programming/">Programming</a> > <a class="category-link" href="/categories/Programming/Web-Development/">Web Development</a>
+    </div>
+    <h1>Getting started with Node.js modules: require, exports, imports and beyond</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2016-08-12T20:30:23.000Z" itemprop="dateUpdated">August 12th 2016</time>
+      </span>
+
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJS/">NodeJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">11</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #333">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/node-modules-large.png">
+        <source srcset="/images/node-modules-small.png">
+        <img src="/images/node-modules-large.png" alt="Getting started with Node.js modules: require, exports, imports and beyond">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using.</p>
+<a id="more"></a>
+<p>In this section, we are going to cover how to create Node modules and each one of its components:</p>
+<ul>
+<li>Require</li>
+<li>Exports</li>
+<li>Module.exports</li>
+</ul>
+<blockquote>
+<p>We are using Node 6+ for the examples and ES6 syntax. But the concepts are true for any version.</p>
+</blockquote>
+<h1 id="Require">Require<a href="#Require" class="headerlink" title="Require"></a></h1><p><code>require</code> are used to consume modules. It allows you to include modules into your programs. You can include built-in core Node.js modules, community-based modules (node_modules) and local modules.</p>
+<p>Let’s say we want to read a file from the filesystem. Node has a core module called ‘fs’:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line marked"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.readFile(<span class="string">'./file.txt'</span>, <span class="string">'utf-8'</span>, (err, data) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span>(err) &#123; <span class="keyword">throw</span> err; &#125;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'data: '</span>, data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>As you can see, we imported the “fs” module into our program. It allows us to any function attached to it, like “readFile”.</p>
+<p>Require will look for files in the following order:</p>
+<ol>
+<li>Built-in core Node.js modules (like <code>fs</code>)</li>
+<li>Modules in <code>node_modules</code> folder.</li>
+<li>If the module name has a <code>./</code>, <code>/</code> or <code>../</code>, it will look for the directory/file in the given path. It matches the extensions: <code>*.js</code>, <code>*.json</code> and <code>*.node</code>.</li>
+</ol>
+<h1 id="Exports">Exports<a href="#Exports" class="headerlink" title="Exports"></a></h1><p><code>exports</code> are used to create modules. It allows you to export your own objects and functions. Let’s do an example:</p>
+<figure class="highlight javascript"><figcaption><span>circle.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PI = <span class="number">3.14159265359</span>;</div><div class="line">exports.area = (radius) =&gt; <span class="built_in">Math</span>.pow(radius, <span class="number">2</span>) * PI;</div><div class="line">exports.circunference = (radius) =&gt; <span class="number">2</span> * radius * PI;</div></pre></td></tr></table></figure>
+<p>In the code below, we are exporting the <code>area</code> function. We defined the constant PI but this is only accessible within the module. Only the elements associated to <code>exports</code> are accessible outside the module.</p>
+<p>So, we can consume it using <code>require</code> in another file like follows:</p>
+<figure class="highlight javascript"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> circle = <span class="built_in">require</span>(<span class="string">'./circle'</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> r = <span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`Circle with radius <span class="subst">$&#123;r&#125;</span> has</span></div><div class="line">  area: <span class="subst">$&#123;circle.area(r)&#125;</span>;</div><div class="line">  circunference: <span class="subst">$&#123;circle.circunference(r)&#125;</span>`);</div></pre></td></tr></table></figure>
+<p>Noticed that this time we prefix the module name with ‘./‘. That indicates that the module is a local file.</p>
+<h1 id="Module-Wrapper">Module Wrapper<a href="#Module-Wrapper" class="headerlink" title="Module Wrapper"></a></h1><p>You can think of each module as self-contained function like the following one:</p>
+<figure class="highlight javascript"><figcaption><span>Module Wrapper</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</div><div class="line">  <span class="built_in">module</span>.exports = exports = &#123;&#125;;</div><div class="line"></div><div class="line">  <span class="comment">// Your module code ...</span></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>We have already covered <code>exports</code> and <code>require</code>. Notice the relationship between <code>module.exports</code> and <code>exports</code>. They points to the same reference. However, if you assign something directly to <code>exports</code> you will break its link to <code>module.exports</code>. More on that in the next section.</p>
+<p>For our convenience <code>__filename</code> and <code>__dirname</code> are defined. They provide the full path to the current file and directory. The latter excludes the filename and just print out the directory path.</p>
+<p>For instance, for our <code>./circle.js</code> module, it would be something like this:</p>
+<ul>
+<li><p><code>__filename</code>: <code>/User/adrian/code/circle.js</code></p>
+</li>
+<li><p><code>__dirname</code>: <code>/User/adrian/code</code></p>
+</li>
+</ul>
+<p>Ok, we have covered <code>exports</code>, <code>require</code>, <code>__filename</code>, and <code>__dirname</code>. The only one we haven’t cover is <code>module</code>. Let’s go for it!</p>
+<h1 id="Module-exports-vs-Exports">Module.exports vs Exports<a href="#Module-exports-vs-Exports" class="headerlink" title="Module.exports vs Exports"></a></h1><p>Module is not a global, it is local for each module. It contains metadata about a module, such as module id, exports, parent, children, …</p>
+<p><code>exports</code> is an alias of <code>module.exports</code>. So, whatever you assign to <code>exports</code> is also available on <code>module.exports</code>. However, if you assign something directly to exports, then you lose the shortcut to <code>module.exports</code>. E.g.</p>
+<figure class="highlight javascript"><figcaption><span>cat.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</div><div class="line">  makeSound() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'Meowww'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// exports = Cat; // It will not work</span></div><div class="line"><span class="built_in">module</span>.exports = Cat;</div></pre></td></tr></table></figure>
+<p>Try the following example with <code>exports</code> and then with <code>module.exports</code>.</p>
+<figure class="highlight javascript"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Cat = <span class="built_in">require</span>(<span class="string">'./cat'</span>);</div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat();</div><div class="line"><span class="built_in">console</span>.log(cat.makeSound());</div></pre></td></tr></table></figure>
+<p>To sum up, when to use <code>module.exports</code> vs <code>exports</code>:</p>
+<p>Use <code>exports</code> to:</p>
+<ul>
+<li>Export named function. e.g. <code>exports.area</code>, <code>exports.circunference</code>.</li>
+</ul>
+<p>Use <code>module.exports</code> to:</p>
+<ol>
+<li><p>If you want to export an object, class, function at the root level (e.g. <code>module.exports = Cat</code></p>
+</li>
+<li><p>If you want to return a single object that exposes multiple assignments. e.g.<code>module.exports = {area: area, circumference: circunference};</code></p>
+</li>
+</ol>
+<h1 id="Imports">Imports<a href="#Imports" class="headerlink" title="Imports"></a></h1><p>Imports are not available in Node as the version 6. However, it might come in future versions.</p>
+<figure class="highlight javascript"><figcaption><span>future of modules in javascript</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> circle <span class="keyword">from</span> <span class="string">'./circle'</span>;</div><div class="line"><span class="keyword">import</span> &#123;area, circumference&#125; <span class="keyword">from</span> <span class="string">'./circle'</span>;</div></pre></td></tr></table></figure>
+<p>You can use it today, using transpilers such as Traceur Compiler, Babel or Rollup. But, that will be for another post.</p>
+<h1 id="Summary">Summary<a href="#Summary" class="headerlink" title="Summary"></a></h1><p>We learned about how to create Node.js modules and use it in our code.  Modules allow us to reuse code easily. They provide functionality that is isolated from other modules. Required is used to load modules. Export and module exports allow defining what parts of our code we want to expose. We also explored the difference between module.exports and exports. Finally, we took a quick pick about what’s coming up for modules using <code>imports</code>.</p>
+
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname, {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-08-12-Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond.md')"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Require"><span class="toc-number">1.</span> <span class="toc-text">Require</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Exports"><span class="toc-number">2.</span> <span class="toc-text">Exports</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-Wrapper"><span class="toc-number">3.</span> <span class="toc-text">Module Wrapper</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-exports-vs-Exports"><span class="toc-number">4.</span> <span class="toc-text">Module.exports vs Exports</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Imports"><span class="toc-number">5.</span> <span class="toc-text">Imports</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">6.</span> <span class="toc-text">Summary</span></a></li></ol>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:inline-block;width:300px;height:600px;"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+    
+      <a href="/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">List tasks in NPM, Grunt, Gulp and Rake</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Sat Aug 13 2016 11:39:02 GMT-0400 (EDT)">
+            v.obuu52
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+    <!-- social scripts -->
+    
+
+    
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>

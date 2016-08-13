@@ -2200,7 +2200,8 @@ a {
   right: 0;
   left: 0;
   bottom: 0;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  z-index: 999999; }
 
 #mc_embed_signup input.email {
   width: 250px !important; }
