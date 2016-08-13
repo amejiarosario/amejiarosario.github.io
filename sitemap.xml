@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://adrianmejia.com/niceties/adrian-book-sd.html</loc>
+    
+    <lastmod>2016-08-13T16:08:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://adrianmejia.com/niceties/adrian-book-sq.html</loc>
+    
+    <lastmod>2016-08-13T16:06:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://adrianmejia.com/niceties/adrian-book-long.html</loc>
+    
+    <lastmod>2016-08-13T16:06:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/</loc>
     
     <lastmod>2016-08-12T20:30:23.000Z</lastmod>
@@ -16,6 +37,13 @@
   </url>
   
   <url>
+    <loc>http://adrianmejia.com/es/index.html</loc>
+    
+    <lastmod>2016-08-07T02:24:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/</loc>
     
     <lastmod>2016-08-07T02:24:26.000Z</lastmod>
@@ -24,13 +52,6 @@
   
   <url>
     <loc>http://adrianmejia.com/page/index.html</loc>
-    
-    <lastmod>2016-08-07T02:24:26.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://adrianmejia.com/es/index.html</loc>
     
     <lastmod>2016-08-07T02:24:26.000Z</lastmod>
     
