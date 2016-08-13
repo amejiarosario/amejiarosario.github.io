@@ -38,6 +38,7 @@
     }
   }
 
+  // executes only after 300 ms of inactivity
   function repaintStickyElement() {
     window.requestAnimationFrame(setStickyClass);
   };
@@ -63,6 +64,8 @@
 // Scrollspy
 (function Scrollspy() {
   var links = document.querySelectorAll('.toc a');
+  var timeout;
+
 
   if(!links) {
     return;
@@ -110,7 +113,17 @@
     setActiveClass();
   }
 
-  window.addEventListener('scroll', setActiveClass);
+  function executeSpyScroll() {
+    if(timeout){
+      clearTimeout(timeout);
+    }
+
+    setTimeout(function () {
+      setActiveClass()
+    }, 300);
+  }
+
+  window.addEventListener('scroll', executeSpyScroll);
   window.addEventListener('resize', initialize);
   // console.log(ids, offsets);
 })();

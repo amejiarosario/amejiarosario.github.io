@@ -39,16 +39,22 @@ In this section, we are going to cover how to create Node modules and each one o
 
 Let's say we want to read a file from the filesystem. Node has a core module called 'fs':
 
-```javascript
+{% codeblock lang:js mark:1 %}
 const fs = require('fs');
 
 fs.readFile('./file.txt', 'utf-8', (err, data) => {
   if(err) { throw err; }
   console.log('data: ', data);
 });
-```
+{% endcodeblock %}
 
 As you can see, we imported the "fs" module into our program. It allows us to any function attached to it, like "readFile".
+
+Require will look for files in the following order:
+
+1. Built-in core Node.js modules (like `fs`)
+2. Modules in `node_modules` folder.
+3. If the module name has a `./`, `/` or `../`, it will look for the directory/file in the given path. It matches the extensions: `*.js`, `*.json` and `*.node`.
 
 # Exports
 
@@ -81,9 +87,14 @@ You can think of each module as self-contained function like the following one:
 
 ```javascript Module Wrapper
 (function (exports, require, module, __filename, __dirname) {
+  module.exports = exports = {};
+
   // Your module code ...
+
 });
 ```
+
+We have already covered `exports` and `require`. Notice the relationship between `module.exports` and `exports`. They points to the same reference. However, if you assign something directly to `exports` you will break its link to `module.exports`. More on that in the next section.
 
 For our convenience `__filename` and `__dirname` are defined. They provide the full path to the current file and directory. The latter excludes the filename and just print out the directory path.
 

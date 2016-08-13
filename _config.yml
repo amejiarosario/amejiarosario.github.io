@@ -99,24 +99,25 @@ algolia:
   apiKey: 33db42bbc1d2631fd68f26ebefa35aa8 #<%- process.env['ALGOLIA_API_KEY'] || "33db42bbc1d2631fd68f26ebefa35aa8" %>
   adminApiKey: 52604a19cad0328f9ab2813dbfe91426 #<%- process.env['ALGOLIA_ADMIN_KEY'] %>
   chunkSize: 5000
-  indexName: "adrianmejia-blog"
+  indexName: "adrianmejia-blog-1"
   fields:
+    - permalink
     - title
     - tags
-    - slug
-    - path
-    - permalink
-    - excerpt
-    - excerpt:strip
-    - content:strip
-    - photos
     - categories
     - pageviews__total
     - pageviews__avg_time
-    - date
-    - updated
-    - date:year
+    - photos
     - updated:year
+    - date:year
+    - updated
+    - date
+    - excerpt:strip
+    - more:strip
+    # - slug
+    # - path
+    # - content:strip
+    # - excerpt
 
 # https://github.com/unhealthy/hexo-all-minifier
 html_minifier:

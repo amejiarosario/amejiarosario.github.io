@@ -2,7 +2,7 @@ function loadSearch() {
   const search = instantsearch({
     appId: '7M9S763HKU',
     apiKey: '33db42bbc1d2631fd68f26ebefa35aa8',
-    indexName: 'adrianmejia-blog'
+    indexName: 'adrianmejia-blog-1'
   });
 
   search.addWidget(
@@ -90,7 +90,6 @@ function loadSearch() {
     })
   );
 
-
   search.addWidget(
     instantsearch.widgets.rangeSlider({
       container: '#year',
@@ -101,5 +100,6 @@ function loadSearch() {
     })
   );
 
-  search.start();
+  // search.start();
+  return search;
 }
