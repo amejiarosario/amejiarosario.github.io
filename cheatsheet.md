@@ -3,9 +3,15 @@
 ## most used
 
 ```bash
-hexo s -dp 9000
+hexo serve -dp 9000
 hexo serve --draft -dp 9000
 hexo generate
+hexo deploy -g
+
+# change index in
+# _config.yml
+# themes/am-light/source/js/search.es6
+hexo algolia
 ```
 
 ## Commands
