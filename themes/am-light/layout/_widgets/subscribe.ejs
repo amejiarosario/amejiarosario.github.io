@@ -6,7 +6,7 @@
 	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
 </style>
 <div id="mc_embed_signup">
-<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
     <div id="mc_embed_signup_scroll">
 	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
 	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
@@ -22,7 +22,7 @@
   var form = document.getElementById('mc-embedded-subscribe-form');
   form.addEventListener('submit', function(event) {
     event.preventDefault();
-    ga('send', 'event', 'newsletter', 'signup', 'page', location.pathname, {
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
       hitCallback: createFunctionWithTimeout(function() {
         form.submit();
       })
