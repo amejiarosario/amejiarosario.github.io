@@ -3,10 +3,10 @@
 ## most used
 
 ```bash
-hexo serve -dp 9000
-hexo serve --draft -dp 9000
-hexo generate
-hexo deploy -g
+hexo s -dp 9000
+hexo s --draft -dp 9000
+hexo g
+hexo d -g
 
 # change index in
 # _config.yml

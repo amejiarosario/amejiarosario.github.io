@@ -9,7 +9,7 @@ pageviews__recent: 359
 pageviews__avg_time: 257
 photos:
   - /images/scalabilty_matryoshka_small.png
-  - /images/scalabilty_matryoshka_728x383.png
+  - /images/scalabilty_matryoshka_large.png
 #categories: [production, scalability, aws, node, nginx]
 toc: true
 tutorial__order: 0

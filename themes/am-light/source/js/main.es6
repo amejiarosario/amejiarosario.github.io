@@ -69,6 +69,8 @@ function loadOverlay() {
       // triggers search
       if(overlayOpen && app.search && app.search.start){
         app.search.start();
+        searchTracking();
+        filterTracker();
       }
 
       /* Toggle the aria-hidden state on the overlay and the
@@ -85,6 +87,52 @@ function loadOverlay() {
 
   });
 }
+
+function searchTracking() {
+  var search = document.getElementById('search-box');
+  var t;
+
+  if(search){
+    search.addEventListener('keypress', function onkeypress() {
+      if(t){
+        clearTimeout(t);
+      }
+
+      t = setTimeout(function () {
+        ga('send', 'event', 'search', 'term', search.value);
+      }, 2000);
+    });
+  }
+}
+
+function filterTracker(){
+  var classname = document.getElementsByClassName("facets");
+  var t;
+  var buffer = "";
+
+  var myFunction = function(e) {
+    var el = e.target;
+    var name = (el.name||el.className) + ' ' + (el.value || el.textContent);
+    buffer += name.trim() + '; ';
+
+    if(t){
+      clearTimeout(t);
+    }
+
+    t = setTimeout(function () {
+      var value = buffer.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g,'').replace(/\s+/g,' ');
+      ga('send', 'event', 'search', 'filter', value);
+      buffer = "";
+    }, 500);
+  };
+
+  for (var i = 0; i < classname.length; i++) {
+    console.log(classname[i]);
+    classname[i].addEventListener('click', myFunction, false);
+  }
+}
+
+
 
 // Onload scripts
 window.onload = function () {
