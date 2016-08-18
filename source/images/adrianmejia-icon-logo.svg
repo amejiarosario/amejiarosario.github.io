@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="194px" height="29px" viewBox="0 0 194 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="30px" height="28px" viewBox="0 0 30 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
-    <title>adrianmejia-logo</title>
+    <title>adrianmejia-icon-logo</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <rect id="path-1" x="0" y="0" width="29.9377593" height="27.7124664"></rect>
@@ -19,15 +19,7 @@
     </defs>
     <g id="Logo-Final" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="adrianmejia-logo" transform="translate(0.000000, -2.000000)">
-            <g id="Logo" transform="translate(36.000000, 0.000000)" font-size="25" font-family="Orbitron-Regular, Orbitron" font-weight="normal">
-                <text id="Adrian" fill="#0E557E">
-                    <tspan x="0" y="24">Adrian</tspan>
-                </text>
-                <text id="Mejia" fill="#7E8183">
-                    <tspan x="91" y="24">Mejia</tspan>
-                </text>
-            </g>
-            <g id="adrianmejia-new-logo" transform="translate(0.000000, 2.000000)">
+            <g id="adrianmejia-icon-logo" transform="translate(0.000000, 2.000000)">
                 <g id="newlogo" transform="translate(0.031120, 0.031120)">
                     <g id="logo-adrianmejia">
                         <mask id="mask-2" fill="white">
