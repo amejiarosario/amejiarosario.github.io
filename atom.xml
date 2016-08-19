@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://adrianmejia.com/"/>
-  <updated>2016-08-12T20:30:23.000Z</updated>
+  <updated>2016-08-19T20:18:32.000Z</updated>
   <id>http://adrianmejia.com/</id>
   
   <author>
@@ -14,6 +14,79 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Node Package Manager (NPM) Tutorial</title>
+    <link href="http://adrianmejia.com/blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/"/>
+    <id>http://adrianmejia.com/blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/</id>
+    <published>2016-08-19T20:18:32.000Z</published>
+    <updated>2016-08-19T20:18:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules.</p>
+<a id="more"></a>
+<p>In this section, we are going to get hands on NPM. We will cover from how to install it to how to download, uninstall and manage packages. While we are doing this we will use practical examples to drive the concepts home.</p>
+<h1 id="How-to-install-update-NPM">How to install/update NPM?<a href="#How-to-install-update-NPM" class="headerlink" title="How to install/update NPM?"></a></h1><p><abbr title="Node Package Manager">NPM</abbr> is bundle into the Node installation. So, if you have Node, then you have <abbr title="Node Package Manager">NPM</abbr> already. But, <abbr title="Node Package Manager">NPM</abbr> gets updated more often than Node. So, from time to time you need to get the latest version.</p>
+<p>You can check the NPM version and install latest  by running:</p>
+<figure class="highlight bash"><figcaption><span>Installing NPM</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># get version</span></div><div class="line">npm -v</div><div class="line"></div><div class="line"><span class="comment"># update NPM to latest and greatest</span></div><div class="line">npm install -g npm</div></pre></td></tr></table></figure>
+<p>You can also use the shortcut for <code>npm install</code> like <code>npm i</code>.</p>
+<h1 id="How-to-start-a-NodeJs-project">How to start a NodeJs project?<a href="#How-to-start-a-NodeJs-project" class="headerlink" title="How to start a NodeJs project?"></a></h1><p>Node projects and packages use a special file called <code>package.json</code>. It contains dependencies and more information to run the project. Let’s start by creating that using the <code>npm init</code> command. We are going to call our project <code>meanshop2</code>, but call it whatever you want ;)</p>
+<figure class="highlight bash"><figcaption><span>initializing a Node project/package</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir meanshop2 &amp;&amp; <span class="built_in">cd</span> meanshop2</div><div class="line">npm init --yes</div></pre></td></tr></table></figure>
+<p>This set of commands created a new folder called <code>meanshop2</code>. The <code>init</code> command will create <code>package.json</code> file for us. The <code>--yes</code> option go with the defaults. Otherwise, it will ask us to fill out every property in package.json.</p>
+<figure class="highlight javascript"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"meanshop2"</span>,</div><div class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</div><div class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line">  <span class="string">"scripts"</span>: &#123;</div><div class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"keywords"</span>: [],</div><div class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</div><div class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Feel free to edit any of the properties values, such as author, description. Notice, that version starts with <code>1.0.0</code>. We are going to talk more about versioning later on this tutorial.</p>
+<h1 id="How-to-download-NPM-packages">How to download NPM packages?<a href="#How-to-download-NPM-packages" class="headerlink" title="How to download NPM packages?"></a></h1><p>You can download <abbr title="Node Package Manager">NPM</abbr> packages using <code>npm install &lt;package_name&gt;</code>. By default, npm will grap the latest version, but you can also expecify an exact verision.</p>
+<p>Let’s install two packages <code>lodash</code> and <code>express</code> as follows:</p>
+<figure class="highlight bash"><figcaption><span>Installing NPM packages</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install latest and save on package.json</span></div><div class="line">npm install lodash --save</div><div class="line"></div><div class="line"><span class="comment"># install specific version and save dep on package.json</span></div><div class="line">npm install express@4.14.0 --save</div></pre></td></tr></table></figure>
+<p><code>npm install</code> is going to create a new folder called <code>node_modules</code>. This is where all the dependencies live.</p>
+<p>Notice that for the second package we are specifying the exact version. You can use the <code>@</code> symbol and then the version number.</p>
+<p>Go to your <code>package.json</code> and verify that they both are listed as dependencies. You can install all the dependencies by running this command:</p>
+<figure class="highlight bash"><figcaption><span>Install all dependencies from a package.json</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure>
+<p><abbr title="Node Package Manager">NPM</abbr> will add packages to dependencies if you use the <code>--save</code> flag. Otherwise <code>npm</code> won’t include it. To automate the process you can run:</p>
+<figure class="highlight bash"><figcaption><span>Smarter NPM's defaults</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm config <span class="built_in">set</span> save=<span class="literal">true</span></div><div class="line">npm config <span class="built_in">set</span> save-exact=<span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>The <code>save=true</code> will make that the packages get auto-installed. <code>save-exact=true</code> will lock the current version and prevent automatic updates and break the project.</p>
+<p>To sum up, here are the commands</p>
+<figure class="highlight bash"><figcaption><span>NPM install commands</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install a package globally</span></div><div class="line">npm install -g &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># install a package locally (node_modules)</span></div><div class="line">npm install &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># install a package locally and save it as dependency (package.json)</span></div><div class="line">npm install &lt;package_name&gt; --save-dev</div><div class="line"></div><div class="line"><span class="comment"># install package locally, save it as dependency with the exact version</span></div><div class="line">npm install &lt;package_name&gt; --save   --save-exact</div><div class="line"></div><div class="line"><span class="comment"># install all dependencies listed on package.json</span></div><div class="line">npm install</div></pre></td></tr></table></figure>
+<p>Usually, you use <code>--save-dev</code> vs <code>--save</code> when you need use package that is not part of the project. For instance, testing libraries, building assets tools, etc.</p>
+<h1 id="How-to-view-my-installed-NPM-packages">How to view my installed NPM packages?<a href="#How-to-view-my-installed-NPM-packages" class="headerlink" title="How to view my installed NPM packages?"></a></h1><p>Sometimes is useful to see the list of packages that you have installed on your system. You can do that with the following commands:</p>
+<figure class="highlight bash"><figcaption><span>List packages</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># list all installed dependencies</span></div><div class="line">npm ls --depth=0</div><div class="line"></div><div class="line"><span class="comment"># list all installed globally dependencies</span></div><div class="line">npm ls -g --depth=0</div></pre></td></tr></table></figure>
+<p>You can use <code>--depth=0</code> to prevent listing the dependencies’ dependencies.</p>
+<h1 id="What-is-SemVer">What is SemVer?<a href="#What-is-SemVer" class="headerlink" title="What is SemVer?"></a></h1><p>Semantic Versioning (<abbr title="Semantic Versioning">SemVer</abbr>) is versioning convention composed of three numbers: <code>Major.Minor.Patch</code> or also <code>Breaking.Feature.Patch</code>:</p>
+<ul>
+<li><strong>Major releases: breaking changes.</strong> Major changes that change (breaks) how the API worked before. For instance, removed functions.</li>
+<li><strong>Minor releases: new features</strong>. Changes that keeps the API working as before and adds new functionality.</li>
+<li><strong>Patch releases: bug fixes</strong>. Patches doesn’t add functionality nor removes/changes functionality. It’s scope only to bug fixes.</li>
+</ul>
+<p>You can specify on the <code>package.json</code> how packages can be updated. You can use <code>~</code> for updating patches. <code>^</code> for upgrading minor releases and <code>*</code> for major releases.</p>
+<p><img src="/images/semver-major-minor-patch-breaking-feature-fix.png" alt="SemVer Breaking.Feature.Fix"></p>
+<p>Like this:</p>
+<ul>
+<li>Patch releases: <code>~1.0.7</code>, or <code>1.0.x</code> or just <code>1.0</code>.</li>
+<li>Minor releases: <code>^1.0.7</code>, or <code>1.x</code> or just <code>1</code>.</li>
+<li>Major releases: <code>*</code> or <code>x</code>.</li>
+</ul>
+<p>As you could imagine, not all developers respect the Semantic Version rules. Try to follow the rules yourself, but don’t trust that all will do. You can have your project working well with a <code>1.0.8</code> version and all in a sudden it breaks with <code>1.0.9</code>. It happened to me before, so I prefer to use: <code>--save-exact</code>, when makes sense.</p>
+<h1 id="How-to-uninstall-NPM-packages">How to uninstall NPM packages?<a href="#How-to-uninstall-NPM-packages" class="headerlink" title="How to uninstall NPM packages?"></a></h1><p>You can uninstall <abbr title="Node Package Manager">NPM</abbr> packages using the following commands:</p>
+<figure class="highlight bash"><figcaption><span>Uninstalling NPM packages</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># uninstall package and leave it listed as dep</span></div><div class="line">npm uninstall lodash</div><div class="line"></div><div class="line"><span class="comment"># uninstall and remove from dependencies</span></div><div class="line">npm uninstall --save lodash</div><div class="line"></div><div class="line"><span class="comment"># uninstall global package</span></div><div class="line">npm uninstall -g &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># remove uninstalled packages from node_modules</span></div><div class="line">npm prune <span class="comment"># remove extranous</span></div></pre></td></tr></table></figure>
+<h1 id="Summary">Summary<a href="#Summary" class="headerlink" title="Summary"></a></h1><p><abbr title="Node Package Manager">NPM</abbr> is a powerful tool. It helps us to create Node projects/modules, manage its dependencies and much more. In this section, we covered the main commands that you would most often.</p>
+<p>Furthermore, we cover <abbr title="Semantic Versioning">SemVer</abbr>. It is used in many systems (Ruby Gems, etc.) not just in the Node community. SemVer is three-part number versioning system: Major.Minor.Patch. You can also think as Breaking.Feature.Patch.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Programming" scheme="http://adrianmejia.com/categories/Programming/"/>
+    
+      <category term="Web Development" scheme="http://adrianmejia.com/categories/Programming/Web-Development/"/>
+    
+    
+      <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
+    
+      <category term="NodeJS" scheme="http://adrianmejia.com/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>Getting started with Node.js modules: require, exports, imports and beyond</title>
@@ -3161,120 +3234,6 @@ name,line1,line2,city,zip code,country</pre>
       <category term="c#" scheme="http://adrianmejia.com/tags/c/"/>
     
       <category term="java" scheme="http://adrianmejia.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How to setup Drupal WYSIWYG and Images uploading?</title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
-    <id>http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/</id>
-    <published>2011-11-09T05:00:00.000Z</published>
-    <updated>2011-11-09T22:07:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<p></p><p>It have been a pain for me to upload images and deal with tons of WYSIWYG editors… After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</p>
-<a id="more"></a><p></p>
-<div>
-    <strong>1. Install and enable the following modules:</strong></div>
-<div>
-    &nbsp;</div>
-<div>
-    <a href="http://drupal.org/project/ckeditor" target="_blank" rel="external">http://drupal.org/project/ckeditor</a> (disable the WYSIWYG module if you have it install it)</div>
-<div>
-    <a href="http://drupal.org/project/imce" target="_blank" rel="external">http://drupal.org/project/imce</a> -or- <a href="http://drupal.org/project/elfinder" target="_blank" rel="external">http://drupal.org/project/elfinder</a></div>
-<div>
-    &nbsp;</div>
-<div>
-    - optional -</div>
-<div>
-    <a href="http://drupal.org/project/ckeditor_link" target="_blank" rel="external">http://drupal.org/project/ckeditor_link</a></div>
-<div>
-    &nbsp;</div>
-<div>
-    <div>
-        How to setup Drupal WYSIWYG and Images uploading?</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        It have been a pain for me to upload images and deal with tons of WYSIWYG editors… After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>1. Install and enable the following modules:</strong></div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <a href="http://drupal.org/project/ckeditor" target="_blank" rel="external">http://drupal.org/project/ckeditor</a> (disable the WYSIWYG module if you have it install it)</div>
-    <div>
-        <a href="http://drupal.org/project/imce" target="_blank" rel="external">http://drupal.org/project/imce</a> -or- <a href="http://drupal.org/project/elfinder" target="_blank" rel="external">http://drupal.org/project/elfinder</a></div>
-    <div>
-        &nbsp;</div>
-    <div>
-        - optional -</div>
-    <div>
-        <a href="http://drupal.org/project/ckeditor_link" target="_blank" rel="external">http://drupal.org/project/ckeditor_link</a></div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>2. Setting up IMCE</strong></div>
-    <div>
-        a. Install and enable the IMCE module at module administration page.</div>
-    <div>
-        b. Create configuration profiles and assign them to user roles at /?q=/admin/config/media/imce <strong>-or-</strong> Menu: Configuration &raquo; Media &raquo; IMCE&nbsp;</div>
-    <div>
-        c. Test it at /imce.</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>3. Setup text formats. </strong>You can create two new ones to be used by the ckeditor (basic and full):</div>
-    <div>
-        a. Menu: Configuration &raquo; Content authoring &raquo; Text formats</div>
-    <div>
-        b. Click &quot;+ Add text format&quot; and add two new formats &quot;ckeditor-basic&quot; and &quot;ckeditor-full&quot; with the &quot;administrator&quot; and &quot;authenticated users&quot; check boxes marked. Everything else could remain in their default values.</div>
-    <div>
-        c. Back to Configuration &raquo; Content authoring, you can rearrange the order, the top most one will be the default.</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>4. Setup CKEditor</strong></div>
-    <div>
-        After you install the CKEditor module, download the latest version of ckeditor from <a href="http://ckeditor.com/download" target="_blank" rel="external">http://ckeditor.com/download</a></div>
-    <div>
-        a. &quot;Create a new profile&quot; link</div>
-    <div>
-        b. Setup the name in the &quot;Basic Setup&quot; section and choose one of Input format that you created in step (3)</div>
-    <div>
-        c. In &quot;Editor Appearance&quot; you can setup the toolbar load (basic, full, advance)</div>
-    <div>
-        d. In &quot;FILE BROWSER SETTINGS&quot; select &quot;IMCE&quot; as the &quot;File browser type&quot;</div>
-    <div>
-        e. Save and you can repeated this steps for full and basic.</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>5. You are all set.&nbsp;</strong>When you add new content your Textbox and imaging uploading should look like this:</div>
-</div>
-<div>
-    &nbsp;</div>
-<div>
-
-<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-11-09%20at%205.05.23%20PM.png" style="width: 500px; height: 325px; " /> -->
-</div>
-<div>
-    &nbsp;</div>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;p&gt;It have been a pain for me to upload images and deal with tons of WYSIWYG editors… After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&amp;#39;m willing to hear it, too.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Technologies" scheme="http://adrianmejia.com/categories/Technologies/"/>
-    
-    
-      <category term="drupal" scheme="http://adrianmejia.com/tags/drupal/"/>
     
   </entry>
   

@@ -12,7 +12,7 @@
     <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
 
     
-    <title>Getting started with Node.js modules: require, exports, imports and beyond | Adrian Mejia Blog</title>
+    <title>Node Package Manager (NPM) Tutorial | Adrian Mejia Blog</title>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://adrianmejia.com/apple-touch-icon-57x57.png" />
@@ -37,14 +37,14 @@
     <meta name="msapplication-square310x310logo" content="http://adrianmejia.com/mstile-310x310.png" />
     <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=1;polling-uri2=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=2;polling-uri3=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=3;polling-uri4=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=4;polling-uri5=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=5;cycle=1" />
 
-    <link rel="canonical" href="http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/" />
+    <link rel="canonical" href="http://adrianmejia.com/blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/" />
     <!-- Open Graph -->
-    <meta property="og:url" content="http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/" />
+    <meta property="og:url" content="http://adrianmejia.com/blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/" />
     <meta property="og:site_name" content="Adrian Mejia Blog" />
     <meta property="og:type" content="article" />
-    <meta property="og:description" content="Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using." />
-    <meta property="og:image" content="http://adrianmejia.com/images/node-modules-large.png" />
-    <meta property="og:title" content="Getting started with Node.js modules: require, exports, imports and beyond" />
+    <meta property="og:description" content="Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules." />
+    <meta property="og:image" content="http://adrianmejia.com/images/node-package-manager-large.png" />
+    <meta property="og:title" content="Node Package Manager (NPM) Tutorial" />
     <meta property="fb:app_id" content="761831487293468" />
     <meta property="fb:admins" content="895685163"/>
     <!-- /Open Graph -->
@@ -246,17 +246,17 @@ ga('send', 'pageview');
     "@type": "WebPage",
     "@id": ""
   },
-  "headline": "Getting started with Node.js modules: require, exports, imports and beyond",
+  "headline": "Node Package Manager (NPM) Tutorial",
   
   "image": {
     "@type": "ImageObject",
-    "url": "http://adrianmejia.com/images/node-modules-large.png",
+    "url": "http://adrianmejia.com/images/node-package-manager-large.png",
     "height": 360,
     "width": 728
   },
   
-  "datePublished": "2016-08-12T16:30:23-04:00",
-  "dateModified": "2016-08-12T16:30:23-04:00",
+  "datePublished": "2016-08-19T16:18:32-04:00",
+  "dateModified": "2016-08-19T16:18:32-04:00",
   "author": {
     "@type": "Person",
     "name": "Adrian Mejia"
@@ -271,7 +271,7 @@ ga('send', 'pageview');
       "height": 60
     }
   },
-  "description": "Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using."
+  "description": "Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules."
 }
 </script>
 
@@ -282,12 +282,12 @@ ga('send', 'pageview');
     <div class="muted">
       <a class="category-link" href="/categories/Programming/">Programming</a> > <a class="category-link" href="/categories/Programming/Web-Development/">Web Development</a>
     </div>
-    <h1>Getting started with Node.js modules: require, exports, imports and beyond</h1>
+    <h1>Node Package Manager (NPM) Tutorial</h1>
     <div class="muted">
       <span title="Last time this post was updated">
         <i class="fa fa-calendar" aria-hidden="true"></i>
         Last update
-        <time datetime="2016-08-12T20:30:23.000Z" itemprop="dateUpdated">August 12th 2016</time>
+        <time datetime="2016-08-19T20:18:32.000Z" itemprop="dateUpdated">August 19th 2016</time>
       </span>
 
       
@@ -295,7 +295,7 @@ ga('send', 'pageview');
       <span class="m-x-2" title="Click to go to the comments section">
         <a href="#disqus_thread">
           <i class="fa fa-comment-o" aria-hidden="true"></i>
-          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/">0</span>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/">0</span>
         </a>
       </span>
 
@@ -307,12 +307,12 @@ ga('send', 'pageview');
     </div>
   </section>
 
-  <div class="art-container" style="background-color: #333">
+  <div class="art-container" style="background-color: #235E7E">
     
       <picture>
-        <source media="(min-width: 728px)" srcset="/images/node-modules-large.png">
-        <source srcset="/images/node-modules-small.png">
-        <img src="/images/node-modules-large.png" alt="Getting started with Node.js modules: require, exports, imports and beyond">
+        <source media="(min-width: 728px)" srcset="/images/node-package-manager-large.png">
+        <source srcset="/images/node-package-manager-small.png">
+        <img src="/images/node-package-manager-large.png" alt="Node Package Manager (NPM) Tutorial">
       </picture>
     
   </div>
@@ -321,66 +321,53 @@ ga('send', 'pageview');
     <section class="col-sm-8 p-x-2">
 
       <div class="post-content  toc-content ">
-        <p>Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using.</p>
+        <p>Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules.</p>
 <a id="more"></a>
-<p>In this section, we are going to cover how to create Node modules and each one of its components:</p>
+<p>In this section, we are going to get hands on NPM. We will cover from how to install it to how to download, uninstall and manage packages. While we are doing this we will use practical examples to drive the concepts home.</p>
+<h1 id="How-to-install-update-NPM">How to install/update NPM?<a href="#How-to-install-update-NPM" class="headerlink" title="How to install/update NPM?"></a></h1><p><abbr title="Node Package Manager">NPM</abbr> is bundle into the Node installation. So, if you have Node, then you have <abbr title="Node Package Manager">NPM</abbr> already. But, <abbr title="Node Package Manager">NPM</abbr> gets updated more often than Node. So, from time to time you need to get the latest version.</p>
+<p>You can check the NPM version and install latest  by running:</p>
+<figure class="highlight bash"><figcaption><span>Installing NPM</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># get version</span></div><div class="line">npm -v</div><div class="line"></div><div class="line"><span class="comment"># update NPM to latest and greatest</span></div><div class="line">npm install -g npm</div></pre></td></tr></table></figure>
+<p>You can also use the shortcut for <code>npm install</code> like <code>npm i</code>.</p>
+<h1 id="How-to-start-a-NodeJs-project">How to start a NodeJs project?<a href="#How-to-start-a-NodeJs-project" class="headerlink" title="How to start a NodeJs project?"></a></h1><p>Node projects and packages use a special file called <code>package.json</code>. It contains dependencies and more information to run the project. Let’s start by creating that using the <code>npm init</code> command. We are going to call our project <code>meanshop2</code>, but call it whatever you want ;)</p>
+<figure class="highlight bash"><figcaption><span>initializing a Node project/package</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir meanshop2 &amp;&amp; <span class="built_in">cd</span> meanshop2</div><div class="line">npm init --yes</div></pre></td></tr></table></figure>
+<p>This set of commands created a new folder called <code>meanshop2</code>. The <code>init</code> command will create <code>package.json</code> file for us. The <code>--yes</code> option go with the defaults. Otherwise, it will ask us to fill out every property in package.json.</p>
+<figure class="highlight javascript"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"meanshop2"</span>,</div><div class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</div><div class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</div><div class="line">  <span class="string">"scripts"</span>: &#123;</div><div class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"keywords"</span>: [],</div><div class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</div><div class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Feel free to edit any of the properties values, such as author, description. Notice, that version starts with <code>1.0.0</code>. We are going to talk more about versioning later on this tutorial.</p>
+<h1 id="How-to-download-NPM-packages">How to download NPM packages?<a href="#How-to-download-NPM-packages" class="headerlink" title="How to download NPM packages?"></a></h1><p>You can download <abbr title="Node Package Manager">NPM</abbr> packages using <code>npm install &lt;package_name&gt;</code>. By default, npm will grap the latest version, but you can also expecify an exact verision.</p>
+<p>Let’s install two packages <code>lodash</code> and <code>express</code> as follows:</p>
+<figure class="highlight bash"><figcaption><span>Installing NPM packages</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install latest and save on package.json</span></div><div class="line">npm install lodash --save</div><div class="line"></div><div class="line"><span class="comment"># install specific version and save dep on package.json</span></div><div class="line">npm install express@4.14.0 --save</div></pre></td></tr></table></figure>
+<p><code>npm install</code> is going to create a new folder called <code>node_modules</code>. This is where all the dependencies live.</p>
+<p>Notice that for the second package we are specifying the exact version. You can use the <code>@</code> symbol and then the version number.</p>
+<p>Go to your <code>package.json</code> and verify that they both are listed as dependencies. You can install all the dependencies by running this command:</p>
+<figure class="highlight bash"><figcaption><span>Install all dependencies from a package.json</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure>
+<p><abbr title="Node Package Manager">NPM</abbr> will add packages to dependencies if you use the <code>--save</code> flag. Otherwise <code>npm</code> won’t include it. To automate the process you can run:</p>
+<figure class="highlight bash"><figcaption><span>Smarter NPM's defaults</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm config <span class="built_in">set</span> save=<span class="literal">true</span></div><div class="line">npm config <span class="built_in">set</span> save-exact=<span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>The <code>save=true</code> will make that the packages get auto-installed. <code>save-exact=true</code> will lock the current version and prevent automatic updates and break the project.</p>
+<p>To sum up, here are the commands</p>
+<figure class="highlight bash"><figcaption><span>NPM install commands</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install a package globally</span></div><div class="line">npm install -g &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># install a package locally (node_modules)</span></div><div class="line">npm install &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># install a package locally and save it as dependency (package.json)</span></div><div class="line">npm install &lt;package_name&gt; --save-dev</div><div class="line"></div><div class="line"><span class="comment"># install package locally, save it as dependency with the exact version</span></div><div class="line">npm install &lt;package_name&gt; --save   --save-exact</div><div class="line"></div><div class="line"><span class="comment"># install all dependencies listed on package.json</span></div><div class="line">npm install</div></pre></td></tr></table></figure>
+<p>Usually, you use <code>--save-dev</code> vs <code>--save</code> when you need use package that is not part of the project. For instance, testing libraries, building assets tools, etc.</p>
+<h1 id="How-to-view-my-installed-NPM-packages">How to view my installed NPM packages?<a href="#How-to-view-my-installed-NPM-packages" class="headerlink" title="How to view my installed NPM packages?"></a></h1><p>Sometimes is useful to see the list of packages that you have installed on your system. You can do that with the following commands:</p>
+<figure class="highlight bash"><figcaption><span>List packages</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># list all installed dependencies</span></div><div class="line">npm ls --depth=0</div><div class="line"></div><div class="line"><span class="comment"># list all installed globally dependencies</span></div><div class="line">npm ls -g --depth=0</div></pre></td></tr></table></figure>
+<p>You can use <code>--depth=0</code> to prevent listing the dependencies’ dependencies.</p>
+<h1 id="What-is-SemVer">What is SemVer?<a href="#What-is-SemVer" class="headerlink" title="What is SemVer?"></a></h1><p>Semantic Versioning (<abbr title="Semantic Versioning">SemVer</abbr>) is versioning convention composed of three numbers: <code>Major.Minor.Patch</code> or also <code>Breaking.Feature.Patch</code>:</p>
 <ul>
-<li>Require</li>
-<li>Exports</li>
-<li>Module.exports</li>
+<li><strong>Major releases: breaking changes.</strong> Major changes that change (breaks) how the API worked before. For instance, removed functions.</li>
+<li><strong>Minor releases: new features</strong>. Changes that keeps the API working as before and adds new functionality.</li>
+<li><strong>Patch releases: bug fixes</strong>. Patches doesn’t add functionality nor removes/changes functionality. It’s scope only to bug fixes.</li>
 </ul>
-<blockquote>
-<p>We are using Node 6+ for the examples and ES6 syntax. But the concepts are true for any version.</p>
-</blockquote>
-<h1 id="Require">Require<a href="#Require" class="headerlink" title="Require"></a></h1><p><code>require</code> are used to consume modules. It allows you to include modules into your programs. You can include built-in core Node.js modules, community-based modules (node_modules) and local modules.</p>
-<p>Let’s say we want to read a file from the filesystem. Node has a core module called ‘fs’:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line marked"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.readFile(<span class="string">'./file.txt'</span>, <span class="string">'utf-8'</span>, (err, data) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span>(err) &#123; <span class="keyword">throw</span> err; &#125;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'data: '</span>, data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>As you can see, we imported the “fs” module into our program. It allows us to any function attached to it, like “readFile”.</p>
-<p>Require will look for files in the following order:</p>
-<ol>
-<li>Built-in core Node.js modules (like <code>fs</code>)</li>
-<li>Modules in <code>node_modules</code> folder.</li>
-<li>If the module name has a <code>./</code>, <code>/</code> or <code>../</code>, it will look for the directory/file in the given path. It matches the extensions: <code>*.js</code>, <code>*.json</code> and <code>*.node</code>.</li>
-</ol>
-<h1 id="Exports">Exports<a href="#Exports" class="headerlink" title="Exports"></a></h1><p><code>exports</code> are used to create modules. It allows you to export your own objects and functions. Let’s do an example:</p>
-<figure class="highlight javascript"><figcaption><span>circle.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PI = <span class="number">3.14159265359</span>;</div><div class="line">exports.area = (radius) =&gt; <span class="built_in">Math</span>.pow(radius, <span class="number">2</span>) * PI;</div><div class="line">exports.circunference = (radius) =&gt; <span class="number">2</span> * radius * PI;</div></pre></td></tr></table></figure>
-<p>In the code below, we are exporting the <code>area</code> function. We defined the constant PI but this is only accessible within the module. Only the elements associated to <code>exports</code> are accessible outside the module.</p>
-<p>So, we can consume it using <code>require</code> in another file like follows:</p>
-<figure class="highlight javascript"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> circle = <span class="built_in">require</span>(<span class="string">'./circle'</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> r = <span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`Circle with radius <span class="subst">$&#123;r&#125;</span> has</span></div><div class="line">  area: <span class="subst">$&#123;circle.area(r)&#125;</span>;</div><div class="line">  circunference: <span class="subst">$&#123;circle.circunference(r)&#125;</span>`);</div></pre></td></tr></table></figure>
-<p>Noticed that this time we prefix the module name with ‘./‘. That indicates that the module is a local file.</p>
-<h1 id="Module-Wrapper">Module Wrapper<a href="#Module-Wrapper" class="headerlink" title="Module Wrapper"></a></h1><p>You can think of each module as self-contained function like the following one:</p>
-<figure class="highlight javascript"><figcaption><span>Module Wrapper</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</div><div class="line">  <span class="built_in">module</span>.exports = exports = &#123;&#125;;</div><div class="line"></div><div class="line">  <span class="comment">// Your module code ...</span></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>We have already covered <code>exports</code> and <code>require</code>. Notice the relationship between <code>module.exports</code> and <code>exports</code>. They points to the same reference. However, if you assign something directly to <code>exports</code> you will break its link to <code>module.exports</code>. More on that in the next section.</p>
-<p>For our convenience <code>__filename</code> and <code>__dirname</code> are defined. They provide the full path to the current file and directory. The latter excludes the filename and just print out the directory path.</p>
-<p>For instance, for our <code>./circle.js</code> module, it would be something like this:</p>
+<p>You can specify on the <code>package.json</code> how packages can be updated. You can use <code>~</code> for updating patches. <code>^</code> for upgrading minor releases and <code>*</code> for major releases.</p>
+<p><img src="/images/semver-major-minor-patch-breaking-feature-fix.png" alt="SemVer Breaking.Feature.Fix"></p>
+<p>Like this:</p>
 <ul>
-<li><p><code>__filename</code>: <code>/User/adrian/code/circle.js</code></p>
-</li>
-<li><p><code>__dirname</code>: <code>/User/adrian/code</code></p>
-</li>
+<li>Patch releases: <code>~1.0.7</code>, or <code>1.0.x</code> or just <code>1.0</code>.</li>
+<li>Minor releases: <code>^1.0.7</code>, or <code>1.x</code> or just <code>1</code>.</li>
+<li>Major releases: <code>*</code> or <code>x</code>.</li>
 </ul>
-<p>Ok, we have covered <code>exports</code>, <code>require</code>, <code>__filename</code>, and <code>__dirname</code>. The only one we haven’t cover is <code>module</code>. Let’s go for it!</p>
-<h1 id="Module-exports-vs-Exports">Module.exports vs Exports<a href="#Module-exports-vs-Exports" class="headerlink" title="Module.exports vs Exports"></a></h1><p>Module is not a global, it is local for each module. It contains metadata about a module, such as module id, exports, parent, children, …</p>
-<p><code>exports</code> is an alias of <code>module.exports</code>. So, whatever you assign to <code>exports</code> is also available on <code>module.exports</code>. However, if you assign something directly to exports, then you lose the shortcut to <code>module.exports</code>. E.g.</p>
-<figure class="highlight javascript"><figcaption><span>cat.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</div><div class="line">  makeSound() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'Meowww'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// exports = Cat; // It will not work</span></div><div class="line"><span class="built_in">module</span>.exports = Cat;</div></pre></td></tr></table></figure>
-<p>Try the following example with <code>exports</code> and then with <code>module.exports</code>.</p>
-<figure class="highlight javascript"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Cat = <span class="built_in">require</span>(<span class="string">'./cat'</span>);</div><div class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat();</div><div class="line"><span class="built_in">console</span>.log(cat.makeSound());</div></pre></td></tr></table></figure>
-<p>To sum up, when to use <code>module.exports</code> vs <code>exports</code>:</p>
-<p>Use <code>exports</code> to:</p>
-<ul>
-<li>Export named function. e.g. <code>exports.area</code>, <code>exports.circunference</code>.</li>
-</ul>
-<p>Use <code>module.exports</code> to:</p>
-<ol>
-<li><p>If you want to export an object, class, function at the root level (e.g. <code>module.exports = Cat</code></p>
-</li>
-<li><p>If you want to return a single object that exposes multiple assignments. e.g.<code>module.exports = {area: area, circumference: circunference};</code></p>
-</li>
-</ol>
-<h1 id="Imports">Imports<a href="#Imports" class="headerlink" title="Imports"></a></h1><p>Imports are not available in Node as the version 6. However, it might come in future versions.</p>
-<figure class="highlight javascript"><figcaption><span>future of modules in javascript</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> circle <span class="keyword">from</span> <span class="string">'./circle'</span>;</div><div class="line"><span class="keyword">import</span> &#123;area, circumference&#125; <span class="keyword">from</span> <span class="string">'./circle'</span>;</div></pre></td></tr></table></figure>
-<p>You can use it today, using transpilers such as Traceur Compiler, Babel or Rollup. But, that will be for another post.</p>
-<h1 id="Summary">Summary<a href="#Summary" class="headerlink" title="Summary"></a></h1><p>We learned about how to create Node.js modules and use it in our code.  Modules allow us to reuse code easily. They provide functionality that is isolated from other modules. Required is used to load modules. Export and module exports allow defining what parts of our code we want to expose. We also explored the difference between module.exports and exports. Finally, we took a quick pick about what’s coming up for modules using <code>imports</code>.</p>
+<p>As you could imagine, not all developers respect the Semantic Version rules. Try to follow the rules yourself, but don’t trust that all will do. You can have your project working well with a <code>1.0.8</code> version and all in a sudden it breaks with <code>1.0.9</code>. It happened to me before, so I prefer to use: <code>--save-exact</code>, when makes sense.</p>
+<h1 id="How-to-uninstall-NPM-packages">How to uninstall NPM packages?<a href="#How-to-uninstall-NPM-packages" class="headerlink" title="How to uninstall NPM packages?"></a></h1><p>You can uninstall <abbr title="Node Package Manager">NPM</abbr> packages using the following commands:</p>
+<figure class="highlight bash"><figcaption><span>Uninstalling NPM packages</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># uninstall package and leave it listed as dep</span></div><div class="line">npm uninstall lodash</div><div class="line"></div><div class="line"><span class="comment"># uninstall and remove from dependencies</span></div><div class="line">npm uninstall --save lodash</div><div class="line"></div><div class="line"><span class="comment"># uninstall global package</span></div><div class="line">npm uninstall -g &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># remove uninstalled packages from node_modules</span></div><div class="line">npm prune <span class="comment"># remove extranous</span></div></pre></td></tr></table></figure>
+<h1 id="Summary">Summary<a href="#Summary" class="headerlink" title="Summary"></a></h1><p><abbr title="Node Package Manager">NPM</abbr> is a powerful tool. It helps us to create Node projects/modules, manage its dependencies and much more. In this section, we covered the main commands that you would most often.</p>
+<p>Furthermore, we cover <abbr title="Semantic Versioning">SemVer</abbr>. It is used in many systems (Ruby Gems, etc.) not just in the Node community. SemVer is three-part number versioning system: Major.Minor.Patch. You can also think as Breaking.Feature.Patch.</p>
 
       </div>
 
@@ -469,7 +456,7 @@ ga('send', 'pageview');
         <div class="muted">
           <div class="p-y-1">
             <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
-            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-08-12-Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond.md')"><i class="fa fa-pencil"></i> Improve</a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-08-19-Node-Package-Manager-NPM-Tutorial.md')"><i class="fa fa-pencil"></i> Improve</a>
             <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
             <!--<div class="p-y-1">-->
               <!---->
@@ -481,7 +468,7 @@ ga('send', 'pageview');
 
           
             <h3 class="toc-title">Contents</h3>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Require"><span class="toc-number">1.</span> <span class="toc-text">Require</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Exports"><span class="toc-number">2.</span> <span class="toc-text">Exports</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-Wrapper"><span class="toc-number">3.</span> <span class="toc-text">Module Wrapper</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-exports-vs-Exports"><span class="toc-number">4.</span> <span class="toc-text">Module.exports vs Exports</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Imports"><span class="toc-number">5.</span> <span class="toc-text">Imports</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">6.</span> <span class="toc-text">Summary</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-install-update-NPM"><span class="toc-number">1.</span> <span class="toc-text">How to install/update NPM?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-start-a-NodeJs-project"><span class="toc-number">2.</span> <span class="toc-text">How to start a NodeJs project?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-download-NPM-packages"><span class="toc-number">3.</span> <span class="toc-text">How to download NPM packages?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-view-my-installed-NPM-packages"><span class="toc-number">4.</span> <span class="toc-text">How to view my installed NPM packages?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-SemVer"><span class="toc-number">5.</span> <span class="toc-text">What is SemVer?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-uninstall-NPM-packages"><span class="toc-number">6.</span> <span class="toc-text">How to uninstall NPM packages?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">7.</span> <span class="toc-text">Summary</span></a></li></ol>
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      data-ad-client="ca-pub-9725767907287651"
@@ -503,19 +490,10 @@ ga('send', 'pageview');
   
   <div class="article-nav m-y-4">
     
-      <a href="/blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/" class="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
-        <div class="article-nav-title">
-          
-            Node Package Manager (NPM) Tutorial
-          
-        </div>
-      </a>
     
-    
-      <a href="/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/" class="article-nav-older" class="article-nav-link-wrap">
+      <a href="/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/" class="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
-        <div class="article-nav-title">List tasks in NPM, Grunt, Gulp and Rake</div>
+        <div class="article-nav-title">Getting started with Node.js modules: require, exports, imports and beyond</div>
       </a>
     
   </div>
@@ -529,7 +507,7 @@ ga('send', 'pageview');
   <script>
     var disqus_config = function () {
       this.page.url = 'http://adrianmejia.com';
-      this.page.identifier = 'http://adrianmejia.com/blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/';
+      this.page.identifier = 'http://adrianmejia.com/blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/';
     };
     (function() {
       var d = document, s = d.createElement('script');
