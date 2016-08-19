@@ -250,9 +250,9 @@ ga('send', 'pageview');
   
   "image": {
     "@type": "ImageObject",
-    "url": "http://adrianmejia.com/images/node-package-manager-large.png",
-    "height": 360,
-    "width": 728
+    "url": "http://adrianmejia.com/images/node-package-manager-small.png",
+    "height": 300,
+    "width": 250
   },
   
   "datePublished": "2016-08-19T16:18:32-04:00",
@@ -267,8 +267,8 @@ ga('send', 'pageview');
     "logo": {
       "@type": "ImageObject",
       "url": "http://adrianmejia.com/images/logo.png",
-      "width": 600,
-      "height": 60
+      "width": 888,
+      "height": 139
     }
   },
   "description": "Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules."
@@ -346,6 +346,7 @@ ga('send', 'pageview');
 <p>To sum up, here are the commands</p>
 <figure class="highlight bash"><figcaption><span>NPM install commands</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install a package globally</span></div><div class="line">npm install -g &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># install a package locally (node_modules)</span></div><div class="line">npm install &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># install a package locally and save it as dependency (package.json)</span></div><div class="line">npm install &lt;package_name&gt; --save-dev</div><div class="line"></div><div class="line"><span class="comment"># install package locally, save it as dependency with the exact version</span></div><div class="line">npm install &lt;package_name&gt; --save   --save-exact</div><div class="line"></div><div class="line"><span class="comment"># install all dependencies listed on package.json</span></div><div class="line">npm install</div></pre></td></tr></table></figure>
 <p>Usually, you use <code>--save-dev</code> vs <code>--save</code> when you need use package that is not part of the project. For instance, testing libraries, building assets tools, etc.</p>
+<p>You can search for all NPM modules on <a href="https://www.npmjs.com/browse/star" target="_blank" rel="external">npmjs.com</a></p>
 <h1 id="How-to-view-my-installed-NPM-packages">How to view my installed NPM packages?<a href="#How-to-view-my-installed-NPM-packages" class="headerlink" title="How to view my installed NPM packages?"></a></h1><p>Sometimes is useful to see the list of packages that you have installed on your system. You can do that with the following commands:</p>
 <figure class="highlight bash"><figcaption><span>List packages</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># list all installed dependencies</span></div><div class="line">npm ls --depth=0</div><div class="line"></div><div class="line"><span class="comment"># list all installed globally dependencies</span></div><div class="line">npm ls -g --depth=0</div></pre></td></tr></table></figure>
 <p>You can use <code>--depth=0</code> to prevent listing the dependencies’ dependencies.</p>
@@ -529,8 +530,8 @@ ga('send', 'pageview');
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Fri Aug 19 2016 17:26:04 GMT-0400 (EDT)">
-            v.oc6e7g
+          <span class="muted m-x-4" title="Fri Aug 19 2016 19:13:55 GMT-0400 (EDT)">
+            v.oc6j77
           </span>
         </div>
       </div>

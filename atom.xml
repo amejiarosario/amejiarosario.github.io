@@ -47,6 +47,7 @@
 <p>To sum up, here are the commands</p>
 <figure class="highlight bash"><figcaption><span>NPM install commands</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install a package globally</span></div><div class="line">npm install -g &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># install a package locally (node_modules)</span></div><div class="line">npm install &lt;package_name&gt;</div><div class="line"></div><div class="line"><span class="comment"># install a package locally and save it as dependency (package.json)</span></div><div class="line">npm install &lt;package_name&gt; --save-dev</div><div class="line"></div><div class="line"><span class="comment"># install package locally, save it as dependency with the exact version</span></div><div class="line">npm install &lt;package_name&gt; --save   --save-exact</div><div class="line"></div><div class="line"><span class="comment"># install all dependencies listed on package.json</span></div><div class="line">npm install</div></pre></td></tr></table></figure>
 <p>Usually, you use <code>--save-dev</code> vs <code>--save</code> when you need use package that is not part of the project. For instance, testing libraries, building assets tools, etc.</p>
+<p>You can search for all NPM modules on <a href="https://www.npmjs.com/browse/star" target="_blank" rel="external">npmjs.com</a></p>
 <h1 id="How-to-view-my-installed-NPM-packages">How to view my installed NPM packages?<a href="#How-to-view-my-installed-NPM-packages" class="headerlink" title="How to view my installed NPM packages?"></a></h1><p>Sometimes is useful to see the list of packages that you have installed on your system. You can do that with the following commands:</p>
 <figure class="highlight bash"><figcaption><span>List packages</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># list all installed dependencies</span></div><div class="line">npm ls --depth=0</div><div class="line"></div><div class="line"><span class="comment"># list all installed globally dependencies</span></div><div class="line">npm ls -g --depth=0</div></pre></td></tr></table></figure>
 <p>You can use <code>--depth=0</code> to prevent listing the dependencies’ dependencies.</p>
@@ -854,9 +855,9 @@ for your next web application.</li>
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
-    
       <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
+    
+      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
     
       <category term="mean stack" scheme="http://adrianmejia.com/tags/mean-stack/"/>
     
@@ -1163,13 +1164,13 @@ Is NOT working? take a look at the <a href="https://github.com/amejiarosario/tod
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
-    
       <category term="NodeJS" scheme="http://adrianmejia.com/tags/NodeJS/"/>
     
       <category term="ExpressJS" scheme="http://adrianmejia.com/tags/ExpressJS/"/>
     
       <category term="MongoDB" scheme="http://adrianmejia.com/tags/MongoDB/"/>
+    
+      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
     
   </entry>
   
@@ -1343,9 +1344,9 @@ Is NOT working? take a look at the <a href="https://github.com/amejiarosario/tod
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
-    
       <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
+    
+      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
     
   </entry>
   
@@ -3238,6 +3239,120 @@ name,line1,line2,city,zip code,country</pre>
   </entry>
   
   <entry>
+    <title>How to setup Drupal WYSIWYG and Images uploading?</title>
+    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
+    <id>http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/</id>
+    <published>2011-11-09T05:00:00.000Z</published>
+    <updated>2011-11-09T22:07:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<p></p><p>It have been a pain for me to upload images and deal with tons of WYSIWYG editors… After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</p>
+<a id="more"></a><p></p>
+<div>
+    <strong>1. Install and enable the following modules:</strong></div>
+<div>
+    &nbsp;</div>
+<div>
+    <a href="http://drupal.org/project/ckeditor" target="_blank" rel="external">http://drupal.org/project/ckeditor</a> (disable the WYSIWYG module if you have it install it)</div>
+<div>
+    <a href="http://drupal.org/project/imce" target="_blank" rel="external">http://drupal.org/project/imce</a> -or- <a href="http://drupal.org/project/elfinder" target="_blank" rel="external">http://drupal.org/project/elfinder</a></div>
+<div>
+    &nbsp;</div>
+<div>
+    - optional -</div>
+<div>
+    <a href="http://drupal.org/project/ckeditor_link" target="_blank" rel="external">http://drupal.org/project/ckeditor_link</a></div>
+<div>
+    &nbsp;</div>
+<div>
+    <div>
+        How to setup Drupal WYSIWYG and Images uploading?</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        It have been a pain for me to upload images and deal with tons of WYSIWYG editors… After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>1. Install and enable the following modules:</strong></div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <a href="http://drupal.org/project/ckeditor" target="_blank" rel="external">http://drupal.org/project/ckeditor</a> (disable the WYSIWYG module if you have it install it)</div>
+    <div>
+        <a href="http://drupal.org/project/imce" target="_blank" rel="external">http://drupal.org/project/imce</a> -or- <a href="http://drupal.org/project/elfinder" target="_blank" rel="external">http://drupal.org/project/elfinder</a></div>
+    <div>
+        &nbsp;</div>
+    <div>
+        - optional -</div>
+    <div>
+        <a href="http://drupal.org/project/ckeditor_link" target="_blank" rel="external">http://drupal.org/project/ckeditor_link</a></div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>2. Setting up IMCE</strong></div>
+    <div>
+        a. Install and enable the IMCE module at module administration page.</div>
+    <div>
+        b. Create configuration profiles and assign them to user roles at /?q=/admin/config/media/imce <strong>-or-</strong> Menu: Configuration &raquo; Media &raquo; IMCE&nbsp;</div>
+    <div>
+        c. Test it at /imce.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>3. Setup text formats. </strong>You can create two new ones to be used by the ckeditor (basic and full):</div>
+    <div>
+        a. Menu: Configuration &raquo; Content authoring &raquo; Text formats</div>
+    <div>
+        b. Click &quot;+ Add text format&quot; and add two new formats &quot;ckeditor-basic&quot; and &quot;ckeditor-full&quot; with the &quot;administrator&quot; and &quot;authenticated users&quot; check boxes marked. Everything else could remain in their default values.</div>
+    <div>
+        c. Back to Configuration &raquo; Content authoring, you can rearrange the order, the top most one will be the default.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>4. Setup CKEditor</strong></div>
+    <div>
+        After you install the CKEditor module, download the latest version of ckeditor from <a href="http://ckeditor.com/download" target="_blank" rel="external">http://ckeditor.com/download</a></div>
+    <div>
+        a. &quot;Create a new profile&quot; link</div>
+    <div>
+        b. Setup the name in the &quot;Basic Setup&quot; section and choose one of Input format that you created in step (3)</div>
+    <div>
+        c. In &quot;Editor Appearance&quot; you can setup the toolbar load (basic, full, advance)</div>
+    <div>
+        d. In &quot;FILE BROWSER SETTINGS&quot; select &quot;IMCE&quot; as the &quot;File browser type&quot;</div>
+    <div>
+        e. Save and you can repeated this steps for full and basic.</div>
+    <div>
+        &nbsp;</div>
+    <div>
+        <strong>5. You are all set.&nbsp;</strong>When you add new content your Textbox and imaging uploading should look like this:</div>
+</div>
+<div>
+    &nbsp;</div>
+<div>
+
+<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-11-09%20at%205.05.23%20PM.png" style="width: 500px; height: 325px; " /> -->
+</div>
+<div>
+    &nbsp;</div>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;p&gt;It have been a pain for me to upload images and deal with tons of WYSIWYG editors… After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&amp;#39;m willing to hear it, too.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Technologies" scheme="http://adrianmejia.com/categories/Technologies/"/>
+    
+    
+      <category term="drupal" scheme="http://adrianmejia.com/tags/drupal/"/>
+    
+  </entry>
+  
+  <entry>
     <title>How to execute SQL statements on MS Access?</title>
     <link href="http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
     <id>http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/</id>
@@ -3275,74 +3390,6 @@ dbs.Close
     <summary type="html">
     
       &lt;p&gt;Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>git+ftp: Publish Git repository over FTP </title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/"/>
-    <id>http://adrianmejia.com/blog/2011/11/09/gitftp-publish-git-repository-over-ftp/</id>
-    <published>2011-11-09T05:00:00.000Z</published>
-    <updated>2011-11-10T03:34:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p></p><p>I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.</p>
-<a id="more"></a><p></p>
-<div>
-    &nbsp;</div>
-<div>
-    In order to use git for local development and ftp (for hosting that doesn&#39;t support git/ssh) there are some options:</div>
-<div>
-    &nbsp;</div>
-<div>
-    <a href="https://github.com/resmo/git-ftp" target="_blank" rel="external">https://github.com/resmo/git-ftp</a> - Git powered FTP client written as shell script.</div>
-<div>
-    <a href="https://github.com/ezyang/git-ftp" target="_blank" rel="external">https://github.com/ezyang/git-ftp</a> - A quick and efficient way of pushing changed files to a website via FTP using python.</div>
-<div>
-    &nbsp;</div>
-<div>
-    I have use ezyang/git-ftp to deploy my drupal websites with good results.</div>
-<div>
-    &nbsp;</div>
-<div>
-    1. Install &#39;git-python&#39; first from <a href="http://gitorious.org/git-python" target="_blank" rel="external">http://gitorious.org/git-python</a> -or- using <code>easy_install gitpython</code></div>
-<div>
-    2. git clone <a href="https://github.com/ezyang/git-ftp.git" target="_blank" rel="external">https://github.com/ezyang/git-ftp.git</a></div>
-<div>
-    3. You can create an alias for easy access in <code>~/.bash_profile</code> such as <code>alias git-ftp=&amp;quot;python ~/git-ftp/git-ftp.py &amp;quot;</code></div>
-<div>
-    4. Just run the command <code>python ~/git-ftp/git-ftp.py</code> where is your git repository that you want to upload. I will prompt all the ftp details and also will create the config file for you.</div>
-<div>
-    &nbsp;</div>
-<div>
-    You might want to setup files to ignore. If you are using drupal you should create a .gitignore file with a content similar to this:</div>
-<div>
-    &nbsp;</div>
-<div>
-    <pre>
-.DS_Store<em>
-
-
-# Ignore configuration files that may contain sensitive information.
-
-sites/</em>/settings<em>.php
-
-
-# Ignore paths that contain user-generated content.
-
-sites/</em>/files
-
-sites/*/private</pre>
-</div>
-<div>
-    &nbsp;</div>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;p&gt;I have been working with websites for a while and also with different web hosts. The default way to upload content is through FTP but it takes a lot of time because upload the entire site each time. Some web hosts &amp;nbsp;have ssh and git, which is great for deployement because you can keep track of the versions and also upload only the files that changes.&lt;/p&gt;
     
     </summary>
     
