@@ -81,7 +81,7 @@ theme: am-light
 deploy:
   type: git
   repo:
-    github: https://github.com/amejiarosario/amejiarosario.github.io.git
+    github: git@github.com:amejiarosario/amejiarosario.github.io.git
 
 
 # https://github.com/hexojs/hexo/issues/1388
@@ -133,7 +133,7 @@ css_minifier:
 js_minifier:
   enable: false
 image_minifier:
-  enable: false
+  enable: true
 
 # https://github.com/hexojs/hexo-generator-feed
 feed:
