@@ -238,10 +238,11 @@ ga('send', 'pageview');
 
     <main>
       <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
-  "@type": "NewsArticle",
+  "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": ""
@@ -251,8 +252,8 @@ ga('send', 'pageview');
   "image": {
     "@type": "ImageObject",
     "url": "http://adrianmejia.comundefined",
-    "height": 54,
-    "width": 350
+    "height": 360,
+    "width": 728
   },
   
   "datePublished": "2012-04-27T22:00:00-04:00",
@@ -266,7 +267,9 @@ ga('send', 'pageview');
     "name": "Adrian Mejia",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://adrianmejia.com/images/logo.png"
+      "url": "http://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
     }
   },
   "description": "This post is a guide on how to extract your blog posts information from Drupal 7 to other systems. And also automatically create a redirect files from the old blog to the new one. In this case, I migrated to Jerkyll/Octopress blog but from the data extracted in with my script you can migrate any other blog system. Hopefully, this will save you a lot of time if you need to do the same task. If you run into troubles go to last section of the post it has some suggestions."
@@ -517,8 +520,8 @@ Sequel::DatabaseConnectionError: Mysql::ClientError::ServerGoneError: The MySQL 
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Tue Aug 23 2016 16:22:14 GMT-0400 (EDT)">
-            v.ocdpx2
+          <span class="muted m-x-4" title="Tue Aug 23 2016 17:03:24 GMT-0400 (EDT)">
+            v.ocdrto
           </span>
         </div>
       </div>
