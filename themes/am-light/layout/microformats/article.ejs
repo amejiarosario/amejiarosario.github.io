@@ -1,19 +1,20 @@
 <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",
-  "@type": "NewsArticle",
+  "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "<%- post.url %>"
   },
-  "headline": "<%- post.title %>",
+  "headline": "<%- truncate(post.title, 110) %>",
   <% if(post.photos) { %>
   "image": {
     "@type": "ImageObject",
-    "url": "<%- `${config.url}${post.photos[0]}` %>",
-    "height": 54,
-    "width": 350
+    "url": "<%- `${config.url}${post.photos[1]}` %>",
+    "height": 360,
+    "width": 728
   },
   <% } %>
   "datePublished": "<%- post.date.format() %>",
@@ -27,7 +28,9 @@
     "name": "Adrian Mejia",
     "logo": {
       "@type": "ImageObject",
-      "url": "<%- `${config.url}${config.logo}` %>"
+      "url": "<%- `${config.url}${config.logo}` %>",
+      "width": 347,
+      "height": 50
     }
   },
   "description": "<%- strip_html(post.excerpt) %>"
