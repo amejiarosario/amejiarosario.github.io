@@ -5,8 +5,8 @@ date: 2014-09-28 23:50:24 -0400
 updated: 2016-08-06 19:31:57 -0400
 comments: true
 toc: true
-pageviews__total: 294049  
-pageviews__recent: 244  
+pageviews__total: 294049
+pageviews__recent: 244
 pageviews__avg_time: 17303
 photos__background_color: '#25A9DD'
 bitly: 'http://bit.ly/angular-4-beginners'
@@ -18,6 +18,7 @@ tags:
   - angularjs
   - javascript
   - Tutorial_MEAN-Stack
+alias: /blog/2014/09/28/angularjs-tutorial-for-begineers-with-nodejs-expressjs-and-mongodb/
 categories:
   - Technologies
   - Web Development
@@ -142,7 +143,7 @@ Angular.js **controllers** are code that "controls" certain sections containing 
         { name: 'Be awesome!', completed: false },
       ]
     }
-  </script>  
+  </script>
 </body>
 ```
 

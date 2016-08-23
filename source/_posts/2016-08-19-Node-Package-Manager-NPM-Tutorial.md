@@ -126,6 +126,8 @@ npm install
 
 Usually, you use `--save-dev` vs `--save` when you need use package that is not part of the project. For instance, testing libraries, building assets tools, etc.
 
+You can search for all NPM modules on [npmjs.com](https://www.npmjs.com/browse/star)
+
 # How to view my installed NPM packages?
 
 Sometimes is useful to see the list of packages that you have installed on your system. You can do that with the following commands:

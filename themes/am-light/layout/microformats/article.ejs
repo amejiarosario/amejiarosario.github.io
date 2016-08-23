@@ -11,9 +11,9 @@
   <% if(post.photos) { %>
   "image": {
     "@type": "ImageObject",
-    "url": "<%- `${config.url}${post.photos[1]}` %>",
-    "height": 360,
-    "width": 728
+    "url": "<%- `${config.url}${post.photos[0]}` %>",
+    "height": 54,
+    "width": 350
   },
   <% } %>
   "datePublished": "<%- post.date.format() %>",
@@ -27,9 +27,7 @@
     "name": "Adrian Mejia",
     "logo": {
       "@type": "ImageObject",
-      "url": "<%- `${config.url}${config.logo}` %>",
-      "width": 600,
-      "height": 60
+      "url": "<%- `${config.url}${config.logo}` %>"
     }
   },
   "description": "<%- strip_html(post.excerpt) %>"
