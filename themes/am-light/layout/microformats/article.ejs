@@ -8,7 +8,7 @@
     "@type": "WebPage",
     "@id": "<%- post.url %>"
   },
-  "headline": "<%- truncate(post.title, 110) %>",
+  "headline": "<%- truncate(post.title, {length: 110}) %>",
   <% if(post.photos) { %>
   "image": {
     "@type": "ImageObject",
