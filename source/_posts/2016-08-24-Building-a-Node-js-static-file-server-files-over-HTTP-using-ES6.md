@@ -12,6 +12,7 @@ photos:
  - /images/node-web-server-small.png
  - /images/node-web-server-large.png
 tags:
+  - nodejs
   - javascript
 categories:
   - Programming
