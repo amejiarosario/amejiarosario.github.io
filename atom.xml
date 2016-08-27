@@ -74,8 +74,9 @@
     <published>2016-08-19T20:18:32.000Z</published>
     <updated>2016-08-19T20:18:32.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules.</p>
+    <content type="html"><![CDATA[<p>This tutorial goes from how to install NPM to manage packages dependencies. While we are doing this, we will use practical examples to drive the concepts home.</p>
 <a id="more"></a>
+<p>Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules.</p>
 <p>In this section, we are going to get hands on NPM. We will cover from how to install it to how to download, uninstall and manage packages. While we are doing this we will use practical examples to drive the concepts home.</p>
 <h1 id="How-to-install-update-NPM">How to install/update NPM?<a href="#How-to-install-update-NPM" class="headerlink" title="How to install/update NPM?"></a></h1><p><abbr title="Node Package Manager">NPM</abbr> is bundle into the Node installation. So, if you have Node, then you have <abbr title="Node Package Manager">NPM</abbr> already. But, <abbr title="Node Package Manager">NPM</abbr> gets updated more often than Node. So, from time to time you need to get the latest version.</p>
 <p>You can check the NPM version and install latest  by running:</p>
@@ -126,7 +127,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules.&lt;/p&gt;
+      &lt;p&gt;This tutorial goes from how to install NPM to manage packages dependencies. While we are doing this, we will use practical examples to drive the concepts home.&lt;/p&gt;
     
     </summary>
     
@@ -150,8 +151,9 @@
     <published>2016-08-12T20:30:23.000Z</published>
     <updated>2016-08-12T20:30:23.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using.</p>
+    <content type="html"><![CDATA[<p>Modules are a key concept to understand Node.js projects. We cover Node modules: require, exports and the future import.</p>
 <a id="more"></a>
+<p>Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using.</p>
 <p>In this section, we are going to cover how to create Node modules and each one of its components:</p>
 <ul>
 <li>Require</li>
@@ -214,7 +216,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using.&lt;/p&gt;
+      &lt;p&gt;Modules are a key concept to understand Node.js projects. We cover Node modules: require, exports and the future import.&lt;/p&gt;
     
     </summary>
     
@@ -265,8 +267,9 @@
     <published>2016-04-08T20:41:32.000Z</published>
     <updated>2016-04-08T20:41:32.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Directives are the most important concept to understand in Angular. This framework relies heavily on them to teach the browser new HTML tags. Directives are a powerful tool to create reusable web components. Directives not only could be defined as new HTML tags but also as attributes, CSS classes or even HTML comments. Angular comes with many built-in (core) directives that offer numerous functionalities to your web applications right away. Furthermore, it also allows us to define our own through custom directives. We are going to focus on the later.</p>
+    <content type="html"><![CDATA[<p>Directives are one of the most important concepts to understand Angular. This tutorial takes through the basics and beyond. We will cover how to build your own HTML extensions through directives.</p>
 <a id="more"></a>
+<p>Angular framework relies heavily on them to teach the browser new HTML tags. Directives are a powerful tool to create reusable web components. Directives not only could be defined as new HTML tags but also as attributes, CSS classes or even HTML comments. Angular comes with many built-in (core) directives that offer numerous functionalities to your web applications right away. Furthermore, it also allows us to define our own through custom directives. We are going to focus on the later.</p>
 <p>Let’s say we want to create a new HTML component that the browsers doesn’t support yet, like a To-do list:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">my-todo</span> <span class="attr">list</span>=<span class="string">"todo"</span> <span class="attr">title</span>=<span class="string">"Angular Todo"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-todo</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>If you paste that code in any browser, it will not do much. We need to use Angular to teach the browser how to interpret this new HTML element called “my-todo”. We do this by defining a new directive with its attributes.</p>
@@ -314,7 +317,7 @@
 <h1 id="Template">Template<a href="#Template" class="headerlink" title="Template"></a></h1><p>Templates are just HTML code that could be reuse multiple times with different values or text. In order to be generic enough, they use placeholders tied to variables that could be easily replaced. Let’s create the “todo.tpl.html” with the following content:</p>
 <figure class="highlight html"><figcaption><span>todo.tpl.html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-repeat</span>=<span class="string">"todo in list"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">ng-model</span>=<span class="string">"todo.completed"</span>&gt;</span> &#123;&#123;todo.name&#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Notice that our template contains placeholders with a variable such as Creating custom AngularJS directives for beginners, which is going, to be replaced by real title text. Similarly,  is going to be replaced with a task name.</p>
-<p>We just used our first built-in Angular directive, in this tutorial, “ng-repeat”. This directive is going to take an array of elements, like our list and repeat itself for each one of elements and refer to them as “todo”. In other words, if the list contains 4 tasks, we are going to see 4 checkboxes each one with the name of the individual tasks. We are going to explain where “title” and “list” comes in the next section.  </p>
+<p>We just used our first built-in Angular directive, in this tutorial, “ng-repeat”. This directive is going to take an array of elements, like our list and repeat itself for each one of elements and refer to them as “todo”. In other words, if the list contains 4 tasks, we are going to see 4 checkboxes each one with the name of the individual tasks. We are going to explain where “title” and “list” comes in the next section.</p>
 <p>Going back to our directive definition, we could have used “template” attribute instead of “templateUrl” and take inline html code directly, but often is hard to read and we would prefer to use “templateUrl” and defined as a separated file.</p>
 <p>As you might figure it out, “templateUrl” takes the name of the file containing the template. If all templates and code are in the same directory just the name of the file will do. If they are in a different folder you will need to specify the full path to reach it. To keep it simple, we are going to have all files in a single directory.</p>
 <h1 id="Scope">Scope<a href="#Scope" class="headerlink" title="Scope"></a></h1><p>Scopes are key concept to understand Angular. Scope is what glues JavaScript code with HTML and allow us to replace placeholders from templates with real values.</p>
@@ -357,7 +360,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;Directives are the most important concept to understand in Angular. This framework relies heavily on them to teach the browser new HTML tags. Directives are a powerful tool to create reusable web components. Directives not only could be defined as new HTML tags but also as attributes, CSS classes or even HTML comments. Angular comes with many built-in (core) directives that offer numerous functionalities to your web applications right away. Furthermore, it also allows us to define our own through custom directives. We are going to focus on the later.&lt;/p&gt;
+      &lt;p&gt;Directives are one of the most important concepts to understand Angular. This tutorial takes through the basics and beyond. We will cover how to build your own HTML extensions through directives.&lt;/p&gt;
     
     </summary>
     
@@ -379,8 +382,9 @@
     <published>2016-03-23T21:34:11.000Z</published>
     <updated>2016-03-23T21:34:11.000Z</updated>
     
-    <content type="html"><![CDATA[<p>Massive success is the best that could happen to any application. However, it could be a blessing and a curse for developers. Dealing with downtimes, high availability and trying to scale to the new number of users. One of the most dreaded questions is: ‘Would that scale?’. The following is a guideline on how to grow the web applications as the number of users grows. Scaling an application too early is more painful than beneficial. This guide provides a way how to start simple and scale as the number of users grows.</p>
+    <content type="html"><![CDATA[<p>Massive success is the best that could happen to any application. But, it could be a blessing and a curse for developers. Dealing with downtime, high availability and trying to scale. The following is a guideline on how to scale the web applications as the number of users grows.</p>
 <a id="more"></a>
+<p>One of the most dreaded questions is: ‘Would that scale?’. The following is a guideline on how to grow the web applications as the number of users grows. Scaling an application too early is more painful than beneficial. This guide provides a way how to start simple and scale as the number of users grows.</p>
 <p><strong>Common Server Setups For Scaling Your Web Application</strong></p>
 <p>The examples and solutions will be as practical as possible. We might use references to Amazon Web Services (AWS), Digital Ocean or other cloud solutions. Also, there are some NodeJS/Nginx references, but they could easily be translated to other technologies.</p>
 <p>You may notice, that the measurement we are using is “concurrent user”, which means all users are hitting the web app at the same time. It’s different from the number of users supported (which might be higher) since it’s unlikely that all users are hitting the app at the same time. However, we are going to use “concurrent user” since it’s easier to explain.</p>
@@ -443,7 +447,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;Massive success is the best that could happen to any application. However, it could be a blessing and a curse for developers. Dealing with downtimes, high availability and trying to scale to the new number of users. One of the most dreaded questions is: ‘Would that scale?’. The following is a guideline on how to grow the web applications as the number of users grows. Scaling an application too early is more painful than beneficial. This guide provides a way how to start simple and scale as the number of users grows.&lt;/p&gt;
+      &lt;p&gt;Massive success is the best that could happen to any application. But, it could be a blessing and a curse for developers. Dealing with downtime, high availability and trying to scale. The following is a guideline on how to scale the web applications as the number of users grows.&lt;/p&gt;
     
     </summary>
     
@@ -909,9 +913,9 @@ for your next web application.</li>
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
-    
       <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
+    
+      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
     
       <category term="mean stack" scheme="http://adrianmejia.com/tags/mean-stack/"/>
     
@@ -1218,13 +1222,13 @@ Is NOT working? take a look at the <a href="https://github.com/amejiarosario/tod
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
-    
       <category term="NodeJS" scheme="http://adrianmejia.com/tags/NodeJS/"/>
     
       <category term="ExpressJS" scheme="http://adrianmejia.com/tags/ExpressJS/"/>
     
       <category term="MongoDB" scheme="http://adrianmejia.com/tags/MongoDB/"/>
+    
+      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
     
   </entry>
   
@@ -1398,9 +1402,9 @@ Is NOT working? take a look at the <a href="https://github.com/amejiarosario/tod
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
-    
       <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
+    
+      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
     
   </entry>
   
@@ -3293,116 +3297,46 @@ name,line1,line2,city,zip code,country</pre>
   </entry>
   
   <entry>
-    <title>How to setup Drupal WYSIWYG and Images uploading?</title>
-    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/"/>
-    <id>http://adrianmejia.com/blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/</id>
+    <title>How to execute SQL statements on MS Access?</title>
+    <link href="http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/"/>
+    <id>http://adrianmejia.com/blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/</id>
     <published>2011-11-09T05:00:00.000Z</published>
-    <updated>2011-11-09T22:07:20.000Z</updated>
+    <updated>2011-11-09T16:12:16.000Z</updated>
     
-    <content type="html"><![CDATA[<p></p><p>It have been a pain for me to upload images and deal with tons of WYSIWYG editors… After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</p>
-<a id="more"></a><p></p>
-<div>
-    <strong>1. Install and enable the following modules:</strong></div>
-<div>
-    &nbsp;</div>
-<div>
-    <a href="http://drupal.org/project/ckeditor" target="_blank" rel="external">http://drupal.org/project/ckeditor</a> (disable the WYSIWYG module if you have it install it)</div>
-<div>
-    <a href="http://drupal.org/project/imce" target="_blank" rel="external">http://drupal.org/project/imce</a> -or- <a href="http://drupal.org/project/elfinder" target="_blank" rel="external">http://drupal.org/project/elfinder</a></div>
-<div>
-    &nbsp;</div>
-<div>
-    - optional -</div>
-<div>
-    <a href="http://drupal.org/project/ckeditor_link" target="_blank" rel="external">http://drupal.org/project/ckeditor_link</a></div>
-<div>
-    &nbsp;</div>
-<div>
-    <div>
-        How to setup Drupal WYSIWYG and Images uploading?</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        It have been a pain for me to upload images and deal with tons of WYSIWYG editors… After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>1. Install and enable the following modules:</strong></div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <a href="http://drupal.org/project/ckeditor" target="_blank" rel="external">http://drupal.org/project/ckeditor</a> (disable the WYSIWYG module if you have it install it)</div>
-    <div>
-        <a href="http://drupal.org/project/imce" target="_blank" rel="external">http://drupal.org/project/imce</a> -or- <a href="http://drupal.org/project/elfinder" target="_blank" rel="external">http://drupal.org/project/elfinder</a></div>
-    <div>
-        &nbsp;</div>
-    <div>
-        - optional -</div>
-    <div>
-        <a href="http://drupal.org/project/ckeditor_link" target="_blank" rel="external">http://drupal.org/project/ckeditor_link</a></div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>2. Setting up IMCE</strong></div>
-    <div>
-        a. Install and enable the IMCE module at module administration page.</div>
-    <div>
-        b. Create configuration profiles and assign them to user roles at /?q=/admin/config/media/imce <strong>-or-</strong> Menu: Configuration &raquo; Media &raquo; IMCE&nbsp;</div>
-    <div>
-        c. Test it at /imce.</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>3. Setup text formats. </strong>You can create two new ones to be used by the ckeditor (basic and full):</div>
-    <div>
-        a. Menu: Configuration &raquo; Content authoring &raquo; Text formats</div>
-    <div>
-        b. Click &quot;+ Add text format&quot; and add two new formats &quot;ckeditor-basic&quot; and &quot;ckeditor-full&quot; with the &quot;administrator&quot; and &quot;authenticated users&quot; check boxes marked. Everything else could remain in their default values.</div>
-    <div>
-        c. Back to Configuration &raquo; Content authoring, you can rearrange the order, the top most one will be the default.</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>4. Setup CKEditor</strong></div>
-    <div>
-        After you install the CKEditor module, download the latest version of ckeditor from <a href="http://ckeditor.com/download" target="_blank" rel="external">http://ckeditor.com/download</a></div>
-    <div>
-        a. &quot;Create a new profile&quot; link</div>
-    <div>
-        b. Setup the name in the &quot;Basic Setup&quot; section and choose one of Input format that you created in step (3)</div>
-    <div>
-        c. In &quot;Editor Appearance&quot; you can setup the toolbar load (basic, full, advance)</div>
-    <div>
-        d. In &quot;FILE BROWSER SETTINGS&quot; select &quot;IMCE&quot; as the &quot;File browser type&quot;</div>
-    <div>
-        e. Save and you can repeated this steps for full and basic.</div>
-    <div>
-        &nbsp;</div>
-    <div>
-        <strong>5. You are all set.&nbsp;</strong>When you add new content your Textbox and imaging uploading should look like this:</div>
-</div>
-<div>
-    &nbsp;</div>
-<div>
+    <content type="html"><![CDATA[<p>Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
+<a id="more"></a></p>
+<p>Here are the steps of how to create a new table programmatically in Access (2007):</p>
+<ol>
+<li>Open/create your database on MS Access</li>
+<li>Menu: ‘Databases Tools’ &gt; ‘Visual Basic’ (this will open the visual basic editor</li>
+<li>in the Visual Basic Editor, Menu: Run</li>
+<li>Insert the name of your macro and click ‘create’ button</li>
+<li>Insert a code similar to the shown below. Replace the path in ‘OpenDatabase’ with your database path; and fill ‘dbs.Execute’ with your own SQL statements</li>
+</ol>
+<p>Sub createdb()
+    Dim dbs As Database</p>
+<pre><code>&apos; Modify this line to include the path to Northwind
+&apos; on your computer.
+Set dbs = OpenDatabase(&quot;C:\\amr\\projects\\sites\\files\\tf_pledge_reminder_email.accdb&quot;)
 
-<!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202011-11-09%20at%205.05.23%20PM.png" style="width: 500px; height: 325px; " /> -->
-</div>
-<div>
-    &nbsp;</div>
+&apos; Create a table with two text fields.
+dbs.Execute &quot;create table RIT_TF_PLG_REM_EMAIL_TEST2 (   pref_mail_name  VARCHAR(60), pd_to_date      NUMBER,   this_payment    NUMBER )&quot;
+
+dbs.Close
+</code></pre><p>End Sub</p>
+<ol>
+<li>Menu: Run</li>
+<li>You are all set.</li>
+</ol>
+<p>If you have any questions you can contact me or write a comment</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;p&gt;It have been a pain for me to upload images and deal with tons of WYSIWYG editors… After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&amp;#39;m willing to hear it, too.&lt;/p&gt;
+      &lt;p&gt;Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
     
     </summary>
     
-      <category term="Technologies" scheme="http://adrianmejia.com/categories/Technologies/"/>
-    
-    
-      <category term="drupal" scheme="http://adrianmejia.com/tags/drupal/"/>
     
   </entry>
   

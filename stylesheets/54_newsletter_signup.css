@@ -21,9 +21,7 @@
   color: #725852;
   text-shadow: -1px 1px 0px #fff;
   border-radius: 0 50px 50px 0;
-  background-image: -webkit-linear-gradient(top, #f8f8f7, #e9e6e2);
   background-image: linear-gradient(to bottom, #f8f8f7, #e9e6e2);
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   background-repeat: no-repeat;
   background-position: -16px 17px, 0 0;
@@ -106,6 +104,7 @@
   display: block;
   position: absolute;
   z-index: 10;
+  -ms-transform-origin: right bottom;
   -webkit-transform-origin: right bottom;
   transform-origin: right bottom; }
 
@@ -120,10 +119,12 @@
   background: #B09880; }
 
 .hurray .p1 .css3-arm.left, .hurray .p2 .css3-arm.left, .hurray .p3 .css3-arm.left, .hurray .p4 .css3-arm.left {
+  -ms-transform: rotate(65deg) translateX(0);
   -webkit-transform: rotate(65deg) translateX(0);
   transform: rotate(65deg) translateX(0); }
 
 .hurray .p1 .css3-arm.right, .hurray .p2 .css3-arm.right, .hurray .p3 .css3-arm.right, .hurray .p4 .css3-arm.right {
+  -ms-transform: rotate(115deg) translateX(0);
   -webkit-transform: rotate(115deg) translateX(0);
   transform: rotate(115deg) translateX(0); }
 
@@ -196,12 +197,14 @@
 .p1 .css3-arm.left {
   bottom: 10px;
   left: -31px;
+  -ms-transform: rotate(65deg) translateX(110px);
   -webkit-transform: rotate(65deg) translateX(110px);
   transform: rotate(65deg) translateX(110px); }
 
 .p1 .css3-arm.right {
   bottom: 20px;
   left: 47px;
+  -ms-transform: rotate(115deg) translateX(110px);
   -webkit-transform: rotate(115deg) translateX(110px);
   transform: rotate(115deg) translateX(110px); }
 
@@ -220,6 +223,7 @@
 .p1 .left .finger1, .p1 .right .finger4 {
   bottom: -4px;
   left: -13px;
+  -ms-transform: rotate(-9deg);
   -webkit-transform: rotate(-9deg);
   transform: rotate(-9deg); }
 
@@ -227,6 +231,7 @@
   bottom: 3px;
   width: 7px;
   left: -5px;
+  -ms-transform: rotate(-3deg);
   -webkit-transform: rotate(-3deg);
   transform: rotate(-3deg); }
 
@@ -234,6 +239,7 @@
   bottom: 10px;
   width: 7px;
   left: -5px;
+  -ms-transform: rotate(-3deg);
   -webkit-transform: rotate(-3deg);
   transform: rotate(-3deg); }
 
@@ -241,6 +247,7 @@
   bottom: 17px;
   left: -17px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(2deg);
   -webkit-transform: rotate(2deg);
   transform: rotate(2deg); }
 
@@ -249,6 +256,7 @@
   left: -5px;
   width: 18px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(46deg);
   -webkit-transform: rotate(46deg);
   transform: rotate(46deg); }
 
@@ -257,14 +265,17 @@
   left: -2px;
   width: 18px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(-57deg);
   -webkit-transform: rotate(-57deg);
   transform: rotate(-57deg); }
 
 .active .p1 .css3-head {
+  -ms-transform: translateY(-95px);
   -webkit-transform: translateY(-95px);
   transform: translateY(-95px); }
 
 .active .p1 .css3-body {
+  -ms-transform: translateY(-40px);
   -webkit-transform: translateY(-40px);
   transform: translateY(-40px); }
 
@@ -339,12 +350,14 @@
 .p2 .css3-arm.left {
   bottom: 5px;
   left: -11px;
+  -ms-transform: rotate(65deg) translateX(90px);
   -webkit-transform: rotate(65deg) translateX(90px);
   transform: rotate(65deg) translateX(90px); }
 
 .p2 .css3-arm.right {
   bottom: 15px;
   left: 55px;
+  -ms-transform: rotate(115deg) translateX(90px);
   -webkit-transform: rotate(115deg) translateX(90px);
   transform: rotate(115deg) translateX(90px); }
 
@@ -363,6 +376,7 @@
 .p2 .left .finger1, .p2 .right .finger4 {
   bottom: -4px;
   left: -13px;
+  -ms-transform: rotate(-9deg);
   -webkit-transform: rotate(-9deg);
   transform: rotate(-9deg); }
 
@@ -370,6 +384,7 @@
   bottom: 2px;
   width: 7px;
   left: -4px;
+  -ms-transform: rotate(-3deg);
   -webkit-transform: rotate(-3deg);
   transform: rotate(-3deg); }
 
@@ -377,6 +392,7 @@
   bottom: 7px;
   width: 7px;
   left: -4px;
+  -ms-transform: rotate(-3deg);
   -webkit-transform: rotate(-3deg);
   transform: rotate(-3deg); }
 
@@ -384,6 +400,7 @@
   bottom: 13px;
   left: -16px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(2deg);
   -webkit-transform: rotate(2deg);
   transform: rotate(2deg); }
 
@@ -392,6 +409,7 @@
   left: -5px;
   width: 18px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(46deg);
   -webkit-transform: rotate(46deg);
   transform: rotate(46deg); }
 
@@ -400,14 +418,17 @@
   left: -2px;
   width: 18px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(-57deg);
   -webkit-transform: rotate(-57deg);
   transform: rotate(-57deg); }
 
 .active .p2 .css3-head {
+  -ms-transform: translateY(-95px);
   -webkit-transform: translateY(-95px);
   transform: translateY(-95px); }
 
 .active .p2 .css3-body {
+  -ms-transform: translateY(-30px);
   -webkit-transform: translateY(-30px);
   transform: translateY(-30px); }
 
@@ -483,12 +504,14 @@
 .p3 .css3-arm.left {
   bottom: 5px;
   left: 6px;
+  -ms-transform: rotate(65deg) translateX(80px);
   -webkit-transform: rotate(65deg) translateX(80px);
   transform: rotate(65deg) translateX(80px); }
 
 .p3 .css3-arm.right {
   bottom: 10px;
   left: 60px;
+  -ms-transform: rotate(115deg) translateX(80px);
   -webkit-transform: rotate(115deg) translateX(80px);
   transform: rotate(115deg) translateX(80px); }
 
@@ -507,6 +530,7 @@
 .p3 .left .finger1, .p3 .right .finger4 {
   bottom: -4px;
   left: -11px;
+  -ms-transform: rotate(-9deg);
   -webkit-transform: rotate(-9deg);
   transform: rotate(-9deg); }
 
@@ -514,6 +538,7 @@
   bottom: 1px;
   width: 7px;
   left: -4px;
+  -ms-transform: rotate(-3deg);
   -webkit-transform: rotate(-3deg);
   transform: rotate(-3deg); }
 
@@ -522,6 +547,7 @@
   width: 7px;
   height: 6px;
   left: -4px;
+  -ms-transform: rotate(-3deg);
   -webkit-transform: rotate(-3deg);
   transform: rotate(-3deg); }
 
@@ -529,6 +555,7 @@
   bottom: 12px;
   left: -13px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(2deg);
   -webkit-transform: rotate(2deg);
   transform: rotate(2deg); }
 
@@ -537,6 +564,7 @@
   left: -5px;
   width: 15px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(46deg);
   -webkit-transform: rotate(46deg);
   transform: rotate(46deg); }
 
@@ -545,14 +573,17 @@
   left: -4px;
   width: 14px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(-57deg);
   -webkit-transform: rotate(-57deg);
   transform: rotate(-57deg); }
 
 .active .p3 .css3-head {
+  -ms-transform: translateY(-70px);
   -webkit-transform: translateY(-70px);
   transform: translateY(-70px); }
 
 .active .p3 .css3-body {
+  -ms-transform: translateY(-32px);
   -webkit-transform: translateY(-32px);
   transform: translateY(-32px); }
 
@@ -625,12 +656,14 @@
 .p4 .css3-arm.left {
   bottom: 10px;
   left: -31px;
+  -ms-transform: rotate(65deg) translateX(110px);
   -webkit-transform: rotate(65deg) translateX(110px);
   transform: rotate(65deg) translateX(110px); }
 
 .p4 .css3-arm.right {
   bottom: 20px;
   left: 47px;
+  -ms-transform: rotate(115deg) translateX(110px);
   -webkit-transform: rotate(115deg) translateX(110px);
   transform: rotate(115deg) translateX(110px); }
 
@@ -649,6 +682,7 @@
 .p4 .left .finger1, .p4 .right .finger4 {
   bottom: -4px;
   left: -13px;
+  -ms-transform: rotate(-9deg);
   -webkit-transform: rotate(-9deg);
   transform: rotate(-9deg); }
 
@@ -656,6 +690,7 @@
   bottom: 3px;
   width: 7px;
   left: -5px;
+  -ms-transform: rotate(-3deg);
   -webkit-transform: rotate(-3deg);
   transform: rotate(-3deg); }
 
@@ -663,6 +698,7 @@
   bottom: 10px;
   width: 7px;
   left: -5px;
+  -ms-transform: rotate(-3deg);
   -webkit-transform: rotate(-3deg);
   transform: rotate(-3deg); }
 
@@ -670,6 +706,7 @@
   bottom: 17px;
   left: -17px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(2deg);
   -webkit-transform: rotate(2deg);
   transform: rotate(2deg); }
 
@@ -678,6 +715,7 @@
   left: -5px;
   width: 18px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(46deg);
   -webkit-transform: rotate(46deg);
   transform: rotate(46deg); }
 
@@ -686,13 +724,16 @@
   left: -2px;
   width: 18px;
   border-radius: 5px 0 0 5px;
+  -ms-transform: rotate(-57deg);
   -webkit-transform: rotate(-57deg);
   transform: rotate(-57deg); }
 
 .active .p4 .css3-head {
+  -ms-transform: translateY(-95px);
   -webkit-transform: translateY(-95px);
   transform: translateY(-95px); }
 
 .active .p4 .css3-body {
+  -ms-transform: translateY(-80px);
   -webkit-transform: translateY(-80px);
   transform: translateY(-80px); }
