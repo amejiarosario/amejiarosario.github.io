@@ -7,10 +7,10 @@ pageviews__total: 0
 pageviews__recent: 0
 pageviews__avg_time: 0
 tutorial__order: 0
-photos__background_color: '#235E7E'
+photos__background_color: '#8E44AD'
 photos:
- - /images/node-package-manager-small.png
- - /images/node-package-manager-large.png
+ - /images/node-web-server-small.png
+ - /images/node-web-server-large.png
 tags:
   - javascript
 categories:
@@ -20,7 +20,7 @@ date: 2016-08-24 17:54:42
 updated: 2016-08-24 17:54:42
 ---
 
-We are going to a **static file server** in Node.js. This web server is going to respond with the content of the file in a given subpath. While we are doing this exercise we are going to cover more about `http` module. Also, use some utilities from other core modules such as `path`, `url` and `fs`.
+We are going to do a **static file server** in Node.js. This web server is going to respond with the content of the file in a given path. While we are doing this exercise we are going to cover more about `http` module. Also, use some utilities from other core modules such as `path`, `url` and `fs`.
 
 <!-- more -->
 
@@ -28,7 +28,7 @@ We are going to a **static file server** in Node.js. This web server is going to
 
 Node's HTTP module is versatile. You can use it as a client, to grab content from websites or as a server. We are going to use it server files from our file system.
 
-If you are familiar with Ruby or Python or Node. It's the equivalent of this
+If you are familiar with Ruby or Python or http-server package. It's the equivalent of this:
 
 ```bash Existing HTTP Servers Implementations
 # python HTTP server
@@ -52,10 +52,8 @@ const http = require('http');
 
 http.createServer(function (req, res) {
   // server code
-
   console.log(`${req.method} ${req.url}`);
   res.end('hello world!');
-
 }).listen(9000);
 
 console.log('Server listening on port 9000');
@@ -83,17 +81,16 @@ Finally, the listening part. It allows you to set the port that you want your se
 
 Let's now proceed to do the static web server. We want to parse the URL path and get the file matching that path. For instance, if we get a request like `localhost:9000/example/server.js`. We want to look for a file in `./example/server.js`.
 
-Browsers use as a header the `Content-type`, to know how to render the file. So, we can infer their type by the extension and translate to the corresponding type.
+Browsers don't rely on the extension to render a file. Instead, they use the header `Content-type`. For instance, if we serve an HTML file with a content type `text/plain` it will show the HTML code (plain text). But, if you use a content type `text/html` then it will render the HTML as such.
 
-All together looks like this:
+For now, we can infer the file content type based on the file extension. The content types are represented in MIME formmat. MIME stands for Multipurpose Internet Mail Extensions. You can see the MIME types according to file extentions in the following code:
 
 ```javascript static_server.js
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
-// you can pass the parameter in the command line.
-// e.g. node static_server.js 3000
+// you can pass the parameter in the command line. e.g. node static_server.js 3000
 const port = process.argv[2] || 9000;
 
 http.createServer(function (req, res) {
@@ -105,8 +102,8 @@ http.createServer(function (req, res) {
   let pathname = `.${parsedUrl.pathname}`;
   // based on the URL path, extract the file extention. e.g. .js, .doc, ...
   const ext = path.parse(pathname).ext;
-  // maps file extention to MIME typere
-  const map = {
+  // maps file extention to MIME types
+  const mimeType = {
     '.ico': 'image/x-icon',
     '.html': 'text/html',
     '.js': 'text/javascript',
@@ -118,7 +115,9 @@ http.createServer(function (req, res) {
     '.mp3': 'audio/mpeg',
     '.svg': 'image/svg+xml',
     '.pdf': 'application/pdf',
-    '.doc': 'application/msword'
+    '.doc': 'application/msword',
+    '.eot': 'appliaction/vnd.ms-fontobject',
+    '.ttf': 'aplication/font-sfnt'
   };
 
   fs.exists(pathname, function (exist) {
@@ -129,9 +128,9 @@ http.createServer(function (req, res) {
       return;
     }
 
-    // if is a directory search for index file matching the extention
+    // if is a directory, then look for index.html
     if (fs.statSync(pathname).isDirectory()) {
-      pathname += '/index' + ext;
+      pathname += '/index.html';
     }
 
     // read file from file system
@@ -141,7 +140,7 @@ http.createServer(function (req, res) {
         res.end(`Error getting the file: ${err}.`);
       } else {
         // if the file is found, set Content-type and send data
-        res.setHeader('Content-type', map[ext] || 'text/plain' );
+        res.setHeader('Content-type', mimeType[ext] || 'text/plain' );
         res.end(data);
       }
     });
@@ -153,7 +152,7 @@ http.createServer(function (req, res) {
 console.log(`Server listening on port ${port}`);
 ```
 
-We are using Node.js core `path.parse` libraries to get the extentions from the URL path.   Similarly, we are using `url.parse` to break down the `request.url` into it's components. Then, we extract the extention from the file. Finally, we use `fs.readFile` to get the content from the file system. If any error occurs related to the file path, we return a 404 and otherwise return the file content.
+We are using Node.js core `path.parse` libraries to get the extensions from the URL path.   Similarly, we are using `url.parse` to break down the `request.url` into its components. Then, we extract the extension from the file. Finally, we use `fs.readFile` to get the content from the file system. If any error occurs related to the file path, we return a 404 and otherwise return the file content.
 
 Give it a try with:
 
@@ -168,5 +167,27 @@ curl -i localhost:9000/server.js
 curl -i localhost:9000/invalid-file.doc
 ```
 
+
 For the first one, you will get a 200 OK response, while for the 2nd one you will get a 404 not found error, as expected.
 
+You can also download the code from this repo and try out with the test files:
+
+```bash Testing with different file types
+# Get Repository
+git clone https://github.com/amejiarosario/meanshop.git
+cd meanshop
+# Load the specific version
+git checkout 4add350fb27a7e72115fb16237f52a5b316709b3
+
+# start the server (requires Node 4+)
+npm start
+
+# test it in your browser with the following paths:
+open http://localhost:9000/
+open http://localhost:9000/index.html
+open http://localhost:9000/test/meanshop-book.png
+```
+
+# Summary
+
+In this post, we went through the basics about `http` module to create a server. We talk about the MIME types and how the help the browser to render properly. Finally, we put all together to accomplish our static file server with Node.js!
