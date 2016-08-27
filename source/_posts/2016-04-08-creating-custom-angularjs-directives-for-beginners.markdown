@@ -21,9 +21,11 @@ categories:
   - Web Development
 ---
 
-Directives are the most important concept to understand in Angular. This framework relies heavily on them to teach the browser new HTML tags. Directives are a powerful tool to create reusable web components. Directives not only could be defined as new HTML tags but also as attributes, CSS classes or even HTML comments. Angular comes with many built-in (core) directives that offer numerous functionalities to your web applications right away. Furthermore, it also allows us to define our own through custom directives. We are going to focus on the later.
+Directives are one of the most important concepts to understand Angular. This tutorial takes through the basics and beyond. We will cover how to build your own HTML extensions through directives.
 
 <!-- More -->
+
+Angular framework relies heavily on them to teach the browser new HTML tags. Directives are a powerful tool to create reusable web components. Directives not only could be defined as new HTML tags but also as attributes, CSS classes or even HTML comments. Angular comes with many built-in (core) directives that offer numerous functionalities to your web applications right away. Furthermore, it also allows us to define our own through custom directives. We are going to focus on the later.
 
 Let's say we want to create a new HTML component that the browsers doesn’t support yet, like a To-do list:
 
@@ -91,7 +93,7 @@ Templates are just HTML code that could be reuse multiple times with different v
 
 Notice that our template contains placeholders with a variable such as {{title}}, which is going, to be replaced by real title text. Similarly, {{todo.name}} is going to be replaced with a task name.
 
-We just used our first built-in Angular directive, in this tutorial, “ng-repeat”. This directive is going to take an array of elements, like our list and repeat itself for each one of elements and refer to them as “todo”. In other words, if the list contains 4 tasks, we are going to see 4 checkboxes each one with the name of the individual tasks. We are going to explain where “title” and “list” comes in the next section.  
+We just used our first built-in Angular directive, in this tutorial, “ng-repeat”. This directive is going to take an array of elements, like our list and repeat itself for each one of elements and refer to them as “todo”. In other words, if the list contains 4 tasks, we are going to see 4 checkboxes each one with the name of the individual tasks. We are going to explain where “title” and “list” comes in the next section.
 
 Going back to our directive definition, we could have used "template" attribute instead of “templateUrl” and take inline html code directly, but often is hard to read and we would prefer to use “templateUrl” and defined as a separated file.
 

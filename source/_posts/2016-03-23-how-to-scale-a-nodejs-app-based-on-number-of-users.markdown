@@ -5,7 +5,7 @@ date: 2016-03-23 17:34:11 -0400
 updated: 2016-03-23 17:34:11 -0400
 comments: true
 pageviews__total: 523
-pageviews__recent: 359  
+pageviews__recent: 359
 pageviews__avg_time: 257
 photos:
   - /images/scalabilty_matryoshka_small.png
@@ -20,9 +20,11 @@ categories:
   - Technologies
 ---
 
-Massive success is the best that could happen to any application. However, it could be a blessing and a curse for developers. Dealing with downtimes, high availability and trying to scale to the new number of users. One of the most dreaded questions is: 'Would that scale?'. The following is a guideline on how to grow the web applications as the number of users grows. Scaling an application too early is more painful than beneficial. This guide provides a way how to start simple and scale as the number of users grows.
+Massive success is the best that could happen to any application. But, it could be a blessing and a curse for developers. Dealing with downtime, high availability and trying to scale. The following is a guideline on how to scale the web applications as the number of users grows.
 
 <!-- More -->
+
+One of the most dreaded questions is: 'Would that scale?'. The following is a guideline on how to grow the web applications as the number of users grows. Scaling an application too early is more painful than beneficial. This guide provides a way how to start simple and scale as the number of users grows.
 
 **Common Server Setups For Scaling Your Web Application**
 

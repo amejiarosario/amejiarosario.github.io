@@ -21,9 +21,11 @@ date: 2016-08-12 16:30:23
 updated: 2016-08-12 16:30:23
 ---
 
-Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using.
+Modules are a key concept to understand Node.js projects. We cover Node modules: require, exports and the future import.
 
 <!-- more -->
+
+Node modules allow you to write reusable code. You can include your own modules into another module. Using Node Package Manager (NPM), you can publish your module to the community. Also, NPM enables you to reuse modules made by other developers using.
 
 In this section, we are going to cover how to create Node modules and each one of its components:
 

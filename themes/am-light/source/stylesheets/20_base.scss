@@ -57,6 +57,10 @@ a {
   color: $primary-color;
 }
 
+b, em, strong {
+  color: $emphasis-color;
+}
+
 pre {
   text-rendering: optimizeLegibility;
 }

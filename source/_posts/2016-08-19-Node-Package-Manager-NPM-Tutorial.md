@@ -22,9 +22,11 @@ date: 2016-08-19 16:18:32
 updated: 2016-08-19 16:18:32
 ---
 
-Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules.
+This tutorial goes from how to install NPM to manage packages dependencies. While we are doing this, we will use practical examples to drive the concepts home.
 
 <!-- more -->
+
+Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules.
 
 In this section, we are going to get hands on NPM. We will cover from how to install it to how to download, uninstall and manage packages. While we are doing this we will use practical examples to drive the concepts home.
 
