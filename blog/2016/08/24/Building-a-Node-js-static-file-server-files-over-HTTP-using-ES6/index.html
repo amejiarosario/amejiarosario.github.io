@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="Adrian Mejia blog about programming and software engineering. Featuring MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs, Algorithms and data structures.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Building a Node.js static file server (files over HTTP) using ES6+ | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://adrianmejia.com/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://adrianmejia.com/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://adrianmejia.com/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://adrianmejia.com/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="http://adrianmejia.com/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://adrianmejia.com/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://adrianmejia.com/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://adrianmejia.com/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="http://adrianmejia.com/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="http://adrianmejia.com/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="http://adrianmejia.com/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="http://adrianmejia.com/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="http://adrianmejia.com/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="http://adrianmejia.com/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="http://adrianmejia.com/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="http://adrianmejia.com/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="http://adrianmejia.com/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="http://adrianmejia.com/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=1;polling-uri2=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=2;polling-uri3=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=3;polling-uri4=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=4;polling-uri5=http://notifications.buildmypinnedsite.com/?feed=http://adrianmejia.com/atom.xml&amp;id=5;cycle=1" />
+
+    <link rel="canonical" href="http://adrianmejia.com/blog/2016/08/24/Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://adrianmejia.com/blog/2016/08/24/Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="We are going to do a static file server in Node.js. This web server is going to respond with the content of the file in a given path. While we are doing this exercise we are going to cover more about http module. Also, use some utilities from other core modules such as path, url and fs." />
+    <meta property="og:image" content="http://adrianmejia.com/images/node-web-server-large.png" />
+    <meta property="og:title" content="Building a Node.js static file server (files over HTTP) using ES6+" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  </head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Building a Node.js static file server (files over HTTP) using ES6+",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "http://adrianmejia.com/images/node-web-server-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2016-08-24T17:54:42-04:00",
+  "dateModified": "2016-08-24T17:54:42-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "We are going to do a static file server in Node.js. This web server is going to respond with the content of the file in a given path. While we are doing this exercise we are going to cover more about http module. Also, use some utilities from other core modules such as path, url and fs."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/Programming/">Programming</a> > <a class="category-link" href="/categories/Programming/Web-Development/">Web Development</a>
+    </div>
+    <h1>Building a Node.js static file server (files over HTTP) using ES6+</h1>
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last update
+        <time datetime="2016-08-24T21:54:42.000Z" itemprop="dateUpdated">August 24th 2016</time>
+      </span>
+
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="http://adrianmejia.com/blog/2016/08/24/Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">13</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #8E44AD">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/node-web-server-large.png">
+        <source srcset="/images/node-web-server-small.png">
+        <img src="/images/node-web-server-large.png" alt="Building a Node.js static file server (files over HTTP) using ES6+">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>We are going to do a <strong>static file server</strong> in Node.js. This web server is going to respond with the content of the file in a given path. While we are doing this exercise we are going to cover more about <code>http</code> module. Also, use some utilities from other core modules such as <code>path</code>, <code>url</code> and <code>fs</code>.</p>
+<a id="more"></a>
+<h1 id="HTTP-Web-Servers">HTTP Web Servers<a href="#HTTP-Web-Servers" class="headerlink" title="HTTP Web Servers"></a></h1><p>Node’s HTTP module is versatile. You can use it as a client, to grab content from websites or as a server. We are going to use it server files from our file system.</p>
+<p>If you are familiar with Ruby or Python or http-server package. It’s the equivalent of this:</p>
+<figure class="highlight bash"><figcaption><span>Existing HTTP Servers Implementations</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># python HTTP server</span></div><div class="line">python -m SimpleHTTPServer 9000</div><div class="line"></div><div class="line"><span class="comment"># ruby HTTP server</span></div><div class="line">ruby -run <span class="_">-e</span> httpd . -p 9000</div><div class="line"></div><div class="line"><span class="comment"># Node HTTP server (npm install http-server)</span></div><div class="line">http-server . -p 9000</div></pre></td></tr></table></figure>
+<p>Let’s do our own. It’s not that hard.</p>
+<h1 id="Simple-HTTP-Server">Simple HTTP Server<a href="#Simple-HTTP-Server" class="headerlink" title="Simple HTTP Server"></a></h1><p>One of the simplest servers that you can create in Node, looks like this:</p>
+<figure class="highlight javascript"><figcaption><span>Simple server.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"></div><div class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</div><div class="line">  <span class="comment">// server code</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;req.method&#125;</span> <span class="subst">$&#123;req.url&#125;</span>`</span>);</div><div class="line">  res.end(<span class="string">'hello world!'</span>);</div><div class="line">&#125;).listen(<span class="number">9000</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Server listening on port 9000'</span>);</div></pre></td></tr></table></figure>
+<p>To test it out, save the code in a file called <code>server.js</code> and run:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node server.js</div></pre></td></tr></table></figure>
+<p>Then open the browser on <code>http://localhost:9000</code> and you will see the “hello world!” message.</p>
+<p>Let’s explain what’s going on in the code. We are using the function <code>http.createServer</code> with a callback. This callback function is going to be called every time a client connects to the server. You can see that it takes two parameters: <code>req</code>uest and <code>res</code>ponse.</p>
+<p>The request contains the client’s information. For instance: requested URL, path, headers, HTTP method, and so forth.</p>
+<p>The response object is used to reply to the client. You can set what you want to send back to the client. For instance, data, headers, etc.</p>
+<p>Finally, the listening part. It allows you to set the port that you want your server to run on. In this case, we are using <code>9000</code>.</p>
+<h1 id="Node-js-HTTP-static-file-server-with-ES6">Node.js HTTP static file server with ES6+<a href="#Node-js-HTTP-static-file-server-with-ES6" class="headerlink" title="Node.js HTTP static file server with ES6+"></a></h1><p>Let’s now proceed to do the static web server. We want to parse the URL path and get the file matching that path. For instance, if we get a request like <code>localhost:9000/example/server.js</code>. We want to look for a file in <code>./example/server.js</code>.</p>
+<p>Browsers don’t rely on the extension to render a file. Instead, they use the header <code>Content-type</code>. For instance, if we serve an HTML file with a content type <code>text/plain</code> it will show the HTML code (plain text). But, if you use a content type <code>text/html</code> then it will render the HTML as such.</p>
+<p>For now, we can infer the file content type based on the file extension. The content types are represented in MIME formmat. MIME stands for Multipurpose Internet Mail Extensions. You can see the MIME types according to file extentions in the following code:</p>
+<figure class="highlight javascript"><figcaption><span>static_server.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</div><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="comment">// you can pass the parameter in the command line. e.g. node static_server.js 3000</span></div><div class="line"><span class="keyword">const</span> port = process.argv[<span class="number">2</span>] || <span class="number">9000</span>;</div><div class="line"></div><div class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;req.method&#125;</span> <span class="subst">$&#123;req.url&#125;</span>`</span>);</div><div class="line"></div><div class="line">  <span class="comment">// parse URL</span></div><div class="line">  <span class="keyword">const</span> parsedUrl = url.parse(req.url);</div><div class="line">  <span class="comment">// extract URL path</span></div><div class="line">  <span class="keyword">let</span> pathname = <span class="string">`.<span class="subst">$&#123;parsedUrl.pathname&#125;</span>`</span>;</div><div class="line">  <span class="comment">// based on the URL path, extract the file extention. e.g. .js, .doc, ...</span></div><div class="line">  <span class="keyword">const</span> ext = path.parse(pathname).ext;</div><div class="line">  <span class="comment">// maps file extention to MIME types</span></div><div class="line">  <span class="keyword">const</span> mimeType = &#123;</div><div class="line">    <span class="string">'.ico'</span>: <span class="string">'image/x-icon'</span>,</div><div class="line">    <span class="string">'.html'</span>: <span class="string">'text/html'</span>,</div><div class="line">    <span class="string">'.js'</span>: <span class="string">'text/javascript'</span>,</div><div class="line">    <span class="string">'.json'</span>: <span class="string">'application/json'</span>,</div><div class="line">    <span class="string">'.css'</span>: <span class="string">'text/css'</span>,</div><div class="line">    <span class="string">'.png'</span>: <span class="string">'image/png'</span>,</div><div class="line">    <span class="string">'.jpg'</span>: <span class="string">'image/jpeg'</span>,</div><div class="line">    <span class="string">'.wav'</span>: <span class="string">'audio/wav'</span>,</div><div class="line">    <span class="string">'.mp3'</span>: <span class="string">'audio/mpeg'</span>,</div><div class="line">    <span class="string">'.svg'</span>: <span class="string">'image/svg+xml'</span>,</div><div class="line">    <span class="string">'.pdf'</span>: <span class="string">'application/pdf'</span>,</div><div class="line">    <span class="string">'.doc'</span>: <span class="string">'application/msword'</span>,</div><div class="line">    <span class="string">'.eot'</span>: <span class="string">'appliaction/vnd.ms-fontobject'</span>,</div><div class="line">    <span class="string">'.ttf'</span>: <span class="string">'aplication/font-sfnt'</span></div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  fs.exists(pathname, <span class="function"><span class="keyword">function</span> (<span class="params">exist</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(!exist) &#123;</div><div class="line">      <span class="comment">// if the file is not found, return 404</span></div><div class="line">      res.statusCode = <span class="number">404</span>;</div><div class="line">      res.end(<span class="string">`File <span class="subst">$&#123;pathname&#125;</span> not found!`</span>);</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// if is a directory, then look for index.html</span></div><div class="line">    <span class="keyword">if</span> (fs.statSync(pathname).isDirectory()) &#123;</div><div class="line">      pathname += <span class="string">'/index.html'</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// read file from file system</span></div><div class="line">    fs.readFile(pathname, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</div><div class="line">      <span class="keyword">if</span>(err)&#123;</div><div class="line">        res.statusCode = <span class="number">500</span>;</div><div class="line">        res.end(<span class="string">`Error getting the file: <span class="subst">$&#123;err&#125;</span>.`</span>);</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// if the file is found, set Content-type and send data</span></div><div class="line">        res.setHeader(<span class="string">'Content-type'</span>, mimeType[ext] || <span class="string">'text/plain'</span> );</div><div class="line">        res.end(data);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line"></div><div class="line">&#125;).listen(<span class="built_in">parseInt</span>(port));</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">`Server listening on port <span class="subst">$&#123;port&#125;</span>`</span>);</div></pre></td></tr></table></figure>
+<p>We are using Node.js core <code>path.parse</code> libraries to get the extensions from the URL path.   Similarly, we are using <code>url.parse</code> to break down the <code>request.url</code> into its components. Then, we extract the extension from the file. Finally, we use <code>fs.readFile</code> to get the content from the file system. If any error occurs related to the file path, we return a 404 and otherwise return the file content.</p>
+<p>Give it a try with:</p>
+<figure class="highlight bash"><figcaption><span>Command lines to test the server</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># run server</span></div><div class="line">node server.js</div><div class="line"></div><div class="line"><span class="comment"># get the javascript file with</span></div><div class="line">curl -i localhost:9000/server.js</div><div class="line"></div><div class="line"><span class="comment"># testing with non-existing file</span></div><div class="line">curl -i localhost:9000/invalid-file.doc</div></pre></td></tr></table></figure>
+<p>For the first one, you will get a 200 OK response, while for the 2nd one you will get a 404 not found error, as expected.</p>
+<p>You can also download the code from this repo and try out with the test files:</p>
+<figure class="highlight bash"><figcaption><span>Testing with different file types</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Get Repository</span></div><div class="line">git <span class="built_in">clone</span> https://github.com/amejiarosario/meanshop.git</div><div class="line"><span class="built_in">cd</span> meanshop</div><div class="line"><span class="comment"># Load the specific version</span></div><div class="line">git checkout 4add350fb27a7e72115fb16237f52a5b316709b3</div><div class="line"></div><div class="line"><span class="comment"># start the server (requires Node 4+)</span></div><div class="line">npm start</div><div class="line"></div><div class="line"><span class="comment"># test it in your browser with the following paths:</span></div><div class="line">open http://localhost:9000/</div><div class="line">open http://localhost:9000/index.html</div><div class="line">open http://localhost:9000/<span class="built_in">test</span>/meanshop-book.png</div></pre></td></tr></table></figure>
+<h1 id="Summary">Summary<a href="#Summary" class="headerlink" title="Summary"></a></h1><p>In this post, we went through the basics about <code>http</code> module to create a server. We talk about the MIME types and how the help the browser to render properly. Finally, we put all together to accomplish our static file server with Node.js!</p>
+
+      </div>
+
+      
+
+        <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrianmejia-small.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Adrian Mejia is a full-stack web developer working at Cisco in Boston. Currently working at Cisco as a Software Engineer. Adrian enjoys writing books and posts about programming, technologies and nerdy stuff. Find our more <a href="/#about">here</a>.</p>
+</section>
+
+
+        <div class="m-y-4">
+          <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+        </div>
+
+        <footer>
+          <div class="m-y-4">
+            
+          </div>
+
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:block"
+     
+       data-ad-format="auto"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        </footer>
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="6894900521"
+     style="display:inline-block;width:300px;height:250px"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-08-24-Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6.md')"><i class="fa fa-pencil"></i> Improve</a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-Web-Servers"><span class="toc-number">1.</span> <span class="toc-text">HTTP Web Servers</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Simple-HTTP-Server"><span class="toc-number">2.</span> <span class="toc-text">Simple HTTP Server</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-js-HTTP-static-file-server-with-ES6"><span class="toc-number">3.</span> <span class="toc-text">Node.js HTTP static file server with ES6+</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">4.</span> <span class="toc-text">Summary</span></a></li></ol>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     data-ad-client="ca-pub-9725767907287651"
+     data-ad-slot="2343826126"
+     style="display:inline-block;width:300px;height:600px;"
+     
+></ins>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Next and previous posts -->
+  
+  <div class="article-nav m-y-4">
+    
+    
+      <a href="/blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/" class="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+        <div class="article-nav-title">Node Package Manager (NPM) Tutorial</div>
+      </a>
+    
+  </div>
+  
+
+  <!-- comments -->
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'http://adrianmejia.com';
+      this.page.identifier = 'http://adrianmejia.com/blog/2016/08/24/Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Sat Aug 27 2016 15:21:49 GMT-0400 (EDT)">
+            v.ocl1sd
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+    <!-- social scripts -->
+    
+
+    
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+      <script src="/js/posts.js"></script>    
+  </body>
+</html>
