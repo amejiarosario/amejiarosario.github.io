@@ -32,6 +32,13 @@ Let's dive into BackboneJS! and see how this flexible library can bring order to
 
 <!--More-->
 
+BackboneJS Tutorial series:
+
+1. Backbone.js for Absolute Beginners - Getting started (Part 1: Intro) **👈 you are here**
+1. [Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/)
+1. [Backbone.js for absolute beginners - getting started (part 3: CRUD)](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/)
+1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/)
+
 # Brief Background
 
 <a href="#start">TL; DR</a>: You need to use JavaScript heavily in order to make responsive and interactive web applications. <a href="#start">Jump to this and get started.</a>

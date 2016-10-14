@@ -26,7 +26,12 @@ In tutorial we are going to continue learning about BackboneJS: CRUD.
 
 <!--More-->
 
-The part 2 of this tutorial is [here](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/).
+BackboneJS Tutorial series:
+
+1. [Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/)
+1. [Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/)
+1. Backbone.js for absolute beginners - getting started (part 3: CRUD) **👈 you are here**
+1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/)
 
 # Todo item list CRUD
 There are a couple of features that we could improve. Let’s implement the CRUD (Create-Read-Update-Delete) for the item list.

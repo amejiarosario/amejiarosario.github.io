@@ -26,6 +26,13 @@ This tutorial builts on top of the [first part](/blog/2012/09/11/backbone-dot-js
 
 <!--More-->
 
+BackboneJS Tutorial series:
+
+1. [Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/)
+1. Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views) **👈 you are here**
+1. [Backbone.js for absolute beginners - getting started (part 3: CRUD)](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/)
+1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/)
+
 # Todo App in Backbone
 
 After completing this example app, you will have experience and basic understanding of all the modules of Backbone!
