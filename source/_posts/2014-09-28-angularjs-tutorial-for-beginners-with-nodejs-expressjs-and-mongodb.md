@@ -28,6 +28,12 @@ This tutorial is meant to be as clear as possible. At the same time, we are goin
 
 <!--More-->
 
+MEAN Stack tutorial series:
+
+1. AngularJS tutorial for beginners (Part I) **👈 you are here**
+1. [Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/)
+1. [MEAN Stack Tutorial: MongoDB, ExpressJS, AngularJS and NodeJS (Part III)](/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/)
+
 We are going to start building all the examples in a single HTML file! It embedded JavaScript and NO styles/CSS for **simplicity**. Don't worry, in the next tutorials, we will learn how to split use Angular modules. We are going to break down the code, add testing to it and styles.
 
 
