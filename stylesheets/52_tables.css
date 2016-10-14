@@ -7,8 +7,11 @@
   .post-content > table tbody tr {
     position: relative;
     height: 48px;
-    transition-duration: 0.28s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition-duration: 0.28s;
+            transition-duration: 0.28s;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition-property: background-color;
     transition-property: background-color; }
     .post-content > table tbody tr:hover {
       background-color: #eeeeee; }

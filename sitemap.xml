@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/</loc>
+    
+    <lastmod>2016-10-14T19:50:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/</loc>
+    
+    <lastmod>2016-10-14T19:46:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://adrianmejia.com/blog/2016/08/24/Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6/</loc>
     
     <lastmod>2016-08-24T21:54:42.000Z</lastmod>
@@ -12,20 +26,6 @@
     <loc>http://adrianmejia.com/blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/</loc>
     
     <lastmod>2016-08-19T20:18:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/</loc>
-    
-    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://adrianmejia.com/niceties/adrian-book-long.html</loc>
-    
-    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
     
   </url>
   
@@ -44,7 +44,7 @@
   </url>
   
   <url>
-    <loc>http://adrianmejia.com/page/index.html</loc>
+    <loc>http://adrianmejia.com/niceties/adrian-book-long.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
     
@@ -59,6 +59,13 @@
   
   <url>
     <loc>http://adrianmejia.com/niceties/adrian-book-sq.html</loc>
+    
+    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://adrianmejia.com/page/index.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
     
@@ -82,13 +89,6 @@
     <loc>http://adrianmejia.com/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/</loc>
     
     <lastmod>2016-08-06T23:31:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/</loc>
-    
-    <lastmod>2016-08-06T22:26:37.000Z</lastmod>
     
   </url>
   

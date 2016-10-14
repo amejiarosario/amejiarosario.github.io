@@ -99,7 +99,7 @@ function searchTracking() {
 
       t = setTimeout(function () {
         ga("send", "event", "search", "term", search.value);
-      }, 2000);
+      }, 1000);
     });
   }
 }

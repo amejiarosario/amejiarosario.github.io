@@ -345,7 +345,7 @@ ga('send', 'pageview');
 <li>If the module name has a <code>./</code>, <code>/</code> or <code>../</code>, it will look for the directory/file in the given path. It matches the extensions: <code>*.js</code>, <code>*.json</code> and <code>*.node</code>.</li>
 </ol>
 <h1 id="Exports">Exports<a href="#Exports" class="headerlink" title="Exports"></a></h1><p><code>exports</code> are used to create modules. It allows you to export your own objects and functions. Let’s do an example:</p>
-<figure class="highlight javascript"><figcaption><span>circle.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PI = <span class="number">3.14159265359</span>;</div><div class="line">exports.area = (radius) =&gt; <span class="built_in">Math</span>.pow(radius, <span class="number">2</span>) * PI;</div><div class="line">exports.circunference = (radius) =&gt; <span class="number">2</span> * radius * PI;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><figcaption><span>circle.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PI = <span class="number">3.14159265359</span>;</div><div class="line">exports.area = <span class="function">(<span class="params">radius</span>) =&gt;</span> <span class="built_in">Math</span>.pow(radius, <span class="number">2</span>) * PI;</div><div class="line">exports.circunference = <span class="function">(<span class="params">radius</span>) =&gt;</span> <span class="number">2</span> * radius * PI;</div></pre></td></tr></table></figure>
 <p>In the code below, we are exporting the <code>area</code> function. We defined the constant PI but this is only accessible within the module. Only the elements associated to <code>exports</code> are accessible outside the module.</p>
 <p>So, we can consume it using <code>require</code> in another file like follows:</p>
 <figure class="highlight javascript"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> circle = <span class="built_in">require</span>(<span class="string">'./circle'</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> r = <span class="number">3</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">`Circle with radius <span class="subst">$&#123;r&#125;</span> has</span></div><div class="line">  area: <span class="subst">$&#123;circle.area(r)&#125;</span>;</div><div class="line">  circunference: <span class="subst">$&#123;circle.circunference(r)&#125;</span>`);</div></pre></td></tr></table></figure>
@@ -517,7 +517,7 @@ ga('send', 'pageview');
     
       <a href="/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/" class="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
-        <div class="article-nav-title">List tasks in NPM, Grunt, Gulp and Rake</div>
+        <div class="article-nav-title">List tasks in NPM, Yarn, Grunt, Gulp and Rake</div>
       </a>
     
   </div>
@@ -553,8 +553,8 @@ ga('send', 'pageview');
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Sat Aug 27 2016 16:25:50 GMT-0400 (EDT)">
-            v.ocl4r2
+          <span class="muted m-x-4" title="Fri Oct 14 2016 16:56:24 GMT-0400 (EDT)">
+            v.of2260
           </span>
         </div>
       </div>
