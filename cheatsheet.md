@@ -14,6 +14,11 @@ hexo d -g
 hexo algolia
 ```
 
+
+## install
+
+
+
 ## Commands
 
 hexo serve

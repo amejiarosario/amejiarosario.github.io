@@ -1,6 +1,6 @@
 ---
 layout: snippet
-title: List tasks in NPM, Grunt, Gulp and Rake
+title: List tasks in NPM, Yarn, Grunt, Gulp and Rake
 comments: true
 pageviews__total: 0
 pageviews__recent: 0
@@ -18,6 +18,7 @@ date: 2016-06-25 15:14:49
 
 ```bash
 npm run
+yarn run
 grunt --help
 gulp --tasks
 rake --tasks
