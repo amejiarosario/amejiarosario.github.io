@@ -17,12 +17,12 @@ tutorial__order: 0
 </div>
 <div style="text-align: left; ">Source: [1]</div>
 <div style="text-align: right; ">&nbsp;</div>
-<div>I like the amount of specialized tools used to develop the Fusion (shown bellow). However, as they said in their conclusion this extraction could be extended to support eLearning 2.0 features: personal spaces, user contributions, user feedbacks, user tags, and user comments.</div>
+<div>I like the amount of specialized tools used to develop the Fusion (shown below). However, as they said in their conclusion this extraction could be extended to support eLearning 2.0 features: personal spaces, user contributions, user feedbacks, user tags, and user comments.</div>
 <div>&nbsp;</div>
 <div>
 	<div>This paper [1] proposed a specialized search engine, called Fusion, which index meta-information about available courses. Google can be used to perform this search, but the result will be too broad. Fusion provides specialized results only. In order to accomplish this task, Fusion used the web crawler Nutch, which is used to extract the content of courses. The crawler does real-time decisions to parse and store only the necessary data instead of the whole content. The extraction of the metadata is done using the following technologies: NekoHTML (HTML document parser), Xalan (XSLT for transforming XML to HTML), XPath (used to navigate through elements in the XML). After all the course metadata is extracted, the information is classified according to the IEEE-LTSC LOM (Learning Object Metadata). Finally all the data is stored and used for the web portal.</div>
 	<div>&nbsp;</div>
-	<div>I like the amount of specialized tools used to develop the Fusion (shown bellow). However, as they said in their conclusion this extraction could be extended to support eLearning 2.0 features: personal spaces, user contributions, user feedbacks, user tags, and user comments.</div>
+	<div>I like the amount of specialized tools used to develop the Fusion (shown below). However, as they said in their conclusion this extraction could be extended to support eLearning 2.0 features: personal spaces, user contributions, user feedbacks, user tags, and user comments.</div>
 	<div>&nbsp;</div>
 	<div><strong>Highlighted Mentions:</strong></div>
 	<ul>

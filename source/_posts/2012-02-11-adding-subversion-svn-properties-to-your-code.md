@@ -61,11 +61,11 @@ tutorial__order: 0
 	<li>
 		right click file you want to add svn properties</li>
 	<li>
-		Menu team &gt; set properties (image bellow)</li>
+		Menu team &gt; set properties (image below)</li>
 	<li>
-		Select the Property name from the combobox&nbsp;(image bellow)</li>
+		Select the Property name from the combobox&nbsp;(image below)</li>
 	<li>
-		Add the text property in the text box&nbsp;(image bellow)</li>
+		Add the text property in the text box&nbsp;(image below)</li>
 	<li>
 		You can also use files to avoid all the typing every time. right click and &#39;save as...&#39; to &lt;<a href="http://adrianmejiarosario.com/sites/default/files/svn-keywords.txt" target="_blank">svn-keywords</a>&gt; and&nbsp;&lt;<a href="http://adrianmejiarosario.com/sites/default/files/svn-eol-style.txt" onclick="window.open(this.href, '', 'resizable=no,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=no,dependent=no'); return false;">svn-eol-property</a>&gt;.</li>
 	<li>

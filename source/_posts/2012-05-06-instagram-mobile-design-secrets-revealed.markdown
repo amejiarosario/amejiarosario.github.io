@@ -18,7 +18,7 @@ categories:
 
 Instagram is a very nice iPhone App. It allows you to give effects to your photos easily. Additionally, it’s blazing fast to upload your photos, and share them in other social networks such as Facebook, Twitter and/or Foursquare.
 
-This app went from 0 to 12 million users in just 12 months! And today 30+ million users in less than 2 years. Go through the slideshows bellow and you can see why. This app has some design features that that improves a lot the user experience. One of them, it’s responding to the user actions instantly even though the task is still performing in the background…
+This app went from 0 to 12 million users in just 12 months! And today 30+ million users in less than 2 years. Go through the slideshows below and you can see why. This app has some design features that that improves a lot the user experience. One of them, it’s responding to the user actions instantly even though the task is still performing in the background…
 
 <!--More-->
 

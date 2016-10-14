@@ -328,7 +328,7 @@ http.get('http://adrianmejia.com', function(res){
 
 * [this.args](http://gruntjs.com/inside-tasks#this.args): returns an array with the parameters. E.g. `grunt hello:crazy:world`, then `this.args` will return `['crazy', 'world']`.
 
-* [this.options([defaultsObj])](http://gruntjs.com/inside-tasks#this.options): it gets options values from the `config.init`, optionally you can also pass an object containing the default values. Notice in the example bellow that even though console.log has a `this.options({gzip: true})` it gets override by the options parameters. If not one it is specified in the `config.init` then it will use the default gzip: true.
+* [this.options([defaultsObj])](http://gruntjs.com/inside-tasks#this.options): it gets options values from the `config.init`, optionally you can also pass an object containing the default values. Notice in the example below that even though console.log has a `this.options({gzip: true})` it gets override by the options parameters. If not one it is specified in the `config.init` then it will use the default gzip: true.
 
 **Inside MultiTasks**
 

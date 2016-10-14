@@ -145,7 +145,7 @@ create src/app/todo/todo.component.spec.ts
 create src/app/todo/todo.component.ts
 ```
 
-Go ahead and inspect each one. It will look similar to the app components. Actually, let's add our new component to the `app.component.ts`. Just bellow the `<h1>title</h1>`:
+Go ahead and inspect each one. It will look similar to the app components. Actually, let's add our new component to the `app.component.ts`. Just below the `<h1>title</h1>`:
 
 ```html
 <app-todo></app-todo>

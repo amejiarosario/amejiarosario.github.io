@@ -38,7 +38,7 @@ MEAN Stack tutorial series:
 
 # What is a RESTful API?
 
-REST stands for Representational State Transfer. It is an architecture that allows `client-server` communication through a uniform interface. They are also `stateless`, `cachable` and has property called `idempotence`. It means that the side effect of identical requests have the same effect as the same single request.
+REST stands for Representational State Transfer. It is an architecture that allows `client-server` communication through a uniform interface. REST is `stateless`, `cachable` and has property called `idempotence`. It means that the side effect of identical requests have the same side-effect as a single request.
 
 HTTP RESTful API's are compose of:
 
@@ -47,7 +47,7 @@ HTTP RESTful API's are compose of:
 * URL path, e.g. `/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/`
 * Media type, e.g. `html`, `JSON`, `XML`, `Microformats`, `Atom`, `Images`...
 
-Here's is a summary what we want to implement:
+Here is a summary what we want to implement:
 
 | Resource (URI)  |  POST (create) | GET (read)  | PUT (update)  | DELETE (destroy)  |
 |---|---|---|---|---|
@@ -66,9 +66,9 @@ In this section, we are going to install the backend components of the MEAN stac
 
 ## Installing MongoDB
 
-MongoDB is a document-oriented NoSQL database (Big Data ready). It stores data in JSON-like format and allows to perform SQL-like queries against it.
+MongoDB is a document-oriented NoSQL database (Big Data ready). It stores data in JSON-like format and allows users to perform SQL-like queries against it.
 
-You can installed following the <a href="http://docs.mongodb.org/manual/installation/" target="_blank">instructions here</a>.
+You can install MongoDB following the <a href="http://docs.mongodb.org/manual/installation/" target="_blank">instructions here</a>.
 
 If you have a **Mac** and <a href="http://brew.sh/" target="_blank">brew</a> it's just:
 
@@ -107,7 +107,7 @@ Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.j
 
 In short, NodeJS allows you to run Javascript outside the browser, in this case, on the web server. <abbr title="Node Package Manager">NPM</abbr> allows you to install/publish node packages with ease.
 
-To install it, you can go to <a href="http://nodejs.org/" target="_blank">NodeJS Website</a>.
+To install it, you can go to the <a href="http://nodejs.org/" target="_blank">NodeJS Website</a>.
 
 Since Node versions changes very often. You can use the <abbr title="Node Version Manager">NVM</abbr> (Node Version Manager) on **Ubuntu** and Mac with:
 
@@ -143,7 +143,7 @@ npm -v
 
 ## Installing ExpressJS
 
-ExpressJS is web application framework that runs on NodeJS. Allows you to build web applications and APIs endpoints (mode details later).
+ExpressJS is a web application framework that runs on NodeJS. It allows you to build web applications and API endpoints. (more details on this later).
 
 We are going to create a project folder first, and then add `express` as a dependency.
 Let's use <abbr title="Node Package Manager">NPM</abbr> init command to get us started.
@@ -164,13 +164,13 @@ Notice that after the last command, `express` should be added to package.json wi
 
 # Using MongoDB with Mongoose
 
-Mongoose is an <abbr title="Node Package Manager">NPM</abbr> package that allows to interact with MongoDB. You can install it as follows:
+Mongoose is an <abbr title="Node Package Manager">NPM</abbr> package that allows you to interact with MongoDB. You can install it as follows:
 
 ```bash
 npm install mongoose@4.5.8 --save
 ```
 
-If follow the previous steps you should have all you need to complete this tutorial. We are going to build an API that allow users to CRUD (Create-Read-Update-Delete) Todo tasks from database.
+If you followed the previous steps, you should have all you need to complete this tutorial. We are going to build an API that allow users to CRUD (Create-Read-Update-Delete) Todo tasks from database.
 
 ## Mongoose CRUD
 
@@ -183,7 +183,7 @@ We are going to create, read, update and delete data from MongoDB using Mongoose
 mongod
 ```
 
-Keep mongo running in a terminal window and while in the folder `todoApp` type `node` to enter in the node CLI. Then:
+Keep mongo running in a terminal window and while in the folder `todoApp` type `node` to enter the node CLI. Then:
 
 ```javascript
 // Load mongoose package
@@ -226,7 +226,7 @@ If you take a look to Mongo you will notice that we just created an entry. You c
 
 {% img http://i.imgur.com/DI6Vxwq.png Viewing data with Robomongo %}
 
-You can also build the object and save in one step using `create`:
+You can also build the object and save it in one step using `create`:
 
 ```javascript
 Todo.create({name: 'Create something with Mongoose', completed: true, note: 'this is one'}, function(err, todo){
@@ -304,8 +304,8 @@ MongoDB query language is very powerful. We can combine regular expressions, dat
 ## Mongoose Update
 
 Moving on, we are now going to explore how to update data.
-Each model has an `update` method which accepts multiple queries, the first one is the find query and the second one is the update fields.
 
+Each model has an `update` method which accepts multiple updates (for batch updates, because it doesn’t return an array with data).
 
 * Model.update(conditions, update, [options], [callback])
 * Model.findByIdAndUpdate(id, [update], [options], [callback])
@@ -381,7 +381,7 @@ app.use('/todos/:id', function (req, res, next) {
 });
 ```
 
-And finally you can use `app.get` to catch GET request with matching route, reply the request with a `response.send` and end the middleware chain. Let's use what we learned on <a href="#mongoose-read-and-query">mongoose read</a> to reply with a user data matching the `id`.
+And finally you can use `app.get` to catch GET requests with matching routes, reply the request with a `response.send` and end the middleware chain. Let's use what we learned on <a href="#mongoose-read-and-query">mongoose read</a> to reply with the user's data that matches the `id`.
 
 ```javascript Middleware mounted on "/todos/:id" and returns
 app.get('/todos/:id', function (req, res, next) {
@@ -392,7 +392,7 @@ app.get('/todos/:id', function (req, res, next) {
 });
 ```
 
-Notice that all previous middlewares called `next()` except this last one, because it sends a respond (in JSON) to the client with the requeste `todo` data.
+Notice that all previous middlewares called `next()` except this last one, because it sends a response (in JSON) to the client with the requested `todo` data.
 
 Hopefully, you don't have to develop a bunch of middlewares besides routes, since ExpressJS has a bunch of middlewares available.
 
@@ -408,7 +408,7 @@ Hopefully, you don't have to develop a bunch of middlewares besides routes, sinc
 
 ## Other ExpressJS Middlewares
 
-The following middlewares are not added by default, but It's nice to know they exist at least:
+The following middlewares are not added by default, but it's nice to know they exist at least:
 
 * <a href="https://github.com/expressjs/compression" target="_blank">compression</a>: compress all request. e.g. `app.use(compression())`
 
@@ -433,7 +433,7 @@ In the next sections, we are going to put together everything that we learn from
 
 ## Bootstrapping ExpressJS
 
-After a detour in Node CLI, MongoDB, Mongoose, tools and middlewares land we are back to our express todoApp. This time to create the routes and finalize our RESTful API.
+After a detour in the land of Node, MongoDB, Mongoose, and middlewares, we are back to our express todoApp. This time to create the routes and finalize our RESTful API.
 
 Express has a separate package called `express-generator`, which can help us to get started with out API.
 
@@ -484,7 +484,7 @@ Use your browser to go to http://0.0.0.0:4000, and you should see a message "Wel
 
 ## Connect ExpressJS to MongoDB
 
-In this section we are going to access MongoDB using our newly created express app. Hopefully, you have installed MongoDB in the <a href="#mongodb">setup section</a>, and you can start it typing (if you haven't yet):
+In this section we are going to access MongoDB using our newly created express app. Hopefully, you have installed MongoDB in the <a href="#mongodb">setup section</a>, and you can start it by typing (if you haven't yet):
 
 ```bash
 mongod
@@ -520,7 +520,7 @@ You can find the repository [here](https://github.com/amejiarosario/todoAPIjs) a
 
 ## Creating the Todo model with Mongoose
 
-It is show time! All the above was setup and preparation for this moment. Let bring the API to life.
+It's show time! All the above was setup and preparation for this moment. Let bring the API to life.
 
 Create a `models` directory and a `Todo.js` model:
 
@@ -546,7 +546,7 @@ module.exports = mongoose.model('Todo', TodoSchema);
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/afc908027339b22f10de3b77518ac0728668d470)
 
-What’s going up there? Isn’t MongoDB suppose to be schemaless? Well, it is schemaless and very flexible indeed. However, very often we want bring sanity to our API/WebApp through validations and enforcing a schema to keep a consistent structure. Mongoose does that for us, which is nice.
+What’s going on up there? Isn’t MongoDB suppose to be schemaless? Well, it is schemaless and very flexible indeed. However, very often we want bring sanity to our API/WebApp through validations and enforcing a schema to keep a consistent structure. Mongoose does that for us, which is nice.
 
 You can use the following types:
 
@@ -583,7 +583,7 @@ If you open your browser and type `localhost:3000/todos` you will see all the ta
 
 ## Websites and Mobile Apps
 
-Probably this is the main consumers of the APIs. You can interact with RESTful APIs using jQuery's `$ajax` and its wrappers, BackboneJS's Collections/models, AngularJS's `$http` or `$resource`, among many other libraries/frameworks and mobile clients.
+Probably these are the main consumers of APIs. You can interact with RESTful APIs using jQuery's `$ajax` and its wrappers, BackboneJS's Collections/models, AngularJS's `$http` or `$resource`, among many other libraries/frameworks and mobile clients.
 
 In the end, we are going to explain how to use AngularJS to interact with this API.
 
@@ -604,7 +604,7 @@ Let's setup the routes
 mv routes/users.js routes/todos.js
 ```
 
-In `app.js` add new `todos` route or just replace `./routes/users` for `./routes/todos`
+In `app.js` add new `todos` route, or just replace `./routes/users` for `./routes/todos`
 
 ``` javascript Adding todos routes
 var todos = require('./routes/todos');
@@ -651,11 +651,11 @@ curl localhost:3000/todos
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/54ab912ea9aa2b6633ae12816beb6e6c3d2702e6)
 
-If it returns an empty array `[]` you are all set. If you get errors, try going back and making sure you didn't forget anything or write a comment at the end of the post for help.
+If it returns an empty array `[]` you are all set. If you get errors, try going back and making sure you didn't forget anything, or you can comment at the end of the post for help.
 
 ## Create: POST /todos
 
-Back in `routes/todos.js`, we are going to add the ability to create using <a href="#mongoose-create">mongoose create</a>. Could you make it work before looking at the next example?
+Back in `routes/todos.js`, we are going to add the ability to create using <a href="#mongoose-create">mongoose create</a>. Can you make it work before looking at the next example?
 
 ```javascript routes/todos.js (showing just create route)
 
@@ -670,7 +670,7 @@ router.post('/', function(req, res, next) {
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/28b60c4bf9c6d8b08c3351f725e17c7f40a077be)
 
-Few things:
+A few things:
 
 * We are using the `router.post` instead of `router.get`.
 * You have to stop and run the server again: `npm start`.
@@ -723,7 +723,7 @@ curl -XGET http://localhost:4000/todos
 
 ## Update: PUT /todos/:id
 
-Back in `routes/todos.js`, we are going to update tasks. This one you can do it before looking at the example bellow, review <a href="#mongoose-update">findByIdAndUpdate</a> and give it a try!
+Back in `routes/todos.js`, we are going to update tasks. This one you can do without looking at the example below, review <a href="#mongoose-update">findByIdAndUpdate</a> and give it a try!
 
 ```javascript routes/todos.js (showing just update route)
 /* PUT /todos/:id */
@@ -764,4 +764,4 @@ Is NOT working? take a look at the [full repository](https://github.com/amejiaro
 
 # What's next?
 
-Connecting AngularJS with this endpoint. Checkout the third tutorial of this series.
+Connecting AngularJS with this endpoint. Check out the [third](/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs) tutorial in this series.

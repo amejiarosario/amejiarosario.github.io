@@ -27,7 +27,7 @@ tutorial__order: 0
 	/usr/local/bin/python3.2</div>
 <div>
 	&nbsp;</div>
-<p>Then copy it to TextMate preferences in a new variable called &quot;TM_RUBY&quot;, and &quot;TM_PYTHON&quot; as shown bellow:</p>
+<p>Then copy it to TextMate preferences in a new variable called &quot;TM_RUBY&quot;, and &quot;TM_PYTHON&quot; as shown below:</p>
 <p>
 <!-- <img alt="" src="http://adrianmejiarosario.com/sites/default/files/Screen%20Shot%202012-02-09%20at%201.50.41%20AM.png" style="width: 792px; height: 402px; " /> -->
 </p>
