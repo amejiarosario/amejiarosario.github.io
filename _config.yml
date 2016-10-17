@@ -133,7 +133,7 @@ css_minifier:
 js_minifier:
   enable: false
 image_minifier:
-  enable: false
+  enable: false # set TRUE before deploy
 
 # https://github.com/hexojs/hexo-generator-feed
 feed:
