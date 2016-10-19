@@ -16,6 +16,13 @@
   </url>
   
   <url>
+    <loc>http://adrianmejia.com/blog/2016/10/01/Angular-2-Tutorial-Create-a-CRUD-App-with-Angular-CLI-and-TypeScript/</loc>
+    
+    <lastmod>2016-10-01T21:16:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://adrianmejia.com/blog/2016/08/24/Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6/</loc>
     
     <lastmod>2016-08-24T21:54:42.000Z</lastmod>
@@ -30,13 +37,6 @@
   </url>
   
   <url>
-    <loc>http://adrianmejia.com/es/index.html</loc>
-    
-    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://adrianmejia.com/stylesheets/company_revenue.css</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
@@ -45,6 +45,13 @@
   
   <url>
     <loc>http://adrianmejia.com/niceties/adrian-book-long.html</loc>
+    
+    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://adrianmejia.com/page/index.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
     
@@ -65,7 +72,7 @@
   </url>
   
   <url>
-    <loc>http://adrianmejia.com/page/index.html</loc>
+    <loc>http://adrianmejia.com/es/index.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
     
