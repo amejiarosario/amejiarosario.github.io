@@ -149,7 +149,7 @@ If you have `ng serve` running, it should automatically update and show `todo wo
 
 # Todo Template
 
-"todo works!" is not very useful. Let's change that by adding some HTML code to represent our todo tasks. Go to the following file and change the HTML to:
+"todo works!" is not useful. Let's change that by adding some HTML code to represent our todo tasks. Go to the following file and change the HTML to:
 
 ```html src/app/todo/todo.component.html
 <section class="todoapp">
@@ -209,7 +209,7 @@ If you have `ng serve` running, it should automatically update and show `todo wo
 </section>
 ```
 
-This has the general structure about how we want to represent our tasks. Right now it has just hard-coded tasks. We are going to slowly turn it into a dynamic app using Angular 2 data bindings. But before that let's add some styling so things look better.
+This has the general structure about how we want to represent our tasks. Right now it has hard-coded tasks. We are going to slowly turn it into a dynamic app using Angular 2 data bindings. But before that let's add some styling so things look better.
 
 # Styling the todo app
 
@@ -236,7 +236,7 @@ If you stop and start `ng serve`, you will see that now it looks much better.
 
 {% img /images/angular2-todo-app-preview.png 'Angular 2 Todo App' %}
 
-We just have the skeleton so far. Now we are going to make it dynamic and allow users to add/remove/update/sort tasks. We are going to do two versions one serverless and another one using a Node.js/Express server. We are going to be using promises all the time, so when we use a real API, the service is the only one that has to change.
+We have the skeleton so far. Now we are going to make it dynamic and allow users to add/remove/update/sort tasks. We are going to do two versions one serverless and another one using a Node.js/Express server. We are going to be using promises all the time, so when we use a real API, the service is the only one that has to change.
 
 # Todo Service
 
@@ -255,7 +255,7 @@ create src/app/todo/todo.service.ts
 
 # CRUD Functionality
 
-For enabling the create-read-update-delete functionality we are going to be modifying mostly three files:
+For enabling the create-read-update-delete functionality, we are going to be modifying three files:
 
 - src/app/todo/todo.**service**.ts
 - src/app/todo/todo.**component**.ts
@@ -288,7 +288,7 @@ export class TodoService {
 }
 ```
 
-Now we need to modify our todo component to use the service that we just created.
+Now we need to change our todo component to use the service that we created.
 
 ```javascript src/app/todo/todo.component.ts
 import { Component, OnInit } from '@angular/core';
@@ -389,7 +389,7 @@ addTodo(){
 }
 ```
 
-First, we created a private variable that we are going to use to get values from the input form. Then we just created a new `todo` using the todo service method `add`. It doesn't exist yet, so we are going to create it next:
+First, we created a private variable that we are going to use to get values from the input form. Then we created a new `todo` using the todo service method `add`. It doesn't exist yet, so we are going to create it next:
 
 ```javascript src/app/todo/todo.service.ts
 add(data) {
@@ -400,11 +400,11 @@ add(data) {
 }
 ```
 
-This just adds the new element into the `todos` array and resolve the promise. That's all. Go ahead a test it out creating a new todo element.
+This adds the new element into the `todos` array and resolve the promise. That's all. Go ahead a test it out creating a new todo element.
 
 ## UPDATE: on double click
 
-Let's add an event listener to double click on each todo. That way, we can change the content. Editing is a little tricky since we need to display an input form. Then when the user clicks enter it should update the value. Finally, it should hide the input and just display the label with the updated value. Let's do that by keeping a temp variable called `editing` which could be true or false.
+Let's add an event listener to double click on each todo. That way, we can change the content. Editing is a tricky since we need to display an input form. Then when the user clicks enter it should update the value. Finally, it should hide the input and display the label with the updated value. Let's do that by keeping a temp variable called `editing` which could be true or false.
 
 ```html src/app/todo/todo.component.html
 <li *ngFor="let todo of todos" [ngClass]="{completed: todo.isDone, editing: todo.editing}" >
@@ -436,7 +436,7 @@ updateTodo(todo, newValue) {
 }
 ```
 
-We update the new todo's title and after the service has process the update we set editing to false. Finally, we reload all the tasks again. Let's add the `put` action on the service. But we have an issue. We actually need a unique `id` to identify each task. When we hook up the service with a real backend we will get that from the database. Let's just add it manually for now. We will call it `_id` since that's how MongoDB call it and will be easier to replace later.
+We update the new todo's title and after the service has process the update we set editing to false. Finally, we reload all the tasks again. Let's add the `put` action on the service. But we have an issue. We actually need a unique `id` to identify each task. When we hook up the service with a real backend we will get that from the database. Let's add it manually for now. We will call it `_id` since that's how MongoDB call it and will be easier to replace later.
 
 ```javascript src/app/todo/todo.service.ts
 put(data) {
@@ -451,7 +451,7 @@ Here we look for the todo with the matching `_id` and update the title.
 
 ## DELETE: clicking X
 
-This is similar to the other actions. We add an event listenter on the destroy button:
+This is like the other actions. We add an event listenter on the destroy button:
 
 ```html src/app/todo/todo.component.html
 <button class="destroy" (click)="destroyTodo(todo)"></button>
@@ -549,7 +549,7 @@ Test the app in the browser and verify that now the URL is by default `http://lo
 </ul>
 {% endcodeblock %}
 
-The second part we are doing is applying the `selected` class if the path matches the button. However, we haven't populate the the `path` variable yet. So let's do that:
+The second part we are doing is applying the `selected` class if the path matches the button. Yet, we haven't populate the the `path` variable yet. So let's do that:
 
 {% codeblock lang:js mark:2,16,18,21-24 TodoComponent src/app/todo/todo.component.ts %}
 import { Component, OnInit } from '@angular/core';
@@ -584,11 +584,11 @@ export class TodoComponent implements OnInit {
 
 We added `ActivatedRoute` as a dependency and in the constructor. This gives us access to the all the `route` params such as `path`. Notice that we are using it in the `NgOnInit` and set the path accordantly.
 
-Go to the browser and check out that the URL matches the active button. However, it doesn't filter anything yet. Let's fix that.
+Go to the browser and check out that the URL matches the active button. But, it doesn't filter anything yet. Let's fix that.
 
 ## Filtering data based on route
 
-In order to filter todos by active and completed, we need to pass a parameter to the `todoService.get`.
+To filter todos by active and completed, we need to pass a parameter to the `todoService.get`.
 
 {% codeblock lang:js mark:4,8-9 TodoComponent src/app/todo/todo.component.ts %}
 ngOnInit() {
@@ -606,7 +606,7 @@ getTodos(query = ''){
 }
 {% endcodeblock %}
 
-We just added a new parameter `query`, which takes the `path` (active, completed or all). Then, we pass that parameter to the service. Let's handle that in the service:
+We added a new parameter `query`, which takes the `path` (active, completed or all). Then, we pass that parameter to the service. Let's handle that in the service:
 
 {% codeblock lang:js mark:1,5-10 TodoService src/app/todo/todo.service.ts %}
 get(query = ''){
@@ -629,13 +629,13 @@ So we added a filter by `isDone` when we pass either `completed` or `active`. If
 
 # Clearing out completed tasks
 
-One last thing in the UI, clearing completed tasks button. Let's first add the click event on the template:
+One last UI functionality, clearing out completed tasks button. Let's first add the click event on the template:
 
 ```html src/app/todo/todo.component.html
 <button class="clear-completed" (click)="clearCompleted()">Clear completed</button>
 ```
 
-We just referenced a new function `clearCompleted` that we haven't create yet. Let's create it in the TodoComponent:
+We referenced a new function `clearCompleted` that we haven't create yet. Let's create it in the TodoComponent:
 
 {% codeblock lang:js mark:2 TodoComponent src/app/todo/todo.component.ts %}
 clearCompleted() {
@@ -656,13 +656,13 @@ deleteCompleted() {
 }
 {% endcodeblock %}
 
-We just use the filter to get the active tasks and replace the `todos` array with it.
+We use the filter to get the active tasks and replace the `todos` array with it.
 
 That's it we have completed all the functionality.
 
 # Deploying the app
 
-Angular CLI comes with a convenient command to automatically deploy your app to Github pages.
+Angular CLI comes with a convenient command to deploy your app to Github pages.
 
 In my case, my repo is [https://github.com/amejiarosario/angular2-todo-app](https://github.com/amejiarosario/angular2-todo-app).
 ```bash
@@ -670,7 +670,7 @@ In my case, my repo is [https://github.com/amejiarosario/angular2-todo-app](http
 ng github-pages:deploy
 ```
 
-If you just want to build your app for production you can do:
+If you want to build your app for production you can do:
 
 ```bash
 ng build --prod
