@@ -95,3 +95,13 @@ BackboneJS Tutorial series:
 1. [Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/)
 1. [Backbone.js for absolute beginners - getting started (part 3: CRUD)](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/)
 1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/)
+
+
+"Learning Angular 2 tutorial" series:
+
+1. Angular 2 Tutorial: Create a CRUD App with Angular CLI and TypeScript [this one]
+1. Angular 2 Tutorial: Modules, Components, Templates, Services and Pipes  [coming soon]
+1. Angular 2 Tutorial: Directives vs Components [coming soon]
+1. Angular 2 Tutorial: Routing and navigation [coming soon]
+1. Angular 2 Tutorial: HTTP and WebSockets [coming soon]
+1. Angular 2 Tutorial: Upgrading from Angular 1 [coming soon]
