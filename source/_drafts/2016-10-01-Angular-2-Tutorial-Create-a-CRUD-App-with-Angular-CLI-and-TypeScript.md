@@ -319,7 +319,7 @@ export class TodoService {
 
 Now we need to change our todo component to use the service that we created.
 
-```javascript src/app/todo/todo.component.ts
+{% codeblock lang:js mark:3,8-9,12-22,25 TodoComponent src/app/todo/todo.component.ts %}
 import { Component, OnInit } from '@angular/core';
 
 import { TodoService } from './todo.service';
@@ -347,27 +347,25 @@ export class TodoComponent implements OnInit {
     this.getTodos();
   }
 }
-```
+{% endcodeblock %}
+
 
 The first change is importing our `TodoService` and adding it to the providers. Then we use the constructor of the component to load the `TodoService`. While we inject the service we can hold a private instance of it in the variable `todoService`. Finally, we use it in the `getTodos` method. This will make a variable `todos` available in the template where we can render the tasks.
 
 Let's change the template so we can render the data from the service. Go to the `todo.component.html` and change what is inside the `<li></li>` for this one:
 
-```html src/app/todo/todo.component.html
+```html TodoTemplate src/app/todo/todo.component.html
 <li *ngFor="let todo of todos" [ngClass]="{completed: todo.isDone}" >
   <div class="view">
-    <input class="toggle" type="checkbox" [checked]="todo.isDone" (click)="toggleDone(todo)">
-    <label (dblclick)="todo.editing = true">{{todo.title}}</label>
-    <button class="destroy" (click)="destroyTodo(todo)"></button>
+    <input class="toggle" type="checkbox" [checked]="todo.isDone">
+    <label>{{todo.title}}</label>
+    <button class="destroy"></button>
   </div>
-  <input class="edit"
-         value="{{todo.title}}"
-         #updatedTodo
-         (keyup.escape)="todo.editing = false"
-         (blur)="updateTodo(todo, updatedTodo.value)"
-         (keyup.enter)="updateTodo(todo, updatedTodo.value)">
+  <input class="edit" value="{{todo.title}}">
 </li>
 ```
+
+
 
 Also change the 32 in the template from:
 
@@ -713,7 +711,6 @@ That's it we have completed all the functionality.
 
 Angular CLI comes with a convenient command to deploy your app to Github pages.
 
-In my case, my repo is [https://github.com/amejiarosario/angular2-todo-app](https://github.com/amejiarosario/angular2-todo-app).
 ```bash
 # build assets + deploy
 ng github-pages:deploy
