@@ -106,7 +106,7 @@ algolia:
     - tags
     - categories
     - pageviews__total:hundredThousands
-    - pageviews__recent:tenThousands
+    - pageviews__recent:hundreds
     - pageviews__avg_time:thousands
     - photos
     - updated:year
@@ -133,7 +133,7 @@ css_minifier:
 js_minifier:
   enable: false
 image_minifier:
-  enable: true # set TRUE before deploy
+  enable: false # set TRUE before deploy
 
 # https://github.com/hexojs/hexo-generator-feed
 feed:
