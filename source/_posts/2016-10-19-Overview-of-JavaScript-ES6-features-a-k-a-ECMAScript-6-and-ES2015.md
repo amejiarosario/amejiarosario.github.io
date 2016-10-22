@@ -1,0 +1,515 @@
+---
+layout: post
+title: Overview of JavaScript ES6 features (a.k.a ECMAScript 6 and ES2015+)
+comments: true
+toc: true
+pageviews__total: 0
+pageviews__recent: 0
+pageviews__avg_time: 0
+tutorial__order: 0
+photos__background_color: '#F5DA55'
+photos:
+  - /images/es6-core-features-overview-small.png
+  - /images/es6-core-features-overview-large.png
+tags:
+  - javascript
+categories:
+  - Programming
+  - Web Development
+date: 2016-10-19 17:01:34
+updated: 2016-10-19 17:01:34
+---
+
+
+
+JavaScript has changed quite a bit in the last years. These are 11 new features that you can start using today!
+The new additions to the language are called ECMAScript 6. It is also referred as ES6 or ES2015+.
+
+# History
+
+Since JavaScript conception on 1995, it has been evolving slowly. New additions happened every few years. ECMAScript came to be in 1997 to guide the path of JavaScript. It has been releasing versions such as ES3, ES5, ES6 and so on.
+
+{% img /images/history-javascript-evolution-es6.png 'History of JavaScript Evolution' %}
+
+As you can see there are gaps of 10 and 6 years between the ES3, ES5, and ES6. The new model is to make small incremental changes every year. Instead of doing massive changes at once like happened with ES6.
+
+# Browsers Support
+
+All modern browser supports and environments supports ES6 already!
+
+{% img /images/es6-javascript-support.png 'ES6 Support' %}
+
+Chrome, MS Edge, Firefox, Safari, Node and many others have already built-in support for most of the features of JavaScript ES6. So, everything that you are going to learn in this tutorial you can start using it right now.
+
+Let's get started with ECMAScript 6!
+
+# Core ES6 Features
+
+You can test all this code snippets on your browser console!
+
+{% img /images/javascript-es6-classes-on-browser-console.png "Testing Javascript ES6 classes on browser console" %}
+
+So don't take my word and test every ES5 and ES6 example. Let's dig in 💪
+
+## Block scope variables
+
+With ES6, we went from declaring variables with `var` to  use `let`/`const`.
+
+What was wrong with `var`?
+The issue with `var` is that a variable declared in a function leaks into any other code block such as `for` loops or `if` blocks:
+
+
+{% codeblock lang:js mark:4,10 ES5 %}
+var x = 'outer';
+function test(inner) {
+  if (inner) {
+    var x = 'inner'; // scope whole function
+    return x;
+  }
+  return x; // gets redefined on line 4
+}
+
+test(false); // undefined 😱
+test(true); // inner
+{% endcodeblock %}
+
+For `test(false)` you would to return `outer`, BUT NO, you get `undefined`.
+
+Why? Because even though the if-block is not executed, the line 4 still redefines `var x` as `undefined`.
+
+ES6 comes to the rescue:
+
+{% codeblock lang:js mark:1,4 ES6 %}
+let x = 'outer';
+function test(inner) {
+  if (inner) {
+    let x = 'inner';
+    return x;
+  }
+  return x; // gets result from line 1 as expected
+}
+
+test(false); // outer
+test(true); // inner
+{% endcodeblock %}
+
+Changing `var` for `let` makes things work as expected. If the `if` block is not called the variable `x` doesn't get redefined.
+
+**IIFE**
+
+Let's show an example before explaining <abbr title="immediately-invoked function expressionn">IIFE</abbr>. Take a look here:
+
+{% codeblock lang:js mark:2 ES5 %}
+{
+  var private = 1;
+}
+
+console.log(private); // 1
+{% endcodeblock %}
+
+As you can see, `private` leaks out. You need to use <abbr title="immediately-invoked function expressionn">IIFE</abbr> (immediately-invoked function expression) to contain it:
+
+{% codeblock lang:js mark:1,3 ES5 %}
+(function(){
+  var private2 = 1;
+})();
+
+console.log(private2); // Uncaught ReferenceError
+{% endcodeblock %}
+
+If you take a look at jQuery/lodash or other open source projects you will notice they have <abbr title="immediately-invoked function expressionn">IIFE</abbr> to avoid polluting the global enviroment and just defining on global such as `_`, `$` or `jQuery`.
+
+
+On ES6 is much cleaner, We also don't neet to use <abbr title="immediately-invoked function expression">IIFE</abbr> anymore when we can just use blocks and `let`:
+
+{% codeblock lang:js mark:2 ES6 %}
+{
+  let private3 = 1;
+}
+
+console.log(private3); // Uncaught ReferenceError
+{% endcodeblock %}
+
+**Const**
+
+You can also use `const` if you don't want a variable to change at all.
+
+{% img /images/javascript-es6-const-variables-example.png 'const variable example' %}
+
+> Bottom line: ditch `var` for `let` and `const`.
+- Use `const` for all of your references; avoid using `var`.
+- If you must reassign references, use `let` instead of `var`.
+
+## Template Literals
+
+We don't have to do more nesting concatenations when we have template literals. Take a look:
+
+```javascript ES5
+var first = 'Adrian';
+var last = 'Mejia';
+console.log('Your name is ' + first + ' ' + last + '.');
+```
+
+Now you can just use backtick (\`) and string interpolation `${}`:
+
+```javascript ES6
+const first = 'Adrian';
+const last = 'Mejia';
+console.log(`Your name is ${first} ${last}.`);
+```
+
+## Multi-line strings
+
+We don't have to concatenate strings + `\n` anymore like this:
+
+{% codeblock lang:js ES5 %}
+var template = '<li *ngFor="let todo of todos" [ngClass]="{completed: todo.isDone}" >\n' +
+'  <div class="view">\n' +
+'    <input class="toggle" type="checkbox" [checked]="todo.isDone">\n' +
+'    <label>{{todo.title}}</label>\n' +
+'    <button class="destroy"></button>\n' +
+'  </div>\n' +
+'  <input class="edit" value="{{todo.title}}">\n' +
+'</li>';
+console.log(template);
+{% endcodeblock %}
+
+On ES6 we can use the backtick again to solve this:
+
+{% codeblock ES6 %}
+const template = `<li *ngFor="let todo of todos" [ngClass]="{completed: todo.isDone}" >
+  <div class="view">
+    <input class="toggle" type="checkbox" [checked]="todo.isDone">
+    <label>{{todo.title}}</label>
+    <button class="destroy"></button>
+  </div>
+  <input class="edit" value="{{todo.title}}">
+</li>`;
+console.log(template);
+{% endcodeblock %}
+
+Both pieces of code will have exactly the same result.
+
+
+## Classes and Objects
+
+With ECMAScript 6, We went from "constructor functions" 🔨 to "classes" 🍸.
+
+> In JavaScript every single object has a prototype, which is another object.
+All JavaScript objects inherit their methods and properties from their prototype.
+
+In ES5, we did Object Oriented programming (<abbr title="Object-Oriented Programming">OOP</abbr>) using constructor functions to create objects as follows:
+
+{% codeblock lang:js mark:1,5 ES5 %}
+var Animal = (function () {
+  function MyConstrutor(name) {
+    this.name = name;
+  }
+  MyConstrutor.prototype.speak = function speak() {
+    console.log(this.name + ' makes a noise.');
+  };
+  return MyConstrutor;
+})();
+
+var animal = new Animal('animal');
+animal.speak(); // animal makes a noise.
+{% endcodeblock %}
+
+In ES6, we have some syntax sugar, so we can do the same with less boiler plate and new keywords such as `class` and `construtor`. Also, notice how clearly we define methods `construtor.prototype.speak = function ()` vs `speak()`:
+
+{% codeblock lang:js mark:1,2,5 ES6 %}
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+
+const animal = new Animal('animal');
+animal.speak(); // animal makes a noise.
+{% endcodeblock %}
+
+As we saw, both styles (ES5/6) produces the same results behind the scenes and are used in the same way.
+
+## Inherintance
+
+Building on the previous `Animal` class. Let's say we want to extend it and define a `Lion` class
+
+In ES5, It's a little more involved with prototypal inheritance.
+
+{% codeblock lang:js mark:3,7-8,11 ES5 %}
+var Lion = (function () {
+  function MyConstructor(name){
+    Animal.call(this, name);
+  }
+
+  // prototypal inheritance
+  MyConstructor.prototype = Object.create(Animal.prototype);
+  MyConstructor.prototype.constructor = Animal;
+
+  MyConstructor.prototype.speak = function speak() {
+    Animal.prototype.speak.call(this);
+    console.log(this.name + ' roars 🦁');
+  };
+  return MyConstructor;
+})();
+
+var lion = new Lion('Simba');
+lion.speak(); // Simba makes a noise.
+// Simba roars.
+{% endcodeblock %}
+
+I won't go over all details but notice:
+
+  - Line 3, we explicitly call `Animal` constructor with the parameters.
+  - Line 7-8, we assing the `Lion` prototype to `Animal`'s prototype.
+  - Lilne 11, we call the `speak` method from the parent class `Animal`.
+
+In ES6, we have a new keywords `extends` and `super` <img src="/images/superman_shield.svg" width="25" height="25" alt="superman shield" style="display:inline-block;">.
+
+{% codeblock lang:js mark:3 ES6 %}
+class Lion extends Animal {
+  speak() {
+    super.speak();
+    console.log(this.name + ' roars 🦁');
+  }
+}
+
+const lion = new Lion('Simba');
+lion.speak(); // Simba makes a noise.
+// Simba roars.
+{% endcodeblock %}
+
+Looks how legible this ES6 code looks compared with ES5 and they do exaclty the same. Win!
+
+## Native Promises
+
+We went from callback hell 👹 to promisses 🙏
+
+{% codeblock lang:js mark:3,11 ES5 %}
+function printAfterTimeout(string, timeout, done){
+  setTimeout(function(){
+    done(string);
+  }, timeout);
+}
+
+printAfterTimeout('Hello ', 2e3, function(result){
+  console.log(result);
+
+  // nested callback
+  printAfterTimeout(result + 'Reader', 2e3, function(result){
+    console.log(result);
+  });
+});
+{% endcodeblock %}
+
+We have one function that receive a callback to execute when is `done`. We have to execute it twice one after another. That's why we called the 2nd time `printAfterTimeout` in the callabck.
+
+This can get messy pretty quickly if you need a 3rd or 4th callback. Let's see how we can do it with promises:
+
+{% codeblock lang:js mark:4,11,13 ES6 %}
+function printAfterTimeout(string, timeout){
+  return new Promise((resolve, reject) => {
+    setTimeout(function(){
+      resolve(string);
+    }, timeout);
+  });
+}
+
+printAfterTimeout('Hello ', 2e3).then((result) => {
+  console.log(result);
+  return printAfterTimeout(result + 'Reader', 2e3);
+
+}).then((result) => {
+  console.log(result);
+});
+{% endcodeblock %}
+
+As you can see, with promisses we can use `then` to do something after another function is done. No more need to keep nesting functions.
+
+## Arrow functions
+
+ES5 didn't remove the function expressions but it added a new one called arrow functions.
+
+In ES5, we have some issues with `this`:
+
+{% codeblock lang:js mark:1,4,9 ES5 %}
+var _this = this; // need to hold a reference
+
+$('.btn').click(function(event){
+  _this.sendData(); // reference outer this
+});
+
+$('.input').on('change',function(event){
+  this.sendData(); // reference outer this
+}.bind(this)); // bind to outer this
+{% endcodeblock %}
+
+
+You need to use a temporary `this` to reference inside a function or use `bind`. In ES6, you can use the arrow function!
+
+{% codeblock lang:js mark:2,6 ES6 %}
+// this will reference the outer one
+$('.btn').click((event) =>  this.sendData());
+
+// implicit returns
+var ids = [291, 288, 984];
+var messages = ids.map(value => `ID is ${value}`);
+{% endcodeblock %}
+
+## For...of
+
+We went from `for` to `forEach` and then to `for...of`:
+
+```javascript ES5
+// for
+var arrray = ['a', 'b', 'c', 'd'];
+for (var i = 0; i < arrray.length; i++) {
+  var element = arrray[i];
+  console.log(element);
+}
+
+// forEach
+arrray.forEach(function (element) {
+  console.log(element);
+});
+```
+
+The ES6 for...of also allow us to do iterations.
+
+```javascript ES6
+// for ...of
+const arrray = ['a', 'b', 'c', 'd'];
+for (const element of array) {
+    console.log(element);
+}
+```
+
+## Default parameters
+
+We went from checking if the variable was defined to assigne a value to `default parameters`. Have you done something like this before?
+
+{% codeblock lang:js mark:2-4,8,9 ES5 %}
+function point(x, y, isFlag){
+  x = x || 0;
+  y = y || -1;
+  isFlag = isFlag || true;
+  console.log(x,y, isFlag);
+}
+
+point(0, 0) // 0 -1 true 😱
+point(0, 0, false) // 0 -1 true 😱😱
+point(1) // 1 -1 true
+point() // 0 -1 true
+{% endcodeblock %}
+
+Probably yes, it's a common pattern to check is the variable has a value or assign a default. Yet, notice there are some issues:
+
+- Line 8, we pass `0, 0` and get `0, -1`
+- Line 9, we pass `false` but get `true`.
+
+
+If you have a boolean as a defualt parameter or set the value to zero, it doesn't work. Do you know why??? I'll tell you after the ES6 example ;)
+
+With ES6, Now you can accomplish better results with less code!
+
+{% codeblock lang:js mark:1,5,6 ES6 %}
+function point(x = 0, y = -1, isFlag = true){
+  console.log(x,y, isFlag);
+}
+
+point(0, 0) // 0 0 true
+point(0, 0, false) // 0 0 false
+point(1) // 1 -1 true
+point() // 0 -1 true
+{% endcodeblock %}
+
+Notice line 5 and 6 we get the expected results. The ES5 example didn't work because we have to check for `undefined` first, since `false`, `null`, `undefined` and `0` are falsy values. We can get away with numbers:
+
+{% codeblock lang:js mark:3-4,8-9 ES5 %}
+function point(x, y, isFlag){
+  x = x || 0;
+  y = typeof(y) === 'undefined' ? -1 : y;
+  isFlag = typeof(isFlag) === 'undefined' ? true : isFlag;
+  console.log(x,y, isFlag);
+}
+
+point(0, 0) // 0 0 true
+point(0, 0, false) // 0 0 false
+point(1) // 1 -1 true
+point() // 0 -1 true
+{% endcodeblock %}
+
+Now it works as expected when we check for `undefined`.
+
+## Rest parameters
+
+We went from arguments to rest parameters and spread operator.
+
+On ES5, it's clumpsy to get an arbitrary number of arguments:
+{% codeblock lang:js mark:2 ES5 %}
+function printf(format) {
+  var params = [].slice.call(arguments, 1);
+  console.log(params);
+}
+
+printf('%s %d %.2f', 'adrian', 321, Math.PI);
+{% endcodeblock %}
+
+We can accomplish the same using the  rest operator `...`.
+
+{% codeblock lang:js mark:1 ES6 %}
+function printf(format, ...params) {
+  console.log(params);
+}
+
+printf('%s %d %.2f', 'adrian', 321, Math.PI);
+{% endcodeblock %}
+
+## Spread operator
+
+We went from `apply()` to the spread operator. Again we have `...` to the rescue:
+
+> Reminder: we use `apply()` to convert an array into a list of arguments. For instance, `Math.max()` takes a list of parameters, but if just have an array we can use `apply` to make it work.
+
+{% img /images/javascript-math-apply-arrays.png "JavaScript Math apply for arrays" %}
+
+As we saw in earlier, we can use `apply` to pass arrays as list of arguments:
+
+{% codeblock lang:js ES5 %}
+Math.max.apply(Math, [2,100,1,6,43]) // 100
+{% endcodeblock %}
+
+In ES6, you can use the spread operator:
+
+{% codeblock lang:js ES6 %}
+Math.max(...[2,100,1,6,43]) // 100
+{% endcodeblock %}
+
+Also, we went from `concat` arrays to use spread operator:
+
+{% codeblock lang:js mark:5 ES5 %}
+var array1 = [2,100,1,6,43];
+var array2 = ['a', 'b', 'c', 'd'];
+var array3 = [false, true, null, undefined];
+
+console.log(array1.concat(array2, array3));
+{% endcodeblock %}
+
+In ES6, you can flatten nested arrays using the spread operator:
+
+{% codeblock lang:js mark:5 ES6 %}
+const array1 = [2,100,1,6,43];
+const array2 = ['a', 'b', 'c', 'd'];
+const array3 = [false, true, null, undefined];
+
+console.log([...array1, ...array2, ...array3]);
+{% endcodeblock %}
+
+
+
+
+
+

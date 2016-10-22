@@ -9,7 +9,7 @@
     "angular-cli": "^1.0.0-beta.17",
     "global": "^4.3.1",
     "hexo": "^3.2.0",
-    "hexo-algoliasearch": "0.2.1",
+    "hexo-algoliasearch": "amejiarosario/hexo-algoliasearch",
     "hexo-all-minifier": "0.0.14",
     "hexo-autoprefixer": "^1.0.0",
     "hexo-browsersync": "^0.2.0",
