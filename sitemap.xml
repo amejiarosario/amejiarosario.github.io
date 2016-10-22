@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/</loc>
+    <loc>http://adrianmejia.com/blog/2016/10/19/Overview-of-JavaScript-ES6-features-a-k-a-ECMAScript-6-and-ES2015/</loc>
     
-    <lastmod>2016-10-14T19:50:35.000Z</lastmod>
+    <lastmod>2016-10-19T21:01:34.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/</loc>
     
-    <lastmod>2016-10-14T19:46:37.000Z</lastmod>
+    <lastmod>2016-10-17T15:21:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/</loc>
+    
+    <lastmod>2016-10-14T19:50:35.000Z</lastmod>
     
   </url>
   
@@ -37,7 +44,7 @@
   </url>
   
   <url>
-    <loc>http://adrianmejia.com/stylesheets/company_revenue.css</loc>
+    <loc>http://adrianmejia.com/niceties/adrian-book-sq.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
     
@@ -51,6 +58,13 @@
   </url>
   
   <url>
+    <loc>http://adrianmejia.com/es/index.html</loc>
+    
+    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://adrianmejia.com/page/index.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
@@ -58,21 +72,14 @@
   </url>
   
   <url>
+    <loc>http://adrianmejia.com/stylesheets/company_revenue.css</loc>
+    
+    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://adrianmejia.com/niceties/adrian-book-sd.html</loc>
-    
-    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://adrianmejia.com/niceties/adrian-book-sq.html</loc>
-    
-    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://adrianmejia.com/es/index.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
     
