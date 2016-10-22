@@ -20,22 +20,21 @@ date: 2016-10-19 17:01:34
 updated: 2016-10-19 17:01:34
 ---
 
-
-
 JavaScript has changed quite a bit in the last years. These are 11 new features that you can start using today!
-The new additions to the language are called ECMAScript 6. It is also referred as ES6 or ES2015+.
 
 # History
+
+The new additions to the language are called ECMAScript 6. It is also referred as ES6 or ES2015+.
 
 Since JavaScript conception on 1995, it has been evolving slowly. New additions happened every few years. ECMAScript came to be in 1997 to guide the path of JavaScript. It has been releasing versions such as ES3, ES5, ES6 and so on.
 
 {% img /images/history-javascript-evolution-es6.png 'History of JavaScript Evolution' %}
 
-As you can see there are gaps of 10 and 6 years between the ES3, ES5, and ES6. The new model is to make small incremental changes every year. Instead of doing massive changes at once like happened with ES6.
+As you can see, there are gaps of 10 and 6 years between the ES3, ES5, and ES6. The new model is to make small incremental changes every year. Instead of doing massive changes at once like happened with ES6.
 
 # Browsers Support
 
-All modern browser supports and environments supports ES6 already!
+All modern browser and environments support ES6 already!
 
 {% img /images/es6-javascript-support.png 'ES6 Support' %}
 
@@ -45,7 +44,7 @@ Let's get started with ECMAScript 6!
 
 # Core ES6 Features
 
-You can test all this code snippets on your browser console!
+You can test all these code snippets on your browser console!
 
 {% img /images/javascript-es6-classes-on-browser-console.png "Testing Javascript ES6 classes on browser console" %}
 
@@ -56,8 +55,8 @@ So don't take my word and test every ES5 and ES6 example. Let's dig in 💪
 With ES6, we went from declaring variables with `var` to  use `let`/`const`.
 
 What was wrong with `var`?
-The issue with `var` is that a variable declared in a function leaks into any other code block such as `for` loops or `if` blocks:
 
+The issue with `var` is the variable leaks into other code block such as `for` loops or `if` blocks:
 
 {% codeblock lang:js mark:4,10 ES5 %}
 var x = 'outer';
@@ -73,9 +72,11 @@ test(false); // undefined 😱
 test(true); // inner
 {% endcodeblock %}
 
-For `test(false)` you would to return `outer`, BUT NO, you get `undefined`.
+For `test(false)` you would expect to return `outer`, BUT NO, you get `undefined`.
 
-Why? Because even though the if-block is not executed, the line 4 still redefines `var x` as `undefined`.
+Why?
+
+Because even though the if-block is not executed, the line 4 still redefines `var x` as `undefined`.
 
 ES6 comes to the rescue:
 
@@ -117,8 +118,7 @@ As you can see, `private` leaks out. You need to use <abbr title="immediately-in
 console.log(private2); // Uncaught ReferenceError
 {% endcodeblock %}
 
-If you take a look at jQuery/lodash or other open source projects you will notice they have <abbr title="immediately-invoked function expressionn">IIFE</abbr> to avoid polluting the global enviroment and just defining on global such as `_`, `$` or `jQuery`.
-
+If you take a look at jQuery/lodash or other open source projects you will notice they have <abbr title="immediately-invoked function expression">IIFE</abbr> to avoid polluting the global environment and just defining on global such as `_`, `$` or `jQuery`.
 
 On ES6 is much cleaner, We also don't neet to use <abbr title="immediately-invoked function expression">IIFE</abbr> anymore when we can just use blocks and `let`:
 
@@ -137,7 +137,7 @@ You can also use `const` if you don't want a variable to change at all.
 {% img /images/javascript-es6-const-variables-example.png 'const variable example' %}
 
 > Bottom line: ditch `var` for `let` and `const`.
-- Use `const` for all of your references; avoid using `var`.
+- Use `const` for all your references; avoid using `var`.
 - If you must reassign references, use `let` instead of `var`.
 
 ## Template Literals
@@ -150,7 +150,7 @@ var last = 'Mejia';
 console.log('Your name is ' + first + ' ' + last + '.');
 ```
 
-Now you can just use backtick (\`) and string interpolation `${}`:
+Now you can use backtick (\`) and string interpolation `${}`:
 
 ```javascript ES6
 const first = 'Adrian';
@@ -190,7 +190,6 @@ console.log(template);
 
 Both pieces of code will have exactly the same result.
 
-
 ## Classes and Objects
 
 With ECMAScript 6, We went from "constructor functions" 🔨 to "classes" 🍸.
@@ -215,7 +214,7 @@ var animal = new Animal('animal');
 animal.speak(); // animal makes a noise.
 {% endcodeblock %}
 
-In ES6, we have some syntax sugar, so we can do the same with less boiler plate and new keywords such as `class` and `construtor`. Also, notice how clearly we define methods `construtor.prototype.speak = function ()` vs `speak()`:
+In ES6, we have some syntax sugar. We can do the same with less boiler plate and new keywords such as `class` and `construtor`. Also, notice how clearly we define methods `construtor.prototype.speak = function ()` vs `speak()`:
 
 {% codeblock lang:js mark:1,2,5 ES6 %}
 class Animal {
@@ -233,7 +232,7 @@ animal.speak(); // animal makes a noise.
 
 As we saw, both styles (ES5/6) produces the same results behind the scenes and are used in the same way.
 
-## Inherintance
+## Inheritance
 
 Building on the previous `Animal` class. Let's say we want to extend it and define a `Lion` class
 
@@ -264,8 +263,8 @@ lion.speak(); // Simba makes a noise.
 I won't go over all details but notice:
 
   - Line 3, we explicitly call `Animal` constructor with the parameters.
-  - Line 7-8, we assing the `Lion` prototype to `Animal`'s prototype.
-  - Lilne 11, we call the `speak` method from the parent class `Animal`.
+  - Line 7-8, we assigned the `Lion` prototype to `Animal`'s prototype.
+  - Line 11, we call the `speak` method from the parent class `Animal`.
 
 In ES6, we have a new keywords `extends` and `super` <img src="/images/superman_shield.svg" width="25" height="25" alt="superman shield" style="display:inline-block;">.
 
@@ -282,7 +281,7 @@ lion.speak(); // Simba makes a noise.
 // Simba roars.
 {% endcodeblock %}
 
-Looks how legible this ES6 code looks compared with ES5 and they do exaclty the same. Win!
+Looks how legible this ES6 code looks compared with ES5 and they do exactly the same. Win!
 
 ## Native Promises
 
@@ -305,7 +304,7 @@ printAfterTimeout('Hello ', 2e3, function(result){
 });
 {% endcodeblock %}
 
-We have one function that receive a callback to execute when is `done`. We have to execute it twice one after another. That's why we called the 2nd time `printAfterTimeout` in the callabck.
+We have one function that receives a callback to execute when is `done`. We have to execute it twice one after another. That's why we called the 2nd time `printAfterTimeout` in the callback.
 
 This can get messy pretty quickly if you need a 3rd or 4th callback. Let's see how we can do it with promises:
 
@@ -327,7 +326,7 @@ printAfterTimeout('Hello ', 2e3).then((result) => {
 });
 {% endcodeblock %}
 
-As you can see, with promisses we can use `then` to do something after another function is done. No more need to keep nesting functions.
+As you can see, with promises we can use `then` to do something after another function is done. No more need to keep nesting functions.
 
 ## Arrow functions
 
@@ -389,7 +388,7 @@ for (const element of array) {
 
 ## Default parameters
 
-We went from checking if the variable was defined to assigne a value to `default parameters`. Have you done something like this before?
+We went from checking if the variable was defined to assign a value to `default parameters`. Have you done something like this before?
 
 {% codeblock lang:js mark:2-4,8,9 ES5 %}
 function point(x, y, isFlag){
@@ -411,9 +410,9 @@ Probably yes, it's a common pattern to check is the variable has a value or assi
 - Line 9, we pass `false` but get `true`.
 
 
-If you have a boolean as a defualt parameter or set the value to zero, it doesn't work. Do you know why??? I'll tell you after the ES6 example ;)
+If you have a boolean as a default parameter or set the value to zero, it doesn't work. Do you know why??? I'll tell you after the ES6 example ;)
 
-With ES6, Now you can accomplish better results with less code!
+With ES6, Now you can do better with less code!
 
 {% codeblock lang:js mark:1,5,6 ES6 %}
 function point(x = 0, y = -1, isFlag = true){
@@ -426,7 +425,7 @@ point(1) // 1 -1 true
 point() // 0 -1 true
 {% endcodeblock %}
 
-Notice line 5 and 6 we get the expected results. The ES5 example didn't work because we have to check for `undefined` first, since `false`, `null`, `undefined` and `0` are falsy values. We can get away with numbers:
+Notice line 5 and 6 we get the expected results. The ES5 example didn't work. We have to check for `undefined` first since `false`, `null`, `undefined` and `0` are falsy values. We can get away with numbers:
 
 {% codeblock lang:js mark:3-4,8-9 ES5 %}
 function point(x, y, isFlag){
@@ -458,7 +457,7 @@ function printf(format) {
 printf('%s %d %.2f', 'adrian', 321, Math.PI);
 {% endcodeblock %}
 
-We can accomplish the same using the  rest operator `...`.
+We can do the same using the  rest operator `...`.
 
 {% codeblock lang:js mark:1 ES6 %}
 function printf(format, ...params) {
@@ -472,7 +471,7 @@ printf('%s %d %.2f', 'adrian', 321, Math.PI);
 
 We went from `apply()` to the spread operator. Again we have `...` to the rescue:
 
-> Reminder: we use `apply()` to convert an array into a list of arguments. For instance, `Math.max()` takes a list of parameters, but if just have an array we can use `apply` to make it work.
+> Reminder: we use `apply()` to convert an array into a list of arguments. For instance, `Math.max()` takes a list of parameters, but if we have an array we can use `apply` to make it work.
 
 {% img /images/javascript-math-apply-arrays.png "JavaScript Math apply for arrays" %}
 
@@ -507,9 +506,3 @@ const array3 = [false, true, null, undefined];
 
 console.log([...array1, ...array2, ...array3]);
 {% endcodeblock %}
-
-
-
-
-
-
