@@ -20,7 +20,7 @@ date: 2016-10-19 17:01:34
 updated: 2016-10-19 17:01:34
 ---
 
-JavaScript has changed quite a bit in the last years. These are 11 new features that you can start using today!
+JavaScript has changed quite a bit in the last years. These are 12 new features that you can start using today!
 
 # History
 
@@ -190,6 +190,147 @@ console.log(template);
 
 Both pieces of code will have exactly the same result.
 
+## Destructuring Assignment
+
+ES6 desctructing is very useful and consise. Follow this examples:
+
+**Getting elements from an arrays**
+
+{% codeblock lang:js mark:3-4 ES5 %}
+var array = [1, 2, 3, 4];
+
+var first = array[0];
+var third = array[2];
+
+console.log(first, third); // 1 3
+{% endcodeblock %}
+
+Same as:
+
+{% codeblock lang:js mark:3 ES6 %}
+const array = [1, 2, 3, 4];
+
+const [first, ,third] = array;
+
+console.log(first, third); // 1 3
+{% endcodeblock %}
+
+**Swapping values**
+
+{% codeblock lang:js mark:4-6 ES5 %}
+var a = 1;
+var b = 2;
+
+var tmp = a;
+a = b;
+b = tmp;
+
+console.log(a, b); // 2 1
+{% endcodeblock %}
+
+same as
+
+{% codeblock lang:js mark:4 ES6 %}
+let a = 1;
+let b = 2;
+
+[a, b] = [b, a];
+
+console.log(a, b); // 2 1
+{% endcodeblock %}
+
+**Destructuring for multiple return values**
+
+{% codeblock lang:js mark:3,7-8 ES5 %}
+function margin() {
+  var left=1, right=2, top=3, bottom=4;
+  return [left, right, top, bottom];
+}
+
+var data = margin();
+var left = data[0];
+var bottom = data[3];
+
+console.log(left, bottom); // 1 4
+{% endcodeblock %}
+
+To use this function, the caller needs to think about the order of return data.
+
+with ES6, the caller selects only the data they need:
+
+{% codeblock lang:js mark:3,6 ES6 %}
+function margin() {
+  let left=1, right=2, top=3, bottom=4;
+  return { left, right, top, bottom };
+}
+
+const { left, bottom } = margin();
+
+console.log(left, bottom); // 1 4
+{% endcodeblock %}
+
+**Destructuring for parameters matching**
+
+{% codeblock lang:js mark:4-5 ES5 %}
+var user = {firstName: 'Adrian', lastName: 'Mejia'};
+
+function getFullName(user) {
+  var firstName = user.firstName;
+  var lastName = user.lastName;
+
+  return firstName + ' ' + lastName;
+}
+
+console.log(getFullName(user)); // Adrian Mejia
+{% endcodeblock %}
+
+Same as (but more concise):
+
+{% codeblock lang:js mark:4 ES6 %}
+const user = {firstName: 'Adrian', lastName: 'Mejia'};
+
+function getFullName({ firstName, lastName }) {
+  return `${firstName} ${lastName}`;
+}
+
+console.log(getFullName(user)); // Adrian Mejia
+{% endcodeblock %}
+
+**Deep Matching**
+
+{% codeblock lang:js mark:6-7 ES5 %}
+function settings() {
+  return { display: { color: 'red' }, keyboard: { layout: 'querty'} };
+}
+
+var tmp = settings();
+var displayColor = tmp.display.color;
+var keyboardLayout = tmp.keyboard.layout;
+
+console.log(displayColor, keyboardLayout); // red querty
+{% endcodeblock %}
+
+Same as (but more concise):
+
+{% codeblock lang:js mark:5 ES6 %}
+function settings() {
+  return { display: { color: 'red' }, keyboard: { layout: 'querty'} };
+}
+
+const { display: { color: displayColor }, keyboard: { layout: keyboardLayout }} = settings();
+
+console.log(displayColor, keyboardLayout); // red querty
+{% endcodeblock %}
+
+This is alo called object destructing.
+
+
+As you see, destructing is very useful and encourage good coding styles.
+
+> Best practices:
+- Use array destructing to get elements out or swap variables. It saves you from creating temporary references.
+- Don't use array destructuring for multiple return values, instead use object destructuring
+
 ## Classes and Objects
 
 With ECMAScript 6, We went from "constructor functions" 🔨 to "classes" 🍸.
@@ -231,6 +372,10 @@ animal.speak(); // animal makes a noise.
 {% endcodeblock %}
 
 As we saw, both styles (ES5/6) produces the same results behind the scenes and are used in the same way.
+
+> Best practices:
+- Always use `class` syntax and avoid manipulating the `prototype` directly. That makes the code more concise and easier to understand.
+- Avoid having an empty constructor. Classes have a default constructor if one is not specified.
 
 ## Inheritance
 
@@ -282,6 +427,9 @@ lion.speak(); // Simba makes a noise.
 {% endcodeblock %}
 
 Looks how legible this ES6 code looks compared with ES5 and they do exactly the same. Win!
+
+> Best practices:
+- Use the built-in way for inherintance with `extends`.
 
 ## Native Promises
 
@@ -506,3 +654,9 @@ const array3 = [false, true, null, undefined];
 
 console.log([...array1, ...array2, ...array3]);
 {% endcodeblock %}
+
+# Conclusion
+
+JavaScript has gone through a lot of changes. This article covers most of the core features that every JavaScript developer should know. Also, we cover some best practices to make your code more concise and easier to reason about.
+
+If you think there are some other MUST KNOW feature let me know in the comments below and I will update this article.
