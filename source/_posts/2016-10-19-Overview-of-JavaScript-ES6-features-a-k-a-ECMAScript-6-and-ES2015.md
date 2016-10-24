@@ -368,7 +368,7 @@ var animal = new Animal('animal');
 animal.speak(); // animal makes a noise.
 {% endcodeblock %}
 
-In ES6, we have some syntax sugar. We can do the same with less boiler plate and new keywords such as `class` and `construtor`. Also, notice how clearly we define methods `construtor.prototype.speak = function ()` vs `speak()`:
+In ES6, we have some syntax sugar. We can do the same with less boiler plate and new keywords such as `class` and `constructor`. Also, notice how clearly we define methods `constructor.prototype.speak = function ()` vs `speak()`:
 
 {% codeblock lang:js mark:1,2,5 ES6 %}
 class Animal {
