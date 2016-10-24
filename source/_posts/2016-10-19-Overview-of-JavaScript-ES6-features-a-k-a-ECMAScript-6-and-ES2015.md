@@ -335,10 +335,10 @@ const { display: { color: displayColor }, keyboard: { layout: keyboardLayout }} 
 console.log(displayColor, keyboardLayout); // red querty
 {% endcodeblock %}
 
-This is alo called object destructing.
+This is also called object destructing.
 
 
-As you see, destructing is very useful and encourage good coding styles.
+As you can see, destructing is very useful and encourages good coding styles.
 
 > Best practices:
 - Use array destructing to get elements out or swap variables. It saves you from creating temporary references.
