@@ -138,7 +138,7 @@ You can also use `const` if you don't want a variable to change at all.
 
 > Bottom line: ditch `var` for `let` and `const`.
 - Use `const` for all your references; avoid using `var`.
-- If you must reassign references, use `let` instead of `var`.
+- If you must reassign references, use `let` instead of `const`.
 
 ## Template Literals
 
@@ -244,23 +244,34 @@ console.log(a, b); // 2 1
 {% codeblock lang:js mark:3,7-8 ES5 %}
 function margin() {
   var left=1, right=2, top=3, bottom=4;
-  return [left, right, top, bottom];
+  return { left: left, right: right, top: top, bottom: bottom };
 }
 
 var data = margin();
-var left = data[0];
-var bottom = data[3];
+var left = data.left;
+var bottom = data.bottom;
 
 console.log(left, bottom); // 1 4
 {% endcodeblock %}
 
-To use this function, the caller needs to think about the order of return data.
+In line 3, you could also return it in an array like this (and save some typing):
 
-with ES6, the caller selects only the data they need:
+```javascript
+return [left, right, top, bottom];
+```
+
+but then, the caller needs to think about the order of return data.
+
+```javascript
+var left = data[0];
+var bottom = data[3];
+```
+
+With ES6, the caller selects only the data they need (line 6):
 
 {% codeblock lang:js mark:3,6 ES6 %}
 function margin() {
-  let left=1, right=2, top=3, bottom=4;
+  const left=1, right=2, top=3, bottom=4;
   return { left, right, top, bottom };
 }
 
@@ -268,6 +279,8 @@ const { left, bottom } = margin();
 
 console.log(left, bottom); // 1 4
 {% endcodeblock %}
+
+*Notice:* Line 3, we have some other ES6 features going on. We can compact `{ left: left }` to just `{ left }`. Look how much concise it is compare to the ES5 version. Isn’t that cool?
 
 **Destructuring for parameters matching**
 
@@ -342,13 +355,13 @@ In ES5, we did Object Oriented programming (<abbr title="Object-Oriented Program
 
 {% codeblock lang:js mark:1,5 ES5 %}
 var Animal = (function () {
-  function MyConstrutor(name) {
+  function MyConstructor(name) {
     this.name = name;
   }
-  MyConstrutor.prototype.speak = function speak() {
+  MyConstructor.prototype.speak = function speak() {
     console.log(this.name + ' makes a noise.');
   };
-  return MyConstrutor;
+  return MyConstructor;
 })();
 
 var animal = new Animal('animal');
@@ -433,7 +446,7 @@ Looks how legible this ES6 code looks compared with ES5 and they do exactly the 
 
 ## Native Promises
 
-We went from callback hell 👹 to promisses 🙏
+We went from callback hell 👹 to promises 🙏
 
 {% codeblock lang:js mark:3,11 ES5 %}
 function printAfterTimeout(string, timeout, done){
@@ -502,8 +515,8 @@ You need to use a temporary `this` to reference inside a function or use `bind`.
 $('.btn').click((event) =>  this.sendData());
 
 // implicit returns
-var ids = [291, 288, 984];
-var messages = ids.map(value => `ID is ${value}`);
+const ids = [291, 288, 984];
+const messages = ids.map(value => `ID is ${value}`);
 {% endcodeblock %}
 
 ## For...of
@@ -512,14 +525,14 @@ We went from `for` to `forEach` and then to `for...of`:
 
 ```javascript ES5
 // for
-var arrray = ['a', 'b', 'c', 'd'];
-for (var i = 0; i < arrray.length; i++) {
-  var element = arrray[i];
+var array = ['a', 'b', 'c', 'd'];
+for (var i = 0; i < array.length; i++) {
+  var element = array[i];
   console.log(element);
 }
 
 // forEach
-arrray.forEach(function (element) {
+array.forEach(function (element) {
   console.log(element);
 });
 ```
@@ -528,7 +541,7 @@ The ES6 for...of also allow us to do iterations.
 
 ```javascript ES6
 // for ...of
-const arrray = ['a', 'b', 'c', 'd'];
+const array = ['a', 'b', 'c', 'd'];
 for (const element of array) {
     console.log(element);
 }
@@ -599,7 +612,8 @@ On ES5, it's clumpsy to get an arbitrary number of arguments:
 {% codeblock lang:js mark:2 ES5 %}
 function printf(format) {
   var params = [].slice.call(arguments, 1);
-  console.log(params);
+  console.log('params: ', params);
+  console.log('format: ', format);
 }
 
 printf('%s %d %.2f', 'adrian', 321, Math.PI);
@@ -609,7 +623,8 @@ We can do the same using the  rest operator `...`.
 
 {% codeblock lang:js mark:1 ES6 %}
 function printf(format, ...params) {
-  console.log(params);
+  console.log('params: ', params);
+  console.log('format: ', format);
 }
 
 printf('%s %d %.2f', 'adrian', 321, Math.PI);
