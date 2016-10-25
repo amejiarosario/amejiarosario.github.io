@@ -23,12 +23,13 @@
     <updated>2016-10-25T16:02:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>JavaScript has changed quite a bit in the last years. These are 12 new features that you can start using today!</p>
-<h1 id="History">History<a href="#History" class="headerlink" title="History"></a></h1><p>The new additions to the language are called ECMAScript 6. It is also referred as ES6 or ES2015+.</p>
+<h1 id="JavaScript-History">JavaScript History<a href="#JavaScript-History" class="headerlink" title="JavaScript History"></a></h1><p>The new additions to the language are called ECMAScript 6. It is also referred as ES6 or ES2015+.</p>
 <p>Since JavaScript conception on 1995, it has been evolving slowly. New additions happened every few years. ECMAScript came to be in 1997 to guide the path of JavaScript. It has been releasing versions such as ES3, ES5, ES6 and so on.</p>
 <img src="/images/history-javascript-evolution-es6.png" title="History of JavaScript Evolution">
 <p>As you can see, there are gaps of 10 and 6 years between the ES3, ES5, and ES6. The new model is to make small incremental changes every year. Instead of doing massive changes at once like happened with ES6.</p>
 <h1 id="Browsers-Support">Browsers Support<a href="#Browsers-Support" class="headerlink" title="Browsers Support"></a></h1><p>All modern browser and environments support ES6 already!</p>
 <img src="/images/es6-javascript-support.png" title="ES6 Support">
+<p><small>source: <a href="https://kangax.github.io/compat-table/es6/" target="_blank" rel="external">https://kangax.github.io/compat-table/es6/</a></small></p>
 <p>Chrome, MS Edge, Firefox, Safari, Node and many others have already built-in support for most of the features of JavaScript ES6. So, everything that you are going to learn in this tutorial you can start using it right now.</p>
 <p>Let’s get started with ECMAScript 6!</p>
 <h1 id="Core-ES6-Features">Core ES6 Features<a href="#Core-ES6-Features" class="headerlink" title="Core ES6 Features"></a></h1><p>You can test all these code snippets on your browser console!</p>
@@ -36,14 +37,33 @@
 <p>So don’t take my word and test every ES5 and ES6 example. Let’s dig in 💪</p>
 <h2 id="Block-scope-variables">Block scope variables<a href="#Block-scope-variables" class="headerlink" title="Block scope variables"></a></h2><p>With ES6, we went from declaring variables with <code>var</code> to  use <code>let</code>/<code>const</code>.</p>
 <p>What was wrong with <code>var</code>?</p>
-<p>The issue with <code>var</code> is the variable leaks into other code block such as <code>for</code> loops or <code>if</code> blocks:</p>
-<figure class="highlight js"><figcaption><span>ES5</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="string">'outer'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">inner</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (inner) &#123;</div><div class="line marked">    <span class="keyword">var</span> x = <span class="string">'inner'</span>; <span class="comment">// scope whole function</span></div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> x; <span class="comment">// gets redefined on line 4</span></div><div class="line">&#125;</div><div class="line"></div><div class="line marked">test(<span class="literal">false</span>); <span class="comment">// undefined 😱</span></div><div class="line">test(<span class="literal">true</span>); <span class="comment">// inner</span></div></pre></td></tr></table></figure>
+<p>The issue with <code>var</code> is the variable leaks into other code block such as <code>for</code> loops or <code>if</code> blocks.</p>
+<figure class="highlight js"><figcaption><span>ES5</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="string">'outer'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">inner</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (inner) &#123;</div><div class="line marked">    <span class="keyword">var</span> x = <span class="string">'inner'</span>; <span class="comment">// scope whole function</span></div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> x; <span class="comment">// gets redefined because line 4 declaration is hoisted</span></div><div class="line">&#125;</div><div class="line"></div><div class="line marked">test(<span class="literal">false</span>); <span class="comment">// undefined 😱</span></div><div class="line">test(<span class="literal">true</span>); <span class="comment">// inner</span></div></pre></td></tr></table></figure>
 <p>For <code>test(false)</code> you would expect to return <code>outer</code>, BUT NO, you get <code>undefined</code>.</p>
 <p>Why?</p>
-<p>Because even though the if-block is not executed, the line 4 still redefines <code>var x</code> as <code>undefined</code>.</p>
-<p>ES6 comes to the rescue:</p>
+<p>Because even though the if-block is not executed, the expression <code>var x</code> in line 4 is hoisted.</p>
+<blockquote>
+<p>var <strong>hoisting</strong>:</p>
+<ul>
+<li><code>var</code> is function scoped. It is availble in the whole function even before being declared.</li>
+<li>Declarations are Hoisted. So you can use a variable before it has been declared.</li>
+<li>Initializations are NOT hoisted. If you are using <code>var</code> ALWAYS declare your variables at the top.</li>
+<li>After applying the rules of hoisting we can understand better what’s happening:<figure class="highlight js"><figcaption><span>ES5</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="string">'outer'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">inner</span>) </span>&#123;</div><div class="line marked">  <span class="keyword">var</span> x; <span class="comment">// HOISTED DECLARATION</span></div><div class="line">  <span class="keyword">if</span> (inner) &#123;</div><div class="line marked">    x = <span class="string">'inner'</span>; <span class="comment">// INITIALIZATION NOT HOISTED</span></div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>ECMAScript 2015 comes to the rescue:</p>
 <figure class="highlight js"><figcaption><span>ES6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line marked"><span class="keyword">let</span> x = <span class="string">'outer'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">inner</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (inner) &#123;</div><div class="line marked">    <span class="keyword">let</span> x = <span class="string">'inner'</span>;</div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> x; <span class="comment">// gets result from line 1 as expected</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">test(<span class="literal">false</span>); <span class="comment">// outer</span></div><div class="line">test(<span class="literal">true</span>); <span class="comment">// inner</span></div></pre></td></tr></table></figure>
-<p>Changing <code>var</code> for <code>let</code> makes things work as expected. If the <code>if</code> block is not called the variable <code>x</code> doesn’t get redefined.</p>
+<p>Changing <code>var</code> for <code>let</code> makes things work as expected. If the <code>if</code> block is not called the variable <code>x</code> doesn’t get hoisted out of the block.</p>
+<blockquote>
+<p>Let <strong>hoisting</strong> and “temporal dead zone”</p>
+<ul>
+<li>In ES6, <code>let</code> will hoist the variable to the top of the block (NOT at the top of function like ES5).</li>
+<li>However, referencing the variable in the block before the variable declaration results in a <code>ReferenceError</code>.</li>
+<li><code>let</code> is blocked scoped. You cannot use it before it is declared.</li>
+<li>“Temporal dead zone” is the zone from the start of the block until the variable is declared.</li>
+</ul>
+</blockquote>
 <p><strong>IIFE</strong></p>
 <p>Let’s show an example before explaining <abbr title="immediately-invoked function expressionn">IIFE</abbr>. Take a look here:</p>
 <figure class="highlight js"><figcaption><span>ES5</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line marked">  <span class="keyword">var</span> private = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(private); <span class="comment">// 1</span></div></pre></td></tr></table></figure>
@@ -119,7 +139,7 @@ All JavaScript objects inherit their methods and properties from their prototype
 <blockquote>
 <p>Best practices:</p>
 <ul>
-<li>Always use <code>class</code> syntax and avoid manipulating the <code>prototype</code> directly. That makes the code more concise and easier to understand.</li>
+<li>Always use <code>class</code> syntax and avoid manipulating the <code>prototype</code> directly. Why? because it makes the code more concise and easier to understand.</li>
 <li>Avoid having an empty constructor. Classes have a default constructor if one is not specified.</li>
 </ul>
 </blockquote>
@@ -194,7 +214,7 @@ All JavaScript objects inherit their methods and properties from their prototype
     <summary type="html">
     
       &lt;p&gt;JavaScript has changed quite a bit in the last years. These are 12 new features that you can start using today!&lt;/p&gt;
-&lt;h1 id=&quot;History&quot;&gt;Hist
+&lt;h1 id=&quot;JavaScript-Hi
     
     </summary>
     
@@ -1318,9 +1338,9 @@ for your next web application.</li>
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
-    
       <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
+    
+      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
     
       <category term="mean stack" scheme="http://adrianmejia.com/tags/mean-stack/"/>
     
@@ -1633,13 +1653,13 @@ Is NOT working? take a look at the <a href="https://github.com/amejiarosario/tod
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
-    
       <category term="NodeJS" scheme="http://adrianmejia.com/tags/NodeJS/"/>
     
       <category term="ExpressJS" scheme="http://adrianmejia.com/tags/ExpressJS/"/>
     
       <category term="MongoDB" scheme="http://adrianmejia.com/tags/MongoDB/"/>
+    
+      <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
     
   </entry>
   
@@ -1819,9 +1839,9 @@ Is NOT working? take a look at the <a href="https://github.com/amejiarosario/tod
     
       <category term="javascript" scheme="http://adrianmejia.com/tags/javascript/"/>
     
-      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
-    
       <category term="Tutorial_MEAN-Stack" scheme="http://adrianmejia.com/tags/Tutorial-MEAN-Stack/"/>
+    
+      <category term="angularjs" scheme="http://adrianmejia.com/tags/angularjs/"/>
     
   </entry>
   
