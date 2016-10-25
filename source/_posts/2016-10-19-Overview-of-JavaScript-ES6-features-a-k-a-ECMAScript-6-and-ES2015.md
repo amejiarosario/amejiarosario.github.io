@@ -17,7 +17,7 @@ categories:
   - Programming
   - Web Development
 date: 2016-10-19 17:01:34
-updated: 2016-10-19 17:01:34
+updated: 2016-10-25 12:02:34
 ---
 
 JavaScript has changed quite a bit in the last years. These are 12 new features that you can start using today!
@@ -120,7 +120,7 @@ console.log(private2); // Uncaught ReferenceError
 
 If you take a look at jQuery/lodash or other open source projects you will notice they have <abbr title="immediately-invoked function expression">IIFE</abbr> to avoid polluting the global environment and just defining on global such as `_`, `$` or `jQuery`.
 
-On ES6 is much cleaner, We also don't neet to use <abbr title="immediately-invoked function expression">IIFE</abbr> anymore when we can just use blocks and `let`:
+On ES6 is much cleaner, We also don't need to use <abbr title="immediately-invoked function expression">IIFE</abbr> anymore when we can just use blocks and `let`:
 
 {% codeblock lang:js mark:2 ES6 %}
 {
