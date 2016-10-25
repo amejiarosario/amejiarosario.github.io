@@ -37,6 +37,7 @@ As you can see, there are gaps of 10 and 6 years between the ES3, ES5, and ES6. 
 All modern browser and environments support ES6 already!
 
 {% img /images/es6-javascript-support.png 'ES6 Support' %}
+<small>source: https://kangax.github.io/compat-table/es6/</small>
 
 Chrome, MS Edge, Firefox, Safari, Node and many others have already built-in support for most of the features of JavaScript ES6. So, everything that you are going to learn in this tutorial you can start using it right now.
 
@@ -79,6 +80,7 @@ Why?
 Because even though the if-block is not executed, the expression `var x` in line 4 is hoisted.
 
 > var **hoisting**:
+- `var` is function scoped. It is availble in the whole function even before being declared.
 - Declarations are Hoisted. So you can use a variable before it has been declared.
 - Initializations are NOT hoisted. If you are using `var` ALWAYS declare your variables at the top.
 - After applying the rules of hoisting we can understand better what's happening:
@@ -116,6 +118,7 @@ Changing `var` for `let` makes things work as expected. If the `if` block is not
 > Let **hoisting** and "temporal dead zone"
 - In ES6, `let` will hoist the variable to the top of the block (NOT at the top of function like ES5).
 - However, referencing the variable in the block before the variable declaration results in a `ReferenceError`.
+- `let` is blocked scoped. You cannot use it before it is declared.
 - "Temporal dead zone" is the zone from the start of the block until the variable is declared.
 
 **IIFE**
@@ -409,7 +412,7 @@ animal.speak(); // animal makes a noise.
 As we saw, both styles (ES5/6) produces the same results behind the scenes and are used in the same way.
 
 > Best practices:
-- Always use `class` syntax and avoid manipulating the `prototype` directly. That makes the code more concise and easier to understand.
+- Always use `class` syntax and avoid manipulating the `prototype` directly. Why? because it makes the code more concise and easier to understand.
 - Avoid having an empty constructor. Classes have a default constructor if one is not specified.
 
 ## Inheritance
