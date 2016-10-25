@@ -3,8 +3,8 @@
 ## most used
 
 ```bash
-hexo s -dp 9000           # server on port 9000
-hexo s --draft -dp 9000   # serve drafts
+hexo s -dp 5000           # server on port 5000
+hexo s --draft -dp 5000   # serve drafts on port 5000
 hexo g                    # generate
 hexo d -g                 # generate and deploy to github pages
 

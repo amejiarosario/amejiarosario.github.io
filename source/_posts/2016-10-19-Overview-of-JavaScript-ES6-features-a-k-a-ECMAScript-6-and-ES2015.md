@@ -22,7 +22,7 @@ updated: 2016-10-25 12:02:34
 
 JavaScript has changed quite a bit in the last years. These are 12 new features that you can start using today!
 
-# History
+# JavaScript History
 
 The new additions to the language are called ECMAScript 6. It is also referred as ES6 or ES2015+.
 
@@ -56,7 +56,7 @@ With ES6, we went from declaring variables with `var` to  use `let`/`const`.
 
 What was wrong with `var`?
 
-The issue with `var` is the variable leaks into other code block such as `for` loops or `if` blocks:
+The issue with `var` is the variable leaks into other code block such as `for` loops or `if` blocks.
 
 {% codeblock lang:js mark:4,10 ES5 %}
 var x = 'outer';
@@ -65,7 +65,7 @@ function test(inner) {
     var x = 'inner'; // scope whole function
     return x;
   }
-  return x; // gets redefined on line 4
+  return x; // gets redefined because line 4 declaration is hoisted
 }
 
 test(false); // undefined 😱
@@ -76,9 +76,26 @@ For `test(false)` you would expect to return `outer`, BUT NO, you get `undefined
 
 Why?
 
-Because even though the if-block is not executed, the line 4 still redefines `var x` as `undefined`.
+Because even though the if-block is not executed, the expression `var x` in line 4 is hoisted.
 
-ES6 comes to the rescue:
+> var **hoisting**:
+- Declarations are Hoisted. So you can use a variable before it has been declared.
+- Initializations are NOT hoisted. If you are using `var` ALWAYS declare your variables at the top.
+- After applying the rules of hoisting we can understand better what's happening:
+{% codeblock lang:js mark:3,5 ES5 %}
+var x = 'outer';
+function test(inner) {
+  var x; // HOISTED DECLARATION
+  if (inner) {
+    x = 'inner'; // INITIALIZATION NOT HOISTED
+    return x;
+  }
+  return x;
+}
+{% endcodeblock %}
+
+
+ECMAScript 2015 comes to the rescue:
 
 {% codeblock lang:js mark:1,4 ES6 %}
 let x = 'outer';
@@ -94,7 +111,12 @@ test(false); // outer
 test(true); // inner
 {% endcodeblock %}
 
-Changing `var` for `let` makes things work as expected. If the `if` block is not called the variable `x` doesn't get redefined.
+Changing `var` for `let` makes things work as expected. If the `if` block is not called the variable `x` doesn't get hoisted out of the block.
+
+> Let **hoisting** and "temporal dead zone"
+- In ES6, `let` will hoist the variable to the top of the block (NOT at the top of function like ES5).
+- However, referencing the variable in the block before the variable declaration results in a `ReferenceError`.
+- "Temporal dead zone" is the zone from the start of the block until the variable is declared.
 
 **IIFE**
 
