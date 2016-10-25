@@ -257,7 +257,7 @@ ga('send', 'pageview');
   },
   
   "datePublished": "2016-10-19T17:01:34-04:00",
-  "dateModified": "2016-10-19T17:01:34-04:00",
+  "dateModified": "2016-10-25T12:02:34-04:00",
   "author": {
     "@type": "Person",
     "name": "Adrian Mejia"
@@ -288,7 +288,7 @@ ga('send', 'pageview');
       <span title="Last time this post was updated">
         <i class="fa fa-calendar" aria-hidden="true"></i>
         Last update
-        <time datetime="2016-10-19T21:01:34.000Z" itemprop="dateUpdated">October 19th 2016</time>
+        <time datetime="2016-10-25T16:02:34.000Z" itemprop="dateUpdated">October 25th 2016</time>
       </span>
 
       
@@ -397,8 +397,8 @@ ga('send', 'pageview');
 <figure class="highlight js"><figcaption><span>ES5</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">settings</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123; <span class="attr">display</span>: &#123; <span class="attr">color</span>: <span class="string">'red'</span> &#125;, <span class="attr">keyboard</span>: &#123; <span class="attr">layout</span>: <span class="string">'querty'</span>&#125; &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> tmp = settings();</div><div class="line marked"><span class="keyword">var</span> displayColor = tmp.display.color;</div><div class="line marked"><span class="keyword">var</span> keyboardLayout = tmp.keyboard.layout;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(displayColor, keyboardLayout); <span class="comment">// red querty</span></div></pre></td></tr></table></figure>
 <p>Same as (but more concise):</p>
 <figure class="highlight js"><figcaption><span>ES6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">settings</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123; <span class="attr">display</span>: &#123; <span class="attr">color</span>: <span class="string">'red'</span> &#125;, <span class="attr">keyboard</span>: &#123; <span class="attr">layout</span>: <span class="string">'querty'</span>&#125; &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line marked"><span class="keyword">const</span> &#123; <span class="attr">display</span>: &#123; <span class="attr">color</span>: displayColor &#125;, <span class="attr">keyboard</span>: &#123; <span class="attr">layout</span>: keyboardLayout &#125;&#125; = settings();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(displayColor, keyboardLayout); <span class="comment">// red querty</span></div></pre></td></tr></table></figure>
-<p>This is alo called object destructing.</p>
-<p>As you see, destructing is very useful and encourage good coding styles.</p>
+<p>This is also called object destructing.</p>
+<p>As you can see, destructing is very useful and encourages good coding styles.</p>
 <blockquote>
 <p>Best practices:</p>
 <ul>
@@ -413,7 +413,7 @@ All JavaScript objects inherit their methods and properties from their prototype
 </blockquote>
 <p>In ES5, we did Object Oriented programming (<abbr title="Object-Oriented Programming">OOP</abbr>) using constructor functions to create objects as follows:</p>
 <figure class="highlight js"><figcaption><span>ES5</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line marked"><span class="keyword">var</span> Animal = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">MyConstructor</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">  &#125;</div><div class="line marked">  MyConstructor.prototype.speak = <span class="function"><span class="keyword">function</span> <span class="title">speak</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' makes a noise.'</span>);</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> MyConstructor;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="keyword">var</span> animal = <span class="keyword">new</span> Animal(<span class="string">'animal'</span>);</div><div class="line">animal.speak(); <span class="comment">// animal makes a noise.</span></div></pre></td></tr></table></figure>
-<p>In ES6, we have some syntax sugar. We can do the same with less boiler plate and new keywords such as <code>class</code> and <code>construtor</code>. Also, notice how clearly we define methods <code>construtor.prototype.speak = function ()</code> vs <code>speak()</code>:</p>
+<p>In ES6, we have some syntax sugar. We can do the same with less boiler plate and new keywords such as <code>class</code> and <code>constructor</code>. Also, notice how clearly we define methods <code>constructor.prototype.speak = function ()</code> vs <code>speak()</code>:</p>
 <figure class="highlight js"><figcaption><span>ES6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line marked"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</div><div class="line marked">  <span class="keyword">constructor</span>(name) &#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">  &#125;</div><div class="line marked">  speak() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' makes a noise.'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> animal = <span class="keyword">new</span> Animal(<span class="string">'animal'</span>);</div><div class="line">animal.speak(); <span class="comment">// animal makes a noise.</span></div></pre></td></tr></table></figure>
 <p>As we saw, both styles (ES5/6) produces the same results behind the scenes and are used in the same way.</p>
 <blockquote>
@@ -577,7 +577,7 @@ All JavaScript objects inherit their methods and properties from their prototype
         <div class="muted">
           <div class="p-y-1">
             <a href="#"><span id="back-to-top" title="Go back to the top of this page"><i class="fa fa-arrow-up"></i> Back to top</span></a>
-            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-10-19-Overview-of-JavaScript-ES6-features-a-k-a-ECMAScript-6-and-ES2015.md')"><i class="fa fa-pencil"></i> Improve</a>
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-10-19-Overview-of-JavaScript-ES6-features-a-k-a-ECMAScript-6-and-ES2015.md')"><i class="fa fa-pencil"></i> Edit</a>
             <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
             <!--<div class="p-y-1">-->
               <!---->
@@ -650,8 +650,8 @@ All JavaScript objects inherit their methods and properties from their prototype
       <div class="container">
         <div class="p-y-2">
           &copy; 2016 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Oct 24 2016 13:59:09 GMT-0400 (EDT)">
-            v.ofkcml
+          <span class="muted m-x-4" title="Tue Oct 25 2016 12:04:01 GMT-0400 (EDT)">
+            v.ofm1yp
           </span>
         </div>
       </div>
