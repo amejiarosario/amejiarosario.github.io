@@ -335,10 +335,10 @@ const { display: { color: displayColor }, keyboard: { layout: keyboardLayout }} 
 console.log(displayColor, keyboardLayout); // red querty
 {% endcodeblock %}
 
-This is alo called object destructing.
+This is also called object destructing.
 
 
-As you see, destructing is very useful and encourage good coding styles.
+As you can see, destructing is very useful and encourages good coding styles.
 
 > Best practices:
 - Use array destructing to get elements out or swap variables. It saves you from creating temporary references.
@@ -368,7 +368,7 @@ var animal = new Animal('animal');
 animal.speak(); // animal makes a noise.
 {% endcodeblock %}
 
-In ES6, we have some syntax sugar. We can do the same with less boiler plate and new keywords such as `class` and `construtor`. Also, notice how clearly we define methods `construtor.prototype.speak = function ()` vs `speak()`:
+In ES6, we have some syntax sugar. We can do the same with less boiler plate and new keywords such as `class` and `constructor`. Also, notice how clearly we define methods `constructor.prototype.speak = function ()` vs `speak()`:
 
 {% codeblock lang:js mark:1,2,5 ES6 %}
 class Animal {
