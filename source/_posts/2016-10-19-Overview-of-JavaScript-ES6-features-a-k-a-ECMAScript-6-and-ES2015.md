@@ -516,7 +516,7 @@ As you can see, with promises we can use `then` to do something after another fu
 
 ## Arrow functions
 
-ES5 didn't remove the function expressions but it added a new one called arrow functions.
+ES6 didn't remove the function expressions but it added a new one called arrow functions.
 
 In ES5, we have some issues with `this`:
 
