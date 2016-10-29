@@ -5,7 +5,7 @@ date: 2014-02-15 13:59:26 -0400
 updated: 2014-02-15 13:59:26 -0400
 comments: true
 pageviews__total: 0
-pageviews__recent: 0
+pageviews__recent:  44
 pageviews__avg_time: 0
 tutorial__order: 0
 photos__background_color: '#E4F4FD'

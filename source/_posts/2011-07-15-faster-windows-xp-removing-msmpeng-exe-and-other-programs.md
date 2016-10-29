@@ -5,7 +5,7 @@ created: 1310735883000
 updated: 1310735883000
 comments: true
 pageviews__total: 35350
-pageviews__recent: 256
+pageviews__recent:  46
 pageviews__avg_time: 101
 # categories: [windows, tips, how-to]
 tutorial__order: 0

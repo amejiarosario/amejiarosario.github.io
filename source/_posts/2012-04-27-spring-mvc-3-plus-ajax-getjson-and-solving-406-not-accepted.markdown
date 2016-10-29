@@ -6,7 +6,7 @@ updated: 2012-04-27 02:17
 comments: true
 toc: true
 pageviews__total: 11250
-pageviews__recent: 450  
+pageviews__recent:  102
 pageviews__avg_time: 228
 # categories: [spring mvc, j2ee, jquery, ajax]
 tutorial__order: 0

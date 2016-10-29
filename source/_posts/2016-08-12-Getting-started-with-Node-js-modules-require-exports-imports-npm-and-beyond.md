@@ -4,7 +4,7 @@ title: "Getting started with Node.js modules: require, exports, imports and beyo
 comments: true
 toc: true
 pageviews__total: 0
-pageviews__recent: 0
+pageviews__recent:  233
 pageviews__avg_time: 0
 tutorial__order: 0
 photos__background_color: '#333'

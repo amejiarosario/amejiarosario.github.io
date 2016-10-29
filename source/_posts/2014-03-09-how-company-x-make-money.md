@@ -5,7 +5,7 @@ date: 2014-03-09 21:39:42 -0400
 updated: 2014-03-09 21:39:42 -0400
 comments: true
 pageviews__total: 0
-pageviews__recent: 0
+pageviews__recent:  33
 pageviews__avg_time: 0
 tutorial__order: 0
 tags:

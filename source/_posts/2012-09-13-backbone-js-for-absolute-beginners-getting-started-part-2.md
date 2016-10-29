@@ -4,8 +4,8 @@ title: "Backbone.js for absolute beginners - getting started (part 2: Models, Co
 date: 2012-09-13 00:08
 updated: 2012-09-13 00:08
 comments: true
-pageviews__total: 149923  
-pageviews__recent: 238  
+pageviews__total: 149923
+pageviews__recent:  2116
 pageviews__avg_time: 3846
 photos:
   - /images/Backbone_for_beginners_part2_small.png
@@ -56,7 +56,7 @@ Let's start again with the initial [HTML file](https://raw.github.com/amejiarosa
     </section>
   </section>
 
-{% endcodeblock %}  
+{% endcodeblock %}
 
 We are going to implement a To-do list, which is basically un-ordered list (ul) of elements with checkboxes.
 
@@ -168,16 +168,16 @@ We have already seen the first 3 and will see later the fourth one. Do you remem
 ## `view.el`
 
 
-Every view needs to reference a DOM at all times. Therefore, the view will inject content into this element. This is the `el` property. `this.el` is created from view’s `el`,`tagName`, `className`, `id` or `attributes` properties. If none of these are specified, then this.el is an empty `div`. The `view.$el` it’s a cached jQuery object of the view’s element (view.el).  
+Every view needs to reference a DOM at all times. Therefore, the view will inject content into this element. This is the `el` property. `this.el` is created from view’s `el`,`tagName`, `className`, `id` or `attributes` properties. If none of these are specified, then this.el is an empty `div`. The `view.$el` it’s a cached jQuery object of the view’s element (view.el).
 
 ## Initialize/construtor
 
 
-Here you have the option to pass parameters that will be attached to a model, collection or view.el.   
+Here you have the option to pass parameters that will be attached to a model, collection or view.el.
 
 ## `render`
 
-This function injects the markup into the elements. Not all views require having a render function, as you are going to see in the sample code, they can call other view’s render functions.    
+This function injects the markup into the elements. Not all views require having a render function, as you are going to see in the sample code, they can call other view’s render functions.
 
 ## delegated events
 
@@ -302,9 +302,9 @@ Now, we need another view that take a collection and render each of the individu
 
     //--------------
     // Initializers
-    //--------------   
+    //--------------
 
-    app.appView = new app.AppView();     
+    app.appView = new app.AppView();
 
 {% endcodeblock %}
 
