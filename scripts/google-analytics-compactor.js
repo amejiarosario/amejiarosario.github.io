@@ -51,7 +51,8 @@ function updateBlog(hash) {
         const fullPath = path.join(postsPath, file);
         console.log(fullPath);
         fs.readFile(fullPath, 'utf-8', (err, content) => {
-          console.log('size: ', content.length);
+          // console.log('size: ', content.length);
+          content.replace(/pageviews__recent:\s\d*/, `pageviews__recent: ${pageviews}`);
           fs.writeFile(fullPath, content, (err) => {
             if(err){
               console.error(err);
