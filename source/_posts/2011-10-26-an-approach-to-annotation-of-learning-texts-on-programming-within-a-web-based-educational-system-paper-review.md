@@ -4,9 +4,9 @@ title: An Approach to Annotation of Learning Texts on Programming within a Web-B
 created: 1319649975000
 updated: 1319649975000
 comments: true
-pageviews__total: 0
+pageviews__total: 15
 pageviews__recent: 0
-pageviews__avg_time: 0
+pageviews__avg_time: 126
 tutorial__order: 0
 #categories: [paper review, e-learning]
 ---
