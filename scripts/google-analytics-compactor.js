@@ -39,13 +39,18 @@ function parseGaData(data){
 
 function updateBlog(hash) {
   fs.readdir(postsPath, (err, files) => {
-    console.log(err);
+    console.error(err);
     for(const file of files) {
       const [filename, ext] = file.split('.');
       const key = filename.replace(/\d{4}-\d{2}-\d{2}-/, '');
       console.log(hash.get(key));
       if(hash.get(key)){
-
+        fs.readFile(file, 'utf-8', (err, content) => {
+          console.log(file, content.length);
+          fs.writeFile(file, content, (err) => {
+            console.error(err);
+          });
+        });
       }
     }
   });
