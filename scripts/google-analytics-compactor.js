@@ -42,18 +42,23 @@ function parseGaData(data){
 function updateBlog(hash) {
   fs.readdir(postsPath, (err, files) => {
     console.error(err);
+
     for(const file of files) {
       const [filename, ext] = file.split('.');
       const key = filename.replace(/\d{4}-\d{2}-\d{2}-/, '');
-      console.log(hash.get(key));
+      // console.log(hash.get(key));
       if(hash.get(key)){
         const fullPath = path.join(postsPath, file);
         console.log(fullPath);
         fs.readFile(fullPath, 'utf-8', (err, content) => {
-          console.log(file, content.length);
-          // fs.writeFile(fullPath, content, (err) => {
-          //   console.error(err);
-          // });
+          console.log('size: ', content.length);
+          fs.writeFile(fullPath, content, (err) => {
+            if(err){
+              console.error(err);
+            } else {
+              console.log('wrote successful: ', content.length);
+            }
+          });
         });
       }
     }
