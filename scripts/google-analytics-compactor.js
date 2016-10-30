@@ -7,7 +7,7 @@ const path = require('path');
 const postsPath = path.join(__dirname, '..', 'source', '_posts');
 console.log(postsPath);
 
-function parseGaData(data){
+function parseGa(data){
   let hash = new Map();
 
   for(const row of data.rows) {
@@ -53,13 +53,13 @@ function updateBlog(recent, total) {
         const fullPath = path.join(postsPath, file);
         console.log(fullPath);
         fs.readFile(fullPath, 'utf-8', (err, content) => {
-          // console.log('size: ', content.length);
           if(gaRecent) {
-            content.replace(/pageviews__recent:\s\d*/, `pageviews__recent: ${gaRecent.pageviews}`);
+            content = content.replace(/pageviews__recent:\s\d*\n/, `pageviews__recent: ${gaRecent.pageviews}\n`);
           }
 
           if(gaTotal) {
-            content.replace(/pageviews__total:\s\d*/, `pageviews__total: ${gaTotal.pageviews}`);
+            content = content.replace(/pageviews__total:\s\d*\n/, `pageviews__total: ${gaTotal.pageviews}\n`);
+            content = content.replace(/pageviews__avg_time:\s\d*\n/, `pageviews__avg_time: ${Math.round(gaTotal.avgTimeOnPage)}\n`);
           }
 
           fs.writeFile(fullPath, content, (err) => {
@@ -75,7 +75,4 @@ function updateBlog(recent, total) {
   });
 }
 
-
-const recent = parseGaData(recent);
-const total = parseGaData(total);
-updateBlog(recent, total);
+updateBlog(parseGa(recent), parseGa(total));
