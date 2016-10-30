@@ -2,8 +2,10 @@ const recent = require('./data/pageviews-28daysAgo-yesterday.json');
 const total = require('./data/pageviews-2011-06-10-yesterday.json');
 const url = require('url');
 const fs = require('fs');
+const path = require('path');
 
-const postsPath = '../source/_posts/';
+const postsPath = path.join(__dirname, '..', 'source', '_posts');
+console.log(postsPath);
 
 function parseGaData(data){
   let hash = new Map();
@@ -45,11 +47,13 @@ function updateBlog(hash) {
       const key = filename.replace(/\d{4}-\d{2}-\d{2}-/, '');
       console.log(hash.get(key));
       if(hash.get(key)){
-        fs.readFile(file, 'utf-8', (err, content) => {
+        const fullPath = path.join(postsPath, file);
+        console.log(fullPath);
+        fs.readFile(fullPath, 'utf-8', (err, content) => {
           console.log(file, content.length);
-          fs.writeFile(file, content, (err) => {
-            console.error(err);
-          });
+          // fs.writeFile(fullPath, content, (err) => {
+          //   console.error(err);
+          // });
         });
       }
     }
