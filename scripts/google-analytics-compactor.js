@@ -39,21 +39,29 @@ function parseGaData(data){
   return hash;
 }
 
-function updateBlog(hash) {
+function updateBlog(recent, total) {
   fs.readdir(postsPath, (err, files) => {
     console.error(err);
 
     for(const file of files) {
       const [filename, ext] = file.split('.');
       const key = filename.replace(/\d{4}-\d{2}-\d{2}-/, '');
-      const gaRecentData = hash.get(key);
-      // console.log(hash.get(key));
-      if(gaRecentData){
+      const gaRecent = recent.get(key);
+      const gaTotal = total.get(key);
+
+      if(gaRecent || gaTotal) {
         const fullPath = path.join(postsPath, file);
         console.log(fullPath);
         fs.readFile(fullPath, 'utf-8', (err, content) => {
           // console.log('size: ', content.length);
-          content.replace(/pageviews__recent:\s\d*/, `pageviews__recent: ${gaRecentData.pageviews}`);
+          if(gaRecent) {
+            content.replace(/pageviews__recent:\s\d*/, `pageviews__recent: ${gaRecent.pageviews}`);
+          }
+
+          if(gaTotal) {
+            content.replace(/pageviews__total:\s\d*/, `pageviews__total: ${gaTotal.pageviews}`);
+          }
+
           fs.writeFile(fullPath, content, (err) => {
             if(err){
               console.error(err);
@@ -68,5 +76,6 @@ function updateBlog(hash) {
 }
 
 
-const recentGa = parseGaData(recent);
-updateBlog(recentGa);
+const recent = parseGaData(recent);
+const total = parseGaData(total);
+updateBlog(recent, total);
