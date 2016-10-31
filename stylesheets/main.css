@@ -47,6 +47,9 @@ b, em, strong {
 pre {
   text-rendering: optimizeLegibility; }
 
+li {
+  margin: 10px 0; }
+
 blockquote {
   display: block;
   padding: 15px 20px 15px 45px;
