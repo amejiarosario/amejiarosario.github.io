@@ -655,7 +655,7 @@ We want to update the variables on <code>blur</code> (when you click somewhere e
     <link href="http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/"/>
     <id>http://adrianmejia.com/blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/</id>
     <published>2016-06-25T19:14:49.000Z</published>
-    <updated>2016-10-30T14:21:27.000Z</updated>
+    <updated>2016-11-23T20:08:59.000Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">npm run</div><div class="line">yarn run</div><div class="line">grunt --help</div><div class="line">gulp --tasks</div><div class="line">rake --tasks</div></pre></td></tr></table></figure>
 ]]></content>
