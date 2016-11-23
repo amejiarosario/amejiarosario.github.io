@@ -14,7 +14,7 @@ var fs = require('fs');
  * @param endDate {string} defaults to 'yesterday'
  * @returns {*}
  */
-function downloadFiles(startDate = '2011-06-10', endDate = 'yesterday', callback) {
+function downloadFiles(startDate = '2011-06-10', endDate = 'yesterday') {
 
   // const DISCOVERY_URI = 'https://analyticsreporting.googleapis.com/$discovery/rest';
   // const VIEW_ID = '58359416';
@@ -31,7 +31,6 @@ function downloadFiles(startDate = '2011-06-10', endDate = 'yesterday', callback
       if (err) {
         console.log('--- Google Error --- ', err);
         reject(err);
-        callback(err);
         return;
       }
 
@@ -46,7 +45,7 @@ function downloadFiles(startDate = '2011-06-10', endDate = 'yesterday', callback
 
         res.on('data', (d) => {
           // process.stdout.write(d);
-          console.log('.');
+          process.stdout.write('.');
           // console.log(JSON.stringify(d, null, 2));
           body.push(d);
         });
@@ -60,14 +59,12 @@ function downloadFiles(startDate = '2011-06-10', endDate = 'yesterday', callback
             }
             console.log(`The file was saved to ${filename}`);
 
-            callback(null, filename);
             resolve(filename);
           });
         })
       }).on('error', (e) => {
         console.error(e);
         reject(err);
-        callback(err);
       });
     });
   });

@@ -11,4 +11,6 @@ downloadData().then(function (totalPath) {
   });
 }).then(function (updated) {
   console.log(updated);
+}).catch(function (err) {
+  console.error(err);
 });
