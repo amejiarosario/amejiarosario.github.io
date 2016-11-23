@@ -1,5 +1,6 @@
-const recent = require('./data/pageviews-28daysAgo-yesterday.json');
-const total = require('./data/pageviews-2011-06-10-yesterday.json');
+// const recent = require('./data/pageviews-28daysAgo-yesterday.json');
+// const total = require('./data/pageviews-2011-06-10-yesterday.json');
+
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
@@ -40,39 +41,59 @@ function parseGa(data){
 }
 
 function updateBlog(recent, total) {
-  fs.readdir(postsPath, (err, files) => {
-    console.error(err);
+  return new Promise((resolve, reject) => {
 
-    for(const file of files) {
-      const [filename, ext] = file.split('.');
-      const key = filename.replace(/\d{4}-\d{2}-\d{2}-/, '');
-      const gaRecent = recent.get(key);
-      const gaTotal = total.get(key);
+    fs.readdir(postsPath, (err, files) => {
+      console.error(err);
+      reject(err);
 
-      if(gaRecent || gaTotal) {
-        const fullPath = path.join(postsPath, file);
-        console.log(fullPath);
-        fs.readFile(fullPath, 'utf-8', (err, content) => {
-          if(gaRecent) {
-            content = content.replace(/pageviews__recent:\s\d*\n/, `pageviews__recent: ${gaRecent.pageviews}\n`);
-          }
+      for(const file of files) {
+        const [filename, ext] = file.split('.');
+        const key = filename.replace(/\d{4}-\d{2}-\d{2}-/, '');
+        const gaRecent = recent.get(key);
+        const gaTotal = total.get(key);
 
-          if(gaTotal) {
-            content = content.replace(/pageviews__total:\s\d*\n/, `pageviews__total: ${gaTotal.pageviews}\n`);
-            content = content.replace(/pageviews__avg_time:\s\d*\n/, `pageviews__avg_time: ${Math.round(gaTotal.avgTimeOnPage)}\n`);
-          }
-
-          fs.writeFile(fullPath, content, (err) => {
-            if(err){
-              console.error(err);
-            } else {
-              console.log('wrote successful: ', content.length);
+        if(gaRecent || gaTotal) {
+          const fullPath = path.join(postsPath, file);
+          console.log(fullPath);
+          fs.readFile(fullPath, 'utf-8', (err, content) => {
+            if(gaRecent) {
+              content = content.replace(/pageviews__recent:\s\d*\n/, `pageviews__recent: ${gaRecent.pageviews}\n`);
             }
+
+            if(gaTotal) {
+              content = content.replace(/pageviews__total:\s\d*\n/, `pageviews__total: ${gaTotal.pageviews}\n`);
+              content = content.replace(/pageviews__avg_time:\s\d*\n/, `pageviews__avg_time: ${Math.round(gaTotal.avgTimeOnPage)}\n`);
+            }
+
+            fs.writeFile(fullPath, content, (err) => {
+              if(err){
+                console.error(err);
+                reject(err)
+              } else {
+                console.log('wrote successful: ', content.length);
+              }
+            });
           });
-        });
+        }
       }
-    }
+
+      resolve(`${files.length} updated`);
+    });
+
   });
 }
 
-updateBlog(parseGa(recent), parseGa(total));
+/**
+ * Update blogs total and recent pageviews
+ * @param recentPath
+ * @param totalPath
+ */
+function pageViewsBlogUpdater(recentPath, totalPath) {
+  const recent = require(recentPath);
+  const total = require(totalPath);
+
+  return updateBlog(parseGa(recent), parseGa(total));
+}
+
+module.exports = pageViewsBlogUpdater;
