@@ -4,9 +4,9 @@ title: C#'s GetManifestResourceStream Gotcha
 created: 1311000171000
 updated: 1311000171000
 comments: true
-pageviews__total: 18979
+pageviews__total: 19219
 pageviews__recent:  294
-pageviews__avg_time: 521
+pageviews__avg_time: 524
 # categories: [tips, c#, gotchas, .net, how-to]
 tutorial__order: 0
 tags:

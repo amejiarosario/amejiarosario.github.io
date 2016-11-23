@@ -4,9 +4,9 @@ title: "Blog migration explained: Drupal 7 to Jekyll"
 date: 2012-04-27 22:00
 updated: 2012-04-27 22:00
 comments: true
-pageviews__total: 428
-pageviews__recent: 0
-pageviews__avg_time: 621
+pageviews__total: 433
+pageviews__recent: 3
+pageviews__avg_time: 411
 tutorial__order: 0
 tags:
   - drupal

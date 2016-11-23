@@ -7,7 +7,7 @@ downloadData().then(function (totalPath) {
   return downloadData('28daysAgo').then(function (recentPath) {
 
     console.log(recentPath);
-    return pageViewsBlogUpdater(totalPath, recentPath)
+    return pageViewsBlogUpdater(recentPath, totalPath)
   });
 }).then(function (updated) {
   console.log(updated);

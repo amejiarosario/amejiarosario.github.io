@@ -4,9 +4,9 @@ title: On line Course Organization - Paper Review
 created: 1316299024000
 updated: 1316299024000
 comments: true
-pageviews__total: 199
-pageviews__recent: 0
-pageviews__avg_time: 197
+pageviews__total: 203
+pageviews__recent: 203
+pageviews__avg_time: 202
 tutorial__order: 0
 # categories: [paper review, focused crawling, metadata extraction, learning object management, ontology, e-learning]
 ---
