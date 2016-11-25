@@ -85,7 +85,10 @@
             <% }) %>
           </div>
 
-          <%- partial('_widgets/adsense', {ad: {client: '9725767907287651', slot: '2343826126'}}) %>
+          <!-- 726x88 -->
+          <!--<%// partial('_widgets/adsense', {ad: {client: '9725767907287651', slot: '2343826126'}}) %>-->
+          <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/728x90_non_responsive.js"></script>
+
         </footer>
       <% } %><!-- if(page.layout !== 'snippet') -->
     </section>
@@ -93,7 +96,11 @@
     <!-- Asides (Ads, TOC, ...) -->
     <aside class="col-sm-4 p-x-2 col-xs-order-1">
       <section>
-        <%- partial('_widgets/adsense', {ad: {style: 'display:inline-block;width:300px;height:250px', client: '9725767907287651', slot: '6894900521'}}) %>
+
+        <!-- 300x250 -->
+        <!--<%// partial('_widgets/adsense', {ad: {style: 'display:inline-block;width:300px;height:250px', client: '9725767907287651', slot: '6894900521'}}) %>-->
+        <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>
+
       </section>
 
       <section class="sticky-element--start">
@@ -113,7 +120,11 @@
           <% if(page.toc) { %>
             <h3 class="toc-title">Contents</h3>
             <%- toc(page.content) %>
-            <%- partial('_widgets/adsense', {ad: {client: '9725767907287651', slot: '2343826126', style: 'display:inline-block;width:300px;height:600px;'}}) %>
+
+            <!-- 300x600 -->
+            <!--<%// partial('_widgets/adsense', {ad: {client: '9725767907287651', slot: '2343826126', style: 'display:inline-block;width:300px;height:600px;'}}) %>-->
+          <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x600_non_responsive.js"></script>
+
           <% } %>
         </div>
       </section>
