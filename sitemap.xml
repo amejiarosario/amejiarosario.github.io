@@ -44,13 +44,6 @@
   </url>
   
   <url>
-    <loc>http://adrianmejia.com/niceties/adrian-book-long.html</loc>
-    
-    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://adrianmejia.com/niceties/adrian-book-sq.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
@@ -58,7 +51,7 @@
   </url>
   
   <url>
-    <loc>http://adrianmejia.com/page/index.html</loc>
+    <loc>http://adrianmejia.com/niceties/adrian-book-long.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
     
@@ -73,6 +66,13 @@
   
   <url>
     <loc>http://adrianmejia.com/niceties/adrian-book-sd.html</loc>
+    
+    <lastmod>2016-08-14T19:12:25.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://adrianmejia.com/page/index.html</loc>
     
     <lastmod>2016-08-14T19:12:25.000Z</lastmod>
     
