@@ -109,7 +109,7 @@ Here is an example of a Backbone.view: READ THE CODE AND COMMENTS, then insert t
 
 ## Test the app
 
-After copying the code, open the file, refresh the browser and you should see the 'Hello World' message, right? Wait, if you're just seeing the 'Loading…' it's because you need to initialize the view first.
+After copying the code, open the html file by typing this in terminal: `open <your file name>.html` , refresh the browser and you should see the 'Hello World' message, right? Wait, if you're just seeing the 'Loading…' it's because you need to initialize the view first.
 
 `var appView = new AppView();`
 
