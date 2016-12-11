@@ -170,7 +170,9 @@ We have already seen the first 3 and will see later the fourth one. Do you remem
 
 Every view needs to reference a DOM at all times. Therefore, the view will inject content into this element. This is the `el` property. `this.el` is created from view’s `el`,`tagName`, `className`, `id` or `attributes` properties. If none of these are specified, then this.el is an empty `div`. The `view.$el` it’s a cached jQuery object of the view’s element (view.el).
 
-## Initialize/construtor
+[More on view.el](http://www.ryanatkinson.io/backbone-demystifying-views-and-the-el-property/)
+
+## Initialize/constructor
 
 
 Here you have the option to pass parameters that will be attached to a model, collection or view.el.
@@ -225,11 +227,11 @@ In the following block of code we have the Backbone.View which uses the above te
 
 {% endcodeblock %}
 
-When we instanciate the views, they can receive any parameter that we need. In our case we call it `model` so we need to instanciated with a model (e.g. todo):
+When we instanciate a Backbone View, it can receive any parameter that we need. In this case, since we call the parameter `model` let's instanciate it with a Backbone Model (e.g. todo):
 
 `var view = new app.TodoView({model: todo});`
 
-Also notice that it's using a `tagName: li` instead of the just `el` from before. This mean that the new render elements will be wrapped around a `<li></li>`
+Also notice that our view is using a `tagName: li` instead of the just `el` from before. This means that the new render elements will be wrapped around a `<li></li>`
 
 # Backbone.Events
 
@@ -243,7 +245,7 @@ Also called bind. It binds an object to an event and a callback. When that event
 E.g.
 `todoList.on('add', this.addAll, this);`
 
-Everytime a new item is `add`ed to a Backbone.Collection the event `add` is triggered. In the example above, after the event is triggered the todoList's callback `addAll()` is executed and the current object is passed with `this` as a `context`.
+Everytime a new item is `add`ed to a Backbone.Collection the built-in event `add` ([docs for add](http://backbonejs.org/#Collection-add) is triggered. In the example above, after the custom event is triggered, the todoList's callback `addAll()` is executed and the current object is passed with `this` as a `context`.
 
 Events can also be set on arbitrary objects using underscore.js `extend` function:
 
@@ -260,7 +262,7 @@ object.trigger("my_event", "my custom event");
 
 # App View
 
-Now, we need another view that take a collection and render each of the individual items. We are going to call it ‘AppView’. Take a look through this code and try to identify each of the elements (we have already describe them in the previous sections).
+Now, we need another view that take a collection and render each of the individual items. We are going to call it ‘AppView’. This is a new large chunk of code so read it closely. Take a look through this code and try to identify each of the elements (we have already describe them in the previous sections).
 
 {% codeblock Todo View lang:js https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html Full Code %}
 
