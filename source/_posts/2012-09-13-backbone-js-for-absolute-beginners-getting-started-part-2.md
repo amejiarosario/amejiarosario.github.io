@@ -170,7 +170,6 @@ We have already seen the first 3 and will see later the fourth one. Do you remem
 
 Every view needs to reference a DOM at all times. Therefore, the view will inject content into this element. This is the `el` property. `this.el` is created from view’s `el`,`tagName`, `className`, `id` or `attributes` properties. If none of these are specified, then this.el is an empty `div`. The `view.$el` it’s a cached jQuery object of the view’s element (view.el).
 
-[More on view.el](http://www.ryanatkinson.io/backbone-demystifying-views-and-the-el-property/)
 
 ## Initialize/constructor
 

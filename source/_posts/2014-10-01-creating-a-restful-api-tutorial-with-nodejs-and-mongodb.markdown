@@ -465,8 +465,11 @@ express todo-api -e
 #   install dependencies:
 #     $ cd todo-api && npm install
 #
-#   run the app:
+#   run the app on Linux/Mac:
 #     $ DEBUG=todo-app:* npm start
+#
+#   run the app on Windows:
+#     $ SET DEBUG=todo-api:* & npm start
 ```
 
 This will create a new folder called `todo-api`. Let's go ahead and install the dependencies and run the app:
@@ -475,9 +478,13 @@ This will create a new folder called `todo-api`. Let's go ahead and install the 
 # install dependencies
 cd todo-api && npm install
 
-# run the app
+# run the app on Linux/Mac
 PORT=4000 npm start
+
+# run the app on Windows
+SET PORT=4000 & npm start
 ```
+
 
 Use your browser to go to http://0.0.0.0:4000, and you should see a message "Welcome to Express"
 
