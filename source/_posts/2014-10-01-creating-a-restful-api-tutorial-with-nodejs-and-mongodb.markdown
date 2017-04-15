@@ -4,9 +4,9 @@ title: "Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)"
 date: 2014-10-01 17:26:42 -0400
 updated: 2016-10-14 15:50:35 -0400
 comments: true
-pageviews__total: 422773
+pageviews__total: 482427
 pageviews__recent:  20641
-pageviews__avg_time: 1954
+pageviews__avg_time: 2048
 photos:
   - /images/RESTfulAPIs_NodeJS__mongodb_small.png
   - /images/RESTfulAPIs_NodeJS__mongodb_large.png

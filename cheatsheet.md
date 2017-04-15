@@ -15,6 +15,12 @@ hexo clean
 hexo algolia
 ```
 
+## Update Google Analytics stats
+```
+cd tasks
+npm i
+node google-analytics-runner.js
+```
 
 ## install
 

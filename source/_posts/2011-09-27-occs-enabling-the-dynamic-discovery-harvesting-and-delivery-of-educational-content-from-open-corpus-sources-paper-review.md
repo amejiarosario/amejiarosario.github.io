@@ -4,9 +4,9 @@ title: "OCCS: Enabling the Dynamic Discovery, Harvesting and Delivery of Educati
 created: 1317137156000
 updated: 1317137156000
 comments: true
-pageviews__total: 26
-pageviews__recent: 26
-pageviews__avg_time: 42
+pageviews__total: 27
+pageviews__recent: 1
+pageviews__avg_time: 43
 tutorial__order: 0
 #categories: [paper review, e-learning, web semantics, focused crawling]
 ---

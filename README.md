@@ -3,8 +3,8 @@
 The main objective is:
 
 1. Reminder of how to do things in Software Engineering (e.g. learn briefly Angular, Node or CSS layout)
-2. Experiment on new technology (teaching is the best way to learn).
-3. Earn money: Attract users, Grow newsletter, sell books, personal marketing.
+2. Experiment on new technology (doing and teaching is the best way to learn).
+3. Earn money: Attract users, grow newsletter, sell books, personal marketing.
 
 # Media types
 
@@ -41,7 +41,7 @@ This list changes as my I evolve over time:
   - Scalability
   - javascript as universal language for Web Development
     - Node
-    - Angular 1/2
+    - Angular 1/2+
     - MEAN stack
 - Design UI and UX
 - Algorithms and data structures
