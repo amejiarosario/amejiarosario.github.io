@@ -19,7 +19,11 @@ hexo algolia
 ```
 cd tasks
 npm i
+
 node google-analytics-runner.js
+
+hexo s -dp 5000 # preview changes
+hexo d -g       # deploy
 ```
 
 ## install
