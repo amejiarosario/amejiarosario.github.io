@@ -1,0 +1,31 @@
+728x90:
+
+<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/728x90_responsive.js"></script>
+
+160x600:
+
+<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script>
+
+120x600:
+
+<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/120x600_responsive.js"></script>
+
+300x250:
+
+<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/300x250_responsive.js"></script>
+
+336x280:
+
+<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script>
+
+468x60:
+
+<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/468x60_responsive.js"></script>
+
+970x90:
+
+<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/970x90_responsive.js"></script>
+
+STICKY AD (Highest CPM): (Please inform us to get approval for sticky ad unit before using)
+
+<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/sticky_responsive.js"></script>
