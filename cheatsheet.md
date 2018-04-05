@@ -34,11 +34,11 @@ hexo d -g       # deploy
 
 hexo serve
 
-hexo new TITLE # saved on ```source/_posts```
+hexo new "TITLE" # saved on ```source/_posts```
 
-hexo new draft TITLE # saved on ```source/_drafts```
+hexo new draft "TITLE" # saved on ```source/_drafts```
 
-hexo new page TITLE # saved on ```source/```
+hexo new page "TITLE" # saved on ```source/```
 
 hexo new photo "My Gallery"
 

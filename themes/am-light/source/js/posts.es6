@@ -72,7 +72,8 @@
   }
 
   var toc = Array.from(links);
-  var ids = toc.map(el => el.href.split('#')[1]).reverse();
+  // var ids = toc.map(el => el.href.split('#')[1]).reverse();
+  var ids = toc.map(el => el.getAttribute('href').split('#')[1]).reverse();
   var offsets;
   var activeClass = 'active';
 
