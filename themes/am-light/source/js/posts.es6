@@ -1,8 +1,6 @@
 // Make an element scrollable from `sticky-element--start` to `sticky-element--end`
 // it takes into account elements height and offset
 (function stikyElement() {
-  'use strict';
-
   var elStart, elEnd, elStartTop, elementsHeight, elEndTop;
   var fixedClass = 'sticky-element--fixed';
 
@@ -29,7 +27,8 @@
   }
 
   function setStickyClass() {
-    var scrollTop = document.body.scrollTop;
+    // var scrollTop = document.body.scrollTop;
+    var scrollTop = window.scrollY;
 
     if(scrollTop > elStartTop && scrollTop < elEndTop){
       elStart.classList.add(fixedClass);
@@ -83,7 +82,7 @@
     var scrollTop = document.body.scrollTop;
 
     var current = offsets.find(function (element, index) {
-      return element <= scrollTop
+    return element <= scrollTop
     });
 
     var index = offsets.indexOf(current);
@@ -127,4 +126,5 @@
   window.addEventListener('scroll', executeSpyScroll);
   window.addEventListener('resize', initialize);
   // console.log(ids, offsets);
+
 })();
