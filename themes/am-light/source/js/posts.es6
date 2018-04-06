@@ -27,8 +27,7 @@
   }
 
   function setStickyClass() {
-    // var scrollTop = document.body.scrollTop;
-    var scrollTop = window.scrollY;
+    var scrollTop = getScrollY();
 
     if(scrollTop > elStartTop && scrollTop < elEndTop){
       elStart.classList.add(fixedClass);
@@ -56,7 +55,9 @@
 
   link.addEventListener('click', function (e) {
     e.preventDefault();
-    document.body.scrollTop = 0;
+    // document.body.scrollTop = 0;
+    // window.scrollTo(0, 0);
+    scrollBy(0, 6000);
   })
 })();
 
@@ -79,7 +80,7 @@
   initialize();
 
   function setActiveClass(){
-    var scrollTop = document.body.scrollTop;
+    var scrollTop = getScrollY();
 
     var current = offsets.find(function (element, index) {
     return element <= scrollTop
@@ -128,3 +129,31 @@
   // console.log(ids, offsets);
 
 })();
+
+/**
+ * Get current scroll y position
+ */
+function getScrollY() {
+  return document.body.scrollTop ||  // deprecated
+    window.scrollY ||
+    window.pageYOffset; // IE11
+}
+
+
+function scrollBy(baseY, duration) {
+
+  var initialY = getScrollY();
+  // var y = initialY + distance;
+  // var baseY = (initialY + y) * 0.5;
+  var difference = initialY - baseY;
+  var startTime = performance.now();
+
+  function step() {
+      var normalizedTime = (performance.now() - startTime) / duration;
+      if (normalizedTime > 1) normalizedTime = 1;
+      const newY = baseY + difference * Math.cos(normalizedTime * Math.PI);
+      window.scrollTo(0, newY);
+      if (normalizedTime < 1 && newY > 0) window.requestAnimationFrame(step);
+  }
+  window.requestAnimationFrame(step);
+}
