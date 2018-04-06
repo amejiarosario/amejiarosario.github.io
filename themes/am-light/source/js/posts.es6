@@ -139,7 +139,11 @@ function getScrollY() {
     window.pageYOffset; // IE11
 }
 
-
+/**
+ * Scrolls to `baseY` in `duration` ms
+ * @param baseY
+ * @param duration
+ */
 function scrollBy(baseY, duration) {
 
   var initialY = getScrollY();
