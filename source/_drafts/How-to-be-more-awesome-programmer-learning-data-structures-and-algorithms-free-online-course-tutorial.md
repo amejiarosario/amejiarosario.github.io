@@ -11,34 +11,118 @@ tutorial__order: 0
 tags:
   - big-o notation
   - algorithms
-  - javascript
 categories:
   - Programming
   - Data Structures and Algorithms (DSA)
 date: 2018-04-04 16:16:07
 ---
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique architecto incidunt veniam veritatis sequi quo placeat deserunt ratione, sint voluptates reiciendis eos perspiciatis accusantium laudantium enim voluptatem corporis aut dolores!
+Algorithms are steps of how to do some task. When you cook, you follow a recipe (or algorithms) to prepare a dish. If you play a game, you are devising strategies (or algorithms) to help you win. Likewise, algorithms in computers are a set of instructions used to solve a problem. There are "good" algorithms and "bad" algorithms. The good ones are fast, the bad ones are slow. Slow algorithms cost more money and make some calculations impossible in our lifespan!
 
-# Why should you learn data structures and algorithms?
+We are going to explore the basic concepts of algorithms. Also, we are going learn how to distinguish “fast” algorithms from “slow” ones. Or even better, you will be able to “measure” the performance of your own algorithms and improve them!
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium rem nobis molestiae iste error quas inventore? Sapiente officia est dicta! Debitis, sunt ab? Possimus cupiditate error, veniam quaerat voluptatibus quas!
+# Why should you learn Data Structures and Algorithms (DSA)?
 
-* Crush interview questions and land the tech job of your dreams. You would become a much better developer and get better jobs
-* You would spend less time debugging and re-writing code
-* Your code will run faster with the same hardward
-* Alan Turing algorithms to decode Nazi's message and save millions of lives
+Optimized algorithms can save lives! For real, let me tell you a true story.
+
+In the War World II, the Nazis were attacking England and many other countries. The German troops used AM signals to communicate with troops on other countries. Anybody with a AM radio and some knowledge of Morse code could intercept the message. But, the message was encoded! So, it will seem like rubbish until the message is decoded. All attacked countries tried to decoded with large team of mathematicians. Sometimes they got lucky and were able to make sense of a couple of messages at the end of the day. But also, the Germans changed the encoding setup every single day!
+
+Alan Turing was working for the British military as a mathematician. He knew that army will never get ahead if they keep doing the calculations by pen and paper. It will be more far more efficient to develop a machine that can do all the decoding. After many months of hard work, they finished the machine. Yet, there was one problem: it took more than a day to decode a message. The machine way useless if they cannot make it compute faster.
+
+Alan and his team found out that every encrypted message ended with the same string: “Hail Hitler”. Aha! They changed the algorithms. Instead of decoding the whole message, they decode the last two words. This new algorithm to decode the Nazi’s messages saved millions of lives during the war!
+
+> The same machine that was going to get shut down as a failure, became a live saver by changing the way it processed things. Likewise, you can do way more with your computing resources when you write efficient code.
+
+That's what we are going to learn in this course.
+
+So, why should you learn to write efficient algorithms?
+* Crush interview questions and land the tech job of your dreams.
+* You would become a much better developer and get better jobs
+* Spend less time debugging, optimizing and re-writing code
+* Your code will run faster with the same hardware
+* Your code might be use on medical fields and save millions of lives
+
+
+Without further ado, Let’s save the world!
 
 # How to improve your coding skills?
 
-Learn to "measure" your algorithms performance. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ex eos beatae, qui non tenetur vitae odio temporibus hic reiciendis provident cum, minima reprehenderit eveniet necessitatibus omnis ipsam officiis maxime?
+The first step to improve something is to measure it...
+
+{% blockquote H. James Harrington %}
+Measurement is the first step that leads to control and eventually to improvement. If you can’t measure something, you can’t understand it. If you can’t understand it, you can’t control it. If you can’t control it, you can’t improve it.
+{% endblockquote %}
+
+But, how do you do that with code? Would you time "how long" it takes to run? What if you are running the same program on a mobile or in a quantum computer? The same code will give you different results, right?
+
+To answer these questions we need to nail some concepts first. We are going to represent programs as a function of the input. Let's say we have this function to get the smallest numbre from an array:
+
+{% codeblock lang:js mark:6-7,10-11,15 %}
+/**
+ * Get the smallest number on an array of numbers
+ * @param {Array} n array of numbers
+ */
+function getMin(n) {
+  const array = Array.from(n);
+  let min;
+
+  array.forEach(element => {
+    if(!min || element < min) {
+      min = element;
+    }
+  });
+
+  return min;
+}
+
+console.log(getMin([9,20,4,21,49,39]));
+// => 4
+{% endcodeblock %}
+
+We can represent `getMin` as a function of the size of the input `n` based on the number of operations it has to perform. For simplicity let's assume that each line of code is 1 CPU instruction. Let's make the sum:
+
+* Line 6: 1 operation
+* Line 7: 1 operation
+* Line 9-13: it's a loop that executes size of `n` times
+* Line 10: 1 operation
+* Line 11: this one it's tricky since it is inside a conditional. Let's assume the worst case where the array is on ascending order has to execute each time. Thus, 1 operation
+* Line 15: 1 operation
+
+All in all, we have 3 opertions outside the loop and 2 operation inside the loop, this leave us with `3 + 2(n)`. With that function we can predict the number of operations depending size of `n`:
+
+| n (size) | operations | result |
+| - | - | - |
+| 1 | 3 + 2(1) | 5 |
+| 10 | 3 + 2(10) | 23 |
+| 100 | 3 + 2(100) | 203 |
+| 1,000 | 3 + 2(1,000) | 2,003 |
+| 10,000 | 3 + 2(10,000) | 20,003 |
+
+As you can see, we could approximate it as `2(n)` and drop the `+3` since it doesn't add too much value as n keep getting bigger. We are interested in the big picture here. We can even go a little further and just take the higher order elment and drop all constants and live it with just `n`
+
+We can say that the function `getMin` has a growth rate of `n`. This might look odd that we are droping constants but for large enough `n` it's a good enough approximation. In the next section let's explore what other growth rates can algorithms have.
 
 ## Growth of Functions
   Summary table: http://cooervo.github.io/Algorithms-DataStructures-BigONotation/
+  http://www.cs.dartmouth.edu/~ac/Teach/CS19-Winter06/SlidesAndNotes/CLRS-3.1.pdf
 
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus magnam veniam inventore dignissimos eveniet, molestias quo animi sed dolorum soluta? Vel fugiat aut sapiente quaerat quisquam. Ullam provident asperiores suscipit?
+  Algorithms can be represented as a function of their growth rate. In this section, we are going how this could translate to time.
+
+| n (size) | 1 | log(n) | n |
+| - | - | - |
+| 1 | 3 + 2(1) | 5 |
+| 10 | 3 + 2(10) | 23 |
+| 100 | 3 + 2(100) | 203 |
+| 1,000 | 3 + 2(1,000) | 2,003 |
+| 10,000 | 3 + 2(10,000) | 20,003 |
+
+
+  This table has the following assumptions:
+  * A CPU executes one million instructions per seconds
 
 ##  Asymptotic analysis
+
+Asymtotic analysis refers to functions with variables which values tend to go to the infinite.
 
 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam ea, quas ratione maxime culpa suscipit assumenda voluptates, porro rem in eligendi enim et, quae iusto reprehenderit nemo. Deserunt, hic voluptatum.
 

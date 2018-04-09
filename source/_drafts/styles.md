@@ -8,10 +8,10 @@ pageviews__recent: 0
 pageviews__avg_time: 0
 tutorial__order: 0
 tags:
-  - javascript
+  - test
 categories:
-  - Programming
-  - Web Development
+  - Test
+  - Styling
 date: 2016-08-12 17:06:05
 ---
 

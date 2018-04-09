@@ -1,10 +1,14 @@
 title: Excerpts
 date: 2013-12-25 00:23:23
-pageviews__total: 0  
-pageviews__recent: 0  
+pageviews__total: 0
+pageviews__recent: 0
 pageviews__avg_time: 0
 tutorial__order: 0
 tags:
+  - test
+categories:
+  - Test
+  - Styling
 ---
 
 The following contents should be invisible in home/archive page.

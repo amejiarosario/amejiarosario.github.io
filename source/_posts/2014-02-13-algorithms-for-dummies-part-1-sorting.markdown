@@ -15,11 +15,11 @@ photos:
 photos__background_color: '#F2ED5B'
 tutorial__order: 0
 tags:
-  - big o
+  - big-o notation
   - algorithms
 categories:
-  - Technologies
-  - Algorithms
+  - Programming
+  - Data Structures and Algorithms (DSA)
 ---
 
 After being developing software for a while,  I realized that there is a couple of ways to become better at it. One it's through your experience: writing code, working on projects, getting hands dirty... Other one it's learning algorithms and design patterns. In other words through leveraging the experience of other computer scientists. Learning to use algorithms efficiently can instantly add to you the equivalent of 10 years of experience or more. Let's get started and add new tools to our arsenal!

@@ -1,10 +1,14 @@
 title: Elements
 date: 2013-12-24 23:29:08
-pageviews__total: 0  
-pageviews__recent: 0  
+pageviews__total: 0
+pageviews__recent: 0
 pageviews__avg_time: 0
 tutorial__order: 0
 tags:
+  - test
+categories:
+  - Test
+  - Styling
 ---
 
 The purpose of this post is to help you make sure all of HTML elements can display properly. If you use CSS reset, don't forget to redefine the style by yourself.

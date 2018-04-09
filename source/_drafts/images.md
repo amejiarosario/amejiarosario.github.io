@@ -1,8 +1,13 @@
 title: Images
 date: 2013-12-26 22:46:49
-pageviews__total: 0  
-pageviews__recent: 0  
+pageviews__total: 0
+pageviews__recent: 0
 pageviews__avg_time: 0
+tags:
+  - test
+categories:
+  - Test
+  - Styling
 ---
 
 This is a image test post.

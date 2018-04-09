@@ -9,11 +9,11 @@ pageviews__recent:  408
 pageviews__avg_time: 372
 tutorial__order: 0
 tags:
-  - big o
+  - big-o notation
   - algorithms
 categories:
-  - Technologies
-  - Algorithms
+  - Programming
+  - Data Structures and Algorithms (DSA)
 ---
 
 <p>When you are programming you face challenges all the way. Getting the problems solved is just the tip of the iceberg, getting it done efficiently is the rest.</p>

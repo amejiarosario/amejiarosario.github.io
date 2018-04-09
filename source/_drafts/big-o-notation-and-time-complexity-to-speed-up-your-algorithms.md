@@ -10,7 +10,6 @@ tutorial__order: 0
 tags:
   - big-o notation
   - algorithms
-  - javascript
 categories:
   - Programming
   - Data Structures and Algorithms (DSA)
