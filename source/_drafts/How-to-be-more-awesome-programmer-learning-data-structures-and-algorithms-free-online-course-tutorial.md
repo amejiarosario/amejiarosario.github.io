@@ -155,21 +155,99 @@ The Big O notation is used to classify algorithms by their worst running time or
 In our previous example with `getMin` function we can say it has a running time of `O(n)`. There are many different running times. Let's see the most common running times that we are going to cover in the next post and their relationship with time:
 
 Growth rates vs n size
-<!-- <div style="overflow-x:auto;"> -->
+<div style="overflow-x:auto;">
 
-| n | O(1) | O(log n) | O(n) | O(n log n) | O(n^2) | O(2^n) | O(n!)
-| - | - | - | - | - | - | - | - |
-| 1 | < 1 sec | < 1 sec  | < 1 sec | < 1 sec | < 1 sec | < 1 sec | < 1 sec |
-| 10 | < 1 sec | < 1 sec  | < 1 sec | < 1 sec | < 1 sec | < 1 sec | 4 sec |
-| 100 | < 1 sec |  < 1 sec |  < 1 sec | < 1 sec | < 1 sec | 40170	trillion years | > vigintillion years |
-| 1,000 | < 1 sec | < 1 sec  | < 1 sec | < 1 sec | < 1 sec | > vigintillion years | > centillion years |
-| 10,000 | < 1 sec | < 1 sec  | < 1 sec | < 1 sec | 2 min | > centillion years | > centillion years |
-| 100,000 | < 1 sec |  < 1 sec | < 1 sec | 1 sec | 3 hours | > centillion years | > centillion years |
-| 1,000,000 | < 1 sec | < 1 sec | 1 sec | 20 sec | 12 days | > centillion years | > centillion years |
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>O(1)</th>
+<th>O(log n)</th>
+<th>O(n)</th>
+<th>O(n log n)</th>
+<th>O(n^2)</th>
+<th>O(2^n)</th>
+<th>O(n!)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+</tr>
+<tr>
+<td>10</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="orange">4 sec</td>
+</tr>
+<tr>
+<td>100</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="red">40170 trillion years</td>
+<td class="red">&gt; vigintillion years</td>
+</tr>
+<tr>
+<td>1,000</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="red">&gt; vigintillion years</td>
+<td class="red">&gt; centillion years</td>
+</tr>
+<tr>
+<td>10,000</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="orange">2 min</td>
+<td class="red">&gt; centillion years</td>
+<td class="red">&gt; centillion years</td>
+</tr>
+<tr>
+<td>100,000</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="orange">1 sec</td>
+<td class="orange">3 hours</td>
+<td class="red">&gt; centillion years</td>
+<td class="red">&gt; centillion years</td>
+</tr>
+<tr>
+<td>1,000,000</td>
+<td class="green">&lt; 1 sec</td>
+<td class="green">&lt; 1 sec</td>
+<td class="orange">1 sec</td>
+<td class="orange">20 sec</td>
+<td class="orange">12 days</td>
+<td class="red">&gt; centillion years</td>
+<td class="red">&gt; centillion years</td>
+</tr>
+</tbody>
+</table>
 
-<!-- </div> -->
+</div>
 
-<small>Assuming: 1 Ghz CPU and that it can execute on average one instruction in 1 nanosecond (usually take little more time). It also depends how the programming language gets translated into assymbly. This is just to give you an idea.</small>
+<small>Assuming: 1 Ghz CPU and that it can execute on average one instruction in 1 nanosecond (usually takes more time). It also depends how the programming language gets translated into assymbly. This is just to give you an idea.</small>
 
+As you can see some algorithms are very time consuming. Even with an input size as little as 100 it's imposible to compute even if we have a 1 million GHz (1 PHz) CPU. Hardware doesn't really scale as well as software.
 
-In the next post we are going to explore all of these time complexities with an code example or two! Are you ready to become a super programmer?!
+In the next post, we are going to explore all of these time complexities with an code example or two! Are you ready to become a super programmer and scale your code?!

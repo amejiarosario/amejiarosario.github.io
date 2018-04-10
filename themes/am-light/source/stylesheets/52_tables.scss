@@ -1,4 +1,4 @@
-.post-content > table {
+.post-content > table, .post-content > div > table {
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-collapse: collapse;
   background-color: rgb(255,255,255);
@@ -39,6 +39,26 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     padding-top: 12px;
     box-sizing: border-box;
+
+    &.red {
+      // background-color:#fdedee;
+      background-color:#FFEBEE;
+      // background-color: #f8a9ad;
+    }
+
+    &.orange {
+      // background-color:#fff3ee;
+      background-color:#FFF3E0;
+    }
+
+    &.green {
+      // background-color: #e5f8f6;
+      background-color: #E8F5E9;
+    }
+
+    &:hover {
+      filter: brightness(0.95);
+    }
   }
 
   th {
