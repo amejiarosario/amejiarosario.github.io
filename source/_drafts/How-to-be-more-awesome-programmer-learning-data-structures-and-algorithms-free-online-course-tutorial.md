@@ -55,7 +55,26 @@ Measurement is the first step that leads to control and eventually to improvemen
 
 But, how do you do that with code? Would you time "how long" it takes to run? What if you are running the same program on a mobile or in a quantum computer? The same code will give you different results, right?
 
-To answer these questions we need to nail some concepts first. We are going to represent programs as a function of the input. Let's say we have this function to get the smallest numbre from an array:
+To answer these questions we need to nail some concepts first, like time complexity!
+
+## Time complexity
+
+Time complexity (or running time) is the estimated time taken by running an algorithms. However, it's not mesure in fractions of seconds but it is estimated by counting the number of elementary operations performed by a function or program. The real time the program takes to execute and the time complexity will be corelated by a constant factor under the following assumptions:
+
+* The elementary operation takes a fixed amount of time to performed.
+* The CPU is only executing the program in question (as other programs/OS might defer CPU resources and change the time taken).
+
+So, recaping, the time complexity is not about timing how long the algorithm takes to complete but rather how many instructions it will execute given an input. The running time of an algorithm depends on the size of the input and how the input elements are arranged.
+
+For instance, if we are sorting numbers and the elements are already sorted some algorithms won't perform as operations many operations as if they were unsorted. For each algorithm we can have the following running times:
+
+* Worst-case time complexity
+* Best-case time complexity
+* Average-case time complexity
+
+We usually care more about the **worst-case time complexity**, since we are hoping for the best but preparing for the worst.
+
+Let's do an example of how you can calculate the time complexity. Let's say we have this function to get the smallest numbre from an array:
 
 {% codeblock lang:js mark:6-7,10-11,15 %}
 /**
@@ -75,62 +94,82 @@ function getMin(n) {
   return min;
 }
 
+// average case: random order
 console.log(getMin([9,20,4,21,49,39]));
 // => 4
+
+// best case: sorted array
+console.log(getMin([4, 9, 20, 21, 39, 49]));
+// => 4
+
+// worst case: reversed sorted array
+console.log(getMin([49, 39, 21, 20, 9, 4]));
+// => 4
+
 {% endcodeblock %}
 
-We can represent `getMin` as a function of the size of the input `n` based on the number of operations it has to perform. For simplicity let's assume that each line of code is 1 CPU instruction. Let's make the sum:
+We can represent `getMin` as a function of the size of the input `n` based on the number of operations it has to perform. For simplicity, let's assume that each line of code takes the same amount of time in the CPU. Let's make the sum:
 
 * Line 6: 1 operation
 * Line 7: 1 operation
 * Line 9-13: it's a loop that executes size of `n` times
 * Line 10: 1 operation
-* Line 11: this one it's tricky since it is inside a conditional. Let's assume the worst case where the array is on ascending order has to execute each time. Thus, 1 operation
+* Line 11: this one it's tricky since it is inside a conditional. Let's assume the worst case where the array is on ascending order so the condition is met each time. Thus, 1 operation
 * Line 15: 1 operation
 
-All in all, we have 3 opertions outside the loop and 2 operation inside the loop, this leave us with `3 + 2(n)`. With that function we can predict the number of operations depending size of `n`:
+All in all, we have 3 opertions outside the loop and 2 operation inside the loop. Since the loop goes for the size of `n`, this leave us with `2(n) + 3`. But, this expression is rather too especific and hard to compare algorithms with it. We are going to apply the asymptotic analysis to simplify this expression further.
+
+
+## Asymptotic analysis
+
+Asymptotic analysis is just evaluating functions as their value approximate to the infinite. In our previous example `2(n) + 3`, we can generalize it as `k(n) + c`. As the value of `n` grows, the value `c` is less and less significant, as you can see in the following table:
 
 | n (size) | operations | result |
 | - | - | - |
-| 1 | 3 + 2(1) | 5 |
-| 10 | 3 + 2(10) | 23 |
-| 100 | 3 + 2(100) | 203 |
-| 1,000 | 3 + 2(1,000) | 2,003 |
-| 10,000 | 3 + 2(10,000) | 20,003 |
+| 1 | 2(1) + 3 | 5 |
+| 10 | 2(10) + 3 | 23 |
+| 100 | 2(100) + 3 | 203 |
+| 1,000 | 2(1,000) + 3 | 2,003 |
+| 10,000 | 2(10,000) + 3 | 20,003 |
 
-As you can see, we could approximate it as `2(n)` and drop the `+3` since it doesn't add too much value as n keep getting bigger. We are interested in the big picture here. We can even go a little further and just take the higher order elment and drop all constants and live it with just `n`
+Belive it or not also `k` wouldn't make too much of a difference. Using this kind of asymptotic anylisis we just take the higher order element, in this case `n`.
 
-We can say that the function `getMin` has a growth rate of `n`. This might look odd that we are droping constants but for large enough `n` it's a good enough approximation. In the next section let's explore what other growth rates can algorithms have.
+Let's do another example, so we can make this concept clearer. Let's say we have the following function: `3 n^2 + 2n + 20`. What would be the end result using the asymptotic anaylis?
 
-## Growth of Functions
-  Summary table: http://cooervo.github.io/Algorithms-DataStructures-BigONotation/
-  http://www.cs.dartmouth.edu/~ac/Teach/CS19-Winter06/SlidesAndNotes/CLRS-3.1.pdf
-
-  Algorithms can be represented as a function of their growth rate. In this section, we are going how this could translate to time.
-
-| n (size) | 1 | log(n) | n |
-| - | - | - |
-| 1 | 3 + 2(1) | 5 |
-| 10 | 3 + 2(10) | 23 |
-| 100 | 3 + 2(100) | 203 |
-| 1,000 | 3 + 2(1,000) | 2,003 |
-| 10,000 | 3 + 2(10,000) | 20,003 |
+> `3 n^2 + 2n + 20` as n grows bigger and bigger, the expression will become more like `n^2`.
 
 
-  This table has the following assumptions:
-  * A CPU executes one million instructions per seconds
+Going back to our example with `getMin`. We can say that function has a time complexity of `n`. As you can see, we could approximate it as `2(n)` and drop the `+3` since it doesn't add too much value as n keep getting bigger.
 
-##  Asymptotic analysis
+We are interested in the big picture here and we are going to use the asymptotic analysis to help use with that. With this framework, comparing algorithms it's much easier since we can just compare them by their most significan term: `n^2` or `n` or `2^n`
 
-Asymtotic analysis refers to functions with variables which values tend to go to the infinite.
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam ea, quas ratione maxime culpa suscipit assumenda voluptates, porro rem in eligendi enim et, quae iusto reprehenderit nemo. Deserunt, hic voluptatum.
+## Big-O notation and Growth rate of Functions
 
-## Time complexity
+The Big O notation combines what we learned in the previous sections about **worst-case time complexity** and **asymtotic analysis**.
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit aspernatur suscipit perspiciatis atque expedita tempore eaque dicta, corporis odit iure cumque, maiores a voluptatem earum modi vero dolorem dolorum? Voluptas?
+> The letter `O` referes to the **order** of a function or the growth rate of a function.
 
-## Big-O notation
-  * https://www.interviewcake.com/article/python/big-o-notation-time-and-space-complexity?collection=dsa
-  * https://www.interviewcake.com/data-structures-and-algorithms-guide
-  * Worst-case, Best-case performance
+The Big O notation is used to classify algorithms by their worst running time or also refered as the upper bound of the growth rate of a function.
+
+In our previous example with `getMin` function we can say it has a running time of `O(n)`. There are many different running times. Let's see the most common running times that we are going to cover in the next post and their relationship with time:
+
+Growth rates vs n size
+<!-- <div style="overflow-x:auto;"> -->
+
+| n | O(1) | O(log n) | O(n) | O(n log n) | O(n^2) | O(2^n) | O(n!)
+| - | - | - | - | - | - | - | - |
+| 1 | < 1 sec | < 1 sec  | < 1 sec | < 1 sec | < 1 sec | < 1 sec | < 1 sec |
+| 10 | < 1 sec | < 1 sec  | < 1 sec | < 1 sec | < 1 sec | < 1 sec | 4 sec |
+| 100 | < 1 sec |  < 1 sec |  < 1 sec | < 1 sec | < 1 sec | 40170	trillion years | > vigintillion years |
+| 1,000 | < 1 sec | < 1 sec  | < 1 sec | < 1 sec | < 1 sec | > vigintillion years | > centillion years |
+| 10,000 | < 1 sec | < 1 sec  | < 1 sec | < 1 sec | 2 min | > centillion years | > centillion years |
+| 100,000 | < 1 sec |  < 1 sec | < 1 sec | 1 sec | 3 hours | > centillion years | > centillion years |
+| 1,000,000 | < 1 sec | < 1 sec | 1 sec | 20 sec | 12 days | > centillion years | > centillion years |
+
+<!-- </div> -->
+
+<small>Assuming: 1 Ghz CPU and that it can execute on average one instruction in 1 nanosecond (usually take little more time). It also depends how the programming language gets translated into assymbly. This is just to give you an idea.</small>
+
+
+In the next post we are going to explore all of these time complexities with an code example or two! Are you ready to become a super programmer?!
