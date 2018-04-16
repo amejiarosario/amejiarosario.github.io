@@ -19,26 +19,29 @@ date: 2018-04-04 16:16:07
 
 As a developer you have the power to change the world! You can write programs that enables new technologies. You might work in software to find earlier disease diagnosis. Or write programs to make people's life easier and save them time. Whatever you do it has an impact either directly or indirectly for people around you.
 
-Yet, these accomplishment are only possible if we write code that is optimized and can scale for such needs. That made the difference between companies like Google and "Alta Vista". Let's see one more example.
+But, these accomplishment are only possible if we write code that is optimized and can scale for such needs.
+<!-- That made the difference between companies like Google and "Alta Vista".  -->
+<!-- Let's see one more example. -->
 
-# Why should you learn Data Structures and Algorithms (DSA)?
+# An algorithm that saved millions of lives
 
-In the War World II, the Germans were attacking England and many other countries. The Nazi's troops used AM signals to communicate with troops on other countries. Anybody with a AM radio and some knowledge of Morse code could intercept the message. But, the message was encoded! So, it will seem like rubbish until the message is decoded. All attacked countries tried to decoded with large team of mathematicians. Sometimes they got lucky and were able to make sense of a couple of messages at the end of the day. But also, the Germans changed the encoding setup every single day!
+In the War World II, the Germans were attacking England and many other countries. The Nazi's troops used AM signals to communicate with troops around Europe. Anybody with a AM radio and some knowledge of Morse code could intercept the message. But, the information was encoded! So, it will seem like rubbish until it was decoded. All attacked countries tried to decoded with large teams. Sometimes they got lucky and were able to make sense of a couple of messages at the end of the day. But also, the Germans changed the encoding setup every single day!
 
-Alan Turing was working for the British military as a mathematician. He knew that army will never get ahead if they keep doing the calculations by pen and paper. It will be more far more efficient to develop a machine that can do all the decoding. After many months of hard work, they finished the machine. Yet, there was one problem: it took more than a day to decode a message. The machine way useless if they cannot make it compute faster.
+Alan Turing was working for the British military as a mathematician. He knew that army will never get ahead if they keep doing the calculations by pen and paper. It will be far more efficient to develop a machine that can do all the decoding. After many months of hard work, they finished the machine. Yet, there was one problem: it took more than a day to decode a message. The machine was useless if they cannot make it compute faster.
 
 Alan and his team found out that every encrypted message ended with the same string: “Hail Hitler”. Aha! They changed the algorithms. Instead of decoding the whole message, they decode the last two words. This new algorithm to decode the Nazi’s messages saved millions of lives during the war!
 
-> The same machine that was going to get shut down as a failure, became a live saver by changing the way it processed things. Likewise, you can do way more with your computing resources when you write efficient code.
+> The same machine that was going to get shut down as a failure, became a live saver by changing the way it processed things. Likewise, you can do way more with your computing resources when you write efficient code. That's what we are going to learn in this course!
 
-That's what we are going to learn in this course.
+
+# Why should you learn Data Structures and Algorithms (DSA)?
 
 So, why should you learn to write efficient algorithms?
-* Crush interview questions and land the tech job of your dreams.
+* Crush job interviews and land the tech job of your dreams.
 * You would become a much better developer.
 * Spend less time debugging, optimizing and re-writing code.
 * Your code will run faster with the same hardware.
-* Your code might be use to aid a discovery that save millions of lives
+* Your programs might be use to aid a discovery that save millions of lives.
 
 Without further ado, Let’s save the world!
 
@@ -52,7 +55,7 @@ We are going to explore the basic concepts of algorithms. Also, we are going lea
 
 The first step to improve something is to measure it...
 
-{% blockquote H. James Harrington %}
+{% blockquote H. J. Harrington %}
 Measurement is the first step that leads to control and eventually to improvement. If you can’t measure something, you can’t understand it. If you can’t understand it, you can’t control it. If you can’t control it, you can’t improve it.
 {% endblockquote %}
 
