@@ -1,7 +1,7 @@
 ---
 layout: draft
 title: >-
-  How to be more awesome programmer learning data structures and algorithms
+  How you can change the world by learning Data Structures and Algorithms
 comments: true
 toc: true
 pageviews__total: 0
@@ -17,15 +17,13 @@ categories:
 date: 2018-04-04 16:16:07
 ---
 
-Algorithms are steps of how to do some task. When you cook, you follow a recipe (or algorithms) to prepare a dish. If you play a game, you are devising strategies (or algorithms) to help you win. Likewise, algorithms in computers are a set of instructions used to solve a problem. There are "good" algorithms and "bad" algorithms. The good ones are fast, the bad ones are slow. Slow algorithms cost more money and make some calculations impossible in our lifespan!
+As a developer you have the power to change the world! You can write programs that enables new technologies. You might work in software to find earlier disease diagnosis. Or write programs to make people's life easier and save them time. Whatever you do it has an impact either directly or indirectly for people around you.
 
-We are going to explore the basic concepts of algorithms. Also, we are going learn how to distinguish “fast” algorithms from “slow” ones. Or even better, you will be able to “measure” the performance of your own algorithms and improve them!
+Yet, these accomplishment are only possible if we write code that is optimized and can scale for such needs. That made the difference between companies like Google and "Alta Vista". Let's see one more example.
 
 # Why should you learn Data Structures and Algorithms (DSA)?
 
-Optimized algorithms can save lives! For real, let me tell you a true story.
-
-In the War World II, the Nazis were attacking England and many other countries. The German troops used AM signals to communicate with troops on other countries. Anybody with a AM radio and some knowledge of Morse code could intercept the message. But, the message was encoded! So, it will seem like rubbish until the message is decoded. All attacked countries tried to decoded with large team of mathematicians. Sometimes they got lucky and were able to make sense of a couple of messages at the end of the day. But also, the Germans changed the encoding setup every single day!
+In the War World II, the Germans were attacking England and many other countries. The Nazi's troops used AM signals to communicate with troops on other countries. Anybody with a AM radio and some knowledge of Morse code could intercept the message. But, the message was encoded! So, it will seem like rubbish until the message is decoded. All attacked countries tried to decoded with large team of mathematicians. Sometimes they got lucky and were able to make sense of a couple of messages at the end of the day. But also, the Germans changed the encoding setup every single day!
 
 Alan Turing was working for the British military as a mathematician. He knew that army will never get ahead if they keep doing the calculations by pen and paper. It will be more far more efficient to develop a machine that can do all the decoding. After many months of hard work, they finished the machine. Yet, there was one problem: it took more than a day to decode a message. The machine way useless if they cannot make it compute faster.
 
@@ -37,13 +35,18 @@ That's what we are going to learn in this course.
 
 So, why should you learn to write efficient algorithms?
 * Crush interview questions and land the tech job of your dreams.
-* You would become a much better developer and get better jobs
-* Spend less time debugging, optimizing and re-writing code
-* Your code will run faster with the same hardware
-* Your code might be use on medical fields and save millions of lives
-
+* You would become a much better developer.
+* Spend less time debugging, optimizing and re-writing code.
+* Your code will run faster with the same hardware.
+* Your code might be use to aid a discovery that save millions of lives
 
 Without further ado, Let’s save the world!
+
+# What are algorithms?
+
+Algorithms are steps of how to do some task. When you cook, you follow a recipe (or algorithms) to prepare a dish. If you play a game, you are devising strategies (or algorithms) to help you win. Likewise, algorithms in computers are a set of instructions used to solve a problem. There are "good" algorithms and "bad" algorithms. The good ones are fast, the bad ones are slow. Slow algorithms cost more money and make some calculations impossible in our lifespan!
+
+We are going to explore the basic concepts of algorithms. Also, we are going learn how to distinguish “fast” algorithms from “slow” ones. Or even better, you will be able to “measure” the performance of your own algorithms and improve them!
 
 # How to improve your coding skills?
 
