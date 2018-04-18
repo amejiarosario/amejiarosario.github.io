@@ -4,9 +4,9 @@ title: "git+ftp: Publish Git repository over FTP "
 created: 1320896098000
 updated: 1320896098000
 comments: true
-pageviews__total: 2863
+pageviews__total: 2844
 pageviews__recent: 5
-pageviews__avg_time: 534
+pageviews__avg_time: 509
 tutorial__order: 0
 # categories: [git, ftp, web development, drupal, gitignore]
 ---

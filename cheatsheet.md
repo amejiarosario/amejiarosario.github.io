@@ -11,8 +11,7 @@ hexo d -g                 # generate and deploy to github pages
 # change index in
 # _config.yml
 # themes/am-light/source/js/search.es6
-hexo clean
-hexo algolia
+hexo clean && hexo algolia
 ```
 
 ## Update Google Analytics stats
