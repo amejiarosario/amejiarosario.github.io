@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="161px" height="26px" viewBox="0 0 161 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
-    <title>adrianmejia-text-logo</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Logo-Final" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-size="25" font-family="Orbitron-Medium, Orbitron" font-weight="400">
-        <g id="adrianmejia-text-logo" transform="translate(-1.000000, -4.000000)">
-            <text id="Adrian" fill="#0E557E">
-                <tspan x="0" y="24">Adrian</tspan>
-            </text>
-            <text id="Mejia" fill="#7E8183">
-                <tspan x="94" y="24">Mejia</tspan>
-            </text>
-        </g>
-    </g>
-</svg>
+<svg width="161" height="26" viewBox="0 0 161 26" xmlns="http://www.w3.org/2000/svg"><title>adrianmejia-text-logo</title><g fill="none" fill-rule="evenodd" font-size="25" font-family="Orbitron-Medium, Orbitron" font-weight="400"><text fill="#0E557E" transform="translate(-1 -4)"><tspan x="0" y="24">Adrian</tspan></text><text fill="#7E8183" transform="translate(-1 -4)"><tspan x="94" y="24">Mejia</tspan></text></g></svg>
