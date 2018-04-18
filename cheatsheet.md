@@ -3,10 +3,11 @@
 ## most used
 
 ```bash
-hexo s -dp 5000           # server on port 5000
-hexo s --draft -dp 5000   # serve drafts on port 5000
-hexo g                    # generate
-hexo d -g                 # generate and deploy to github pages
+hexo s -dp 5000            # server on port 5000
+hexo s --draft -dp 5000    # serve drafts on port 5000
+hexo g                     # generate
+hexo d -g                  # generate and deploy to github pages
+hexo clean && hexo algolia # index search
 
 # change index in
 # _config.yml

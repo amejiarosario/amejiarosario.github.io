@@ -24,7 +24,11 @@ date: 2018-04-04 16:16:07
 
 As a developer, you have the power to change the world! You can write programs that enable new technologies. You might work in software to find an earlier diagnosis of diseases. Also, you can write programs to make people save them time to do other amazing things. Whatever you do it has the potential to impact people around you.
 
-However, these accomplishments are only possible if we write software that is fast and can scale. Learn how to measure your code is the goal of this online course. This post is the first of series of tutorial about Data Structures and Algorithms (DSA):
+However, these accomplishments are only possible if we write software that is fast and can scale. Learn how to measure your code is the goal of this online course.
+
+<!-- more -->
+
+This post is the first of series of tutorial about Data Structures and Algorithms (DSA):
 
 - Algorithms time complexity and Growth rate of functions.
 - 7 most popular running times of algorithms with examples.
