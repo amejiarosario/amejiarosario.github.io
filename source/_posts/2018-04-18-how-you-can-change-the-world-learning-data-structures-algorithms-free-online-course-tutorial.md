@@ -1,5 +1,5 @@
 ---
-layout: draft
+layout: post
 title: >-
   How you can change the world by learning Data Structures and Algorithms
 comments: true
