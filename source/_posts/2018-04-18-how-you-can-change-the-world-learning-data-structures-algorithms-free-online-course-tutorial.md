@@ -4,9 +4,9 @@ title: >-
   How you can change the world by learning Data Structures and Algorithms
 comments: true
 toc: true
-pageviews__total: 0
-pageviews__recent: 0
-pageviews__avg_time: 0
+pageviews__total: 53
+pageviews__recent: 27
+pageviews__avg_time: 228
 tutorial__order: 1
 photos:
 - /images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg
@@ -30,8 +30,8 @@ However, these accomplishments are only possible if we write software that is fa
 
 This post is the first of series of tutorial about Data Structures and Algorithms (DSA):
 
-- Algorithms time complexity and Growth rate of functions.
-- 7 most popular running times of algorithms with examples.
+1. Algorithms time complexity and Growth rate of functions. **👈 you are here**
+1. Seven most popular running times of algorithms with examples. *(coming soon)*
 
 First, let’s see one real story to drive this point home.
 

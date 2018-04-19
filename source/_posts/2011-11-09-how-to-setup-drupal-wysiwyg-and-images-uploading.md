@@ -6,7 +6,7 @@ updated: 1320876440000
 comments: true
 pageviews__total: 807
 pageviews__recent: 2
-pageviews__avg_time: 201
+pageviews__avg_time: 202
 tutorial__order: 0
 tags:
   - drupal

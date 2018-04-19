@@ -5,7 +5,7 @@ created: 1328766604000
 updated: 1328766604000
 comments: true
 pageviews__total: 468
-pageviews__recent: 6
+pageviews__recent: 4
 pageviews__avg_time: 148
 tutorial__order: 0
 #categories: [ruby, textmate, python]
