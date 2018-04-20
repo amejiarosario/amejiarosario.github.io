@@ -1,15 +1,20 @@
 ---
 layout: draft
-title: What you need to know about Big O notation to speed up your algorithms
+title: 7 algorithms running times every programmer must know with examples
 comments: true
 toc: true
 pageviews__total: 0
 pageviews__recent: 0
 pageviews__avg_time: 0
-tutorial__order: 0
+tutorial__order: 2
+photos:
+- /images/data-structures-must-know-algorithms-running-time-complexity-small.jpg
+- /images/data-structures-must-know-algorithms-running-time-complexity-large.jpg
+photos__background_color: '#F4F0EF'
 tags:
   - big-o notation
   - algorithms
+  - tutorial_algorithms
 categories:
   - Programming
   - Data Structures and Algorithms (DSA)
@@ -18,19 +23,25 @@ date: 2018-04-05 16:10:09
 
 # Summary
 
-In the previous post, we saw how an optimized algorithm saved millions of lives in the case of Alan Turing. But, in most common cases: fast algorithms can save you time, money and enabled new technology. So, It is paramount to know how to measure our algorithms performance.
+We are going to learn the top algorithm's running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it's handy to compare different solutions for the same problem. You would be able to estimate which one will perform better.
 
-To sum up, time complexity estimates the time taken by an algorithm independently from what kind of machine is run on. Time complexity is obtain by counting the number of elementary operations performed by the algorithm in the source code. This time complexity is expressed as a function of the input size using Big-O notation.
+<!-- more -->
 
-The Big-O notation is used to classify algorithms based on their running time or space (memory used) as the input grows. The O function is the growth rate in terms of the input size `n`. For instance, if a function takes the same time with an input of 1 as an input of 1 million, then we say that it has a constant grow rate or O(1). On the other hand, if a function grows at the same rate as the input, we say it has a linear running time O(n). `n` indicates the size of the input while O is the grow rate function.
+In the previous post, we saw how Alan Turing save millions of lives with an optimized algorithm. In most common cases, fast algorithms can save you time, money and enabled new technology. So, It is paramount to know how to measure algorithms performance.
 
-Now, we are going to explore 8 of the most common time complexities and provides code examples!
+To recap **time complexity** estimates how well an algorithm performs regardless kind of machine is run on. You can obtain the time complexity by counting the number of elementary operations performed by your code. This time complexity is expressed as a function of the input size `n` using Big-O notation. `n` indicates the size of the input while O is the growth rate function.
+
+The Big-O notation is used to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
+
+Now, we are going to explore 7 of the most common time complexities and provides code examples!
 
 <!-- table: time complexities -->
 
 # O(1) - Constant time
 
-  `O(1)` describes algorithms that has that takes the same time compute regardless of the input size. If the input size is 1 million or 10 elements, it doesn't matter it will take the same time. You can't get better than that. Let's see some examples.
+ `O(1)` describes algorithms that have that takes the same time compute regardless of the input size.
+
+For instance, if a function takes the same time to process 10 elements as well as 1 million items, then we say that it has a constant growth rate or `O(1)`. Let’s see some examples.
 
   ## odd or even
 
@@ -45,11 +56,11 @@ Now, we are going to explore 8 of the most common time complexities and provides
     console.log(isEvenOrOdd(10001)); // => Odd
   ```
 
-  It doesn't matter if n is 10 or 10,001, it will execute line 2 only one time. This is kinda easy let's see another example.
+ It doesn't matter if n is 10 or 10,001, it will execute line 2 only one time. This example is easy. Let's do another example.
 
-  ## look-up table
+  ## Look-up table
 
-  Look up the the word frequency given a dictionary.
+Given an string find its word frecency data.
 
 ```js
 const dictionary = {the: 22038615, be: 12545825, and: 10741073, of: 10343885, a: 10144200, in: 6996437, to: 6332195 /* ... */};
@@ -62,17 +73,17 @@ console.log(getWordFrequency(dictionary, 'the'));
 console.log(getWordFrequency(dictionary, 'in'));
 ```
 
-Again, we can be sure that even if the dictionary has 1 million words, it would still execute line 4 only one time to find the word. However, if we decided to store the dictionary as an array rather than a hash map, then it would be a different story. In the next section, we are going to explore what's the running time to find an item in an array.
+Again, we can be sure that even if the dictionary has 10 or 1 million words, it would still execute line 4 only one time to find the word. However, if we decided to store the dictionary as an array rather than a hash map, then it would be a different story. In the next section, we are going to explore what's the running time to find an item in an array.
 
 # O(n) - Linear time
 
-  Linear running time algorithms are very common. It implies visiting every element from the input in the worst-case scenario.
+Linear running time algorithms are very common. It implies visiting every element from the input in the worst-case scenario.
 
-  Linear time complexity means that as the input grows the algorithms takes proportionally longer. A function with a linear time complexity has a growth rate O(n). Let's do an example:
+ Linear time complexity means that as the input grows, the algorithms take proportionally longer to complete. A function with a linear time complexity has a growth rate `O(n)`. Let's do an example:
 
-  ## Largest item on unsorted array
+  ## Largest item on an unsorted array
 
-  Let's say you want to find the max value from an unsorted array and you want to find the maximum.
+ Let's say you want to find the maximum value from an unsorted array.
 
 ```js
 function findMax(n) {
@@ -91,11 +102,22 @@ function findMax(n) {
 }
 ```
 
-How many operations will the `findMax` function do? Well it basically checks every element from `n` and if it is bigger it will do an assignment. We could agree that if perform a constant number of operations (assignment, checks, increments) n times: O(k*n). We don't care about being too specific about the constant so we make it 1. Thus, we have O(n) running time.
+How many operations will the `findMax` function do?
+
+Well, it checks every element from `n`. If the current element is bigger than `max` it will do an assignment.
 
 Notice that we added a counter so it can help us count how many times the inner block is executed.
 
-If `n` has 3 elements:
+If you get the time complexity it would be something like this:
+- Line 2-3: 2 operations
+- Line 4: a loop of size n
+- Line 6-8: 3 operations inside the for-loop.
+
+So, this gets us `3(n) + 2`.
+
+Applying the asymptotic analysis that we learn in the previous post, we can only leave the most significant term, thus: `n`.  And finally using the Big O notation we get: `O(n)`.
+
+We can verify this empiracally using our `counter`. If `n` has 3 elements:
 
 ```js
 findMax([3, 1, 2]);
@@ -109,17 +131,17 @@ findMax([4,5,6,1,9,2,8,3,7])
 // n: 9, counter: 9
 ```
 
-Now imaging that you have an array of one million items. Do you think it will take the same time? Of course not, it will take longer proportionally to the size of the input. If we plot it n and `findMax` running time we will have a graph exactly like a linear equation.
+Now imagine that you have an array of one million items. Do you think it will take the same time? Of course not, it will take longer proportionally to the size of the input. If we plot it n and `findMax` running time we will have a graph precisely like a linear equation.
 
-
+{% img /images/linear-running-time-o(n).jpg 'Linear Running time O(n) example' %}
 
 # O(n^2) - Quadratic time
 
-  A function with a quadratic time complexity has a growth rate n^2. If the input is 2 it will do roughly 4 operations. If the input is 8 it will take 64. Let's do an example of a quadratic algorithm:
+A function with a quadratic time complexity has a growth rate n^2. If the input is size 2 it will do roughly 4 operations. If the input is size 8, then it will take 64, and so on. Here are some code examples of quadratic algorithms
 
   ## Has duplicates
 
-  Let's say you want to find duplicate words in an array. A naïve solution will be the following:
+You want to find duplicate words in an array. A naïve solution will be the following:
 
 ```js
 function hasDuplicates(n) {
@@ -143,7 +165,15 @@ function hasDuplicates(n) {
 }
 ```
 
-Again, we are using a counter variable to help use see what's going on. The hasDupliates function has two loops. If we have an input of 4 words, it will execute the innter block 16 times.
+Time complexity analysis:
+- Line 2-3: 2 operations
+- Line 5-6: double-loop of size n, so `n^2`.
+- Line 7-13: has ~3 operations inside the double-loop.
+------
+
+We get `3n^2 + 2`. Again, using asymptotic analysis, we drop all constants and leave the most significant term: `n^2`. So, in big O notation, it would be `O(n^2)`.
+
+We are using a counter variable to help us verify. The `hasDupliates` function has two loops. If we have an input of 4 words, it will execute the inner block 16 times.
 
 ```js
 hasDuplicates([1,2,3,4]);
@@ -157,12 +187,11 @@ hasDuplicates([1,2,3,4,5,6,7,8,9]);
 // n: 9, counter: 81
 ```
 
-Also, you might notice that for very large n, the time it takes to solve the problem also increases. Can you spot the relationship between loops and the running time? When the function one single loop it had a running time complexity of O(n). Now, this function has 2 nested loops and quadratic running time: O(n^2).
+Also, you might notice that for a colossal `n`, the time it takes to solve the problem increases a lot. Can you spot the relationship between nested loops and the running time? When a function has a single loop, it usually translates to a running time complexity of O(n). Now, this function has 2 nested loops and quadratic running time: O(n^2). Let's see another example.
 
   ## Bubble sort
 
-
-There are many ways to sort elements in an array. This is a simple way to do it:
+We want to sort the elements in an array.
 
 ```js
 function sort(n) {
@@ -186,7 +215,7 @@ function sort(n) {
 }
 ```
 
-As you can probably guess, two inner loops almost translate to O(n^2) since it has to go through the array twice in most cases.
+As you can probably guess, two inner loops translate to O(n^2) since it has to go through the array twice in most cases.
 
 Usually, we want to stay away from polynomial running times (quadratic, cubic, O(n^c) …) since they take longer to compute as the input grows fast. However, they are not the worst. Let's something that takes even longer.
 
