@@ -23,7 +23,7 @@ date: 2018-04-05 16:10:09
 
 # Summary
 
-We are going to learn the top algorithm's running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it's handy to compare different solutions for the same problem. You would be able to estimate which one will perform better.
+We are going to learn the top algorithm's running time that every developer should be familiar. Knowing these time complexities will help you to assess if your code will scale. Also, it's handy to compare different solutions for the same problem. You would be able to estimate which one will perform better.
 
 <!-- more -->
 
@@ -45,7 +45,7 @@ For instance, if a function takes the same time to process 10 elements as well a
 
   ## odd or even
 
-  Find if a number is odd or even
+  Find if a number is odd or even.
 
   ```js
     function isEvenOrOdd(n) {
@@ -60,7 +60,7 @@ For instance, if a function takes the same time to process 10 elements as well a
 
   ## Look-up table
 
-Given an string find its word frecency data.
+Given a string find its word frecency data.
 
 ```js
 const dictionary = {the: 22038615, be: 12545825, and: 10741073, of: 10343885, a: 10144200, in: 6996437, to: 6332195 /* ... */};
@@ -79,11 +79,11 @@ Again, we can be sure that even if the dictionary has 10 or 1 million words, it 
 
 Linear running time algorithms are very common. It implies visiting every element from the input in the worst-case scenario.
 
- Linear time complexity means that as the input grows, the algorithms take proportionally longer to complete. A function with a linear time complexity has a growth rate `O(n)`. Let's do an example:
+Linear time complexity means that as the input grows, the algorithms take proportionally longer to complete. A function with a linear time complexity has a growth rate `O(n)`. Let's do an example:
 
   ## Largest item on an unsorted array
 
- Let's say you want to find the maximum value from an unsorted array.
+Let's say you want to find the maximum value from an unsorted array.
 
 ```js
 function findMax(n) {
@@ -137,7 +137,7 @@ Now imagine that you have an array of one million items. Do you think it will ta
 
 # O(n^2) - Quadratic time
 
-A function with a quadratic time complexity has a growth rate n^2. If the input is size 2 it will do roughly 4 operations. If the input is size 8, then it will take 64, and so on. Here are some code examples of quadratic algorithms
+A function with a quadratic time complexity has a growth rate n^2. If the input is size 2, it will do roughly 4 operations. If the input is size 8, then it will take 64, and so on. Here are some code examples of quadratic algorithms
 
   ## Has duplicates
 
@@ -174,7 +174,7 @@ We get `3n^2 + 2`.
 
 Again, using asymptotic analysis, we drop all constants and leave the most significant term: `n^2`. So, in big O notation, it would be `O(n^2)`.
 
-We are using a counter variable to help us verify. The `hasDupliates` function has two loops. If we have an input of 4 words, it will execute the inner block 16 times. If we have 9 will execute counter 81 and so forth.
+We are using a counter variable to help us verify. The `hasDupliates` function has two loops. If we have an input of 4 words, it will execute the inner block 16 times. If we have 9 will perform counter 81 times and so forth.
 
 ```js
 hasDuplicates([1,2,3,4]);
@@ -237,14 +237,14 @@ Expand:
 
 Polynomial running is represented as O(n^c), when c > 1. As you already saw, two inner loops almost translate to O(n^2) since it has to go through the array twice in most cases. Are three nested loops cubic? In most cases, yes!
 
-Usually, we want to stay away from polynomial running times (quadratic, cubic, O(n^c) …) since they take longer to compute as the input grows fast. However, they are not the worst. Let's something that takes even longer.
+Usually, we want to stay away from polynomial running times (quadratic, cubic, O(n^c) …) since they take longer to compute as the input grows fast. However, they are not the worst. Let's something that it's even slower.
 
 ## Triple nested loops
 Let's say you want to find the solutions for a multi-variable equation that looks like this:
 
 > 3x + 9y + 8z = 79
 
-This program will give you all the solutions that satisfy the equation where `x`, `y` and `z` < `n`
+This program will give you all the solutions that satisfy the equation where `x`, `y` and `z` < `n`.
 
 ```js
 function findXYZ(n) {
@@ -273,7 +273,7 @@ This algorithm has a cubic running time: `O(n^3)`.
 Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let's say that we want to look for a person in an old phone book. It has every name sorted alphabetically. There are at least two ways to do it:
 
 Algorithm A:
-- Start at the beginning of the book and go in order until you find the person you are looking for. `O(n)`
+- Start at the beginning of the book and go in order until you find the person you are looking for. Run-time: `O(n)`
 
 Algorithm B:
 - Open the book in the middle and check the first name on it
@@ -283,7 +283,7 @@ Algorithm B:
 
 Find the index of an element in a sorted array.
 
-If we implement (Algorithm A) going through all the elements in an array, it will take a running time of `O(n)`. Can we do better? Let's try using the fact that the array is already sorted and divide in half as we look for the element in question.
+If we implement (Algorithm A) going through all the elements in an array, it will take a running time of `O(n)`. Can we do better? Let's try using the fact that the collection is already sorted and divide in half as we look for the element in question.
 
 {% codeblock lang:js mark:3-4,11,14 %}
 function indexOf(array, element, offset = 0) {
@@ -315,11 +315,11 @@ There are several ways to analyze recursive algorithms. For simplicity, we are g
 
 ## Master Method for recursive algorithms
 
-Finding the runtime of recursive algorithms is not as easy as counting the operations as we did in previous examples. The Master Method help us to determing the runtime of recursive algorithms. We are going to explain the Master Method using the `indexOf` function as an example.
+Finding the runtime of recursive algorithms is not as easy as counting the operations as we did in previous examples. The Master Method helps us to determine the runtime of recursive algorithms. We are going to explain the Master Method using the `indexOf` function as an example.
 
-When analyzing recursive algorithms we cares about these 3 things:
+When analyzing recursive algorithms, we care about these 3 things:
 - Runtime of the work done outside the recursion (line 3-4): `O(1)`
-- How many recursive call the problem is divided (line 11 or 14): `1` recursive call. Notice only one or the other will happen, never both.
+- How many recursive calls the problem is divided (line 11 or 14): `1` recursive call. Notice only one or the other will happen, never both.
 - How much `n` is reduced on each recursive call (line 10 or 13): `1/2`. Every recursive call cuts `n` in half.
 
 1) The Master Method formula is the following:
@@ -328,16 +328,16 @@ When analyzing recursive algorithms we cares about these 3 things:
 
 where:
 - `n`: size of the recursion problem. duh? :)
-- `a`: the number of sub-problems. For our case we only split the problem in another subproblem.
-- `b`: the factor by which n is reduced. For our case we divide `n` in half each time.
-- `f(n)`: the running time done outside the recursion.
+- `a`: the number of sub-problems. For our case, we only split the problem into another subproblem.
+- `b`: the factor by which `n` is reduced. For our case, we divide `n` in half each time.
+- `f(n)`: the running time outside the recursion. E.g., O(1)
 
 2) Once we know the values of `a`, `b` and `f(n)`. We can determine the runtime of the recursion using this formula:
 
 > n<sup>log<sub>b</sub>a</sup>
 
 
-This value will help us to find which mater method case we are solving
+This value will help us to find which mater method case we are solving.
 
 3) Finally, we compare the recursion runtime from step 2) and the runtime `f(n)` from step 1). Based on that we have the following cases:
 
@@ -374,9 +374,9 @@ The binary search algorithm slit `n` on half until a solution is found or array 
 > T(n) = a T(n/b) + f(n)
 
 1) Find `a`, `b` and `f(n)` and replace it in the formula:
-- `a`: the number of sub-problems. For our case we only split the problem in another subproblem. So `a=1`.
-- `b`: the factor by which `n` is reduced. For our case we divide `n` in half each time. Thus, `b=2`
-- `f(n)`: the running time done outside the recursion: `O(1)`.
+- `a`: the number of sub-problems. For our example, we only split the problem into another subproblem. So `a=1`.
+- `b`: the factor by which `n` is reduced. For our case, we divide `n` in half each time. Thus, `b=2`.
+- `f(n)`: the running time outside the recursion: `O(1)`.
 
 Thus,
 
@@ -388,9 +388,9 @@ Thus,
 - Runtime of work done **inside** the recursion given by this formula <code>n<sup>log<sub>b</sub>a</sup></code>. E.g. O(<code>n<sup>log<sub>2</sub>1<sup></code>) = O(<code>n<sup>0<sub></code>) = `O(1)`.
 
 
-3) Based on the comparison find the case it matches and get the run time.
+3) Finally, getting the runtime. Based on the comparison of the expressions from the previous steps, find the case it matches.
 
-As we saw in the previous step the work outside and inside the recusion has the same runtime, so we are in **case 2**.
+As we saw in the previous step the work outside and inside the recursion has the same runtime, so we are in **case 2**.
 
 > O(n<sup>log<sub>b</sub>a</sup> log(n))
 
@@ -421,15 +421,16 @@ https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms) -->
 
 # O(n log n) - Linearithmic
 
-Linearithmic time complexity it's slighly slower than a linear algorihtm but still much better than a quadratic algorithm (you will see a graph at the very end of the post).
-
-So far we have seen iterative functions to calculate running times. In this example we are going to see how to calculate time complexities for recursive functions.
+Linearithmic time complexity it's slightly slower than a linear algorithm but still much better than a quadratic algorithm (you will see a graph at the very end of the post).
 
 ## Mergesort
 
 What's the best way to sort an array?  Before, we proposed a solution using bubble sort that has a time complexity of O(n^2). Can we do better?
 
-We can use an algorithm call `mergesort` to make it perform better. Basically, we are going to divide the array recursively until they are two or less elements. We know how to sort 2 elements, so we sort them. The final step is merging: we merge in taking one by one from each array such that is in ascending order.
+We can use an algorithm called `mergesort` to make it perform better:
+1. We are going to divide the array recursively until the elements are two or less.
+2. We know how to sort 2 items, so we sort them iteratively (base case).
+3. The final step is merging: we merge in taking one by one from each array such that they are in ascending order.
 
 Here's the code for merge sort:
 
@@ -450,7 +451,7 @@ function sort(n) {
 
 function merge(a = [], b = []) {
   const merged = [];
-
+  // merge elements on a and b in asc order. Run-time O(a + b)
   for (let ai = 0, bi = 0; ai < a.length || bi < b.length;) {
     if(ai >= a.length || a[ai] > b[bi]) {
       merged.push(b[bi++]);
@@ -462,16 +463,16 @@ function merge(a = [], b = []) {
   return merged;
 }
 ```
-As you can see it has two functions sort and merge. Merge is an auxiliary function that runs once through array a and array b, so it's running time is O(n). Let's apply the Master Method to find the running time.
+As you can see, it has two functions `sort` and `merge`. Merge is an auxiliary function that runs once through the collection `a` and `b`, so it's running time is O(n). Let's apply the Master Method to find the running time.
 
-## Mater Method for Merge sort
+## Mater Method for Mergesort
 
-We are going to apply the <a href="#Master-Method-for-recursive-algorithms">Master Method that we explained above</a> to find the runtime
+We are going to apply the <a href="#Master-Method-for-recursive-algorithms">Master Method that we explained above</a> to find the runtime:
 
 1) Let's find the values of: `T(n) = a T(n/b) + f(n)`
 
   - `a`: The number of sub-problems is 2 (line 12). So, `a = 2`.
-  - `b`: Each of the sub-problems divide `n` in half. So, `b = 2`
+  - `b`: Each of the sub-problems divides `n` in half. So, `b = 2`
   - `f(n)`: The work done outside the recursion is the function `merge`, which has a runtime of `O(n)` since it visits all the elements on the given arrays.
 
 Substituting the values:
@@ -495,7 +496,7 @@ n<sup>1</sup> = n
 
 # O(2^n) - Exponential time
 
-Exponential (base 2) running time means that the calculations performed by an algorithm doubles every time the input grows.
+Exponential (base 2) running time means that the calculations performed by an algorithm double every time as the input grows.
 
 ## Subsets of a Set
 
@@ -508,13 +509,13 @@ getSubsets('ab') // => ['', 'a', 'b', 'ab']
 
 Did you notice any pattern?
 
-The first returns have a empty element and it returns and empty element.
-The second case returns the empty element + the 1st element.
-The 3rd case returns exactly the results of 2nd case + the same array with the 2nd element `b` appended to it.
+- The first returns have an empty element, and it returns and empty element.
+- The second case returns the empty element + the 1st element.
+- The 3rd case returns precisely the results of 2nd case + the same array with the 2nd element `b` appended to it.
 
-What if you want to find the subsets of `abc`? Well, it would be exctly the subsets of 'ab' and again the subsets of `ab` with `c` appended at the end of each element.
+What if you want to find the subsets of `abc`? Well, it would be exactly the subsets of 'ab' and again the subsets of `ab` with `c` appended at the end of each element.
 
-As you noticed, everytime time the input gets longer the output is twice as long as the previous one. Let's code it op:
+As you noticed, every time the input gets longer the output is twice as long as the previous one. Let's code it op:
 
 ```js
 function getSubsets(n = '') {
@@ -553,7 +554,7 @@ getSubsets('abcde') // , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd.
 
 As expected, if you plot `n` and `f(n)`, you will notice that it would be exactly like the function `2^n`. This algorithm has a running time of `O(2^n)`.
 
-**Note:** You should avoid functions with exponential running times (if possible) since they don't scale well. The time it takes to process the output doubles with every additional input size. But exponential running time is not the worst, there are others that take even longer. Let's see one more example in the next section.
+**Note:** You should avoid functions with exponential running times (if possible) since they don't scale well. The time it takes to process the output doubles with every additional input size. But exponential running time is not the worst yet; there are others that go even slower. Let's see one more example in the next section.
 
 # O(n!) - Factorial time
 
@@ -565,7 +566,7 @@ It grows pretty quickly:
 
 > 20! = 2,432,902,008,176,640,000
 
-As you might guessed, you want to stay away if possible from algorithms that have this running time!
+As you might guess, you want to stay away if possible from algorithms that have this running time!
 
 ## Permutations
 
@@ -579,9 +580,9 @@ getPermutations('abc') // => [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
 
 How would you solve that?
 
-One simple way would be to check if the string has a length of 1, if so, return that string since you can't arrange it differently.
+A straightforward way will be to check if the string has a length of 1, if so, return that string since you can't arrange it differently.
 
-For strings with a length bigger than 1, we could use recursion to divide the problem in smaller problems until we get to the length 1 case. We can take out the first character and solve the problem for the reminder of the string until we have a string of length 1.
+For strings with a length bigger than 1, we could use recursion to divide the problem in smaller problems until we get to the length 1 case. We can take out the first character and solve the problem for the remainder of the string until we have a length of 1.
 
 ```js
 function getPermutations(string, prefix = '') {
@@ -625,11 +626,8 @@ I have a little homework for you...
 
 # All running complexities graphs
 
-We explored the most common algorithms running times with one or two examples each! This should give you an idea how to calculate your own running times when developing your projects. Below you can find a chart with graph of all the time complexities that we covered:
+We explored the most common algorithms running times with one or two examples each! They should give you an idea how to calculate your running times when developing your projects. Below you can find a chart with a graph of all the time complexities that we covered:
 
 {% img /images/big-o-running-time-complexity.png 'Big o running time complexities' %}
 
 Mind your complexity!
-
-
-
