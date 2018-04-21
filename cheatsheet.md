@@ -116,3 +116,9 @@ BackboneJS Tutorial series:
 1. Angular 2 Tutorial: Routing and navigation [coming soon]
 1. Angular 2 Tutorial: HTTP and WebSockets [coming soon]
 1. Angular 2 Tutorial: Upgrading from Angular 1 [coming soon]
+
+
+
+1. [AngularJS tutorial for beginners (Part I)](/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/)
+1. Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II) **👈 you are here**
+1. [MEAN Stack Tutorial: MongoDB, ExpressJS, AngularJS and NodeJS (Part III)](/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/)

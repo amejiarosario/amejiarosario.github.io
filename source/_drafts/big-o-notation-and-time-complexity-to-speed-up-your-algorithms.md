@@ -1,6 +1,6 @@
 ---
 layout: draft
-title: 7 algorithms running times every programmer must know with examples
+title: 7 time complexities that every developer should know
 comments: true
 toc: true
 pageviews__total: 0
@@ -168,12 +168,13 @@ function hasDuplicates(n) {
 Time complexity analysis:
 - Line 2-3: 2 operations
 - Line 5-6: double-loop of size n, so `n^2`.
-- Line 7-13: has ~3 operations inside the double-loop.
-------
+- Line 7-13: has ~3 operations inside the double-
 
-We get `3n^2 + 2`. Again, using asymptotic analysis, we drop all constants and leave the most significant term: `n^2`. So, in big O notation, it would be `O(n^2)`.
+We get `3n^2 + 2`.
 
-We are using a counter variable to help us verify. The `hasDupliates` function has two loops. If we have an input of 4 words, it will execute the inner block 16 times.
+Again, using asymptotic analysis, we drop all constants and leave the most significant term: `n^2`. So, in big O notation, it would be `O(n^2)`.
+
+We are using a counter variable to help us verify. The `hasDupliates` function has two loops. If we have an input of 4 words, it will execute the inner block 16 times. If we have 9 will execute counter 81 and so forth.
 
 ```js
 hasDuplicates([1,2,3,4]);
@@ -186,8 +187,7 @@ and with n size 9:
 hasDuplicates([1,2,3,4,5,6,7,8,9]);
 // n: 9, counter: 81
 ```
-
-Also, you might notice that for a colossal `n`, the time it takes to solve the problem increases a lot. Can you spot the relationship between nested loops and the running time? When a function has a single loop, it usually translates to a running time complexity of O(n). Now, this function has 2 nested loops and quadratic running time: O(n^2). Let's see another example.
+Let's see another example.
 
   ## Bubble sort
 
@@ -215,10 +215,15 @@ function sort(n) {
 }
 ```
 
+Also, you might notice that for a colossal `n`, the time it takes to solve the problem increases a lot. Can you spot the relationship between nested loops and the running time? When a function has a single loop, it usually translates to a running time complexity of O(n). Now, this function has 2 nested loops and quadratic running time: O(n^2).
+
+<!--
+
 As you can probably guess, two inner loops translate to O(n^2) since it has to go through the array twice in most cases.
 
 Usually, we want to stay away from polynomial running times (quadratic, cubic, O(n^c) …) since they take longer to compute as the input grows fast. However, they are not the worst. Let's something that takes even longer.
 
+## Quick sort
 ---
 
 Expand:
@@ -226,8 +231,7 @@ Expand:
   * best case: already ordered
 
 ---
-
-<!-- ## Quick sort -->
+-->
 
 # O(n^c) - Polynomial time
 
@@ -262,29 +266,158 @@ function findXYZ(n) {
 console.log(findXYZ(10)); // => [{x: 0, y: 7, z: 2}, ...]
 ```
 
-As you might guessed this algorithm has a cubic running time: `O(n^3)`
+This algorithm has a cubic running time: `O(n^3)`.
 
 # O(log n) - Logarithmic time
 
-Logarithmic time complexities usually aplies for algorithms that divides problems in half every time. For instance, let's say that we want to look for a person on a phone book. There are at least two ways to do it:
+Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let's say that we want to look for a person in an old phone book. It has every name sorted alphabetically. There are at least two ways to do it:
 
 Algorithm A:
-- Start at the begining of the book and go in order until you find the person you are looking for.
+- Start at the beginning of the book and go in order until you find the person you are looking for. `O(n)`
 
 Algorithm B:
 - Open the book in the middle and check the first name on it
-- If the name that we are looking for is alphabetically bigger. Then look in the 2nd half, otherwise look in the 1st half
-
-Which one is faster? Imagine that we have 10 million items.
+- If the name that you are looking for is alphabetically bigger, then look to the right, otherwise look in the left half.
 
 ## Binary search
 
-Find the element in a sorted array.
+Find the index of an element in a sorted array.
 
 If we implement (Algorithm A) going through all the elements in an array, it will take a running time of `O(n)`. Can we do better? Let's try using the fact that the array is already sorted and divide in half as we look for the element in question.
 
+{% codeblock lang:js mark:3-4,11,14 %}
+function indexOf(array, element, offset = 0) {
+  // split array in half
+  const half = parseInt(array.length / 2);
+  const current = array[half];
 
 
+  if(current === element) {
+    return offset + half;
+  } else if(element > current) {
+    const right = array.slice(half);
+    return indexOf(right, element, offset + half);
+  } else {
+    const left = array.slice(0, half)
+    return indexOf(left, element, offset);
+  }
+}
+
+const directory = ["Adrian", "Bella", "Charlotte", "Daniel", "Emma", "Hanna", "Isabella", "Jayden", "Kaylee", "Luke", "Mia", "Nora", "Olivia", "Paisley", "Riley", "Thomas", "Wyatt", "Xander", "Zoe"];
+console.log(indexOf(directory, 'Hanna'));   // => 5
+console.log(indexOf(directory, 'Adrian'));  // => 0
+console.log(indexOf(directory, 'Zoe'));     // => 18
+{% endcodeblock %}
+
+Calculating the time complexity of `indexOf` is not as straightforward as the previous examples. This function is recursive.
+
+There are several ways to analyze recursive algorithms. For simplicity, we are going to use the `Master Method`.
+
+## Master Method for recursive algorithms
+
+Finding the runtime of recursive algorithms is not as easy as counting the operations as we did in previous examples. The Master Method help us to determing the runtime of recursive algorithms. We are going to explain the Master Method using the `indexOf` function as an example.
+
+When analyzing recursive algorithms we cares about these 3 things:
+- Runtime of the work done outside the recursion (line 3-4): `O(1)`
+- How many recursive call the problem is divided (line 11 or 14): `1` recursive call. Notice only one or the other will happen, never both.
+- How much `n` is reduced on each recursive call (line 10 or 13): `1/2`. Every recursive call cuts `n` in half.
+
+1) The Master Method formula is the following:
+
+> T(n) = a T(n/b) + f(n)
+
+where:
+- `n`: size of the recursion problem. duh? :)
+- `a`: the number of sub-problems. For our case we only split the problem in another subproblem.
+- `b`: the factor by which n is reduced. For our case we divide `n` in half each time.
+- `f(n)`: the running time done outside the recursion.
+
+2) Once we know the values of `a`, `b` and `f(n)`. We can determine the runtime of the recursion using this formula:
+
+> n<sup>log<sub>b</sub>a</sup>
+
+
+This value will help us to find which mater method case we are solving
+
+3) Finally, we compare the recursion runtime from step 2) and the runtime `f(n)` from step 1). Based on that we have the following cases:
+
+### **Case 1**: Most of the work in done in the recursion.
+
+If <code>n<sup>log<sub>b</sub>a</sup></code> > `f(n)`,
+
+**then** then runtime is:
+
+> <i>O(n<sup>log<sub>b</sub>a</sup>)</i>
+
+### **Case 2**: The runtime of the work done in the recursion and outside is the same
+
+If <code>n<sup>log<sub>b</sub>a</sup></code> === `f(n)`,
+
+**then** then runtime is:
+
+> <i>O(n<sup>log<sub>b</sub>a</sup> log(n))</i>
+
+### **Case 3**: Most of the work is done outside the recursion
+
+If <code>n<sup>log<sub>b</sub>a</sup></code> < `f(n)`,
+
+**then** then runtime is:
+
+> <i>O(f(n))</i>
+
+Now, let's combine everything we learned here to get the running time of our binary search function `indexOf`.
+
+## Master Method for Binary Search
+
+The binary search algorithm slit `n` on half until a solution is found or array is exhausted. So, using the Master Method:
+
+> T(n) = a T(n/b) + f(n)
+
+1) Find `a`, `b` and `f(n)` and replace it in the formula:
+- `a`: the number of sub-problems. For our case we only split the problem in another subproblem. So `a=1`.
+- `b`: the factor by which `n` is reduced. For our case we divide `n` in half each time. Thus, `b=2`
+- `f(n)`: the running time done outside the recursion: `O(1)`.
+
+Thus,
+
+> T(n) = T(n/2) + O(1)
+
+2) Compare the runtime executed inside and outside the recursion:
+
+- Runtime of the work done **outside** the recursion: `f(n)`. E.g. `O(1)`.
+- Runtime of work done **inside** the recursion given by this formula <code>n<sup>log<sub>b</sub>a</sup></code>. E.g. O(<code>n<sup>log<sub>2</sub>1<sup></code>) = O(<code>n<sup>0<sub></code>) = `O(1)`.
+
+
+3) Based on the comparison find the case it matches and get the run time.
+
+As we saw in the previous step the work outside and inside the recusion has the same runtime, so we are in **case 2**.
+
+> O(n<sup>log<sub>b</sub>a</sup> log(n))
+
+Making the substitution we get:
+
+O(n<sup>log<sub>2</sub>1</sup> log(n))
+
+O(n<sup>0</sup> log(n))
+
+O(log(n))  **👈 this is running time of binary search**
+
+
+<!--
+
+https://www.youtube.com/watch?v=6CX7s7JnXs0 - Master Method ( incl. Step-By-Step Guide and Examples ) - Analysis
+
+https://stackoverflow.com/questions/tagged/big-o?sort=votes&pageSize=20
+
+https://mauriciopoppe.github.io/function-plot/
+
+https://www.topcoder.com/community/data-science/data-science-tutorials/binary-search/
+
+https://stackoverflow.com/questions/tagged/algorithm
+https://stackoverflow.com/questions/tagged/data-structures
+
+https://stackoverflow.com/q/13467674/684957
+https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms) -->
 
 # O(n log n) - Linearithmic
 
@@ -329,7 +462,35 @@ function merge(a = [], b = []) {
   return merged;
 }
 ```
-As you can see it has two functions sort and merge. Merge is an auxiliary function that runs once through array a and array b, so it's running time is O(n). Sort function split the array in half every time, which is a O(log n). Combining both we get O(n log n).
+As you can see it has two functions sort and merge. Merge is an auxiliary function that runs once through array a and array b, so it's running time is O(n). Let's apply the Master Method to find the running time.
+
+## Mater Method for Merge sort
+
+We are going to apply the <a href="#Master-Method-for-recursive-algorithms">Master Method that we explained above</a> to find the runtime
+
+1) Let's find the values of: `T(n) = a T(n/b) + f(n)`
+
+  - `a`: The number of sub-problems is 2 (line 12). So, `a = 2`.
+  - `b`: Each of the sub-problems divide `n` in half. So, `b = 2`
+  - `f(n)`: The work done outside the recursion is the function `merge`, which has a runtime of `O(n)` since it visits all the elements on the given arrays.
+
+Substituting the values:
+
+> T(n) = 2 T(n/2) + O(n)
+
+2) Let's find the work done in the recursion: <code>n<sup>log<sub>b</sub>a</sup></code>.
+
+n<sup>log<sub>2</sub>2</sup>
+
+n<sup>1</sup> = n
+
+3) Finally, we can see that recursion runtime from step 2) is O(n) and also the non-recursion runtime is O(n). So, we have the <a href="#Case-2-The-runtime-of-the-work-done-in-the-recursion-and-outside-is-the-same"> case 2 </a>: <code><i>O(n<sup>log<sub>b</sub>a</sup> log(n))</i></code>
+
+<i>O(n<sup>log<sub>2</sub>2</sup> log(n))</i>
+
+<i>O(n<sup>1</sup> log(n))</i>
+
+<i>O(n log(n))</i> **👈 this is running time of the merge sort**
 
 
 # O(2^n) - Exponential time
