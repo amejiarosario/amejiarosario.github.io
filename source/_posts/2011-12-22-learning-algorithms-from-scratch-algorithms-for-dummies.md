@@ -22,7 +22,7 @@ categories:
 <hr>
 **Update**
 
-Graphs are gone in this post. I re-made this post and added more information and images. Checkout it out at: <a href="/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/">http://adrianmejia.com/blog/2014/02/13/algorithms-for-dummies-part-1-sorting/</a>
+Graphs are gone in this post. I re-made this post and added more information and images. Checkout it out clicking here: <a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">Data Structures and Algorithms (DSA) for Beginners</a>
 <hr>
 
 <p class="p1"><b>Why should you care for efficiency?</b></p>

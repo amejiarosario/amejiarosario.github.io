@@ -212,3 +212,9 @@ for(c=0; c&lt;n; c++){
 </table>
 
 That's all for this first part 1. I will continue publishing this tutorials every week or so. Stay tune!
+
+<hr>
+**Update**
+
+ Checkout out the next post clicking here: <a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">Data Structures and Algorithms (DSA) for Beginners</a>
+<hr>

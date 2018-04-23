@@ -28,10 +28,10 @@ However, these accomplishments are only possible if we write software that is fa
 
 <!-- more -->
 
-This post is the first of series of tutorial about Data Structures and Algorithms (DSA):
+This post is part of a serie of the Data Structures and Algorithms (DSA) for Beginners:
 
-1. Algorithms time complexity and Growth rate of functions. **👈 you are here**
-1. Seven most popular running times of algorithms with examples. *(coming soon)*
+1. Algorithm's time complexity and Big O notation **👈 you are here**
+1. [Eight most popular running times of algorithms </i>with examples</i>](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
 
 First, let’s see one real story to drive this point home.
 
@@ -268,3 +268,5 @@ As you can see, some algorithms are very time-consuming. An input size as little
 
 In the next post, we are going to explore all of these time complexities with a code example or two!
 Are you ready to become a super programmer and scale your code?! <img src="/images/superman_shield.svg" width="25" height="25" alt="superman shield" style="display:inline-block;">
+
+**Continue with the next part 👉** [Eight running times that every programmer should know](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
