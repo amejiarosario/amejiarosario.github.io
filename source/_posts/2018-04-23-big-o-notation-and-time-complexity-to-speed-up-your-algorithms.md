@@ -35,8 +35,9 @@ The Big-O notation is used to classify algorithms based on their running time or
 
 Before we dive in, here is the **big O cheatsheet** and examples that we are going to cover on this post:
 
+
+<!--
 Big O Notation | Name | Example(s)
---- | --- | ---
 <i>O(1)</i>| Constant | # [Odd or Even number](#odd-or-even) # [Look-up table](#Look-up-table)
 <i>O(log n)</i>| Logarithmic | # [Finding element on sorted array with **binary search**](#Binary-search)
 <i>O(n)</i>| Linear | # [Find max element in unsorted array](#Largest-item-on-an-unsorted-array)
@@ -45,8 +46,61 @@ Big O Notation | Name | Example(s)
 <i>O(n<sup>3</sup>)</i>| Cubic | # [3 variables equation solver](#Triple-nested-loops)
 <i>O(2<sup>n</sup>)</i>| Exponential | # [Find all subsets](#Subsets-of-a-Set)
 <i>O(n!)</i>| Factorial | # [Find all permutations of a given set/string](#Permutations)
+-->
 
-Now, Let's go one by one and provides code examples!
+<table>
+<thead>
+<tr>
+<th>Big O Notation</th>
+<th>Name</th>
+<th>Example(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="green"><i>O(1)</i></td>
+<td class="green">Constant</td>
+<td># <a href="#odd-or-even">Odd or Even number</a> # <a href="#Look-up-table">Look-up table</a></td>
+</tr>
+<tr>
+<td class="green"><i>O(log n)</i></td>
+<td class="green">Logarithmic</td>
+<td># <a href="#Binary-search">Finding element on sorted array with <strong>binary search</strong></a></td>
+</tr>
+<tr>
+<td class="green"><i>O(n)</i></td>
+<td class="green">Linear</td>
+<td># <a href="#Largest-item-on-an-unsorted-array">Find max element in unsorted array</a></td>
+</tr>
+<tr>
+<td class="green"><i>O(n log n)</i></td>
+<td class="green">Linearithmic</td>
+<td># <a href="#Mergesort">Sorting elements in array with <strong>merge sort</strong></a></td>
+</tr>
+<tr>
+<td class="orange"><i>O(n<sup>2</sup>)</i></td>
+<td class="orange">Quadratic</td>
+<td># <a href="#Has-duplicates">Duplicate elements in array</a>, # <a href="#Bubble-sort">Sorting array with <strong>bubble sort</strong></a></td>
+</tr>
+<tr>
+<td class="orange"><i>O(n<sup>3</sup>)</i></td>
+<td class="orange">Cubic</td>
+<td># <a href="#Triple-nested-loops">3 variables equation solver</a></td>
+</tr>
+<tr>
+<td class="red"><i>O(2<sup>n</sup>)</i></td>
+<td class="red">Exponential</td>
+<td># <a href="#Subsets-of-a-Set">Find all subsets</a></td>
+</tr>
+<tr>
+<td class="red"><i>O(n!)</i></td>
+<td class="red">Factorial</td>
+<td># <a href="#Permutations">Find all permutations of a given set/string</a></td>
+</tr>
+</tbody>
+</table>
+
+Now, Let's go one by one and provide code examples!
 
 
 <!-- table: time complexities -->
@@ -644,4 +698,4 @@ We explored the most common algorithms running times with one or two examples ea
 
 {% img /images/big-o-running-time-complexity.png 'Big o running time complexities' %}
 
-Mind your complexity!
+Mind your time complexity!
