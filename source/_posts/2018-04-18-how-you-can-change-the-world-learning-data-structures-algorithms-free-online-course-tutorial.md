@@ -31,7 +31,7 @@ However, these accomplishments are only possible if we write software that is fa
 This post is part of a serie of the Data Structures and Algorithms (DSA) for Beginners:
 
 1. Algorithm's time complexity and Big O notation **👈 you are here**
-1. [Eight most popular running times of algorithms </i>with examples</i>](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
+1. [Eight time complexities that every programmer should know](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
 
 First, let’s see one real story to drive this point home.
 

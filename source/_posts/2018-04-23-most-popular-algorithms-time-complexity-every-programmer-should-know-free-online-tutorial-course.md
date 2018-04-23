@@ -31,7 +31,7 @@ We are going to learn the top algorithm's running time that every developer shou
 This post is part of a serie of the Data Structures and Algorithms (DSA) for Beginners:
 
 1. [Algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
-1. [Eight most popular running times of algorithms </i>with examples</i>] **👈 you are here**
+1. Eight time complexities that every programmer should know **👈 you are here**
 
 In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing save millions of lives with an optimized algorithm. In most common cases, fast algorithms can save you time, money and enabled new technology. So, It is paramount to know how to measure algorithms performance.
 
