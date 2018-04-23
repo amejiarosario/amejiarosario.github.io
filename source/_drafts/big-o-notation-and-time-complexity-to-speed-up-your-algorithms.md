@@ -33,7 +33,21 @@ To recap **time complexity** estimates how well an algorithm performs regardless
 
 The Big-O notation is used to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
 
-Now, we are going to explore 7 of the most common time complexities and provides code examples!
+Big O notation and examples that we are going to cover on this post:
+
+Big O Notation | Name | Example(s)
+--- | --- | ---
+<i>O(1)</i>| Constant | # [Odd or Even number](#odd-or-even) # [Look-up table](#Look-up-table)
+<i>O(log n)</i>| Logarithmic | # [Finding element on sorted array with **binary search**](#Binary-search)
+<i>O(n)</i>| Linear | # [Find max element in unsorted array](#Largest-item-on-an-unsorted-array)
+<i>O(n log n)</i>| Linearithmic,  | # [Sorting elements in array with **merge sort**](#Mergesort)
+<i>O(n<sup>2</sup>)</i>| Quadratic | # [Duplicate elements in array](#Has-duplicates), # [Sorting array with **bubble sort**](#Bubble-sort)
+<i>O(n<sup>3</sup>)</i>| Cubic | # [3 variables equation solver](#Triple-nested-loops)
+<i>O(2<sup>n</sup>)</i>| Exponential | # [Find all subsets](#Subsets-of-a-Set)
+<i>O(n!)</i>| Factorial | # [Find all permutations of a given set/string](#Permutations)
+
+Now, Let's go one by one and provides code examples!
+
 
 <!-- table: time complexities -->
 
