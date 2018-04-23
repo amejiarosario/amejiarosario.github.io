@@ -1,5 +1,5 @@
 ---
-layout: draft
+layout: post
 title: 8 time complexities that every programmer should know
 comments: true
 toc: true
