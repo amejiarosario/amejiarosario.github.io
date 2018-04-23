@@ -3,9 +3,9 @@ layout: draft
 title: 8 time complexities that every developer should know
 comments: true
 toc: true
-pageviews__total: 0
-pageviews__recent: 0
-pageviews__avg_time: 0
+pageviews__total: 1429
+pageviews__recent: 377
+pageviews__avg_time: 74
 tutorial__order: 2
 photos:
 - /images/data-structures-must-know-algorithms-running-time-complexity-small.jpg
