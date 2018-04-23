@@ -33,7 +33,7 @@ To recap **time complexity** estimates how well an algorithm performs regardless
 
 The Big-O notation is used to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
 
-Big O notation and examples that we are going to cover on this post:
+Before we dive in, here is the **Big O cheatsheet** and examples that we are going to cover on this post:
 
 Big O Notation | Name | Example(s)
 --- | --- | ---
