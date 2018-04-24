@@ -49,7 +49,8 @@ p {
   line-height: 1.5;
 }
 
-acronym, abbr {
+// acronym, abbr
+.post-content a:hover {
   border-bottom: 1px $primary-color dotted;
 }
 
