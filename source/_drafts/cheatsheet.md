@@ -22,8 +22,21 @@ date: 2018-04-05 16:10:09
 
 # MATH
 
+
+ASCII Support
+
+http://asciimath.org/#syntax
+
+<p>When \`a != 0\`, there are two solutions to \`ax^2 + bx + c = 0\` and
+they are</p>
+<p style="text-align:center">
+  \`x = (-b +- sqrt(b^2-4ac))/(2a) .\`
+</p>
+
+
 <!-- CSS and HTML -->
 <!-- https://www.periodni.com/mathematical_and_chemical_equations_on_web.html -->
+
 
 TEX/LATEX
 
@@ -66,15 +79,6 @@ and they are
   </mrow>
   <mtext>.</mtext>
 </math>
-</p>
-
-
-ASCII Support
-
-<p>When \`a != 0\`, there are two solutions to \`ax^2 + bx + c = 0\` and
-they are</p>
-<p style="text-align:center">
-  \`x = (-b +- sqrt(b^2-4ac))/(2a) .\`
 </p>
 
 # H1 - Headers

@@ -31,8 +31,8 @@ However, these accomplishments are only possible if we write software that is fa
 This post is part of a series of the Data Structures and Algorithms (DSA) for Beginners:
 
 1. Algorithm's time complexity and Big O notation **👈 you are here**
-1. [Eight time complexities that every programmer should know](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
-1. Analysis of recursive algorithms (soon)
+1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
+1. Analysis of recursive algorithms (coming soon)
 
 We are going to explore how you can measure your code performance using analysis of algorithms: **time complexity** and **big O notation**. However, first, let’s see a real story to learn why is this important.
 
@@ -278,3 +278,16 @@ In the next post, we are going to explore all of these time complexities with a 
 Are you ready to become a super programmer and scale your code?! <img src="/images/superman_shield.svg" width="25" height="25" alt="superman shield" style="display:inline-block;">
 
 **Continue with the next part 👉** [Eight running times that every programmer should know](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
+
+
+<!--
+
+Improvement ideas:
+
+- https://www.reddit.com/r/compsci/comments/8elqsc/algorithms_tutorial_series_for_beginners/dxwb2n6/
+Overall good introduction. You could maybe go into a bit more detail of why the kconstant is ignored. Maybe a plot of an few linear functions next to an quadratic one, to illustrate that for different values of kall the linear functions are kinda the same compared to the quadratic function.
+I really like your table of runtimes. Gives a good perspective on why this matters :)
+
+
+
+-->

@@ -32,6 +32,7 @@ This post is part of a serie of the Data Structures and Algorithms (DSA) for Beg
 
 1. [Algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
 1. Eight time complexities that every programmer should know **👈 you are here**
+1. Analysis of recursive algorithms (coming soon)
 
 In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing save millions of lives with an optimized algorithm. In most common cases, fast algorithms can save you time, money and enabled new technology. So, It is paramount to know how to measure algorithms performance.
 
@@ -490,6 +491,7 @@ https://www.topcoder.com/community/data-science/data-science-tutorials/binary-se
 
 https://stackoverflow.com/questions/tagged/algorithm
 https://stackoverflow.com/questions/tagged/data-structures
+https://math.stackexchange.com/questions/tagged/recursive-algorithms+algorithms
 
 https://stackoverflow.com/q/13467674/684957
 https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms) -->
