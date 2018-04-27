@@ -111,11 +111,10 @@ function getMin(n) {
   let min;
 
   array.forEach(element => {
-    if(!min || element < min) {
+    if(min === undefined || element < min) {
       min = element;
     }
   });
-
   return min;
 }
 
