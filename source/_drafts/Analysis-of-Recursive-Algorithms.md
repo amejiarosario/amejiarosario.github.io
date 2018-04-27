@@ -35,7 +35,9 @@ This post is part of a serie of the Data Structures and Algorithms (DSA) for Beg
 1. [Eight most popular running times of algorithms </i>with examples</i>](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
 1. Analysis of Recursive Algorithms **👈 you are here**
 
-We are going to explore two methods of obtaining the time complexity of recursive algorithms. One is the **Master Theorem** and other is the **Recursion Tree**. Let's get started with the first one!
+We are going to explore two methods of obtaining the time complexity of recursive algorithms. For that, we are going to use the **Master Theorem** (or master method)
+<!-- One is the **Master Theorem** and other is the **Recursion Tree**.  -->
+Let's get started with the first one!
 
 #  Master Theorem
 
@@ -215,7 +217,72 @@ Master method is very useful but there are certain cases when you cannot use it.
 - *`f(n)`* is not polynomial. E.g. \` T(n) = 2 * T(n/2) + 2^n \`.
 - *`b`* cannot be expressed as a constant. E.g. \` T(n) = 2 * T(sqrt(n)) + n \`.
 
-# Recursion tree
+
+# Summary
+
+...
+
+
+<!-- Stick around to learn how to figure out the time complexity of algorithms that doesn't fit the Master Theorem. -->
+<!-- # Recursion tree -->
+
+<!-- Recursion tree is a valuable way to determine the runtime of recursive algorithms. Let's see the following example: -->
+
+<!-- ## Fibonacci running time complexity -->
+
+<!-- https://stackoverflow.com/a/360773/684957
+http://courses.csail.mit.edu/6.01/spring07/lectures/lecture4.pdf
+https://en.wikipedia.org/wiki/Fibonacci_number#Closed_form_expression -->
+
+<!--
+```js
+function fibonacci(n) {
+  if (n <= 1)
+    return n;
+  else {
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+}
+```
+
+What's the running time of this recursive function? We cannot use the master method since `b` cannot be expressed as a constant. Let's express the recursion like this:
+
+\` T(n) = { ( T(n - 1) + T(n - 2) + O(1), n > 1 ), ( 1, n <= 1 ) :} \`
+
+
+\` sum_{i=0}^m 1 = m+1 \` -->
+
+<!--
+We can run the iteration for a couple of times to see if we can identify a pattern. This is the base equation with *`T(n)`*
+
+1) \`  T(n) = T(n - 1) + T(n - 2) + 1\`
+
+Let's substitute *`n`* from `1)` with *`n - 1`* and get the following:
+
+\`T(n - 1) = T((n - 1) - 1) + T((n - 1) - 2) + 1\`
+
+that can be simplify to:
+
+2) \`T(n - 1) = T(n - 2) + T(n - 3) + 1\`
+
+Let's do it again replace: *`n`* from `2)` with *`n - 1`*:
+
+\`T((n -1) - 1) = T((n-1) - 2) + T((n-1) - 3) + 1\`
+
+simplifying:
+
+3) \`T(n-2) = T(n-3) + T(n-4) + 1\`
+
+
+
+```
+         1
+      /       \
+   T(n-1)   T(n-2)
+
+```
+ -->
+
 
 <!--
 
@@ -224,17 +291,12 @@ https://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/lec20.htm
 
  -->
 
-Deserunt exercitation commodo fugiat eiusmod ex magna consequat qui non esse ea aliquip velit anim. Minim sit eu do anim dolore ipsum dolor. Quis exercitation anim anim cupidatat. Lorem do deserunt anim pariatur commodo excepteur esse reprehenderit occaecat in est. Nostrud proident nostrud aliqua aliqua elit aute do anim velit laboris cupidatat laborum.
+<!-- ## Other -->
 
+<!-- https://stackoverflow.com/q/13467674/684957 -->
 
-## Fibonacci
-
-Consectetur tempor tempor elit tempor et aute veniam eu duis cupidatat esse elit eu. Eu aliqua culpa et minim nulla ad. Minim commodo eu laborum occaecat deserunt duis. Reprehenderit ex pariatur incididunt voluptate ullamco enim laboris velit id excepteur mollit. Fugiat laboris laborum proident sit. Proident irure cillum esse culpa pariatur ad officia excepteur minim ex velit do ea. Amet ad duis eiusmod sint minim Lorem laboris eu quis.
-
-
-## Other
-
-```java
+<!-- ```java
+// O(n)
 int recursiveFun1(int n)
 {
     if (n <= 0)
@@ -243,6 +305,7 @@ int recursiveFun1(int n)
         return 1 + recursiveFun1(n-1);
 }
 
+// O(n)
 int recursiveFun2(int n)
 {
     if (n <= 0)
@@ -251,6 +314,7 @@ int recursiveFun2(int n)
         return 1 + recursiveFun2(n-5);
 }
 
+// O(log n)
 int recursiveFun3(int n)
 {
     if (n <= 0)
@@ -259,6 +323,7 @@ int recursiveFun3(int n)
         return 1 + recursiveFun3(n/5);
 }
 
+// O(n^2)
 void recursiveFun4(int n, int m, int o)
 {
     if (n <= 0)
@@ -272,6 +337,7 @@ void recursiveFun4(int n, int m, int o)
     }
 }
 
+// O(n)
 int recursiveFun5(int n)
 {
     for (i = 0; i < n; i += 2) {
@@ -288,7 +354,7 @@ int recursiveFun5(int n)
 
 # Summary
 
-Deserunt veniam proident minim enim enim reprehenderit pariatur pariatur aliqua. Ex ad irure nisi elit. Dolor non proident ad nostrud officia occaecat esse culpa ut consequat laboris.
+Deserunt veniam proident minim enim enim reprehenderit pariatur pariatur aliqua. Ex ad irure nisi elit. Dolor non proident ad nostrud officia occaecat esse culpa ut consequat laboris. -->
 
 
 <!--

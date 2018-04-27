@@ -46,7 +46,7 @@ Alan's team found out that every encrypted message ended with the same string: �
 
 > The same machine that was going to get shut down as a failure became a live saver. Likewise, you can do way more with your computing resources when you write efficient code. That is what we are going to learn in this course!
 
-Another popular algorithm is `PageRank` developed in 1988 by Sergey Brin and Larry Page (Google founders). This algorithm was (and is) used by Google search engine to make sense of trillions of web pages. Google was not the only search engine, however, since their algorithm returns better results most of the competitors faded away. Today it powers most of 3 billion daily searches very quickly. That is the power of algorithms that scale! 🏋🏻‍
+Another popular algorithm is `PageRank` developed in 1998 by Sergey Brin and Larry Page (Google founders). This algorithm was (and is) used by Google search engine to make sense of trillions of web pages. Google was not the only search engine, however, since their algorithm returns better results most of the competitors faded away. Today it powers most of 3 billion daily searches very quickly. That is the power of algorithms that scale! 🏋🏻‍
 
 # So, why should you learn to write efficient algorithms?
 
