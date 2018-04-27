@@ -32,7 +32,7 @@ Analyzing the running time of non-recursive algorithms is pretty straigthtforwar
 This post is part of a serie of the Data Structures and Algorithms (DSA) for Beginners:
 
 1. [Algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
-1. [Eight most popular running times of algorithms </i>with examples</i>](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
+1. [Eight most popular running times of algorithms </i>with examples</i>](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
 1. Analysis of Recursive Algorithms **👈 you are here**
 
 We are going to explore two methods of obtaining the time complexity of recursive algorithms. For that, we are going to use the **Master Theorem** (or master method)
@@ -73,7 +73,7 @@ This might see a little abstract at first but after a few example it will cleare
 
 # Master Theorem Examples
 
-In the previous post we used Master Method to get the time complexity for the [binary search](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/#Binary-search) and [merge sort](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/#Mergesort). Both fall into the case 2. Let's explore some other examples.
+In the previous post we used Master Method to get the time complexity for the [binary search](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#Binary-search) and [merge sort](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#Mergesort). Both fall into the case 2. Let's explore some other examples.
 
 ## Case 1 Example
 

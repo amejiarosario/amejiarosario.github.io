@@ -89,7 +89,7 @@ Time complexity (or **running time**) is the estimated time taken by running alg
 
 > The **time complexity** is not about timing how long the algorithm takes. Instead, how many operations are executed. The number of instructions executed by a program is affected by the size of the input and how their elements are arranged.
 
-For instance, you want to sort an array of numbers. If the elements are already the program will perform fewer operations. On the contrary, if the items are in reverse order, it will require more swap operations to get it sorted.
+For instance, you want to sort an array of numbers. If the elements are already sorted the program will perform fewer operations. On the contrary, if the items are in reverse order, it will require more swap operations to get it sorted.
 
 We can say for each algorithm we can have the following running times:
 
@@ -276,7 +276,7 @@ As you can see, some algorithms are very time-consuming. An input size as little
 In the next post, we are going to explore all of these time complexities with a code example or two!
 Are you ready to become a super programmer and scale your code?! <img src="/images/superman_shield.svg" width="25" height="25" alt="superman shield" style="display:inline-block;">
 
-**Continue with the next part 👉** [Eight running times that every programmer should know](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
+**Continue with the next part 👉** [Eight running times that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
 
 
 <!--
