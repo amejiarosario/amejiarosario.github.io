@@ -59,19 +59,14 @@
 
       <% if(page.layout !== 'snippet') { %>
 
-        <%- partial('_widgets/bio') %>
-
-        <div class="m-y-4">
-          <%- partial('_widgets/subscribe') %>
-        </div>
-
+        <!-- Related -->
         <footer>
           <div class="m-y-4">
             <% related(page, site).forEach(function(post, i, posts){ %>
               <% if(i === 0) { %>
-              <div class="container">
-              <h1 class="capitalize"><%- post.tutorialTag.replace(/(_|-)/g, ' ') %> Series</h1>
-              <div class="row">
+                <div class="container">
+                <h1 class="capitalize"><%- post.tutorialTag.replace(/(_|-)/g, ' ') %> Series</h1>
+                <div class="row">
               <% } %>
 
               <!-- <ol> -->
@@ -85,6 +80,14 @@
             <% }) %>
           </div>
 
+        <!-- subscribe -->
+        <div class="m-y-4">
+          <%- partial('_widgets/subscribe') %>
+        </div>
+
+        <!-- Adrian Mejia Bio -->
+        <%- partial('_widgets/bio') %>
+
           <!-- 726x88 -->
           <!--<%// partial('_widgets/adsense', {ad: {client: '9725767907287651', slot: '2343826126'}}) %>-->
           <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
@@ -96,6 +99,7 @@
 
 
         </footer>
+
       <% } %><!-- if(page.layout !== 'snippet') -->
     </section>
 
@@ -149,26 +153,26 @@
 
   <!-- Next and previous posts -->
   <% if (page.prev || page.next){ %>
-  <div class="article-nav m-y-4">
-    <% if (page.prev){ %>
-      <a href="<%- url_for(page.prev.path) %>" class="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> <%= __('newer') %></strong>
-        <div class="article-nav-title">
-          <% if (page.prev.title){ %>
-            <%= page.prev.title %>
-          <% } else { %>
-            (no title)
-          <% } %>
-        </div>
-      </a>
-    <% } %>
-    <% if (page.next){ %>
-      <a href="<%- url_for(page.next.path) %>" class="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption"><%= __('older') %> <i class="fa fa-chevron-right"></i></strong>
-        <div class="article-nav-title"><%= page.next.title %></div>
-      </a>
-    <% } %>
-  </div>
+    <div class="article-nav m-y-4">
+      <% if (page.prev){ %>
+        <a href="<%- url_for(page.prev.path) %>" class="article-nav-newer" class="article-nav-link-wrap">
+          <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> <%= __('newer') %></strong>
+          <div class="article-nav-title">
+            <% if (page.prev.title){ %>
+              <%= page.prev.title %>
+            <% } else { %>
+              (no title)
+            <% } %>
+          </div>
+        </a>
+      <% } %>
+      <% if (page.next){ %>
+        <a href="<%- url_for(page.next.path) %>" class="article-nav-older" class="article-nav-link-wrap">
+          <strong class="article-nav-caption"><%= __('older') %> <i class="fa fa-chevron-right"></i></strong>
+          <div class="article-nav-title"><%= page.next.title %></div>
+        </a>
+      <% } %>
+    </div>
   <% } %>
 
   <!-- comments -->
