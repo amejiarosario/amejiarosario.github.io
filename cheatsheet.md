@@ -94,10 +94,12 @@ Option | Description
 ---
 
 
-This post is part of a serie of the Data Structures and Algorithms (DSA) for Beginners:
-**👈 you are here**
-1. [Algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
-1. [Eight most popular running times of algorithms </i>with examples</i>](/blog/2018/04/05/big-o-notation-and-time-complexity-to-speed-up-your-algorithms/)
+
+This post is part of a tutorial series "Learning Data Structures and Algorithms (DSA) for Beginners":
+
+1. [Intro to algorithm's time complexity and Big O notation]()
+1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
+1. Analysis of recursive algorithms **👈 you are here**
 
 
 
