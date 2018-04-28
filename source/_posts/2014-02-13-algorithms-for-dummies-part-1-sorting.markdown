@@ -5,9 +5,9 @@ date: 2014-02-13 09:28:51 -0400
 updated: 2014-02-13 09:28:51 -0400
 comments: true
 toc: true
-pageviews__total: 84135
+pageviews__total: 84271
 pageviews__recent:  2239
-pageviews__avg_time: 502
+pageviews__avg_time: 501
 #categories: [algorithms, big-o, sorting, merge sort]
 photos:
   - /images/AlgorithmsForDummies_small.png
