@@ -27,13 +27,6 @@ We are going to learn the top algorithm's running time that every developer shou
 
 <!-- more -->
 
-
-This post is part of a serie of the Data Structures and Algorithms (DSA) for Beginners:
-
-1. [Algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
-1. Eight time complexities that every programmer should know **👈 you are here**
-1. Analysis of recursive algorithms (coming soon)
-
 In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing save millions of lives with an optimized algorithm. In most common cases, fast algorithms can save you time, money and enabled new technology. So, It is paramount to know how to measure algorithms performance.
 
 To recap **time complexity** estimates how well an algorithm performs regardless kind of machine is run on. You can obtain the time complexity by counting the number of elementary operations performed by your code. This time complexity is expressed as a function of the input size `n` using Big-O notation. `n` indicates the size of the input while O is the growth rate function.
@@ -110,6 +103,17 @@ Big O Notation | Name | Example(s)
 
 Now, Let's go one by one and provide code examples!
 
+
+
+---
+This post is part of a tutorial series:
+
+**Learning Data Structures and Algorithms (DSA) for Beginners**
+1. [Intro to Algorithm's Time Complexity and Big O Notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
+1. Eight Time Complexities that Every Programmer Should Know **👈 you are here**
+<!-- 1. [Eight Time Complexities that Every Programmer Should Know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/) -->
+1. [Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
+---
 
 <!-- table: time complexities -->
 
