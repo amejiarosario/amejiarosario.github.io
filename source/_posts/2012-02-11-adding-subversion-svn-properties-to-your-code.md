@@ -6,7 +6,7 @@ updated: 1329003331000
 comments: true
 pageviews__total: 1939
 pageviews__recent:  41
-pageviews__avg_time: 377
+pageviews__avg_time: 372
 tutorial__order: 0
 #categories: [subversion, eclipse]
 ---

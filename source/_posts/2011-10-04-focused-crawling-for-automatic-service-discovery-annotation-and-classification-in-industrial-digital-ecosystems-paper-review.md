@@ -6,7 +6,7 @@ updated: 1317758695000
 comments: true
 pageviews__total: 46
 pageviews__recent: 2
-pageviews__avg_time: 191
+pageviews__avg_time: 192
 tutorial__order: 0
 #categories: [paper review, e-learning, focused crawling, web semantics]
 ---
