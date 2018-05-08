@@ -34,7 +34,7 @@ To recap **time complexity** estimates how well an algorithm performs regardless
 The Big-O notation is used to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
 
 
-Before we dive in, here is the **big O cheatsheet** and examples that we are going to cover on this post:
+Before we dive in, here is the **big O cheatsheet** and examples that we are going to cover on this post. **Click** on them to go directly to the implementation 😉
 
 
 <!--
@@ -61,7 +61,7 @@ Big O Notation | Name | Example(s)
 <tr>
 <td class="green"><i>O(1)</i></td>
 <td class="green">Constant</td>
-<td># <a href="#odd-or-even">Odd or Even number</a> # <a href="#Look-up-table">Look-up table</a></td>
+<td># <a href="#odd-or-even">Odd or Even number</a>,<br># <a href="#Look-up-table">Look-up table (on average)</a></td>
 </tr>
 <tr>
 <td class="green"><i>O(log n)</i></td>
@@ -71,7 +71,7 @@ Big O Notation | Name | Example(s)
 <tr>
 <td class="green"><i>O(n)</i></td>
 <td class="green">Linear</td>
-<td># <a href="#Largest-item-on-an-unsorted-array">Find max element in unsorted array</a></td>
+<td># <a href="#Largest-item-on-an-unsorted-array">Find max element in unsorted array</a>,<br># <a href="#">Duplicate elements in array with Hash Map</a></td>
 </tr>
 <tr>
 <td class="green"><i>O(n log n)</i></td>
@@ -81,7 +81,7 @@ Big O Notation | Name | Example(s)
 <tr>
 <td class="orange"><i>O(n<sup>2</sup>)</i></td>
 <td class="orange">Quadratic</td>
-<td># <a href="#Has-duplicates">Duplicate elements in array</a>, # <a href="#Bubble-sort">Sorting array with <strong>bubble sort</strong></a></td>
+<td># <a href="#Has-duplicates">Duplicate elements in array **(naïve)**</a>,<br># <a href="#Bubble-sort">Sorting array with <strong>bubble sort</strong></a></td>
 </tr>
 <tr>
 <td class="orange"><i>O(n<sup>3</sup>)</i></td>
@@ -119,11 +119,11 @@ This post is part of a tutorial series:
 
 # O(1) - Constant time
 
- `O(1)` describes algorithms that have that takes the same time compute regardless of the input size.
+`O(1)` describes algorithms that have that takes the same time compute regardless of the input size.
 
 For instance, if a function takes the same time to process 10 elements as well as 1 million items, then we say that it has a constant growth rate or `O(1)`. Let’s see some examples.
 
-  ## odd or even
+  ## Odd or Even
 
   Find if a number is odd or even.
 
@@ -136,7 +136,14 @@ For instance, if a function takes the same time to process 10 elements as well a
     console.log(isEvenOrOdd(10001)); // => Odd
   ```
 
- It doesn't matter if n is 10 or 10,001, it will execute line 2 only one time. This example is easy. Let's do another example.
+ It doesn't matter if n is 10 or 10,001, it will execute line 2 only one time.
+
+ **Note:** primitive operations like sum, multiplication, substraction, division, modulo, bit shift, etc are constant time. Other operations/methods like *`Array.sort`* are not! So, beware of the runtime of methods manipulating objects and arrays.
+
+ **Advanced note:** you could also replace *`n % 2`* with the bit AND operator: *`n & 1`*. If the first bit (<abbr title="Least Significant Bit">LSB</abbr>) is `1` then is odd otherwise is even.
+
+
+ This example is easy. Let's do another example.
 
   ## Look-up table
 
@@ -154,6 +161,8 @@ console.log(getWordFrequency(dictionary, 'in'));
 ```
 
 Again, we can be sure that even if the dictionary has 10 or 1 million words, it would still execute line 4 only one time to find the word. However, if we decided to store the dictionary as an array rather than a hash map, then it would be a different story. In the next section, we are going to explore what's the running time to find an item in an array.
+
+**Advanced note:** Only a hash table with a perfect *hash function* will have a worst-case runtime of *O(1)*. The perfect hash function is not practical, so there will be some collitions and we can would have to say that the worst-case runtime is *O(n)*. On *average* the lookup time is considered *O(1)*.
 
 # O(n) - Linear time
 
@@ -324,7 +333,7 @@ Let's say you want to find the solutions for a multi-variable equation that look
 
 > 3x + 9y + 8z = 79
 
-This program will give you all the solutions that satisfy the equation where `x`, `y` and `z` < `n`.
+This naive program will give you all the solutions that satisfy the equation where `x`, `y` and `z` < `n`.
 
 ```js
 function findXYZ(n) {
@@ -347,6 +356,8 @@ console.log(findXYZ(10)); // => [{x: 0, y: 7, z: 2}, ...]
 ```
 
 This algorithm has a cubic running time: `O(n^3)`.
+
+**Note:** We could do a more efficient solution but for the purpose of showing an example of a cubic runtime is good enough.
 
 # O(log n) - Logarithmic time
 
