@@ -172,7 +172,7 @@ function findMax(n) {
 
   for (let i = 0; i < n.length; i++) {
     counter++;
-    if(!max && max < n[i]) {
+    if(max === undefined || max < n[i]) {
       max = n[i];
     }
   }
@@ -712,3 +712,8 @@ We explored the most common algorithms running times with one or two examples ea
 {% img /images/big-o-running-time-complexity.png 'Big o running time complexities' %}
 
 Mind your time complexity!
+
+
+<!-- Backlinks and references -->
+
+<!-- https://www.reddit.com/r/compsci/comments/8hwozu/8_time_complexities_that_every_programmer_should/ -->
