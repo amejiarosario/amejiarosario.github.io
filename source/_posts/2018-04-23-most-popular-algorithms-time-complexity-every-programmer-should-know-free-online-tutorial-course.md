@@ -33,7 +33,6 @@ To recap **time complexity** estimates how well an algorithm performs regardless
 
 The Big-O notation is used to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
 
-
 Before we dive in, here is the **big O cheatsheet** and examples that we are going to cover on this post. **Click** on them to go directly to the implementation 😉
 
 
@@ -136,11 +135,25 @@ For instance, if a function takes the same time to process 10 elements as well a
     console.log(isEvenOrOdd(10001)); // => Odd
   ```
 
+  **Advanced note:** you could also replace *`n % 2`* with the bit AND operator: *`n & 1`*. If the first bit (<abbr title="Least Significant Bit">LSB</abbr>) is `1` then is odd otherwise is even.
+
  It doesn't matter if n is 10 or 10,001, it will execute line 2 only one time.
 
- **Note:** primitive operations like sum, multiplication, substraction, division, modulo, bit shift, etc are constant time. Other operations/methods like *`Array.sort`* are not! So, beware of the runtime of methods manipulating objects and arrays.
+ > Do not be fool by one-liners. They don't always translate to constant times. You have to be aware of how they are implemented.
 
- **Advanced note:** you could also replace *`n % 2`* with the bit AND operator: *`n & 1`*. If the first bit (<abbr title="Least Significant Bit">LSB</abbr>) is `1` then is odd otherwise is even.
+If you have a method like `Array.sort()` or any other array or object methods you have to look into the implementation to determine its running time.
+
+Primitive operations like sum, multiplication, substraction, division, modulo, bit shift, etc have a constant runtime. This can be shocking since if you use schoolbook multiplication, it would take \`O(n^2)\` to multiply two numbers.
+
+However, most programming languages limit numbers to a max value (e.g. in JS: Number.MAX_VALUE => 1.7976931348623157e+308). So, you cannot operate numbers that yield a result greater than the MAX_VALUE. Primitive operations are bound to be completed on a fixed amount of instructions `O(1)` or throw overflow errors.
+
+---
+ **Note:** Primitive operations like sum, multiplication, substraction, division, modulo, bit shift, etc are constant time in terms of `n`. Other operations/methods like *`Array.sort`* are not! So, beware of the runtime of methods manipulating objects and arrays.
+
+ Most programming languages limit Integers/Floats to a max (e.g. `Number.MAX_VALUE`), so for that reason operations with numbers can be considered constant since they are capped and will not grow to infinity.
+
+ <!-- Addition O(n), Multiplication O(n^2) https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations -->
+---
 
 
  This example is easy. Let's do another example.
