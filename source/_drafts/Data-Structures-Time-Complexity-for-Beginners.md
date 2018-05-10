@@ -220,21 +220,29 @@ Hash Table has many names like Hash Map or just Map, Dictionary, Associative Arr
 
 Going back to the drawer analogy. Instead of each cabinets having numbers (like array indexes) we have a `key`. That key gets translated into an index using a *hash function*.
 
-Take a look at this function that uses an *array* and `hash` function to implement a hash table
-```js
-class Map {
-  constructor(size = 1000) {
-    this.array = new Array(size);
-  }
+There are at least two ways to implement hash map:
+1. Array: Using a hash function to map a key to the array index value. Worst: `O(n)`, Average: `O(1)`
+2. Binary Tree Search: using a self-balancing binary search tree to look up for values (more on this later). Worst: *`O(log n)`*, Average: *`O(log n)`*.
 
-  getIndex(key) {
-    const indexHash = this.hash(key);
-    const index = indexHash % this.array.length;
+The most common implementation of Maps is using an array and `hash` function. So, we are going to implement that going forward.
+
+## Hash Function
+
+The perfect hash function is the one that for every key it assigns an unique index. Perfect hashing algorithms allows a *constant time* access/lookup. However, it's hard to achieve a perfect hashing function in practice. You might have the case where two different keys yields on the same index: *collision*.
+
+Collision on hash maps are unavoidable when using an array-like underlying data structure. So one way to deal with it is to store multiple values in the same bucket. When we try to access the key's value and there are multiple value we just iterate over the values *O(n)*. However, in most implementations the hash is big enough to avoid collisions so we can consider that the average lookup time is *O(1)*.
+
+A very simple (and bad) hash function would this one:
+
+```js
+class NaiveHashMap {
+  constructor(size = 2) {
+    this.array = new Array(size);
   }
 
   set(key, value) {
     const index = this.getIndex(key);
-    this.array[key] = value;
+    this.array[index] = value;
   }
 
   get(key) {
@@ -242,17 +250,204 @@ class Map {
     return this.array[index];
   }
 
-  hash(key) {
-    /* ... hash function implementation ... */
+  hash(key) { // very bad hashing function
+    return key.toString().length;
+  }
+
+  getIndex(key) {
+    const indexHash = this.hash(key);
+    const index = indexHash % this.array.length;
+    return index;
   }
 }
+
+// usage:
+const hashMap = new NaiveHashMap();
+
+hashMap.set('cat', 2);
+hashMap.set('rat', 7);
+hashMap.set('dog', 1);
+hashMap.set('art', 4);
+
+console.log(hashMap.array); // [ <1 empty item>, [ { key: 'cat', value: 2 }, { key: 'rat', value: 7 }, { key: 'dog', value: 1 }, { key: 'art', value: 1 } ] ]
+
+// const assert = require('assert');
+// assert.equal(hashMap.get('cat'), 2);
+// assert.equal(hashMap.get('rat'), 7);
+// assert.equal(hashMap.get('dog'), 1);
 ```
 
-<!-- Java hashCode in JS: https://stackoverflow.com/a/8831937/684957 -->
+This `Map` allow us to `set` a key and a value and then `get` the value using a `key`. The key part is the `hash` function let's see multiple implementations to see how it affects the performance of the Map.
 
-The perfect hash function is the one that for every key it assign an unique index. Perfect hashing algorithms allows a *constant time* access/lookup. However, that's hard to achieve in practice a perfect hashing function. You might have the case where two different keys yields on the same index: *collision*.
+Can you tell what's wrong with `NaiveHashMap` before expanding the answer bellow?
 
-Collision on hash maps are going to happen, so one way to deal with it is to store multiple values in the same bucket. When we try to access the key's value and there are multiple value we just iterate over the values *O(n)*. However, in most implementations the hash is big enough to avoid collisions so we can consider that the average lookup time is *O(1)*.
+<details>
+ <summary>What is wrong with `NaiveHashMap` is that...</summary>
+
+<br><br>
+**1)** **Hash function** generates many duplicates. E.g.
+
+```js
+hash('cat') // 3
+hash('dog') // 3
+```
+This will cause a lot of collisions.
+
+<br><br>
+**2)** **Collisions** are not handled at all. Both `cat` and `dog` will override each other on the position 3 of the array.
+
+<br><br>
+**3)** **Size of the array** even if we get a better hash function we will will get duplicates because array has a size of 3 which less than the number of elements that we want to fit. We want to have an initial capacity that is well beyond what we need to fit.
+</details>
+
+Did you guess any? ^
+
+> The main purpose of a HashMap is to reduce the search/access time of an Array from *`O(n)`* to *`O(1)`*.
+
+For that we need:
+
+1. A good hash function that produces as few collisions as possible.
+2. Array that is big enough to hold all the needed values.
+
+Let's give it another shot to our hash function:
+
+```js
+  hash(key) {
+    let hashValue = 0;
+    const stringKey = key.toString();
+
+    for (let index = 0; index < stringKey.length; index++) {
+      const charCode = stringKey.charCodeAt(index);
+      hashValue += charCode;
+    }
+
+    return hashValue;
+  }
+```
+
+This one is better because each letter matters. We take the [ascii](https://www.asciitable.com/) code of the string
+```js
+hash('cat') // 312  (c=99 + a=97 + t=116)
+hash('dog') // 314 (d=100 + o=111 + g=103)
+```
+However, there's still an issue since `rat` and `art` are both 327, **collision!**
+
+We can fix that by offseting the sum with the possition:
+
+```js
+  hash(key) {
+    let hashValue = 0;
+    const stringKey = key.toString();
+
+    for (let index = 0; index < stringKey.length; index++) {
+      const charCode = stringKey.charCodeAt(index);
+      hashValue += charCode << (index * 8);
+    }
+
+    return hashValue;
+  }
+```
+
+Now let's try again, this time with hex numbers so we can clearly see the offset
+
+```js
+// r = 114 or 0x72; a = 97 or 0x61; t = 116 or 0x74
+hash('rat'); // 7,627,122 (r: 114 * 1 + a: 97 * 256 + t: 116 * 65,536) or in hex: 0x726174 (r: 0x72 + a: 0x6100 + t: 0x740000)
+hash('art'); // 7,631,457 or 0x617274
+```
+
+Now we have a much better hash function! We also can increase the initial capacity fo the array to minimize collisions. Let's put all together:
+
+```js
+/**
+ * Hash Map data structure implementation
+ */
+class BetterHashMap {
+
+  /**
+   * Initialize array that holds the values. Default is size 1,000
+   * @param {number} size
+   */
+  constructor(size = 1000) {
+    this.array = new Array(size);
+  }
+
+  /**
+   * insert a key/value pair into the hash map
+   * @param {any} key
+   * @param {any} value
+   */
+  set(key, value) {
+    const index = this.getIndex(key);
+    if(this.array[index]) {
+      this.array[index].push({key, value});
+    } else {
+      this.array[index] = [{key, value}];
+    }
+    return this;
+  }
+
+  /**
+   * Gets the value out of the hash map
+   * @param {any} key
+   */
+  get(key) {
+    const hashIndex = this.getIndex(key);
+    for (let index = 0; index < this.array[hashIndex].length; index++) {
+      const entry = this.array[hashIndex][index];
+      if(entry.key === key) {
+        return entry.value
+      }
+    }
+  }
+
+  /**
+   * Decent hash function where each char code is added with an offset depending on the possition
+   * @param {any} key
+   */
+  hash(key) {
+    let hashValue = 0;
+    const stringKey = key.toString();
+
+    for (let index = 0; index < stringKey.length; index++) {
+      const charCode = stringKey.charCodeAt(index);
+      hashValue += charCode << (index * 8);
+    }
+
+    return hashValue;
+  }
+
+  /**
+   * Get the array index after applying the hash funtion to the given key
+   * @param {any} key
+   */
+  getIndex(key) {
+    const indexHash = this.hash(key);
+    const index = indexHash % this.array.length;
+    return index;
+  }
+}
+
+// Usage:
+const hashMap = new HashMap();
+
+hashMap.set('cat', 2);
+hashMap.set('rat', 7);
+hashMap.set('dog', 1);
+hashMap.set('art', 0); // <-- NO more collision with rat
+
+console.log(hashMap.array);
+
+// const assert = require('assert');
+// assert.equal(hashMap.get('cat'), 2);
+// assert.equal(hashMap.get('rat'), 7);
+// assert.equal(hashMap.get('dog'), 1);
+```
+
+This `HashMap` gets the job done but still there are some enhancements that we can do:
+1. **Rehash**: if we are getting more than 1000 items we will run into issues. We could keep track a of the size of the hash and increment the size of the array once **load factor** (items/array_size) threshold is met. For instance <a href="https://docs.oracle.com/javase/10/docs/api/java/util/HashMap.html#%3Cinit%3E()">Java's HashMap</a> starts with a capacity of 16 and a load factor of 0.75.
+
+2. **Handle Override**: the current implementation doesn't handle overwrite. You can add that as well.
 
 
 ## Hash Map vs Array
