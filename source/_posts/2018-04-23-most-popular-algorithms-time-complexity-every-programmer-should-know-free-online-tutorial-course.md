@@ -137,26 +137,19 @@ For instance, if a function takes the same time to process 10 elements as well a
 
   **Advanced note:** you could also replace *`n % 2`* with the bit AND operator: *`n & 1`*. If the first bit (<abbr title="Least Significant Bit">LSB</abbr>) is `1` then is odd otherwise is even.
 
- It doesn't matter if n is 10 or 10,001, it will execute line 2 only one time.
+ It doesn't matter if n is `10` or `10,001`, it will execute line 2 only one time.
 
  > Do not be fool by one-liners. They don't always translate to constant times. You have to be aware of how they are implemented.
 
 If you have a method like `Array.sort()` or any other array or object methods you have to look into the implementation to determine its running time.
 
-Primitive operations like sum, multiplication, substraction, division, modulo, bit shift, etc have a constant runtime. This can be shocking since if you use schoolbook multiplication, it would take \`O(n^2)\` to multiply two numbers.
+Primitive operations like sum, multiplication, substraction, division, modulo, bit shift, etc have a constant runtime. This can be shocking since if you use schoolbook long multiplication algorithm, it would take <code>O(n<sup>2</sup>)</code> to multiply two numbers.
 
-However, most programming languages limit numbers to a max value (e.g. in JS: Number.MAX_VALUE => 1.7976931348623157e+308). So, you cannot operate numbers that yield a result greater than the MAX_VALUE. Primitive operations are bound to be completed on a fixed amount of instructions `O(1)` or throw overflow errors.
+However, most programming languages limit numbers to a max value (e.g. in JS: `Number.MAX_VALUE` => `1.7976931348623157e+308`). So, you cannot operate numbers that yield a result greater than the MAX_VALUE. So, primitive operations are bound to be completed on a fixed amount of instructions `O(1)` or throw overflow errors.
 
----
- **Note:** Primitive operations like sum, multiplication, substraction, division, modulo, bit shift, etc are constant time in terms of `n`. Other operations/methods like *`Array.sort`* are not! So, beware of the runtime of methods manipulating objects and arrays.
+<!-- Addition O(n), Multiplication O(n^2) https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations -->
 
- Most programming languages limit Integers/Floats to a max (e.g. `Number.MAX_VALUE`), so for that reason operations with numbers can be considered constant since they are capped and will not grow to infinity.
-
- <!-- Addition O(n), Multiplication O(n^2) https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations -->
----
-
-
- This example is easy. Let's do another example.
+ This example was easy. Let's do another example.
 
   ## Look-up table
 
@@ -175,7 +168,7 @@ console.log(getWordFrequency(dictionary, 'in'));
 
 Again, we can be sure that even if the dictionary has 10 or 1 million words, it would still execute line 4 only one time to find the word. However, if we decided to store the dictionary as an array rather than a hash map, then it would be a different story. In the next section, we are going to explore what's the running time to find an item in an array.
 
-**Advanced note:** Only a hash table with a perfect *hash function* will have a worst-case runtime of *O(1)*. The perfect hash function is not practical, so there will be some collitions and we can would have to say that the worst-case runtime is *O(n)*. On *average* the lookup time is considered *O(1)*.
+> Only a hash table with a perfect *hash function* will have a worst-case runtime of *O(1)*. The perfect hash function is not practical, so there will be some collitions and workarounds leads to a worst-case runtime of *O(n)*. Still, on *average* the lookup time is *O(1)*.
 
 # O(n) - Linear time
 
