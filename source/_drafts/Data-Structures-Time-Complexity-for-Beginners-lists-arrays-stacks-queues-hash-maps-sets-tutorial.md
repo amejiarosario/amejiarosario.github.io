@@ -25,13 +25,13 @@ updated: 2018-04-28 19:20:40
 
 <!-- Data Structures Time Complexity for Beginners -->
 
-When we are developing software we have to store data in memory in a data structure. There are many types of data types such as arrays, maps, sets, lists, graphs, etc. Choosing the right data structure for the job can be tricky. So, this post will help you know the trade-offs so you can always use the right tool for the job.
+When we are developing software we have to store data in memory in a data structure. There are many types of data types such as arrays, maps, sets, lists, trees, graphs, etc. Choosing the right data structure for a task can be tricky. So, this post will help you know the trade-offs so you can always use the right tool for the job.
 
 <!-- more -->
 
 # Data Structures Big-O Cheatsheet
 
-This table is summary of everything that we are going to cover on this post. Bookmarket, pin it or share it so you have it at hand.
+This table is summary of everything that we are going to cover on this post. Bookmarket, pin it or share it so you have it at hand when you need it.
 
 Data Structures | Runtime
 -|-
@@ -211,23 +211,26 @@ Insert | *`O(n)`*
 Search | *`O(n)`*
 Delete | *`O(n)`*
 
-# Hash Table
+# Hash Maps
 
 <!-- https://en.wikipedia.org/wiki/Hash_table -->
 <!-- https://en.wikipedia.org/wiki/Associative_array -->
 <!-- https://medium.com/front-end-hacking/es6-map-vs-object-what-and-when-b80621932373 -->
 
-Hash Table has many names like Hash Map or just Map, Dictionary, Associative Arrays and so on. The concept is the same while the implementation might change.
+Hash Maps has many names like Hash Tables, Hash Maps, Map, Dictionary, Associative Arrays and so on. The concept is the same while the implementation might change.
 
-> Hash table is a data structure that maps keys to values
+> Hash table is a data structure that **maps** keys to values
 
 Going back to the drawer analogy. Instead of each cabinets having numbers (like array indexes) we have a `key`. That key gets translated into an index using a *hash function*.
 
 There are at least two ways to implement hash map:
-1. Array: Using a hash function to map a key to the array index value. Worst: `O(n)`, Average: `O(1)`
-2. Binary Tree Search: using a self-balancing binary search tree to look up for values (more on this later). Worst: *`O(log n)`*, Average: *`O(log n)`*.
+1. **Array**: Using a hash function to map a key to the array index value. Worst: `O(n)`, Average: `O(1)`
+2. **Binary Search Tree**: using a self-balancing binary search tree to look up for values (more on this later). Worst: *`O(log n)`*, Average: *`O(log n)`*.
 
-The most common implementation of Maps is using an array and `hash` function. So, we are going to implement that going forward.
+
+We are going to cover Trees & Binary Search Trees so don't worry too much about it for now.
+
+The most common implementation of Maps is using an **array** and `hash` function. So, we are going to implement that going forward.
 
 ## Hash Function
 
