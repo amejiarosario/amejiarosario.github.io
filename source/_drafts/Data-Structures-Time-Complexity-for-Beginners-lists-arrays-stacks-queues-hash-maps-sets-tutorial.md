@@ -1334,9 +1334,30 @@ Again, we have to be very careful updating the references and handling special c
 
 Using doubly linked list we no longer have to iterate through the whole list to get the 2nd last elements. We can use directly `this.last.previous` and is `O(1)`.
 
+Did you remember that for the Queue we had to use two arrays? Now, we can can change that implementation an use a doubly linked list instead that has a *O(1)* for insert at the start and deleting at the end.
+
 # Summary
 
-Deserunt veniam proident minim enim enim reprehenderit pariatur pariatur aliqua. Ex ad irure nisi elit. Dolor non proident ad nostrud officia occaecat esse culpa ut consequat laboris.
+We a explored the most of the linear data strucutrures. We saw that depending of how we implement the data structures there are different runtimes.
+
+Here's a summary of everything that we explored. You can click on each runtime and it will take you to the implementation.
+<!-- there is not a generic runtime for the operations because it depends more  -->
+
+**Time complexity**
+
+Name | Insert | Access | Search | Delete | Comments
+-|-|-|-|-
+Array | *O(1)* | *O(1)* | *O(n)* | *O(n)* | Insertion to the end is `O(1)`.
+(Hash)Map | *O(1)** | *O(1)* | *O(1)* | *O(1)* | Rehashing might affect insertion time.
+Set | *O(1)** | - | *O(n)* | *O(n)* | Set using a HashMap implementation
+Stack | *O(1)* | *O(1)* | - | *O(1)* | Insert/delete is last-in, first-out (LIFO)
+Queue | *O(1)* | *O(1)** | - | *O(1)* | Can be implemented with an Array or LinkedList
+Linked List (doubly) | *O(1)* | *O(1)* | *O(n)* | *O(1)* | Doubly Linked List with last reference
+Linked List (singly) | *O(1)* | *O(1)* | *O(n)* | *O(n)* | Singly Linked List without last reference
+
+`*` = Amortized runtime
+
+
 
 <!-- Links
 
