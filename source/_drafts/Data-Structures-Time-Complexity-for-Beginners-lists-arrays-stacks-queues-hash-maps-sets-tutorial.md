@@ -204,12 +204,16 @@ We take the worst case scenario:
 
 We can sum up the arrays time complexity as follows:
 
-Operation | Time Complexity
+**Array Time Complexities**
+
+Operation | Worst
 -|-
-Access | *`O(1)`*
-Insert | *`O(n)`*
-Search | *`O(n)`*
-Delete | *`O(n)`*
+Access (`Array.[]`) | *`O(1)`*
+Insert head (`Array.unshift`) | *`O(n)`*
+Insert tail (`Array.push`) | *`O(1)`*
+Search (for value) | *`O(n)`*
+Delete (`Array.splice`) | *`O(n)`*
+
 
 # Hash Maps
 
@@ -217,16 +221,17 @@ Delete | *`O(n)`*
 <!-- https://en.wikipedia.org/wiki/Associative_array -->
 <!-- https://medium.com/front-end-hacking/es6-map-vs-object-what-and-when-b80621932373 -->
 
-Hash Maps has many names like Hash Tables, Hash Maps, Map, Dictionary, Associative Arrays and so on. The concept is the same while the implementation might change.
+Hash Maps has many names like Hash Table, Hash Maps, Map, Dictionary, Associative Arrays and so on. The concept is the same while the implementation might change.
 
 > Hash table is a data structure that **maps** keys to values
 
 Going back to the drawer analogy. Instead of each cabinets having numbers (like array indexes) we have a `key`. That key gets translated into an index using a *hash function*.
 
+http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg
+
 There are at least two ways to implement hash map:
 1. **Array**: Using a hash function to map a key to the array index value. Worst: `O(n)`, Average: `O(1)`
 2. **Binary Search Tree**: using a self-balancing binary search tree to look up for values (more on this later). Worst: *`O(log n)`*, Average: *`O(log n)`*.
-
 
 We are going to cover Trees & Binary Search Trees so don't worry too much about it for now.
 
@@ -263,46 +268,55 @@ Differences between Hash Map and Array
 A very simple (and bad) hash function would this one:
 
 ```js
+/**
+ * Naïve HashMap implementation
+ */
 class NaiveHashMap {
-  constructor(size = 2) {
-    this.array = new Array(size);
+
+  constructor(initialCapacity = 2) {
+    this.buckets = new Array(initialCapacity);
   }
 
   set(key, value) {
     const index = this.getIndex(key);
-    this.array[index] = value;
+    this.buckets[index] = value;
   }
 
   get(key) {
     const index = this.getIndex(key);
-    return this.array[index];
+    return this.buckets[index];
   }
 
-  hash(key) { // very bad hashing function
+  hash(key) {
     return key.toString().length;
   }
 
   getIndex(key) {
     const indexHash = this.hash(key);
-    const index = indexHash % this.array.length;
+    const index = indexHash % this.buckets.length;
     return index;
   }
 }
 
-// usage:
+// Usage:
+const assert = require('assert');
 const hashMap = new NaiveHashMap();
 
 hashMap.set('cat', 2);
 hashMap.set('rat', 7);
 hashMap.set('dog', 1);
-hashMap.set('art', 4);
+hashMap.set('art', 8);
 
-console.log(hashMap.array); // [ <1 empty item>, [ { key: 'cat', value: 2 }, { key: 'rat', value: 7 }, { key: 'dog', value: 1 }, { key: 'art', value: 1 } ] ]
+console.log(hashMap.buckets);
+/*
+  bucket #0: <1 empty item>,
+  bucket #1: 8
+*/
 
-// const assert = require('assert');
-// assert.equal(hashMap.get('cat'), 2);
-// assert.equal(hashMap.get('rat'), 7);
-// assert.equal(hashMap.get('dog'), 1);
+assert.equal(hashMap.get('art'), 8); // this one is ok
+assert.equal(hashMap.get('cat'), 8); // got overwritten by art 😱
+assert.equal(hashMap.get('rat'), 8); // got overwritten by art 😱
+assert.equal(hashMap.get('dog'), 8); // got overwritten by art 😱
 ```
 
 This `Map` allow us to `set` a key and a value and then `get` the value using a `key`. The key part is the `hash` function let's see multiple implementations to see how it affects the performance of the Map.
@@ -434,70 +448,215 @@ console.log(hash(undefined)); // 6940203017
 ```
 
 <a id="DecentHashMap"></a>
-Now we have a much better hash function!!
+Yay 🎉 we have a much better hash function!
 
-We also can increase the initial capacity of the array to minimize collisions. Let's put all of that together in the next section.
+We also can change the initial capacity of the array to minimize collisions. Let's put all of that together in the next section.
 
-## Decent HashMap Implementation
+## Decent Hash Map Implementation
 
-The following implementation:
-- uses a **hash function** that minimizes collsions
-- use a **faily large capacity** (1000).
-- **Handles collisions** by appending values to a list
+Using our optimized hash function we can now do much better. However, it doesn't matter how good our hash function as long as we use a limited size bucket we would have collisions. So, we have to account for that and handle it gracefully. Let's do the following improvements to our Hash Map implementation:
+- **Hash function** that checks types and character orders to minimizes collsions.
+- **Handle collisions** by appending values to a list. We also added a counter to keep track of them.
 
 ```js
-/**
- * Hash Map data structure implementation
- */
 class DecentHashMap {
 
-  /**
-   * Initialize array that holds the values. Default is size 1,000
-   * @param {number} size
-   */
-  constructor(size = 1000) {
-    this.array = new Array(size);
+  constructor(initialCapacity = 2) {
+    this.buckets = new Array(initialCapacity);
+    this.collisions = 0;
   }
 
-  /**
-   * insert a key/value pair into the hash map
-   * @param {any} key
-   * @param {any} value
-   */
   set(key, value) {
-    const index = this.getIndex(key);
-    if(this.array[index]) {
-      this.array[index].push({key, value});
+    const bucketIndex = this.getIndex(key);
+    if(this.buckets[bucketIndex]) {
+      this.buckets[bucketIndex].push({key, value});
+      if(this.buckets[bucketIndex].length > 1) { this.collisions++; }
     } else {
-      this.array[index] = [{key, value}];
+      this.buckets[bucketIndex] = [{key, value}];
     }
     return this;
   }
 
-  /**
-   * Gets the value out of the hash map
-   * @param {any} key
-   */
   get(key) {
-    const hashIndex = this.getIndex(key);
-    for (let index = 0; index < this.array[hashIndex].length; index++) {
-      const entry = this.array[hashIndex][index];
+    const bucketIndex = this.getIndex(key);
+    for (let arrayIndex = 0; arrayIndex < this.buckets[bucketIndex].length; arrayIndex++) {
+      const entry = this.buckets[bucketIndex][arrayIndex];
       if(entry.key === key) {
         return entry.value
       }
     }
   }
 
+  hash(key) {
+    let hashValue = 0;
+    const stringTypeKey = `${key}${typeof key}`;
+
+    for (let index = 0; index < stringTypeKey.length; index++) {
+      const charCode = stringTypeKey.charCodeAt(index);
+      hashValue += charCode << (index * 8);
+    }
+
+    return hashValue;
+  }
+
+  getIndex(key) {
+    const indexHash = this.hash(key);
+    const index = indexHash % this.buckets.length;
+    return index;
+  }
+}
+
+// Usage:
+const assert = require('assert');
+const hashMap = new DecentHashMap();
+
+hashMap.set('cat', 2);
+hashMap.set('rat', 7);
+hashMap.set('dog', 1);
+hashMap.set('art', 8);
+
+console.log('collisions: ', hashMap.collisions); // 2
+console.log(hashMap.buckets);
+/*
+  bucket #0: [ { key: 'cat', value: 2 }, { key: 'art', value: 8 } ]
+  bucket #1: [ { key: 'rat', value: 7 }, { key: 'dog', value: 1 } ]
+*/
+
+assert.equal(hashMap.get('art'), 8); // this one is ok
+assert.equal(hashMap.get('cat'), 2); // Good. Didn't got overwritten by art
+assert.equal(hashMap.get('rat'), 7); // Good. Didn't got overwritten by art
+assert.equal(hashMap.get('dog'), 1); // Good. Didn't got overwritten by art
+```
+
+This `DecentHashMap` gets the job done but still there are some issues. We are using a very good hash function that doesn't produce duplicate values and that's great. However, we have two values in `bucket#0` and two more in `bucket#1`. How is that possible??
+
+Since we are using a limited bucket size of 2, even if the hash code is different all values will fit on the size of the array:
+
+<!-- [{"key":"cat","hash":3789411390},{"key":"dog","hash":3788563007},{"key":"rat","hash":3789411405},{"key":"art","hash":3789415740}] -->
+
+```js
+hash('cat') => 3789411390; bucketIndex => 3789411390 % 2 = 0
+hash('art') => 3789415740; bucketIndex => 3789415740 % 2 = 0
+hash('dog') => 3788563007; bucketIndex => 3788563007 % 2 = 1
+hash('rat') => 3789411405; bucketIndex => 3789411405 % 2 = 1
+```
+
+So obviously we have increase the initial capacity, but by how much? let's see how the initial capacity affects the hash map performance.
+
+If we have a initial capcity of `1`. All the values will go into one bucket (`bucket#0`) and it won't be any better than searching a value in a simple array *`O(n)`*.
+
+Let's say that we start with an initial capacity set to 10:
+
+```js
+const hashMapSize10 = new DecentHashMap(10);
+
+hashMapSize10.set('cat', 2);
+hashMapSize10.set('rat', 7);
+hashMapSize10.set('dog', 1);
+hashMapSize10.set('art', 8);
+
+console.log('collisions: ', hashMapSize10.collisions); // 1
+console.log('hashMapSize10\n', hashMapSize10.buckets);
+/*
+  bucket#0: [ { key: 'cat', value: 2 }, { key: 'art', value: 8 } ],
+            <4 empty items>,
+  bucket#5: [ { key: 'rat', value: 7 } ],
+            <1 empty item>,
+  bucket#7: [ { key: 'dog', value: 1 } ],
+            <2 empty items>
+*/
+```
+
+As you can see we reduced the number of collisions by increasing the initial capacity of the hash map. Let's try with 100
+
+```js
+const hashMapSize100 = new DecentHashMap(100);
+
+hashMapSize100.set('cat', 2);
+hashMapSize100.set('rat', 7);
+hashMapSize100.set('dog', 1);
+hashMapSize100.set('art', 8);
+
+console.log('collisions: ', hashMapSize100.collisions); // 0
+console.log('hashMapSize100\n', hashMapSize100.buckets);
+/*
+            <5 empty items>,
+  bucket#5: [ { key: 'rat', value: 7 } ],
+            <1 empty item>,
+  bucket#7: [ { key: 'dog', value: 1 } ],
+            <32 empty items>,
+  bucket#41: [ { key: 'art', value: 8 } ],
+            <49 empty items>,
+  bucket#90: [ { key: 'cat', value: 2 } ],
+            <9 empty items>
+*/
+```
+Yay! 🎊 no collision!
+
+Having a bigger bucket size is great to avoid collisions but consumes too much memory and probably most of buckets will be unused.
+
+Wouldn't it be great, if we can have a Hash Map that automatically increase its size as needed? Well, that's called rehash and we are going to do it next!
+
+## Optimal Hash Map Implementation
+
+If we have a big enough bucket we won't have collisions thus the search time would be *`O(1)`*. However, how do we know how big a hash map capacity should big? 100? 1,000? A million?
+
+It is impractical to have allocate massive amounts of memory. So, what we can do is to have the hash map automatically resize itself based on a load factor. This is called **Rehash**.
+
+The **load factor** is the measurement of how full is a hash map. We can get the load factor by dividing the number of items / bucket size.
+
+This will be our latest and greated hash map implementation:
+
+<!-- https://github.com/dmlloyd/openjdk/blob/jdk/jdk/src/java.desktop/windows/native/libawt/windows/Hashtable.h -->
+<!-- https://github.com/dmlloyd/openjdk/blob/jdk/jdk/src/java.desktop/windows/native/libawt/windows/Hashtable.cpp -->
+
+<!-- http://hg.openjdk.java.net/jdk10/master/file/6a0c42c40cd1/src/hotspot/share/utilities/hashtable.hpp -->
+<!-- http://hg.openjdk.java.net/jdk10/master/file/6a0c42c40cd1/src/hotspot/share/utilities/hashtable.cpp -->
+
+<!-- http://hg.openjdk.java.net/jdk9/jdk9/jdk/file/f08705540498/src/java.base/share/classes/java/util/HashMap.java -->
+
+<!-- http://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/556b17038b5c/src/share/classes/java/util/HashMap.java -->
+<!-- http://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/556b17038b5c/src/share/classes/java/util/Hashtable.java -->
+
+
+<!-- http://www.docjar.com/html/api/java/util/LinkedList.java.html -->
+<!-- http://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/tip/src/share/classes/java/util/LinkedList.java -->
+
+<a id="HashMapWithRehash"></a>
+
+<details>
+ <summary>**Optimized Hash Map Implementation _(click here to show)_**</summary>
+
+```js
+/**
+ * Hash Map data structure implementation
+ * @author Adrian Mejia <me AT adrianmejia.com>
+ */
+class HashMap {
+
   /**
-   * Decent hash function where each char code is added with an offset depending on the possition
+   * Initialize array that holds the values. Default is size 16
+   * @param {number} initialCapacity initial size of the array
+   * @param {number} loadFactor if set, the Map will automatically rehash when the load factor threshold is met
+   */
+  constructor(initialCapacity = 16, loadFactor = 0.75) {
+    this.buckets = new Array(initialCapacity);
+    this.loadFactor = loadFactor;
+    this.size = 0;
+    this.collisions = 0;
+    this.keys = [];
+  }
+
+  /**
+   * Decent hash function where each char ascii code is added with an offset depending on the possition
    * @param {any} key
    */
   hash(key) {
     let hashValue = 0;
-    const stringKey = key.toString();
+    const stringTypeKey = `${key}${typeof key}`;
 
-    for (let index = 0; index < stringKey.length; index++) {
-      const charCode = stringKey.charCodeAt(index);
+    for (let index = 0; index < stringTypeKey.length; index++) {
+      const charCode = stringTypeKey.charCodeAt(index);
       hashValue += charCode << (index * 8);
     }
 
@@ -508,49 +667,187 @@ class DecentHashMap {
    * Get the array index after applying the hash funtion to the given key
    * @param {any} key
    */
-  getIndex(key) {
-    const indexHash = this.hash(key);
-    const index = indexHash % this.array.length;
-    return index;
+  _getBucketIndex(key) {
+    const hashValue = this.hash(key);
+    const bucketIndex = hashValue % this.buckets.length;
+    return bucketIndex;
+  }
+
+  /**
+   * Insert a key/value pair into the hash map.
+   * If the key is already there replaces its content. Return the Map object to allow chaining
+   * @param {any} key
+   * @param {any} value
+   */
+  set(key, value) {
+    const {bucketIndex, entryIndex} = this._getIndexes(key);
+
+    if(entryIndex === undefined) {
+      // initialize array and save key/value
+      const keyIndex = this.keys.push({content: key}) - 1; // keep track of the key index
+      this.buckets[bucketIndex] = this.buckets[bucketIndex] || [];
+      this.buckets[bucketIndex].push({key, value, keyIndex});
+      this.size++;
+      // Optional: keep count of collisions
+      if(this.buckets[bucketIndex].length > 1) { this.collisions++; }
+    } else {
+      // override existing value
+      this.buckets[bucketIndex][entryIndex].value = value;
+    }
+
+    // check if a rehash is due
+    if(this.loadFactor > 0 && this.getLoadFactor() > this.loadFactor) {
+      this.rehash(this.buckets.length * 2);
+    }
+
+    return this;
+  }
+
+  /**
+   * Gets the value out of the hash map
+   * Returns the value associated to the key, or undefined if there is none.
+   * @param {any} key
+   */
+  get(key) {
+    const {bucketIndex, entryIndex} = this._getIndexes(key);
+
+    if(entryIndex === undefined) {
+      return;
+    }
+
+    return this.buckets[bucketIndex][entryIndex].value;
+  }
+
+  /**
+   * Search for key and return true if it was found
+   * @param {any} key
+   */
+  has(key) {
+    return !!this.get(key);
+  }
+
+  /**
+   * Search for a key in the map. It returns it's internal array indexes.
+   * Returns bucketIndex and the internal array index
+   * @param {any} key
+   */
+  _getIndexes(key) {
+    const bucketIndex = this._getBucketIndex(key);
+    const values = this.buckets[bucketIndex] || [];
+
+    for (let entryIndex = 0; entryIndex < values.length; entryIndex++) {
+      const entry = values[entryIndex];
+      if(entry.key === key) {
+        return {bucketIndex, entryIndex};
+      }
+    }
+
+    return {bucketIndex};
+  }
+
+  /**
+   * Returns true if an element in the Map object existed and has been removed, or false if the element does not exist.
+   * @param {any} key
+   */
+  delete(key) {
+    const {bucketIndex, entryIndex, keyIndex} = this._getIndexes(key);
+
+    if(entryIndex === undefined) {
+      return false;
+    }
+
+    this.buckets[bucketIndex].splice(entryIndex, 1);
+    delete this.keys[keyIndex];
+    this.size--;
+
+    return true;
+  }
+
+  /**
+   * Rehash means to create a new Map with a new (higher) capacity with the purpose of outgrow collisions.
+   * @param {Number} newCapacity
+   */
+  rehash(newCapacity) {
+    const newMap = new HashMap(newCapacity);
+
+    this.keys.forEach(key => {
+      if(key) {
+        newMap.set(key.content, this.get(key.content));
+      }
+    });
+
+    // update bucket
+    this.buckets = newMap.buckets;
+    this.collisions = newMap.collisions;
+    // Optional: both `keys` has the same content except that the new one doesn't have empty spaces from deletions
+    this.keys = newMap.keys;
+  }
+
+  /**
+   * Load factor - measure how full the Map is. It's ratio between items on the map and total size of buckets
+   */
+  getLoadFactor() {
+    return this.size / this.buckets.length;
   }
 }
-
-// Usage:
-const hashMap = new DecentHashMap();
-
-hashMap.set('cat', 2);
-hashMap.set('rat', 7);
-hashMap.set('dog', 1);
-hashMap.set('art', 0); // <-- NO more collision with rat
-
-console.log(hashMap.array);
-
-// const assert = require('assert');
-// assert.equal(hashMap.get('cat'), 2);
-// assert.equal(hashMap.get('rat'), 7);
-// assert.equal(hashMap.get('dog'), 1);
 ```
 
-This `HashMap` gets the job done but still there are some enhancements that we can do:
-1. **Rehash**: if we are getting more than 1000 items we will run into issues. We could keep track a of the size of the hash and increment the size of the array once **load factor** (items/array_size) threshold is met. For instance <a href="https://docs.oracle.com/javase/10/docs/api/java/util/HashMap.html#%3Cinit%3E()">Java's HashMap</a> starts with a capacity of 16 and a load factor of 0.75.
+</details>
 
-2. **Handle Override**: the current implementation doesn't handle overwrite. You can add that as well.
+
+So, **testing** our new implementation from above ^
+
+```js
+const assert = require('assert');
+const hashMap = new HashMap();
+
+assert.equal(hashMap.getLoadFactor(), 0);
+hashMap.set('songs', 2);
+hashMap.set('pets', 7);
+hashMap.set('tests', 1);
+hashMap.set('art', 8);
+assert.equal(hashMap.getLoadFactor(), 4/16);
+
+hashMap.set('Pineapple', 'Pen Pineapple Apple Pen');
+hashMap.set('Despacito', 'Luis Fonsi');
+hashMap.set('Bailando', 'Enrique Iglesias');
+hashMap.set('Dura', 'Daddy Yankee');
+
+hashMap.set('Lean On', 'Major Lazer');
+hashMap.set('Hello', 'Adele');
+hashMap.set('All About That Bass', 'Meghan Trainor');
+hashMap.set('This Is What You Came For', 'Calvin Harris ');
+
+assert.equal(hashMap.collisions, 2);
+assert.equal(hashMap.getLoadFactor(), 0.75);
+assert.equal(hashMap.buckets.length, 16);
+
+hashMap.set('Wake Me Up', 'Avicii'); // <--- Trigger REHASH
+
+assert.equal(hashMap.collisions, 0);
+assert.equal(hashMap.getLoadFactor(), 0.40625);
+assert.equal(hashMap.buckets.length, 32);
+```
+
+Take notice that after the 12th item is added, load factor gets bigger than 0.75, so a rehash is triggered and capacity doubles (from 16 to 32). Also, you can see how the number of collisions improve from 2 to 0!
 
 This implementation is good enough to help use figuring out the runtime of common operations like insert/search/delete/edit.
+
+<!-- The performance of a hash map is given by two things:
+1. Hash function that for every key produces a different output.
+2. Size of the bucket to hold data.
+
+We nailed the first one. We have a decent hash function that produces different output for different data. Two different data will never return the same code. That's great!
+
+For the second one, size of the bucket, it needs more love. Let's understand how the *Hash Map's bucket size* impacts the performance.
+
+Let's say that we create a hashMap with bucket size of `1`: -->
 
 ## Insert element on a Hash Map runtime
 
 Inserting a element on a Hash Map requires two things: a key and a value. We could use our [DecentHashMap](#DecentHashMap) data structure that we develop or use the built-in as follows:
 
 ```js
-/**
- * Insert element (key, value) on a object
- * Runtime: O(1)
- *
- * @param {Object} object
- * @param {any} key
- * @param {any} value
- */
 function insert(object, key, value) {
   object[key] = value;
   return object;
@@ -563,14 +860,6 @@ console.log(insert(hash, 'word', 1)); // => { word: 1 }
 In modern JavaScript you can use `Map`s.
 
 ```js
-/**
- * Insert element (key, value) on a hash map
- * Runtime: O(1)
- *
- * @param {Map} map
- * @param {any} key
- * @param {any} value
- */
 function insertMap(map, key, value) {
   map.set(key, value);
   return map;
@@ -584,11 +873,13 @@ console.log(insertMap(map, 'word', 1)); // Map { 'word' => 1 }
 
 Behind the scences, the `Map.set` just insert elements into an array (take a look at [`DecentHashMap.set`](#DecentHashMap)). So, similar to `Array.push` we have that:
 
-> Insert element in Hash Map runtime is *O(1)*
+> Insert element in Hash Map runtime is *O(1)*. If rehash is needed then it will take *O(n)*
+
+Out implementation with [rehash](#HashMapWithRehash) functionality will keep collisions to the minimun. The rehash operation take *`O(n)`* but it doesn't happen all the time only when is needed.
 
 ## Search/Access an element on a Hash Map runtime
 
-This is the `Map.get` function that we use the get the value associated to a key. Let's evaluate the implementation from [`DecentHashMap.get`](#DecentHashMap)):
+This is the `HashMap.get` function that we use the get the value associated to a key. Let's evaluate the implementation from [`DecentHashMap.get`](#DecentHashMap)):
 
 {% codeblock lang:js mark:3 %}
   get(key) {
@@ -605,61 +896,443 @@ This is the `Map.get` function that we use the get the value associated to a key
 
 If there's no collision, then `values` will only have one value and the access time would be *`O(1)`*. But, we know there will be collisions. If the initial capacity is too small and/or the hash function is very bad like [NaiveHashMap.hash](#NaiveHashMap) then most of the elements will end up in a few buckets *`O(n)`*.
 
-> HashMap access has a runtime of *`O(1)`* on average and worst-case of *`O(n)`*.
+> HashMap access operation has a runtime of *`O(1)`* on average and worst-case of *`O(n)`*.
 
-## Edit element on a HashMap runtime
+**Advanced Note:** Another idea to reduce the time to get elements from *O(n)* to *O(log n)* is to use a *binary search tree* instead of an array. Actually, [Java's HashMap implementation](http://hg.openjdk.java.net/jdk9/jdk9/jdk/file/f08705540498/src/java.base/share/classes/java/util/HashMap.java#l145) switches from an array to a tree when a bucket has more than [8 elements](http://hg.openjdk.java.net/jdk9/jdk9/jdk/file/f08705540498/src/java.base/share/classes/java/util/HashMap.java#l257).
 
-Excepteur magna pariatur reprehenderit aliquip nulla adipisicing nostrud et velit proident laboris ullamco tempor cillum. Labore in voluptate aliqua exercitation cillum. Et nostrud mollit in aliquip nostrud officia ut aliqua cillum labore eiusmod et labore.
+## Edit/Delete element on a HashMap runtime
 
-In incididunt nisi reprehenderit consequat Lorem id ut Lorem ex duis proident sunt ullamco velit. Eu laborum minim eu et anim aute. Sint aute labore sit cupidatat ut dolor ut do et aliquip excepteur commodo enim sit. Id quis veniam duis et consectetur pariatur nulla in officia.
+Editing (`HashMap.set`) and deleting (`HashMap.delete`) elements from the array *usually* takes constant time *`O(1)`*. It has to do a similar `HashMap.get` where it has to search if the element exist to delete it or update it. In case of a many collisions we could face a *`O(n)`* as a worst case. However, with our rehash operaion we can mitigate that risk.
 
-## Delete element on a HashMap runtime
-
-Duis mollit duis enim mollit laborum. Lorem aliquip sunt ut sit. Eu elit nulla officia cillum aliqua pariatur. Id id et quis cillum Lorem pariatur occaecat.
-
-Cupidatat proident cillum elit eiusmod pariatur sit non. Sit nulla est excepteur nulla tempor sit. Dolor et tempor ipsum qui voluptate Lorem fugiat tempor excepteur magna et fugiat reprehenderit aliqua.
-
-Cillum pariatur non officia nulla duis ex et occaecat tempor pariatur reprehenderit voluptate sint sit. Eiusmod exercitation exercitation aliquip deserunt est aliqua reprehenderit minim ullamco minim est duis aliqua. Quis pariatur in quis enim culpa pariatur consequat enim voluptate. Quis sint do elit laboris amet excepteur cillum. Exercitation incididunt laboris duis ullamco quis dolor sit dolore anim ipsum ea ipsum dolor. Excepteur elit eiusmod sit fugiat voluptate culpa laborum. Aute minim officia nisi dolore ipsum ut officia dolor eu laboris amet sit.
+> HashMap edit and delete operations has a runtime of *`O(1)`* on average and worst-case of *`O(n)`*.
 
 ## HashMap operations time complexity
 
 We can sum up the arrays time complexity as follows:
 
-Operation | Time Complexity | Average
--|-|-
-Access/Search | *`O(n)`* | *`O(1)`*
-Insert | *`O(n)`* | *`O(1)`*
-Delete | *`O(n)`* | *`O(1)`*
+**HashMap Time Complexities**
 
+Operation | Worst | Amortized | Comments
+-|-|-|-
+Access/Search (`HashMap.get`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case when there are too many collisions
+Insert/Edit (`HashMap.set`) | *`O(n)`* | *`O(1)`* | *`O(n)`* only happens with rehash when the Hash is 0.75 full
+Delete (`HashMap.delete`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case when there are too many collisions
 
 # Sets
 
-Ut consequat aute quis irure aute dolore esse nisi et. Officia esse anim velit irure. Labore aliquip veniam irure non excepteur quis. Ea consectetur consectetur culpa fugiat esse laboris cupidatat dolor quis enim labore mollit id. Occaecat sit deserunt dolor nisi et labore.
+Sets are very similar to arrays. The difference is that they don't allow duplicates.
 
-Sunt excepteur enim aute nostrud proident et commodo do do tempor reprehenderit nisi anim ipsum. Aliqua elit veniam eu id. Cillum non do ipsum est voluptate occaecat proident commodo aliquip labore cupidatat ut aliqua amet. Aliqua fugiat in velit ex culpa irure enim occaecat pariatur. Esse proident quis adipisicing ea ea mollit nisi. Ut officia aliqua incididunt do aliquip. Do quis nostrud amet voluptate aliqua.
+How can we implement a Set (array without duplicates)? Well, we could use an array and check if an element is there before inserting a new one. But the running time of checking if an element is already there is *`O(n)`*. Can we do better than that? We just develop the `Map` that has an amortized run time of *`O(1)`*!
 
-Anim quis ipsum labore reprehenderit sit tempor ex qui culpa aliqua. Proident dolore nostrud duis id sunt minim nulla aliqua velit duis sit. Officia aute cupidatat est duis est cupidatat minim cillum aliquip irure anim qui nostrud. Dolor aute deserunt do ipsum enim labore laboris. Aliquip et et labore consequat eiusmod veniam pariatur qui proident laboris dolore quis pariatur nostrud.
+<!-- The best way to learn how something works is to implement it ourselves. We are also going to explore the built-in `Set` in JavaScript. -->
+
+## Set Implementation
+
+We could use the JavaScript built-in `Set`. However, if we implement it ourseves it's more obvious to deduct the runtimes. We are going to use the [optimized HashMap](#HashMapWithRehash) with rehash functionality.
+
+```js
+const HashMap = require('../hash-maps/hash-map');
+
+class MySet {
+  constructor() {
+    this.hashMap = new HashMap();
+  }
+
+  add(value) {
+    this.hashMap.set(value);
+  }
+
+  has(value) {
+    return this.hashMap.has(value);
+  }
+
+  get size() {
+    return this.hashMap.size;
+  }
+
+  delete(value) {
+    return this.hashMap.delete(value);
+  }
+
+  entries() {
+    return this.hashMap.keys.reduce((acc, key) => {
+      if(key !== undefined) {
+        acc.push(key.content);
+      }
+      return acc
+    }, []);
+  }
+}
+```
+
+We used `HashMap.set` to add the set elements without duplicates. We use the key as the value and since hash maps keys are unique we are all set.
+
+Checking if an element is already there can be done using the `hashMap.has` which has an amortized runtime of *`O(1)`*. Actually, most operation would be an amortized constant time except for getting the `entries` which is  *`O(n)`*
+
+Here some examples how to use it:
+
+```js
+const assert = require('assert');
+// const set = new Set(); // Using the built-in
+const set = new MySet(); // Using our own implementation
+
+set.add('one');
+set.add('uno');
+set.add('one'); // should NOT add this one twice
+
+assert.equal(set.has('one'), true);
+assert.equal(set.has('dos'), false);
+
+assert.equal(set.size, 2);
+// assert.deepEqual(Array.from(set), ['one', 'uno']);
+
+assert.equal(set.delete('one'), true);
+assert.equal(set.delete('one'), false);
+assert.equal(set.has('one'), false);
+assert.equal(set.size, 1);
+```
+
+You should be able to use `MySet` and the built-in `Set` interchangebly for this examples.
+
+## Set Operations runtime
+
+From our implementation we can sum up the time complexity as follows:
+
+**Set Time Complexities**
+
+Operation | Worst | Amortized | Comments
+-|-|-|-
+Access/Search (`Set.has`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case when there are too many collisions
+Insert/Edit (`Set.add`) | *`O(n)`* | *`O(1)`* | *`O(n)`* only happens with *rehash* when the Hash is 0.75 full
+Delete (`Set.delete`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case when there are too many collisions
 
 # Stacks
 
-Ipsum consequat labore exercitation aute non. Nisi tempor cupidatat consequat excepteur nulla est aute. Anim labore qui aliquip veniam. Esse in cupidatat consectetur consectetur excepteur non adipisicing ad deserunt ex amet irure. Mollit voluptate velit occaecat elit proident fugiat pariatur. Fugiat sint Lorem dolor dolor officia consequat ex magna ullamco incididunt.
+<!-- https://docs.oracle.com/javase/10/docs/api/java/util/Stack.html -->
+
+Stacks is a data structure where the last entered data is the first to come out. Also know as Last-in, First-out (LIFO). Let's implement a stack from scratch!
+
+```js
+class Stack {
+  constructor() {
+    this.input = [];
+  }
+
+  push(element) {
+    this.input.push(element);
+    return this;
+  }
+
+  pop() {
+    return this.input.pop();
+  }
+}
+```
+
+As you can see is very easy since we are using the built-in `Array.push` and `Array.pop`. Both have a runtime of *`O(1)`*.
+
+Let's see some examples of its usage:
+
+```js
+  const stack = new Stack();
+
+  stack.push('a');
+  stack.push('b');
+
+  stack.pop(); // b
+  stack.pop(); // a
+```
+
+The first in (`a`) as the last to get out. That's all!
+
+<!-- **[[usages]]** -->
 
 # Queues
 
-Ipsum consequat labore exercitation aute non. Nisi tempor cupidatat consequat excepteur nulla est aute. Anim labore qui aliquip veniam. Esse in cupidatat consectetur consectetur excepteur non adipisicing ad deserunt ex amet irure. Mollit voluptate velit occaecat elit proident fugiat pariatur. Fugiat sint Lorem dolor dolor officia consequat ex magna ullamco incididunt.
+<!-- https://docs.oracle.com/javase/10/docs/api/java/util/Queue.html -->
+<!-- https://stackoverflow.com/a/22615787/684957 -->
+
+Queues is a data structure where the first data to get in is also the first to go out. A.k.a First-in, First-out (FIFO).
+
+We could implement a Queue very similar to how we implemented the Stack. A naive implementation would be this one using `Array.push` and `Array.shift`:
+
+```js
+class Queue {
+  constructor() {
+    this.input = [];
+  }
+
+  add(element) {
+    this.input.push(element);
+  }
+
+  remove() {
+    return this.input.shift();
+  }
+}
+```
+
+What's the time complexity of `Queue.add` and `Queue.remove`?
+
+- `Queue.add` uses `array.push` which has a constant runtime. Win!
+- `Queue.remove` uses `array.shift` which has a linear runtime. Can we do better than *`O(n)`*?
+
+Think a way you can implement a Queue only using `Array.push` and `Array.pop`.
+
+```js
+class Queue {
+  constructor() {
+    this.input = [];
+    this.output = [];
+  }
+
+  add(element) {
+    this.input.push(element);
+  }
+
+  remove() {
+    if(!this.output.length) {
+      while(this.input.length) {
+        this.output.push(this.input.pop());
+      }
+    }
+    return this.output.pop();
+  }
+}
+```
+
+Now we are using two arrays rather than one.
+
+```js
+const queue = new Queue();
+
+queue.add('a');
+queue.add('b');
+
+queue.remove() // a
+queue.add('c');
+queue.remove() // b
+queue.remove() // c
+```
+
+When we remove for the first time. The `output` is empty so we insert the content of `input` backwards like `['b', 'a']`. Then we pop elements from the `output` array. As you can see, using this trick we get the output in the same order of insertion (FIFO).
+
+What's the run time?
+
+If the output already has some elements then the remove operation is constant *`O(1)`*. When the output arrays needs to get refilled it takes *`O(n)`* to do so. After the refilled, every operation would be constant again. The amortized time is *`O(1)`*.
+
+We can achieve a `Queue` with a pure constant if we use a LinkedList. Let's see what it is in the next section!
+<!-- **[[usages]]** -->
 
 # Linked Lists
 
-Ipsum consequat labore exercitation aute non. Nisi tempor cupidatat consequat excepteur nulla est aute. Anim labore qui aliquip veniam. Esse in cupidatat consectetur consectetur excepteur non adipisicing ad deserunt ex amet irure. Mollit voluptate velit occaecat elit proident fugiat pariatur. Fugiat sint Lorem dolor dolor officia consequat ex magna ullamco incididunt.
+Linked List is a data structure where every element is linked to the next one.
+
+<!-- **[[image]]** -->
+
+This is the first data structure that we are going to implement without using an array. Instead of an array we are going to use a `node` which holds a `value` and points to the next element.
+
+{% codeblock node.js lang:js %}
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+{% endcodeblock %}
+
+When we have a chain of nodes where each one points to the next one we a **Singly Linked list**. When we have a linked list where each node points to 1) the next and 2) the previous element we a **Doubly Linked List**
 
 ## Singly Linked Lists
 
-Ipsum consequat labore exercitation aute non. Nisi tempor cupidatat consequat excepteur nulla est aute. Anim labore qui aliquip veniam. Esse in cupidatat consectetur consectetur excepteur non adipisicing ad deserunt ex amet irure. Mollit voluptate velit occaecat elit proident fugiat pariatur. Fugiat sint Lorem dolor dolor officia consequat ex magna ullamco incididunt.
+For a singly linked list we only have to worry about every element having a reference to the next one.
+
+We start by constructing the root or head element.
+
+{% codeblock linked-list.js lang:js %}
+class LinkedList {
+  constructor() {
+    this.root = null;
+  }
+
+  // ...
+}
+{% endcodeblock %}
+
+There are 4 basic operations that we can do in every Linked List:
+
+1. `addLast`: appends element to the end of the list (tail)
+2. `removeLast`: deletes element to the end of the list
+3. `addFirst`: Adds element to the begining of the list (head)
+4. `removeFirst`: Removes element from the start of the list (head/root)
+
+**Append/Removing element to the end of a linked list**
+
+There are two basic cases. If the list (root) doesn't have any element yet we just make this node the head of the list.
+Contrary, if the list already has elements, then we have to iterate until finding the last one and appending our new node to the end.
+
+{% codeblock LinkedList.prototype.addLast lang:js %}
+  addLast(value) { // similar Array.push
+    const node = new Node(value);
+
+    if(this.root) {
+      let currentNode = this.root;
+      while(currentNode && currentNode.next) {
+        currentNode = currentNode.next;
+      }
+      currentNode.next = node;
+    } else {
+      this.root = node;
+    }
+  }
+{% endcodeblock %}
+
+What's the runtime of this code? If it is the first element, then adding to the root is *O(1)*. However, finding last element is *O(n)*.
+
+Now, removing element an element from the end of the list has a similar code:
+
+{% codeblock LinkedList.prototype.removeLast lang:js %}
+  removeLast() {
+    let current = this.root;
+    let target;
+
+    if(current && current.next) {
+      while(current && current.next && current.next.next) {
+        current = current.next;
+      }
+      target = current.next;
+      current.next = null;
+    } else {
+      this.root = null;
+      target = current;
+    }
+
+    if(target) {
+      return target.value;
+    }
+  }
+{% endcodeblock %}
+
+The runtime again is *O(n)* because we have to iterate until the second-last element and remove the reference to the last.
+
+> But we could reduce the `removeLast` to a flat *O(1)* if we keep a reference of the last element and avoid the loop to find last
+
+We are going to add the last reference in the next section!
 
 ## Doubly Linked Lists
 
-Ipsum consequat labore exercitation aute non. Nisi tempor cupidatat consequat excepteur nulla est aute. Anim labore qui aliquip veniam. Esse in cupidatat consectetur consectetur excepteur non adipisicing ad deserunt ex amet irure. Mollit voluptate velit occaecat elit proident fugiat pariatur. Fugiat sint Lorem dolor dolor officia consequat ex magna ullamco incididunt.
+Doubly linked list nodes has double references (next and previous). We are also going to keep track of the list first and last element.
 
+{% codeblock Doubly Linked List lang:js %}
+class LinkedList {
+  constructor() {
+    this.first = null; // head/root element
+    this.last = null; // last element of the list
+    this.size = 0; // total number of elements in the list
+  }
+
+  // ...
+}
+{% endcodeblock %}
+
+**Adding and Removing from start of list**
+
+Adding and removing from the start of the list is simple since we have `this.first` reference:
+
+{% codeblock LinkedList.prototype.addFirst lang:js %}
+  addFirst(value) {
+    const node = new Node(value);
+
+    node.next = this.first;
+
+    if(this.first) {
+      this.first.previous = node;
+    } else {
+      this.last = node;
+    }
+
+    this.first = node; // update head
+    this.size++;
+
+    return node;
+  }
+{% endcodeblock %}
+
+Notice, that we have to be very careful and update the previous, size and last.
+
+{% codeblock LinkedList.prototype.removeFirst lang:js %}
+  removeFirst() {
+    const first = this.first;
+
+    if(first) {
+      this.first = first.next;
+      if(this.first) {
+        this.first.previous = null;
+      }
+
+      this.size--;
+
+      return first.value;
+    } else {
+      this.last = null;
+    }
+  }
+{% endcodeblock %}
+
+What's the runtime?
+
+> Adding and removing elements from a (singly/doubly) LinkedList has a constant runtime *O(1)*
+
+**Adding and removing from end of list**
+
+Adding and removing from the end of the list is a little tricky. If you check in the Singly Linked List both took *O(n)* since we had to loop through the list to find the last element. Now, we have the `last` referece:
+
+{% codeblock LinkedList.prototype.addLast lang:js mark:7 %}
+  addLast(value) {
+    const node = new Node(value);
+
+    if(this.first) {
+      let currentNode = this.first;
+      node.previous = this.last;
+      this.last.next = node;
+      this.last = node;
+    } else {
+      this.first = node;
+      this.last = node;
+    }
+
+    this.size++;
+
+    return node;
+  }
+{% endcodeblock %}
+
+Again, we have to be very careful updating the references and handling special cases such as when there's only one element.
+
+{% codeblock LinkedList.prototype.addLast lang:js mark:6 %}
+  removeLast() {
+    let current = this.first;
+    let target;
+
+    if(current && current.next) {
+      current = this.last.previous;
+      this.last = current;
+      target = current.next;
+      current.next = null;
+    } else {
+      this.first = null;
+      this.last = null;
+      target = current;
+    }
+
+    if(target) {
+      this.size--;
+      return target.value;
+    }
+  }
+{% endcodeblock %}
+
+Using doubly linked list we no longer have to iterate through the whole list to get the 2nd last elements. We can use directly `this.last.previous` and is `O(1)`.
 
 # Summary
 
