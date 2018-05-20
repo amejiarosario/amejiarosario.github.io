@@ -1,6 +1,6 @@
 ---
 layout: draft
-title: "Data Structures for Beginners: Arrays, HashMaps and Lists"
+title: "Data Structures for Beginners: Arrays, HashMaps, and Lists"
 comments: true
 pageviews__total: 0
 pageviews__recent: 0
