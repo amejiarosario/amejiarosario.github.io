@@ -31,11 +31,23 @@ When we are developing software, we have to store data in memory. Depending on h
 
 # Data Structures Big-O Cheatsheet
 
-This table is summary of everything that we are going to cover in this post. Bookmark it, pin it or share it, so you have it at hand when you need it.
+The following table is summary of everything that we are going to cover in this post.
 
-Data Structures | Runtime
--|-
-array | -
+> Bookmark it, pin it or share it, so you have it at hand when you need it.
+
+*Click on the **name** to go the section or click on the **runtime** to go the implementation*
+
+Name | Insert | Access | Search | Delete | Comments
+-|-|-|-|-
+[Array](#Array) | [*O(n)*](#Insert-element-on-an-array) | [*O(1)*](#Access-an-element-in-an-array) | [*O(n)*](#Search-an-element-in-an-array) | [*O(n)*](#Deleting-elements-from-an-array) | Insertion to the end is `O(1)`. [Details here.](#Array-operations-time-complexity)
+[(Hash)Map](#HashMaps) | [*O(1)**](#Insert-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Edit-Delete-element-on-a-HashMap-runtime) | Rehashing might affect insertion time. [Details here.](#HashMap-operations-time-complexity)
+[Set](#Sets) | *O(1)** | - | *O(n)* | *O(n)* | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
+[Stack](#Stacks) | *O(1)* | *O(1)* | - | *O(1)* | Insert/delete is last-in, first-out (LIFO)
+[Queue](#Queues) | *O(1)* | *O(1)** | - | *O(1)* | Can be implemented with an Array or LinkedList
+[Linked List (doubly)](#Singly-Linked-Lists) | *O(1)* | *O(1)* | *O(n)* | *O(1)* | Doubly Linked List with last reference
+[Linked List (singly)](#Doubly-Linked-Lists) | *O(1)* | *O(1)* | *O(n)* | *O(n)* | Singly Linked List without last reference
+
+`*` = Amortized runtime
 
 # Primitive Data Types
 
@@ -57,6 +69,66 @@ http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg
 https://cdn2.iconfinder.com/data/icons/furniture-12/48/drawer-cabinet-closet-shelf-cabin-cupboard-furntiure-512.png
 
 Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects and even functions. In typed languages like Java/C/C++, you have to define the size of the array before using it and the data type of the collection. JavaScript would increase the size of the array automatically when it needs to.
+
+## Arrays built-in operations
+
+Depending on the programming language, the implementation would be slightly different.
+
+For instance, in JavaScript, we can accomplish append to end with `push` and append to the beginning with `unshift`. But also, we have `pop` and `shift` to remove from an array. Let's describe some commong array operations that we are going to use through this post.
+
+**Common JS Array built-in functions**
+
+
+Function|Runtime|Description
+-|-|-
+[array.**push**(element1[, ...[, elementN]])](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)|*O(1)*|Insert element to the end of the array
+[array.**pop**()](http://devdocs.io/javascript/global_objects/array/pop)|*O(1)*|Remove element to the end of the array
+[array.**shift**()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)|*O(n)*|Remove element to the beginning of the array
+[array.**unshift**(element1[, ...[, elementN]])](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)|*O(n)*|Insert element(s) to the beginning of the array
+[array.**slice**([beginning[, end]])](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) |*O(n)*|Returns a copy of the array from `beginning` to `end`.
+[array.**splice**(start[, deleteCount[, item1[,...]]])](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) |*O(n)*| Changes (add/remove) the array
+
+## Insert element on an array
+
+<!-- https://stackoverflow.com/a/22615787/684957 -->
+<!-- https://tc39.github.io/ecma262/#sec-array.prototype.push -->
+<!-- https://github.com/v8/v8/blob/master/src/js/array.js -->
+<!-- https://github.com/v8/v8/blob/master/src/builtins/builtins-array.cc#L145 -->
+<!-- https://tc39.github.io/ecma262/#sec-array.prototype.unshift -->
+
+There are multiple ways to insert elements into an array. You can append a new data to end, or you can add it to the beginning of the collection.
+
+Let's start with append to tail:
+
+```js
+function insertToTail(array, element) {
+  array.push(element);
+  return array;
+}
+
+const array = [1, 2, 3];
+console.log(insertToTail(array, 4)); // => [ 1, 2, 3, 4 ]
+```
+
+Based on the [language specification](https://tc39.github.io/ecma262/#sec-array.prototype.push), push just set the new value at the end of the array. Thus,
+
+> The `Array.push` runtime is a *O(1)*
+
+Let's now try appeding to head:
+
+```js
+function insertToHead(array, element) {
+  array.unshift(element);
+  return array;
+}
+
+const array = [1, 2, 3];
+console.log(insertToHead(array, 0)); // => [ 0, 1, 2, 3, ]
+```
+
+What do you think is the runtime of the `insertToHead` function? Looks the same as the previous one except that we are using `unshift` instead of `push`. But, there's a catch! [unshift algorithm](https://tc39.github.io/ecma262/#sec-array.prototype.unshift) makes room for the new element by moving all existing ones to the next position in the array. So, it will iterate through all the elements.
+
+> The `Array.unshift` runtime is a *O(n)*
 
 ## Access an element in an array
 
@@ -99,48 +171,6 @@ console.log(search(array, 3.14)); // => 2
 Given the for-loop, we have:
 
 > Array search runtime is *O(n)*
-
-## Insert element on an array
-
-<!-- https://stackoverflow.com/a/22615787/684957 -->
-<!-- https://tc39.github.io/ecma262/#sec-array.prototype.push -->
-<!-- https://github.com/v8/v8/blob/master/src/js/array.js -->
-<!-- https://github.com/v8/v8/blob/master/src/builtins/builtins-array.cc#L145 -->
-<!-- https://tc39.github.io/ecma262/#sec-array.prototype.unshift -->
-
-There are multiple ways to insert elements into an array. You can append a new data to end, or you can add it to the beginning of the collection.
-
-Depending on the programming language, the implementation would be slightly different. For instance, in JavaScript, we can accomplish append to end with `push` and append to the beginning with `unshift`. Let's start with append to tail:
-
-```js
-function insertToTail(array, element) {
-  array.push(element);
-  return array;
-}
-
-const array = [1, 2, 3];
-console.log(insertToTail(array, 4)); // => [ 1, 2, 3, 4 ]
-```
-
-Based on the [language specification](https://tc39.github.io/ecma262/#sec-array.prototype.push), push just set the new value at the end of the array. Thus,
-
-> The `Array.push` runtime is a *O(1)*
-
-Let's now try appeding to head:
-
-```js
-function insertToHead(array, element) {
-  array.unshift(element);
-  return array;
-}
-
-const array = [1, 2, 3];
-console.log(insertToHead(array, 0)); // => [ 0, 1, 2, 3, ]
-```
-
-What do you think is the runtime of the `insertToHead` function? Looks the same as the previous one except that we are using `unshift` instead of `push`. But, there's a catch! [unshift algorithm](https://tc39.github.io/ecma262/#sec-array.prototype.unshift) makes room for the new element by moving all existing ones to the next position in the array. So, it will iterate through all the elements.
-
-> The `Array.unshift` runtime is a *O(n)*
 
 ## Deleting elements from an array
 
@@ -959,7 +989,7 @@ You should be able to use `MySet` and the built-in `Set` interchangeably for thi
 
 ## Set Operations runtime
 
-From our implementation we can sum up the time complexity as follows:
+From our Set implementation using a HashMap we can sum up the time complexity as follows (very similar to the HashMap):
 
 **Set Time Complexities**
 
