@@ -29,6 +29,8 @@ When we are developing software, we have to store data in memory. Depending on h
 
 <!-- more -->
 
+On this post we are going to focus on linear data structures like Arrays, Lists, Sets, Stacks, Queues and so on.
+
 # Data Structures Big-O Cheatsheet
 
 The following table is summary of everything that we are going to cover in this post.
@@ -39,15 +41,21 @@ The following table is summary of everything that we are going to cover in this 
 
 Name | Insert | Access | Search | Delete | Comments
 -|-|-|-|-
-[Array](#Array) | [*O(n)*](#Insert-element-on-an-array) | [*O(1)*](#Access-an-element-in-an-array) | [*O(n)*](#Search-an-element-in-an-array) | [*O(n)*](#Deleting-elements-from-an-array) | Insertion to the end is `O(1)`. [Details here.](#Array-operations-time-complexity)
-[(Hash)Map](#HashMaps) | [*O(1)**](#Insert-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Edit-Delete-element-on-a-HashMap-runtime) | Rehashing might affect insertion time. [Details here.](#HashMap-operations-time-complexity)
-[Set](#Sets) | *O(1)** | - | *O(n)* | *O(n)* | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
-[Stack](#Stacks) | *O(1)* | *O(1)* | - | *O(1)* | Insert/delete is last-in, first-out (LIFO)
-[Queue](#Queues) | *O(1)* | *O(1)** | - | *O(1)* | Can be implemented with an Array or LinkedList
-[Linked List (doubly)](#Singly-Linked-Lists) | *O(1)* | *O(1)* | *O(n)* | *O(1)* | Doubly Linked List with last reference
-[Linked List (singly)](#Doubly-Linked-Lists) | *O(1)* | *O(1)* | *O(n)* | *O(n)* | Singly Linked List without last reference
+[**Array**](#Array) | [*O(n)*](#Insert-element-on-an-array) | [*O(1)*](#Access-an-element-in-an-array) | [*O(n)*](#Search-an-element-in-an-array) | [*O(n)*](#Deleting-elements-from-an-array) | Insertion to the end is `O(1)`. [Details here.](#Array-operations-time-complexity)
+[(Hash)**Map**](#HashMaps) | [*O(1)**](#Insert-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Edit-Delete-element-on-a-HashMap-runtime) | Rehashing might affect insertion time. [Details here.](#HashMap-operations-time-complexity)
+**Map** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
+[**Set** (using HashMap)](#Sets) | *[O(1)](#Set-Implementation)** | - | *[O(1)](#Set-Implementation)** | *[O(1)](#Set-Implementation)** | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
+**Set** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
+[**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#SinglyLinkedList.removeLast)* | Singly Linked List [Details here](#Singly-Linked-Lists-time-complexity).
+[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(1)](#DoublyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#DoublyLinkedList.removeLast)*  | Doubly Linked List with last element reference. [Details here](#Doubly-Linked-Lists-time-complexity)
+[**Stack**](#Stacks) (array implementation) | *[O(1)](#Stacks)* | - | - | *[O(1)](#Stacks)* | Insert/delete is last-in, first-out (LIFO)
+[**Queue**](#QueueNaiveImpl) (naive array impl.) | *[O(n)](#QueueNaiveImpl)* | - | - | *[O(1)](#QueueNaiveImpl)* | Insert (`Array.shift`) is *O(n)*
+[**Queue**](#QueueArrayImpl) (array implementation) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
+[**Queue**](#QueueListImpl) (list implementation) | *[O(1)](#QueueListImpl)* | - | - | *[O(1)](#QueueListImpl)* | Using Doubly Linked List with reference to the last element.
 
 `*` = Amortized runtime
+
+Note: **Binary search trees** and trees in general will be cover in the next post. Also, graph data structures.
 
 # Primitive Data Types
 
@@ -999,6 +1007,254 @@ Access/Search (`Set.has`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case wh
 Insert/Edit (`Set.add`) | *`O(n)`* | *`O(1)`* | *`O(n)`* only happens with *rehash* when the Hash is 0.75 full
 Delete (`Set.delete`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case when there are too many collisions
 
+# Linked Lists
+
+Linked List is a data structure where every element is connected to the next one.
+
+<!-- **[[image]]** -->
+
+The linked list is the first data structure that we are going to implement without using an array. Instead, we are going to use a `node` which holds a `value` and points to the next element.
+
+{% codeblock node.js lang:js %}
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+{% endcodeblock %}
+
+When we have a chain of nodes where each one points to the next one we a **Singly Linked list**. When we have a linked list where each node leads to the **next** and the **previous** element we a **Doubly Linked List**
+
+## Singly Linked Lists
+
+For a singly linked list, we only have to worry about every element having a reference to the next one.
+
+We start by constructing the root or head element.
+
+{% codeblock linked-list.js lang:js %}
+class LinkedList {
+  constructor() {
+    this.root = null;
+  }
+
+  // ...
+}
+{% endcodeblock %}
+
+There are 4 basic operations that we can do in every Linked List:
+
+1. `addLast`: appends an element to the end of the list (tail)
+2. `removeLast`: deletes element to the end of the list
+3. `addFirst`: Adds an element to the beginning of the list (head)
+4. `removeFirst`: Removes an element from the start of the list (head/root)
+
+**Append/Removing element to the end of a linked list**
+
+There are two primary cases. 1) If the list (root) doesn't have any element yet, we make this node the head of the list.
+2) Contrary, if the list already has elements, then we have to iterate until finding the last one and appending our new node to the end.
+
+<a id="SinglyLinkedList.addLast"></a>
+{% codeblock LinkedList.prototype.addLast lang:js %}
+  addLast(value) { // similar Array.push
+    const node = new Node(value);
+
+    if(this.root) {
+      let currentNode = this.root;
+      while(currentNode && currentNode.next) {
+        currentNode = currentNode.next;
+      }
+      currentNode.next = node;
+    } else {
+      this.root = node;
+    }
+  }
+{% endcodeblock %}
+
+What's the runtime of this code? If it is the first element, then adding to the root is *O(1)*. However, finding the last element is *O(n)*.
+
+Now, removing element an element from the end of the list has a similar code:
+
+<a id="SinglyLinkedList.removeLast"></a>
+{% codeblock LinkedList.prototype.removeLast lang:js %}
+  removeLast() {
+    let current = this.root;
+    let target;
+
+    if(current && current.next) {
+      while(current && current.next && current.next.next) {
+        current = current.next;
+      }
+      target = current.next;
+      current.next = null;
+    } else {
+      this.root = null;
+      target = current;
+    }
+
+    if(target) {
+      return target.value;
+    }
+  }
+{% endcodeblock %}
+
+The runtime again is *O(n)* because we have to iterate until the second-last element and remove the reference to the last.
+
+## Singly Linked Lists time complexity
+
+Singly Linked List time complexity per function is as follows
+
+Operation | Runtime | Comment
+-|-|-
+[`addFirst`](#DoublyLinkedList.addFirst) | *O(1)* | Insert element to the beginning of the list
+[`addLast`](#SinglyLinkedList.addLast) | *O(n)* | Insert element to the end of the list
+[`removeFirst`](#DoublyLinkedList.removeFirst) | *O(1)* | Remove element to the beginning of the list
+[`removeLast`](#SinglyLinkedList.removeLast) | *O(n)* | Remove element to the end of the list
+
+Notice that every time we are adding/removing from the last position the operation takes *O(n)*...
+
+> But we could reduce the `addLast`/`removeLast` from *O(n)* to a flat *O(1)* if we keep a reference of the last element!
+
+We are going to add the last reference in the next section!
+
+
+## Doubly Linked Lists
+
+Doubly linked list nodes have double references (next and previous). We are also going to keep track of the list first and the last element.
+
+{% codeblock Doubly Linked List lang:js %}
+class LinkedList {
+  constructor() {
+    this.first = null; // head/root element
+    this.last = null; // last element of the list
+    this.size = 0; // total number of elements in the list
+  }
+
+  // ...
+}
+{% endcodeblock %}
+
+**Adding and Removing from the start of list**
+
+Adding and removing from the start of the list is simple since we have `this.first` reference:
+
+<a id="DoublyLinkedList.addFirst"></a>
+{% codeblock LinkedList.prototype.addFirst lang:js %}
+  addFirst(value) {
+    const node = new Node(value);
+
+    node.next = this.first;
+
+    if(this.first) {
+      this.first.previous = node;
+    } else {
+      this.last = node;
+    }
+
+    this.first = node; // update head
+    this.size++;
+
+    return node;
+  }
+{% endcodeblock %}
+
+Notice, that we have to be very careful and update the previous, size and last.
+
+<a id="DoublyLinkedList.removeFirst"></a>
+{% codeblock LinkedList.prototype.removeFirst lang:js %}
+  removeFirst() {
+    const first = this.first;
+
+    if(first) {
+      this.first = first.next;
+      if(this.first) {
+        this.first.previous = null;
+      }
+
+      this.size--;
+
+      return first.value;
+    } else {
+      this.last = null;
+    }
+  }
+{% endcodeblock %}
+
+What's the runtime?
+
+> Adding and removing elements from a (singly/doubly) LinkedList has a constant runtime *O(1)*
+
+**Adding and removing from the end of list**
+
+Adding and removing *from the end* of the list is a little tricky. If you checked in the Singly Linked List, both operations took *O(n)* since we had to loop through the list to find the last element. Now, we have the `last` reference:
+
+<a id="DoublyLinkedList.addLast"></a>
+{% codeblock LinkedList.prototype.addLast lang:js mark:7 %}
+  addLast(value) {
+    const node = new Node(value);
+
+    if(this.first) {
+      let currentNode = this.first;
+      node.previous = this.last;
+      this.last.next = node;
+      this.last = node;
+    } else {
+      this.first = node;
+      this.last = node;
+    }
+
+    this.size++;
+
+    return node;
+  }
+{% endcodeblock %}
+
+Again, we have to be very careful updating the references and handling special cases such as when there's only one element.
+
+<a id="DoublyLinkedList.addLast"></a>
+{% codeblock LinkedList.prototype.addLast lang:js mark:6 %}
+  removeLast() {
+    let current = this.first;
+    let target;
+
+    if(current && current.next) {
+      current = this.last.previous;
+      this.last = current;
+      target = current.next;
+      current.next = null;
+    } else {
+      this.first = null;
+      this.last = null;
+      target = current;
+    }
+
+    if(target) {
+      this.size--;
+      return target.value;
+    }
+  }
+{% endcodeblock %}
+
+Using doubly linked list, we no longer have to iterate through the whole list to get the 2nd last elements. We can use directly `this.last.previous` and is `O(1)`.
+
+Did you remember that for the Queue we had to use two arrays? Now, we can change that implementation an use a doubly linked list instead that has an *O(1)* for insert at the start and deleting at the end.
+
+## Doubly Linked Lists time complexity
+
+Doubly Linked List time complexity per function is as follows:
+
+Operation | Runtime | Comment
+-|-|-
+[`addFirst`](#DoublyLinkedList.addFirst) | *O(1)* | Insert element to the beginning of the list.
+[`addLast`](#DoublyLinkedList.addLast) | *O(1)* | Insert element to the end of the list.
+[`removeFirst`](#DoublyLinkedList.removeFirst) | *O(1)* | Remove element to the beginning of the list.
+[`removeLast`](#DoublyLinkedList.removeLast) | *O(1)* | Remove element to the end of the list.
+
+This is a great improvement compared to the singly linked list! We improved from *O(n)* to *O(1)* by:
+
+- Adding a reference the previous element.
+- Holding a reference to the last element in the list.
+
 # Stacks
 
 <!-- https://docs.oracle.com/javase/10/docs/api/java/util/Stack.html -->
@@ -1049,6 +1305,8 @@ Queues is a data structure where the first data to get in is also the first to g
 
 We could implement a Queue very similar to how we implemented the Stack. A naive implementation would be this one using `Array.push` and `Array.shift`:
 
+<a id="QueueNaiveImpl"></a>
+
 ```js
 class Queue {
   constructor() {
@@ -1071,6 +1329,8 @@ What's the time complexity of `Queue.add` and `Queue.remove`?
 - `Queue.remove` uses `array.shift` which has a linear runtime. Can we do better than *`O(n)`*?
 
 Think a way you can implement a Queue only using `Array.push` and `Array.pop`.
+
+<a id="QueueArrayImpl"></a>
 
 ```js
 class Queue {
@@ -1117,217 +1377,35 @@ If the output already has some elements, then the remove operation is constant *
 We can achieve a `Queue` with a pure constant if we use a LinkedList. Let's see what it is in the next section!
 <!-- **[[usages]]** -->
 
-# Linked Lists
+## Queue using a Doubly Linked List
 
-Linked List is a data structure where every element is connected to the next one.
+We can achieve the best performance for a `queue` using a linked list rather than an array.
 
-<!-- **[[image]]** -->
+<a id="QueueListImpl"></a>
 
-The linked list is the first data structure that we are going to implement without using an array. Instead, we are going to use a `node` which holds a `value` and points to the next element.
+```js
+const LinkedList = require('../linked-lists/linked-list');
 
-{% codeblock node.js lang:js %}
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
-{% endcodeblock %}
-
-When we have a chain of nodes where each one points to the next one we a **Singly Linked list**. When we have a linked list where each node leads to the **next** and the **previous** element we a **Doubly Linked List**
-
-## Singly Linked Lists
-
-For a singly linked list, we only have to worry about every element having a reference to the next one.
-
-We start by constructing the root or head element.
-
-{% codeblock linked-list.js lang:js %}
-class LinkedList {
+class Queue {
   constructor() {
-    this.root = null;
+    this.input = new LinkedList();
   }
 
-  // ...
+  add(element) {
+    this.input.addFirst(element);
+  }
+
+  remove() {
+    return this.input.removeLast();
+  }
+
+  get size() {
+    return this.input.size;
+  }
 }
-{% endcodeblock %}
+```
 
-There are 4 basic operations that we can do in every Linked List:
-
-1. `addLast`: appends an element to the end of the list (tail)
-2. `removeLast`: deletes element to the end of the list
-3. `addFirst`: Adds an element to the beginning of the list (head)
-4. `removeFirst`: Removes an element from the start of the list (head/root)
-
-**Append/Removing element to the end of a linked list**
-
-There are two primary cases. 1) If the list (root) doesn't have any element yet, we make this node the head of the list.
-2) Contrary, if the list already has elements, then we have to iterate until finding the last one and appending our new node to the end.
-
-{% codeblock LinkedList.prototype.addLast lang:js %}
-  addLast(value) { // similar Array.push
-    const node = new Node(value);
-
-    if(this.root) {
-      let currentNode = this.root;
-      while(currentNode && currentNode.next) {
-        currentNode = currentNode.next;
-      }
-      currentNode.next = node;
-    } else {
-      this.root = node;
-    }
-  }
-{% endcodeblock %}
-
-What's the runtime of this code? If it is the first element, then adding to the root is *O(1)*. However, finding the last element is *O(n)*.
-
-Now, removing element an element from the end of the list has a similar code:
-
-{% codeblock LinkedList.prototype.removeLast lang:js %}
-  removeLast() {
-    let current = this.root;
-    let target;
-
-    if(current && current.next) {
-      while(current && current.next && current.next.next) {
-        current = current.next;
-      }
-      target = current.next;
-      current.next = null;
-    } else {
-      this.root = null;
-      target = current;
-    }
-
-    if(target) {
-      return target.value;
-    }
-  }
-{% endcodeblock %}
-
-The runtime again is *O(n)* because we have to iterate until the second-last element and remove the reference to the last.
-
-> But we could reduce the `removeLast` to a flat *O(1)* if we keep a reference of the last element and avoid the loop to find last
-
-We are going to add the last reference in the next section!
-
-## Doubly Linked Lists
-
-Doubly linked list nodes have double references (next and previous). We are also going to keep track of the list first and the last element.
-
-{% codeblock Doubly Linked List lang:js %}
-class LinkedList {
-  constructor() {
-    this.first = null; // head/root element
-    this.last = null; // last element of the list
-    this.size = 0; // total number of elements in the list
-  }
-
-  // ...
-}
-{% endcodeblock %}
-
-**Adding and Removing from the start of list**
-
-Adding and removing from the start of the list is simple since we have `this.first` reference:
-
-{% codeblock LinkedList.prototype.addFirst lang:js %}
-  addFirst(value) {
-    const node = new Node(value);
-
-    node.next = this.first;
-
-    if(this.first) {
-      this.first.previous = node;
-    } else {
-      this.last = node;
-    }
-
-    this.first = node; // update head
-    this.size++;
-
-    return node;
-  }
-{% endcodeblock %}
-
-Notice, that we have to be very careful and update the previous, size and last.
-
-{% codeblock LinkedList.prototype.removeFirst lang:js %}
-  removeFirst() {
-    const first = this.first;
-
-    if(first) {
-      this.first = first.next;
-      if(this.first) {
-        this.first.previous = null;
-      }
-
-      this.size--;
-
-      return first.value;
-    } else {
-      this.last = null;
-    }
-  }
-{% endcodeblock %}
-
-What's the runtime?
-
-> Adding and removing elements from a (singly/doubly) LinkedList has a constant runtime *O(1)*
-
-**Adding and removing from the end of list**
-
-Adding and removing *from the end* of the list is a little tricky. If you checked in the Singly Linked List, both operations took *O(n)* since we had to loop through the list to find the last element. Now, we have the `last` reference:
-
-{% codeblock LinkedList.prototype.addLast lang:js mark:7 %}
-  addLast(value) {
-    const node = new Node(value);
-
-    if(this.first) {
-      let currentNode = this.first;
-      node.previous = this.last;
-      this.last.next = node;
-      this.last = node;
-    } else {
-      this.first = node;
-      this.last = node;
-    }
-
-    this.size++;
-
-    return node;
-  }
-{% endcodeblock %}
-
-Again, we have to be very careful updating the references and handling special cases such as when there's only one element.
-
-{% codeblock LinkedList.prototype.addLast lang:js mark:6 %}
-  removeLast() {
-    let current = this.first;
-    let target;
-
-    if(current && current.next) {
-      current = this.last.previous;
-      this.last = current;
-      target = current.next;
-      current.next = null;
-    } else {
-      this.first = null;
-      this.last = null;
-      target = current;
-    }
-
-    if(target) {
-      this.size--;
-      return target.value;
-    }
-  }
-{% endcodeblock %}
-
-Using doubly linked list, we no longer have to iterate through the whole list to get the 2nd last elements. We can use directly `this.last.previous` and is `O(1)`.
-
-Did you remember that for the Queue we had to use two arrays? Now, we can change that implementation an use a doubly linked list instead that has an *O(1)* for insert at the start and deleting at the end.
+Using a doubly linked list with the last element reference we achive an `add` of *O(1)*. That's the importance of using the right tool for the right job 💪
 
 # Summary
 
