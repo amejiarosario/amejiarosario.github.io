@@ -70,11 +70,15 @@ Primitive data types are the most basic elements where all the other data struct
 
 Arrays are collections of zero or more elements. Arrays are one of the most used data structure because of its simplicity and fast way of retrieving information.
 
-You can think of an array as a drawer where you can store things on the cabinets. When you want to search for something you can go directly to the bin (*`O(1)`*). However, if you forgot what cabinet had what data, then you will have to open one by one (*`O(n)`*) to verify its content until you find what you are looking for. That same happens with an array.
+You can think of an array as a drawer where you can store things on the bins.
 
-http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg
+{% img /images/array-drawer.jpg "Array is like a drawer with content on bins" %}
 
-https://cdn2.iconfinder.com/data/icons/furniture-12/48/drawer-cabinet-closet-shelf-cabin-cupboard-furntiure-512.png
+When you want to search for something you can go directly to the bin number (*`O(1)`*). However, if you forgot what cabinet had what data, then you will have to open one by one (*`O(n)`*) to verify its content until you find what you are looking for. That same happens with an array.
+
+
+<!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
+<!-- https://cdn2.iconfinder.com/data/icons/furniture-12/48/drawer-cabinet-closet-shelf-cabin-cupboard-furntiure-512.png -->
 
 Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects and even functions. In typed languages like Java/C/C++, you have to define the size of the array before using it and the data type of the collection. JavaScript would increase the size of the array automatically when it needs to.
 
@@ -232,21 +236,25 @@ HashMaps has many names like HashTable, HashMap, Map, Dictionary, Associative Ar
 
 > Hashtable is a data structure that **maps** keys to values
 
-Going back to the drawer analogy, bins have a label rather than a number. Numbers were the array indexes, and the tags are the key for the HashMaps. Internally, the keys get translated into an index using a *hash function*.
+Going back to the drawer analogy, bins have a label rather than a number.
 
-http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg
+{% img /images/hashmap-drawer.jpg "HashMap is like a drawer with content on bins index by labels" %}
+
+In this example, if you are looking for a toy, you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the bin labled as "toys". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
+
+Numbers were the array indexes, and now labels are the key for the HashMaps. Internally, the keys get translated into indexes using a *hash function*.
+
+<!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 
 There are at least two ways to implement hashmap:
 1. **Array**: Using a hash function to map a key to the array index value. Worst: `O(n)`, Average: `O(1)`
 2. **Binary Search Tree**: using a self-balancing binary search tree to look up for values (more on this later). Worst: *`O(log n)`*, Average: *`O(log n)`*.
 
-We are going to cover Trees & Binary Search Trees so don't worry too much about it for now.
-
-The most common implementation of Maps is using a  **array** and `hash` function. So, we are going to implement that going forward.
+We are going to cover Trees & Binary Search Trees so don't worry too much about it for now. The most common implementation of Maps is using a  **array** and `hash` function. So, we are going to implement that going forward.
 
 ## Hash Function
 
-The perfect hash function is the one that for every key it assigns a unique index. Ideal hashing algorithms allow a *constant time* access/lookup. However, it's hard to achieve a perfect hashing function in practice. You might have the case where two different keys yields on the same index: *collision*.
+The **perfect hash function** is the one that for every key it assigns a unique index. Ideal hashing algorithms allow a *constant time* access/lookup. However, it's hard to achieve a perfect hashing function in practice. You might have the case where two different keys yields on the same index: *collision*.
 
 Collision in hashmaps is unavoidable when using an array-like underlying data structure. So one way to deal with it is to store multiple values in the same bucket. When we try to access the key's value and found various values we iterate over the values *O(n)*. However, in most implementations, the hash adjust the size dynamically to avoid too many collisions so we can say that the **amortized** lookup time is *O(1)*. We are going to explain what we mean by amortized runtime later on this post with an example.
 
