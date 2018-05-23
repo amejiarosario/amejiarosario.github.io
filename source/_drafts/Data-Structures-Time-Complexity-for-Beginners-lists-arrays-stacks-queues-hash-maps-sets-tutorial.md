@@ -72,7 +72,9 @@ Arrays are collections of zero or more elements. Arrays are one of the most used
 
 You can think of an array as a drawer where you can store things on the bins.
 
-{% img /images/array-drawer.jpg "Array is like a drawer with content on bins" %}
+**Array is like a drawer that stores things on bins**
+{% img /images/array-drawer.jpg "Array is like a drawer that stores things on bins" %}
+
 
 When you want to search for something you can go directly to the bin number (*`O(1)`*). However, if you forgot what cabinet had what data, then you will have to open one by one (*`O(n)`*) to verify its content until you find what you are looking for. That same happens with an array.
 
@@ -238,7 +240,8 @@ HashMaps has many names like HashTable, HashMap, Map, Dictionary, Associative Ar
 
 Going back to the drawer analogy, bins have a label rather than a number.
 
-{% img /images/hashmap-drawer.jpg "HashMap is like a drawer with content on bins index by labels" %}
+**HashMap is like a drawer that stores things on bins and label them**
+{% img /images/hashmap-drawer.jpg "HashMap is like a drawer that stores things on bins and label them" %}
 
 In this example, if you are looking for a toy, you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the bin labled as "toys". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
 
@@ -252,13 +255,7 @@ There are at least two ways to implement hashmap:
 
 We are going to cover Trees & Binary Search Trees so don't worry too much about it for now. The most common implementation of Maps is using a  **array** and `hash` function. So, we are going to implement that going forward.
 
-## Hash Function
-
-The **perfect hash function** is the one that for every key it assigns a unique index. Ideal hashing algorithms allow a *constant time* access/lookup. However, it's hard to achieve a perfect hashing function in practice. You might have the case where two different keys yields on the same index: *collision*.
-
-Collision in hashmaps is unavoidable when using an array-like underlying data structure. So one way to deal with it is to store multiple values in the same bucket. When we try to access the key's value and found various values we iterate over the values *O(n)*. However, in most implementations, the hash adjust the size dynamically to avoid too many collisions so we can say that the **amortized** lookup time is *O(1)*. We are going to explain what we mean by amortized runtime later on this post with an example.
-
-## HashMap vs. Array
+<!--  ## HashMap vs. Array
 
 Why go through the trouble of converting the key into an index and not using an array directly you might ask. Well, the main difference is that the Array's index doesn't have any relationship with the data. You have to know where your data is.
 
@@ -274,15 +271,25 @@ What is the runtime of the approach #2 using a **HashMap**? Well, we iterate thr
 Differences between HashMap and Array
 - Search on an array is *O(n)* while on a HashMap is *O(1)*
 - Arrays can have duplicate values, while HashMap cannot have duplicated keys (but it can have duplicate values.)
-<!-- (It can be used to implement Sets). -->
 - The array has a key (index) that is always a number from 0 to max value, while in a HashMap you have control of the key and it can be whatever you want: number, string, or symbol.
+ -->
+
+## Hash Function
+
+The first step to implement a HashMap is to have a hash function. This function will map every key to its value.
+
+> The **perfect hash function** is the one that for every key it assigns a unique index.
+
+Ideal hashing algorithms allow a *constant time* access/lookup. However, it's hard to achieve a perfect hashing function in practice. You might have the case where two different keys yields on the same index: *collision*.
+
+Collision in hashmaps is unavoidable when using an array-like underlying data structure. So one way to deal with collsions is to store multiple values in the same bucket. When we try to access the key's value and found various values we iterate over the values *O(n)*. However, in most implementations, the hash adjust the size dynamically to avoid too many collisions so we can say that the **amortized** lookup time is *O(1)*. We are going to explain what we mean by amortized runtime later on this post with an example.
 
 ## Naïve HashMap implementation
 
 <a id="NaiveHashMap"></a>
 A very simple (and bad) hash function would this one:
 
-```js
+{% codeblock "Naive HashMap Implementation" lang:js mark:18,23 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map-1.js full code %}
 class NaiveHashMap {
 
   constructor(initialCapacity = 2) {
@@ -309,7 +316,15 @@ class NaiveHashMap {
     return index;
   }
 }
+{% endcodeblock %}
 
+We are using `buckets` rather than drawer/bins but you get the idea :)
+
+We have an initial capacity of 2 (two buckets). However, we want to store any number of elements on them. We use modulus `%` to loop through the number of available buckets.
+
+Take a look at our hash function in line 18. We are going to talk about it in a bit. First, let's see how we use our new HashMap!
+
+```js
 // Usage:
 const assert = require('assert');
 const hashMap = new NaiveHashMap();
@@ -348,13 +363,13 @@ hash('dog') // 3
 This will cause a lot of collisions.
 
 <br><br>
-**2)** **Collisions** are not handled at all. Both `cat` and `dog` will override each other on the position 3 of the array.
+**2)** **Collisions** are not handled at all. Both `cat` and `dog` will overwrite each other on the position 3 of the array (bucket#1).
 
 <br><br>
 **3)** **Size of the array** even if we get a better hash function we will get duplicates because the array has a size of 3 which less than the number of elements that we want to fit. We want to have an initial capacity that is well beyond what we need to fit.
 </details>
 
-Did you guess any? ^
+Did you guess any? ☝️
 
 
 ## Improving Hash Function
@@ -366,7 +381,7 @@ For that we need:
 1. A proper hash function that produces as few collisions as possible.
 2. An array that is big enough to hold all the required values.
 
-Let's give it another shot to our hash function:
+Let's give it another shot to our hash function. Instead of using the length of the string, let's sum each character [ascii code](https://simple.wikipedia.org/wiki/ASCII).
 
 ```js
   hash(key) {
@@ -382,12 +397,14 @@ Let's give it another shot to our hash function:
   }
 ```
 
-This one is better because each letter matters. We take the [ascii](https://www.asciitable.com/) code of the string
+Let's try again:
 ```js
 hash('cat') // 312  (c=99 + a=97 + t=116)
 hash('dog') // 314 (d=100 + o=111 + g=103)
 ```
-However, there's still an issue since `rat` and `art` are both 327, **collision!**
+This one is better! Because words with the same length has different code.
+
+Howeeeeeeeeever, there's still an issue! Because `rat` and `art` are both 327, **collision!** 💥
 
 We can fix that by offsetting the sum with the position:
 
@@ -426,7 +443,7 @@ hash('undefined') // 3402815551
 hash(undefined) // 3402815551
 ```
 
-Houston, we have a problem!! Different values shouldn't return the same hash!
+Houston, we still have a problem!! Different values shouldn't return the same hash!
 
 How can we solve that?
 
@@ -460,17 +477,22 @@ console.log(hash(undefined)); // 6940203017
 ```
 
 <a id="DecentHashMap"></a>
-Yay 🎉 we have a much better hash function!
+Yay!!! 🎉 we have a much better hash function!
 
 We also can change the initial capacity of the array to minimize collisions. Let's put all of that together in the next section.
 
 ## Decent HashMap Implementation
 
-Using our optimized hash function we can now do much better. However, it doesn't matter how good our hash function as long as we use a limited size bucket we would have collisions. So, we have to account for that and handle it gracefully. Let's make the following improvements to our HashMap implementation:
+Using our optimized hash function we can now do much better.
+
+We could still have collisions so let's implement something to handle them
+<!-- However, it doesn't matter how good our hash function as long as we use a limited size bucket we would have collisions.  So, we have to account for that and handle it gracefully.  -->
+
+Let's make the following improvements to our HashMap implementation:
 - **Hash function** that checks types and character orders to minimize collisions.
 - **Handle collisions** by appending values to a list. We also added a counter to keep track of them.
 
-```js
+{% codeblock "Decent HashMap Implementation" lang:js mark:18,23 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map-2.js full code %}
 class DecentHashMap {
 
   constructor(initialCapacity = 2) {
@@ -517,7 +539,12 @@ class DecentHashMap {
     return index;
   }
 }
+{% endcodeblock %}
 
+
+Let's use it and see how it perform:
+
+```js
 // Usage:
 const assert = require('assert');
 const hashMap = new DecentHashMap();
@@ -542,7 +569,7 @@ assert.equal(hashMap.get('dog'), 1); // Good. Didn't got overwritten by art
 
 This `DecentHashMap` gets the job done, but still, there are some issues. We are using a decent hash function that doesn't produce duplicate values, and that's great. However, we have two values in `bucket#0` and two more in `bucket#1`. How is that possible??
 
-Since we are using a limited bucket size of 2, even if the hash code is different all values will fit on the size of the array:
+Since we are using a limited bucket size of 2, we use modulus `%` to loop through the number of available buckets. So, even if the hash code is different all values will fit on the size of the array: bucket#0 or bucket#1.
 
 <!-- [{"key":"cat","hash":3789411390},{"key":"dog","hash":3788563007},{"key":"rat","hash":3789411405},{"key":"art","hash":3789415740}] -->
 
@@ -605,9 +632,9 @@ console.log('hashMapSize100\n', hashMapSize100.buckets);
 ```
 Yay! 🎊 no collision!
 
-Having a bigger bucket size is excellent to avoid collisions but consumes too much memory, and probably most of the buckets will be unused.
+Having a bigger bucket size is excellent to avoid collisions but consumes **too much memory**, and probably most of the buckets will be unused.
 
-Wouldn't it be great, if we can have a HashMap that automatically increases its size as needed? Well, that's called rehash, and we are going to do it next!
+Wouldn't it be great, if we can have a HashMap that automatically increases its size as needed? Well, that's called **rehash**, and we are going to do it next!
 
 ## Optimal HashMap Implementation
 
@@ -639,18 +666,9 @@ This will be our latest and greated hash map implementation:
 <details>
  <summary>**Optimized Hash Map Implementation _(click here to show)_**</summary>
 
-```js
-/**
- * Hash Map data structure implementation
- * @author Adrian Mejia <me AT adrianmejia.com>
- */
-class HashMap {
+{% codeblock "Optimal HashMap Implementation" lang:js mark:5,96-110,112-114 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map.js documented code %}
 
-  /**
-   * Initialize array that holds the values. Default is size 16
-   * @param {number} initialCapacity initial size of the array
-   * @param {number} loadFactor if set, the Map will automatically rehash when the load factor threshold is met
-   */
+class HashMap {
   constructor(initialCapacity = 16, loadFactor = 0.75) {
     this.buckets = new Array(initialCapacity);
     this.loadFactor = loadFactor;
@@ -659,10 +677,6 @@ class HashMap {
     this.keys = [];
   }
 
-  /**
-   * Decent hash function where each char ascii code is added with an offset depending on the possition
-   * @param {any} key
-   */
   hash(key) {
     let hashValue = 0;
     const stringTypeKey = `${key}${typeof key}`;
@@ -675,22 +689,13 @@ class HashMap {
     return hashValue;
   }
 
-  /**
-   * Get the array index after applying the hash funtion to the given key
-   * @param {any} key
-   */
+
   _getBucketIndex(key) {
     const hashValue = this.hash(key);
     const bucketIndex = hashValue % this.buckets.length;
     return bucketIndex;
   }
 
-  /**
-   * Insert a key/value pair into the hash map.
-   * If the key is already there replaces its content. Return the Map object to allow chaining
-   * @param {any} key
-   * @param {any} value
-   */
   set(key, value) {
     const {bucketIndex, entryIndex} = this._getIndexes(key);
 
@@ -715,11 +720,6 @@ class HashMap {
     return this;
   }
 
-  /**
-   * Gets the value out of the hash map
-   * Returns the value associated to the key, or undefined if there is none.
-   * @param {any} key
-   */
   get(key) {
     const {bucketIndex, entryIndex} = this._getIndexes(key);
 
@@ -730,19 +730,10 @@ class HashMap {
     return this.buckets[bucketIndex][entryIndex].value;
   }
 
-  /**
-   * Search for key and return true if it was found
-   * @param {any} key
-   */
   has(key) {
     return !!this.get(key);
   }
 
-  /**
-   * Search for a key in the map. It returns it's internal array indexes.
-   * Returns bucketIndex and the internal array index
-   * @param {any} key
-   */
   _getIndexes(key) {
     const bucketIndex = this._getBucketIndex(key);
     const values = this.buckets[bucketIndex] || [];
@@ -757,10 +748,6 @@ class HashMap {
     return {bucketIndex};
   }
 
-  /**
-   * Returns true if an element in the Map object existed and has been removed, or false if the element does not exist.
-   * @param {any} key
-   */
   delete(key) {
     const {bucketIndex, entryIndex, keyIndex} = this._getIndexes(key);
 
@@ -775,10 +762,6 @@ class HashMap {
     return true;
   }
 
-  /**
-   * Rehash means to create a new Map with a new (higher) capacity with the purpose of outgrow collisions.
-   * @param {Number} newCapacity
-   */
   rehash(newCapacity) {
     const newMap = new HashMap(newCapacity);
 
@@ -795,14 +778,11 @@ class HashMap {
     this.keys = newMap.keys;
   }
 
-  /**
-   * Load factor - measure how full the Map is. It's ratio between items on the map and total size of buckets
-   */
   getLoadFactor() {
     return this.size / this.buckets.length;
   }
 }
-```
+{% endcodeblock %}
 
 </details>
 
@@ -846,10 +826,12 @@ Take notice that after we add the 12th item, the load factor gets beyond 0.75, s
 This implementation is good enough to help us figure out the runtime of common operations like insert/search/delete/edit.
 
 
+To sum up the performance of a HashMap will be given by:
+
 1. The hash function that for every key produces a different output.
 2. Size of the bucket to hold data.
 
-We nailed both. We have a decent hash function that produces different output for different data. Two different data will never return the same code. Also, we have a rehash function that automatically grows the capacity as needed. That's great!
+We nailed both 🔨. We have a decent hash function that produces different output for different data. Two different data will never return the same code. Also, we have a rehash function that automatically grows the capacity as needed. That's great!
 
 
 ## Insert element on a HashMap runtime
