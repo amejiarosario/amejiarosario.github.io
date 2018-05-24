@@ -666,7 +666,7 @@ This will be our latest and greated hash map implementation:
 <details>
  <summary>**Optimized Hash Map Implementation _(click here to show)_**</summary>
 
-{% codeblock "Optimal HashMap Implementation" lang:js mark:5,96-110,112-114 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map.js documented code %}
+{% codeblock "Optimal HashMap Implementation" lang:js mark:5,47-49,96-110,112-114 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map.js documented code %}
 
 class HashMap {
   constructor(initialCapacity = 16, loadFactor = 0.75) {
@@ -786,6 +786,7 @@ class HashMap {
 
 </details>
 
+Pay special attention to the lines 96 to 114. That's where the rehash magic happens. We basically create a new HashMap with doubled capacity.
 
 So, **testing** our new implementation from above ^
 
@@ -832,7 +833,6 @@ To sum up the performance of a HashMap will be given by:
 2. Size of the bucket to hold data.
 
 We nailed both 🔨. We have a decent hash function that produces different output for different data. Two different data will never return the same code. Also, we have a rehash function that automatically grows the capacity as needed. That's great!
-
 
 ## Insert element on a HashMap runtime
 
@@ -1001,7 +1001,7 @@ Delete (`Set.delete`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case when t
 
 Linked List is a data structure where every element is connected to the next one.
 
-<!-- **[[image]]** -->
+{% img /images/linked-list.jpg "LinkedList" %}
 
 The linked list is the first data structure that we are going to implement without using an array. Instead, we are going to use a `node` which holds a `value` and points to the next element.
 
@@ -1014,7 +1014,7 @@ class Node {
 }
 {% endcodeblock %}
 
-When we have a chain of nodes where each one points to the next one we a **Singly Linked list**. When we have a linked list where each node leads to the **next** and the **previous** element we a **Doubly Linked List**
+When we have a chain of nodes where each one points to the next one we a **Singly Linked list**.
 
 ## Singly Linked Lists
 
@@ -1110,9 +1110,21 @@ We are going to add the last reference in the next section!
 
 ## Doubly Linked Lists
 
+When we have a chain of nodes where each one points to the next one we a **Singly Linked list**. When we have a linked list where each node leads to the **next** and the **previous** element we a **Doubly Linked List**
+
+{% img /images/doubly-linked-list.jpg "Doubly Linked List" %}
+
 Doubly linked list nodes have double references (next and previous). We are also going to keep track of the list first and the last element.
 
-{% codeblock Doubly Linked List lang:js %}
+{% codeblock Doubly Linked List lang:js https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.previous = null;
+  }
+}
+
 class LinkedList {
   constructor() {
     this.first = null; // head/root element
@@ -1129,7 +1141,7 @@ class LinkedList {
 Adding and removing from the start of the list is simple since we have `this.first` reference:
 
 <a id="DoublyLinkedList.addFirst"></a>
-{% codeblock LinkedList.prototype.addFirst lang:js %}
+{% codeblock LinkedList.prototype.addFirst lang:js https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
   addFirst(value) {
     const node = new Node(value);
 
@@ -1151,7 +1163,7 @@ Adding and removing from the start of the list is simple since we have `this.fir
 Notice, that we have to be very careful and update the previous, size and last.
 
 <a id="DoublyLinkedList.removeFirst"></a>
-{% codeblock LinkedList.prototype.removeFirst lang:js %}
+{% codeblock LinkedList.prototype.removeFirst lang:js https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
   removeFirst() {
     const first = this.first;
 
@@ -1179,7 +1191,7 @@ What's the runtime?
 Adding and removing *from the end* of the list is a little tricky. If you checked in the Singly Linked List, both operations took *O(n)* since we had to loop through the list to find the last element. Now, we have the `last` reference:
 
 <a id="DoublyLinkedList.addLast"></a>
-{% codeblock LinkedList.prototype.addLast lang:js mark:7 %}
+{% codeblock LinkedList.prototype.addLast lang:js mark:7 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
   addLast(value) {
     const node = new Node(value);
 
@@ -1202,7 +1214,7 @@ Adding and removing *from the end* of the list is a little tricky. If you checke
 Again, we have to be very careful updating the references and handling special cases such as when there's only one element.
 
 <a id="DoublyLinkedList.addLast"></a>
-{% codeblock LinkedList.prototype.addLast lang:js mark:6 %}
+{% codeblock LinkedList.prototype.addLast lang:js mark:6 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
   removeLast() {
     let current = this.first;
     let target;
@@ -1249,7 +1261,11 @@ This is a great improvement compared to the singly linked list! We improved from
 
 <!-- https://docs.oracle.com/javase/10/docs/api/java/util/Stack.html -->
 
-Stacks is a data structure where the last entered data is the first to come out. Also know as Last-in, First-out (LIFO). Let's implement a stack from scratch!
+Stacks is a data structure where the last entered data is the first to come out. Also know as Last-in, First-out (LIFO).
+
+{% img /images/stack.jpg "Stack: push and pop" %}
+
+Let's implement a stack from scratch!
 
 ```js
 class Stack {
@@ -1277,14 +1293,16 @@ Let's see some examples of its usage:
 
   stack.push('a');
   stack.push('b');
+  stack.push('c');
 
+  stack.pop(); // c
   stack.pop(); // b
   stack.pop(); // a
 ```
 
-The first in (`a`) as the last to get out. That's all!
+The first in (`a`) as the last to get out. We can also implement stack using a linked list instead of an array. The runtime will be the same.
 
-<!-- **[[usages]]** -->
+That's all!
 
 # Queues
 
@@ -1292,8 +1310,15 @@ The first in (`a`) as the last to get out. That's all!
 <!-- https://stackoverflow.com/a/22615787/684957 -->
 
 Queues is a data structure where the first data to get in is also the first to go out. A.k.a First-in, First-out (FIFO).
+It's like a line of people at the movies, the first to come in is the first to come out.
 
-We could implement a Queue very similar to how we implemented the Stack. A naive implementation would be this one using `Array.push` and `Array.shift`:
+{% img /images/queue.jpg "Queue: enqueue and dequeue" %}
+
+We could implement a Queue using an array, very similar to how we implemented the Stack.
+
+## Queue implemented with Array(s)
+
+A naive implementation would be this one using `Array.push` and `Array.shift`:
 
 <a id="QueueNaiveImpl"></a>
 
@@ -1367,7 +1392,7 @@ If the output already has some elements, then the remove operation is constant *
 We can achieve a `Queue` with a pure constant if we use a LinkedList. Let's see what it is in the next section!
 <!-- **[[usages]]** -->
 
-## Queue using a Doubly Linked List
+## Queue implemented with a Doubly Linked List
 
 We can achieve the best performance for a `queue` using a linked list rather than an array.
 
@@ -1406,17 +1431,25 @@ Here's a summary of everything that we explored. You can click on each runtime, 
 
 **Time complexity**
 
+*Click on the **name** to go the section or click on the **runtime** to go the implementation*
+
 Name | Insert | Access | Search | Delete | Comments
 -|-|-|-|-
-Array | *O(1)* | *O(1)* | *O(n)* | *O(n)* | Insertion to the end is `O(1)`.
-(Hash)Map | *O(1)** | *O(1)* | *O(1)* | *O(1)* | Rehashing might affect insertion time.
-Set | *O(1)** | - | *O(n)* | *O(n)* | Set using a HashMap implementation
-Stack | *O(1)* | *O(1)* | - | *O(1)* | Insert/delete is last-in, first-out (LIFO)
-Queue | *O(1)* | *O(1)** | - | *O(1)* | Can be implemented with an Array or LinkedList
-Linked List (doubly) | *O(1)* | *O(1)* | *O(n)* | *O(1)* | Doubly Linked List with last reference
-Linked List (singly) | *O(1)* | *O(1)* | *O(n)* | *O(n)* | Singly Linked List without last reference
+[**Array**](#Array) | [*O(n)*](#Insert-element-on-an-array) | [*O(1)*](#Access-an-element-in-an-array) | [*O(n)*](#Search-an-element-in-an-array) | [*O(n)*](#Deleting-elements-from-an-array) | Insertion to the end is `O(1)`. [Details here.](#Array-operations-time-complexity)
+[(Hash)**Map**](#HashMaps) | [*O(1)**](#Insert-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Edit-Delete-element-on-a-HashMap-runtime) | Rehashing might affect insertion time. [Details here.](#HashMap-operations-time-complexity)
+**Map** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
+[**Set** (using HashMap)](#Sets) | *[O(1)](#Set-Implementation)** | - | *[O(1)](#Set-Implementation)** | *[O(1)](#Set-Implementation)** | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
+**Set** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
+[**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#SinglyLinkedList.removeLast)* | Singly Linked List [Details here](#Singly-Linked-Lists-time-complexity).
+[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(1)](#DoublyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#DoublyLinkedList.removeLast)*  | Doubly Linked List with last element reference. [Details here](#Doubly-Linked-Lists-time-complexity)
+[**Stack**](#Stacks) (array implementation) | *[O(1)](#Stacks)* | - | - | *[O(1)](#Stacks)* | Insert/delete is last-in, first-out (LIFO)
+[**Queue**](#QueueNaiveImpl) (naive array impl.) | *[O(n)](#QueueNaiveImpl)* | - | - | *[O(1)](#QueueNaiveImpl)* | Insert (`Array.shift`) is *O(n)*
+[**Queue**](#QueueArrayImpl) (array implementation) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
+[**Queue**](#QueueListImpl) (list implementation) | *[O(1)](#QueueListImpl)* | - | - | *[O(1)](#QueueListImpl)* | Using Doubly Linked List with reference to the last element.
 
 `*` = Amortized runtime
+
+Note: **Binary search trees** and trees in general will be cover in the next post. Also, graph data structures.
 
 
 

@@ -58,6 +58,15 @@ a {
   color: $primary-color;
 }
 
+.highlight a {
+  color: gray;
+  text-decoration: underline;
+
+  &:hover {
+    color: lightgray;
+  }
+}
+
 b, em, strong {
   color: $emphasis-color;
 }
