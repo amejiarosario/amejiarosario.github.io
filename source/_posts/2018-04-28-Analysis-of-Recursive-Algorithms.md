@@ -5,7 +5,7 @@ comments: true
 pageviews__total: 632
 pageviews__recent: 166
 pageviews__avg_time: 130
-tutorial__order: 3
+tutorial__order: 100
 toc: true
 photos:
   - /images/data-structures-analysis-of-recursive-algorithms-small.jpg
@@ -39,6 +39,7 @@ This post is part of a tutorial series:
 **Learning Data Structures and Algorithms (DSA) for Beginners**
 1. [Intro to algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
 1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
+1. [Data Structures for Beginners: Arrays, HashMaps, and Lists](/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-lists-arrays-stacks-queues-hash-maps-sets-tutorial/)
 1. Analysis of Recursive Algorithms **👈 you are here**
 <!-- 1. [Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/) -->
 ---
