@@ -245,7 +245,7 @@ Going back to the drawer analogy, bins have a label rather than a number.
 
 In this example, if you are looking for a toy, you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the bin labled as "toys". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
 
-Numbers were the array indexes, and now labels are the key for the HashMaps. Internally, the keys get translated into indexes using a *hash function*.
+Numbers were the array indexes, and labels are the key for the HashMap's values. Internally, the keys get translated into indexes using a *hash function*.
 
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 
@@ -254,6 +254,13 @@ There are at least two ways to implement hashmap:
 2. **Binary Search Tree**: using a self-balancing binary search tree to look up for values (more on this later). Worst: *`O(log n)`*, Average: *`O(log n)`*.
 
 We are going to cover Trees & Binary Search Trees so don't worry too much about it for now. The most common implementation of Maps is using a  **array** and `hash` function. So, we are going to implement that going forward.
+
+**HashMap implemented with an array**
+{% img /images/hash-map.jpg "HashMap: hash function translates keys into bucket (array) indexes" %}
+
+As you can see in the image, each key gets translated into a **hash code**. Since the array size is limited (e.g. 10), we have to loop through the available buckets using modulus function. In the buckets we store the key/value pair and if there's more than one we use a collection to hold them.
+
+We are going to cover each of the HashMap components in details. Let's start with the **hash function**.
 
 <!--  ## HashMap vs. Array
 
@@ -443,7 +450,7 @@ hash('undefined') // 3402815551
 hash(undefined) // 3402815551
 ```
 
-Houston, we still have a problem!! Different values shouldn't return the same hash!
+Houston, we still have a problem!! Different values types shouldn't return the same hash code!
 
 How can we solve that?
 
@@ -606,7 +613,14 @@ console.log('hashMapSize10\n', hashMapSize10.buckets);
 */
 ```
 
-As you can see, we reduced the number of collisions by increasing the initial capacity of the hash map. Let's try with 100
+Another way to see this
+
+{% img /images/hash-map.jpg "HashMap: hash function translates keys into bucket (array) indexes" %}
+
+As you can see, we reduced the number of collisions (from 2 to 1) by increasing the initial capacity of the hash map.
+
+
+Let's try with a bigger capacity 💯:
 
 ```js
 const hashMapSize100 = new DecentHashMap(100);
@@ -664,7 +678,7 @@ This will be our latest and greated hash map implementation:
 <a id="HashMapWithRehash"></a>
 
 <details>
- <summary>**Optimized Hash Map Implementation _(click here to show)_**</summary>
+ <summary>**Optimized Hash Map Implementation _(click here to show the code)_**</summary>
 
 {% codeblock "Optimal HashMap Implementation" lang:js mark:5,47-49,96-110,112-114 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map.js documented code %}
 
