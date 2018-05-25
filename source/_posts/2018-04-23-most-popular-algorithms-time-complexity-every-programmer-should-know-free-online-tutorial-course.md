@@ -102,15 +102,17 @@ Big O Notation | Name | Example(s)
 
 Now, Let's go one by one and provide code examples!
 
-
-
 ---
 This post is part of a tutorial series:
 
 **Learning Data Structures and Algorithms (DSA) for Beginners**
-1. [Intro to Algorithm's Time Complexity and Big O Notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
-1. Eight Time Complexities that Every Programmer Should Know **👈 you are here**
-<!-- 1. [Eight Time Complexities that Every Programmer Should Know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/) -->
+1. [Intro to algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
+1. Eight time complexities that every programmer should know **👈 you are here**
+<!-- 1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/) -->
+<!-- 1. Data Structures for Beginners: Arrays, HashMaps, and Lists **👈 you are here** -->
+1. [Data Structures for Beginners: Arrays, HashMaps, and Lists](/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/)
+1. *Data Structures for Beginners: Trees & Graphs* (**coming soon**)
+<!-- 1. Analysis of Recursive Algorithms **👈 you are here** -->
 1. [Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
 ---
 
