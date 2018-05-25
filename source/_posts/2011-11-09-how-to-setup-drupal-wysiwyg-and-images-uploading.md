@@ -4,9 +4,9 @@ title: How to setup Drupal WYSIWYG and Images uploading?
 created: 1320876440000
 updated: 1320876440000
 comments: true
-pageviews__total: 807
-pageviews__recent: 3
-pageviews__avg_time: 203
+pageviews__total: 806
+pageviews__recent: 2
+pageviews__avg_time: 202
 tutorial__order: 0
 tags:
   - drupal

@@ -13,6 +13,9 @@ hexo clean && hexo algolia # index search
 # _config.yml
 # themes/am-light/source/js/search.es6
 hexo clean && hexo algolia
+
+# update GA stats
+cd tasks && node google-analytics-runner.js && cd -
 ```
 
 ## Update Google Analytics stats

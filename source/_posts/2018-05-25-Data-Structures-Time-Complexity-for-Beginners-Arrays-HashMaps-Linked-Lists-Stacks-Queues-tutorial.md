@@ -61,7 +61,7 @@ Name | Insert | Access | Search | Delete | Comments
 [**Set** (using HashMap)](#Sets) | *[O(1)](#Set-Implementation)** | - | *[O(1)](#Set-Implementation)** | *[O(1)](#Set-Implementation)** | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
 **Set** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
 [**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#SinglyLinkedList.removeLast)* | Singly Linked List [Details here](#Singly-Linked-Lists-time-complexity).
-[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(1)](#DoublyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#DoublyLinkedList.removeLast)*  | Doubly Linked List with last element reference. [Details here](#Doubly-Linked-Lists-time-complexity)
+[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(1)](#DoublyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#DoublyLinkedList.removeLast)*  | Deleting from the beginning/end is O(1). But, deleting from the middle is O(n). [Details here](#Doubly-Linked-Lists-time-complexity)
 [**Stack**](#Stacks) (array implementation) | *[O(1)](#Stacks)* | - | - | *[O(1)](#Stacks)* | Insert/delete is last-in, first-out (LIFO)
 [**Queue**](#QueueNaiveImpl) (naive array impl.) | *[O(n)](#QueueNaiveImpl)* | - | - | *[O(1)](#QueueNaiveImpl)* | Insert (`Array.shift`) is *O(n)*
 [**Queue**](#QueueArrayImpl) (array implementation) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
@@ -688,6 +688,7 @@ This will be our latest and greated hash map implementation:
 
 <!-- http://www.docjar.com/html/api/java/util/LinkedList.java.html -->
 <!-- http://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/tip/src/share/classes/java/util/LinkedList.java -->
+<!-- https://algs4.cs.princeton.edu/13stacks/DoublyLinkedList.java.html -->
 
 <a id="HashMapWithRehash"></a>
 
@@ -1469,7 +1470,7 @@ Name | Insert | Access | Search | Delete | Comments
 [**Set** (using HashMap)](#Sets) | *[O(1)](#Set-Implementation)** | - | *[O(1)](#Set-Implementation)** | *[O(1)](#Set-Implementation)** | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
 **Set** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
 [**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#SinglyLinkedList.removeLast)* | Singly Linked List [Details here](#Singly-Linked-Lists-time-complexity).
-[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(1)](#DoublyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#DoublyLinkedList.removeLast)*  | Doubly Linked List with last element reference. [Details here](#Doubly-Linked-Lists-time-complexity)
+[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(1)](#DoublyLinkedList.addLast)* | - | *O(n)* | *[O(n)](#DoublyLinkedList.removeLast)*  | Deleting from the beginning/end is O(1). But, deleting from the middle is O(n). [Details here](#Doubly-Linked-Lists-time-complexity)
 [**Stack**](#Stacks) (array implementation) | *[O(1)](#Stacks)* | - | - | *[O(1)](#Stacks)* | Insert/delete is last-in, first-out (LIFO)
 [**Queue**](#QueueNaiveImpl) (naive array impl.) | *[O(n)](#QueueNaiveImpl)* | - | - | *[O(1)](#QueueNaiveImpl)* | Insert (`Array.shift`) is *O(n)*
 [**Queue**](#QueueArrayImpl) (array implementation) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
@@ -1500,6 +1501,10 @@ https://en.wikipedia.org/wiki/Linked_list#Linked_lists_vs._dynamic_arrays
 JavaScript runtime complexity of Array functions
 https://stackoverflow.com/a/22615787/684957
 
+
+Backlinks:
+
+https://www.reddit.com/r/compsci/comments/8m1dx0/data_structures_for_beginners_arrays_hashmaps_and/
 
 -->
 

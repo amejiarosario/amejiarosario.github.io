@@ -6,7 +6,7 @@ updated: 1320855136000
 comments: true
 pageviews__total: 1471
 pageviews__recent:  27
-pageviews__avg_time: 259
+pageviews__avg_time: 244
 tutorial__order: 0
 #categories: [ms access, sql, visual basic, macros, how-to]
 ---
