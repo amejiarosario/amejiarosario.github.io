@@ -53,6 +53,8 @@ The following table is summary of everything that we are going to cover in this 
 
 *Click on the **name** to go the section or click on the **runtime** to go the implementation*
 
+`*` = Amortized runtime
+
 Name | Insert | Access | Search | Delete | Comments
 -|-|-|-|-
 [**Array**](#Array) | [*O(n)*](#Insert-element-on-an-array) | [*O(1)*](#Access-an-element-in-an-array) | [*O(n)*](#Search-an-element-in-an-array) | [*O(n)*](#Deleting-elements-from-an-array) | Insertion to the end is `O(1)`. [Details here.](#Array-operations-time-complexity)
@@ -60,14 +62,12 @@ Name | Insert | Access | Search | Delete | Comments
 **Map** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
 [**Set** (using HashMap)](#Sets) | *[O(1)](#Set-Implementation)** | - | *[O(1)](#Set-Implementation)** | *[O(1)](#Set-Implementation)** | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
 **Set** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
-[**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.removeAt)* | Singly Linked List [Details here](#Singly-Linked-Lists-time-complexity).
-[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(1)](#DoublyLinkedList.addLast)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.removeAt)*  | Deleting from the beginning/end is O(1). But, deleting from the middle is O(n). [Details here](#Doubly-Linked-Lists-time-complexity)
-[**Stack**](#Stacks) (array implementation) | *[O(1)](#Stacks)* | - | - | *[O(1)](#Stacks)* | Insert/delete is last-in, first-out (LIFO)
-[**Queue**](#QueueNaiveImpl) (naive array impl.) | *[O(n)](#QueueNaiveImpl)* | - | - | *[O(1)](#QueueNaiveImpl)* | Insert (`Array.shift`) is *O(n)*
-[**Queue**](#QueueArrayImpl) (array implementation) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
-[**Queue**](#QueueListImpl) (list implementation) | *[O(1)](#QueueListImpl)* | - | - | *[O(1)](#QueueListImpl)* | Using Doubly Linked List with reference to the last element.
-
-`*` = Amortized runtime
+[**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.remove)* | Adding/Removing to the start of the list is *`O(1)`*. [Details here](#Singly-Linked-Lists-time-complexity).
+[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(n)](#DoublyLinkedList.add)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.remove)*  | Adding/Deleting from the beginning/end is *`O(1)`*. But, deleting/adding from the middle is *`O(n)`*. [Details here](#Doubly-Linked-Lists-time-complexity)
+[**Stack** (array implementation)](#Stacks) | *[O(1)](#Stacks)* | - | - | *[O(1)](#Stacks)* | Insert/delete is last-in, first-out (LIFO)
+[**Queue** (naive array impl.)](#QueueNaiveImpl) | *[O(n)](#QueueNaiveImpl)* | - | - | *[O(1)](#QueueNaiveImpl)* | Insert (`Array.shift`) is *O(n)*
+[**Queue** (array implementation)](#QueueArrayImpl) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
+[**Queue** (list implementation)](#QueueListImpl) | *[O(1)](#QueueListImpl)* | - | - | *[O(1)](#QueueListImpl)* | Using Doubly Linked List with reference to the last element.
 
 Note: **Binary search trees** and trees in general will be cover in the next post. Also, graph data structures.
 
@@ -1145,20 +1145,20 @@ Adding and removing elements from the beginning is a constant time because we ho
 
 As expected the runtime for removing/adding to the firt element from a linked List is always constant *O(1)*
 
-<a id="LinkedList.removeAt"></a>
+<a id="LinkedList.remove"></a>
 
-**Removing and searching anywhere a linked list**
+**Removing an element anywhere from a linked list**
 
 Removing an element anywhere in the list levarage the `removeLast` and `removeFirst`. However, if the removal is in the middle then we assign the previous node to the next one. That removes any reference from the current node, thus is removed from the list:
 
-{% codeblock LinkedList.removeAt lang:js mark:11 %}
-  removeAt(nth) {
-    if(nth === 0) {
+{% codeblock LinkedList.remove lang:js mark:3,9,11 %}
+  remove(index = 0) {
+    if(index === 0) {
       return this.removeFirst();
     }
 
-    for (let current = this.first, index = 0; current;  index++, current = current.next) {
-      if(index === nth) {
+    for (let current = this.first, i = 0; current;  i++, current = current.next) {
+      if(i === index) {
         if(!current.next) { // if it doesn't have next it means that it is the last
           return this.removeLast();
         }
@@ -1170,12 +1170,15 @@ Removing an element anywhere in the list levarage the `removeLast` and `removeFi
   }
 {% endcodeblock %}
 
-Note that `nth` is a zero-based index: 0 will be the first element, 1 second and so on.
+Note that `index` is a zero-based index: 0 will be the first element, 1 second and so on.
 
-> Removing from anywhere within the list is *O(n)*
+> Removing an element anywhere within the list is *O(n)*.
 
 <a id="LinkedList.contains"></a>
-Searching an element on the linked list is very somewhat similar to `removeAt`:
+
+**Searching for an element in a linked list**
+
+Searching an element on the linked list is very somewhat similar to `remove`:
 
 {% codeblock LinkedList.contains lang:js%}
   contains(value) {
@@ -1199,9 +1202,10 @@ Operation | Runtime | Comment
 -|-|-
 [`addFirst`](#DoublyLinkedList.addFirst) | *O(1)* | Insert element to the beginning of the list
 [`addLast`](#SinglyLinkedList.addLast) | *O(n)* | Insert element to the end of the list
+[`add`](#DoublyLinkedList.add) | *O(n)* | Insert element anywhere in the list.
 [`removeFirst`](#DoublyLinkedList.removeFirst) | *O(1)* | Remove element to the beginning of the list
 [`removeLast`](#SinglyLinkedList.removeLast) | *O(n)* | Remove element to the end of the list
-[`removeAt`](#LinkedList.removeAt) | *O(n)* | Remove any element from the list
+[`remove`](#LinkedList.remove) | *O(n)* | Remove any element from the list
 [`contains`](#LinkedList.contains) | *O(n)* | Search for any element from the list
 
 Notice that every time we are adding/removing from the last position the operation takes *O(n)*...
@@ -1343,6 +1347,40 @@ Using doubly linked list, we no longer have to iterate through the whole list to
 
 Did you remember that for the Queue we had to use two arrays? Now, we can change that implementation an use a doubly linked list instead that has an *O(1)* for insert at the start and deleting at the end.
 
+<a id="DoublyLinkedList.add"></a>
+
+**Adding an element anywhere from a linked list**
+
+Adding an element on anywhere on the list leverage our `addFirst` andd `addLast` functions as you can see below:
+
+{% codeblock LinkedList.add lang:js mark:3,9 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js FullCode %}
+  add(value, index = 0) {
+    if(index === 0) {
+      return this.addFirst(value);
+    }
+
+    for (let current = this.first, i = 0; i <= this.size;  i++, current = (current && current.next)) {
+      if(i === index) {
+        if(i === this.size) { // if it doesn't have next it means that it is the last
+          return this.addLast(value);
+        }
+        const newNode = new Node(value);
+        newNode.previous = current.previous;
+        newNode.next = current;
+
+        current.previous.next = newNode;
+        if(current.next) { current.next.previous = newNode; }
+        this.size++;
+        return newNode;
+      }
+    }
+  }
+{% endcodeblock %}
+
+If we have a insertion in the middle of the array, then we have to update the `next` and `previous` reference of the surrounding elements.
+
+> Adding an element anywhere within the list is *O(n)*.
+
 ## Doubly Linked Lists time complexity
 
 Doubly Linked List time complexity per function is as follows:
@@ -1351,9 +1389,10 @@ Operation | Runtime | Comment
 -|-|-
 [`addFirst`](#DoublyLinkedList.addFirst) | *O(1)* | Insert element to the beginning of the list.
 [`addLast`](#DoublyLinkedList.addLast) | *O(1)* | Insert element to the end of the list.
+[`add`](#DoublyLinkedList.add) | *O(n)* | Insert element anywhere in the list.
 [`removeFirst`](#DoublyLinkedList.removeFirst) | *O(1)* | Remove element to the beginning of the list.
 [`removeLast`](#DoublyLinkedList.removeLast) | *O(1)* | Remove element to the end of the list.
-[`removeAt`](#LinkedList.removeAt) | *O(n)* | Remove any element from the list
+[`remove`](#LinkedList.remove) | *O(n)* | Remove any element from the list
 [`contains`](#LinkedList.contains) | *O(n)* | Search for any element from the list
 
 This is a great improvement compared to the singly linked list! We improved from *O(n)* to *O(1)* by:
@@ -1539,6 +1578,8 @@ Here's a summary of everything that we explored. You can click on each runtime, 
 
 *Click on the **name** to go the section or click on the **runtime** to go the implementation*
 
+`*` = Amortized runtime
+
 Name | Insert | Access | Search | Delete | Comments
 -|-|-|-|-
 [**Array**](#Array) | [*O(n)*](#Insert-element-on-an-array) | [*O(1)*](#Access-an-element-in-an-array) | [*O(n)*](#Search-an-element-in-an-array) | [*O(n)*](#Deleting-elements-from-an-array) | Insertion to the end is `O(1)`. [Details here.](#Array-operations-time-complexity)
@@ -1546,14 +1587,12 @@ Name | Insert | Access | Search | Delete | Comments
 **Map** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
 [**Set** (using HashMap)](#Sets) | *[O(1)](#Set-Implementation)** | - | *[O(1)](#Set-Implementation)** | *[O(1)](#Set-Implementation)** | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
 **Set** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
-[**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.removeAt)* | Singly Linked List [Details here](#Singly-Linked-Lists-time-complexity).
-[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(1)](#DoublyLinkedList.addLast)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.removeAt)*  | Deleting from the beginning/end is O(1). But, deleting from the middle is O(n). [Details here](#Doubly-Linked-Lists-time-complexity)
-[**Stack**](#Stacks) (array implementation) | *[O(1)](#Stacks)* | - | - | *[O(1)](#Stacks)* | Insert/delete is last-in, first-out (LIFO)
-[**Queue**](#QueueNaiveImpl) (naive array impl.) | *[O(n)](#QueueNaiveImpl)* | - | - | *[O(1)](#QueueNaiveImpl)* | Insert (`Array.shift`) is *O(n)*
-[**Queue**](#QueueArrayImpl) (array implementation) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
-[**Queue**](#QueueListImpl) (list implementation) | *[O(1)](#QueueListImpl)* | - | - | *[O(1)](#QueueListImpl)* | Using Doubly Linked List with reference to the last element.
-
-`*` = Amortized runtime
+[**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.remove)* | Adding/Removing to the start of the list is *`O(1)`*. [Details here](#Singly-Linked-Lists-time-complexity).
+[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(n)](#DoublyLinkedList.add)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.remove)*  | Adding/Deleting from the beginning/end is *`O(1)`*. But, deleting/adding from the middle is *`O(n)`*. [Details here](#Doubly-Linked-Lists-time-complexity)
+[**Stack** (array implementation)](#Stacks) | *[O(1)](#Stacks)* | - | - | *[O(1)](#Stacks)* | Insert/delete is last-in, first-out (LIFO)
+[**Queue** (naive array impl.)](#QueueNaiveImpl) | *[O(n)](#QueueNaiveImpl)* | - | - | *[O(1)](#QueueNaiveImpl)* | Insert (`Array.shift`) is *O(n)*
+[**Queue** (array implementation)](#QueueArrayImpl) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
+[**Queue** (list implementation)](#QueueListImpl) | *[O(1)](#QueueListImpl)* | - | - | *[O(1)](#QueueListImpl)* | Using Doubly Linked List with reference to the last element.
 
 Note: **Binary search trees** and trees in general will be cover in the next post. Also, graph data structures.
 

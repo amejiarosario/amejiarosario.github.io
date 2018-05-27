@@ -5,9 +5,11 @@
 ```bash
 hexo s -dp 5000            # server on port 5000
 hexo s --draft -dp 5000    # serve drafts on port 5000
-hexo g                     # generate
+# hexo g                     # generate
 hexo d -g                  # generate and deploy to github pages
 hexo clean && hexo algolia # index search
+
+ggpush # push source so edit this post works
 
 # change index in
 # _config.yml

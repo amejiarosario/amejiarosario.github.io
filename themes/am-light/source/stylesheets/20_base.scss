@@ -54,6 +54,9 @@ p {
   border-bottom: 1px $primary-color dotted;
 }
 
+//
+// links
+//
 a {
   color: $primary-color;
 }
@@ -66,6 +69,47 @@ a {
     color: lightgray;
   }
 }
+
+a.button-link-red {
+    background-color: red;
+    box-shadow: 0 5px 0 darkred;
+    color: white !important;
+    padding: 1em 1.5em;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+
+  &:hover {
+    background-color: #ce0606;
+    cursor: pointer;
+  }
+
+  &:active {
+    box-shadow: none;
+    top: 5px;
+  }
+}
+
+a.button-link-primary {
+  background-color: cadetblue;
+  box-shadow: 0 5px 0 darken( cadetblue, 10%);
+  color: white !important;
+  padding: 1em 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+
+&:hover {
+  background-color: darken( cadetblue, 5%);
+  cursor: pointer;
+}
+
+&:active {
+  box-shadow: none;
+  top: 5px;
+}
+}
+
 
 b, em, strong {
   color: $emphasis-color;
