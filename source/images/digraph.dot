@@ -1,0 +1,20 @@
+digraph g{
+  // node [shape=circle fontcolor=white color="#34A6E8" style=radial fillcolor="#C8EAFC:#34A6E8" ]
+  node [shape=circle color="#34A6E8" style=radial fillcolor="#C8EAFC" ]
+  edge  [color="#34A6E8"]
+
+  a -> b
+  b -> c
+  c -> d
+  d -> b
+  d -> c
+
+  a -> a
+
+  e -> f
+
+  h
+
+  { rank=same; a d }
+  { rank=same; b c }
+}

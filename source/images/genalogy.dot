@@ -1,0 +1,62 @@
+// https://dreampuf.github.io/GraphvizOnline/
+digraph genalogy{
+    // node [shape=circle fontcolor=white color="#34A6E8" style=radial fillcolor="#C8EAFC:#34A6E8" ]
+    // node [shape=circle color="#34A6E8" style=radial fillcolor="#C8EAFC" ]
+    node [color="#34A6E8" style=radial fillcolor="#C8EAFC" ]
+    edge  [color="#34A6E8"]
+
+    carlos -> adrian
+    reina -> adrian
+
+    carlos -> ivan
+    reina -> ivan
+
+    carlos -> carlina
+    reina -> carlina
+
+    nadia -> david
+    carlos -> david
+    nadia -> vanessa
+    carlos -> vanessa
+
+    hector -> carlos
+    lodys -> carlos
+
+    hector -> rosanna
+    lodys -> rosanna
+
+    rosanna -> roger
+    rosanna -> rosalvis
+    alberto -> roger
+    alberto -> rosalvis
+
+    "ramon Fernandez" -> reina
+    felicia -> reina
+
+    Antonio -> "ramon Cabral"
+    Antonio -> leida
+
+    leida -> chailyn
+
+    "ramon Cabral" -> nathalie
+    soraya -> nathalie
+    "ramon Cabral" -> jorge
+    soraya -> jorge
+    "ramon Cabral" -> marco
+    soraya -> marco
+    "ramon Cabral" -> krystal
+    soraya -> krystal
+
+
+    adrian -> abby
+    nathalie -> abby
+
+
+    cuco -> soraya
+    blanca -> soraya
+
+    cuco -> ruben
+    blanca -> ruben
+
+    "Carlos Dominguez" -> nadia
+}
