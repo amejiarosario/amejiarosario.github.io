@@ -61,6 +61,7 @@ Name | Insert | Access | Search | Delete | Comments
 [(Hash)**Map**](#HashMaps) | [*O(1)**](#Insert-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Edit-Delete-element-on-a-HashMap-runtime) | Rehashing might affect insertion time. [Details here.](#HashMap-operations-time-complexity)
 **Map** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
 [**Set** (using HashMap)](#Sets) | *[O(1)](#Set-Implementation)** | - | *[O(1)](#Set-Implementation)** | *[O(1)](#Set-Implementation)** | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
+**Set** (using list) | *[O(n)](https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.add)* | - |  *[O(n)](https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has)]* |  *[O(n)](https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.delete)* | Implemented using Binary Search Tree
 **Set** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
 [**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.remove)* | Adding/Removing to the start of the list is *`O(1)`*. [Details here](#Singly-Linked-Lists-time-complexity).
 [**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(n)](#DoublyLinkedList.add)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.remove)*  | Adding/Deleting from the beginning/end is *`O(1)`*. But, deleting/adding from the middle is *`O(n)`*. [Details here](#Doubly-Linked-Lists-time-complexity)
@@ -987,7 +988,9 @@ class MySet {
 
 We used `HashMap.set` to add the set elements without duplicates. We use the key as the value, and since hash maps keys are unique we are all set.
 
-Checking if an element is already there can be done using the `hashMap.has` which has an amortized runtime of *`O(1)`*. The most operations would be an amortized constant time except for getting the `entries` which is  *`O(n)`*
+Checking if an element is already there can be done using the `hashMap.has` which has an amortized runtime of *`O(1)`*. The most operations would be an amortized constant time except for getting the `entries` which is  *`O(n)`*.
+
+Note: The JS built-in `Set.has` has a runtime of *O(n)*, since it uses a regular list of elements and check each element at a time. You can see the `Set.has` algorithm [here](https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has)
 
 Here some examples how to use it:
 
