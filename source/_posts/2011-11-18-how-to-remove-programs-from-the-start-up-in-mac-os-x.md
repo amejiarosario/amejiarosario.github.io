@@ -5,7 +5,7 @@ created: 1321636703000
 updated: 1321636703000
 comments: true
 pageviews__total: 100
-pageviews__recent: 1
+pageviews__recent: 2
 pageviews__avg_time: 72
 tutorial__order: 0
 #categories: [mac, how-to]

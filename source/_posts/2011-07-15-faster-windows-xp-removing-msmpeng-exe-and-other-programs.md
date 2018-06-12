@@ -6,7 +6,7 @@ updated: 1310735883000
 comments: true
 pageviews__total: 37100
 pageviews__recent:  46
-pageviews__avg_time: 553
+pageviews__avg_time: 547
 # categories: [windows, tips, how-to]
 tutorial__order: 0
 tags:
