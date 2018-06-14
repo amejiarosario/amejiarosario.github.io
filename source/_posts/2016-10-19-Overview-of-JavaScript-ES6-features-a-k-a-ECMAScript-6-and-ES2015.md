@@ -3,8 +3,8 @@ layout: post
 title: Overview of JavaScript ES6 features (a.k.a ECMAScript 6 and ES2015+)
 comments: true
 toc: true
-pageviews__total: 53019
-pageviews__recent: 5
+pageviews__total: 53025
+pageviews__recent: 3
 pageviews__avg_time: 327.9294513
 tutorial__order: 0
 photos__background_color: '#F5DA55'

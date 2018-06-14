@@ -5,9 +5,9 @@ created: 1328337152000
 updated: 1328337152000
 comments: true
 toc: true
-pageviews__total: 8573
+pageviews__total: 8590
 pageviews__recent:  110
-pageviews__avg_time: 807
+pageviews__avg_time: 805
 # categories: [how-to, apache, nutch, search engines, web crawlers]
 photos:
   - /images/apache_nutch_web_crawler_small.png

@@ -8,8 +8,8 @@ pageviews__avg_time: 0
 tutorial__order: 0
 toc: true
 photos:
-  - /images/placeholder-small.jpg
-  - /images/placeholder-large.jpg
+  - /images/data-structures-for-beginners-trees-binary-search-tree-small.jpg
+  - /images/data-structures-for-beginners-trees-binary-search-tree-large.jpg
 photos__background_color: '#F4F0EF'
 tags:
   - big-o notation

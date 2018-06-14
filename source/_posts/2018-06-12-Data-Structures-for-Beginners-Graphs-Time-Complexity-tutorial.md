@@ -2,9 +2,9 @@
 layout: post
 title: 'Graph Data Structures for Beginners'
 comments: true
-pageviews__total: 0
-pageviews__recent: 0
-pageviews__avg_time: 0
+pageviews__total: 54
+pageviews__recent: 14
+pageviews__avg_time: 20
 tutorial__order: 5
 toc: true
 photos:
@@ -158,7 +158,7 @@ We a digraph with 4 nodes. When a vertex has link to itself (e.g. `a`) is called
 <!-- Notice that `a` has **self-loop**. -->
 <!-- img https://www.ida.liu.se/opendsa/OpenDSA/Books/TDDD86_2014/html/_images/GraphRep.png Graph representation: Adjacency list and matrix  -->
 
-**Adjacency Matrix**
+## Adjacency Matrix
 
 The adjacency matrix is one way of representing a graph using a two-dimensional array (NxN matrix). In the intersection of nodes, we add 1 (or other weight) if they are connected and `0` or `-` if they are not connected.
 
@@ -178,13 +178,13 @@ It's important to notice that for undirected graphs the adjacency matrix will **
 
 What is the time complexity of finding connections of two vertices?
 
-> Querying if two nodes are connected in an adjacency list is *O(1)*.
+> Querying if two nodes are connected in an adjacency matrix is *O(1)*.
 
 <a id="Matrix.space"></a>
 
 What is the space complexity?
 
-> Storing a graph as an adjacency list has a space complexity of *O(n<sup>2</sup>)*, where `n` is the number of vertices. Also, represented as *O(|V|<sup>2</sup>)*
+> Storing a graph as an adjacency matrix has a space complexity of *O(n<sup>2</sup>)*, where `n` is the number of vertices. Also, represented as *O(|V|<sup>2</sup>)*
 
 <a id="Matrix.addVertex"></a>
 
@@ -192,7 +192,7 @@ What is the runtime to add a vertex?
 
 The vertices are stored as a *`V`*x*`V`* matrix. So, everytime a vertex is added, the matrix needs to be reconstructed to a *`V+1`*x*`V+1`*.
 
-> Adding a vertex on a adjcency matrix is *O(|V|<sup>2</sup>)*
+> Adding a vertex on a adjacency matrix is *O(|V|<sup>2</sup>)*
 
 <a id="Matrix.getAdjacents"></a>
 
@@ -214,7 +214,7 @@ Imagine that you need to represent Facebook network as a graph. You would have t
 
 In general, we deal with sparse graphs so the matrix will waste a lot of space. That's why in most implementation we would use an adjacency list rather than the matrix.
 
-**Adjacency List**
+## Adjacency List
 
 Adjacency List is one of the most common ways to represent graphs. Each node has a list of all the nodes connected to it.
 
