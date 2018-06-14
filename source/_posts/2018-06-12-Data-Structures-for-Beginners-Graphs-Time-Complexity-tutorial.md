@@ -24,7 +24,6 @@ date: 2018-05-14 05:19:22
 updated: 2018-05-14 05:19:22
 ---
 
-
 In this post, we are going to explore non-linear data structures like graphs. We are going to cover the central concepts and typical applications.
 
 You are probably using programs that use graphs (and trees). Let's say for instance that you want to know the shortest path between your workplace and home you can use graph algorithms to get the answer! We are going to explore this and other fun challenges.
