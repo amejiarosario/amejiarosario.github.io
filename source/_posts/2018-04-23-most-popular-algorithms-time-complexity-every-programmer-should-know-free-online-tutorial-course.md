@@ -163,7 +163,7 @@ If you use the schoolbook long multiplication algorithm, it would take <code>O(n
 
   ## Look-up table
 
-Given a string find its word frecency data.
+Given a string find its word frequency data.
 
 ```js
 const dictionary = {the: 22038615, be: 12545825, and: 10741073, of: 10343885, a: 10144200, in: 6996437, to: 6332195 /* ... */};
