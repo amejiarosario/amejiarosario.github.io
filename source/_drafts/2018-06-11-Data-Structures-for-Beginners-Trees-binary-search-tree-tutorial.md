@@ -5,7 +5,7 @@ comments: true
 pageviews__total: 0
 pageviews__recent: 0
 pageviews__avg_time: 0
-tutorial__order: 0
+tutorial__order: 6
 toc: true
 photos:
   - /images/data-structures-for-beginners-trees-binary-search-tree-small.jpg
@@ -220,6 +220,7 @@ Let's implementing insertion.
 ## BST Node Insertion
 
 To insert a node in a binary tree we do the following:
+
 1. If tree is empty, the first node becomes the **root** and you are done.
 1. Compare root/parent's value if is *higher* go **right**, if is *lower* go **right**. If is the same, then the value already exists so you can increase the duplicate count (multiplicity).
 1. Repeat #2 until we found an empty slot to insert the new node.
@@ -304,7 +305,6 @@ We just remove the reference from node's parent (15) to be null.
 
 In this case we go to the parent (30) and replace child (10), with childs' child (15).
 
-
 **Deleting a node with two children**
 
 ```
@@ -317,6 +317,18 @@ In this case we go to the parent (30) and replace child (10), with childs' child
 
 We are removing node 40 that has 2 children (35 and 50). We replace the parent's (30) child (40) with the child's right child (50). Then we keep the left child (35) in the same place it was before, so we have to make it the left child of 50.
 
+Another way to do it to remove node 40, is to move the left child (35) up and then keep the right child (50) where it was.
+
+```
+     30
+  /     \
+ 15      35
+           \
+            50
+```
+
+Either way is fine as long as you keep the binary search tree property: `left < parent < right`.
+
 **Deleting the root.**
 
 ```
@@ -326,6 +338,7 @@ We are removing node 40 that has 2 children (35 and 50). We replace the parent's
         /
        35
 ```
+
 Deleting the root is very similar to deleting nodes with 0, 1, or 2 children that we discussed earlier. The only difference is that afterwards we need to update the reference of root of the tree.
 
 
@@ -333,27 +346,29 @@ Here's an animation of what we discussed.
 
 {% img /images/bst-remove.gif Removing a node with 0, 1, 2 children from a binary search tree %}
 
-In the animation, ended up with a slighly different result because it moves up the left child/subtree instead of the right child/subtree. That's ok either way as long as we maintain: `left < parent < right`.
+In the animation, it moves up the left child/subtree and keep the right child/subtree in place.
 
 Now that we have a good idea how it should work, let's implement it:
 
-{% codeblock BinarySearchTree.prototype.remove lang:js mark:3,6,10,16 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js#L89 Full Code %}
+{% codeblock BinarySearchTree.prototype.remove lang:js mark:3,6,12,18 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js#L89 Full Code %}
   remove(value) {
-    const found = this.find(value);
-    if (!found) return false;
+    const nodeToRemove = this.find(value);
+    if (!nodeToRemove) return false;
 
-    // Combine left and right children into one subtree.
-    const newSubtree = this.combineLeftIntoRightSubtree(found);
+    // Combine left and right children into one subtree without nodeToRemove
+    const nodeToRemoveChildren = this.combineLeftIntoRightSubtree(nodeToRemove);
 
-    if (found === this.root) {
+    if (nodeToRemove.meta.multiplicity && nodeToRemove.meta.multiplicity > 1) {
+      nodeToRemove.meta.multiplicity -= 1; // handle duplicated
+    } else if (nodeToRemove === this.root) {
       // Replace (root) node to delete with the combined subtree.
-      this.root = newSubtree;
+      this.root = nodeToRemoveChildren;
       this.root.parent = null; // clearing up old parent
     } else {
-      const side = found.isParentLeftChild ? 'left' : 'right';
-      const { parent } = found; // get parent
+      const side = nodeToRemove.isParentLeftChild ? 'left' : 'right';
+      const { parent } = nodeToRemove; // get parent
       // Replace node to delete with the combined subtree.
-      parent[side] = newSubtree;
+      parent[side] = nodeToRemoveChildren;
     }
 
     this.size -= 1;
@@ -362,13 +377,14 @@ Now that we have a good idea how it should work, let's implement it:
 {% endcodeblock %}
 
 Here are some hightlights of the implementation:
+
 - First we search if the node exist. If doesn't we return false and we are done!
 - Combine left and right children into one subtree.
 - Replace node to delete with the combined subtree.
 
 The function that combines left into right subtree is the following:
 
-{% codeblock BinarySearchTree.prototype.remove lang:js mark:3,6,10,16 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js#L89 Full Code %}
+{% codeblock BinarySearchTree.prototype.combineLeftIntoRightSubtree lang:js mark:3 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js#L89 Full Code %}
   combineLeftIntoRightSubtree(node) {
     if (node.right) {
       const leftmost = this.getLeftmost(node.right);
@@ -379,25 +395,39 @@ The function that combines left into right subtree is the following:
   }
 {% endcodeblock %}
 
-For instace let's say that we want to combine the following tree and we are about to delete node 30. We would like to combine the left subtree into the right one. The result is this:
+For instace, let's say that we want to combine the following tree and we are about to delete node `30`. We would like to combine 30's left subtree into the right one. The result is this:
 
 ```
       30*                             40
     /     \                          /  \
-   10      40    combined(30)       35   50
+   10      40    combine(30)       35   50
      \    /  \   ----------->      /
      15  35   50                  10
                                    \
                                     15
 ```
-Now, node 30 is no more!
 
+Now, and if make the newSubtree the root, then node `30` is no more!
+
+## Binary Tree Transversal
+
+Enim do eiusmod labore do Lorem. Id qui tempor ad duis in quis ex magna cupidatat fugiat sit. Ad minim eu mollit deserunt est aute. Nostrud duis ea minim deserunt irure ex incididunt qui.
+
+Incididunt occaecat mollit veniam veniam tempor commodo deserunt. Culpa nostrud incididunt ullamco tempor consequat voluptate culpa in non cillum Lorem nulla. Exercitation reprehenderit non labore Lorem ullamco aliquip ullamco. Ut labore amet nostrud exercitation. Tempor dolore eu et occaecat sit et ut cupidatat ipsum ex excepteur. Laboris incididunt laborum consequat esse fugiat tempor irure.
+
+Adipisicing ipsum pariatur laborum magna labore anim eu do consequat in. Nisi id aute qui velit laboris do. Esse anim excepteur ullamco nulla ut velit quis in elit sit mollit dolor ex irure. Nostrud Lorem elit enim ullamco culpa magna sunt laboris officia eu. Magna esse dolore velit non occaecat do esse ut esse. Do in cillum magna nulla culpa aliqua deserunt labore sunt eiusmod adipisicing do aliquip.
 
 ## Balanced vs Non-balanced Trees
 
-You can find elements **balanced** tree in a *O(log n)* instead of going through each node. Let's talk about what balanced tree means
+So far, we have discussed how to `add`, `remove` and `find` elements. But we haven't talk about the run times. Let's think about the worst-case scenarios.
 
-It's important to keep the balance on trees, especially when using Binary Search Trees to guarantee a search time of *`O(log n)`*. If the tree is not balanced, then the search time won't be any different than searching a value on a LinkedList *`O(n)`*.
+Let's say that we want to add numbers in asceding order.
+
+{% img /images/bst-asc.gif Inserting values in ascending order in a Binary Search Tree %}
+
+We will ended up with all the nodes on the left side! This is no better than a LinkedList so finding an element would take *O(n)*. 😱 We need to find a way to balance the tree.
+
+You can find elements **balanced** tree in a *O(log n)* instead of going through each node. Let's talk about what balanced tree means
 
 {% img http://www.stoimen.com/blog/wp-content/uploads/2012/07/3.-Balanced-vs.-Non-Balanced.png Balanced vs unbalanced Tree %}
 
@@ -410,6 +440,7 @@ or
 *`Math.ceil( Math.log2(n  + 1) )`*, where *`n`* is the total number of nodes.
 
 However, perfect binary trees are not very common in the real world. We just want to gurantee a search time of *`O(log n)`*. Relaxing a little bit the definition we can say that a tree is balanced if:
+
 1. The left subtree height and the right subtree height differ by at most 1.
 2. Left and right subtree are balanced (using rule **#1**)
 
@@ -426,6 +457,7 @@ For instance, if you have a tree with 7 nodes:
 ```
 
 If you check the subtrees heights recursevely you will notice they never differ by more than on.
+
 - `A` descendants:
   - `B` subtree has a height of 2, while `C` has a height of 3. The difference is less than one so: Balanced!
 - `C` descendents:
@@ -448,14 +480,6 @@ Let's check the subtrees height recursively:
   - `B` subtree has a height of 2, while `C` has a height of 3. The difference is less than one so: Balanced!
 - `C` descendents:
   - `E` subtree has a height of 2, while the right subtree (of `C`) has a height of 0. The difference between 2 and 0 is more than one, so: NOT balanced!
-
-## Binary Tree Transversal
-
-Enim do eiusmod labore do Lorem. Id qui tempor ad duis in quis ex magna cupidatat fugiat sit. Ad minim eu mollit deserunt est aute. Nostrud duis ea minim deserunt irure ex incididunt qui.
-
-Incididunt occaecat mollit veniam veniam tempor commodo deserunt. Culpa nostrud incididunt ullamco tempor consequat voluptate culpa in non cillum Lorem nulla. Exercitation reprehenderit non labore Lorem ullamco aliquip ullamco. Ut labore amet nostrud exercitation. Tempor dolore eu et occaecat sit et ut cupidatat ipsum ex excepteur. Laboris incididunt laborum consequat esse fugiat tempor irure.
-
-Adipisicing ipsum pariatur laborum magna labore anim eu do consequat in. Nisi id aute qui velit laboris do. Esse anim excepteur ullamco nulla ut velit quis in elit sit mollit dolor ex irure. Nostrud Lorem elit enim ullamco culpa magna sunt laboris officia eu. Magna esse dolore velit non occaecat do esse ut esse. Do in cillum magna nulla culpa aliqua deserunt labore sunt eiusmod adipisicing do aliquip.
 
 # Heaps
 
