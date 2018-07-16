@@ -1,6 +1,6 @@
 ---
 layout: draft
-title: Self-balanced Binary Search Trees with AVL tree
+title: Self-balanced Binary Search Trees with AVL
 comments: true
 pageviews__total: 0
 pageviews__recent: 0
