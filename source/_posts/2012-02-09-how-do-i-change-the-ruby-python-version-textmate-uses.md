@@ -4,9 +4,9 @@ title: How do I change the Ruby/Python version Textmate uses?
 created: 1328766604000
 updated: 1328766604000
 comments: true
-pageviews__total: 480
-pageviews__recent: 5
-pageviews__avg_time: 141
+pageviews__total: 482
+pageviews__recent: 1
+pageviews__avg_time: 140
 tutorial__order: 0
 #categories: [ruby, textmate, python]
 ---

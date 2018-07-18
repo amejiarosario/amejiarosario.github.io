@@ -4,9 +4,9 @@ title: SSH login without password
 created: 1327004823000
 updated: 1327004823000
 comments: true
-pageviews__total: 453
-pageviews__recent: 2
-pageviews__avg_time: 87
+pageviews__total: 455
+pageviews__recent: 1
+pageviews__avg_time: 85
 tutorial__order: 0
 #categories: [ssh, ubuntu, linux, cli, command line]
 ---

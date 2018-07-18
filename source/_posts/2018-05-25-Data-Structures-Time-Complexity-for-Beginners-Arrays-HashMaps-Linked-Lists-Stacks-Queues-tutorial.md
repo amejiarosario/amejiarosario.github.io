@@ -2,7 +2,7 @@
 layout: post
 title: "Data Structures for Beginners: Arrays, HashMaps, and Lists"
 comments: true
-pageviews__total: 461
+pageviews__total: 466
 pageviews__recent: 119
 pageviews__avg_time: 66
 tutorial__order: 4

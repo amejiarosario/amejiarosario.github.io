@@ -6,7 +6,7 @@ updated: 1317137273000
 comments: true
 pageviews__total: 31
 pageviews__recent: 1
-pageviews__avg_time: 21
+pageviews__avg_time: 22
 tutorial__order: 0
 #categories: [paper review, social bookmarking, e-learning, web semantics]
 ---

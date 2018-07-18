@@ -4,9 +4,9 @@ title: Update Drupal sites
 created: 1320386664000
 updated: 1320386664000
 comments: true
-pageviews__total: 19
+pageviews__total: 20
 pageviews__recent: 26
-pageviews__avg_time: 9
+pageviews__avg_time: 8
 tutorial__order: 0
 tags:
   - drupal
