@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Data Structures for Beginners: Trees'
+title: 'Tree Data Structures for Beginners'
 comments: true
 pageviews__total: 1603
 pageviews__recent: 369
