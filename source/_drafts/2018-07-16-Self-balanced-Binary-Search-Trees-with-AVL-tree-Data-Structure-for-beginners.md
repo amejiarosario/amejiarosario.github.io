@@ -31,11 +31,58 @@ Eiusmod minim consequat culpa proident mollit mollit eu adipisicing do culpa. In
 
 # Content
 
-Deserunt exercitation commodo fugiat eiusmod ex magna consequat qui non esse ea aliquip velit anim. Minim sit eu do anim dolore ipsum dolor. Quis exercitation anim anim cupidatat. Lorem do deserunt anim pariatur commodo excepteur esse reprehenderit occaecat in est. Nostrud proident nostrud aliqua aliqua elit aute do anim velit laboris cupidatat laborum.
 
-Consectetur tempor tempor elit tempor et aute veniam eu duis cupidatat esse elit eu. Eu aliqua culpa et minim nulla ad. Minim commodo eu laborum occaecat deserunt duis. Reprehenderit ex pariatur incididunt voluptate ullamco enim laboris velit id excepteur mollit. Fugiat laboris laborum proident sit. Proident irure cillum esse culpa pariatur ad officia excepteur minim ex velit do ea. Amet ad duis eiusmod sint minim Lorem laboris eu quis.
 
-Ipsum consequat labore exercitation aute non. Nisi tempor cupidatat consequat excepteur nulla est aute. Anim labore qui aliquip veniam. Esse in cupidatat consectetur consectetur excepteur non adipisicing ad deserunt ex amet irure. Mollit voluptate velit occaecat elit proident fugiat pariatur. Fugiat sint Lorem dolor dolor officia consequat ex magna ullamco incididunt.
+Perfect binary trees are always balanced because their height is the lowest possible given the number of nodes
+
+\`|~ log_2 (n + 1) ~|\`
+
+or
+
+*`Math.ceil( Math.log2(n  + 1) )`*, where *`n`* is the total number of nodes.
+
+However, perfect binary trees are not very common in the real world. We just want to gurantee a search time of *`O(log n)`*. Relaxing a little bit the definition we can say that a tree is balanced if:
+
+1. The left subtree height and the right subtree height differ by at most 1.
+2. Left and right subtree are balanced (using rule **#1**)
+
+For instance, if you have a tree with 7 nodes:
+
+```
+1          A
+         /   \
+2       B     C
+       /     / \
+3     D     E   F
+           /
+4         G
+```
+
+If you check the subtrees heights recursevely you will notice they never differ by more than on.
+
+- `A` descendants:
+  - `B` subtree has a height of 2, while `C` has a height of 3. The difference is less than one so: Balanced!
+- `C` descendents:
+  - `E` subtree has a height of 2, while `F` has a height of 1: Balanced!
+
+On the other hand, take a look at this tree:
+
+```
+1          A
+         /   \
+2       B     C
+       /     /
+3     D     E
+           /
+4         G
+```
+
+Let's check the subtrees height recursively:
+- `A` descendants:
+  - `B` subtree has a height of 2, while `C` has a height of 3. The difference is less than one so: Balanced!
+- `C` descendents:
+  - `E` subtree has a height of 2, while the right subtree (of `C`) has a height of 0. The difference between 2 and 0 is more than one, so: NOT balanced!
+
 
 
 # Summary

@@ -55,17 +55,22 @@ This post is part of a tutorial series:
 
 Tree is a data structure where a nodes can zero ore more children. Each node contains a **value**. Similar to graphs, the connection between nodes are called **edges**. Tree is a type of graph, but not all graphs are trees (only the acyclic undirected graph are trees).
 
-They are called "trees" because the data structure resembles a tree 🌳. It starts with a **root** node and **branch off with its decendants and finally there are **leave**.
+They are called "trees" because the data structure resembles a tree 🌳. It starts with a **root** node and **branch** off with its decendants and finally there are **leaves**.
 
-{% img https://www.tutorialspoint.com/data_structures_algorithms/images/binary_tree.jpg Tree %}
+<!-- { img https://www.tutorialspoint.com/data_structures_algorithms/images/binary_tree.jpg Tree } -->
+<!-- { img http://www.i-programmer.info/images/stories/BabBag/trees/Tree1.jpg Tree elements } -->
 
-{% img http://www.i-programmer.info/images/stories/BabBag/trees/Tree1.jpg Tree elements %}
+{% img /images/tree-parts.jpg %}
 
 Here are some properties of trees:
 - The top-most node is called **root**.
 - A node without children is called **leaf** node or terminal node.
-- **Height** (*h*) of the tree is the distance (node count) between the farthest leaf to the root.
+- **Height** (*h*) of the tree is the distance (edge count) between the farthest leaf to the root.
+  - `A` has a height of 3
+  - `I` has a height of 0
 - **Depth** or **level** of a node is the distance between the root and the node in question.
+  - `H` has a depth of 2
+  - `B` has a depth of 1
 
 ## Implementing a simple tree data structure
 
@@ -99,22 +104,21 @@ homer.descendents.push(bart, lisa, maggie);
 
 That's all, we have a tree data structure!
 
-{% img /images/simpson-tree.jpg "Simpson tree data structure" %}
+{% img /images/simpson2-tree.jpg "Simpson tree data structure" %}
 
 `abe` is the **root** and `bart`, `lisa` and `maggie` are the **leaf** nodes of the tree. Notice that tree's node can different number of descendents: 0, 1, 3 and any number really.
 
 # Binary Trees
 
-Trees nodes can have zero or many children (3, 4, ...). However, when a tree has at most 2 children then it's called **binary tree**.
-
-Image of Binary tree vs non-binary Tree
+Trees nodes can have zero or more children. However, when a tree has at most 2 children then it's called **binary tree**.
 
 A binary tree is one of the most common form of trees and has many applications such as:
 
 - Searching in a time complexity of *O(log n)*.
-- Cryptography: [Generate pseudorandom numbers](https://www.cs.princeton.edu/courses/archive/fall07/cos433/prf_goldreich.pdf)
-- Implement peformant [Maps](https://adrianmejia.com/blog/2018/04/28/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/#HashMaps) and [Sets](https://adrianmejia.com/blog/2018/04/28/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/#Sets) data structures.
-- Implement priority queues
+<!-- - Cryptography: [Generate pseudorandom numbers](https://www.cs.princeton.edu/courses/archive/fall07/cos433/prf_goldreich.pdf) -->
+- [Maps](https://adrianmejia.com/blog/2018/04/28/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/#HashMaps)
+- [Sets](https://adrianmejia.com/blog/2018/04/28/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/#Sets)
+- Priority queues
 
 ## Full, Complete and Perfect binary trees
 
@@ -129,20 +133,29 @@ Depending on how nodes are arranged in a binary tree, it can be **full**, **comp
 <!-- A binary tree where every node has 0 or 2 children then it said to be a **full binary tree** -->
 
 <!-- When a binary is perfect and comple, it is called a **Perfect Binary Tree**. -->
-{% img http://www.csie.ntnu.edu.tw/~u91029/BinaryTree2.png full Binary Tree %}
+<!-- { img http://www.csie.ntnu.edu.tw/~u91029/BinaryTree2.png full Binary Tree } -->
 
 <!-- **Complete binary tree** is when all levels except the last one are filled with nodes. -->
 
 
-You can also have a combination of full and complete binary trees:
-{% img https://gsourcecode.files.wordpress.com/2012/02/complete-full-trees1.png "Complete/Full binary tree" %}
+<!-- You can also have a combination of full and complete binary trees: -->
+<!-- { img https://gsourcecode.files.wordpress.com/2012/02/complete-full-trees1.png "Complete/Full binary tree" } -->
 
+Look at this examples:
+
+{% img /images/full-complete-perfect-binary-tree.jpg Full vs Complete vs Perfect Binary Tree %}
+
+These properties are not always mutually exclusive. You can have more than one:
+
+- A perfect tree is **always** complete and full.
+  - Perfect binary trees have exactly \`2^k - 1\` nodes, where *`k`* is the last level of tree (starting with 1).
+- A complete tree is **not** always `full`.
+  - Like in our "complete" example, since it has a parent with only one child. If we remove the rightmost gray node then we would have a complete and full tree but not perfect.
+- A full tree is not always complete and perfect.
 
 <!-- If each non-leaf node on a binary tree has two descendents then we say is a **complete tree** -->
 
 <!-- { img https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/pix/full_complete.bmp caption } -->
-
-Perfect binary trees have \`2^k - 1\`, where *`k`* is the last level of tree (starting with 1).
 
 # Binary Search Tree (BST)
 
@@ -150,13 +163,14 @@ Binary Search Trees or BST for short are a special application of binary trees. 
 
 <!-- ---BST vs non-BST--- -->
 
-**Duplicates:** Some BST doesn't allow duplicates while others put it the right. Other implementations might just keep a count on case of duplicates.
+**Duplicates:** Some BST doesn't allow duplicates while others add duplicate as a right child. Other implementations might just keep a count on case of duplicates, we are going to do this one later.
 
 Let's implement a Binary Search Tree!
 
 ## BST Implementation
 
 BST are very similar to our previous [implementation of a tree](#Implementing-a-simple-tree-data-structure). However, there are some difference:
+
 - Nodes can have at most only two children: left and right.
 - Nodes values has be ordered: `left < parent < right`.
 
@@ -409,15 +423,109 @@ For instace, let's say that we want to combine the following tree and we are abo
 
 Now, and if make the newSubtree the root, then node `30` is no more!
 
-## Binary Tree Transversal
+# Binary Tree Transversal
 
-Enim do eiusmod labore do Lorem. Id qui tempor ad duis in quis ex magna cupidatat fugiat sit. Ad minim eu mollit deserunt est aute. Nostrud duis ea minim deserunt irure ex incididunt qui.
+There are different ways of traversing a Binary Tree depending on the order that the nodes are visited: in-order, pre-order and post-order. Also we can use the
+[DFS](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/#Depth-first-search-DFS-Graph-search)
+and
+[BFS](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/#Breadth-frirst-search-BFS-Graph-search)
+that we learned from the
+[graph post.](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/)
+Let's go through each one.
 
-Incididunt occaecat mollit veniam veniam tempor commodo deserunt. Culpa nostrud incididunt ullamco tempor consequat voluptate culpa in non cillum Lorem nulla. Exercitation reprehenderit non labore Lorem ullamco aliquip ullamco. Ut labore amet nostrud exercitation. Tempor dolore eu et occaecat sit et ut cupidatat ipsum ex excepteur. Laboris incididunt laborum consequat esse fugiat tempor irure.
+**In-Order Traversal**
 
-Adipisicing ipsum pariatur laborum magna labore anim eu do consequat in. Nisi id aute qui velit laboris do. Esse anim excepteur ullamco nulla ut velit quis in elit sit mollit dolor ex irure. Nostrud Lorem elit enim ullamco culpa magna sunt laboris officia eu. Magna esse dolore velit non occaecat do esse ut esse. Do in cillum magna nulla culpa aliqua deserunt labore sunt eiusmod adipisicing do aliquip.
+In-order traversal visit nodes on this order: left, parent, right.
 
-## Balanced vs Non-balanced Trees
+{% codeblock BinarySearchTree.prototype.inOrderTraversal lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+  * inOrderTraversal(node = this.root) {
+    if (node.left) { yield* this.inOrderTraversal(node.left); }
+    yield node;
+    if (node.right) { yield* this.inOrderTraversal(node.right); }
+  }
+{% endcodeblock %}
+
+
+Let's use this tree to make the example:
+
+```
+           10
+         /    \
+        5      30
+      /       /  \
+     4       15   40
+   /
+  3
+```
+
+In-order traversal would print out the following values: `3, 4, 5, 10, 15, 30, 40`. If the tree is a BST, then the values will be sorted in ascendent order as in our example.
+
+**Post-Order Traversal**
+
+Post-order traversal visit nodes on this order: left, right, parent.
+
+{% codeblock BinarySearchTree.prototype.postOrderTraversal lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+  * postOrderTraversal(node = this.root) {
+    if (node.left) { yield* this.postOrderTraversal(node.left); }
+    if (node.right) { yield* this.postOrderTraversal(node.right); }
+    yield node;
+  }
+{% endcodeblock %}
+
+Post-order traversal would print out the following values: `3, 4, 5, 15, 40, 30, 10`.
+
+**Pre-Order Traversal and DFS**
+
+In-order traversal visit nodes on this order: parent, left, right.
+
+{% codeblock BinarySearchTree.prototype.preOrderTraversal lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+  * preOrderTraversal(node = this.root) {
+    yield node;
+    if (node.left) { yield* this.preOrderTraversal(node.left); }
+    if (node.right) { yield* this.preOrderTraversal(node.right); }
+  }
+{% endcodeblock %}
+
+Pre-order traversal would print out the following values: `10, 5, 4, 3, 30, 15, 40`. This is exactly the same result that we would get if we run the Depth-First Search (DFS).
+
+{% codeblock BinarySearchTree.prototype.dfs lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+  * dfs() {
+    const stack = new Stack();
+
+    stack.add(this.root);
+
+    while (!stack.isEmpty()) {
+      const node = stack.remove();
+      yield node;
+      // reverse array, so left gets removed before right
+      node.descendents.reverse().forEach(child => stack.add(child));
+    }
+  }
+{% endcodeblock %}
+
+If you need a refresher on DFS we covered in details on [Graph post](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/#Depth-first-search-DFS-Graph-search).
+
+**Breadth-First Search (BFS)**
+
+Similar to DFS, we can implement a BFS by switching the `Stack` by a `Queue`:
+
+{% codeblock BinarySearchTree.prototype.bfs lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+  * bfs() {
+    const queue = new Queue();
+
+    queue.add(this.root);
+
+    while (!queue.isEmpty()) {
+      const node = queue.remove();
+      yield node;
+      node.descendents.forEach(child => queue.add(child));
+    }
+  }
+{% endcodeblock %}
+
+The BFS order is: `10, 5, 30, 4, 15, 40, 3`
+
+# Balanced vs Non-balanced Trees
 
 So far, we have discussed how to `add`, `remove` and `find` elements. But we haven't talk about the run times. Let's think about the worst-case scenarios.
 
@@ -425,11 +533,18 @@ Let's say that we want to add numbers in asceding order.
 
 {% img /images/bst-asc.gif Inserting values in ascending order in a Binary Search Tree %}
 
-We will ended up with all the nodes on the left side! This is no better than a LinkedList so finding an element would take *O(n)*. 😱 We need to find a way to balance the tree.
+We will ended up with all the nodes on the left side! This is no better than a LinkedList so finding an element would take *O(n)*. 😱
 
-You can find elements **balanced** tree in a *O(log n)* instead of going through each node. Let's talk about what balanced tree means
+Looking for something is an unbalanced tree is like looking for a word in the dictionary page by page. When the tree is balanced you open the dictionary in the middle and from there you know if you have to go left or right.
 
-{% img http://www.stoimen.com/blog/wp-content/uploads/2012/07/3.-Balanced-vs.-Non-Balanced.png Balanced vs unbalanced Tree %}
+We need to find a way to balance the tree!
+
+If the tree was **balanced** we can find elements in *O(log n)* instead of going through each node. Let's talk about what balanced tree means.
+
+<!-- { img http://www.stoimen.com/blog/wp-content/uploads/2012/07/3.-Balanced-vs.-Non-Balanced.png Balanced vs unbalanced Tree } -->
+{% img /images/balanced-vs-non-balanced-tree.jpg Balanced vs unbalanced Tree %}
+
+If we are searching for `7` in the non-balanced tree we have to go from 1 to 7. However, in the balanced tree we do: `4`, `6`, and `7`. It gets even worst with larger trees. If you have one million nodes, searching for a non-existing element might require to visit all million while on a balanced tree it just require 20 visits! That's a huge difference!
 
 Perfect binary trees are always balanced because their height is the lowest possible given the number of nodes
 
@@ -481,10 +596,19 @@ Let's check the subtrees height recursively:
 - `C` descendents:
   - `E` subtree has a height of 2, while the right subtree (of `C`) has a height of 0. The difference between 2 and 0 is more than one, so: NOT balanced!
 
+We are going to solve this issue in the next post with AVL trees!
+
 # Summary
 
-Deserunt veniam proident minim enim enim reprehenderit pariatur pariatur aliqua. Ex ad irure nisi elit. Dolor non proident ad nostrud officia occaecat esse culpa ut consequat laboris.
+We have cover a lot of ground for trees. Let's sum it up with bullets:
 
+- Tree is a data structure where a node have 0 or more descendents
+- Tree nodes doesn't have cycles (acyclic). If it has cycles it is a [Graph data structure](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/) instead.
+- Trees with 2 children or less are called: Binary Tree
+- When a Binary Tree is sorted in a way that the left value is less than the parent and the right children is higher, then we have a Binary Search Tree.
+- You can visit a tree in a pre/post/in-order fashion.
+- A unbalanced has a time complexity of *O(n)*. 🤦🏻‍
+- A balanced has a time complexity of *O(log n)*. 🍻
 
 <!-- Usage: -->
 <!-- https://www.quora.com/What-is-the-real-life-application-of-tree-data-structures -->
