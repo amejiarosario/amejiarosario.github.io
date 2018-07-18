@@ -11,13 +11,13 @@ hexo clean && hexo algolia # index search
 
 ggpush # push source so edit this post works
 
+# update GA stats
+cd tasks && node google-analytics-runner.js && cd -
+
 # change index in
 # _config.yml
 # themes/am-light/source/js/search.es6
 hexo clean && hexo algolia
-
-# update GA stats
-cd tasks && node google-analytics-runner.js && cd -
 ```
 
 ## Update Google Analytics stats
@@ -33,7 +33,7 @@ hexo d -g       # deploy
 
 ## install
 
-
+npm i
 
 ## Commands
 

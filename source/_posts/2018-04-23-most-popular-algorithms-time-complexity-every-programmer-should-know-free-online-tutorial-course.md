@@ -118,10 +118,13 @@ This post is part of a tutorial series:
 1. [Graph Data Structures for Beginners](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/)
 <!-- 1. Graph Data Structures for Beginners **👈 you are here** -->
 
-1. *Data Structures for Beginners: Trees* (**coming soon**)
-<!-- 1. Analysis of Recursive Algorithms **👈 you are here** -->
+1. [Trees Data Structures for Beginners](/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/)
+<!-- 1. Trees Data Structures for Beginners **👈 you are here** -->
+
+1. *Self-balanced Binary Search Trees* (**coming soon**)
 
 1. [Apendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
+<!-- 1. Apendix I: Analysis of Recursive Algorithms **👈 you are here** -->
 ---
 
 <!-- table: time complexities -->

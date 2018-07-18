@@ -49,7 +49,7 @@ This post is part of a tutorial series:
 1. Trees Data Structures for Beginners **👈 you are here**
 <!-- 1. [Trees Data Structures for Beginners](/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/) -->
 
-1. Self-balanced Binary Search Trees *(soon)*
+1. *Self-balanced Binary Search Trees* (**coming soon**)
 
 1. [Apendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
 ---
