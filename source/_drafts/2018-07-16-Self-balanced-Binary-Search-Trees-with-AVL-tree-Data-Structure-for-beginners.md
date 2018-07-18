@@ -8,8 +8,8 @@ pageviews__avg_time: 0
 tutorial__order: 7
 toc: true
 photos:
-  - /images/placeholder-small.jpg
-  - /images/placeholder-large.jpg
+  - /images/data-structures-for-beginners-balanced-binary-search-tree-avl-small.jpg
+  - /images/data-structures-for-beginners-balanced-binary-search-tree-avl-large.jpg
 photos__background_color: '#F4F0EF'
 tags:
   - big-o notation
@@ -26,6 +26,32 @@ updated: 2018-07-16 15:43:11
 Sunt commodo enim magna ex sint reprehenderit sunt proident reprehenderit. Pariatur sint est proident ullamco id cillum proident Lorem officia et commodo incididunt. Incididunt esse irure fugiat anim aliqua anim. Id enim commodo labore ad aliqua. Adipisicing non aliqua nisi anim nisi consequat dolore nulla deserunt minim aliquip veniam fugiat.
 
 <!-- more -->
+
+Eiusmod minim consequat culpa proident mollit mollit eu adipisicing do culpa. In mollit ipsum in amet labore est ad ad ex. Labore deserunt proident non ut. Elit ex ea incididunt mollit magna. Nostrud magna sunt deserunt elit nulla quis culpa voluptate veniam velit culpa tempor voluptate nostrud. Do qui Lorem voluptate culpa aliquip eu fugiat non duis qui ad culpa.
+
+---
+This post is part of a tutorial series:
+
+**Learning Data Structures and Algorithms (DSA) for Beginners**
+1. [Intro to algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
+<!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here** -->
+
+1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
+<!-- 1. Eight time complexities that every programmer should know **👈 you are here** -->
+
+1. [Data Structures for Beginners: Arrays, HashMaps, and Lists](/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/)
+<!-- 1. Data Structures for Beginners: Arrays, HashMaps, and Lists **👈 you are here** -->
+
+1. [Graph Data Structures for Beginners](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/)
+<!-- 1. Graph Data Structures for Beginners **👈 you are here** -->
+
+1. [Trees Data Structures for Beginners](/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/)
+<!-- 1. Trees Data Structures for Beginners **👈 you are here** -->
+
+1. Self-balanced Binary Search Trees **👈 you are here**
+
+1. [Apendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
+---
 
 Eiusmod minim consequat culpa proident mollit mollit eu adipisicing do culpa. In mollit ipsum in amet labore est ad ad ex. Labore deserunt proident non ut. Elit ex ea incididunt mollit magna. Nostrud magna sunt deserunt elit nulla quis culpa voluptate veniam velit culpa tempor voluptate nostrud. Do qui Lorem voluptate culpa aliquip eu fugiat non duis qui ad culpa.
 
