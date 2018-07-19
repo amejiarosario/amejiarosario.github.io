@@ -58,7 +58,7 @@ This post is part of a tutorial series:
 
 A tree is a data structure where a node can zero or more children. Each node contains a **value**. Like graphs, the connection between nodes is called **edges**. A tree is a type of graph, but not all graphs are trees (only the acyclic undirected graph are trees).
 
-They are called "trees" because the data structure resembles a tree 🌳. It starts with a **root** node and **branch** off with its descendants and finally, there are **leaves**.
+They are called "trees" because the data structure resembles a tree 🌳. It starts with a **root** node and **branch** off with its descendants, and finally, there are **leaves**.
 
 <!-- { img https://www.tutorialspoint.com/data_structures_algorithms/images/binary_tree.jpg Tree } -->
 <!-- { img http://www.i-programmer.info/images/stories/BabBag/trees/Tree1.jpg Tree elements } -->
@@ -77,7 +77,7 @@ Here are some properties of trees:
 
 ## Implementing a simple tree data structure
 
-As we saw earlier a tree node is just a data structure that has a value and has links to their descendants.
+As we saw earlier, a tree node is just a data structure that has a value and has links to their descendants.
 
 Here's an example of a tree node:
 
@@ -105,15 +105,15 @@ abe.descendents.push(homer);
 homer.descendents.push(bart, lisa, maggie);
 ```
 
-That's all, we have a tree data structure!
+That's all; we have a tree data structure!
 
 {% img /images/simpson2-tree.jpg "Simpson tree data structure" %}
 
-The node `abe` is the **root** and `bart`, `lisa` and `maggie` are the **leaf** nodes of the tree. Notice that tree's node can have different number of descendants: 0, 1, 3 or any number.
+The node `abe` is the **root** and `bart`, `lisa` and `maggie` are the **leaf** nodes of the tree. Notice that tree's node can have a different number of descendants: 0, 1, 3 or any number.
 
 # Binary Trees
 
-Trees nodes can have zero or more children. However, when a tree has at the most 2 children then it's called **binary tree**.
+Trees nodes can have zero or more children. However, when a tree has at the most 2 children, then it's called **binary tree**.
 
 A binary tree is one of the most common forms of trees and has many applications such as:
 
@@ -131,7 +131,7 @@ Depending on how nodes are arranged in a binary tree, it can be **full**, **comp
 - **Complete binary tree**: when all levels except the last one are **full** with nodes.
 - **Perfect binary tree**: when all the levels (including the last one) are full of nodes.
 
-<!-- If each node has only two children (left and right) we call it **Binary Tree**. -->
+<!-- If each node has only two children (left and right), we call it **Binary Tree**. -->
 
 <!-- A binary tree where every node has 0 or 2 children then it said to be a **full binary tree** -->
 
@@ -146,14 +146,14 @@ Depending on how nodes are arranged in a binary tree, it can be **full**, **comp
 
 Look at this examples:
 
-{% img /images/full-complete-perfect-binary-tree.jpg Full vs Complete vs Perfect Binary Tree %}
+{% img /images/full-complete-perfect-binary-tree.jpg Full vs. Complete vs. Perfect Binary Tree %}
 
 These properties are not always mutually exclusive. You can have more than one:
 
 - A perfect tree is **always** complete and full.
-  - Perfect binary trees have exactly \`2^k - 1\` nodes, where *`k`* is the last level of the tree (starting with 1).
+  - Perfect binary trees have precisely \`2^k - 1\` nodes, where *`k`* is the last level of the tree (starting with 1).
 - A complete tree is **not** always `full`.
-  - Like in our "complete" example, since it has a parent with only one child. If we remove the rightmost gray node then we would have a **complete** and **full** tree but not perfect.
+  - Like in our "complete" example, since it has a parent with only one child. If we remove the rightmost gray node, then we would have a **complete** and **full** tree but not perfect.
 - A full tree is not always complete and perfect.
 
 <!-- If each non-leaf node on a binary tree has two descendants then we say is a **complete tree** -->
@@ -162,11 +162,11 @@ These properties are not always mutually exclusive. You can have more than one:
 
 # Binary Search Tree (BST)
 
-Binary Search Trees or BST for short are a special application of binary trees. BST has at most two nodes (like all binary trees), however, the values are in such a way that the left children value must be less than the parent and the right children is must be higher.
+Binary Search Trees or BST for short are a particular application of binary trees. BST has at most two nodes (like all binary trees). However, the values are in such a way that the left children value must be less than the parent and the right children is must be higher.
 
 <!-- ---BST vs non-BST--- -->
 
-**Duplicates:** Some BST doesn't allow duplicates while others add the duplicate as a right child. Other implementations might just keep a count on a case of duplicates (we are going to do this one later).
+**Duplicates:** Some BST doesn't allow duplicates while others add the duplicate as a right child. Other implementations might keep a count on a case of duplicates (we are going to do this one later).
 
 Let's implement a Binary Search Tree!
 
@@ -177,7 +177,7 @@ BST are very similar to our previous [implementation of a tree](#Implementing-a-
 - Nodes can have at most only two children: left and right.
 - Nodes values has to be ordered as `left < parent < right`.
 
-Here's the tree node. Very similar to what we did before, but we added some nice getters and setters for left and right children. Notice that are also keeping a reference to the parent and we update it every time add children. That will come handy later.
+Here's the tree node. Very similar to what we did before, but we added some handy getters and setters for left and right children. Notice that is also keeping a reference to the parent and we update it every time add children.
 
 {% codeblock TreeNode.js lang:js mark:1-2,8,12,16,18,23,27,29 linkUrl linkText %}
 const LEFT = 0;
@@ -236,7 +236,7 @@ Let's implementing insertion.
 
 ## BST Node Insertion
 
-To insert a node in a binary tree we do the following:
+To insert a node in a binary tree, we do the following:
 
 1. If a tree is empty, the first node becomes the **root** and you are done.
 1. Compare root/parent's value if it's *higher* go **right**, if it's *lower* go **right**. If it's the same, then the value already exists so you can increase the duplicate count (multiplicity).
@@ -269,7 +269,7 @@ We can implement insert as follows:
   }
 {% endcodeblock %}
 
-We are using a helper function called `findNodeAndParent`. If we found that the node already exists in the tree, then we just increase the `multiplicity` counter. Let's see how this function is implemented:
+We are using a helper function called `findNodeAndParent`. If we found that the node already exists in the tree, then we increase the `multiplicity` counter. Let's see how this function is implemented:
 
 {% codeblock BinarySearchTree.prototype.findNodeAndParent lang:js mark:2,10 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js#L44 Full Code %}
   findNodeAndParent(value) {
@@ -288,7 +288,7 @@ We are using a helper function called `findNodeAndParent`. If we found that the 
   }
 {% endcodeblock %}
 
-`findNodeAndParent` goes through the tree searching for the value. It starts at the root (line 2) and then goes left or right based on the value (line 10). If the value already exists it will return the node `found` and also the parent. In case that the node doesn't exist, we still return the `parent`.
+`findNodeAndParent` goes through the tree searching for the value. It starts at the root (line 2) and then goes left or right based on the value (line 10). If the value already exists, it will return the node `found` and also the parent. In case that the node doesn't exist, we still return the `parent`.
 
 ## BST Node Deletion
 
@@ -341,7 +341,7 @@ Another way to do it to remove node 40, is to move the left child (35) up and th
             50
 ```
 
-Either way is fine as long as you keep the binary search tree property: `left < parent < right`.
+Either way is ok as long as you keep the binary search tree property: `left < parent < right`.
 
 **Deleting the root.**
 
@@ -353,7 +353,7 @@ Either way is fine as long as you keep the binary search tree property: `left < 
        35
 ```
 
-Deleting the root is very similar to deleting nodes with 0, 1, or 2 children that we discussed earlier. The only difference is that afterwards, we need to update the reference of the root of the tree.
+Deleting the root is very similar to deleting nodes with 0, 1, or 2 children that we discussed earlier. The only difference is that afterward, we need to update the reference of the root of the tree.
 
 
 Here's an animation of what we discussed.
@@ -392,7 +392,7 @@ Now that we have a good idea how it should work, let's implement it:
 
 Here are some highlights of the implementation:
 
-- First, we search if the node exists. If it doesn't we return false and we are done!
+- First, we search if the node exists. If it doesn't, we return false and we are done!
 - If the node to remove exists, then combine left and right children into one subtree.
 - Replace node to delete with the combined subtree.
 
@@ -421,7 +421,7 @@ For instance, let's say that we want to combine the following tree and we are ab
                                     15
 ```
 
-Now, and if make the new subtree the root, then node `30` is no more!
+Now, and if we make the new subtree the root, then node `30` is no more!
 
 # Binary Tree Transversal
 
@@ -486,7 +486,7 @@ In-order traversal visit nodes on this order: parent, left, right.
   }
 {% endcodeblock %}
 
-Pre-order traversal would print out the following values: `10, 5, 4, 3, 30, 15, 40`. This is exactly the same result that we would get if we run the Depth-First Search (DFS).
+Pre-order traversal would print out the following values: `10, 5, 4, 3, 30, 15, 40`. This order of numbers is the same result that we would get if we run the Depth-First Search (DFS).
 
 {% codeblock BinarySearchTree.prototype.dfs lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
   * dfs() {
@@ -503,7 +503,7 @@ Pre-order traversal would print out the following values: `10, 5, 4, 3, 30, 15, 
   }
 {% endcodeblock %}
 
-If you need a refresher on DFS we covered in details on [Graph post](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/#Depth-first-search-DFS-Graph-search).
+If you need a refresher on DFS, we covered in details on [Graph post](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/#Depth-first-search-DFS-Graph-search).
 
 **Breadth-First Search (BFS)**
 
@@ -525,32 +525,32 @@ Similar to DFS, we can implement a BFS by switching the `Stack` by a `Queue`:
 
 The BFS order is: `10, 5, 30, 4, 15, 40, 3`
 
-# Balanced vs Non-balanced Trees
+# Balanced vs. Non-balanced Trees
 
-So far, we have discussed how to `add`, `remove` and `find` elements. But we haven't talked about the run times. Let's think about the worst-case scenarios.
+So far, we have discussed how to `add`, `remove` and `find` elements. However, we haven't talked about the run times. Let's think about the worst-case scenarios.
 
 Let's say that we want to add numbers in ascending order.
 
 {% img /images/bst-asc.gif Inserting values in ascending order in a Binary Search Tree %}
 
-We will end up with all the nodes on the left side! This is no better than a LinkedList so finding an element would take *O(n)*. 😱
+We will end up with all the nodes on the left side! This unbalanced tree is no better than a LinkedList so finding an element would take *O(n)*. 😱
 
-Looking for something in an unbalanced tree is like looking for a word in the dictionary page by page. When the tree is balanced you can open the dictionary in the middle and from there you know if you have to go left or right depending on the alphabet and the word you are looking for.
+Looking for something in an unbalanced tree is like looking for a word in the dictionary page by page. When the tree is balanced, you can open the dictionary in the middle and from there you know if you have to go left or right depending on the alphabet and the word you are looking for.
 
 We need to find a way to balance the tree!
 
-If the tree was **balanced** we can find elements in *O(log n)* instead of going through each node. Let's talk about what balanced tree means.
+If the tree was **balanced**, then we could find elements in *O(log n)* instead of going through each node. Let's talk about what balanced tree means.
 
 <!-- { img http://www.stoimen.com/blog/wp-content/uploads/2012/07/3.-Balanced-vs.-Non-Balanced.png Balanced vs unbalanced Tree } -->
 {% img /images/balanced-vs-non-balanced-tree.jpg Balanced vs unbalanced Tree %}
 
-If we are searching for `7` in the non-balanced tree we have to go from 1 to 7. However, in the balanced tree, we visit: `4`, `6`, and `7`. It gets even worse with larger trees. If you have one million nodes, searching for a non-existing element might require to visit all million while on a balanced tree it just requires 20 visits! That's a huge difference!
+If we are searching for `7` in the non-balanced tree, we have to go from 1 to 7. However, in the balanced tree, we visit: `4`, `6`, and `7`. It gets even worse with larger trees. If you have one million nodes, searching for a non-existing element might require to visit all million while on a balanced tree it just requires 20 visits! That's a huge difference!
 
 We are going to solve this issue in the next post using self-balanced trees (AVL trees).
 
 # Summary
 
-We have covered a lot of ground for trees. Let's sum it up with bullets:
+We have covered much ground for trees. Let's sum it up with bullets:
 
 - The tree is a data structure where a node has 0 or more descendants/children.
 - Tree nodes don't have cycles (acyclic). If it has cycles it is a [Graph data structure](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/) instead.
