@@ -1636,5 +1636,9 @@ Backlinks:
 
 https://www.reddit.com/r/compsci/comments/8m1dx0/data_structures_for_beginners_arrays_hashmaps_and/
 
+https://adrianmejia.com/blog/2018/04/28/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/
+2、各种数据结构的 JavaScript 实现（英文）
+
+https://www.yuque.com/ruanyf/share/issue-10
 -->
 

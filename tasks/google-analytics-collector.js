@@ -8,7 +8,7 @@ var fs = require('fs');
 // const endDate = 'yesterday';
 
 /**
- * Download googgle analytics data into a CSV file
+ * Download googgle analytics data into a JSON file
  *
  * @param startDate {string} defaults to '2011-06-10' could be a relative time too like '28daysAgo'
  * @param endDate {string} defaults to 'yesterday'
