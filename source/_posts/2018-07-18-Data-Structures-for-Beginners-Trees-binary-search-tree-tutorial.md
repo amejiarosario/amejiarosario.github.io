@@ -24,7 +24,7 @@ updated: 2018-06-11 18:49:30
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
-Tree data structures are very widely used on applications like databases and search applications to name a few. In this post, we are going to explore the different types of trees like a binary tree, binary search trees and how to implement them.
+Tree data structures are the base for other data structure like Maps and Sets. Also, used on databases performed quick searches. The HTML DOM uses a tree data structure to represents the hierachy of elements. These are some to name a few. In this post, we are going to explore the different types of trees like a binary tree, binary search trees and how to implement them.
 
 <!-- more -->
 
@@ -66,6 +66,7 @@ They are called "trees" because the data structure resembles a tree 🌳. It sta
 {% img /images/tree-parts.jpg %}
 
 Here are some properties of trees:
+
 - The top-most node is called **root**.
 - A node without children is called **leaf** node or **terminal** node.
 - **Height** (*h*) of the tree is the distance (edge count) between the farthest leaf to the root.
@@ -117,11 +118,14 @@ Trees nodes can have zero or more children. However, when a tree has at the most
 
 A binary tree is one of the most common forms of trees and has many applications such as:
 
-- Searching in a time complexity of *O(log n)*.
+<!-- - Searching in a time complexity of *O(log n)*. -->
 <!-- - Cryptography: [Generate pseudorandom numbers](https://www.cs.princeton.edu/courses/archive/fall07/cos433/prf_goldreich.pdf) -->
 - [Maps](https://adrianmejia.com/blog/2018/04/28/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/#HashMaps)
 - [Sets](https://adrianmejia.com/blog/2018/04/28/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/#Sets)
+- Databases
 - Priority Queues
+- Querying an LDAP (Lightweight Directory Access Protocol)
+- Searching through an XML/HTML file using the Document Object Model (DOM) interface.
 
 ## Full, Complete and Perfect binary trees
 
