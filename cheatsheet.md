@@ -18,8 +18,9 @@ cd tasks && node google-analytics-runner.js && cd -
 # themes/am-light/source/js/search.es6
 hexo clean && hexo algolia
 
-
 hexo d -g                  # generate and deploy to github pages/netlify
+
+# https://app.netlify.com/sites/angry-engelbart-d10917/overview # Check is deployed
 ```
 
 ## Update Google Analytics stats

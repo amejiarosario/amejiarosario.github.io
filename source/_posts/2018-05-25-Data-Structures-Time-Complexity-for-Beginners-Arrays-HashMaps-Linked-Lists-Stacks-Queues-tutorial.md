@@ -50,7 +50,8 @@ This post is part of a tutorial series:
 1. [Trees Data Structures for Beginners](/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/)
 <!-- 1. Trees Data Structures for Beginners **👈 you are here** -->
 
-1. *Self-balanced Binary Search Trees* (**coming soon**)
+1. [Self-balanced Binary Search Trees](/blog/2018/07/16/self-balanced-binary-search-trees-with-avl-tree-data-structure-for-beginners/)
+<!-- 1. Self-balanced Binary Search Trees  **👈 you are here** -->
 
 1. [Apendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
 ---
