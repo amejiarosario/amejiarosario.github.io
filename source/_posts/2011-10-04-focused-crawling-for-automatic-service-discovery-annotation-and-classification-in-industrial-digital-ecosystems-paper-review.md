@@ -4,9 +4,9 @@ title: Focused Crawling for Automatic Service Discovery, Annotation, and Classif
 created: 1317758695000
 updated: 1317758695000
 comments: true
-pageviews__total: 43
+pageviews__total: 44
 pageviews__recent: 1
-pageviews__avg_time: 216
+pageviews__avg_time: 198
 tutorial__order: 0
 #categories: [paper review, e-learning, focused crawling, web semantics]
 ---
