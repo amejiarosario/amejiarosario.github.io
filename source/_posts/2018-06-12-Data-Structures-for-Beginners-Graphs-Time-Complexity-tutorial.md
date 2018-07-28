@@ -618,6 +618,4 @@ As we saw, Graphs can help to model many real-life scenarios such as airports, s
 <!-- Backlinks
 
   https://betterdev.link/issues/54
-
-
 -->
