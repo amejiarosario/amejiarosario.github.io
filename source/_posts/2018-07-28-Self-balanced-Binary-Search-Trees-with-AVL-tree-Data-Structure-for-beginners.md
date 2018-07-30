@@ -8,8 +8,8 @@ pageviews__avg_time: 113
 tutorial__order: 7
 toc: true
 photos:
-  - /images/data-structures-for-beginners-balanced-binary-search-tree-avl-small.jpg
-  - /images/data-structures-for-beginners-balanced-binary-search-tree-avl-large.jpg
+  - /images/data-structures-algorithms-avl-binary-search-trees-small.jpg
+  - /images/data-structures-algorithms-avl-binary-search-trees-large.jpg
 photos__background_color: '#F4F0EF'
 tags:
   - big-o notation

@@ -8,10 +8,8 @@ pageviews__avg_time: 25
 tutorial__order: 5
 toc: true
 photos:
-  - /images/data-structures-time-complexity-trees-graphs-binary-search-tree-small.jpg
-  - /images/data-structures-time-complexity-trees-graphs-binary-search-tree-large.jpg
-  - /images/data-structures-time-complexity-small.jpg
-  - /images/data-structures-time-complexity-large.jpg
+  - /images/graph-data-structures-time-complexity-small.jpg
+  - /images/graph-data-structures-time-complexity-large.jpg
 photos__background_color: '#F4F0EF'
 tags:
   - big-o notation
