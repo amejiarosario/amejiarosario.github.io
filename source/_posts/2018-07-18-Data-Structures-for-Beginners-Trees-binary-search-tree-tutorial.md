@@ -571,3 +571,5 @@ We have covered much ground for trees. Let's sum it up with bullets:
 <!-- http://www.stoimen.com/blog/2012/07/03/computer-algorithms-balancing-a-binary-search-tree/ -->
 
 <!-- https://stackoverflow.com/questions/8015630/definition-of-a-balanced-tree -->
+
+<!-- https://www.radford.edu/~itec324/2016fall-ibarland/Lectures/SList-BST-Composite/bst-summary.java -->
