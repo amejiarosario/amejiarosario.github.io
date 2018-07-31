@@ -307,6 +307,11 @@ Improvement ideas:
 Overall good introduction. You could maybe go into a bit more detail of why the kconstant is ignored. Maybe a plot of an few linear functions next to an quadratic one, to illustrate that for different values of kall the linear functions are kinda the same compared to the quadratic function.
 I really like your table of runtimes. Gives a good perspective on why this matters :)
 
+https://news.ycombinator.com/item?id=16941645
+
+Titles:
+23 Algorithms tutorial series for beginners - https://www.reddit.com/r/compsci/comments/8elqsc/algorithms_tutorial_series_for_beginners/
+0 How you can change the world by learning Data Structures and Algorithms -
 
 
 -->
