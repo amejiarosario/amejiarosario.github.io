@@ -76,3 +76,13 @@
     background-color: #eeeeee;
   }
 }
+
+.table--responsive {
+  overflow-x:auto;
+  width: 100%;
+
+  td, th {
+    overflow:hidden;
+    white-space:nowrap;
+  }
+}

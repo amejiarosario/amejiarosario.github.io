@@ -194,7 +194,7 @@ In our previous example with `getMin` function, we can say it has a running time
 
 Growth rates vs. `n` size:
 
-<div style="overflow-x:auto; width: 100%;">
+<div class="table--responsive">
 
 <table>
 <thead>
@@ -204,8 +204,8 @@ Growth rates vs. `n` size:
 <th>O(log n)</th>
 <th>O(n)</th>
 <th>O(n log n)</th>
-<th>O(n^2)</th>
-<th>O(2^n)</th>
+<th>O(n<sup>2</sup>)</th>
+<th>O(2<sup>n</sup>)</th>
 <th>O(n!)</th>
 </tr>
 </thead>
