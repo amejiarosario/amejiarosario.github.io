@@ -27,12 +27,12 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 
 h1 {
-  font-size: 3em; // 34px
+  font-size: 2.5em; // 34px
   font-weight: 300;
 }
 
 h2 {
-  font-size: 2.125em; // 34px
+  font-size: 2em; // 34px
   font-weight: 300;
 }
 
@@ -47,6 +47,11 @@ h4 {
 
 p {
   line-height: 1.5;
+}
+
+.figcaption {
+  font-size: 0.8em;
+  text-align: center;
 }
 
 // acronym, abbr

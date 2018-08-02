@@ -52,7 +52,7 @@ This post is part of a tutorial series:
 
 1. Self-balanced Binary Search Trees **👈 you are here**
 
-1. [Apendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
+1. [Appendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
 ---
 
 Let's start by defining what is a balanced tree and the pitfalls of an unbalanced tree.

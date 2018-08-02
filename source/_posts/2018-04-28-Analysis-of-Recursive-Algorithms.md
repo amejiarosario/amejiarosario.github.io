@@ -55,8 +55,8 @@ This post is part of a tutorial series:
 1. [Self-balanced Binary Search Trees](/blog/2018/07/16/self-balanced-binary-search-trees-with-avl-tree-data-structure-for-beginners/)
 <!-- 1. Self-balanced Binary Search Trees  **👈 you are here** -->
 
-1. Apendix I: Analysis of Recursive Algorithms **👈 you are here**
-<!-- 1. [Apendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/) -->
+1. Appendix I: Analysis of Recursive Algorithms **👈 you are here**
+<!-- 1. [Appendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/) -->
 ---
 
 #  Master Theorem
