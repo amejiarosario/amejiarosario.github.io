@@ -57,6 +57,30 @@
         <%- page.content %>
       </div>
 
+      <!-- Next and previous posts -->
+      <% if (page.prev || page.next){ %>
+        <div class="article-nav m-y-4">
+          <% if (page.prev){ %>
+            <a href="<%- url_for(page.prev.path) %>" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> <%= __('newer') %></strong>
+              <div class="article-nav-title">
+                <% if (page.prev.title){ %>
+                  <%= page.prev.title %>
+                <% } else { %>
+                  (no title)
+                <% } %>
+              </div>
+            </a>
+          <% } %>
+          <% if (page.next){ %>
+            <a href="<%- url_for(page.next.path) %>" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><%= __('older') %> <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title"><%= page.next.title %></div>
+            </a>
+          <% } %>
+        </div>
+      <% } %>
+
       <% if(page.layout !== 'snippet') { %>
 
         <!-- Related -->
@@ -155,30 +179,6 @@
       </section>
     </aside>
   </div>
-
-  <!-- Next and previous posts -->
-  <% if (page.prev || page.next){ %>
-    <div class="article-nav m-y-4">
-      <% if (page.prev){ %>
-        <a href="<%- url_for(page.prev.path) %>" class="article-nav-newer" class="article-nav-link-wrap">
-          <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> <%= __('newer') %></strong>
-          <div class="article-nav-title">
-            <% if (page.prev.title){ %>
-              <%= page.prev.title %>
-            <% } else { %>
-              (no title)
-            <% } %>
-          </div>
-        </a>
-      <% } %>
-      <% if (page.next){ %>
-        <a href="<%- url_for(page.next.path) %>" class="article-nav-older" class="article-nav-link-wrap">
-          <strong class="article-nav-caption"><%= __('older') %> <i class="fa fa-chevron-right"></i></strong>
-          <div class="article-nav-title"><%= page.next.title %></div>
-        </a>
-      <% } %>
-    </div>
-  <% } %>
 
   <!-- comments -->
   <footer class="row sticky-element--end">
