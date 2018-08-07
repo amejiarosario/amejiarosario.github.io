@@ -19,7 +19,7 @@ categories:
   - Web Development
   - Angular
 date: 2016-10-01 17:16:03
-updated: 2016-10-01 17:16:03
+updated: 2018-08-07 18:17:23
 ---
 
 This tutorial gets you off the ground with Angular. We are going to use the official CLI (command line) tool to generate boilerplate code.
@@ -77,7 +77,7 @@ The command `ng new` will do a bunch of things for us:
 
  1. Initialize a git repository
  1. Creates an `package.json` files with all the Angular dependencies.
- 1. Setup TypeScript, Webpack, Tests (Jasmine, Protractor, Karma). Don't worry if you don't what they are. We are going to cover them later.
+ 1. Setup TypeScript, Webpack, Tests (Jasmine, Protractor, Karma). Don't worry if you don't know what they are. We are going to cover them later.
  1. It creates the `src` folder with the bootstrapping code to load our app into the browser
  1. Finally, it does an `npm install` to get all the packages into `node_modules`.
 
@@ -88,28 +88,28 @@ Let's run the app!
 ng serve ---port 9000
 ```
 
-Open your browser on http://localhost:9000/ and you should see "Loading..." and then it should switch to "Welcome to app!". Awesome!
+Open your browser on http://localhost:9000/, and you should see "Loading..." and then it should switch to "Welcome to app!". Awesome!
 
 Now let's dive into the `src` folder and get familiarized with the structure.
 
 ## package.json
 
-Open the `package.json` file and take a look at the dependencies. We have all the angular dependencies with the prefix `@angular/...`. There are other dependencies that are needed for Angular to run, such as RxJS, Zone.js, and some others. We are going to cover them in their own posts.
+Open the `package.json` file and take a look at the dependencies. We have all the angular dependencies with the prefix `@angular/...`. Other dependencies are needed for Angular to run, such as RxJS, Zone.js, and some others. We are going to cover them in other posts.
 
 ## src/index.html
 
-We are building an SPA (single page application) so everything is going to be loaded into the `index.html`. Let's take a look in the `src/index.html`. It's pretty standard HTML5 code, except for two elements that are specific for our app:
+We are building an SPA (single page application), so everything is going to be loaded into the `index.html`. Let's take a look in the `src/index.html`. It's pretty standard HTML5 code, except for two elements that are specific for our app:
 
 1. `<base href="/">`
 1. `<app-root>Loading...</app-root>`
 
-`base href` is needed for Angular routing to work properly. We are going to cover Routing in its own chapter.
+`base href` is needed for Angular routing to work correctly. We are going to cover Routing later.
 
-`<app-root>` this is not a standard HTML tag. It's actually defined by our Angular App. It's an Angular **component**. More on this later.
+`<app-root>` this is not a standard HTML tag. Our Angular App defines it. It's an Angular **component**. More on this later.
 
 ## src/main.ts
 
-This is the part where our application starts bootstrapping (loading). Angular can be used not just in browsers, but also on other platforms such as mobile apps or even desktop apps. So, when we start our application we have to specify what platform we want to target. That's why we import: `platform-browser-dynamic`. Notice that we are also importing the `AppModule` from `./app`.
+`main.ts` is where our application starts bootstrapping (loading). Angular can be used not just in browsers, but also on other platforms such as mobile apps or even desktop apps. So, when we start our application, we have to specify what platform we want to target. That's why we import: `platform-browser-dynamic`. Notice that we are also importing the `AppModule` from `./app`.
 
 The most important line is:
 
@@ -127,15 +127,15 @@ The app directory contains the components used to mount the rest of the applicat
 
 We are going to be using this file often. The most important part is the metadata inside the `@NgModule`. There we have `declarations`, `imports`, `providers` and `bootstrap`.
 
-- Declarations: goes all your components (e.g. AppComponent, TodoComponent)
+- Declarations: goes all your components (e.g., AppComponent, TodoComponent)
 - Imports: routes and modules go here.
-- Bootstrap: list the component you want to load when the app starts. In our case is `AppComponent`.
+- Bootstrap: list the components you want to load when the app starts. In our case is `AppComponent`.
 
 ### app.component.ts
 
-This looks a little similar to the app module, but instead of `@NgModule` we have `@Component`. Again, the most important part is the value of the attributes (metadata). We have `selector`, `templateUrl` and `styleUrls`. This what they mean:
+`AppComponent` looks a little similar to the app module, but instead of `@NgModule` we have `@Component`. Again, the most important part is the value of the attributes (metadata). We have `selector`, `templateUrl` and `styleUrls`:
 
--  `selector`: is the name of the component. Remember that we had `<app-root>Loading...</app-root>`? This is where is defined.
+-  `selector`: is the name of the component. Remember that we had `<app-root>Loading...</app-root>`? AppComponent is where it's defined.
 `templateUrl`: This is where the HTML code is. `<app-root>` will be replaced for whatever you have in the template.
 - `styleUrls`: You can have styles that only apply to this component. This is pretty neat! You can change the styles with confidence knowing that it won't bleed into other parts of the website.
 
@@ -155,13 +155,13 @@ You should see the new message.
 
 # Creating a new Component with Angular CLI
 
-Let's create a new component to display the tasks. We can easily create by typing:
+Let's create a new component to display the tasks. We can quickly create by typing:
 
 ```bash
 ng generate component todo
 ```
 
-This command will create a new folder with 4 files:
+This command will create a new folder with four files:
 
 ```
 create src/app/todo/todo.component.css
@@ -177,7 +177,7 @@ UPDATE src/app/app.module.ts
 ```
 
 Go ahead and inspect each one. It will look similar to the app components.
-Actually, let's add our new component to the App component.
+Let 's add our new component to the App component.
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/bd5ec41">[changes diff]</a>
 
@@ -250,11 +250,11 @@ If you have `ng serve` running, it should automatically update and show `todo wo
 </section>
 ```
 
-This has the general structure about how we want to represent our tasks. Right now it has hard-coded tasks. We are going to slowly turn it into a dynamic app using Angular data bindings.
+The above HTML code has the general structure about how we want to represent our tasks. Right now it has hard-coded todo's. We are going to slowly turn it into a dynamic app using Angular data bindings.
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/7dd4f78">[changes diff]</a>
 
-Next, let's add some styling so it looks better.
+Next, let's add some styling!
 
 # Styling the todo app
 
@@ -281,7 +281,7 @@ This will install a CSS file that we can use to style our Todo app and make it l
             "scripts": []
 ```
 
-If you stop and start `ng serve`, you will see that now it looks much better.
+If you stop and start `ng serve`, then you will notice the changes.
 
 {% img /images/angular2-todo-app-preview.png 'Angular Todo App' %}
 
@@ -375,7 +375,7 @@ export class TodoComponent implements OnInit {
 {% endcodeblock %}
 
 
-The first change is importing our `TodoService` and adding it to the providers. Then we use the constructor of the component to load the `TodoService`. While we inject the service we can hold a private instance of it in the variable `todoService`. Finally, we use it in the `getTodos` method. This will make a variable `todos` available in the template where we can render the tasks.
+The first change is importing our `TodoService` and adding it to the providers. Then we use the constructor of the component to load the `TodoService`. While we inject the service, we can hold a private instance of it in the variable `todoService`. Finally, we use it in the `getTodos` method. This will make a variable `todos` available in the template where we can render the tasks.
 
 Let's change the template so we can render the data from the service. Go to the `todo.component.html` and change what is inside the `<ul class="todo-list"> ... </ul>` for this one:
 
@@ -413,13 +413,13 @@ Now, let's go over what we just did. We can see that we added new data-binding i
 - `*ngFor`: iterates through the `todos` array that we defined in the component and assigned in the `let todo` part.
 - `[ngClass]`: applies a class when the expression evaluates to true. In our case, it uses class `completed` when `isDone` is true.
 - `[checked]`: applies the `checked` attribute when the expression evaluates to true (`todo.isDone`).
-- `{{todo.title}}`: render the todo title. The same happened with `{{activeTasks}}`.
+- `{{todo.title}}`: Render the todo title. The same happened with `{{activeTasks}}`.
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/876c331">[changes diff]</a>
 
 ## CREATE: using the input form
 
-Let's start with the template this time. We have an input element for creating new tasks. Let's listen to changes in the input form and when we click enter it creates the tasks.
+Let's start with the template this time. We have an input element for creating new tasks. Let's listen to changes in the input form and when we click enter it creates the TODO.
 
 ```html Line 5 src/app/todo/todo.component.html
 <input class="new-todo"
@@ -454,14 +454,14 @@ First, we created a private variable that we are going to use to get values from
   }
 ```
 
-This adds the new element into the `todos` array and resolves the promise. That's all. Go ahead a test it out creating a new todo element.
+The above code adds the new element into the `todos` array and resolves the promise. That's all. Go ahead a test it out creating a new todo element.
 
 You might get an error saying:
 
 ```
 Can't bind to 'ngModel' since it isn't a known property of 'input'
 ```
-In order to use the two-way data binding you need to import `FormsModule` in the `app.module.ts`. So let's do that.
+To use the two-way data binding you need to import `FormsModule` in the `app.module.ts`. So let's do that.
 
 ```js
 import { FormsModule } from '@angular/forms';
@@ -482,7 +482,7 @@ Now it should add new tasks to the list!
 
 ## UPDATE: on double click
 
-Let's add an event listener to double-click on each todo. That way, we can change the content. Editing is tricky since we need to display an input form. Then when the user clicks enter it should update the value. Finally, it should hide the input and display the label with the updated value. Let's do that by keeping a temp variable called `editing` which could be true or false.
+Let's add an event listener to double-click on each todo. That way, we can change the content. Editing is tricky since we need to display an input form. Then when the user clicks enter it should update the value. Finally, it should hide the input and show the label with the updated value. Let's do that by keeping a temp variable called `editing` which could be true or false.
 
 ```html src/app/todo/todo.component.html
 <li *ngFor="let todo of todos" [ngClass]="{completed: todo.isDone, editing: todo.editing}" >
@@ -500,7 +500,7 @@ Let's add an event listener to double-click on each todo. That way, we can chang
 </li>
 ```
 Notice that we are adding a local variable in the template `#updateTodo`. Then we use it to get the value like `updateTodo.value` and pass it to a function.
-We want to update the variables on `blur` (when you click somewhere else) or on `enter`. Let's add the function that actually updates the value in the component.
+We want to update the variables on `blur` (when you click somewhere else) or on `enter`. Let's add the function that updates the value in the component.
 
 Also, notice that we have a new CSS class applied to the element called `editing`. This is going to take care through CSS to hide and show the input element when needed.
 
@@ -514,7 +514,7 @@ updateTodo(todo, newValue) {
 }
 ```
 
-We update the new todo's title and after the service has process the update we set editing to false. Finally, we reload all the tasks again. Let's add the `put` action on the service.
+We update the new todo's title, and after the service has processed the update, we set editing to false. Finally, we reload all the tasks again. Let's add the `put` action on the service.
 
 ```javascript src/app/todo/todo.service.ts
   put(changed) {
@@ -565,7 +565,7 @@ Now test it out in the browser!
 
 # Routing and Navigation
 
-It's time to activate the routing. When we click on the `active` button we want to show only the ones that are active. Similarly, we want to filter by `completed`. Additionally, we want to the filters to change the route `/active` or `/completed` URLs.
+It's time to activate the routing. When we click on the `active` button, we want to show only the ones that are active. Similarly, we want to filter by `completed`. Additionally, we want to the filters to change the route `/active` or `/completed` URLs.
 
 In `AppModule`, we need to add the `router` library and define the routes as follows:
 
@@ -603,7 +603,7 @@ export class AppModule { }
 
 First, we import the routing library. Then we define the routes that we need. We could have said `path: 'active', component: TodoComponent` and then repeat the same for `completed`. But instead, we define a parameter called `:status` that could take any value (`all`, `completed`, `active`). Any other value path we are going to redirect it to `/all`. That's what the `**` means.
 
-Finally, we add it to the imports. So the app module uses it. Since the AppComponent is using routes. Now we need to define the `<router-outlet>`. That's the place where the routes are going to render the component based on the path (in our case `TodoComponent`).
+Finally, we add it to the imports. So the app module uses it. Since the AppComponent is using routes, now we need to define the `<router-outlet>`. That's the place where the routes are going to render the component based on the path (in our case `TodoComponent`).
 
 Let's go to `app/app.component.html` and replace `<app-todo></app-todo>` for `<router-outlet></router-outlet>`:
 
@@ -617,7 +617,7 @@ Test the app in the browser and verify that now the URL is by default `http://lo
 
 ## Using routerLink and ActivatedRoute
 
-`routerLink` is the replacement of `href` for our dynamic routes. We have set it up to be `/all`, `/complete` and `/active`. Notice that the expression is an array. You can pass each part of the URL as an element of the array.
+`routerLink` is the replacement of `href` for our dynamic routes. We have set it up to be `/all`, `/complete` and `/active`. Notice that the expression is an array. You can pass each part of the URL as an element of the collection.
 
 {% codeblock lang:html mark:3,6,9 src/app/todo/todo.component.html %}
 <ul class="filters">
@@ -666,7 +666,7 @@ export class TodoComponent implements OnInit {
 }
 {% endcodeblock %}
 
-We added `ActivatedRoute` as a dependency and in the constructor. This gives us access to the all the `route` params such as `path`. Notice that we are using it in the `NgOnInit` and set the path accordantly.
+We added `ActivatedRoute` as a dependency and in the constructor. ActivatedRoute gives us access to the all the `route` params such as `path`. Notice that we are using it in the `NgOnInit` and set the path accordantly.
 
 Go to the browser and check out that the URL matches the active button. But, it doesn't filter anything yet. Let's fix that.
 
@@ -752,7 +752,7 @@ That's it we have completed all the functionality.
 
 # Deploying the app
 
-You can generate all you assets for production running this command:
+You can generate all your assets for production running this command:
 
 ```bash
 ng build --prod
@@ -766,7 +766,7 @@ If you want to deploy to a Github page you can do the following:
 ng build --prod --output-path docs --base-href "/angular-todo-app/"
 ```
 
-Replace `/angular-todo-app/` with the name of your project name. Finally, go to settings and setup serving Github pages using the `/docs` folder:
+Replace `/angular-todo-app/` with the name of your project name. Finally, go to settings and set up serving Github pages using the `/docs` folder:
 
 ![image](https://user-images.githubusercontent.com/418605/43802468-dd515c14-9a63-11e8-8262-b5b837170640.png)
 
