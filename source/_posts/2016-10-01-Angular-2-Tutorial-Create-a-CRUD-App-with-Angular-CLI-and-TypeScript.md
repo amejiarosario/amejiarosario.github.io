@@ -43,8 +43,8 @@ If you get the versions Node 4.x.x and NPM 3.x.x. or higher you are all set. If 
 
 Let's move on to Angular. We are going to create a Todo app. We will be able to CRUD (create-read-update-delete) tasks:
 
-- Live Demo: [Angular Todo app preview](http://adrianmejia.com/angular2-todo-app/all)
-- Repository [angular-todo-app](https://github.com/amejiarosario/angular2-todo-app)
+- Live Demo: [Angular Todo app preview](https://amejiarosario.github.io/angular-todo-app/)
+- Repository [angular-todo-app](https://github.com/amejiarosario/angular-todo-app)
 
 # Understanding ng new
 
@@ -151,7 +151,7 @@ ng serve ---port 9000
 
 You should see the new message.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/ec0b9f9">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/ec0b9f9">[changes diff]</a>
 
 # Creating a new Component with Angular CLI
 
@@ -179,7 +179,7 @@ UPDATE src/app/app.module.ts
 Go ahead and inspect each one. It will look similar to the app components.
 Actually, let's add our new component to the App component.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/bd5ec41">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/bd5ec41">[changes diff]</a>
 
 Go to `src/app/app.component.html`, and replace everything with:
 
@@ -189,7 +189,7 @@ Go to `src/app/app.component.html`, and replace everything with:
 
 If you have `ng serve` running, it should automatically update and show `todo works!`
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/8bcd39a">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/8bcd39a">[changes diff]</a>
 
 # Todo Template
 
@@ -252,7 +252,7 @@ If you have `ng serve` running, it should automatically update and show `todo wo
 
 This has the general structure about how we want to represent our tasks. Right now it has hard-coded tasks. We are going to slowly turn it into a dynamic app using Angular data bindings.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/7dd4f78">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/7dd4f78">[changes diff]</a>
 
 Next, let's add some styling so it looks better.
 
@@ -287,7 +287,7 @@ If you stop and start `ng serve`, you will see that now it looks much better.
 
 We have the skeleton so far. Now we are going to make it dynamic and allow users to add/remove/update/sort tasks. We are going to do two versions one serverless and another one using a Node.js/Express server. We are going to be using promises all the time, so when we use a real API, the service is the only one that has to change.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/67ae866">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/67ae866">[changes diff]</a>
 
 # Todo Service
 
@@ -304,7 +304,7 @@ create src/app/todo/todo.service.spec.ts
 create src/app/todo/todo.service.ts
 ```
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/c4fa45d">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/c4fa45d">[changes diff]</a>
 
 # CRUD Functionality
 
@@ -415,7 +415,7 @@ Now, let's go over what we just did. We can see that we added new data-binding i
 - `[checked]`: applies the `checked` attribute when the expression evaluates to true (`todo.isDone`).
 - `{{todo.title}}`: render the todo title. The same happened with `{{activeTasks}}`.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/876c331">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/876c331">[changes diff]</a>
 
 ## CREATE: using the input form
 
@@ -478,7 +478,7 @@ import { FormsModule } from '@angular/forms';
 ```
 Now it should add new tasks to the list!
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/049b52b4d823c62f922e5d6e5f386fa96cc6b0fe">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/049b52b4d823c62f922e5d6e5f386fa96cc6b0fe">[changes diff]</a>
 
 ## UPDATE: on double click
 
@@ -527,7 +527,7 @@ We update the new todo's title and after the service has process the update we s
 ```
 Now, we can edit tasks! Yay!
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/7f7700b">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/7f7700b">[changes diff]</a>
 
 ## DELETE: clicking X
 
@@ -561,7 +561,7 @@ and finally, we add the method to the service:
 
 Now test it out in the browser!
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/4703dd01d19ed3d84501e67f7fef5b51dee7585e">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/4703dd01d19ed3d84501e67f7fef5b51dee7585e">[changes diff]</a>
 
 # Routing and Navigation
 
@@ -613,7 +613,7 @@ Let's go to `app/app.component.html` and replace `<app-todo></app-todo>` for `<r
 
 Test the app in the browser and verify that now the URL is by default `http://localhost:9000/all`.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/3a38b4d">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/3a38b4d">[changes diff]</a>
 
 ## Using routerLink and ActivatedRoute
 
@@ -670,7 +670,7 @@ We added `ActivatedRoute` as a dependency and in the constructor. This gives us 
 
 Go to the browser and check out that the URL matches the active button. But, it doesn't filter anything yet. Let's fix that.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/bd3cc91ae8aed975c7d6e64ad76c53e985726364">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/bd3cc91ae8aed975c7d6e64ad76c53e985726364">[changes diff]</a>
 
 ## Filtering data based on the route
 
@@ -713,7 +713,7 @@ We added a new parameter `query`, which takes the `path` (active, completed or a
 
 So we added a filter by `isDone` when we pass either `completed` or `active`. If the query is anything else, we return all the todos tasks. That's pretty much it, test it out!
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/653e543">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/653e543">[changes diff]</a>
 
 # Clearing out completed tasks
 
@@ -748,7 +748,7 @@ We use the filter to get the active tasks and replace the `todos` array with it.
 
 That's it we have completed all the functionality.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular2-todo-app/commit/4ef542f">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/4ef542f">[changes diff]</a>
 
 # Deploying the app
 
