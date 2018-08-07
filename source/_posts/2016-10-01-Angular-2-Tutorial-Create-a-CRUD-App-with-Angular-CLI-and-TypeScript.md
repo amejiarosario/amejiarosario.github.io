@@ -755,17 +755,22 @@ That's it we have completed all the functionality.
 
 # Deploying the app
 
-Angular CLI comes with a convenient command to deploy your app to Github pages.
-
-```bash
-# build assets + deploy
-ng github-pages:deploy
-```
-
-If you want to build your app for production you can do:
+You can generate all you assets for production running this command:
 
 ```bash
 ng build --prod
 ```
+
+It will minify and concatenate the assets for serving the app faster.
+
+If you want to deploy to a Github page you can do the following:
+
+```bash
+ng build --prod --output-path docs --base-href "/angular-todo-app/"
+```
+
+Replace `/angular-todo-app/` with the name of your project name. Finally, go to settings and setup serving Github pages using the `/docs` folder:
+
+![image](https://user-images.githubusercontent.com/418605/43802468-dd515c14-9a63-11e8-8262-b5b837170640.png)
 
 That's all folks!
