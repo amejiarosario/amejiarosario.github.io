@@ -15,6 +15,7 @@ photos__background_color: '#B12928'
 tutorial__order: 0
 tags:
   - angularjs
+  - angular 1.x
   - javascript
 categories:
   - Technologies

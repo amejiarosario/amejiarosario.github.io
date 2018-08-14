@@ -12,12 +12,13 @@ photos:
   - /images/angular-2-tutorial-angular-cli-small.png
   - /images/angular-2-tutorial-angular-cli-large.png
 tags:
-  - Angular
+  - angular
+  - angular 2+
   - javascript
+  - todo app
 categories:
   - Programming
   - Web Development
-  - Angular
 date: 2016-10-01 17:16:03
 updated: 2018-08-07 18:17:23
 ---
@@ -769,5 +770,24 @@ ng build --prod --output-path docs --base-href "/angular-todo-app/"
 Replace `/angular-todo-app/` with the name of your project name. Finally, go to settings and set up serving Github pages using the `/docs` folder:
 
 ![image](https://user-images.githubusercontent.com/418605/43802468-dd515c14-9a63-11e8-8262-b5b837170640.png)
+
+# Troubleshooting
+
+If when you compile for production you get an error like:
+
+```
+The variable used in the template needs to be declared as "public". Template is treated as a separate Typescript class.
+
+ERROR in src/app/todo/todo.component.html(7,8): : Property 'newTodo' is private and only accessible within class 'TodoComponent'.
+src/app/todo/todo.component.html(19,11): : Property 'todos' is private and only accessible within class 'TodoComponent'.
+src/app/todo/todo.component.html(38,38): : Property 'activeTasks' is private and only accessible within class 'TodoComponent'.
+src/app/todo/todo.component.html(41,36): : Property 'path' is private and only accessible within class 'TodoComponent'.
+src/app/todo/todo.component.html(44,39): : Property 'path' is private and only accessible within class 'TodoComponent'.
+src/app/todo/todo.component.html(47,42): : Property 'path' is private and only accessible within class 'TodoComponent'.
+src/app/todo/todo.component.html(7,8): : Property 'newTodo' is private and only accessible within class 'TodoComponent'.
+```
+
+Then you need to change `private` to `public` like [this](https://github.com/amejiarosario/angular-todo-app/commit/33e2b3e268789de449ecbf521bc3501e649f8d07). This is because the Template in Angular is treated like a separate class.
+
 
 That's all folks!

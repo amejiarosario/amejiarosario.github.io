@@ -15,7 +15,8 @@ photos:
   - /images/AngularJSTutorial_large.png
 tutorial__order: 1
 tags:
-  - angularjs
+  - angular
+  - angular 1.x
   - javascript
   - Tutorial_MEAN-Stack
 alias: /blog/2014/09/28/angularjs-tutorial-for-begineers-with-nodejs-expressjs-and-mongodb/

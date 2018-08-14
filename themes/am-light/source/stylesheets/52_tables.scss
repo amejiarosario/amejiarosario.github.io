@@ -3,6 +3,12 @@
   border-collapse: collapse;
   background-color: rgb(255,255,255);
 
+  caption {
+    text-align: left;
+    font-size: 1.2em;
+    margin-top: 1em;
+  }
+
   thead {
     padding-bottom: 1em;
   }

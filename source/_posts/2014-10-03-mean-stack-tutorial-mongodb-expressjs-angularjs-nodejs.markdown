@@ -16,6 +16,7 @@ photos__background_color: '#7EBE42'
 tutorial__order: 3
 tags:
   - angularjs
+  - angular 1.x
   - mean stack
   - javascript
   - Tutorial_MEAN-Stack

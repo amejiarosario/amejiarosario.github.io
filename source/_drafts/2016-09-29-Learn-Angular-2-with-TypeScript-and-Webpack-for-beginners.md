@@ -12,7 +12,8 @@ photos:
   - /images/angular-2-tutorials-small.png
   - /images/angular-2-tutorials-large.png
 tags:
-  - angular 2
+  - angular
+  - angular 2+
   - javascript
 categories:
   - Programming
