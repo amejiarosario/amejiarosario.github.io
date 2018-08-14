@@ -4,8 +4,8 @@ title: E-Learning on the Social Semantic Information Sources - Paper Review
 created: 1316620227000
 updated: 1316620227000
 comments: true
-pageviews__total: 20
-pageviews__recent: 26
+pageviews__total: 24
+pageviews__recent: 1
 pageviews__avg_time: 4
 tutorial__order: 0
 #categories: [paper review, e-learning]
