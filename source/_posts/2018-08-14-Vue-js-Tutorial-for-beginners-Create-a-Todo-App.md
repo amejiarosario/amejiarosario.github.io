@@ -498,7 +498,7 @@ The last part to implement is the routing! However, for that, we need to explain
 
 In the next tutorial, we are going to switch gears a little bit and go deeper into Vue Components, Routing, and Local Storage. Stay tuned!
 
-# Summary
+# Summary: Vue cheatsheet
 
 We learned a lot! Here is a summary:
 
