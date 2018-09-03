@@ -513,10 +513,19 @@ We learned a lot! Here is a summary:
 
     <tbody>
       <tr>
+        <td> Mustache </td>
+        <td>Variable that is replaced with variable's value</td>
+        <td>
+          `<h1>{{ title }}</h1>`
+        </td>
+      </tr>
+      <tr>
         <td> v-bind </td>
         <td>Bind to HTML attribute</td>
         <td>
-          `<span v-bind:title="tooltip"></span>`
+          `<span v-bind:title="tooltip"></span>` <br>
+          `<div v-bind:id="dynamicId"></div>`
+          `<button v-bind:disabled="isButtonDisabled">Button</button>`
         </td>
       </tr>
 
@@ -551,7 +560,7 @@ We learned a lot! Here is a summary:
 
 <div class="table--responsive">
   <table class="table">
-    <caption>Iterators</caption>
+    <caption>List Rendering</caption>
     <thead>
       <th>Name</th>
       <th>Description</th>
@@ -564,6 +573,46 @@ We learned a lot! Here is a summary:
         <td>Iterate over elements</td>
         <td>
           `<li v-for="todo in todos">{{todo.text}}</li>`
+        </td>
+      </tr>
+
+      <tr>
+        <td> v-for </td>
+        <td>Iterate with index</td>
+        <td>
+          `<li v-for="(item, index) in items">`<br>
+          `{% raw %}  {{ parentMessage }} - {{ index }} - {{ item.message }}{% endraw %}`<br>
+          `</li>`
+        </td>
+      </tr>
+
+      <tr>
+        <td> v-for </td>
+        <td>Iterate over object's values</td>
+        <td>
+          `<li v-for="value in object">`<br>
+          `{% raw %}  {{ value }}  {% endraw %}`<br>
+          `</li>`
+        </td>
+      </tr>
+
+      <tr>
+        <td> v-for </td>
+        <td>Iterate over object's keys/values</td>
+        <td>
+          `<li v-for="(value, key) in object">`<br>
+          `{% raw %}  {{ key }}: {{ value }}  {% endraw %}`<br>
+          `</li>`
+        </td>
+      </tr>
+
+      <tr>
+        <td> v-for </td>
+        <td>Iterate with keys, values and index</td>
+        <td>
+          `<li v-for="(value, key, index) in object">`<br>
+          `{% raw %}  {{index}}.{{ key }}: {{ value }}  {% endraw %}`<br>
+          `</li>`
         </td>
       </tr>
 
@@ -692,14 +741,18 @@ We learned a lot! Here is a summary:
         <td>
 
 ```js
+// Vue Instance
 const todoApp = new Vue({
   // element matcher
   el: '.todoapp',
 
-  // data available on the templates
-  data: {
-    title: 'Todos',
-    editing: null,
+  // Reactive data, when something changes here it gets updated on the templates
+  // data should be a function so every instance get's a different data
+  data() {
+    return {
+      title: 'Todos',
+      editing: null,
+    }
   },
 
   // invoke this functions on event handlers, etc.
@@ -736,3 +789,19 @@ const todoApp = new Vue({
     </tbody>
   </table>
 </div>
+
+
+<!-- Feeback
+https://news.ycombinator.com/item?id=17762421
+Good intro, few nitpicks:
+- it should be mentioned that components have to return data as a function [0]
+
+- v-for should ideally be used with keys [1]
+
+[0] https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Fu...
+
+[1] https://vuejs.org/v2/guide/list.html#key
+
+One should definitely mention the vue.js docs for basics.
+
+-->
