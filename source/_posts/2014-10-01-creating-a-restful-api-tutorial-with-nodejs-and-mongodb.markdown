@@ -224,7 +224,7 @@ todo.save(function(err){
 
 If you take a look to Mongo you will notice that we just created an entry. You can easily visualize data using <a href="https://robomongo.org/" target="_blank">Robomongo</a>:
 
-{% img http://i.imgur.com/DI6Vxwq.png Viewing data with Robomongo %}
+{% img https://i.imgur.com/DI6Vxwq.png Viewing data with Robomongo %}
 
 You can also build the object and save it in one step using `create`:
 

@@ -53,7 +53,7 @@ categories:
 <div>&nbsp;</div>
 <div>All these websites have something in common: huge amount of traffic! So, there technologies should scale, support high concurrency and easy to maintain. All these features are a good measure to know what programming language you should focus next. Learn from what is already working. All right! Now comes the interesting part! Let see what is happening behind the scenes!&nbsp;</div>
 <div>&nbsp;</div>
-<div><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; "><img alt="facebook logo" src="http://t1.gstatic.com/images?q=tbn:ANd9GcSsGcRk_O0ncOMinYTG4K1Lle--Ot4ShY4Oc1fDtw5pd_i6qxkoXg" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; cursor: default; width: 64px; height: 64px; "></strong></div>
+<div><strong style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; "><img alt="facebook logo" src="https://t1.gstatic.com/images?q=tbn:ANd9GcSsGcRk_O0ncOMinYTG4K1Lle--Ot4ShY4Oc1fDtw5pd_i6qxkoXg" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; vertical-align: baseline; cursor: default; width: 64px; height: 64px; "></strong></div>
 <div><strong>Facebook &nbsp;</strong></div>
 <div>Technologies used:</div>
 <ul>
@@ -88,7 +88,7 @@ categories:
 <div>Who else uses&nbsp;Memcached?&nbsp;</div>
 <div>YouTube, Facebook, Twitter, Reddit, Zynga. CMS (Drupal, Joomla, WordPress)</div>
 <div>&nbsp;</div>
-<div><img alt="Twitter" src="http://t0.gstatic.com/images?q=tbn:ANd9GcQkxJl0nu584FrSblIknohzw0tAMtmGSSs9hAnxRS6kFOpzPYmvXQ" style="width: 64px; height: 64px; "></div>
+<div><img alt="Twitter" src="https://t0.gstatic.com/images?q=tbn:ANd9GcQkxJl0nu584FrSblIknohzw0tAMtmGSSs9hAnxRS6kFOpzPYmvXQ" style="width: 64px; height: 64px; "></div>
 <div><strong>Twitter</strong></div>
 <div>Technologies used:</div>
 <div>(Be aware that Twitter keeps changing their technologies as they scale. So the list will be kinda chronologically)</div>
@@ -125,7 +125,7 @@ categories:
 <div>Who else use Scala?&nbsp;</div>
 <div>Foursquare, Twitter, …&nbsp;</div>
 <div>&nbsp;</div>
-<div><img alt="Google Logo" src="http://t1.gstatic.com/images?q=tbn:ANd9GcTWsBtMltVQT9FqsL9zNTKIu-8-7uazpjrnb_6AWnsQ8p8xsbiRYQ" style="width: 64px; height: 62px; "></div>
+<div><img alt="Google Logo" src="https://t1.gstatic.com/images?q=tbn:ANd9GcTWsBtMltVQT9FqsL9zNTKIu-8-7uazpjrnb_6AWnsQ8p8xsbiRYQ" style="width: 64px; height: 62px; "></div>
 <div><strong>Google</strong></div>
 <div>It’s a mystery what they really use, but here are some hints:</div>
 <ul>
