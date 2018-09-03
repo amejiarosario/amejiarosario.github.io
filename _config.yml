@@ -14,7 +14,7 @@ disqus_shortname: adrianmejia
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 #url: https://adrianmejia.herokuapp.com
-url: http://adrianmejia.com
+url: https://adrianmejia.com
 root: /
 permalink: blog/:year/:month/:day/:title/
 permalink_defaults:
