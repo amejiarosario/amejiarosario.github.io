@@ -4,9 +4,9 @@ title: How to set up Samba in Ubuntu/Linux, and access it in Mac OS and Windows
 created: 1310520455000
 updated: 1310520455000
 comments: true
-pageviews__total: 22788
-pageviews__recent: 727
-pageviews__avg_time: 858
+pageviews__total: 23767
+pageviews__recent: 1261
+pageviews__avg_time: 769
 tutorial__order: 0
 tags:
   - samba

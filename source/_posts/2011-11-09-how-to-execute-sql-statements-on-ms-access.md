@@ -4,7 +4,7 @@ title: How to execute SQL statements on MS Access?
 created: 1320855136000
 updated: 1320855136000
 comments: true
-pageviews__total: 1501
+pageviews__total: 1532
 pageviews__recent:  27
 pageviews__avg_time: 60
 tutorial__order: 0

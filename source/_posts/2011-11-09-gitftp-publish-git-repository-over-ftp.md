@@ -6,7 +6,7 @@ updated: 1320896098000
 comments: true
 pageviews__total: 2853
 pageviews__recent: 3
-pageviews__avg_time: 419
+pageviews__avg_time: 428
 tutorial__order: 0
 # categories: [git, ftp, web development, drupal, gitignore]
 ---

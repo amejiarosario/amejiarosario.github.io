@@ -4,8 +4,8 @@ title: How to remove programs from the start up in Mac OS X
 created: 1321636703000
 updated: 1321636703000
 comments: true
-pageviews__total: 115
-pageviews__recent: 2
+pageviews__total: 116
+pageviews__recent: 4
 pageviews__avg_time: 69
 tutorial__order: 0
 #categories: [mac, how-to]

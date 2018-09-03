@@ -4,7 +4,7 @@ title: "How company X make money?"
 date: 2014-03-09 21:39:42 -0400
 updated: 2014-03-09 21:39:42 -0400
 comments: true
-pageviews__total: 4132
+pageviews__total: 4149
 pageviews__recent:  33
 pageviews__avg_time: 131
 tutorial__order: 0

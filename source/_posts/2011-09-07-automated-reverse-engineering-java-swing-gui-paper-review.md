@@ -4,9 +4,9 @@ title: Automated Reverse Engineering Java-Swing GUI - Paper Review
 created: 1315369148000
 updated: 1315369148000
 comments: true
-pageviews__total: 349
+pageviews__total: 344
 pageviews__recent: 1
-pageviews__avg_time: 207
+pageviews__avg_time: 31
 tutorial__order: 0
 tags:
   - java

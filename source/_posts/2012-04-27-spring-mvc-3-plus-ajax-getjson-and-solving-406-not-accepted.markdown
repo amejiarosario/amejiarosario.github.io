@@ -5,7 +5,7 @@ date: 2012-04-27 02:17
 updated: 2012-04-27 02:17
 comments: true
 toc: true
-pageviews__total: 16770
+pageviews__total: 16821
 pageviews__recent:  102
 pageviews__avg_time: 925
 # categories: [spring mvc, j2ee, jquery, ajax]
