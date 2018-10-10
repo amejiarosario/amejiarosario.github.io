@@ -184,7 +184,7 @@ BST are very similar to our previous [implementation of a tree](#Implementing-a-
 
 Here's the tree node. Very similar to what we did before, but we added some handy getters and setters for left and right children. Notice that is also keeping a reference to the parent and we update it every time add children.
 
-{% codeblock TreeNode.js lang:js mark:1-2,8,12,16,18,23,27,29 linkUrl linkText %}
+{% codeblock TreeNode.js lang:js mark:1-2,8,12,16,18,23,27,29 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-node.js Code %}
 const LEFT = 0;
 const RIGHT = 1;
 

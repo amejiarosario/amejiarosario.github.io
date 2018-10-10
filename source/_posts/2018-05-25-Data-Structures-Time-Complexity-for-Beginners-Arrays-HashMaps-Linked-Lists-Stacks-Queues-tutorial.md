@@ -687,6 +687,8 @@ The **load factor** is the measurement of how full is a hash map. We can get the
 
 This will be our latest and greated hash map implementation:
 
+<!-- http://www.dcs.gla.ac.uk/~jsinger/pdfs/sicsa_openjdk/OpenJDKArchitecture.pdf -->
+<!-- JDK10: https://github.com/dmlloyd/openjdk/blob/jdk/jdk/src/hotspot/share/utilities/hashtable.cpp -->
 <!-- https://github.com/dmlloyd/openjdk/blob/jdk/jdk/src/java.desktop/windows/native/libawt/windows/Hashtable.h -->
 <!-- https://github.com/dmlloyd/openjdk/blob/jdk/jdk/src/java.desktop/windows/native/libawt/windows/Hashtable.cpp -->
 
