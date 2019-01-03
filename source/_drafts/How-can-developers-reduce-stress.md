@@ -19,66 +19,97 @@ date: 2018-12-19 16:20:36
 updated: 2018-12-19 16:20:36
 ---
 
-Most professions nowadays involve a certain degree of stress. We have deadlines to meet, change of requirements at the last minute and to deal with people. On top of that, when you work in front of a computer 8+ days your eyes get dry if you don't take a break from screens. Your muscles get shrink while your belly expands ;). This post is about some ways that you can get your job done without sacrificing your health.
+Most professions nowadays involve a certain degree of stress. We have deadlines to meet, change of requirements at the last minute and to deal with people. On top of that, when you work in front of a computer 8+ hours additional stressors are added. Your eyes might get dry, the lack of movement might cause you back/neck pain. Your muscles shrink while your belly expands. This post will give you some tips to accomplish your goals without sacrificing your health. Being a Software developer myself, I also included some bonus tips for my colleges.
 
 <!-- more -->
 
-Software developers also have some added challenges. Technology changes at a very rapid pace, and you have not just have to catch up but also innovate to bring value to your users.
-
 # Background
 
-There was a time in my life, back in 2015, where I went through severe stress anxiety. I was juggling too many things at once: writing a book, interviewing in the USA for new jobs and getting a work visa, planning a wedding in another country while keeping up with a full-time job (working from home) and also the sole programmer on two startups. It was the busiest time of my life, and my health suffered a lot!
-
-I dreamt in the source code. Most nights I couldn't sleep, so often I worked instead. I went to the ER multiple times with heart palpitations. I knew I could not keep doing what I was doing. Since then, I've been incorporating the following techniques and had helped me a lot. Hope they can help you too!
+There was a time in my life, back in 2015, where I went through severe stress crisis. I was juggling too many things at once: writing a book, interviewing in the USA for new jobs and getting a work visa, planning a wedding in another country while keeping up with a full-time job and also the sole programmer on two startups. It was the busiest time of my life, and my health suffered a lot! I dreamt in the source code. Most nights I couldn't sleep, so often I worked instead. I went to the ER multiple times with heart palpitations. I knew I could not keep doing what I was doing. I've been experimenting what helps and what not. This post is compilation of the ones that helped.
 
 # Ideas to handle stress
 
+I've been incorporating the following techniques and it had helped me a lot to cope with stress! Hope they can help you, too!
+
 ## Break ⏲
 
-Follow every 25 min of focused work by a 5 min break. You can also do 50/10 minutes of work/break. What matters is that you get some break to move around and take a deep breath.
+Have you notice that after a long time sitting your energy levels and concentration start to drop?
 
-Movement = Energy. You might notice that after a long time sitting your energy levels and concentration start to drop. Taking a break to get some movements is great to solve this issue.
+Taking a break to get some movements is great to solve this issue!
 
-The 25/5 minutes of work/break is also known as the Pomodoro technique.  There are many apps that I have used to remind me to take a break. As simple as it sounds, it's easy to get carried away when working on code and lose the notion of time.
+> Movement => Energy
+
+**Follow every 25 min of focused work by a 5 min break**. You can also do 50/10 minutes of work/break. What matters is that you get some break to move around and take a deep breath.
+
+The 25/5 minutes of work/break is also known as the Pomodoro technique.  There are many apps that I have used to remind me to take a break. As simple as it sounds, it's easy to get carried away when working on a computer and lose the notion of time.
+
+<details>
+  <summary>Apps I've used...</summary>
+
+<br>
+
+<b>MacOs</b>
+
+<ul>
+  <li>
+    <b><a href="https://geo.itunes.apple.com/us/app/recess/id621451282?mt=12&app=apps">Recess</a></b> this one of my favorite because it's simplest and blackout the screen. It keep some <a href="https://i.imgur.com/WZfeTLy.png">stats</a>
+  </li>
+  <li>
+    <b><a href="https://geo.itunes.apple.com/us/app/be-focused-pro-focus-timer/id961632517?mt=12&app=apps">Be Focused - Timer</a></b> similar to `Recess` but also has a list where you can keep track of the time spend on each one.
+  </li>
+</ul>
+
+<br>
+
+<b>iOS</b>
+
+<ul>
+  <li>
+    <b><a href="https://itunes.apple.com/us/app/forest-stay-focused/id866450515?mt=8">Forest</a></b> This has a timer and some background music that could help you concentrate.
+  </li>
+</ul>
+
+<p>I don't use Android/Windows very often, so if you have suggestions write it down in the comments.</p>
+
+<hr>
+</details>
 
 <!--
 https://cdn-images-1.medium.com/max/2000/1*iRmZDugBpvyLVlzC1DXSiA.png.
 -->
-
-My favorite is Recess because it blacks out the screen when the timer is over. Other ones have a sound that I can subconsciously ignore and keep going.
-https://itunes.apple.com/us/app/recess/id621451282?mt=12
-Be Focus is another one. Has a todo and keep track of completed tasks.
-https://itunes.apple.com/us/app/be-focused-pro-focus-timer/id961632517?mt=12
 
 Taking breaks to reduce eye strain. I suffer from dry eyes from time to time. When we stare at a digital screen, we don't blink as often causing our eyes dryness.  There's also a rule of thumb 20-20-20. Every 20 minutes, look at something 20 feet away for 20 seconds.
 At one point I also notice that my eyesight was getting worse, so I also incorporated some eyes exercises during the break. That also helped with the dryness a lot!
 
 ## Brainstorm 🧠
 
-Sometimes there is a better way to accomplish a task that you are stuck with. There might be a straighter line to get to your goal. List all the alternatives you can think of (don't label them as good or bad. Put it all down "smart" ideas and especially the "dumb" ones). Choose the ones that you think will work the best. Work smarter, not harder!
+Have you feel stressed when you get stuck on something for while? Well, it's time to take a step back and put things in perpective. There might be a straighter line to get to your goal. **List all the alternatives** you can think of (don't label them as "good" or "bad". Put it all down "smart" ideas and especially the "dumb" ones). Choose the ones that you think will work the best. Work smarter, not harder!
 
 If you are going to cut a tree is important to sharpen your ax first and then get to it. Not just will you cut the tree faster but also with less effort. Likewise, it's vital that you take some time to do a little planning before jumping right into the task in hand. Beware of not overdoing it, set a time limit for this exercise. If you spend all the time sharpening the ax and never cut the tree is not good either ;)
 
 ## Subtask ✌️
 
-Divide a big task into smaller ones. Completing some small tasks will motivate you to get more done. Also keeps the stress away since you feel you are making progress.
+**Divide a big task into smaller ones**. Completing some small tasks will motivate you to get more done. Also keeps the stress away since you feel you are making progress.
 
-Even the most ambitious projects and tallest buildings started with laying down one brick/block. Likewise, no matter how big your project is when you break it down into smaller pieces, it makes it easier to reason about.
+Even the most ambitious projects and tallest buildings started with laying down one brick/block. Likewise, no matter how big your project is, when you break it down into smaller pieces, it makes it easier to reason about.
 
 Tackling a small task is less daunting to deal with the project as a whole, so you will be less likely to procrastinate and stress about it.
 
 ## Prioritize 🎯
 
-Most of us have an endless TODO list where things get added a lot faster than we can check them off. An infinite list of things to do, stress us big time. What if I tell, that in most cases you only need to finish the 20% of list reap 80% of the benefits? 😲
+Most of us have an endless TODO list where things get added a lot faster than we can check them off. An infinite list of things to do stress us big time. What if I tell you, that in most cases you only need to **complete the 20%** of list to reap 80% of the benefits? 😲
 
-If you can't do it all, then prioritize. Do what matters the most upfront. The 20% of the task might account for 80% of the result (Pareto Principle). Find that critical 20% and execute on that first. For the rest of the task, you can apply the 80/20 principle recursively. Find the next 20% that matters the most and for the rest apply Pareto again, delegate or re-evaluate if is still needed.
+If you can't do it all, then prioritize. Do what matters the most upfront. The 20% of the task might account for 80% of the result (Pareto Principle). Find that critical 20% and execute on that first. For the rest of the list, you can apply the 80/20 principle recursively. Find the next 20% that matters the most and for the rest apply Pareto again, delegate or re-evaluate if is still needed.
 
 ## Ask 🗣
 
-Ask for help. If you have more on your plate more than you can chew, then share with others. Don't choke alone.
+If you have more on your plate more than you can chew, then share with others. Don't choke alone. **Ask for help**.
 
-When you request for help, the other person usually feels good. You are creating a bond and companionship with that person. However, don't overdo it! Otherwise, it will have the opposite effect. Before asking for help, you should do your homework. Try to solve it yourself first, google it and struggle a little bit with it. Write down some questions and where you get stuck (exact error messages, etc.) The other person will appreciate that you are respecting their time and that you are asking detailed questions.
+When you request for help, the other person usually feels good. You are creating a bond and companionship with that person. However, don't overdo it! Otherwise, it will have the opposite effect. Before asking for help, you should do your homework. Try to solve it yourself first, google it and struggle with the issue a little while. Write down some questions and where you got stuck (exact error messages, etc.) The other person will appreciate that you are respecting their time and that you are asking detailed questions.
 
+<hr>
+When we neglect our body the proper care we also can become sick which will take productivity to the floor. The following tips will help our body to cope with stress and keep the health.
+<hr>
 
 ## Drink 🚰
 
@@ -88,31 +119,74 @@ Your body is a fantastic machine that tries to keep the balance regardless of wh
 
 Another way to know if you are hydrated is monitoring how often your pee (crazy, right?). If you haven't pee in 3 hours, you need two glasses of water ASAP.
 
+<details>
+  <summary>Apps I've used...</summary>
+
+<br>
+<b>iOS</b>
+<ul>
+  <li>
+    <a href="https://itunes.apple.com/us/app/waterminder/id653031147?mt=8">WaterMinder</a> You can track the amount of water that you drink and have reminders.
+  </li>
+  <li>
+    <a href="https://itunes.apple.com/us/app/pee-see-water-reminder/id1090749982?mt=8">Pee & See: Water Reminder</a> Alternative method of measuring hydration. Instead of logging the amout of water drank you log how often you pee. If you haven't pee in 3+ hours you will get a reminder to drink more water.
+  </li>
+</ul>
+
+<p>I don't use Android very often, so if you have suggestions write it down in the comments.</p>
+
+<hr>
+</details>
+
 ## Nourish 🥦
 
 How productive are you when you are sick? Exactly! You get almost nothing done. On top of that, your stress increases and the deadlines get closer. A well-nourish body gets sick less and has more energy. You would be more productive!
 
-Supplement yourself with vitamin C (fruits).  Vitamin C helps your body to quickly clear out Cortisol, which is a hormone correlated to stress. It also keeps your immune system healthy. Magnesium from leafy greens helps to relax the muscles among many other benefits.
+Supplement yourself with vitamin C & fruits.  Vitamin C helps your body to quickly clear out Cortisol, which is a hormone correlated to stress. It also keeps your immune system healthy. Magnesium from leafy greens helps to relax the muscles among many other benefits.
 
-Try to incorporate these foods into your diet:
+<details>
+  <summary>Foods I try to eat...</summary>
 
-- Nuts (Omegas 3 - good for your brain)
-- Fish (Omegas 3 - good for your mind)
-- Vegetable of different colors
-- Leafy greens
-- Fruits
+<ul>
+<li>Nuts (Omegas 3 - good for your brain)</li>
+<li>Fish (Omegas 3 - good for your mind)</li>
+<li>Vegetable of different colors</li>
+<li>Leafy greens</li>
+<li>Fruits</li>
+</ul>
 
-## Stretch 🚶‍♂️
+<hr>
+</details>
+
+## Stretch 🙆‍♀️
 
 Prolonged sitting is the new smoke. It might increase your body weight, back, and neck pain. Even if you exercise an hour before/after work, still you are hurting yourself for sitting too long at once. You have to break sitting often.
 
-Break sitting every 25 minutes or an hour with some stretching session. Our bodies are not designed to stay 8 hours per day sitting. It was designed to move. Indeed, great ideas happen when you are on the move (showering/walking). If you are stuck with some task, take a little walk and might give you some perspective.
+As dicussed before, try to break sitting every 25 minutes or an hour with some stretching session. Our bodies are not designed to stay 8 hours per day sitting still. It was designed to move. Indeed, great ideas happen when you are on the move (showering/walking). If you are stuck with some task, take a little walk, strech out and might give you some perspective.
 
 ## Workout 🏋️‍♀️
 
 Move your butt often, get some sweat in your forehead. Working out releases endorphins that increase your sense of well-being.
 
 Working out your muscles can help you release tension and reduce your mental stress. However, don't overdo it or it can backfire you. Try to avoid getting injured by doing small progressive changes rather than going too big the first day and then not being able to walk nor shower.
+
+
+<details>
+  <summary>Apps I've used...</summary>
+
+<br>
+
+<b>iOS</b>
+
+<ul>
+  <li>
+    <b>
+    <a href="https://itunes.apple.com/us/app/stronglifts-5x5-weight-lifting/id488580022?mt=8">Stronglifts 5x5 Weight Lifting</a></b> I have used this program for 6 months and I have seen very good results. It's simple and have a nice tracker and videos how to do each exercise.
+  </li>
+</ul>
+
+<hr>
+</details>
 
 ## Breath 💨
 
@@ -125,20 +199,80 @@ Proper breathing is vital for relaxation. You can avoid/overcome panic attacks. 
 Some devices can track when you are tense, focus or calm. Guess how they do it? That's right with your breathing.
 I have use Spire. I think it's useful to know track receive feedback when I was getting tense and try to take some deep breadth right there.
 
+<details>
+  <summary>Devices I've used...</summary>
+
+<br>
+
+  <b>
+    <a href="https://amzn.to/2RxFBFi">Spire Stone: Stress Management</a>
+  </b>
+  <br>
+  <a target="_blank"  href="https://www.amazon.com/gp/product/B00TH3SQOI/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00TH3SQOI&linkCode=as2&tag=adrian0ea-20&linkId=af991d73cb812919c0e03644226f41e8"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=B00TH3SQOI&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=adrian0ea-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=adrian0ea-20&l=am2&o=1&a=B00TH3SQOI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
+  This one you wear it on your belt or bra. It will capture your breathing. I easily forget to wear it or I lose it. However I learn a couple of thinks wearing the device:
+  <ul>
+    <li>How is my breathing per minute when I'm stress/calm/focus. [bpm](https://i.imgur.com/GjYPPpm.png)</li>
+    <li>What activities stress me out [Location and time when stress](https://i.imgur.com/O71NzJb.png)</li>
+  </ul>
+
+<hr>
+</details>
+
 ## Meditate 🧘‍♀️
 
 Meditation is trending but still sounds a little strange for some people. Simply put, meditation is focusing on the "now" because most of the time we get carried away fearing "future" situations that might never happen or worrying about a "past" that we can't change. All we got is "now".
 
 One of the best ways to be present is being aware of your breathing. It's always in the present. So, the basis of meditation is mindful of your breath, and that alone can be calming.
 
-There are many apps that you can use for helping you pick up the habit of being present and relax:
+<details>
+  <summary>Apps I've used...</summary>
 
-- Breethe
-- Simple Habit
-- Calm
-- Headspace
+<br>
 
-I'm sure there are many other apps for this but this is the ones I've used, and they are in my order of preference.
+<p>There are many apps that you can use for helping you pick up the habit of being present and relax:</p>
+
+<br>
+
+<b>iOS</b>
+
+<ul>
+  <li>
+    <b>
+      <a href="https://itunes.apple.com/us/app/breethe-sleep-meditation/id920161006?mt=8">Breethe: Sleep & Meditation</a>
+    </b>
+    This app has a nice series of guides for beginners. It has a lot of different topics like sleeping, concentration.
+  </li>
+
+
+  <li>
+    <b>
+      <a href="https://itunes.apple.com/us/app/simple-habit-meditation/id1093360165?mt=8">Simple Habit - Meditation</a>
+    </b>
+    It has a lot of different topics and also many instructors. Having different voices makes more dynamic.
+  </li>
+
+  <li>
+    <b>
+      <a href="https://itunes.apple.com/us/app/calm/id571800810?mt=8">Calm</a>
+    </b>
+    It's has a lot of free meditations and ambient music.
+  </li>
+
+  <li>
+    <b>
+      <a href="https://itunes.apple.com/us/app/headspace-meditation/id493145008?mt=8">Headspace: Meditation</a>
+    </b>
+    It has only one instructor you  might get bored listening to the same person.
+  </li>
+</ul>
+
+<p> I'm sure there are many other apps for this but this is the ones I've used, and they are in my order of preference. </p>
+
+<hr>
+</details>
+
+
 
 ## Play 🎮
 
@@ -146,7 +280,11 @@ After a long session of work, what's your reward? If you go home to continue wor
 
 If you don't rest properly, the next day your focus will be all over the place. Also, the urge to procrastinate will be strong in you. Your mind will be looking for any chance to get a break.
 
-Solution? Have some **planned** downtime! After some time of work well done, reward yourself with something that you enjoy. Playtime! Do something that put a smile on your face 😊.  Do something that makes you laugh 🤣. The life can't be all broccoli and not desert. Have some fun and plan for it!
+Solution? Have some **planned** downtime! After some time of work well done, reward yourself with something that you enjoy. Playtime! Do something that put a smile on your face 😊.  Do something that makes you laugh 🤣.
+
+> Life can't be all broccoli and not desert.
+
+Have some fun and plan for it!
 
 ## Write ✍️
 
@@ -163,6 +301,29 @@ Tim Ferris - https://tim.blog/2015/01/15/morning-pages/
 http://www.gurl.com/2016/09/08/tips-on-how-to-make-the-most-perfect-bullet-journal-ideas
 -->
 
+<details>
+  <summary>Tools I used...</summary>
+
+  <ul>
+    <li>
+      <b>
+        <a href="https://amzn.to/2RxM3w0">Rocketbook Everlast Reusable Smart Notebook</a>
+      </b>
+      This nice to avoid getting distracted with phone/table notifications and being able to save your notes digitally (evernote/email).
+      <a target="_blank"  href="https://www.amazon.com/gp/product/B06ZXWVZ3X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B06ZXWVZ3X&linkCode=as2&tag=adrian0ea-20&linkId=b0e7cd8801dc03ea32af135c8222b701"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=B06ZXWVZ3X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=adrian0ea-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=adrian0ea-20&l=am2&o=1&a=B06ZXWVZ3X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    </li>
+
+    <li>
+      <b>
+        <a href="https://itunes.apple.com/us/app/rocketbook-app/id1036898971?mt=8">Rocketbook App</a>
+      </b>
+      This app allow to convert your handwriting into scanned images.
+    </li>
+  </ul>
+
+<hr>
+</details>
+
 ## Sleep 😴
 
 I neglected this one for some time. The truth is that we sometimes we think if we sleep less we would have more time to get stuff done. However, that's not usually true. Your productivity/creativity decreases so much. If you are well-rested, you can solve problems in much less time.
@@ -172,6 +333,38 @@ The science of what happens while we sleep is still ongoing and fascinating. We 
 Also, we have an idea of what happens when we don't sleep much for a couple of days. We have problems concentrating. The quality of our work decreases and or creativity suffers. You might have headaches, darker shades under your eyes among other things.
 
 Do you know having a good night sleep start during the day? For most people, it's hard to sleep well (or at all) after a very stressful day or some big event coming up. That's why doing breathing exercises throught the day helps. Also, taking breaks every 25 or 50 minutes of work. Journaling helps me a lot to calm down my monkey mind jumping all over the place at night.
+
+
+# Stress management for Software Developers
+
+All the recomendations above could apply to anyone working at a office. In this section we are going to give some more for people working with technology that changes very fast (like Software Developers).
+
+## Information overload 🤯
+
+Innovation in tech is happening at unpreceding pace and it will keep accelarating. Try to learn the foundations and principles very well, since they are not changing anytime soon. Don't feel like to have to learn everything new that comes out.
+
+If you are a front-end engineer you notice that new web frameworks are pop up in relative short time. However, the most popular ones are adopted by the industry and takes a while (couple of years) to move away when new/"better" ones come along. So, don't feel pressure if a new shiny tool is all the hype and you don't know about it.
+
+For backend and devOps there are changes in paradigms. From monolith to microservices, also people are talking about severless (which I don't really know yet what's it yet). Docker and kubernetes are getting very popular right now.
+
+All in all, don't feel like you need to rearchitect your stack right away and throw what's working for something new. Prefer battle tested solution for production env to shiny ones. Don't follow the hype evaluate your use cases carefully. What worked for Google/Facebook don't necesarily be the right tool for you. Benchmark multiple tools before going all in and make a decision based on data rather than hype.
+
+## Testing
+
+Test your code. Unit test and integration/e2e tests are not nice to have, they are a must to ensure quality. Even if your company has a QA team, try to have your code test it.  Add test coverage tools and try to keep it as close to 100% as possible. That will reduce you a lot of stress chasing bugs in production.
+
+## Refactoring
+
+I have been battleing my perfeccinimis self for years. Every code I see that could be better I feel the urge to modify it. Initially,I did and my number of changes got so big that when something broke it was hard to tell what's wrong :(
+
+Keep you changes small. It's easier to review small pull requests (PR) than large one. Divide big changes into multiple small ones if it make sense.
+
+Also, have repect for the working code. There might be clever ways to solve a task, however you don't know if you are going to introduce new bugs.
+
+This is what I follow:
+
+1) Make it work. First, I try to add the new funcionlity and make it work. No refactor, no clever tricks but lots of tests. I open up a PR and get it merged.
+2) Make it faster. Now that's working, it's time to get clever and
 
 
 
