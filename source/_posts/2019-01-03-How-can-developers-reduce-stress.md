@@ -1,5 +1,5 @@
 ---
-layout: draft
+layout: post
 title: How can developers reduce stress
 comments: true
 pageviews__total: 0
@@ -41,7 +41,7 @@ Taking a break to get some movements is great to solve this issue!
 
 **Follow every 25 min of focused work by a 5 min break**. You can also do 50/10 minutes of work/break. What matters is that you get some break to move around and take a deep breath.
 
-The 25/5 minutes of work/break is also known as the Pomodoro technique.  There are many apps that I have used to remind me to take a break. As simple as it sounds, it's easy to get carried away when working on a computer and lose the notion of time.
+The 25/5 minutes of work/break is also known as the Pomodoro technique. There are many apps that I have used to remind me to take a break. As simple as it sounds, it's easy to get carried away when working on a computer and lose the notion of time.
 
 <details>
   <summary>Apps I've used...</summary>
@@ -81,6 +81,17 @@ https://cdn-images-1.medium.com/max/2000/1*iRmZDugBpvyLVlzC1DXSiA.png.
 Taking breaks to reduce eye strain. I suffer from dry eyes from time to time. When we stare at a digital screen, we don't blink as often causing our eyes dryness.  There's also a rule of thumb 20-20-20. Every 20 minutes, look at something 20 feet away for 20 seconds.
 At one point I also notice that my eyesight was getting worse, so I also incorporated some eyes exercises during the break. That also helped with the dryness a lot!
 
+<details>
+  <summary>Eye exercises I've tried...</summary>
+
+  <ul>
+    <li>Blinking rapidly around 20 times. Helps with the dryness.</li>
+    <li>Extending my thumb as far and close to my eyes as I can.</li>
+    <li>Doing circles with thumbs while my eyes follow them. You can also look up and down, and right to left.</li>
+  </ul>
+<hr>
+</details>
+
 ## Brainstorm 🧠
 
 Have you feel stressed when you get stuck on something for while? Well, it's time to take a step back and put things in perpective. There might be a straighter line to get to your goal. **List all the alternatives** you can think of (don't label them as "good" or "bad". Put it all down "smart" ideas and especially the "dumb" ones). Choose the ones that you think will work the best. Work smarter, not harder!
@@ -107,13 +118,15 @@ If you have more on your plate more than you can chew, then share with others. D
 
 When you request for help, the other person usually feels good. You are creating a bond and companionship with that person. However, don't overdo it! Otherwise, it will have the opposite effect. Before asking for help, you should do your homework. Try to solve it yourself first, google it and struggle with the issue a little while. Write down some questions and where you got stuck (exact error messages, etc.) The other person will appreciate that you are respecting their time and that you are asking detailed questions.
 
+<br>
+
 <hr>
 When we neglect our body the proper care we also can become sick which will take productivity to the floor. The following tips will help our body to cope with stress and keep the health.
 <hr>
 
 ## Drink 🚰
 
-Stay hydrated. Your brain is mostly water so don't let it dry. A good rule of thumb is to drink half of your weight in ounces (e.g., 170lb -> 85 oz. water).
+Stay hydrated. **Your brain is mostly water so don't let it dry**. A good rule of thumb is to drink half of your weight in ounces (e.g., 170lb -> 85 oz. water).
 
 Your body is a fantastic machine that tries to keep the balance regardless of what we throw at it. It remains a certain temperature when it's freezing by shivering or sweating when it's hot. It seeks to maintain the pH of your blood even if you drink too many acidic beverages (sodas, coffee). It tries to keeps your blood sugar on check even after eating a donut or if haven eaten in hours. However, our bodies need the proper nutrients and water to do so. When you don't hydrate yourself enough, it can't remove the waste out of your system. So, drink up!
 
@@ -142,14 +155,14 @@ Another way to know if you are hydrated is monitoring how often your pee (crazy,
 
 How productive are you when you are sick? Exactly! You get almost nothing done. On top of that, your stress increases and the deadlines get closer. A well-nourish body gets sick less and has more energy. You would be more productive!
 
-Supplement yourself with vitamin C & fruits.  Vitamin C helps your body to quickly clear out Cortisol, which is a hormone correlated to stress. It also keeps your immune system healthy. Magnesium from leafy greens helps to relax the muscles among many other benefits.
+Supplement yourself with **vitamin C** & fruits.  Vitamin C helps your body to quickly clear out Cortisol, which is a hormone correlated to stress. It also keeps your immune system healthy. **Magnesium** from leafy greens helps to relax the muscles among many other benefits.
 
 <details>
-  <summary>Foods I try to eat...</summary>
+  <summary>Foods to eat more regularly...</summary>
 
 <ul>
-<li>Nuts (Omegas 3 - good for your brain)</li>
-<li>Fish (Omegas 3 - good for your mind)</li>
+<li>Nuts</li>
+<li>Fish</li>
 <li>Vegetable of different colors</li>
 <li>Leafy greens</li>
 <li>Fruits</li>
@@ -334,6 +347,31 @@ Also, we have an idea of what happens when we don't sleep much for a couple of d
 
 Do you know having a good night sleep start during the day? For most people, it's hard to sleep well (or at all) after a very stressful day or some big event coming up. That's why doing breathing exercises throught the day helps. Also, taking breaks every 25 or 50 minutes of work. Journaling helps me a lot to calm down my monkey mind jumping all over the place at night.
 
+<details>
+  <summary>Apps I've used...</summary>
+
+
+<br>
+
+  <b>iOS</b>
+
+  <ul>
+    <li>
+      <b>
+        <a href="https://itunes.apple.com/us/app/autosleep-tracker-for-watch/id1164801111?mt=8">AutoSleep Tracker for Watch</a>
+      </b>
+      Keeps track of your sleep automatically. I used with the Apple Watch and works pretty well so far.
+    </li>
+  </ul>
+
+<hr>
+</details>
+
+<br>
+
+<hr>
+Additional  bonus for Software Developers
+<hr>
 
 # Stress management for Software Developers
 
@@ -341,21 +379,21 @@ All the recomendations above could apply to anyone working at a office. In this 
 
 ## Information overload 🤯
 
-Innovation in tech is happening at unpreceding pace and it will keep accelarating. Try to learn the foundations and principles very well, since they are not changing anytime soon. Don't feel like to have to learn everything new that comes out.
+Innovation in tech is happening at unpreceding pace and it will keep accelarating. Try to focus on the foundations and principles very well, since they are not changing anytime soon. Don't feel like to have to learn everything new that comes out.
 
-If you are a front-end engineer you notice that new web frameworks are pop up in relative short time. However, the most popular ones are adopted by the industry and takes a while (couple of years) to move away when new/"better" ones come along. So, don't feel pressure if a new shiny tool is all the hype and you don't know about it.
+If you are a front-end engineer you notice that new web frameworks pop up in relative short time. However, the most popular ones are adopted by the industry and takes a while (couple of years) to move away when new/"better" ones come along. So, don't feel pressure if a new shiny tool is all the hype and you don't know about it.
 
-For backend and devOps there are changes in paradigms. From monolith to microservices, also people are talking about severless (which I don't really know yet what's it yet). Docker and kubernetes are getting very popular right now.
+For backend and devOps there are changes in paradigms from time to time. From monolith to microservices. From server rendered apps to SPA (single page applications) or hybrids. Also people are talking about severless, and JAMStack. Docker and kubernetes are getting very popular right now. The list just keep growing...
 
 All in all, don't feel like you need to rearchitect your stack right away and throw what's working for something new. Prefer battle tested solution for production env to shiny ones. Don't follow the hype evaluate your use cases carefully. What worked for Google/Facebook don't necesarily be the right tool for you. Benchmark multiple tools before going all in and make a decision based on data rather than hype.
 
-## Testing
+## Testing 🐞
 
-Test your code. Unit test and integration/e2e tests are not nice to have, they are a must to ensure quality. Even if your company has a QA team, try to have your code test it.  Add test coverage tools and try to keep it as close to 100% as possible. That will reduce you a lot of stress chasing bugs in production.
+Test your code. Unit test and integration/e2e tests are not nice to have, they are a must to ensure quality. Even if your company has a QA team, try to have your code test it.  Add test coverage tools and try to keep it as close to 100% as possible. That will reduce you a lot of stress chasing bugs in production and unexpected angry customers.
 
-## Refactoring
+## Refactoring 🛠
 
-I have been battleing my perfeccinimis self for years. Every code I see that could be better I feel the urge to modify it. Initially,I did and my number of changes got so big that when something broke it was hard to tell what's wrong :(
+I have been battleing my perfectionism for years. Every code I see that could be better I feel the urge to modify it. Initially,I did and my number of changes got so big that when something broke it was hard to tell what's wrong :(
 
 Keep you changes small. It's easier to review small pull requests (PR) than large one. Divide big changes into multiple small ones if it make sense.
 
@@ -363,25 +401,14 @@ Also, have repect for the working code. There might be clever ways to solve a ta
 
 This is what I follow:
 
-1) Make it work. First, I try to add the new funcionlity and make it work. No refactor, no clever tricks but lots of tests. I open up a PR and get it merged.
-2) Make it faster. Now that's working, it's time to get clever and
+1. Make it work first. First, I try to add the new funcionlity and make it work. No refactor, no clever tricks but lots of tests. I open up a PR and get it merged.
+2. Make it faster laster. Now that's working and has tests, it's time to get clever and refactor.
 
+<hr>
 
+That's all I have! If something else has help you, write it down in the comments section.
 
 <!--
-
-# Apps and Tools
-
-<a href="https://itunes.apple.com/us/app/forest-stay-focused/id866450515?mt=8">Forest - Stay focused - SEEKRTECH CO., LTD.</a>
-
-<a href="https://geo.itunes.apple.com/us/app/recess/id621451282?mt=12&app=apps">Recess - Imacami</a>
-
-Spire Stone: Stress Management and Activity Tracker
-- https://amzn.to/2BPCjDp
-
-<a target="_blank" href="https://www.amazon.com/gp/product/B00TH3SQOI/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00TH3SQOI&linkCode=as2&tag=adrian0ea-20&linkId=bd16dc1681b494d2a6201bf7a8a01fe2">Spire Stone: Stress Management and Activity Tracker for iOS &amp; Android</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=adrian0ea-20&l=am2&o=1&a=B00TH3SQOI" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-
-
 Google play affiliated program:
 https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 
