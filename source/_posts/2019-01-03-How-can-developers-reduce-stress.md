@@ -15,9 +15,11 @@ tags:
   - stress management
 categories:
   - Miscellaneous
-date: 2018-12-19 16:20:36
-updated: 2018-12-19 16:20:36
+date: 2019-01-03 19:28:50
+updated: 2019-01-04 09:31:00
 ---
+
+<!-- draft date: 2018-12-19 16:20:36 -->
 
 Most professions nowadays involve a certain degree of stress. We have deadlines to meet, change of requirements at the last minute and to deal with people. On top of that, when you work in front of a computer 8+ hours additional stressors are added. Your eyes might get dry, the lack of movement might cause you back/neck pain. Your muscles shrink while your belly expands. This post will give you some tips to accomplish your goals without sacrificing your health. Being a Software developer myself, I also included some bonus tips for my colleges.
 
