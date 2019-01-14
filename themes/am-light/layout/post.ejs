@@ -57,6 +57,28 @@
         <%- page.content %>
       </div>
 
+      <!-- after post -->
+      <div>
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+        <ul>
+          <li>Comment what you like the most or ask questions in the
+            <a href="#comments-section">comments section</a>
+            below.
+          </li>
+          <li>Improve this post by editing it
+            <a href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts<%= page.full_source.split('_posts')[1] %>">
+              here</a>.
+          </li>
+          <li>
+            Many of my articles involve months of preparation, consider donating:
+            <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>.
+          </li>
+        </ul>
+      </div>
+
       <!-- Next and previous posts -->
       <% if (page.prev || page.next){ %>
         <div class="article-nav m-y-4">
@@ -85,6 +107,14 @@
 
         <!-- Related -->
         <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <%- partial('_widgets/subscribe') %>
+          </div>
+
+          <!-- Adrian Mejia Bio -->
+          <%- partial('_widgets/bio') %>
+
           <div class="m-y-4">
             <% related(page, site).forEach(function(post, i, posts){ %>
               <% if(i === 0) { %>
@@ -103,14 +133,6 @@
               <% } %>
             <% }) %>
           </div>
-
-        <!-- subscribe -->
-        <div class="m-y-4">
-          <%- partial('_widgets/subscribe') %>
-        </div>
-
-        <!-- Adrian Mejia Bio -->
-        <%- partial('_widgets/bio') %>
 
           <!-- 726x88 -->
           <!--<%// partial('_widgets/adsense', {ad: {client: '9725767907287651', slot: '2343826126'}}) %>-->
@@ -187,6 +209,7 @@
   </div>
 
   <!-- comments -->
+  <a id="comments-section"></a>
   <footer class="row sticky-element--end">
     <div class="col-xs-12">
       <%- partial('_widgets/disqus') %>

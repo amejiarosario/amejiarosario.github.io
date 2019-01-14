@@ -236,9 +236,9 @@ I have use Spire. I think it's useful to know track receive feedback when I was 
 
 ## Meditate 🧘‍♀️
 
-Meditation is trending but still sounds a little strange for some people. Simply put, meditation is focusing on the "now" because most of the time we get carried away fearing "future" situations that might never happen or worrying about a "past" that we can't change. All we got is "now".
+Meditation is trending but still sounds a little strange for some people. It's not about doing the lotus position. Simply put, meditation is focusing on the "now" because most of the time we get carried away fearing "future" situations that might never happen or worrying about a "past" that we can't change. All we got is "now".
 
-One of the best ways to be present is being aware of your breathing. It's always in the present. So, the basis of meditation is mindful of your breath, and that alone can be calming.
+One of the best ways to be present is **being aware of your breathing**. It's always in the present. So, the basis of meditation is mindful of your breath, and that alone can be calming.
 
 <details>
   <summary>Apps I've used...</summary>
@@ -413,5 +413,4 @@ That's all I have! If something else has help you, write it down in the comments
 <!--
 Google play affiliated program:
 https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
-
 -->
