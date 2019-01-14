@@ -4,9 +4,9 @@ title: >-
   How you can change the world by learning Data Structures and Algorithms
 comments: true
 toc: true
-pageviews__total: 12776
-pageviews__recent: 1072
-pageviews__avg_time: 209
+pageviews__total: 35047
+pageviews__recent: 1652
+pageviews__avg_time: 6948
 tutorial__order: 1
 photos:
 - /images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg

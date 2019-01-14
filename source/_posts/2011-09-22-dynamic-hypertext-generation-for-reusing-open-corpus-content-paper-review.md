@@ -4,9 +4,9 @@ title: Dynamic Hypertext Generation for Reusing Open Corpus Content - Paper Revi
 created: 1316708046000
 updated: 1316708046000
 comments: true
-pageviews__total: 28
+pageviews__total: 25
 pageviews__recent: 1
-pageviews__avg_time: 319
+pageviews__avg_time: 313
 tutorial__order: 0
 #categories: [paper review, hypertext generation, adaptation, personalisation, open corpus content, metadata generation, e-learning]
 ---

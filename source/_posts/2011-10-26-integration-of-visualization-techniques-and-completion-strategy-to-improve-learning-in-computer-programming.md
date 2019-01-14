@@ -4,7 +4,7 @@ title: Integration of Visualization Techniques and Completion Strategy to Improv
 created: 1319647922000
 updated: 1319647922000
 comments: true
-pageviews__total: 52
+pageviews__total: 51
 pageviews__recent: 1
 pageviews__avg_time: 46
 tutorial__order: 0

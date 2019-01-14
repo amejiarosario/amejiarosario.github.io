@@ -2,9 +2,9 @@
 layout: snippet
 title: List tasks in NPM, Yarn, Grunt, Gulp and Rake
 comments: true
-pageviews__total: 576
+pageviews__total: 581
 pageviews__recent:  60
-pageviews__avg_time: 44
+pageviews__avg_time: 45
 tutorial__order: 0
 tags:
   - gruntjs

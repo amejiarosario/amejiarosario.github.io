@@ -4,9 +4,9 @@ title: Microsoft Zune Failure Analysis
 created: 1312810976000
 updated: 1312810976000
 comments: true
-pageviews__total: 1512
+pageviews__total: 1591
 pageviews__recent:  36
-pageviews__avg_time: 272
+pageviews__avg_time: 303
 tutorial__order: 0
 tags:
   - startups

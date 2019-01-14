@@ -2,9 +2,9 @@
 layout: post
 title: How can developers reduce stress
 comments: true
-pageviews__total: 0
-pageviews__recent: 0
-pageviews__avg_time: 0
+pageviews__total: 339
+pageviews__recent: 94
+pageviews__avg_time: 128
 tutorial__order: 0
 toc: true
 photos:
@@ -21,27 +21,27 @@ updated: 2019-01-04 09:31:00
 
 <!-- draft date: 2018-12-19 16:20:36 -->
 
-Most professions nowadays involve a certain degree of stress. We have deadlines to meet, change of requirements at the last minute and to deal with people. On top of that, when you work in front of a computer 8+ hours additional stressors are added. Your eyes might get dry, the lack of movement might cause you back/neck pain. Your muscles shrink while your belly expands. This post will give you some tips to accomplish your goals without sacrificing your health. Being a Software developer myself, I also included some bonus tips for my colleges.
+Most professions nowadays involve a certain degree of stress. We have deadlines, change of requirements at the last minute and to deal with people. On top of that, when you work in front of a computer 8+ hours additional stressors are added. Your eyes might get dry. Also the lack of movement might cause you back/neck pain, while your muscles shrink and your belly expands. This post will give you some tips to accomplish your goals without sacrificing your health. I also included some bonus tips for software engineers.
 
 <!-- more -->
 
 # Background
 
-There was a time in my life, back in 2015, where I went through severe stress crisis. I was juggling too many things at once: writing a book, interviewing in the USA for new jobs and getting a work visa, planning a wedding in another country while keeping up with a full-time job and also the sole programmer on two startups. It was the busiest time of my life, and my health suffered a lot! I dreamt in the source code. Most nights I couldn't sleep, so often I worked instead. I went to the ER multiple times with heart palpitations. I knew I could not keep doing what I was doing. I've been experimenting what helps and what not. This post is compilation of the ones that helped.
+There was a time in my life, back in 2015, where I went through severe stress crisis. I was juggling too many things at once: writing a book, interviewing in the USA for new jobs, and getting a work visa, and planning a wedding while keeping up with a full-time job and also the sole programmer on two startups. It was the busiest time of my life, and my health suffered a lot! I dreamt about source code. Some nights I couldn't sleep, so I worked instead. I went to the ER multiple times with heart palpitations. I knew I could not keep living in that way. I've been experimenting with what helps and what not. This post is a compilation of the ones that helped.
 
 # Ideas to handle stress
 
 I've been incorporating the following techniques and it had helped me a lot to cope with stress! Hope they can help you, too!
 
-## Break ⏲
+## Breaks ⏲
 
-Have you notice that after a long time sitting your energy levels and concentration start to drop?
+Have you noticed that after a long time sitting your energy levels and concentration start to drop?
 
-Taking a break to get some movements is great to solve this issue!
+Taking a break to get some movements is great way to solve this issue!
 
 > Movement => Energy
 
-**Follow every 25 min of focused work by a 5 min break**. You can also do 50/10 minutes of work/break. What matters is that you get some break to move around and take a deep breath.
+**Take a 5 minutes break after 25 minutes of work**. You can also do 50/10 minutes of work/break. What matters is that you get some rest to move around and take a deep breath.
 
 The 25/5 minutes of work/break is also known as the Pomodoro technique. There are many apps that I have used to remind me to take a break. As simple as it sounds, it's easy to get carried away when working on a computer and lose the notion of time.
 
@@ -54,7 +54,7 @@ The 25/5 minutes of work/break is also known as the Pomodoro technique. There ar
 
 <ul>
   <li>
-    <b><a href="https://geo.itunes.apple.com/us/app/recess/id621451282?mt=12&app=apps">Recess</a></b> this one of my favorite because it's simplest and blackout the screen. It keep some <a href="https://i.imgur.com/WZfeTLy.png">stats</a>
+    <b><a href="https://geo.itunes.apple.com/us/app/recess/id621451282?mt=12&app=apps">Recess</a></b> this one of my favorite because it's the simplest and blackout the screen. It keep some <a href="https://i.imgur.com/WZfeTLy.png">stats</a>
   </li>
   <li>
     <b><a href="https://geo.itunes.apple.com/us/app/be-focused-pro-focus-timer/id961632517?mt=12&app=apps">Be Focused - Timer</a></b> similar to `Recess` but also has a list where you can keep track of the time spend on each one.
@@ -80,14 +80,14 @@ The 25/5 minutes of work/break is also known as the Pomodoro technique. There ar
 https://cdn-images-1.medium.com/max/2000/1*iRmZDugBpvyLVlzC1DXSiA.png.
 -->
 
-Taking breaks to reduce eye strain. I suffer from dry eyes from time to time. When we stare at a digital screen, we don't blink as often causing our eyes dryness.  There's also a rule of thumb 20-20-20. Every 20 minutes, look at something 20 feet away for 20 seconds.
+Taking breaks can also reduce eye strain. I suffer from dry eyes from time to time. When we stare at a digital screen, we don't blink as often causing our eyes dryness.  There's also a rule of thumb 20-20-20. It means that, every 20 minutes, you look at something of 20 feet away for 20 seconds.
 At one point I also notice that my eyesight was getting worse, so I also incorporated some eyes exercises during the break. That also helped with the dryness a lot!
 
 <details>
   <summary>Eye exercises I've tried...</summary>
 
   <ul>
-    <li>Blinking rapidly around 20 times. Helps with the dryness.</li>
+    <li>Blinking rapidly around 20 times. It helps with the dryness.</li>
     <li>Extending my thumb as far and close to my eyes as I can.</li>
     <li>Doing circles with thumbs while my eyes follow them. You can also look up and down, and right to left.</li>
   </ul>
@@ -96,7 +96,7 @@ At one point I also notice that my eyesight was getting worse, so I also incorpo
 
 ## Brainstorm 🧠
 
-Have you feel stressed when you get stuck on something for while? Well, it's time to take a step back and put things in perpective. There might be a straighter line to get to your goal. **List all the alternatives** you can think of (don't label them as "good" or "bad". Put it all down "smart" ideas and especially the "dumb" ones). Choose the ones that you think will work the best. Work smarter, not harder!
+Have you felt stressed when you get stuck on something for a while? Well, it's time to take a step back and put things in perspective. There might be a straighter line to get to your goal. **List all the alternatives** you can think of (don't label them as "good" or "bad". Put it all down "smart" ideas and especially the "dumb" ones). Choose the ones that you think will work the best. Work smarter, not harder!
 
 If you are going to cut a tree is important to sharpen your ax first and then get to it. Not just will you cut the tree faster but also with less effort. Likewise, it's vital that you take some time to do a little planning before jumping right into the task in hand. Beware of not overdoing it, set a time limit for this exercise. If you spend all the time sharpening the ax and never cut the tree is not good either ;)
 
@@ -110,7 +110,7 @@ Tackling a small task is less daunting to deal with the project as a whole, so y
 
 ## Prioritize 🎯
 
-Most of us have an endless TODO list where things get added a lot faster than we can check them off. An infinite list of things to do stress us big time. What if I tell you, that in most cases you only need to **complete the 20%** of list to reap 80% of the benefits? 😲
+Most of us have an endless TO DO list where things get added a lot faster than we can check them off. An infinite list of things to do stress us big time. What if I tell you, that in most cases you only need to **complete the 20%** of list to reap 80% of the benefits? 😲
 
 If you can't do it all, then prioritize. Do what matters the most upfront. The 20% of the task might account for 80% of the result (Pareto Principle). Find that critical 20% and execute on that first. For the rest of the list, you can apply the 80/20 principle recursively. Find the next 20% that matters the most and for the rest apply Pareto again, delegate or re-evaluate if is still needed.
 
@@ -177,7 +177,7 @@ Supplement yourself with **vitamin C** & fruits.  Vitamin C helps your body to q
 
 Prolonged sitting is the new smoke. It might increase your body weight, back, and neck pain. Even if you exercise an hour before/after work, still you are hurting yourself for sitting too long at once. You have to break sitting often.
 
-As dicussed before, try to break sitting every 25 minutes or an hour with some stretching session. Our bodies are not designed to stay 8 hours per day sitting still. It was designed to move. Indeed, great ideas happen when you are on the move (showering/walking). If you are stuck with some task, take a little walk, strech out and might give you some perspective.
+As discussed before, try to break sitting every 25 minutes or an hour with some stretching session. Our bodies are not designed to stay 8 hours per day sitting still. It was designed to move. Indeed, great ideas happen when you are on the move (showering/walking). If you are stuck with some task, take a little walk, stretch out and might give you some perspective.
 
 ## Workout 🏋️‍♀️
 
@@ -347,7 +347,7 @@ The science of what happens while we sleep is still ongoing and fascinating. We 
 
 Also, we have an idea of what happens when we don't sleep much for a couple of days. We have problems concentrating. The quality of our work decreases and or creativity suffers. You might have headaches, darker shades under your eyes among other things.
 
-Do you know having a good night sleep start during the day? For most people, it's hard to sleep well (or at all) after a very stressful day or some big event coming up. That's why doing breathing exercises throught the day helps. Also, taking breaks every 25 or 50 minutes of work. Journaling helps me a lot to calm down my monkey mind jumping all over the place at night.
+Do you know having a good night sleep start during the day? For most people, it's hard to sleep well (or at all) after a very stressful day or some big event coming up. That's why doing breathing exercises through the day helps. Also, taking breaks every 25 or 50 minutes of work. Journaling helps me a lot to calm down my monkey mind jumping all over the place at night.
 
 <details>
   <summary>Apps I've used...</summary>
@@ -372,43 +372,39 @@ Do you know having a good night sleep start during the day? For most people, it'
 <br>
 
 <hr>
-Additional  bonus for Software Developers
+An Additional bonus for Software Developers
 <hr>
 
 # Stress management for Software Developers
 
-All the recomendations above could apply to anyone working at a office. In this section we are going to give some more for people working with technology that changes very fast (like Software Developers).
+All the recommendations above could apply to anyone working at an office. In this section, we are going to give some more for people working with technology that changes very fast (like Software Developers).
 
 ## Information overload 🤯
 
-Innovation in tech is happening at unpreceding pace and it will keep accelarating. Try to focus on the foundations and principles very well, since they are not changing anytime soon. Don't feel like to have to learn everything new that comes out.
+Innovation in tech is happening at unprecedented pace and it will keep accelerating. Try to focus on the foundations and principles very well, since they are not changing anytime soon. Don't feel like to have to learn everything new that comes out.
 
-If you are a front-end engineer you notice that new web frameworks pop up in relative short time. However, the most popular ones are adopted by the industry and takes a while (couple of years) to move away when new/"better" ones come along. So, don't feel pressure if a new shiny tool is all the hype and you don't know about it.
+If you are a front-end engineer you notice that new web frameworks pop up in a relative short time. However, the most popular ones are adopted by the industry and takes a while (a couple of years) to move away when new/"better" ones come along. So, don't feel pressure if a new shiny tool is all the hype and you don't know about it.
 
-For backend and devOps there are changes in paradigms from time to time. From monolith to microservices. From server rendered apps to SPA (single page applications) or hybrids. Also people are talking about severless, and JAMStack. Docker and kubernetes are getting very popular right now. The list just keep growing...
+For backend and devOps there are paradigm changes from time to time. E.g. from monolith to microservices, from server rendered apps to SPA (single page applications) or hybrids. Also people are talking about severless, and the JAM Stack (JavaScript, APIs, and Markup). Docker and kubernetes are getting very popular right now. The list just keeps growing...
 
-All in all, don't feel like you need to rearchitect your stack right away and throw what's working for something new. Prefer battle tested solution for production env to shiny ones. Don't follow the hype evaluate your use cases carefully. What worked for Google/Facebook don't necesarily be the right tool for you. Benchmark multiple tools before going all in and make a decision based on data rather than hype.
+All in all, don't feel like you need to rearchitect your stack right away and throw what's working for something new. Prefer battle-tested solution for production env to shiny ones. Don't follow the hype evaluate your use cases carefully. What worked for Google/Facebook don't necessarily be the right tool for you. You can benchmark multiple tools before going all in and make a decision based on data rather than hype.
 
 ## Testing 🐞
 
-Test your code. Unit test and integration/e2e tests are not nice to have, they are a must to ensure quality. Even if your company has a QA team, try to have your code test it.  Add test coverage tools and try to keep it as close to 100% as possible. That will reduce you a lot of stress chasing bugs in production and unexpected angry customers.
+Test your code. Unit test and integration/e2e tests are not nice to have, they are a must if you want to sleep well at night. Even if your company has a QA team, try to write automated tests. Add test coverage tools and try to keep it as close to 100% as possible. That will reduce you a lot of stress chasing bugs in production and unexpected angry customers.
 
 ## Refactoring 🛠
 
-I have been battleing my perfectionism for years. Every code I see that could be better I feel the urge to modify it. Initially,I did and my number of changes got so big that when something broke it was hard to tell what's wrong :(
+I have been battling my perfectionism for years. Every code I see that could be better, I feel the urge to modify it. Initially I did, and my number of changes got so big that when something broke it was hard to tell what's wrong :(
 
-Keep you changes small. It's easier to review small pull requests (PR) than large one. Divide big changes into multiple small ones if it make sense.
+Keep your changes small. It's easier to review small pull requests (PR) than a large one. Divide big changes into multiple small ones if it makes sense.
 
-Also, have repect for the working code. There might be clever ways to solve a task, however you don't know if you are going to introduce new bugs.
+Also, have respect for the working code. There might be clever ways to solve a task, however you don't know if you are going to introduce new bugs.
 
 This is what I follow:
 
-1. Make it work first. First, I try to add the new funcionlity and make it work. No refactor, no clever tricks but lots of tests. I open up a PR and get it merged.
-2. Make it faster laster. Now that's working and has tests, it's time to get clever and refactor.
-
-<hr>
-
-That's all I have! If something else has help you, write it down in the comments section.
+1. Make it work, first. You should try to add the new functionality and make it work. No refactor, no clever tricks but lots of tests. Open up a PR and get it merged.
+2. Make it faster, later. Now that's working and has tests, it's time to get clever and refactor.
 
 <!--
 Google play affiliated program:
