@@ -8,6 +8,10 @@ pageviews__total: 33081
 pageviews__recent: 2697
 pageviews__avg_time: 817
 tutorial__order: 0
+photos:
+ - /images/samba-filesharing-with-windows-ubuntu-mac-small.jpg
+ - /images/samba-filesharing-with-windows-ubuntu-mac-large.jpg
+photos__background_color: '#4A4A4A'
 tags:
   - samba
   - windows
