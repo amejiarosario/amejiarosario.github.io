@@ -4,9 +4,9 @@ title: Faster Windows XP removing Msmpeng.Exe and other programs
 created: 1310735883000
 updated: 1310735883000
 comments: true
-pageviews__total: 40447
+pageviews__total: 40592
 pageviews__recent:  46
-pageviews__avg_time: 570
+pageviews__avg_time: 562
 # categories: [windows, tips, how-to]
 tutorial__order: 0
 tags:

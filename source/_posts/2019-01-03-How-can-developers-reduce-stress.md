@@ -2,8 +2,8 @@
 layout: post
 title: How can developers reduce stress
 comments: true
-pageviews__total: 339
-pageviews__recent: 94
+pageviews__total: 341
+pageviews__recent: 96
 pageviews__avg_time: 128
 tutorial__order: 0
 toc: true

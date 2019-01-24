@@ -5,7 +5,7 @@ created: 1317137273000
 updated: 1317137273000
 comments: true
 pageviews__total: 42
-pageviews__recent: 1
+pageviews__recent: 2
 pageviews__avg_time: 22
 tutorial__order: 0
 #categories: [paper review, social bookmarking, e-learning, web semantics]

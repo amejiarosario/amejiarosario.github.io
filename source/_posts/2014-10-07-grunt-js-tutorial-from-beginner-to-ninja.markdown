@@ -5,9 +5,9 @@ date: 2014-10-07 10:41:13 -0400
 updated: 2014-10-07 10:41:13 -0400
 comments: true
 toc: true
-pageviews__total: 52728
+pageviews__total: 52731
 pageviews__recent:  836
-pageviews__avg_time: 265
+pageviews__avg_time: 264
 # categories: [javascript, nodejs, gruntjs, build tools]
 photos:
   - /images/gruntjs_small.png
