@@ -33,7 +33,7 @@ There was a time in my life, back in 2015, where I went through severe stress cr
 
 I've been incorporating the following techniques and it had helped me a lot to cope with stress! Hope they can help you, too!
 
-## Breaks ⏲
+## Move 🚶‍♂️
 
 Have you noticed that after a long time sitting your energy levels and concentration start to drop?
 
@@ -44,6 +44,8 @@ Taking a break to get some movements is great way to solve this issue!
 **Take a 5 minutes break after 25 minutes of work**. You can also do 50/10 minutes of work/break. What matters is that you get some rest to move around and take a deep breath.
 
 The 25/5 minutes of work/break is also known as the Pomodoro technique. There are many apps that I have used to remind me to take a break. As simple as it sounds, it's easy to get carried away when working on a computer and lose the notion of time.
+
+**Note**: sitting for long time doesn't get automatically fixed with working out after work. You still have to try walking around at least every hour so your body don't suffer.
 
 <details>
   <summary>Apps I've used...</summary>
@@ -317,7 +319,7 @@ http://www.gurl.com/2016/09/08/tips-on-how-to-make-the-most-perfect-bullet-journ
 -->
 
 <details>
-  <summary>Tools I used...</summary>
+  <summary>Tools I've used...</summary>
 
   <ul>
     <li>
