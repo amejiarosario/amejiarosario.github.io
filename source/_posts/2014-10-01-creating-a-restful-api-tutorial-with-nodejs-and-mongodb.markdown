@@ -5,7 +5,7 @@ date: 2014-10-01 17:26:42 -0400
 updated: 2016-10-14 15:50:35 -0400
 comments: true
 pageviews__total: 560166
-pageviews__recent:  20641
+pageviews__recent: 787
 pageviews__avg_time: 2186
 photos:
   - /images/RESTfulAPIs_NodeJS__mongodb_small.png

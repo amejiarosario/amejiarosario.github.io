@@ -6,7 +6,7 @@ updated: 1328337152000
 comments: true
 toc: true
 pageviews__total: 9156
-pageviews__recent:  110
+pageviews__recent: 72
 pageviews__avg_time: 832
 # categories: [how-to, apache, nutch, search engines, web crawlers]
 photos:

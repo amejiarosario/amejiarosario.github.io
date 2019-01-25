@@ -1,16 +1,15 @@
 const downloadData = require('./google-analytics-collector');
 const pageViewsBlogUpdater = require('./google-analytics-compactor');
 
-downloadData().then(function (totalPath) {
-  console.log(totalPath);
+downloadData().then((totalPath) => {
+  console.log({ totalPath });
 
-  return downloadData('28daysAgo').then(function (recentPath) {
-
-    console.log(recentPath);
+  return downloadData('28daysAgo').then((recentPath) => {
+    console.log({ recentPath });
     return pageViewsBlogUpdater(recentPath, totalPath)
   });
-}).then(function (updated) {
+}).then((updated) => {
   console.log(updated);
-}).catch(function (err) {
+}).catch((err) => {
   console.error(err);
 });

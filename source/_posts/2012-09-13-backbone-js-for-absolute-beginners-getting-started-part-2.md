@@ -5,7 +5,7 @@ date: 2012-09-13 00:08
 updated: 2012-09-13 00:08
 comments: true
 pageviews__total: 197413
-pageviews__recent:  2116
+pageviews__recent: 520
 pageviews__avg_time: 1835
 photos:
   - /images/Backbone_for_beginners_part2_small.png

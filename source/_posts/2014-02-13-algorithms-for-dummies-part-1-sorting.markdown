@@ -6,7 +6,7 @@ updated: 2014-02-13 09:28:51 -0400
 comments: true
 toc: true
 pageviews__total: 88259
-pageviews__recent:  2239
+pageviews__recent: 348
 pageviews__avg_time: 509
 #categories: [algorithms, big-o, sorting, merge sort]
 photos:

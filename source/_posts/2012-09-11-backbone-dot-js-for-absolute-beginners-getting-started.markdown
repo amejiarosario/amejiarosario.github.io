@@ -5,7 +5,7 @@ date: 2012-09-11 22:50
 updated: 2012-09-11 22:50
 comments: true
 pageviews__total: 340548
-pageviews__recent:  4070
+pageviews__recent: 957
 pageviews__avg_time: 1036
 photos__background_color: 'white'
 bitly: 'http://bit.ly/backbone-1'

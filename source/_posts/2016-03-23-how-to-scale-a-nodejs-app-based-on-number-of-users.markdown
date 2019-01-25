@@ -5,7 +5,7 @@ date: 2016-03-23 17:34:11 -0400
 updated: 2016-03-23 17:34:11 -0400
 comments: true
 pageviews__total: 34279
-pageviews__recent:  2257
+pageviews__recent: 450
 pageviews__avg_time: 2041
 photos:
   - /images/scalabilty_matryoshka_small.png

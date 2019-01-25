@@ -5,7 +5,7 @@ date: 2016-01-09 10:43:27 -0500
 updated: 2016-01-09 10:43:27 -0500
 comments: true
 pageviews__total: 3508
-pageviews__recent:  125
+pageviews__recent: 23
 pageviews__avg_time: 136
 toc: true
 # tags: [production, scalability]

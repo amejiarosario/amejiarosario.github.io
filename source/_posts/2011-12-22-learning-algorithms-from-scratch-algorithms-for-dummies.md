@@ -5,7 +5,7 @@ created: 1324582027000
 updated: 1324582027000
 comments: true
 pageviews__total: 42601
-pageviews__recent:  408
+pageviews__recent: 36
 pageviews__avg_time: 387
 tutorial__order: 0
 tags:
