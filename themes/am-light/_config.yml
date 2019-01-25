@@ -2,6 +2,7 @@
 menu:
   Home: '/#home'
   Trending: '/#trending-posts'
+  Popular: '/#popular-posts'
   About: '/#about'
   Blog: /blog
 

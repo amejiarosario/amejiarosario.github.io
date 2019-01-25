@@ -32,10 +32,15 @@
 
     <h1 id="trending-posts">Trending</h1>
     <div class="row">
-      <% site.posts.sort('pageviews__recent', -1).limit(5).each(function(post, i){ %>
-        <% if(i > 0) { %> <!-- to avoid duplicates with ES6 post -->
-          <%- partial('_partials/post-thumbnail', { post: post, klass: false }) %>
-        <% } %>
+      <% site.posts.sort('pageviews__recent', -1).limit(4).each(function(post, i){ %>
+        <%- partial('_partials/post-thumbnail', { post: post, klass: false }) %>
+      <% }) %>
+    </div>
+
+    <h1 id="popular-posts">Popular</h1>
+    <div class="row">
+      <% site.posts.sort('pageviews__total', -1).limit(4).each(function(post, i){ %>
+        <%- partial('_partials/post-thumbnail', { post: post, klass: false }) %>
       <% }) %>
     </div>
 

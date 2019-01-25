@@ -129,4 +129,4 @@ function tester() {
   // parseGa(total);
 }
 
-// tester();
+tester();
