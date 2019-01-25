@@ -163,3 +163,5 @@ You can use it today, using transpilers such as Traceur Compiler, Babel or Rollu
 # Summary
 
 We learned about how to create Node.js modules and use it in our code.  Modules allow us to reuse code easily. They provide functionality that is isolated from other modules. Required is used to load modules. Export and module exports allow defining what parts of our code we want to expose. We also explored the difference between module.exports and exports. Finally, we took a quick pick about what's coming up for modules using `imports`.
+
+
