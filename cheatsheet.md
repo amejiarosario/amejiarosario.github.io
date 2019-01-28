@@ -6,9 +6,8 @@
 hexo s -dp 5000            # server on port 5000
 hexo s --draft -dp 5000    # serve drafts on port 5000
 # hexo g                     # generate
-hexo clean && hexo algolia # index search
 
-ggpush # push source so edit this post works
+git commit # commit post modifications
 
 # update GA stats
 cd tasks && node google-analytics-runner.js && cd -
@@ -16,7 +15,9 @@ cd tasks && node google-analytics-runner.js && cd -
 # change index in
 # _config.yml
 # themes/am-light/source/js/search.es6
-hexo clean && hexo algolia
+hexo clean && hexo algolia # index search
+
+ggpush # push source so edit this post works
 
 hexo d -g                  # generate and deploy to github pages/netlify
 
