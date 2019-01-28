@@ -72,16 +72,22 @@ function updateBlog(recent, total) {
             }
             console.log({ fullPath, key, gaRecent, gaTotal });
 
-            if (gaRecent) {
-              content = content.replace(/pageviews__recent:\s+\d*\n/, `pageviews__recent: ${gaRecent.pageviews}\n`);
-              // console.log('\tgaRecent.pageviews', gaRecent.pageviews);
-            }
-
             if (gaTotal) {
               content = content.replace(/pageviews__total:\s+\d*\n/, `pageviews__total: ${gaTotal.pageviews}\n`);
               content = content.replace(/pageviews__avg_time:\s+\d*\n/, `pageviews__avg_time: ${Math.round(gaTotal.avgTimeOnPage)}\n`);
               // console.log('\tgaTotal.pageviews', gaTotal.pageviews);
               // console.log('\tgaTotal.avgTimeOnPage', gaTotal.avgTimeOnPage);
+            }
+
+            if (gaRecent) {
+              content = content.replace(/pageviews__recent:\s+\d*\n/, `pageviews__recent: ${gaRecent.pageviews}\n`);
+              // console.log('\tgaRecent.pageviews', gaRecent.pageviews);
+
+              // total might contain sampled data which will make it less accurate
+              // https://developers.google.com/analytics/devguides/reporting/core/v3/reference#samplingLevel
+              if (+gaRecent.pageviews > +gaTotal.pageviews) {
+                content = content.replace(/pageviews__total:\s+\d*\n/, `pageviews__total: ${gaRecent.pageviews}\n`);
+              }
             }
 
             fs.writeFile(fullPath, content, (err) => {

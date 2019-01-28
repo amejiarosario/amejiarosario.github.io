@@ -2,7 +2,7 @@
 layout: post
 title: I got Hacked and It changed my life
 comments: true
-pageviews__total: 73
+pageviews__total: 104
 pageviews__recent: 104
 pageviews__avg_time: 171
 tutorial__order: 0
@@ -39,7 +39,7 @@ I'm glad they drop my database, so I noticed what happened. Hackers could keep l
 
 Some examples of data breaches:
 - In 2013, **Yahoo** 3 billion users and **Target** with 110 credit cards.
--  In 2014, **Marriott** with 500 million guests and **eBay** with 145 million users.
+- In 2014, **Marriott** with 500 million guests and **eBay** with 145 million users.
 - In 2017, **Equifax** with 143 million social security numbers, addresses, and birth dates.
 - Even banks get hacked like the JP Morgan **Chase** on 2014 with 76 million households and 7 million businesses.
 - Not even security companies are exempt like **RSA Security** in 2011 with 40 million employee records stolen.
