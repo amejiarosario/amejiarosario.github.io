@@ -40,7 +40,7 @@ This post is part of a tutorial series:
 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here**
 <!-- 1. [Intro to algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/) -->
 
-1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
+1. [Eight-time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
 <!-- 1. Eight time complexities that every programmer should know **👈 you are here** -->
 
 1. [Data Structures for Beginners: Arrays, HashMaps, and Lists](/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/)
@@ -55,7 +55,7 @@ This post is part of a tutorial series:
 1. [Self-balanced Binary Search Trees](/blog/2018/07/16/self-balanced-binary-search-trees-with-avl-tree-data-structure-for-beginners/)
 <!-- 1. Self-balanced Binary Search Trees  **👈 you are here** -->
 
-1. [Apendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
+1. [Appendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
 <!-- 1. Appendix I: Analysis of Recursive Algorithms **👈 you are here** -->
 ---
 
@@ -153,7 +153,7 @@ We can represent `getMin` as a function of the size of the input `n` based on th
 * Line 7: 1 operation
 * Line 9-13: it is a loop that executes size of `n` times
   * Line 10: 1 operation
-  * Line 11: this one it is tricky. It is inside a conditional. We will assume the worst case where the array is sorted in ascending order. The condition (`if` block) will be executed each time. Thus, 1 operation
+  * Line 11: this one is tricky. It is inside a conditional. We will assume the worst case where the array is sorted in ascending order. The condition (`if` block) will be executed each time. Thus, 1 operation
 * Line 14: 1 operation
 
 All in all, we have `3` operations outside the loop and `2` inside the `forEach` block. Since the loop goes for the size of `n`, this leaves us with `2(n) + 3`.
@@ -172,7 +172,7 @@ Asymptotic analysis is just evaluating functions as their value approximate to t
 | 1,000 | 2(1,000) + 3 | 2,003 |
 | 10,000 | 2(10,000) + 3 | 20,003 |
 
-Believe it or not also `k` wouldn't make too much of a difference. Using this kind of asymptotic analysis we take the higher order element, in this case: `n`.
+Believe it or not, also `k` wouldn't make too much of a difference. Using this kind of asymptotic analysis we take the higher order element, in this case: `n`.
 
 Let's do another example so that we can make this concept clearer. Let's say we have the following function: \`3 n^2 + 2n + 20\`. What would be the result using the asymptotic analysis?
 
