@@ -159,6 +159,8 @@
     <% } %>
 
     <% if(is_post()){ %>
+      <script src="https://gumroad.com/js/gumroad.js"></script>
+      <!-- adthis -->
       <script type="text/javascript">
         var addthis_config = {
           data_ga_property: 'UA-24183929-4',
@@ -166,6 +168,7 @@
         };
       </script>
       <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
       <%- js('js/posts') -%>
     <% } %>
   </body>
