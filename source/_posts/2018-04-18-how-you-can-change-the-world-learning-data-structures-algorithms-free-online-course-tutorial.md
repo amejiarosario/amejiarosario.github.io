@@ -24,7 +24,7 @@ date: 2018-04-04 16:16:07
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
-As a developer, you have the power to change the world! You can write programs that enable new technologies. For instance, You might work in software to find an earlier diagnosis of diseases. Also, you might write programs to free up people's time to do other amazing things. Whatever you do it has the potential to impact those people who use it.
+As a developer, you have the power to change the world! You can write programs that enable new technologies and work in software to find an earlier diagnosis of diseases. Also, you might create a project to free up people's time to do other amazing things. Whatever you do, it has the potential to impact the community who use it.
 
 <!-- Millions of people might use some applications (e.g., Google,
 Baidu, Youtube, Facebook). -->
@@ -61,19 +61,19 @@ This post is part of a tutorial series:
 
 We are going to explore how you can measure your code performance using analysis of algorithms: **time complexity** and **big O notation**.
 
-First, let’s see a real story to learn why is this important.
+First, let’s see a real story to learn why this is important.
 
 # An algorithm that saved millions of lives
 
-During War World II the Germans used <abbr title="AM broadcasting is a radio broadcasting technology, which employs amplitude modulation transmissions.">AM</abbr> radio signals to communicate with troops around Europe. Anybody with an AM radio and some knowledge of Morse code could intercept the message. However, the information was encoded! All attacked countries tried to decode it. Sometimes they got lucky and were able to make sense of a couple of messages at the end of the day. Unfortunately, The Nazis changed the encoding every single day!
+During War World II the Germans used <abbr title="AM broadcasting is a radio broadcasting technology, which employs amplitude modulation transmissions.">AM</abbr> radio signals to communicate with troops around Europe. Anybody with an AM frecuency radio and some knowledge of Morse code could intercept the message. However, the information was encoded! All the countries that were under attack tried to decode it. Sometimes, they got lucky and were able to make sense of a couple of messages at the end of the day. Unfortunately, The Nazis changed the encoding every single day!
 
 A math genius called Alan Turing joined the British military to crack the German "Enigma" code. He knew they would never get ahead if they keep doing the calculations by pen and paper. So after many months of hard work, they built a machine. Unfortunately, It took more than a day to decode a message! So, it was useless :((((
 
-Alan's team found out that every encrypted message ended with the same string: "Heil Hitler" Aha! After changing the algorithm, the machine was to decoded in minutes rather than days! They used it the info to finish the war faster and save millions of lives!
+Alan's team found out that every encrypted message ended with the same string: "Heil Hitler" Aha! After changing the algorithm, the machine was able to decoded in minutes rather than days! They used it the info to finish the war faster and save millions of lives!
 
 > The same machine that was going to get shut down as a failure became a live saver. Likewise, you can do way more with your computing resources when you write efficient code. That is what we are going to learn in this course!
 
-Another popular algorithm is `PageRank` developed in 1998 by Sergey Brin and Larry Page (Google founders). This algorithm was (and is) used by Google search engine to make sense of trillions of web pages. Google was not the only search engine, however, since their algorithm returned better results eventually most of the competitors at the time faded away. Today it powers most of 3 billion daily searches very quickly. That is the power of algorithms that scale! 🏋🏻‍
+Another popular algorithm is `PageRank` developed in 1998 by Sergey Brin and Larry Page (Google founders). This was (and is) used by a Google search engine to make sense of trillions of web pages. Google was not the only search engine, however, since their algorithm returned better results, eventually, most of the competitors faded away at the time. Today it powers most of 3 billion daily searches very quickly. That is the power of algorithms that scale! 🏋🏻‍
 
 # So, why should you learn to write efficient algorithms?
 
@@ -89,20 +89,20 @@ Without further ado, let’s step up our game!
 
 # What are algorithms?
 
-Algorithms (as you might know) are steps of how to do some task. When you cook, you follow a **recipe** (or an algorithm) to prepare a dish. If you play a game, you are devising **strategies** (or an algorithm) to help you win. Likewise, algorithms in computers are a set of instructions used to solve a problem.
+Algorithms (as you might know) are steps of how to do some task. For example, when you cook, you follow a **recipe** to prepare a dish. If you play a game, you are devising **strategies** to help you win. Likewise, algorithms in computers are a set of instructions used to solve a problem.
 
 > Algorithms are instructions to perform a task
 
-There are "good" algorithms and "bad" algorithms. The good ones are fast; the bad ones are slow. Slow algorithms cost more money and make some calculations impossible in our lifespan!
+There are "good" and "bad" algorithms. The good ones are fast; the bad ones are slow. Slow algorithms cost more money and make some calculations impossible in our lifespan!
 
-We are going to explore the basic concepts of algorithms. Also, we are going to learn how to distinguish “fast” algorithms from “slow” ones. Even better, you will be able to “measure” the performance of your algorithms and improve them!
+We are going to explore the basic concepts of algorithms. Also, we are going to learn how to distinguish “fast” from “slow” ones. Even better, you will be able to “measure” the performance of your algorithms and improve them!
 
 # How to improve your coding skills?
 
 The first step to improving something is to measure it.
 
 {% blockquote H. J. Harrington %}
-Measurement is the first step that leads to control and eventually to improvement. If you can’t measure something, you can’t understand it. If you can’t understand it, you can’t control it. If you can’t control it, you can’t improve it.
+Measurement is the first step that leads to control and eventually to improvement. If you can’t measure something, you can’t understand it. If you can’t comprehend it, you can’t control it. If you can’t control it, you can’t improve it.
 {% endblockquote %}
 
 How do you do "measure" your code? Would you clock "how long" it takes to run? What if you are running the same program on a mobile device or a quantum computer? The same code will give you different results, right?
@@ -111,7 +111,7 @@ To answer these questions, we need to nail some concepts first, like **time comp
 
 ## Time complexity
 
-Time complexity (or **running time**) is the estimated time taken by running an algorithm. However, you do not measure time complexity in seconds, but as a **function** of the input.  (I know it's weird but bear with me).
+Time complexity (or **running time**) is the estimated time we take to run an algorithm. However, you do not measure time complexity in seconds, but as a **function** of the input.  (I know it's weird but bear with me).
 
 > The **time complexity** is not about timing how long the algorithm takes. Instead, *how many operations* are executed. The number of instructions executed by a program is affected by the size of the input and how their elements are arranged.
 
@@ -174,11 +174,11 @@ Asymptotic analysis is just evaluating functions as their value approximate to t
 
 Believe it or not, also `k` wouldn't make too much of a difference. Using this kind of asymptotic analysis we take the higher order element, in this case: `n`.
 
-Let's do another example so that we can make this concept clearer. Let's say we have the following function: \`3 n^2 + 2n + 20\`. What would be the result using the asymptotic analysis?
+Let's do another example so we can get this concept. Let's say we have the following function: \`3 n^2 + 2n + 20\`. What would be the result of using the asymptotic analysis?
 
 > \`3 n^2 + 2n + 20\` as \`n\` grows bigger and bigger; the term that will make the most difference is \`n^2\`.
 
-Going back to our example, `getMin`, We can say that function has a time complexity of `n`. As you can see, we could approximate it as `2(n)` and drop the `+3` since it does not add too much value as \`n\` keep getting bigger.
+Going back to our example, `getMin`, we can say that this function has a time complexity of `n`. As you can see, we could approximate it as `2(n)` and drop the `+3` since it does not add too much value as \`n\` keep getting bigger.
 
 We are interested in the big picture here, and we are going to use the asymptotic analysis to help us with that. With this framework, comparing algorithms, it is much more comfortable. We can compare running times with their most significant term: \`n^2\` or \`n\` or \`2^n\`.
 
@@ -190,7 +190,7 @@ The Big O notation combines what we learned in the last two sections about **wor
 
 The Big O notation is used to classify algorithms by their worst running time or also referred as the upper bound of the growth rate of a function.
 
-In our previous example with `getMin` function, we can say it has a running time of `O(n)`. There are many different running times. Let's see the most common running times that we are going to cover in the next post and their relationship with time:
+In our previous example with `getMin` function, we can say it has a running time of `O(n)`. There are many different running times. Here are the most common that we are going to cover in the next post and their relationship with time:
 
 Growth rates vs. `n` size:
 
@@ -300,8 +300,8 @@ Are you ready to become a super programmer and scale your code?! <img src="/imag
 Improvement ideas:
 
 - https://www.reddit.com/r/compsci/comments/8elqsc/algorithms_tutorial_series_for_beginners/dxwb2n6/
-Overall a good introduction. You could maybe go into a bit more detail of why the constant is ignored. Perhaps a plot of a few linear functions next to a quadratic one, to illustrate that for different values of all the linear functions are the same compared to the quadratic function.
-I like your table of runtimes. Gives a proper perspective on why this matters :)
+Overall a good introduction. You could go into a bit more detail of why the constant is ignored. Perhaps a plot of a few linear functions next to a quadratic one, to illustrate that for different values of all the linear functions are the same compared to the quadratic function. (Ese párrafo necesita más oraciones con puntos. Creo que se entendería mejor)
+I like your table of runtimes. It gives a proper perspective about why this matters :)
 
 https://news.ycombinator.com/item?id=16941645
 
