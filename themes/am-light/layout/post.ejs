@@ -58,7 +58,7 @@
       </div>
 
       <!-- after post -->
-      <div>
+      <div class="hidden-mobile-down">
         <h3>Now, your turn!</h3>
         Thanks for reading this far. Here are some things you can do next:
         <ul>
@@ -78,6 +78,12 @@
             <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>.
           </li>
         </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a href="https://gum.co/dsajs?wanted=true" target="_blank">
+          <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
       </div>
 
       <!-- Next and previous posts -->
@@ -196,16 +202,16 @@
             <h3 class="toc-title">Contents</h3>
             <%- toc(page.content) %>
 
-            <a href="https://gum.co/dsajs?wanted=true" target="_blank">
-              <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
-            </a>
-
             <!-- 300x600 -->
             <!--<%// partial('_widgets/adsense', {ad: {client: '9725767907287651', slot: '2343826126', style: 'display:inline-block;width:300px;height:600px;'}}) %>-->
             <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
             <div class="hidden-mobile-down">
               <!-- last working ads -->
               <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://gum.co/dsajs?wanted=true" target="_blank">
+                <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
             </div>
           <% } %>
         </div>
