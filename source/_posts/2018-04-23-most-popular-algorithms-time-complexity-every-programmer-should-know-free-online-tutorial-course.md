@@ -29,7 +29,7 @@ We are going to learn the top algorithm's running time that every developer shou
 
 In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money and enabled new technology. So, this is a paramount to know how to measure algorithms performance.
 
-To recap **time complexity** estimates how well an algorithm performs regardless kind of machine runs on. You can get the time complexity by counting the number of operations performed by your code. This time complexity expresses as a function of the input size `n` using Big-O notation. `n` indicates the magnitude of the input while O is the growth rate function.
+To recap **time complexity** estimates how an algorithm performs regardless kind of machine it runs on. You can get the time complexity by "counting" the number of operations performed by your code. This time complexity is defined as a function of the input size `n` using Big-O notation. `n` indicates the magnitude of the input while O is the growth rate function.
 
 We use the Big-O notation to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
 
@@ -109,7 +109,7 @@ This post is part of a tutorial series:
 1. [Intro to algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
 <!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here** -->
 
-1. Eight-time complexities that every programmer should know **👈 you are here**
+1. Eight time complexities that every programmer should know **👈 you are here**
 <!-- 1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/) -->
 
 1. [Data Structures for Beginners: Arrays, HashMaps, and Lists](/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/)
@@ -134,7 +134,7 @@ This post is part of a tutorial series:
 
 `O(1)` describes algorithms that takes the same amount of time to compute regardless of the input size.
 
-For instance, if a function takes the identical time to process 10 elements as well as 1 million items, then we say that it has a constant growth rate or `O(1)`. Let’s see some explanations.
+For instance, if a function takes the identical time to process 10 elements as well as 1 million items, then we say that it has a constant growth rate or `O(1)`. Let’s see some cases.
 
   ## Odd or Even
 
@@ -188,11 +188,11 @@ Again, we can be sure that even if the dictionary has 10 or 1 million words, it 
 
 Linear running time algorithms are very common. It implies visiting every element from the input in the worst-case scenario.
 
-Linear time complexity means that as the input grows, the algorithms take longer to complete. A function with a linear time complexity has a growth rate `O(n)`. I explain you here: (((Linear time se repite mucho. Alguna otra palabra que se pueda usar???)))
+Linear time complexity _`O(n)`_ means that as the input grows, the algorithms take proportionally longer. A function with a linear time complexity has a growth rate. Some examples:
 
   ## The largest item on an unsorted array
 
-Let's say you want to find the most value from an unsorted array.
+Let's say you want to find the maximum value from an unsorted array.
 
 ```js
 function findMax(n) {
@@ -456,7 +456,7 @@ This value will help us to find which mater method case we are solving.
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> > `f(n)`,
 
-**then** then runtime is: ???Se repite then then dos veces es normal???
+**then** runtime is:
 
 > <i>O(n<sup>log<sub>b</sub>a</sup>)</i>
 
@@ -464,7 +464,7 @@ If <code>n<sup>log<sub>b</sub>a</sup></code> > `f(n)`,
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> === `f(n)`,
 
-**then** then runtime is:
+**then** runtime is:
 
 > <i>O(n<sup>log<sub>b</sub>a</sup> log(n))</i>
 
@@ -472,7 +472,7 @@ If <code>n<sup>log<sub>b</sub>a</sup></code> === `f(n)`,
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> < `f(n)`,
 
-**then** then runtime is:
+**then** runtime is:
 
 > <i>O(f(n))</i>
 
@@ -575,7 +575,7 @@ function merge(a = [], b = []) {
   return merged;
 }
 ```
-As you can see, it has two functions `sort` and `merges`. Merge is an auxiliary function that runs once through the collection `a` and `b`, so it's running time is O(n). Let's apply the Master Method to find the running time.
+As you can see, it has two functions `sort` and `merge`. Merge is an auxiliary function that runs once through the collection `a` and `b`, so it's running time is O(n). Let's apply the Master Method to find the running time.
 
 ## Mater Method for Mergesort
 
@@ -621,7 +621,7 @@ getSubsets('ab') // => ['', 'a', 'b', 'ab']
 
 Did you notice any pattern?
 
-- The first returns have an empty element, and it brings an empty element.
+- The first returns have an empty element.
 - The second case returns the empty element + the 1st element.
 - The 3rd case returns precisely the results of 2nd case + the same array with the 2nd element `b` appended to it.
 
