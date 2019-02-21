@@ -23,17 +23,17 @@ date: 2018-04-05 16:10:09
 
 # Summary
 
-We are going to learn the top algorithm's running time that every developer should be familiar. Knowing these time complexities will help you to assess if your code will scale. Also, it's handy to compare different solutions for the same problem. You would be able to estimate which one will perform better.
+We are going to learn the top algorithm's running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it's handy to compare different solutions for the same problem. At the end, you would be able to estimate which one will perform better.
 
 <!-- more -->
 
-In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing save millions of lives with an optimized algorithm. In most common cases, fast algorithms can save you time, money and enabled new technology. So, It is paramount to know how to measure algorithms performance.
+In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money and enabled new technology. So, this is a paramount to know how to measure algorithms performance.
 
-To recap **time complexity** estimates how well an algorithm performs regardless kind of machine is run on. You can obtain the time complexity by counting the number of elementary operations performed by your code. This time complexity is expressed as a function of the input size `n` using Big-O notation. `n` indicates the size of the input while O is the growth rate function.
+To recap **time complexity** estimates how well an algorithm performs regardless kind of machine runs on. You can get the time complexity by counting the number of operations performed by your code. This time complexity expresses as a function of the input size `n` using Big-O notation. `n` indicates the magnitude of the input while O is the growth rate function.
 
-The Big-O notation is used to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
+We use the Big-O notation to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
 
-Before we dive in, here is the **big O cheatsheet** and examples that we are going to cover on this post. **Click** on them to go directly to the implementation 😉
+Before we dive in, here is the **big O cheatsheet** and examples that we are going to cover on this post. **Click** on them to go to the implementation. 😉
 
 
 <!--
@@ -109,7 +109,7 @@ This post is part of a tutorial series:
 1. [Intro to algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
 <!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here** -->
 
-1. Eight time complexities that every programmer should know **👈 you are here**
+1. Eight-time complexities that every programmer should know **👈 you are here**
 <!-- 1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/) -->
 
 1. [Data Structures for Beginners: Arrays, HashMaps, and Lists](/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/)
@@ -132,9 +132,9 @@ This post is part of a tutorial series:
 
 # O(1) - Constant time
 
-`O(1)` describes algorithms that have that takes the same time compute regardless of the input size.
+`O(1)` describes algorithms that takes the same amount of time to compute regardless of the input size.
 
-For instance, if a function takes the same time to process 10 elements as well as 1 million items, then we say that it has a constant growth rate or `O(1)`. Let’s see some examples.
+For instance, if a function takes the identical time to process 10 elements as well as 1 million items, then we say that it has a constant growth rate or `O(1)`. Let’s see some explanations.
 
   ## Odd or Even
 
@@ -157,13 +157,13 @@ For instance, if a function takes the same time to process 10 elements as well a
 
 If you have a method like `Array.sort()` or any other array or object methods you have to look into the implementation to determine its running time.
 
-Primitive operations like sum, multiplication, substraction, division, modulo, bit shift, etc have a constant runtime. This can be shocking!
+Primitive operations like sum, multiplication, subtraction, division, modulo, bit shift, etc have a constant runtime. This can be shocking!
 
-If you use the schoolbook long multiplication algorithm, it would take <code>O(n<sup>2</sup>)</code> to multiply two numbers. However, most programming languages limit numbers to a max value (e.g. in JS: `Number.MAX_VALUE` is `1.7976931348623157e+308`). So, you cannot operate numbers that yield a result greater than the `MAX_VALUE`. So, primitive operations are bound to be completed on a fixed amount of instructions `O(1)` or throw overflow errors (in JS, `Infinity` keyword).
+If you use the schoolbook long multiplication algorithm, it would take <code>O(n<sup>2</sup>)</code> to multiply two numbers. However, most programming languages limit numbers to max value (e.g. in JS: `Number.MAX_VALUE` is `1.7976931348623157e+308`). So, you cannot operate numbers that yield a result greater than the `MAX_VALUE`. So, primitive operations are bound to be completed on a fixed amount of instructions `O(1)` or throw overflow errors (in JS, `Infinity` keyword).
 
 <!-- Addition O(n), Multiplication O(n^2) https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations -->
 
- This example was easy. Let's do another example.
+ This example was easy. Let's do another one.
 
   ## Look-up table
 
@@ -180,19 +180,19 @@ console.log(getWordFrequency(dictionary, 'the'));
 console.log(getWordFrequency(dictionary, 'in'));
 ```
 
-Again, we can be sure that even if the dictionary has 10 or 1 million words, it would still execute line 4 only one time to find the word. However, if we decided to store the dictionary as an array rather than a hash map, then it would be a different story. In the next section, we are going to explore what's the running time to find an item in an array.
+Again, we can be sure that even if the dictionary has 10 or 1 million words, it would still execute line 4 once to find the word. However, if we decided to store the dictionary as an array rather than a hash map, then it would be a different story. In the next section, we are going to explore what's the running time to find an item in an array.
 
-> Only a hash table with a perfect *hash function* will have a worst-case runtime of *O(1)*. The perfect hash function is not practical, so there will be some collitions and workarounds leads to a worst-case runtime of *O(n)*. Still, on *average* the lookup time is *O(1)*.
+> Only a hash table with a perfect *hash function* will have a worst-case runtime of *O(1)*. The perfect hash function is not practical, so there will be some collisions and workarounds leads to a worst-case runtime of *O(n)*. Still, on *average* the lookup time is *O(1)*.
 
 # O(n) - Linear time
 
 Linear running time algorithms are very common. It implies visiting every element from the input in the worst-case scenario.
 
-Linear time complexity means that as the input grows, the algorithms take proportionally longer to complete. A function with a linear time complexity has a growth rate `O(n)`. Let's do an example:
+Linear time complexity means that as the input grows, the algorithms take longer to complete. A function with a linear time complexity has a growth rate `O(n)`. I explain you here: (((Linear time se repite mucho. Alguna otra palabra que se pueda usar???)))
 
-  ## Largest item on an unsorted array
+  ## The largest item on an unsorted array
 
-Let's say you want to find the maximum value from an unsorted array.
+Let's say you want to find the most value from an unsorted array.
 
 ```js
 function findMax(n) {
@@ -226,7 +226,7 @@ So, this gets us `3(n) + 2`.
 
 Applying the asymptotic analysis that we learn in the previous post, we can only leave the most significant term, thus: `n`.  And finally using the Big O notation we get: `O(n)`.
 
-We can verify this empiracally using our `counter`. If `n` has 3 elements:
+We can verify this using our `counter`. If `n` has 3 elements:
 
 ```js
 findMax([3, 1, 2]);
@@ -240,13 +240,13 @@ findMax([4,5,6,1,9,2,8,3,7])
 // n: 9, counter: 9
 ```
 
-Now imagine that you have an array of one million items. Do you think it will take the same time? Of course not, it will take longer proportionally to the size of the input. If we plot it n and `findMax` running time we will have a graph precisely like a linear equation.
+Now imagine that you have an array of one million items. Do you think it will take the same time? Of course not, it will take longer to the size of the input. If we plot it n and `findMax` running time we will have a graph like a linear equation.
 
 {% img /images/linear-running-time-o(n).jpg 'Linear Running time O(n) example' %}
 
 # O(n^2) - Quadratic time
 
-A function with a quadratic time complexity has a growth rate n^2. If the input is size 2, it will do roughly 4 operations. If the input is size 8, then it will take 64, and so on. Here are some code examples of quadratic algorithms
+A function with a quadratic time complexity has a growth rate n^2. If the input is size 2, it will do 4 operations. If the input is size 8, it will take 64, and so on. Here are some code examples of quadratic algorithms:
 
   ## Has duplicates
 
@@ -281,9 +281,9 @@ Time complexity analysis:
 
 We get `3n^2 + 2`.
 
-Again, using asymptotic analysis, we drop all constants and leave the most significant term: `n^2`. So, in big O notation, it would be `O(n^2)`.
+Again, when we have an asymptotic analysis, we drop all constants and leave the most significant term: `n^2`. So, in big O notation, it would be `O(n^2)`.
 
-We are using a counter variable to help us verify. The `hasDupliates` function has two loops. If we have an input of 4 words, it will execute the inner block 16 times. If we have 9 will perform counter 81 times and so forth.
+We are using a counter variable to help us verify. The `hasDupliates` function has two loops. If we have an input of 4 words, it will execute the inner block 16 times. If we have 9, it will perform counter 81 times and so forth.
 
 ```js
 hasDuplicates([1,2,3,4]);
@@ -384,17 +384,17 @@ This algorithm has a cubic running time: `O(n^3)`.
 Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let's say that we want to look for a person in an old phone book. It has every name sorted alphabetically. There are at least two ways to do it:
 
 Algorithm A:
-- Start at the beginning of the book and go in order until you find the person you are looking for. Run-time: `O(n)`
+- Start at the beginning of the book and go in order until you find the contact you are looking for. Run-time: `O(n)`
 
 Algorithm B:
-- Open the book in the middle and check the first name on it
-- If the name that you are looking for is alphabetically bigger, then look to the right, otherwise look in the left half.
+- Open the book in the middle and check the first name on it.
+- If the name that you are looking for is alphabetically bigger, then look to the right. Otherwise, look in the left half.
 
 ## Binary search
 
 Find the index of an element in a sorted array.
 
-If we implement (Algorithm A) going through all the elements in an array, it will take a running time of `O(n)`. Can we do better? Let's try using the fact that the collection is already sorted and divide in half as we look for the element in question.
+If we implement (Algorithm A) going through all the elements in an array, it will take a running time of `O(n)`. Can we do better? We can try using the fact that the collection is already sorted. Later, we can divide in half as we look for the element in question.
 
 {% codeblock lang:js mark:3-4,11,14 %}
 function indexOf(array, element, offset = 0) {
@@ -426,7 +426,7 @@ There are several ways to analyze recursive algorithms. For simplicity, we are g
 
 ## Master Method for recursive algorithms
 
-Finding the runtime of recursive algorithms is not as easy as counting the operations as we did in previous examples. The Master Method helps us to determine the runtime of recursive algorithms. We are going to explain the Master Method using the `indexOf` function as an example.
+Finding the runtime of recursive algorithms is not as easy as counting the operations. This method helps us to determine the runtime of recursive algorithms. We are going to explain this solution using the `indexOf` function as an illustration.
 
 When analyzing recursive algorithms, we care about these 3 things:
 - Runtime of the work done outside the recursion (line 3-4): `O(1)`
@@ -452,11 +452,11 @@ This value will help us to find which mater method case we are solving.
 
 3) Finally, we compare the recursion runtime from step 2) and the runtime `f(n)` from step 1). Based on that we have the following cases:
 
-### **Case 1**: Most of the work in done in the recursion.
+### **Case 1**: Most of the work done in the recursion.
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> > `f(n)`,
 
-**then** then runtime is:
+**then** then runtime is: ???Se repite then then dos veces es normal???
 
 > <i>O(n<sup>log<sub>b</sub>a</sup>)</i>
 
@@ -511,7 +511,7 @@ O(n<sup>log<sub>2</sub>1</sup> log(n))
 
 O(n<sup>0</sup> log(n))
 
-O(log(n))  **👈 this is running time of binary search**
+O(log(n))  **👈 this is running time of a binary search**
 
 
 <!--
@@ -539,7 +539,7 @@ Linearithmic time complexity it's slightly slower than a linear algorithm but st
 
 What's the best way to sort an array?  Before, we proposed a solution using bubble sort that has a time complexity of O(n^2). Can we do better?
 
-We can use an algorithm called `mergesort` to make it perform better:
+We can use an algorithm called `mergesort` to improve it:
 1. We are going to divide the array recursively until the elements are two or less.
 2. We know how to sort 2 items, so we sort them iteratively (base case).
 3. The final step is merging: we merge in taking one by one from each array such that they are in ascending order.
@@ -575,7 +575,7 @@ function merge(a = [], b = []) {
   return merged;
 }
 ```
-As you can see, it has two functions `sort` and `merge`. Merge is an auxiliary function that runs once through the collection `a` and `b`, so it's running time is O(n). Let's apply the Master Method to find the running time.
+As you can see, it has two functions `sort` and `merges`. Merge is an auxiliary function that runs once through the collection `a` and `b`, so it's running time is O(n). Let's apply the Master Method to find the running time.
 
 ## Mater Method for Mergesort
 
@@ -612,7 +612,7 @@ Exponential (base 2) running time means that the calculations performed by an al
 
 ## Subsets of a Set
 
-Finding all distinct subsets of a given set. For instance, let's do some examples manully to try to come up with an algorithm to solve it:
+Finding all distinct subsets of a given set. For instance, let's do some examples to try to come up with an algorithm to solve it:
 ```js
 getSubsets('') // =>  ['']
 getSubsets('a') // => ['', 'a']
@@ -621,7 +621,7 @@ getSubsets('ab') // => ['', 'a', 'b', 'ab']
 
 Did you notice any pattern?
 
-- The first returns have an empty element, and it returns and empty element.
+- The first returns have an empty element, and it brings an empty element.
 - The second case returns the empty element + the 1st element.
 - The 3rd case returns precisely the results of 2nd case + the same array with the 2nd element `b` appended to it.
 
@@ -692,9 +692,9 @@ getPermutations('abc') // => [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
 
 How would you solve that?
 
-A straightforward way will be to check if the string has a length of 1, if so, return that string since you can't arrange it differently.
+A straightforward way will be to check if the string has a length of 1 if so, return that string since you can't arrange it differently.
 
-For strings with a length bigger than 1, we could use recursion to divide the problem in smaller problems until we get to the length 1 case. We can take out the first character and solve the problem for the remainder of the string until we have a length of 1.
+For strings with a length bigger than 1, we could use recursion to divide the problem into smaller problems until we get to the length 1 case. We can take out the first character and solve the problem for the remainder of the string until we have a length of 1.
 
 ```js
 function getPermutations(string, prefix = '') {
@@ -738,7 +738,7 @@ I have a little homework for you...
 
 # All running complexities graphs
 
-We explored the most common algorithms running times with one or two examples each! They should give you an idea how to calculate your running times when developing your projects. Below you can find a chart with a graph of all the time complexities that we covered:
+We explored the most common algorithms running times with one or two examples each! They should give you an idea of how to calculate your running times when developing your projects. Below you can find a chart with a graph of all the time complexities that we covered:
 
 {% img /images/big-o-running-time-complexity.png 'Big o running time complexities' %}
 
