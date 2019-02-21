@@ -24,7 +24,7 @@ date: 2018-04-04 16:16:07
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
-As a developer, you have the power to change the world! You can write programs that enable new technologies and work in software to find an earlier diagnosis of diseases. Also, you might create a project to free up people's time to do other amazing things. Whatever you do, it has the potential to impact the community who use it.
+As a developer, you have the power to change the world! You can write programs that enable new technologies and work in software to find an earlier diagnosis of diseases for instance. Also, you might create a project to free up people's time to do other amazing things. Whatever you do, it has the potential to impact the community who use it.
 
 <!-- Millions of people might use some applications (e.g., Google,
 Baidu, Youtube, Facebook). -->
@@ -102,7 +102,7 @@ We are going to explore the basic concepts of algorithms. Also, we are going to 
 The first step to improving something is to measure it.
 
 {% blockquote H. J. Harrington %}
-Measurement is the first step that leads to control and eventually to improvement. If you can’t measure something, you can’t understand it. If you can’t comprehend it, you can’t control it. If you can’t control it, you can’t improve it.
+Measurement is the first step that leads to control and eventually to improvement. If you can’t measure something, you can’t understand it. If you can’t understand it, you can’t control it. If you can’t control it, you can’t improve it.
 {% endblockquote %}
 
 How do you do "measure" your code? Would you clock "how long" it takes to run? What if you are running the same program on a mobile device or a quantum computer? The same code will give you different results, right?
@@ -111,7 +111,7 @@ To answer these questions, we need to nail some concepts first, like **time comp
 
 ## Time complexity
 
-Time complexity (or **running time**) is the estimated time we take to run an algorithm. However, you do not measure time complexity in seconds, but as a **function** of the input.  (I know it's weird but bear with me).
+Time complexity (or **running time**) is the estimated time an algorithm takes to run. However, you do not measure time complexity in seconds, but as a **function** of the input.  (I know it's weird but bear with me).
 
 > The **time complexity** is not about timing how long the algorithm takes. Instead, *how many operations* are executed. The number of instructions executed by a program is affected by the size of the input and how their elements are arranged.
 
@@ -300,7 +300,7 @@ Are you ready to become a super programmer and scale your code?! <img src="/imag
 Improvement ideas:
 
 - https://www.reddit.com/r/compsci/comments/8elqsc/algorithms_tutorial_series_for_beginners/dxwb2n6/
-Overall a good introduction. You could go into a bit more detail of why the constant is ignored. Perhaps a plot of a few linear functions next to a quadratic one, to illustrate that for different values of all the linear functions are the same compared to the quadratic function. (Ese párrafo necesita más oraciones con puntos. Creo que se entendería mejor)
+Overall a good introduction. You could go into a bit more detail of why the constant is ignored. Perhaps a plot of a few linear functions next to a quadratic one, to illustrate that for different values of all the linear functions are the same compared to the quadratic function.
 I like your table of runtimes. It gives a proper perspective about why this matters :)
 
 https://news.ycombinator.com/item?id=16941645
