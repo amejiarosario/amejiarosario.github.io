@@ -3,9 +3,9 @@ layout: post
 title: 8 time complexities that every programmer should know
 comments: true
 toc: true
-pageviews__total: 17621
-pageviews__recent: 1623
-pageviews__avg_time: 237
+pageviews__total: 19362
+pageviews__recent: 2251
+pageviews__avg_time: 240
 tutorial__order: 2
 photos:
 - /images/data-structures-must-know-algorithms-running-time-complexity-small.jpg

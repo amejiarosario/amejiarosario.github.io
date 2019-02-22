@@ -2,9 +2,9 @@
 layout: post
 title: I got Hacked and It changed my life
 comments: true
-pageviews__total: 104
-pageviews__recent: 104
-pageviews__avg_time: 171
+pageviews__total: 407
+pageviews__recent: 407
+pageviews__avg_time: 181
 tutorial__order: 0
 toc: true
 photos:

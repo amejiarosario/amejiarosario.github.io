@@ -2,9 +2,9 @@
 layout: post
 title: 'Tree Data Structures for Beginners'
 comments: true
-pageviews__total: 8621
-pageviews__recent: 473
-pageviews__avg_time: 288
+pageviews__total: 9081
+pageviews__recent: 568
+pageviews__avg_time: 295
 tutorial__order: 6
 toc: true
 photos:
