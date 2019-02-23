@@ -5,8 +5,8 @@ date: 2014-02-15 13:59:26 -0400
 updated: 2014-02-15 13:59:26 -0400
 comments: true
 pageviews__total: 6272
-pageviews__recent: 14
-pageviews__avg_time: 553
+pageviews__recent: 13
+pageviews__avg_time: 555
 tutorial__order: 0
 photos__background_color: '#E4F4FD'
 photos:
