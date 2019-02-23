@@ -76,7 +76,7 @@ Around 5 tags per page
 ### Technologies
 
 - javascript
-  - angularjsc
+  - angularjs
   - backbonejs
   - nodejs
     - gruntjs

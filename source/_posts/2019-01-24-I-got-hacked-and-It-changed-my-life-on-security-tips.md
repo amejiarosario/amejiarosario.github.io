@@ -1,6 +1,6 @@
 ---
 layout: post
-title: I got Hacked and It changed my life
+title: 41 Secucirty Tips to Avoid Hacking
 comments: true
 pageviews__total: 407
 pageviews__recent: 407
@@ -20,6 +20,11 @@ updated: 2019-01-24 16:08:53
 ---
 
 I got hacked, and it changed my life's **perspective** **on security**. Here's a compilation of something that happened to me and some security tips to prevent it.
+
+<details>
+  <summary>Hack Incident</summary>
+
+  <!-- <div> -->
 
 # Hack incident
 
@@ -52,10 +57,13 @@ For instance, just your password length and special character alone can tell how
 - If your password has 12 characters `abcdefghijkl` it takes 200 years to generate it.
 - This password `P@ssw0rd123456!!` would take more than hundreds of thousand years to hack.
 
+  <!-- </div> -->
+</details>
+
 
 # Security Tips
 
-Here are my 67 security tips on bullet points.
+Here are my 41 security tips on bullet points.
 
 ## Generic tips
   - Use different passwords for everything. If you use the same password for everything some website gets compromised (e.g., Amazon), then everything that has the same user and password will be at risk. I know it's a hassle to remember all, but you don't have to. Use a password manager like Bitwarden, 1Password, LastPass, Dashlane or even Google Chrome built-in password manager.
