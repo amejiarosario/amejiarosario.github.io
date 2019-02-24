@@ -10,7 +10,9 @@
         separator: ' > '
       }) %>
     </div>
+
     <h1><%= page.title %></h1>
+
     <div class="muted">
       <span title="Last time this post was updated">
         <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -61,21 +63,24 @@
       <div class="hidden-mobile-down">
         <h3>Now, your turn!</h3>
         Thanks for reading this far. Here are some things you can do next:
+
         <ul>
-          <li>Comment what you like the most or ask questions in the
-            <a href="#comments-section">comments section</a>
+          <li>Find a typo?
+            <a href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts<%= page.full_source.split('_posts')[1] %>">
+              Edit this post</a>.
+          </li>
+          <li>Do you have questions? Please
+            <a href="#comments-section">comment</a>
             below.
           </li>
-          <li>Improve this post by editing it
-            <a href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts<%= page.full_source.split('_posts')[1] %>">
-              here</a>.
-          </li>
           <li>
-            Many of my articles involve months of preparation, consider donating:
+            Do you want to support this work? You can
+            <a href="/support">
+              donate</a> here.
             <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
-            <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
             <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
-            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>.
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
           </li>
         </ul>
       </div>
