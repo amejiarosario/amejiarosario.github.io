@@ -21,8 +21,8 @@ updated: 2019-01-24 16:08:53
 
 I got hacked, and it changed my life's **perspective** **on security**. Here's a compilation of something that happened to me and some security tips to minimize this kind of surprises.
 
-<details>
-  <summary>Hack incident details... (click to expand)</summary>
+<!-- <details>
+  <summary>Hack incident details... (click to expand)</summary> -->
 
 # Hack incident
 
@@ -47,7 +47,7 @@ Some examples of data breaches:
 - Even banks get hacked like the JP Morgan **Chase** on 2014 with 76 million households and 7 million businesses.
 - Not even security companies are exempt like **RSA Security** in 2011 with 40 million employee records stolen.
 
-</details>
+<!-- </details> -->
 
 # Security Tips
 

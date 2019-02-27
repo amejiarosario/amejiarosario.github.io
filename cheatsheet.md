@@ -56,7 +56,7 @@ hexo clean
 
 ### new
 
-``` bash
+```bash
 $ hexo new [layout] <title>
 ```
 
@@ -73,7 +73,7 @@ Layout | Path
 
 ## generate
 
-``` bash
+```bash
 $ hexo generate
 ```
 
@@ -86,7 +86,7 @@ Option | Description
 
 ## server
 
-``` bash
+```bash
 $ hexo server
 ```
 
@@ -99,6 +99,25 @@ Option | Description
 `-l`, `--log` | Enable logger. Override logger format.
 
 
+
+## Hexo Renderer
+
+This version uses marked 0.6.1 which fixes details/view issue. BUt... it doesn't render tables well
+
+```js
+"hexo-renderer-marked": "amejiarosario/hexo-renderer-marked#bump-marked-version",
+"hexo-renderer-marked": "YoshinoriN/hexo-renderer-marked#marked-v0.6.0",
+```
+
+[details/summary issue](https://github.com/hexojs/hexo-renderer-marked/pull/88)
+![image](https://user-images.githubusercontent.com/418605/53490183-0ca6af80-3a61-11e9-9276-d520fc5ddcde.png)
+
+
+Using old markedjs ~0.3 then table works but details/summary doesn't
+
+```js
+"hexo-renderer-marked": "amejiarosario/hexo-renderer-marked#patch-1",
+```
 
 ---
 
