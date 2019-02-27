@@ -122,12 +122,12 @@ For instance, in JavaScript, we can accomplish append to end with `push` and app
 
 Function|Runtime|Description
 -|-|-
-[array.**push**(element1[, ...[, elementN]])](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)|*O(1)*|Insert element to the end of the array
-[array.**pop**()](http://devdocs.io/javascript/global_objects/array/pop)|*O(1)*|Remove element to the end of the array
-[array.**shift**()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)|*O(n)*|Remove element to the beginning of the array
-[array.**unshift**(element1[, ...[, elementN]])](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)|*O(n)*|Insert element(s) to the beginning of the array
-[array.**slice**([beginning[, end]])](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) |*O(n)*|Returns a copy of the array from `beginning` to `end`.
-[array.**splice**(start[, deleteCount[, item1[,...]]])](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) |*O(n)*| Changes (add/remove) the array
+[array.push](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push)|O(1)|Insert element to the end of the array
+[array.pop](http://devdocs.io/javascript/global_objects/array/pop)|O(1)|Remove element to the end of the array
+[array.shift](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)|O(n)|Remove element to the beginning of the array
+[array.unshift](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)|O(n)|Insert element(s) to the beginning of the array
+[array.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) |O(n)|Returns a copy of the array from `beginning` to `end`.
+[array.splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) |O(n)| Changes (add/remove) the array
 
 ## Insert element on an array
 
