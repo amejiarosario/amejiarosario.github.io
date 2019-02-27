@@ -112,12 +112,18 @@ This version uses marked 0.6.1 which fixes details/view issue. BUt... it doesn't
 [details/summary issue](https://github.com/hexojs/hexo-renderer-marked/pull/88)
 ![image](https://user-images.githubusercontent.com/418605/53490183-0ca6af80-3a61-11e9-9276-d520fc5ddcde.png)
 
+Created issues:
+- https://github.com/markedjs/marked/issues/1429
+- https://github.com/hexojs/hexo-renderer-marked/pull/87
+
 
 Using old markedjs ~0.3 then table works but details/summary doesn't
 
 ```js
 "hexo-renderer-marked": "amejiarosario/hexo-renderer-marked#patch-1",
 ```
+
+- [ ] Add unit test for the features I'm using. Tables... or better yet, add visual regression tests for the whole blog or 80% of traffic generating blogs!
 
 ---
 
