@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 45 Secucirty Tips to Avoid Hacking
+title: 45 Security Tips to Avoid Hacking
 comments: true
 pageviews__total: 381
 pageviews__recent: 332
