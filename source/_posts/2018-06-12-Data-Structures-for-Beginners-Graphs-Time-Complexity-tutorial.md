@@ -24,7 +24,7 @@ updated: 2018-05-14 05:19:22
 
 In this post, we are going to explore non-linear data structures like graphs. Also, we'll cover the central concepts and typical applications.
 
-You are probably using programs with graphs (and trees). Let's say for instance that you want to know the shortest path between your workplace and home, you can use graph algorithms to get the answer! We are going to look it to this and other fun challenges.
+You are probably using programs with graphs and trees. Let's say for instance that you want to know the shortest path between your workplace and home, you can use graph algorithms to get the answer! We are going to look into this and other fun challenges.
 
 <!-- more -->
 
@@ -141,7 +141,7 @@ In general, graphs have many real-world applications like:
 
 {% img /images/map-graph.jpg Graph applications: pathfinder %}
 
-We just learned the basics of graphs and some applications. Let's catch up how to represent graphs in code.
+We just learned the basics of graphs and some applications. Let's cover how to represent graphs in JavaScript.
 
 # Representing graphs
 
@@ -200,7 +200,7 @@ What about getting the adjacent nodes?
 
 Since the matrix has a VxV matrix, to get all the adjacent nodes to a given vertex, we would have to go to the node row and get all its edges with the other nodes.
 
-In our previous example, let's say we want all the adjacent nodes to `b`. We have to get the full row where b with all the other nodes.
+In our previous example, let's say we want all the adjacent nodes to `b`. We have to get the full row where b is with all the other nodes.
 ```
   a b c d e
 b - - 1 - -
@@ -458,7 +458,7 @@ Let's see how we can accomplish this in code:
 
 As you can see, we are using a `Queue` where the first node in is also the first node to be visited (FIFO).
 
-We are as well using [JavaScript generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator), notice the `*` in front of the function. We are using a generator to iterate one value at a time. That's useful for large graphs (millions of nodes) because in most cases you don't need to visit every single node.
+We are as well using [JavaScript generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator), notice the `*` in front of the function. This generator iterates one value at a time. That's useful for large graphs (millions of nodes) because in most cases you don't need to visit every single node.
 
 This an example of how to use the BFS that we just created:
 
@@ -587,7 +587,7 @@ Space | *[O(&#124;V&#124; + &#124;E&#124;)](#List.space)* | *[O(&#124;V&#124;<su
 
 <!-- areConnected | | -->
 
-As you can see, an adjacency list is faster in almost all functions. The only that the adjacency matrix will outperform the adjacency list is checking if a node is adjacent to other. However, if we change our implementation from Array to a HashSet, we can get it in constant time as well :)
+As you can see, an adjacency list is faster in almost all operations. The only action that the adjacency matrix will outperform the adjacency list is checking if a node is adjacent to other. However, if we change our implementation from Array to a HashSet, we can get it in constant time as well :)
 
 
 # Summary
