@@ -29,7 +29,7 @@ When we are developing software, we have to store data in memory. Depending on h
 
 <!-- more -->
 
-On this lecture, we are going to focus on linear data structures like Arrays, Lists, Sets, Stacks, Queues and so on.
+On this section, we are going to focus on linear data structures like Arrays, Lists, Sets, Stacks, Queues and so on.
 
 ---
 This post is part of a tutorial series:
@@ -109,7 +109,7 @@ It's when you want to search for something you can go directly to the bin number
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 <!-- https://cdn2.iconfinder.com/data/icons/furniture-12/48/drawer-cabinet-closet-shelf-cabin-cupboard-furntiure-512.png -->
 
-Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to define the size of the array & the data type before using it. JavaScript would increase the size of the array automatically when it needs to.
+Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to predefine the size of the array and the data type. In JavaScript, it would automatically increase the size of the array when needed.
 
 ## Arrays built-in operations
 
@@ -280,14 +280,14 @@ There are at least two ways to implement hashmap:
 1. **Array**: Using a hash function to map a key to the array index value. Worst: `O(n)`, Average: `O(1)`
 2. **Binary Search Tree**: using a self-balancing binary search tree to look up for values (more on this later). Worst: *`O(log n)`*, Average: *`O(log n)`*.
 
-We are going to cover Trees & Binary Search Trees, so, don't worry about it for now. The most common implementation of Maps is using an  **array** and `hash` function. So, we are going to implement and move forward.
+We are going to cover Trees & Binary Search Trees, so don't worry about it for now. The most common implementation of Maps is using an **array** and `hash` function. So, that's the one we are going to focus on.
 
 **HashMap implemented with an array**
 {% img /images/hash-map.jpg "HashMap: hash function translates keys into bucket (array) indexes" %}
 
 As you can see in the image, each key gets translated into a **hash code**. Since the array size is limited (e.g. 10), we have to loop through the available buckets using modulus function. In the buckets we store the key/value pair and if there's more than one, we use a collection to hold them.
 
-Now, What do you think about cover each of the HashMap components in details? Let's start with the **hash function**.
+Now, What do you think about covering each of the HashMap components in details? Let's start with the **hash function**.
 
 <!--  ## HashMap vs. Array
 
@@ -1109,7 +1109,7 @@ There are two primary cases. 1) If the list first (root/head) doesn't have any e
 
 What's the runtime of this code? If it is the first element, then adding to the root is *O(1)*. However, finding the last element is *O(n)*.
 
-Now, removing element by element from the end of the list has a similar code. We have to find the current before last and make its `next` reference `null`.
+Now, removing an element from the end of the list has a similar code. We have to find the current before last and make its `next` reference `null`.
 
 <a id="SinglyLinkedList.removeLast"></a>
 {% codeblock LinkedList.prototype.removeLast lang:js mark:10 %}
@@ -1307,7 +1307,7 @@ Notice, that we have to be very careful and update the previous, size and last.
 
 What's the runtime?
 
-> Adding and removing elements from a (single/doubly) LinkedList has a constant runtime *O(1)*
+> Adding and removing elements from a (singly/doubly) LinkedList has a constant runtime *O(1)*
 
 **Adding and removing from the end of a list**
 
