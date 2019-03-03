@@ -4,9 +4,9 @@ title: Learning Algorithms from Scratch / Algorithms for Dummies
 created: 1324582027000
 updated: 1324582027000
 comments: true
-pageviews__total: 42633
-pageviews__recent: 30
-pageviews__avg_time: 388
+pageviews__total: 42632
+pageviews__recent: 26
+pageviews__avg_time: 386
 tutorial__order: 0
 tags:
   - big-o notation

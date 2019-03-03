@@ -4,8 +4,8 @@ title: "MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)"
 date: 2014-10-03 06:59:34 -0400
 updated: 2016-08-06 21:47:53 -0400
 comments: true
-pageviews__total: 247443
-pageviews__recent: 464
+pageviews__total: 247341
+pageviews__recent: 466
 pageviews__avg_time: 242
 toc: true
 #categories: [angularjs, javascript, nodejs, mongodb, mean stack]
