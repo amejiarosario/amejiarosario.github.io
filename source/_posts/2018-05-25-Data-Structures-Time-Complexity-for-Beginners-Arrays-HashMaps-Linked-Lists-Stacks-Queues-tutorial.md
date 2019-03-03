@@ -25,11 +25,11 @@ updated: 2018-04-28 19:20:40
 
 <!-- Data Structures Time Complexity for Beginners -->
 
-When we are developing software, we have to store data in memory. Depending on how you want to manipulate the data, you might choose a data structure over another. There are many types of data types such as arrays, maps, sets, lists, trees, graphs, etc. Choosing the right data structure for a task can be tricky. So, this post will help you know the trade-offs so you can always use the right tool for the job.
+When we are developing software, we have to store data in memory. Depending on how you want to manipulate the information, you might choose a data structure over another. There are many types of data, such as arrays, maps, sets, lists, trees, graphs, etc. Choosing the right data structure for a task can be tricky. So, this post will help you to know the trade-offs, so, you can use the right tool for the job!
 
 <!-- more -->
 
-On this post we are going to focus on linear data structures like Arrays, Lists, Sets, Stacks, Queues and so on.
+On this lecture, we are going to focus on linear data structures like Arrays, Lists, Sets, Stacks, Queues and so on.
 
 ---
 This post is part of a tutorial series:
@@ -59,7 +59,7 @@ This post is part of a tutorial series:
 
 # Data Structures Big-O Cheatsheet
 
-The following table is summary of everything that we are going to cover in this post.
+The following table is a summary of everything that we are going to cover.
 
 > Bookmark it, pin it or share it, so you have it at hand when you need it.
 
@@ -82,11 +82,11 @@ Set (using Binary Search Tree) | O(log(n)) | - |  O(log(n)) |  O(log(n)) | Imple
 [Queue (array implementation)](#QueueArrayImpl) | [O(1)](#QueueArrayImpl) | - | - | [O(1)](#QueueArrayImpl) | Worst time insert is O(n). However amortized is O(1)
 [Queue (list implementation)](#QueueListImpl) | [O(1)](#QueueListImpl) | - | - | [O(1)](#QueueListImpl) | Using Doubly Linked List with reference to the last element.
 
-Note: **Binary search trees** and trees in general will be cover in the next post. Also, graph data structures.
+Note: **Binary search trees** and trees, in general, will be cover in the next post. Also, graph data structures.
 
 # Primitive Data Types
 
-Primitive data types are the most basic elements where all the other data structures built upon.  Some primitives are:
+Primitive data types are the most basic elements where all the other data structures built upon. Some primitives are:
 
 - Integers. E.g., `1`, `2`, `3`, ...
 - Characters. E.g., `a`, `b`, `"1"`, `"*"`
@@ -103,19 +103,19 @@ You can think of an array as a drawer where you can store things on the bins.
 {% img /images/array-drawer.jpg "Array is like a drawer that stores things on bins" %}
 
 
-When you want to search for something you can go directly to the bin number (*`O(1)`*). However, if you forgot what cabinet had what data, then you will have to open one by one (*`O(n)`*) to verify its content until you find what you are looking for. That same happens with an array.
+It's when you want to search for something you can go directly to the bin number (*`O(1)`*). However, if you forgot what cabinet had, then you will have to open one by one (*`O(n)`*) to verify its content until you find what you are looking for. That same happens with an array.
 
 
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 <!-- https://cdn2.iconfinder.com/data/icons/furniture-12/48/drawer-cabinet-closet-shelf-cabin-cupboard-furntiure-512.png -->
 
-Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects and even functions. In typed languages like Java/C/C++, you have to define the size of the array before using it and the data type of the collection. JavaScript would increase the size of the array automatically when it needs to.
+Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to define the size of the array & the data type before using it. JavaScript would increase the size of the array automatically when it needs to.
 
 ## Arrays built-in operations
 
 Depending on the programming language, the implementation would be slightly different.
 
-For instance, in JavaScript, we can accomplish append to end with `push` and append to the beginning with `unshift`. But also, we have `pop` and `shift` to remove from an array. Let's describe some commong array operations that we are going to use through this post.
+For instance, in JavaScript, we can accomplish append to end with `push` and append to the beginning with `unshift`. But also, we have `pop` and `shift` to remove from an array. Let's describe some common operations that we are going to use through this post.
 
 **Common JS Array built-in functions**
 
@@ -155,7 +155,7 @@ Based on the [language specification](https://tc39.github.io/ecma262/#sec-array.
 
 > The `Array.push` runtime is a *O(1)*
 
-Let's now try appeding to head:
+Let's now try appending to head:
 
 ```js
 function insertToHead(array, element) {
@@ -169,7 +169,7 @@ console.log(insertToHead(array, 0)); // => [ 0, 1, 2, 3, ]
 
 What do you think is the runtime of the `insertToHead` function? Looks the same as the previous one except that we are using `unshift` instead of `push`. But, there's a catch! [unshift algorithm](https://tc39.github.io/ecma262/#sec-array.prototype.unshift) makes room for the new element by moving all existing ones to the next position in the array. So, it will iterate through all the elements.
 
-> The `Array.unshift` runtime is a *O(n)*
+> The `Array.unshift` runtime is an *O(n)*
 
 ## Access an element in an array
 
@@ -267,10 +267,10 @@ HashMaps has many names like HashTable, HashMap, Map, Dictionary, Associative Ar
 
 Going back to the drawer analogy, bins have a label rather than a number.
 
-**HashMap is like a drawer that stores things on bins and label them**
-{% img /images/hashmap-drawer.jpg "HashMap is like a drawer that stores things on bins and label them" %}
+**HashMap is like a drawer that stores things on bins and labels them**
+{% img /images/hashmap-drawer.jpg "HashMap is like a drawer that stores things on bins and labels them" %}
 
-In this example, if you are looking for a toy, you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the bin labled as "toys". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
+In this example, if you are looking for a toy, you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the bin labeled as "toys". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
 
 Numbers were the array indexes, and labels are the key for the HashMap's values. Internally, the keys get translated into indexes using a *hash function*.
 
@@ -280,14 +280,14 @@ There are at least two ways to implement hashmap:
 1. **Array**: Using a hash function to map a key to the array index value. Worst: `O(n)`, Average: `O(1)`
 2. **Binary Search Tree**: using a self-balancing binary search tree to look up for values (more on this later). Worst: *`O(log n)`*, Average: *`O(log n)`*.
 
-We are going to cover Trees & Binary Search Trees so don't worry too much about it for now. The most common implementation of Maps is using a  **array** and `hash` function. So, we are going to implement that going forward.
+We are going to cover Trees & Binary Search Trees, so, don't worry about it for now. The most common implementation of Maps is using an  **array** and `hash` function. So, we are going to implement and move forward.
 
 **HashMap implemented with an array**
 {% img /images/hash-map.jpg "HashMap: hash function translates keys into bucket (array) indexes" %}
 
-As you can see in the image, each key gets translated into a **hash code**. Since the array size is limited (e.g. 10), we have to loop through the available buckets using modulus function. In the buckets we store the key/value pair and if there's more than one we use a collection to hold them.
+As you can see in the image, each key gets translated into a **hash code**. Since the array size is limited (e.g. 10), we have to loop through the available buckets using modulus function. In the buckets we store the key/value pair and if there's more than one, we use a collection to hold them.
 
-We are going to cover each of the HashMap components in details. Let's start with the **hash function**.
+Now, What do you think about cover each of the HashMap components in details? Let's start with the **hash function**.
 
 <!--  ## HashMap vs. Array
 
@@ -314,14 +314,14 @@ The first step to implement a HashMap is to have a hash function. This function 
 
 > The **perfect hash function** is the one that for every key it assigns a unique index.
 
-Ideal hashing algorithms allow a *constant time* access/lookup. However, it's hard to achieve a perfect hashing function in practice. You might have the case where two different keys yields on the same index: *collision*.
+Ideal hashing algorithms allow *constant time* access/lookup. However, it's hard to achieve a perfect hashing function in practice. You might have the case where two different keys yields on the same index: *collision*.
 
-Collision in hashmaps is unavoidable when using an array-like underlying data structure. So one way to deal with collsions is to store multiple values in the same bucket. When we try to access the key's value and found various values we iterate over the values *O(n)*. However, in most implementations, the hash adjust the size dynamically to avoid too many collisions so we can say that the **amortized** lookup time is *O(1)*. We are going to explain what we mean by amortized runtime later on this post with an example.
+Collision in hashmaps is unavoidable when using an array-like underlying data structure. So one way to deal with collisions is to store multiple values in the same bucket. When we try to access the key's value and found various values, we iterate over the values *O(n)*. However, in most implementations, the hash adjusts the size dynamically to avoid too many collisions. So, we can say that the **amortized** lookup time is *O(1)*. We are going to explain what we mean by amortized runtime later on this post with an example.
 
 ## Naïve HashMap implementation
 
 <a id="NaiveHashMap"></a>
-A very simple (and bad) hash function would this one:
+A simple (and bad) hash function would be this one:
 
 {% codeblock "Naive HashMap Implementation" lang:js mark:18,23 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map-1.js full code %}
 class NaiveHashMap {
@@ -354,9 +354,9 @@ class NaiveHashMap {
 
 We are using `buckets` rather than drawer/bins but you get the idea :)
 
-We have an initial capacity of 2 (two buckets). However, we want to store any number of elements on them. We use modulus `%` to loop through the number of available buckets.
+We have an initial capacity of 2 (two buckets). But, we want to store any number of elements on them. We use modulus `%` to loop through the number of available buckets.
 
-Take a look at our hash function in line 18. We are going to talk about it in a bit. First, let's see how we use our new HashMap!
+Take a look at our hash function in line 18. We are going to talk about it in a bit. First, let's use our new HashMap!
 
 ```js
 // Usage:
@@ -601,9 +601,9 @@ assert.equal(hashMap.get('rat'), 7); // Good. Didn't got overwritten by art
 assert.equal(hashMap.get('dog'), 1); // Good. Didn't got overwritten by art
 ```
 
-This `DecentHashMap` gets the job done, but still, there are some issues. We are using a decent hash function that doesn't produce duplicate values, and that's great. However, we have two values in `bucket#0` and two more in `bucket#1`. How is that possible??
+This `DecentHashMap` gets the job done, but, there are still some issues. We are using a decent hash function that doesn't produce duplicate values, and that's great. However, we have two values in `bucket#0` and two more in `bucket#1`. How is that possible?
 
-Since we are using a limited bucket size of 2, we use modulus `%` to loop through the number of available buckets. So, even if the hash code is different all values will fit on the size of the array: bucket#0 or bucket#1.
+Since we are using a limited bucket size of 2, we use modulus `%` to loop through the number of available buckets. So, even if the hash code is different, all values will fit on the size of the array: bucket#0 or bucket#1.
 
 <!-- [{"key":"cat","hash":3789411390},{"key":"dog","hash":3788563007},{"key":"rat","hash":3789411405},{"key":"art","hash":3789415740}] -->
 
@@ -614,7 +614,7 @@ hash('dog') => 3788563007; bucketIndex => 3788563007 % 2 = 1
 hash('rat') => 3789411405; bucketIndex => 3789411405 % 2 = 1
 ```
 
-So naturally we have increased the initial capacity but by how much? Let 's see how the initial size affects the hash map performance.
+So naturally we have increased the initial capacity but by how much? Let's see how the initial size affects the hash map performance.
 
 If we have an initial capacity of `1`. All the values will go into one bucket (`bucket#0`), and it won't be any better than searching a value in a simple array *`O(n)`*.
 
@@ -673,7 +673,7 @@ console.log('hashMapSize100\n', hashMapSize100.buckets);
 ```
 Yay! 🎊 no collision!
 
-Having a bigger bucket size is excellent to avoid collisions but consumes **too much memory**, and probably most of the buckets will be unused.
+Having a bigger bucket size is excellent to avoid collisions, but it consumes **too much memory**, and probably most of the buckets will be unused.
 
 Wouldn't it be great, if we can have a HashMap that automatically increases its size as needed? Well, that's called **rehash**, and we are going to do it next!
 
@@ -685,7 +685,7 @@ Having allocated massive amounts of memory is impractical. So, what we can do is
 
 The **load factor** is the measurement of how full is a hash map. We can get the load factor by dividing the number of items by the bucket size.
 
-This will be our latest and greated hash map implementation:
+This will be our latest and greatest hash map implementation:
 
 <!-- http://www.dcs.gla.ac.uk/~jsinger/pdfs/sicsa_openjdk/OpenJDKArchitecture.pdf -->
 <!-- JDK10: https://github.com/dmlloyd/openjdk/blob/jdk/jdk/src/hotspot/share/utilities/hashtable.cpp -->
@@ -868,15 +868,15 @@ assert.equal(hashMap.buckets.length, 32);
 
 Take notice that after we add the 12th item, the load factor gets beyond 0.75, so a rehash is triggered and doubles the capacity (from 16 to 32). Also, you can see how the number of collisions improves from 2 to 0!
 
-This implementation is good enough to help us figure out the runtime of common operations like insert/search/delete/edit.
+This implementation is good enough to help us to figure out the runtime of common operations like insert/search/delete/edit.
 
 
-To sum up the performance of a HashMap will be given by:
+To sum up, the performance of a HashMap will be given by:
 
-1. The hash function that for every key produces a different output.
+1. The hash function that every key produces for a different output.
 2. Size of the bucket to hold data.
 
-We nailed both 🔨. We have a decent hash function that produces different output for different data. Two different data will never return the same code. Also, we have a rehash function that automatically grows the capacity as needed. That's great!
+We nailed both 🔨. We have a decent hash function that produces different output for different data. Two distinct data will never return the same code. Also, we have a rehash function that automatically grows the capacity as needed. That's great!
 
 ## Insert element on a HashMap runtime
 
@@ -914,7 +914,7 @@ Our implementation with [rehash](#HashMapWithRehash) functionality will keep col
 
 ## Search/Access an element on a HashMap runtime
 
-This is the `HashMap.get` function that we use the get the value associated to a key. Let's evaluate the implementation from [`DecentHashMap.get`](#DecentHashMap)):
+This is the `HashMap.get` function that we use to get the value associated with a key. Let's evaluate the implementation from [`DecentHashMap.get`](#DecentHashMap)):
 
 {% codeblock lang:js mark:3 %}
   get(key) {
@@ -937,9 +937,9 @@ If there's no collision, then `values` will only have one value and the access t
 
 ## Edit/Delete element on a HashMap runtime
 
-Editing (`HashMap.set`) and deleting (`HashMap.delete`) key/value pairs have an **amortized** runtime of *`O(1)`*. In case of many collisions, we could face an *`O(n)`* as a worst case. However, with our rehash operation, we can mitigate that risk.
+Editing (`HashMap.set`) and deleting (`HashMap.delete`) key/value pairs have an **amortized** runtime of *`O(1)`*. In the case of many collisions, we could face an *`O(n)`* as a worst case. However, with our rehash operation, we can mitigate that risk.
 
-> HashMap edit and delete operations has a runtime of *`O(1)`* on average and worst-case of *`O(n)`*.
+> HashMap edits and delete operations has a runtime of *`O(1)`* on average and worst-case of *`O(n)`*.
 
 ## HashMap operations time complexity
 
@@ -963,7 +963,7 @@ How can we implement a Set (array without duplicates)? Well, we could use an arr
 
 ## Set Implementation
 
-We could use the JavaScript built-in `Set`. However, if we implement it ourselves, it's more obvious to deduct the runtimes. We are going to use the [optimized HashMap](#HashMapWithRehash) with rehash functionality.
+We could use the JavaScript built-in `Set`. However, if we implement it by ourselves, it's more logic to deduct the runtimes. We are going to use the [optimized HashMap](#HashMapWithRehash) with rehash functionality.
 
 ```js
 const HashMap = require('../hash-maps/hash-map');
@@ -1004,7 +1004,7 @@ We used `HashMap.set` to add the set elements without duplicates. We use the key
 
 Checking if an element is already there can be done using the `hashMap.has` which has an amortized runtime of *`O(1)`*. The most operations would be an amortized constant time except for getting the `entries` which is  *`O(n)`*.
 
-Note: The JS built-in `Set.has` has a runtime of *O(n)*, since it uses a regular list of elements and check each element at a time. You can see the `Set.has` algorithm [here](https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has)
+Note: The JS built-in `Set.has` has a runtime of *O(n)*, since it uses a regular list of elements and checks each one at a time. You can see the `Set.has` algorithm [here](https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has)
 
 Here some examples how to use it:
 
@@ -1109,7 +1109,7 @@ There are two primary cases. 1) If the list first (root/head) doesn't have any e
 
 What's the runtime of this code? If it is the first element, then adding to the root is *O(1)*. However, finding the last element is *O(n)*.
 
-Now, removing element an element from the end of the list has a similar code. We have to find the current before last and make its `next` reference `null`.
+Now, removing element by element from the end of the list has a similar code. We have to find the current before last and make its `next` reference `null`.
 
 <a id="SinglyLinkedList.removeLast"></a>
 {% codeblock LinkedList.prototype.removeLast lang:js mark:10 %}
@@ -1166,7 +1166,7 @@ As expected the runtime for removing/adding to the firt element from a linked Li
 
 **Removing an element anywhere from a linked list**
 
-Removing an element anywhere in the list levarage the `removeLast` and `removeFirst`. However, if the removal is in the middle then we assign the previous node to the next one. That removes any reference from the current node, thus is removed from the list:
+Removing an element anywhere in the list leverage the `removeLast` and `removeFirst`. However, if the removal is in the middle, then we assign the previous node to the next one. That removes any reference from the current node, this is removed from the list:
 
 {% codeblock LinkedList.remove lang:js mark:3,9,11 %}
   remove(index = 0) {
@@ -1209,7 +1209,7 @@ Searching an element on the linked list is very somewhat similar to `remove`:
 
 This function finds the first element with given value.
 
-> The runtime for seaching an element in a linked list is *O(n)*
+> The runtime for searching an element in a linked list is *O(n)*
 
 ## Singly Linked Lists time complexity
 
@@ -1223,7 +1223,7 @@ Operation | Runtime | Comment
 [`removeFirst`](#DoublyLinkedList.removeFirst) | *O(1)* | Remove element to the beginning of the list
 [`removeLast`](#SinglyLinkedList.removeLast) | *O(n)* | Remove element to the end of the list
 [`remove`](#LinkedList.remove) | *O(n)* | Remove any element from the list
-[`contains`](#LinkedList.contains) | *O(n)* | Search for any element from the list
+[`contains`](#LinkedList.contains) | *O(n)* | Search for an element from the list
 
 Notice that every time we are adding/removing from the last position the operation takes *O(n)*...
 
@@ -1259,7 +1259,7 @@ class LinkedList {
 }
 {% endcodeblock %}
 
-**Adding and Removing from the start of list**
+**Adding and Removing from the start of a list**
 
 Adding and removing from the start of the list is simple since we have `this.first` reference:
 
@@ -1307,9 +1307,9 @@ Notice, that we have to be very careful and update the previous, size and last.
 
 What's the runtime?
 
-> Adding and removing elements from a (singly/doubly) LinkedList has a constant runtime *O(1)*
+> Adding and removing elements from a (single/doubly) LinkedList has a constant runtime *O(1)*
 
-**Adding and removing from the end of list**
+**Adding and removing from the end of a list**
 
 Adding and removing *from the end* of the list is a little tricky. If you checked in the Singly Linked List, both operations took *O(n)* since we had to loop through the list to find the last element. Now, we have the `last` reference:
 
@@ -1334,7 +1334,7 @@ Adding and removing *from the end* of the list is a little tricky. If you checke
   }
 {% endcodeblock %}
 
-Again, we have to be very careful updating the references and handling special cases such as when there's only one element.
+Again, we have to be careful about updating the references and handling special cases such as when there's only one element.
 
 <a id="DoublyLinkedList.removeLast"></a>
 {% codeblock LinkedList.prototype.removeLast lang:js mark:6 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
@@ -1368,7 +1368,7 @@ Did you remember that for the Queue we had to use two arrays? Now, we can change
 
 **Adding an element anywhere from a linked list**
 
-Adding an element on anywhere on the list leverage our `addFirst` andd `addLast` functions as you can see below:
+Adding an element on anywhere on the list leverages our `addFirst` and `addLast` functions as you can see below:
 
 {% codeblock LinkedList.add lang:js mark:3,9 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js FullCode %}
   add(value, index = 0) {
@@ -1414,10 +1414,10 @@ Operation | Runtime | Comment
 
 This is a great improvement compared to the singly linked list! We improved from *O(n)* to *O(1)* by:
 
-- Adding a reference the previous element.
+- Adding a reference to the previous element.
 - Holding a reference to the last element in the list.
 
-Removing first/last can be done in constant-time, however removing in the middle of the array is still *O(n)*.
+Removing first/last can be done in constant-time, however, removing in the middle of the array is still *O(n)*.
 
 # Stacks
 
@@ -1446,7 +1446,7 @@ class Stack {
 }
 ```
 
-As you can see is very easy since we are using the built-in `Array.push` and `Array.pop`. Both have a runtime of *`O(1)`*.
+As you can see is easy since we are using the built-in `Array.push` and `Array.pop`. Both have a runtime of *`O(1)`*.
 
 Let's see some examples of its usage:
 
@@ -1549,7 +1549,7 @@ When we remove something for the first time, the `output` array is empty. So, we
 
 What's the runtime?
 
-If the output already has some elements, then the remove operation is constant *`O(1)`*. When the output arrays need to get refilled, it takes *`O(n)`* to do so. After the refilled, every operation would be constant again. The amortized time is *`O(1)`*.
+If the output has already some elements, then the remove operation is constant *`O(1)`*. When the output arrays need to get refilled, it takes *`O(n)`* to do so. After the refilled, every operation would be constant again. The amortized time is *`O(1)`*.
 
 We can achieve a `Queue` with a pure constant if we use a LinkedList. Let's see what it is in the next section!
 <!-- **[[usages]]** -->
@@ -1582,11 +1582,11 @@ class Queue {
 }
 ```
 
-Using a doubly linked list with the last element reference we achive an `add` of *O(1)*. That's the importance of using the right tool for the right job 💪
+Using a doubly linked list with the last element reference we achieve an `add` of *O(1)*. That's the importance of using the right tool for the right job 💪
 
 # Summary
 
-We a explored the most of the linear data structures. We saw that depending on how we implement the data structures there are different runtimes.
+We explored most of the linear data structures. We saw that depending on how we implement the data structures there are different runtimes.
 
 Here's a summary of everything that we explored. You can click on each runtime, and it will take you to the implementation.
 <!-- there is not a generic runtime for the operations because it depends more  -->
@@ -1611,7 +1611,7 @@ Name | Insert | Access | Search | Delete | Comments
 [**Queue** (array implementation)](#QueueArrayImpl) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
 [**Queue** (list implementation)](#QueueListImpl) | *[O(1)](#QueueListImpl)* | - | - | *[O(1)](#QueueListImpl)* | Using Doubly Linked List with reference to the last element.
 
-Note: **Binary search trees** and trees in general will be cover in the next post. Also, graph data structures.
+Note: **Binary search trees** and trees, in general, will be cover in the next post. Also, graph data structures.
 
 
 
