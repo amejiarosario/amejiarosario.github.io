@@ -326,7 +326,7 @@ The first thing that we need to know is if the graph is directed or undirected. 
 
 **Graph.addEdge**
 
-Two add an edge we need two nodes. One is the source, and the other is the destination.
+To add an edge we need two nodes. One is the source, and the other is the destination.
 
 {% codeblock Graph.addEdge lang:js mark:7 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/graph.js  Full Code %}
   addEdge(source, destination) {
