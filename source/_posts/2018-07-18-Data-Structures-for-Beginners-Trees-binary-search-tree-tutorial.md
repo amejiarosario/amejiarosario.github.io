@@ -244,7 +244,7 @@ Let's implementing insertion.
 To insert a node in a binary tree, we do the following:
 
 1. If a tree is empty, the first node becomes the **root** and you are done.
-1. Compare root/parent's value if it's *higher* go **right**, if it's *lower* go **right**. If it's the same, then the value already exists so you can increase the duplicate count (multiplicity).
+1. Compare root/parent's value if it's *higher* go **right**, if it's *lower* go **left**. If it's the same, then the value already exists so you can increase the duplicate count (multiplicity).
 1. Repeat #2 until we found an empty slot to insert the new node.
 
 Let's do an illustration how to insert 30, 40, 10, 15, 12, 50:
