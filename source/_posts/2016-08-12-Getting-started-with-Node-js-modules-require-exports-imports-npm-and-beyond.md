@@ -157,7 +157,7 @@ Starting with version 8.5.0+, Node.js supports ES modules natively with a featur
 
 For instace, our previous `circle.js` can be rewritten as `circle.mjs` as follows:
 
-```javascript cirle.mjs
+```javascript circle.mjs
 const PI = 3.14159265359;
 
 export function area(radius) {
