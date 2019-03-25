@@ -4,9 +4,9 @@ title: "Backbone.js for absolute beginners - getting started (part 3: CRUD)"
 date: 2012-09-13 01:37
 updated: 2012-09-13 01:37
 comments: true
-pageviews__total: 91530
-pageviews__recent: 212
-pageviews__avg_time: 334
+pageviews__total: 91764
+pageviews__recent: 236
+pageviews__avg_time: 333
 toc: true
 #categories: [backbonejs, javascript
 photos:

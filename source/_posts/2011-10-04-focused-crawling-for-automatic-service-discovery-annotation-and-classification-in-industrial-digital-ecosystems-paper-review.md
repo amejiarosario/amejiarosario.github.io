@@ -5,8 +5,8 @@ created: 1317758695000
 updated: 1317758695000
 comments: true
 pageviews__total: 48
-pageviews__recent: 1
-pageviews__avg_time: 121
+pageviews__recent: 2
+pageviews__avg_time: 123
 tutorial__order: 0
 #categories: [paper review, e-learning, focused crawling, web semantics]
 ---
