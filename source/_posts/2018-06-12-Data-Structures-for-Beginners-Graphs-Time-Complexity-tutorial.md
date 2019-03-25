@@ -270,7 +270,7 @@ Let's start with the `Node` class that holds the vertex's value and its adjacent
 
 <a id="Node.getAdjacents"></a>
 
-{% codeblock Node lang:js mark:8,14 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/node.js Commented Code %}
+{% codeblock Node lang:js mark:8,14 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/node.js Commented Code %}
 class Node {
   constructor(value) {
     this.value = value;
@@ -307,7 +307,7 @@ Ok, now that we have the `Node` class, let's build the Graph class that can perf
 
 **Graph.constructor**
 
-{% codeblock Graph.constructor lang:js mark:2,4,9,10 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/graph.js  Full Code %}
+{% codeblock Graph.constructor lang:js mark:2,4,9,10 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
 class Graph {
   constructor(edgeDirection = Graph.DIRECTED) {
     this.nodes = new Map();
@@ -328,7 +328,7 @@ The first thing that we need to know is if the graph is directed or undirected. 
 
 To add an edge we need two nodes. One is the source, and the other is the destination.
 
-{% codeblock Graph.addEdge lang:js mark:7 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/graph.js  Full Code %}
+{% codeblock Graph.addEdge lang:js mark:7 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
   addEdge(source, destination) {
     const sourceNode = this.addVertex(source);
     const destinationNode = this.addVertex(destination);
@@ -357,7 +357,7 @@ If we try to add an edge and the nodes don't exist, we need to create them first
 
 The way we create a node is that we add it to the `this.nodes` Map. The map store a key/value pair, where the `key` is the vertex's value while the map `value` is the instance of the node class. Take a look at line 5-6:
 
-{% codeblock Graph.addVertex lang:js mark:5-6 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/graph.js  Full Code %}
+{% codeblock Graph.addVertex lang:js mark:5-6 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
   addVertex(value) {
     if(this.nodes.has(value)) {
       return this.nodes.get(value);
@@ -379,7 +379,7 @@ If the node already exists we don't want to overwrite it. So, we first check if 
 
 Removing a node from the graph, it's a little bit more involved. We have to check if the node to be deleted it's in use as an adjacent node.
 
-{% codeblock Graph.removeVertex lang:js mark:5,8 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/graph.js  Full Code %}
+{% codeblock Graph.removeVertex lang:js mark:5,8 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
   removeVertex(value) {
     const current = this.nodes.get(value);
     if(current) {
@@ -403,7 +403,7 @@ Finally, let's remove implement removing an edge!
 
 Removing an edge is pretty straightforward and similar to `addEdge`.
 
-{% codeblock Graph.removeVertex lang:js mark:6,9 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/graph.js  Full Code %}
+{% codeblock Graph.removeVertex lang:js mark:6,9 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
   removeEdge(source, destination) {
     const sourceNode = this.nodes.get(source);
     const destinationNode = this.nodes.get(destination);
@@ -438,7 +438,7 @@ Breadth-first search is a way to navigate a graph from an initial vertex by visi
 
 Let's see how we can accomplish this in code:
 
-{% codeblock Graph.bfs lang:js mark:3 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/graph.js  Full Code %}
+{% codeblock Graph.bfs lang:js mark:3 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
   *bfs(first) {
     const visited = new Map();
     const visitList = new Queue();
@@ -484,7 +484,7 @@ This an example of how to use the BFS that we just created:
   // ...
 ```
 
-You can find more illustrstions of usage in the [test cases](https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/graph.spec.js). Let's move on to the DFS!
+You can find more illustrstions of usage in the [test cases](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.spec.js). Let's move on to the DFS!
 
 # Depth-first search (DFS)  - Graph search
 
@@ -494,7 +494,7 @@ Depth-first search is another way to navigate a graph from an initial vertex by 
 
 The iterative implementation of a DFS is identical to the BFS, but instead of using a `Queue` you use a `Stack`:
 
-{% codeblock Graph.dfs lang:js mark:3 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/graphs/graph.js  Full Code %}
+{% codeblock Graph.dfs lang:js mark:3 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
   *dfs(first) {
     const visited = new Map();
     const visitList = new Stack();
@@ -545,7 +545,7 @@ Let's say you are exploring your social network and you want to know who can int
 
 Your code use a DFS or BFS and iterate until you find the vertex you are looking for (e.g., Mark). It will indicate us if two vertices are **connected**. Let's start with that
 
-{ codeblock Graph.areConnected lang:js mark:6 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/graphs/graph.js Full Code }
+{ codeblock Graph.areConnected lang:js mark:6 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js Full Code }
   areConnected(source, destination) {
     const sourceNode = this.nodes.get(source);
     const destinationNode = this.nodes.get(destination);

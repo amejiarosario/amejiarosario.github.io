@@ -184,7 +184,7 @@ BST are very similar to our previous [implementation of a tree](#Implementing-a-
 
 Here's the tree node. Very similar to what we did before, but we added some handy getters and setters for left and right children. Notice that is also keeping a reference to the parent and we update it every time add children.
 
-{% codeblock TreeNode.js lang:js mark:1-2,8,12,16,18,23,27,29 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-node.js Code %}
+{% codeblock TreeNode.js lang:js mark:1-2,8,12,16,18,23,27,29 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-node.js Code %}
 const LEFT = 0;
 const RIGHT = 1;
 
@@ -252,7 +252,7 @@ Let's do an illustration how to insert 30, 40, 10, 15, 12, 50:
 
 We can implement insert as follows:
 
-{% codeblock BinarySearchTree.prototype.add lang:js mark:5,7 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js#L11 Full Code %}
+{% codeblock BinarySearchTree.prototype.add lang:js mark:5,7 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js#L11 Full Code %}
   add(value) {
     const newNode = new TreeNode(value);
 
@@ -276,7 +276,7 @@ We can implement insert as follows:
 
 We are using a helper function called `findNodeAndParent`. If we found that the node already exists in the tree, then we increase the `multiplicity` counter. Let's see how this function is implemented:
 
-{% codeblock BinarySearchTree.prototype.findNodeAndParent lang:js mark:2,10 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js#L44 Full Code %}
+{% codeblock BinarySearchTree.prototype.findNodeAndParent lang:js mark:2,10 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js#L44 Full Code %}
   findNodeAndParent(value) {
     let node = this.root;
     let parent;
@@ -369,7 +369,7 @@ In the animation, it moves up the left child/subtree and keeps the right child/s
 
 Now that we have a good idea how it should work, let's implement it:
 
-{% codeblock BinarySearchTree.prototype.remove lang:js mark:3,6,12,18 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js#L89 Full Code %}
+{% codeblock BinarySearchTree.prototype.remove lang:js mark:3,6,12,18 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js#L89 Full Code %}
   remove(value) {
     const nodeToRemove = this.find(value);
     if (!nodeToRemove) return false;
@@ -403,7 +403,7 @@ Here are some highlights of the implementation:
 
 The function that combines left into right subtree is the following:
 
-{% codeblock BinarySearchTree.prototype.combineLeftIntoRightSubtree lang:js mark:3 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js#L89 Full Code %}
+{% codeblock BinarySearchTree.prototype.combineLeftIntoRightSubtree lang:js mark:3 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js#L89 Full Code %}
   combineLeftIntoRightSubtree(node) {
     if (node.right) {
       const leftmost = this.getLeftmost(node.right);
@@ -442,7 +442,7 @@ Let's go through each one.
 
 In-order traversal visit nodes on this order: left, parent, right.
 
-{% codeblock BinarySearchTree.prototype.inOrderTraversal lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+{% codeblock BinarySearchTree.prototype.inOrderTraversal lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
   * inOrderTraversal(node = this.root) {
     if (node.left) { yield* this.inOrderTraversal(node.left); }
     yield node;
@@ -469,7 +469,7 @@ In-order traversal would print out the following values: `3, 4, 5, 10, 15, 30, 4
 
 Post-order traversal visit nodes on this order: left, right, parent.
 
-{% codeblock BinarySearchTree.prototype.postOrderTraversal lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+{% codeblock BinarySearchTree.prototype.postOrderTraversal lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
   * postOrderTraversal(node = this.root) {
     if (node.left) { yield* this.postOrderTraversal(node.left); }
     if (node.right) { yield* this.postOrderTraversal(node.right); }
@@ -483,7 +483,7 @@ Post-order traversal would print out the following values: `3, 4, 5, 15, 40, 30,
 
 In-order traversal visit nodes on this order: parent, left, right.
 
-{% codeblock BinarySearchTree.prototype.preOrderTraversal lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+{% codeblock BinarySearchTree.prototype.preOrderTraversal lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
   * preOrderTraversal(node = this.root) {
     yield node;
     if (node.left) { yield* this.preOrderTraversal(node.left); }
@@ -493,7 +493,7 @@ In-order traversal visit nodes on this order: parent, left, right.
 
 Pre-order traversal would print out the following values: `10, 5, 4, 3, 30, 15, 40`. This order of numbers is the same result that we would get if we run the Depth-First Search (DFS).
 
-{% codeblock BinarySearchTree.prototype.dfs lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+{% codeblock BinarySearchTree.prototype.dfs lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
   * dfs() {
     const stack = new Stack();
 
@@ -514,7 +514,7 @@ If you need a refresher on DFS, we covered in details on [Graph post](/blog/2018
 
 Similar to DFS, we can implement a BFS by switching the `Stack` by a `Queue`:
 
-{% codeblock BinarySearchTree.prototype.bfs lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
+{% codeblock BinarySearchTree.prototype.bfs lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
   * bfs() {
     const queue = new Queue();
 

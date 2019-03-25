@@ -323,7 +323,7 @@ Collision in hashmaps is unavoidable when using an array-like underlying data st
 <a id="NaiveHashMap"></a>
 A simple (and bad) hash function would be this one:
 
-{% codeblock "Naive HashMap Implementation" lang:js mark:18,23 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map-1.js full code %}
+{% codeblock "Naive HashMap Implementation" lang:js mark:18,23 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/maps/hash-maps/hash-map-1.js full code %}
 class NaiveHashMap {
 
   constructor(initialCapacity = 2) {
@@ -526,7 +526,7 @@ Let's make the following improvements to our HashMap implementation:
 - **Hash function** that checks types and character orders to minimize collisions.
 - **Handle collisions** by appending values to a list. We also added a counter to keep track of them.
 
-{% codeblock "Decent HashMap Implementation" lang:js mark:18,23 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map-2.js full code %}
+{% codeblock "Decent HashMap Implementation" lang:js mark:18,23 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/maps/hash-maps/hash-map-2.js full code %}
 class DecentHashMap {
 
   constructor(initialCapacity = 2) {
@@ -710,7 +710,7 @@ This will be our latest and greatest hash map implementation:
 <details>
  <summary>**Optimized Hash Map Implementation _(click here to show the code)_**</summary>
 
-{% codeblock "Optimal HashMap Implementation" lang:js mark:5,47-49,96-110,112-114 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/hash-maps/hash-map.js documented code %}
+{% codeblock "Optimal HashMap Implementation" lang:js mark:5,47-49,96-110,112-114 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/maps/hash-maps/hash-map.js documented code %}
 
 class HashMap {
   constructor(initialCapacity = 16, loadFactor = 0.75) {
@@ -1239,7 +1239,7 @@ When we have a chain of nodes where each one points to the next one we a **Singl
 
 Doubly linked list nodes have double references (next and previous). We are also going to keep track of the list first and the last element.
 
-{% codeblock Doubly Linked List lang:js https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
+{% codeblock Doubly Linked List lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/linked-lists/linked-list.js full code  %}
 class Node {
   constructor(value) {
     this.value = value;
@@ -1264,7 +1264,7 @@ class LinkedList {
 Adding and removing from the start of the list is simple since we have `this.first` reference:
 
 <a id="DoublyLinkedList.addFirst"></a>
-{% codeblock LinkedList.prototype.addFirst lang:js https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
+{% codeblock LinkedList.prototype.addFirst lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/linked-lists/linked-list.js full code  %}
   addFirst(value) {
     const node = new Node(value);
 
@@ -1286,7 +1286,7 @@ Adding and removing from the start of the list is simple since we have `this.fir
 Notice, that we have to be very careful and update the previous, size and last.
 
 <a id="DoublyLinkedList.removeFirst"></a>
-{% codeblock LinkedList.prototype.removeFirst lang:js https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
+{% codeblock LinkedList.prototype.removeFirst lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/linked-lists/linked-list.js full code  %}
   removeFirst() {
     const first = this.first;
 
@@ -1314,7 +1314,7 @@ What's the runtime?
 Adding and removing *from the end* of the list is a little tricky. If you checked in the Singly Linked List, both operations took *O(n)* since we had to loop through the list to find the last element. Now, we have the `last` reference:
 
 <a id="DoublyLinkedList.addLast"></a>
-{% codeblock LinkedList.prototype.addLast lang:js mark:7 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
+{% codeblock LinkedList.prototype.addLast lang:js mark:7 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/linked-lists/linked-list.js full code  %}
   addLast(value) {
     const node = new Node(value);
 
@@ -1337,7 +1337,7 @@ Adding and removing *from the end* of the list is a little tricky. If you checke
 Again, we have to be careful about updating the references and handling special cases such as when there's only one element.
 
 <a id="DoublyLinkedList.removeLast"></a>
-{% codeblock LinkedList.prototype.removeLast lang:js mark:6 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js full code  %}
+{% codeblock LinkedList.prototype.removeLast lang:js mark:6 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/linked-lists/linked-list.js full code  %}
   removeLast() {
     let current = this.first;
     let target;
@@ -1370,7 +1370,7 @@ Did you remember that for the Queue we had to use two arrays? Now, we can change
 
 Adding an element on anywhere on the list leverages our `addFirst` and `addLast` functions as you can see below:
 
-{% codeblock LinkedList.add lang:js mark:3,9 https://github.com/amejiarosario/algorithms.js/blob/master/lib/data-structures/linked-lists/linked-list.js FullCode %}
+{% codeblock LinkedList.add lang:js mark:3,9 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/linked-lists/linked-list.js FullCode %}
   add(value, index = 0) {
     if(index === 0) {
       return this.addFirst(value);

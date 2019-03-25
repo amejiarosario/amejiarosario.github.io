@@ -173,7 +173,7 @@ For the coding part, let's do another example:
 ```
 
 To define the tree we are using
-[TreeNode ](https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-node.js)
+[TreeNode ](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-node.js)
 that we developed in the
 [previous post](https://adrianmejia.com/blog/2018/06/11/data-structures-for-beginners-trees-binary-search-tree-tutorial/#BST-Implementation).
 
@@ -193,7 +193,7 @@ that we developed in the
 
 In this case, we are rotating 2 to the left. Let's implement the `leftRotation` function.
 
-{% codeblock leftRotation lang:js mark:6 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
+{% codeblock leftRotation lang:js mark:6 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
 function leftRotation(node) {
   const newParent = node.right; // e.g. 3
   const grandparent = node.parent; // e.g. 1
@@ -211,7 +211,7 @@ function leftRotation(node) {
 
 Notice that we are using a utility function to swap parents called `swapParentChild`.
 
-{% codeblock swapParentChild lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
+{% codeblock swapParentChild lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
 function swapParentChild(oldChild, newChild, parent) {
   if (parent) {
     const side = oldChild.isParentRightChild ? 'right' : 'left';
@@ -248,7 +248,7 @@ This is called **single right rotation** or **Right-Right (RR) rotation**.
 
 The code is pretty similar to what we did on the left rotation:
 
-{% codeblock rightRotation lang:js mark:5,8,9 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
+{% codeblock rightRotation lang:js mark:5,8,9 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
 function rightRotation(node) {
   const newParent = node.left;
   const grandparent = node.parent;
@@ -302,7 +302,7 @@ If we expand the `left-right-rotation` into the two single rotations we would ha
 
 This is double rotation called **Left-Right (LR) rotation**.
 
-{% codeblock leftRightRotation lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
+{% codeblock leftRightRotation lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
 function leftRightRotation(node) {
   leftRotation(node.left);
   return rightRotation(node);
@@ -325,7 +325,7 @@ When we insert nodes on the following order: `1-3-2`, we need to perform a `righ
 
 The code to is very similar to LR rotation:
 
-{% codeblock leftRightRotation lang:js   https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
+{% codeblock leftRightRotation lang:js   https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js Code %}
 function rightLeftRotation(node) {
   rightRotation(node.right);
   return leftRotation(node);
@@ -344,7 +344,7 @@ We already know how to do rotations from the previous sections, the next step is
 
 If the balance factor is bigger than `1` or less than `-1` then, we know we need to balance that node. We can write the balance function as follows:
 
-{% codeblock Balance lang:js mark:2,9 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-rotations.js#L98 Code %}
+{% codeblock Balance lang:js mark:2,9 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js#L98 Code %}
 function balance(node) {
   if (node.balanceFactor > 1) {
     // left subtree is higher than right subtree
@@ -374,7 +374,7 @@ Notice that we haven't implemented the `node.balanceFactor`  attribute yet, but 
 
 One of the easiest ways to implement subtree heights is using recursion. Let's go ahead and add height-related properties to `TreeNode` class:
 
-{% codeblock height, leftSubtreeHeight and rightSubtreeHeight lang:js https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-node.js#L125 Code %}
+{% codeblock height, leftSubtreeHeight and rightSubtreeHeight lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-node.js#L125 Code %}
   get height() {
     return Math.max(this.leftSubtreeHeight, this.rightSubtreeHeight);
   }
@@ -457,7 +457,7 @@ AVL tree is just a layer on top of a regular Binary Search Tree (BST). The add/r
 
 Let's implement the AVL Tree.
 
-{% codeblock AvlTree lang:js mark:7,15 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/avl-tree.js Code %}
+{% codeblock AvlTree lang:js mark:7,15 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/avl-tree.js Code %}
 const BinarySearchTree = require('./binary-search-tree');
 const { balanceUptream } = require('./tree-rotations');
 
@@ -482,12 +482,12 @@ class AvlTree extends BinarySearchTree {
 {% endcodeblock %}
 
 If you need to review the dependencies here are the links to the implementations:
-- [binary-search-tree](https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/binary-search-tree.js)
-- [tree-rotations](https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-rotations.js)
+- [binary-search-tree](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js)
+- [tree-rotations](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js)
 
 The `balanceUpstream` function gets executed after an insertion or deletion.
 
-{% codeblock balanceUptream lang:js mark:4 https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/tree-rotations.js#L121 Context %}
+{% codeblock balanceUptream lang:js mark:4 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js#L121 Context %}
 function balanceUptream(node) {
   let current = node;
   while (current) {
@@ -504,7 +504,7 @@ In the following animation we can see AVL tree insertions and deletions in actio
 {% img /images/avl-tree-insert-remove.gif AVL tree insertions and deletions %}
 
 You can also check the
-[test files](https://github.com/amejiarosario/algorithms.js/blob/master/src/data-structures/trees/avl-tree.spec.js)
+[test files](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/avl-tree.spec.js)
 to see more detailed examples of how to use the AVL trees.
 
 That's all folks!
@@ -538,5 +538,5 @@ Double rotations:
 - Right-Left rotation
 
 You can find all the code developed here in the
-[Github](https://github.com/amejiarosario/algorithms.js/tree/master/src/data-structures/trees).
+[Github](https://github.com/amejiarosario/dsa.js/tree/master/src/data-structures/trees).
 You can `star` it to keep it handy.
