@@ -57,17 +57,18 @@ This post is part of a tutorial series:
 
 Here is the summary of the operations that we are going to cover on this post:
 
- | Adjacency List | Adjacency Matrix
--|-
-Space | *[O(&#124;V&#124; + &#124;E&#124;)](#List.space)* | *[O(&#124;V&#124;<sup>2</sup>)](#Matrix.space)*
-**add**Vertex | *[O(1)](#Graph.addVertex)* | *[O(&#124;V&#124;<sup>2</sup>)](#Matrix.addVertex)*
-**remove**Vertex | *[O(&#124;V&#124; + &#124;E&#124;)](#Graph.removeVertex)* | *[O(&#124;V&#124;<sup>2</sup>)](#Matrix.addVertex)*
-**add**Edge | *[O(1)](#Graph.addEdge)* | *[O(1)](#Matrix.addVertex)*
-**remove**Edge (using Array) | *[O(&#124;E&#124;)](#Graph.removeEdge)* | *[O(1)](#Matrix.addVertex)*
-**remove**Edge (using HashSet) | *O(1)* | *[O(1)](#Matrix.addVertex)*
-**get**Adjacents | *[O(&#124;E&#124;)](#Node.getAdjacents)* | *[O(&#124;V&#124;)](#Matrix.getAdjacents)*
-**is**Adjacent (using Array) | *[O(&#124;E&#124;)](#Node.getAdjacents)* | *[O(1)](#Matrix.getAdjacents)*
-**is**Adjacent (using HashSet) | *O(1)* | *[O(1)](#Matrix.getAdjacents)*
+&nbsp; | Adjacency List | Adjacency Matrix
+-|-|-
+Space | [O(&#124;V&#124; + &#124;E&#124;)](#List.space) | [O(&#124;V&#124;<sup>2</sup>)](#Matrix.space)
+addVertex | [O(1)](#Graph.addVertex) | [O(&#124;V&#124;<sup>2</sup>)](#Matrix.addVertex)
+removeVertex | [O(&#124;V&#124; + &#124;E&#124;)](#Graph.removeVertex) | [O(&#124;V&#124;<sup>2</sup>)](#Matrix.addVertex)
+addEdge | [O(1)](#Graph.addEdge) | [O(1)](#Matrix.addVertex)
+removeEdge (using Array) | [O(&#124;E&#124;)](#Graph.removeEdge) | [O(1)](#Matrix.addVertex)
+removeEdge (using HashSet) | O(1) | [O(1)](#Matrix.addVertex)
+getAdjacents | [O(&#124;E&#124;)](#Node.getAdjacents) | [O(&#124;V&#124;)](#Matrix.getAdjacents)
+isAdjacent (using Array) | [O(&#124;E&#124;)](#Node.getAdjacents) | [O(1)](#Matrix.getAdjacents)
+isAdjacent (using HashSet) | O(1) | [O(1)](#Matrix.getAdjacents)
+
 
 
 # Graphs Basics
@@ -573,17 +574,17 @@ We have seen some of the basic operations of a Graph. How to add and remove vert
 <!-- - | - | - | - | - | - | - | - &#124; -->
 <!-- Adjacency List | -->
 
- | Adjacency List | Adjacency Matrix
--|-
-Space | *[O(&#124;V&#124; + &#124;E&#124;)](#List.space)* | *[O(&#124;V&#124;<sup>2</sup>)](#Matrix.space)*
-**add**Vertex | *[O(1)](#Graph.addVertex)* | *[O(&#124;V&#124;<sup>2</sup>)](#Matrix.addVertex)*
-**remove**Vertex | *[O(&#124;V&#124; + &#124;E&#124;)](#Graph.removeVertex)* | *[O(&#124;V&#124;<sup>2</sup>)](#Matrix.addVertex)*
-**add**Edge | *[O(1)](#Graph.addEdge)* | *[O(1)](#Matrix.addVertex)*
-**remove**Edge (using Array) | *[O(&#124;E&#124;)](#Graph.removeEdge)* | *[O(1)](#Matrix.addVertex)*
-**remove**Edge (using HashSet) | *O(1)* | *[O(1)](#Matrix.addVertex)*
-**get**Adjacents | *[O(&#124;E&#124;)](#Node.getAdjacents)* | *[O(&#124;V&#124;)](#Matrix.getAdjacents)*
-**is**Adjacent (using Array) | *[O(&#124;E&#124;)](#Node.getAdjacents)* | *[O(1)](#Matrix.getAdjacents)*
-**is**Adjacent (using HashSet) | *O(1)* | *[O(1)](#Matrix.getAdjacents)*
+&nbsp; | Adjacency List | Adjacency Matrix
+-|-|-
+Space | [O(&#124;V&#124; + &#124;E&#124;)](#List.space) | [O(&#124;V&#124;<sup>2</sup>)](#Matrix.space)
+addVertex | [O(1)](#Graph.addVertex) | [O(&#124;V&#124;<sup>2</sup>)](#Matrix.addVertex)
+removeVertex | [O(&#124;V&#124; + &#124;E&#124;)](#Graph.removeVertex) | [O(&#124;V&#124;<sup>2</sup>)](#Matrix.addVertex)
+addEdge | [O(1)](#Graph.addEdge) | [O(1)](#Matrix.addVertex)
+removeEdge (using Array) | [O(&#124;E&#124;)](#Graph.removeEdge) | [O(1)](#Matrix.addVertex)
+removeEdge (using HashSet) | O(1) | [O(1)](#Matrix.addVertex)
+getAdjacents | [O(&#124;E&#124;)](#Node.getAdjacents) | [O(&#124;V&#124;)](#Matrix.getAdjacents)
+isAdjacent (using Array) | [O(&#124;E&#124;)](#Node.getAdjacents) | [O(1)](#Matrix.getAdjacents)
+isAdjacent (using HashSet) | O(1) | [O(1)](#Matrix.getAdjacents)
 
 <!-- areConnected | | -->
 
