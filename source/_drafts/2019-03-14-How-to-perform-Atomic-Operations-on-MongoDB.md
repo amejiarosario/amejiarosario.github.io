@@ -17,6 +17,7 @@ categories:
   - Programming
 date: 2019-03-14 06:40:00
 updated: 2019-03-14 06:40:00
+author: Danish Wadhwa
 ---
 
 The NoSQL database system has been able to gain momentum in the past few years due to its flexibility and other benefits. Mongo is the leader when it comes to NoSQL. There are plenty of amazing features of MongoDB, and one of them are atomic operations. In the upcoming sections of this article, we will go deep into atomic operations, its use, and how you can apply it to your projects.
@@ -53,7 +54,7 @@ We can explain atomic operations in MongoDB clearly with the use of ACID, a.k.a.
 
 # Modeling e-Commerce Products in MongoDB
 
-We should maintain atomicity in MongoDB by compiling all the related information in a single document, which will update consistently. We can create such type of document via embedded document. The embedded report is for ensuring that every single update that takes place in the document is atomic.
+We should maintain atomicity in MongoDB by compiling all the related information in a single document, which will update consistently. We can create such type of consistency via embedded documents. The embedded is for ensuring that every single update that takes place in the document is atomic.
 
 Here is how the document looks like for representing item purchase information.
 
@@ -61,7 +62,7 @@ Here is how the document looks like for representing item purchase information.
 
 Let's say we have an e-Commerce app and we want to model a product on MongoDB with atomic operations. We can do something like this:
 
-{% codeblock creating a product on mongodb lang:js%}
+{% codeblock creating a product on MongoDB lang:js%}
 use AtomicMongoDB;
 // => switched to db AtomicMongoDB
 
@@ -103,10 +104,10 @@ db.AtominMongoDB.find().pretty();
 
 In the above document, we have created a model, embedded document. We have produced a report from the purchase in the item_bought_by field. This single document will manage everything about the purchase and the stock. In this document, it will see whether the item that the customer orders are in the stock or not. The customer’s order processes through the item_available field.
 
-## Decreasing count on purchase
+## Decreasing count on a purchase
 
-In case of the availability, we will subtract the item_available field by 1. After we complete that part, we will record the information of the customer, and, i.e., name and the purchase date, in the item_bought_by field. We will again look at another document where we will be using the findAndmodify statement to fulfill this purpose.
-By using findAndmodify statement, the document will perform search and update activity simultaneously in the report.
+In the case of availability, we will subtract the `item_available` field by 1. After we complete that part, we will record the information of the customer, and, i.e., name and the purchase date, in the item_bought_by field. We will again look at another document where we will be using the `findAndmodify` statement to fulfill this purpose.
+By using `findAndmodify` statement, the document will perform search and update activity simultaneously in the report.
 
 {% codeblock buying a product lang:js%}
 db.AtominMongoDB.findAndModify({
@@ -168,9 +169,9 @@ db.AtominMongoDB.find().pretty();
 {% endcodeblock %}
 
 
-In the above document, we searched for the item, setting the ID as 1111. If the system finds such a thing, we activate the subtraction function and deduct 1 in the item_available field. We will also update the field item_bought_by in which we insert the name of the customer along with the purchase date.
+In the above document, we searched for the item, setting the ID as 1111. If the system finds such a thing, we activate the subtraction function and deduct 1 in the item_available field. We will also update the field `item_bought_by` in which we insert the name of the customer along with the purchase date.
 
-Finally, we print the full information with the function, find and pretty method. We can see that the item_available field will come down from 6 to 5 while adding the customer name and the purchase date in the item_bought_by field.
+Finally, we print the full information with the function, find and pretty method. We can see that the item_available field will come down from 6 to 5 while adding the customer name and the purchase date in the `item_bought_by` field.
 
 One more example to make you more precise about the use of atomic operations in MongoDB
 
@@ -180,29 +181,57 @@ In the above case, we dealt mainly with the product order and the record keeping
 
 Let’s suppose in that book store, and we need to maintain the record of books along with the number of copies available for checkout, including crucial details about checkout.
 
-We should sync the number of copies available, and checkout information must for the program to work. We will be embedding the checkout and available field for ensuring that the two areas will be updated atomically.
+We should sync the number of copies available, and checkout information must for the program to work. We will be embedding the checkout and the `available` field for ensuring that the two areas will be updated atomically.
 
 {% codeblock create a book on mongo lang:js%}
 // create a new book
 db.books.save({
-  _id: 123456789,
-  title: "Data Structures & Algorithms implemented in JavaScript",
+  _id: 222222,
+  title: "Data Structures & Algorithms in JavaScript",
   author: [ "Adrian Mejia" ],
   published_date: ISODate("2019-02-15"),
   pages: 216,
   language: "English",
   publisher_id: "Independent",
-  available: 3,
-  checkout: [ { by: "joe", date: ISODate("2019-04-14") } ]
+  available: 156,
+  checkout: [ { by: "Ivan", date: ISODate("2019-04-14") } ]
 })
 
 {% endcodeblock %}
 
-Updating the checkout field with new information is essential. We will be using db.collection.updateOne() method for atomically updating available and checkout field.
+Updating the checkout field with new information is essential. We will be using `db.collection.updateOne()` method for atomically updating available and checkout field.
 
+{% codeblock Purchasing a book lang:js%}
+db.books.updateOne({
+  _id: 222222,
+  available: { $gt: 0 }
+}, {
+  $inc: { available: -1 },
+  $push: {
+    checkout: {
+      by: "Abby",
+      date: new Date()
+    }
+  }
+});
+{% endcodeblock %}
 
+The above command will return the following:
 
+```js
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+```
 
-# Summary
+The `matchedCount` field is responsible for comparing the condition for updates. We can see that 1 document fulfilled the requirements due to which the operation updated 1 document (`modifiedCount`).
 
-Deserunt veniam proident minim enim enim reprehenderit pariatur pariatur aliqua. Ex ad irure nisi elit. Dolor non proident ad nostrud officia occaecat esse culpa ut consequat laboris.
+There could also be the case where no documents are matched, according to the update condition. In that situation, both the `matchedCount` and `modifiedCount` field would be 0. What this means is that you will not be able to purchase the book and continue with a checkout process.
+
+# Final Say
+
+Finally, we have finished the topic of how you can use atomic operations via MongoDB. It was not that difficult, was it? Although it is not possible to work out with multi-document tasks, but using atomic operations in MongoDB is simple. With that said, MongoDB starting from version 4.0 will be supporting atomic operations in numerous scenarios.
+
+There are plenty of real-world issues where we can use an atomic operation like in purchase record. It will prevent mutual exclusions; hence, it will stop the corruption of data in many ways.
+
+Take a close look at the source codes in the article and follow it as you see fit. After practicing for a few times, you can naturally apply the atomic operation in the real-world problems where needed.
+
+Do you have any confusions? If yes, feel free to leave a comment below. We will reply to your comment for clearing out your difficulties. In case you want to add more insights, you can put forward your opinion in the comment below.
