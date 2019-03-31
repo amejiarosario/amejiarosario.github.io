@@ -125,8 +125,14 @@
             <%- partial('_widgets/subscribe') %>
           </div>
 
-          <!-- Adrian Mejia Bio -->
-          <%- partial('_widgets/bio') %>
+          <!-- Author Bio -->
+          <b>About the author</b>
+          <% if (page.author) { %>
+            <%- partial(`_widgets/${page.author}`) %>
+            <% } else { %>
+              <!-- Adrian Mejia Bio -->
+            <%- partial('_widgets/bio') %>
+          <% }  %>
 
           <div class="m-y-4">
             <% related(page, site).forEach(function(post, i, posts){ %>
