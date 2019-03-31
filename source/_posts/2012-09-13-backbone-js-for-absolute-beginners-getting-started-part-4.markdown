@@ -4,8 +4,8 @@ title: "Backbone.js for absolute beginners - getting started (part 4: Routers)"
 date: 2012-09-13 14:41
 updated: 2012-09-13 14:41
 comments: true
-pageviews__total: 68560
-pageviews__recent: 148
+pageviews__total: 68594
+pageviews__recent: 149
 pageviews__avg_time: 380
 toc: true
 #categories: [backbonejs, javascript]

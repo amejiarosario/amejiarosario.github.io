@@ -4,9 +4,9 @@ title: Drupal Modules for SEO optimation
 created: 1310443200000
 updated: 1310443200000
 comments: true
-pageviews__total: 66
+pageviews__total: 61
 pageviews__recent: 1
-pageviews__avg_time: 739
+pageviews__avg_time: 742
 tutorial__order: 0
 tags:
   - drupal

@@ -4,9 +4,9 @@ title: How to set up Git / github in windows
 created: 1311267147000
 updated: 1311267147000
 comments: true
-pageviews__total: 369
+pageviews__total: 371
 pageviews__recent: 1
-pageviews__avg_time: 299
+pageviews__avg_time: 285
 tutorial__order: 0
 tags:
   - git

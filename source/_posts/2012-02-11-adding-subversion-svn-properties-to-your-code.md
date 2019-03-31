@@ -5,8 +5,8 @@ created: 1329003331000
 updated: 1329003331000
 comments: true
 pageviews__total: 2188
-pageviews__recent: 13
-pageviews__avg_time: 399
+pageviews__recent: 12
+pageviews__avg_time: 398
 tutorial__order: 0
 #categories: [subversion, eclipse]
 ---
