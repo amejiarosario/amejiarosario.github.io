@@ -81,7 +81,7 @@ const circle = require('./circle');
 const r = 3;
 console.log(`Circle with radius ${r} has
   area: ${circle.area(r)};
-  circunference: ${circle.circumference(r)}`);
+  circumference: ${circle.circumference(r)}`);
 ```
 
 Noticed that this time we prefix the module name with `./`. That indicates that the module is a local file.
@@ -101,7 +101,7 @@ You can think of each Node.js module as a self-contained function like the follo
 
 We have already covered `exports` and `require`. Notice the relationship between `module.exports` and `exports`. They point to the same reference. But, if you assign something directly to `exports` you will break its link to `module.exports`. More on that in the next section.
 
-For our convenience `__filename` and `__dirname` are defined. They provide the full path to the current file and directory. The latter excludes the filename and print out the directory path.
+For our convenience `__filename` and `__dirname` are defined. They provide the full path to the current file and directory. The latter excludes the filename and prints out the directory path.
 
 For instance, for our `./circle.js` module, it would be something like this:
 
@@ -109,7 +109,7 @@ For instance, for our `./circle.js` module, it would be something like this:
 
 - `__dirname`: `/User/adrian/code`
 
-Ok, we have covered `exports`, `require`, `__filename`, and `__dirname`. The only one we haven't cover is `module`. Let's go for it!
+Ok, we have covered `exports`, `require`, `__filename`, and `__dirname`. The only one we haven't covered is `module`. Let's go for it!
 
 # Module.exports vs Exports
 
@@ -142,7 +142,7 @@ To sum up, when to use `module.exports` vs `exports`:
 
 Use `exports` to:
 
-- Export named function. e.g. `exports.area`, `exports.circunference`.
+- Export named function. e.g. `exports.area`, `exports.circumference`.
 
 Use `module.exports` to:
 
@@ -155,7 +155,7 @@ Use `module.exports` to:
 
 Starting with version 8.5.0+, Node.js supports ES modules natively with a feature flag and new file extention `*.mjs`.
 
-For instace, our previous `circle.js` can be rewritten as `circle.mjs` as follows:
+For instance, our previous `circle.js` can be rewritten as `circle.mjs` as follows:
 
 ```javascript circle.mjs
 const PI = 3.14159265359;
