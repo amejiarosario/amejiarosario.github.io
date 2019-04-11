@@ -2,9 +2,9 @@
 layout: draft
 title: Self-balanced Binary Search Trees with AVL
 comments: true
-pageviews__total: 5047
-pageviews__recent: 510
-pageviews__avg_time: 237
+pageviews__total: 5213
+pageviews__recent: 500
+pageviews__avg_time: 245
 tutorial__order: 7
 toc: true
 photos:

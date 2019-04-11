@@ -4,9 +4,9 @@ title: "Backbone.js for absolute beginners - getting started (part 2: Models, Co
 date: 2012-09-13 00:08
 updated: 2012-09-13 00:08
 comments: true
-pageviews__total: 198545
-pageviews__recent: 514
-pageviews__avg_time: 1882
+pageviews__total: 198686
+pageviews__recent: 507
+pageviews__avg_time: 1891
 photos:
   - /images/Backbone_for_beginners_part2_small.png
   - /images/BackbonesforBeginners_large.png
