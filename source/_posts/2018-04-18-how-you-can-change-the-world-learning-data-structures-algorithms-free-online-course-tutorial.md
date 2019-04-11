@@ -20,16 +20,14 @@ categories:
   - Programming
   - Data Structures and Algorithms (DSA)
 date: 2018-04-04 16:16:07
+updated: 2019-04-05 16:12:00
 ---
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
-As a developer, you have the power to change the world! You can write programs that enable new technologies and work in software to find an earlier diagnosis of diseases for instance. Also, you might create a project to free up people's time to do other amazing things. Whatever you do, it has the potential to impact the community who use it.
+As a developer, you have the power to change the world! You can write programs that enable new technologies or work in software to find an earlier diagnosis of diseases for instance. Also, you might create a project to free up people's time to do other amazing things. Whatever you do, it has the potential to impact the community who use it.
 
-<!-- Millions of people might use some applications (e.g., Google,
-Baidu, Youtube, Facebook). -->
-
-However, these accomplishments are only possible if we write software that is fast and can scale. Learning how to measure your code performance is the goal of this online course.
+However, these accomplishments are only possible if we write software that is fast and can scale. Learning how to measure your code performance is the goal of this post.
 
 <!-- more -->
 
@@ -65,13 +63,13 @@ First, let’s see a real story to learn why this is important.
 
 # An algorithm that saved millions of lives
 
-During War World II the Germans used <abbr title="AM broadcasting is a radio broadcasting technology, which employs amplitude modulation transmissions.">AM</abbr> radio signals to communicate with troops around Europe. Anybody with an AM frecuency radio and some knowledge of Morse code could intercept the message. However, the information was encoded! All the countries that were under attack tried to decode it. Sometimes, they got lucky and were able to make sense of a couple of messages at the end of the day. Unfortunately, The Nazis changed the encoding every single day!
+During War World II, the Germans used <abbr title="AM broadcasting is a radio broadcasting technology, which employs amplitude modulation transmissions.">AM</abbr> radio signals to communicate with troops around Europe. Anybody with an AM frequency radio and some knowledge of Morse code could intercept the message. However, the information was encoded! All the countries that were under attack tried to decode it. Sometimes, they got lucky and were able to make sense of a couple of messages at the end of the day. Unfortunately, the Nazis changed the encoding every single day!
 
-A math genius called Alan Turing joined the British military to crack the German "Enigma" code. He knew they would never get ahead if they keep doing the calculations by pen and paper. So after many months of hard work, they built a machine. Unfortunately, It took more than a day to decode a message! So, it was useless :((((
+A math genius called Alan Turing joined the British military to crack the German "Enigma" code. He knew they would never get ahead if they keep doing the calculations by pen and paper. So after many months of hard work, they built a machine. Unfortunately, It took more than a day to decode a message! So, it was not very useful.
 
-Alan's team found out that every encrypted message ended with the same string: "Heil Hitler" Aha! After changing the algorithm, the machine was able to decoded in minutes rather than days! They used it the info to finish the war faster and save millions of lives!
+Alan's team found out that every encrypted message ended with the same string: "Heil Hitler" Aha! After changing the algorithm, the machine was able to decode messages a lot faster! They used it the info to finish the war faster and save millions of lives!
 
-> The same machine that was going to get shut down as a failure became a live saver. Likewise, you can do way more with your computing resources when you write efficient code. That is what we are going to learn in this course!
+_The same machine that was going to get shut down as a failure became a live saver. Likewise, you can do way more with your computing resources when you write efficient code. That is what we are going to learn in this post series!_
 
 Another popular algorithm is `PageRank` developed in 1998 by Sergey Brin and Larry Page (Google founders). This was (and is) used by a Google search engine to make sense of trillions of web pages. Google was not the only search engine, however, since their algorithm returned better results, eventually, most of the competitors faded away at the time. Today it powers most of 3 billion daily searches very quickly. That is the power of algorithms that scale! 🏋🏻‍
 
@@ -82,8 +80,7 @@ There are many advantages; these are just some of them:
 * You would become a much better software developer (and get better jobs/income).
 * Spend less time debugging, optimizing and re-writing code.
 * Your software will run faster with the same hardware (cheaper to scale).
-* Your programs might be used to aid discoveries that save millions of lives.
-* Outperform competitors!
+* Your programs might be used to aid discoveries that save lives (maybe?).
 
 Without further ado, let’s step up our game!
 
