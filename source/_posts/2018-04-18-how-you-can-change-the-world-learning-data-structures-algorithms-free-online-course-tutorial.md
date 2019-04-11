@@ -25,7 +25,7 @@ updated: 2019-04-05 16:12:00
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
-As a developer, you have the power to change the world! You can write programs that enable new technologies or work in software to find an earlier diagnosis of diseases for instance. Also, you might create a project to free up people's time to do other amazing things. Whatever you do, it has the potential to impact the community who use it.
+As a developer, you have the power to change the world! You can write programs that enable new technologies. For instance, develop software to find an earlier diagnosis of diseases. But, that's not the only way, you might do it indirectly by creating projects that make people more productive and help them free up time to do other amazing things. Whatever you do, it has the potential to impact the community who use it.
 
 However, these accomplishments are only possible if we write software that is fast and can scale. Learning how to measure your code performance is the goal of this post.
 
@@ -63,15 +63,16 @@ First, let’s see a real story to learn why this is important.
 
 # An algorithm that saved millions of lives
 
+
 During War World II, the Germans used <abbr title="AM broadcasting is a radio broadcasting technology, which employs amplitude modulation transmissions.">AM</abbr> radio signals to communicate with troops around Europe. Anybody with an AM frequency radio and some knowledge of Morse code could intercept the message. However, the information was encoded! All the countries that were under attack tried to decode it. Sometimes, they got lucky and were able to make sense of a couple of messages at the end of the day. Unfortunately, the Nazis changed the encoding every single day!
 
-A math genius called Alan Turing joined the British military to crack the German "Enigma" code. He knew they would never get ahead if they keep doing the calculations by pen and paper. So after many months of hard work, they built a machine. Unfortunately, It took more than a day to decode a message! So, it was not very useful.
+A brilliant mathematician called Alan Turing joined the British military to crack the German "Enigma" code. He knew they would never get ahead if they keep doing the calculations by pen and paper. So after many months of hard work, they built a machine. Unfortunately, the first version of the device took to long to decode a message! So, it was not very useful.
 
-Alan's team found out that every encrypted message ended with the same string: "Heil Hitler" Aha! After changing the algorithm, the machine was able to decode messages a lot faster! They used it the info to finish the war faster and save millions of lives!
+Alan's team found out that every encrypted message ended with the same string: "Heil Hitler" Aha! After changing the algorithm, the machine was able to decode transmissions a lot faster! They used it the info to finish the war quicker and save millions of lives!
 
 _The same machine that was going to get shut down as a failure became a live saver. Likewise, you can do way more with your computing resources when you write efficient code. That is what we are going to learn in this post series!_
 
-Another popular algorithm is `PageRank` developed in 1998 by Sergey Brin and Larry Page (Google founders). This was (and is) used by a Google search engine to make sense of trillions of web pages. Google was not the only search engine, however, since their algorithm returned better results, eventually, most of the competitors faded away at the time. Today it powers most of 3 billion daily searches very quickly. That is the power of algorithms that scale! 🏋🏻‍
+Another popular algorithm is `PageRank` developed in 1998 by Sergey Brin and Larry Page (Google founders). This algorithm was (and is) used by a Google search engine to make sense of trillions of web pages. Google was not the only search engine. However, since their algorithm returned better results most of the competitors faded away. Today it powers most of 3 billion daily searches very quickly. That is the power of algorithms that scale! 🏋🏻‍
 
 # So, why should you learn to write efficient algorithms?
 
@@ -120,7 +121,7 @@ We can say for each algorithm have the following running times:
 * Best-case time complexity (e.g., already sorted)
 * Average-case time complexity (e.g., elements in random order)
 
-We usually care more about the **worst-case time complexity**. We are hoping for the best but preparing for the **worst**.
+We usually care more about the **worst-case time complexity** (We are hoping for the best but preparing for the _worst_).
 
 # Calculating time complexity
 
@@ -169,7 +170,7 @@ Asymptotic analysis is just evaluating functions as their value approximate to t
 | 1,000 | 2(1,000) + 3 | 2,003 |
 | 10,000 | 2(10,000) + 3 | 20,003 |
 
-Believe it or not, also `k` wouldn't make too much of a difference. Using this kind of asymptotic analysis we take the higher order element, in this case: `n`.
+Believe it or not, also the constant `k` wouldn't make too much of a difference. Using this kind of asymptotic analysis we take the higher order element, in this case: `n`.
 
 Let's do another example so we can get this concept. Let's say we have the following function: \`3 n^2 + 2n + 20\`. What would be the result of using the asymptotic analysis?
 
@@ -185,7 +186,7 @@ The Big O notation combines what we learned in the last two sections about **wor
 
 > The letter \`O\` refers to the **order** of a function.
 
-The Big O notation is used to classify algorithms by their worst running time or also referred as the upper bound of the growth rate of a function.
+The Big O notation is used to classify algorithms by their worst running time or also referred to as the upper bound of the growth rate of a function.
 
 In our previous example with `getMin` function, we can say it has a running time of `O(n)`. There are many different running times. Here are the most common that we are going to cover in the next post and their relationship with time:
 
