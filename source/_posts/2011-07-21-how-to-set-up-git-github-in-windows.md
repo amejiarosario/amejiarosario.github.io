@@ -6,7 +6,7 @@ updated: 1311267147000
 comments: true
 pageviews__total: 375
 pageviews__recent: 1
-pageviews__avg_time: 287
+pageviews__avg_time: 288
 tutorial__order: 0
 tags:
   - git

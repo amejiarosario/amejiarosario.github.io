@@ -3,8 +3,8 @@ layout: post
 title: 'Angular Tutorial: Create a CRUD App with Angular CLI and TypeScript'
 comments: true
 toc: true
-pageviews__total: 106814
-pageviews__recent: 4036
+pageviews__total: 107696
+pageviews__recent: 4105
 pageviews__avg_time: 666
 tutorial__order: 0
 photos__background_color: '#DD3229'

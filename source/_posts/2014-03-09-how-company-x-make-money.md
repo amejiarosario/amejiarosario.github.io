@@ -4,9 +4,9 @@ title: "How company X make money?"
 date: 2014-03-09 21:39:42 -0400
 updated: 2014-03-09 21:39:42 -0400
 comments: true
-pageviews__total: 4224
-pageviews__recent: 5
-pageviews__avg_time: 127
+pageviews__total: 4223
+pageviews__recent: 4
+pageviews__avg_time: 126
 tutorial__order: 0
 tags:
   - startups

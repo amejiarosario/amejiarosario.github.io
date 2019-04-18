@@ -2,9 +2,9 @@
 layout: post
 title: 'Graph Data Structures for Beginners'
 comments: true
-pageviews__total: 18576
-pageviews__recent: 1654
-pageviews__avg_time: 261
+pageviews__total: 19002
+pageviews__recent: 1707
+pageviews__avg_time: 260
 tutorial__order: 5
 toc: true
 photos:
