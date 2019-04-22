@@ -19,17 +19,17 @@ categories:
   - Programming
   - Data Structures and Algorithms (DSA)
 date: 2018-04-28 19:20:40
-updated: 2018-04-28 19:20:40
+updated: 2019-04-22 15:49:40
 ---
 
-
-<!-- Data Structures Time Complexity for Beginners -->
-
-When we are developing software, we have to store data in memory. Depending on how you want to manipulate the information, you might choose a data structure over another. There are many types of data, such as arrays, maps, sets, lists, trees, graphs, etc. Choosing the right data structure for a task can be tricky. So, this post will help you to know the trade-offs, so, you can use the right tool for the job!
+When we are developing software, we have to store data in memory. However, there are many types of data structures, such as arrays, maps, sets, lists, trees, graphs, etc. and choosing the right one for the task can be tricky. So, this series of posts will help you to know the trade-offs, so, you can use the right tool for the job!
 
 <!-- more -->
 
-On this section, we are going to focus on linear data structures like Arrays, Lists, Sets, Stacks, Queues and so on.
+On this section, we are going to focus on linear data structures: Arrays, Lists, Sets, Stacks, and Queues.
+
+You can find all these implementations and more in the Github repo:
+[https://github.com/amejiarosario/dsa.js](https://github.com/amejiarosario/dsa.js)
 
 ---
 This post is part of a tutorial series:
@@ -86,12 +86,20 @@ Note: **Binary search trees** and trees, in general, will be cover in the next p
 
 # Primitive Data Types
 
-Primitive data types are the most basic elements where all the other data structures built upon. Some primitives are:
+Primitive data types are the most basic elements where all the other data structures are built upon. Some primitives are:
 
 - Integers. E.g., `1`, `2`, `3`, ...
 - Characters. E.g., `a`, `b`, `"1"`, `"*"`
 - Booleans. E.g., `true` or `false`.
 - Float (floating points) or doubles. E.g., `3.14159`, `1483e-2`.
+- Null values. E.g. `null`
+
+JavaScript specific primitives:
+- `undefined`
+- `Symbol`
+- `Number`
+
+Note: Objects are not primitive since it's a collection of zero or more primitives and other objects.
 
 # Array
 
@@ -103,7 +111,7 @@ You can think of an array as a drawer where you can store things on the bins.
 {% img /images/array-drawer.jpg "Array is like a drawer that stores things on bins" %}
 
 
-It's when you want to search for something you can go directly to the bin number (*`O(1)`*). However, if you forgot what cabinet had, then you will have to open one by one (*`O(n)`*) to verify its content until you find what you are looking for. That same happens with an array.
+When you want to search for something you can go directly to the bin number. That's a constant time operation (*`O(1)`*). However, if you forgot what cabinet had, then you will have to open one by one (*`O(n)`*) to verify its content until you find what you are looking for. That same happens with an array.
 
 
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
@@ -137,7 +145,7 @@ Function|Runtime|Description
 <!-- https://github.com/v8/v8/blob/master/src/builtins/builtins-array.cc#L145 -->
 <!-- https://tc39.github.io/ecma262/#sec-array.prototype.unshift -->
 
-There are multiple ways to insert elements into an array. You can append a new data to end, or you can add it to the beginning of the collection.
+There are multiple ways to insert elements into an array. You can append new data to end, or you can add it to the beginning of the collection.
 
 Let's start with append to tail:
 
@@ -164,7 +172,7 @@ function insertToHead(array, element) {
 }
 
 const array = [1, 2, 3];
-console.log(insertToHead(array, 0)); // => [ 0, 1, 2, 3, ]
+console.log(insertToHead(array, 0)); // => [ 0, 1, 2, 3 ]
 ```
 
 What do you think is the runtime of the `insertToHead` function? Looks the same as the previous one except that we are using `unshift` instead of `push`. But, there's a catch! [unshift algorithm](https://tc39.github.io/ecma262/#sec-array.prototype.unshift) makes room for the new element by moving all existing ones to the next position in the array. So, it will iterate through all the elements.
@@ -270,9 +278,9 @@ Going back to the drawer analogy, bins have a label rather than a number.
 **HashMap is like a drawer that stores things on bins and labels them**
 {% img /images/hashmap-drawer.jpg "HashMap is like a drawer that stores things on bins and labels them" %}
 
-In this example, if you are looking for a toy, you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the bin labeled as "toys". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
+In this example, if you are looking for the [DSA.js book](https://gum.co/dsajs), you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the container labeled as "books". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
 
-Numbers were the array indexes, and labels are the key for the HashMap's values. Internally, the keys get translated into indexes using a *hash function*.
+In arrays, the data is referenced using a numeric index (relatively to the position). However, HashMaps uses labels that could be a string, number, object or anything. Internally, the HashMap uses an Array, and it maps the labels to array indexes using a *hash function*.
 
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 
@@ -289,7 +297,7 @@ As you can see in the image, each key gets translated into a **hash code**. Sinc
 
 Now, What do you think about covering each of the HashMap components in details? Let's start with the **hash function**.
 
-<!--  ## HashMap vs. Array
+## HashMap vs. Array
 
 Why go through the trouble of converting the key into an index and not using an array directly you might ask. Well, the main difference is that the Array's index doesn't have any relationship with the data. You have to know where your data is.
 
@@ -298,15 +306,16 @@ Let's say you want to count how many times words are used in a text. How would y
 1. You can use two arrays (let's call it `A` and `B`). One for storing the word and another for storing how many times they have seen (frequency).
 2. You can use a HashMap. They *`key`* is the word, and the *`value`* is the frequency of the word.
 
-What is the runtime of the approach #1 using **two arrays**? If we say, the number of words in the text is *`n`*. Then we have to `search` if the word in the array `A`  and then increment the value on array `B` matching that index. We would have two loops 1) to go through each word and 2) searching in the array B. The runtime would be <code>O(n<sup>2</sup>)</code>.
+What is the runtime of approach #1 using **two arrays**? If we say, the number of words in the text is *`n`*. Then we have to `search` if the word in the array `A`  and then increment the value on array `B` matching that index. For every word on `n` we have to test if it's already on array `A`. This double loop leave use with a runtime of <code>O(n<sup>2</sup>)</code>.
 
-What is the runtime of the approach #2 using a **HashMap**? Well, we iterate through each word on the text and increment the value if there is something there or set it to 1 if that word is seen for the first time. The runtime would be \`O(n)\` which is much more performant than approach #1.
+What is the runtime of approach #2 using a **HashMap**? Well, we iterate through each word on the text once and increment the value if there is something there or set it to 1 if that word is seen for the first time. The runtime would be `O(n)` which is much more performant than approach #1.
 
 Differences between HashMap and Array
 - Search on an array is *O(n)* while on a HashMap is *O(1)*
-- Arrays can have duplicate values, while HashMap cannot have duplicated keys (but it can have duplicate values.)
+- Arrays can have duplicate values, while HashMap cannot have duplicated keys (but they can have duplicate values.)
 - The array has a key (index) that is always a number from 0 to max value, while in a HashMap you have control of the key and it can be whatever you want: number, string, or symbol.
- -->
+
+
 
 ## Hash Function
 
@@ -314,9 +323,9 @@ The first step to implement a HashMap is to have a hash function. This function 
 
 > The **perfect hash function** is the one that for every key it assigns a unique index.
 
-Ideal hashing algorithms allow *constant time* access/lookup. However, it's hard to achieve a perfect hashing function in practice. You might have the case where two different keys yields on the same index: *collision*.
+Ideal hashing algorithms allow *constant time* access/lookup. However, it's hard to achieve a perfect hashing function in practice. You might have the case where two different keys yields on the same index. This is called *collision*.
 
-Collision in hashmaps is unavoidable when using an array-like underlying data structure. So one way to deal with collisions is to store multiple values in the same bucket. When we try to access the key's value and found various values, we iterate over the values *O(n)*. However, in most implementations, the hash adjusts the size dynamically to avoid too many collisions. So, we can say that the **amortized** lookup time is *O(1)*. We are going to explain what we mean by amortized runtime later on this post with an example.
+Collisions in HashMaps are unavoidable when using an array-like underlying data structure. At some point, data can't fit in a HashMap will reuse data slots. One way to deal with collisions is to store multiple values in the same bucket using a linked list or another array (more on this later). When we try to access the key's value and found various values, we iterate over the values *O(n)*. However, in most implementations, the hash adjusts the size dynamically to avoid too many collisions. So, we can say that the **amortized** lookup time is *O(1)*. We are going to explain what we mean by amortized runtime later on this post with an example.
 
 ## Naïve HashMap implementation
 
@@ -413,7 +422,7 @@ Did you guess any? ☝️
 For that we need:
 
 1. A proper hash function that produces as few collisions as possible.
-2. An array that is big enough to hold all the required values.
+2. An array big enough to hold all the required values.
 
 Let's give it another shot to our hash function. Instead of using the length of the string, let's sum each character [ascii code](https://simple.wikipedia.org/wiki/ASCII).
 
@@ -1029,7 +1038,7 @@ assert.equal(set.has('one'), false);
 assert.equal(set.size, 1);
 ```
 
-You should be able to use `MySet` and the built-in `Set` interchangeably for this examples.
+You should be able to use `MySet` and the built-in `Set` interchangeably for these examples.
 
 ## Set Operations runtime
 
@@ -1087,8 +1096,10 @@ There are 4 basic operations that we can do in every Linked List:
 
 **Adding/Removing an element at the end of a linked list**
 
-There are two primary cases. 1) If the list first (root/head) doesn't have any element yet, we make this node the head of the list.
-2) Contrary, if the list already has elements, then we have to iterate until finding the last one and appending our new node to the end.
+There are two primary cases:
+
+1. If the list first (root/head) doesn't have any element yet, we make this node the head of the list.
+2. Contrary, if the list already has items, then we have to iterate until finding the last one and appending our new node to the end.
 
 <a id="SinglyLinkedList.addLast"></a>
 {% codeblock LinkedList.prototype.addLast lang:js %}
@@ -1107,9 +1118,9 @@ There are two primary cases. 1) If the list first (root/head) doesn't have any e
   }
 {% endcodeblock %}
 
-What's the runtime of this code? If it is the first element, then adding to the root is *O(1)*. However, finding the last element is *O(n)*.
+What's the runtime of this code? If it is the first element, then adding to the root is *O(1)*. However, finding the last item is *O(n)*.
 
-Now, removing an element from the end of the list has a similar code. We have to find the current before last and make its `next` reference `null`.
+Now, removing an element from the end of the list has similar code. We have to find the current before last and make its `next` reference `null`.
 
 <a id="SinglyLinkedList.removeLast"></a>
 {% codeblock LinkedList.prototype.removeLast lang:js mark:10 %}
@@ -1160,7 +1171,7 @@ Adding and removing elements from the beginning is a constant time because we ho
   }
 {% endcodeblock %}
 
-As expected the runtime for removing/adding to the firt element from a linked List is always constant *O(1)*
+As expected, the runtime for removing/adding to the first element from a linked List is always constant *O(1)*
 
 <a id="LinkedList.remove"></a>
 
@@ -1207,13 +1218,13 @@ Searching an element on the linked list is very somewhat similar to `remove`:
   }
 {% endcodeblock %}
 
-This function finds the first element with given value.
+This function finds the first element with the given value.
 
 > The runtime for searching an element in a linked list is *O(n)*
 
 ## Singly Linked Lists time complexity
 
-Singly Linked List time complexity per function is as follows
+Singly Linked List time complexity per function is as follows.
 
 Operation | Runtime | Comment
 -|-|-
@@ -1360,7 +1371,7 @@ Again, we have to be careful about updating the references and handling special 
   }
 {% endcodeblock %}
 
-Using doubly linked list, we no longer have to iterate through the whole list to get the 2nd last elements. We can use directly `this.last.previous` and is `O(1)`.
+Using a doubly linked list, we no longer have to iterate through the whole list to get the 2nd last elements. We can use directly `this.last.previous` and is `O(1)`.
 
 Did you remember that for the Queue we had to use two arrays? Now, we can change that implementation an use a doubly linked list instead that has an *O(1)* for insert at the start and deleting at the end.
 
@@ -1394,7 +1405,7 @@ Adding an element on anywhere on the list leverages our `addFirst` and `addLast`
   }
 {% endcodeblock %}
 
-If we have a insertion in the middle of the array, then we have to update the `next` and `previous` reference of the surrounding elements.
+If we have an insertion in the middle of the array, then we have to update the `next` and `previous` reference of the surrounding elements.
 
 > Adding an element anywhere within the list is *O(n)*.
 
@@ -1412,12 +1423,12 @@ Operation | Runtime | Comment
 [`remove`](#LinkedList.remove) | *O(n)* | Remove any element from the list
 [`contains`](#LinkedList.contains) | *O(n)* | Search for any element from the list
 
-This is a great improvement compared to the singly linked list! We improved from *O(n)* to *O(1)* by:
+Doubly linked lists are a significant improvement compared to the singly linked list! We improved from *O(n)* to *O(1)* by:
 
 - Adding a reference to the previous element.
-- Holding a reference to the last element in the list.
+- Holding a reference to the last item in the list.
 
-Removing first/last can be done in constant-time, however, removing in the middle of the array is still *O(n)*.
+Removing first/last can be done in constant-time; however, eliminating in the middle of the array is still *O(n)*.
 
 # Stacks
 
@@ -1471,7 +1482,7 @@ That's all!
 <!-- https://docs.oracle.com/javase/10/docs/api/java/util/Queue.html -->
 <!-- https://stackoverflow.com/a/22615787/684957 -->
 
-Queues is a data structure where the first data to get in is also the first to go out. A.k.a First-in, First-out (FIFO).
+Queues are a data structure where the first data to get in is also the first to go out. A.k.a First-in, First-out (FIFO).
 It's like a line of people at the movies, the first to come in is the first to come out.
 
 {% img /images/queue.jpg "Queue: enqueue and dequeue" %}
@@ -1598,18 +1609,19 @@ Here's a summary of everything that we explored. You can click on each runtime, 
 `*` = Amortized runtime
 
 Name | Insert | Access | Search | Delete | Comments
--|-|-|-|-
-[**Array**](#Array) | [*O(n)*](#Insert-element-on-an-array) | [*O(1)*](#Access-an-element-in-an-array) | [*O(n)*](#Search-an-element-in-an-array) | [*O(n)*](#Deleting-elements-from-an-array) | Insertion to the end is `O(1)`. [Details here.](#Array-operations-time-complexity)
-[(Hash)**Map**](#HashMaps) | [*O(1)**](#Insert-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Search-Access-an-element-on-a-HashMap-runtime) | [*O(1)**](#Edit-Delete-element-on-a-HashMap-runtime) | Rehashing might affect insertion time. [Details here.](#HashMap-operations-time-complexity)
-**Map** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
-[**Set** (using HashMap)](#Sets) | *[O(1)](#Set-Implementation)** | - | *[O(1)](#Set-Implementation)** | *[O(1)](#Set-Implementation)** | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
-**Set** (using Binary Search Tree) | *O(log(n))* | - |  *O(log(n))* |  *O(log(n))* | Implemented using Binary Search Tree
-[**Linked List** (singly)](#Singly-Linked-Lists) | *[O(n)](#SinglyLinkedList.addLast)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.remove)* | Adding/Removing to the start of the list is *`O(1)`*. [Details here](#Singly-Linked-Lists-time-complexity).
-[**Linked List** (doubly)](#Doubly-Linked-Lists) | *[O(n)](#DoublyLinkedList.add)* | - | *[O(n)](#LinkedList.contains)* | *[O(n)](#LinkedList.remove)*  | Adding/Deleting from the beginning/end is *`O(1)`*. But, deleting/adding from the middle is *`O(n)`*. [Details here](#Doubly-Linked-Lists-time-complexity)
-[**Stack** (array implementation)](#Stacks) | *[O(1)](#Stacks)* | - | - | *[O(1)](#Stacks)* | Insert/delete is last-in, first-out (LIFO)
-[**Queue** (naive array impl.)](#QueueNaiveImpl) | *[O(n)](#QueueNaiveImpl)* | - | - | *[O(1)](#QueueNaiveImpl)* | Insert (`Array.shift`) is *O(n)*
-[**Queue** (array implementation)](#QueueArrayImpl) | *[O(1)](#QueueArrayImpl)** | - | - | *[O(1)](#QueueArrayImpl)* | Worst time insert is *O(n)*. However amortized is *O(1)*
-[**Queue** (list implementation)](#QueueListImpl) | *[O(1)](#QueueListImpl)* | - | - | *[O(1)](#QueueListImpl)* | Using Doubly Linked List with reference to the last element.
+-|-|-|-|-|-
+[Array](#Array) | [O(n)](#Insert-element-on-an-array) | [O(1)](#Access-an-element-in-an-array) | [O(n)](#Search-an-element-in-an-array) | [O(n)](#Deleting-elements-from-an-array) | Insertion to the end is `O(1)`. [Details here.](#Array-operations-time-complexity)
+[HashMap](#HashMaps) | [O(1)](#Insert-element-on-a-HashMap-runtime) | [O(1)](#Search-Access-an-element-on-a-HashMap-runtime) | [O(1)](#Search-Access-an-element-on-a-HashMap-runtime) | [O(1)](#Edit-Delete-element-on-a-HashMap-runtime) | Rehashing might affect insertion time. [Details here.](#HashMap-operations-time-complexity)
+Map (using Binary Search Tree) | O(log(n)) | - |  O(log(n)) |  O(log(n)) | Implemented using Binary Search Tree
+[Set (using HashMap)](#Sets) | [O(1)](#Set-Implementation) | - | [O(1)](#Set-Implementation) | [O(1)](#Set-Implementation) | Set using a HashMap implementation. [Details here.](#Set-Operations-runtime)
+Set (using list) | [O(n)](https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.add) | - |  [O(n)](https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has)] |  [O(n)](https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.delete) | Implemented using Binary Search Tree
+Set (using Binary Search Tree) | O(log(n)) | - |  O(log(n)) |  O(log(n)) | Implemented using Binary Search Tree
+[Linked List (singly)](#Singly-Linked-Lists) | [O(n)](#SinglyLinkedList.addLast) | - | [O(n)](#LinkedList.contains) | [O(n)](#LinkedList.remove) | Adding/Removing to the start of the list is `O(1)`. [Details here](#Singly-Linked-Lists-time-complexity).
+[Linked List (doubly)](#Doubly-Linked-Lists) | [O(n)](#DoublyLinkedList.add) | - | [O(n)](#LinkedList.contains) | [O(n)](#LinkedList.remove)  | Adding/Deleting from the beginning/end is `O(1)`. But, deleting/adding from the middle is `O(n)`. [Details here](#Doubly-Linked-Lists-time-complexity)
+[Stack (array implementation)](#Stacks) | [O(1)](#Stacks) | - | - | [O(1)](#Stacks) | Insert/delete is last-in, first-out (LIFO)
+[Queue (naive array impl.)](#QueueNaiveImpl) | [O(n)](#QueueNaiveImpl) | - | - | [O(1)](#QueueNaiveImpl) | Insert (`Array.shift`) is O(n)
+[Queue (array implementation)](#QueueArrayImpl) | [O(1)](#QueueArrayImpl) | - | - | [O(1)](#QueueArrayImpl) | Worst time insert is O(n). However amortized is O(1)
+[Queue (list implementation)](#QueueListImpl) | [O(1)](#QueueListImpl) | - | - | [O(1)](#QueueListImpl) | Using Doubly Linked List with reference to the last element.
 
 Note: **Binary search trees** and trees, in general, will be cover in the next post. Also, graph data structures.
 
