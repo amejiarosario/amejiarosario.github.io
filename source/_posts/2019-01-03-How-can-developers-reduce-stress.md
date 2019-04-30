@@ -16,18 +16,20 @@ tags:
 categories:
   - Miscellaneous
 date: 2019-01-03 19:28:50
-updated: 2019-01-04 09:31:00
+updated: 2019-04-30 09:31:00
 ---
 
 <!-- draft date: 2018-12-19 16:20:36 -->
 
-Most professions nowadays involve a certain degree of stress. We have deadlines, change of requirements at the last minute and to deal with people. On top of that, when you work in front of a computer 8+ hours additional stressors are added. Your eyes might get dry. Also the lack of movement might cause you back/neck pain, while your muscles shrink and your belly expands. This post will give you some tips to accomplish your goals without sacrificing your health. I also included some bonus tips for software engineers.
+Most professions nowadays involve a certain degree of stress. We have deadlines, change of requirements at the last minute and to deal with people. On top of that, when you work in front of a computer 8+ hours additional stressors are added. Your eyes might get dry. Also, the lack of movement might cause you back/neck pain, while your muscles shrink and your belly expands. This post will give you some tips to accomplish your goals without sacrificing your health. I also included some bonus tips for software engineers.
 
 <!-- more -->
 
 # Background
 
-There was a time in my life, back in 2015, where I went through severe stress crisis. I was juggling too many things at once: writing a book, interviewing in the USA for new jobs, and getting a work visa, and planning a wedding while keeping up with a full-time job and also the sole programmer on two startups. It was the busiest time of my life, and my health suffered a lot! I dreamt about source code. Some nights I couldn't sleep, so I worked instead. I went to the ER multiple times with heart palpitations. I knew I could not keep living in that way. I've been experimenting with what helps and what not. This post is a compilation of the ones that helped.
+There was a time in my life, back in 2015, where I went through severe stress crisis. I was juggling too many things at once: writing my first book, traveling to the USA interviewing for new jobs, getting a work visa, and planning a wedding while keeping up with a full-time job and also the sole programmer on two attempts of startups. It was the busiest time of my life, and my health suffered a lot! I dreamt about source code. Some nights I couldn’t sleep, so I worked instead. I went to the ER multiple times with heart palpitations. I knew I could not keep living in that way.
+
+I’ve been experimenting with different things to see helped and what not. This post is a compilation of the ones that helped. I'll start with general things that applies to anybody working in front of a computer and end with some more specific tips for web and software developers.
 
 # Ideas to handle stress
 
@@ -35,17 +37,17 @@ I've been incorporating the following techniques and it had helped me a lot to c
 
 ## Move 🚶‍♂️
 
-Have you noticed that after a long time sitting your energy levels and concentration start to drop?
+Have you noticed that after a long time sitting your energy levels and concentration starts to drop?
 
-Taking a break to get some movements is great way to solve this issue!
+Taking a little break to get some movements is an excellent way to boost your productivity!
 
 > Movement => Energy
 
-**Take a 5 minutes break after 25 minutes of work**. You can also do 50/10 minutes of work/break. What matters is that you get some rest to move around and take a deep breath.
+**Take a 5 minutes breaks after 25 minutes of work**. You can also do 50/10 minutes of work/break. What matters is that you get some rest to move around and take deep breaths while at it.
 
-The 25/5 minutes of work/break is also known as the Pomodoro technique. There are many apps that I have used to remind me to take a break. As simple as it sounds, it's easy to get carried away when working on a computer and lose the notion of time.
+The 25/5 minutes of work/break is also known as the Pomodoro technique. There are many apps that I have used to remind me to take a break. As simple as it sounds, it’s easy to get carried away when working on a computer and lose the notion of time.
 
-**Note**: sitting for long time doesn't get automatically fixed with working out after work. You still have to try walking around at least every hour so your body don't suffer.
+**Note** : working out after work doesn't compensate for a long time of uninterrupted sitting. Your muscle and pain cripples in after a couple of hours static. So, you still have to try walking around at least every hour, so your body doesn’t suffer.
 
 <details>
   <summary>Apps I've used...</summary>
@@ -98,15 +100,15 @@ At one point I also notice that my eyesight was getting worse, so I also incorpo
 
 ## Brainstorm 🧠
 
-Have you felt stressed when you get stuck on something for a while? Well, it's time to take a step back and put things in perspective. There might be a straighter line to get to your goal. **List all the alternatives** you can think of (don't label them as "good" or "bad". Put it all down "smart" ideas and especially the "dumb" ones). Choose the ones that you think will work the best. Work smarter, not harder!
+Have you felt stressed when you get stuck on something for a while? (e.g., No syntax errors and still the code is not working as intendeded). Well, it’s time to take a step back and put things in perspective. There might be a straighter line to get to your goal. **List all the alternatives** or different ways you can solve the same problem. Whatever you can think of (don’t label them as “good” or “bad”. Put down the “smart” ideas and especially the “dumb” ones. At the end, choose the ones that you think will work best. Work smarter, not harder!
 
-If you are going to cut a tree is important to sharpen your ax first and then get to it. Not just will you cut the tree faster but also with less effort. Likewise, it's vital that you take some time to do a little planning before jumping right into the task in hand. Beware of not overdoing it, set a time limit for this exercise. If you spend all the time sharpening the ax and never cut the tree is not good either ;)
+If you are going to cut a tree is essential to sharpen your ax first and then get to it. Not just will you cut the tree faster but also with less effort. Likewise, it’s vital that you take some time to do a little planning before jumping right into the task in hand. Beware of not overdoing it, set a time limit for this exercise. If you spend all the time sharpening the ax and never cut the tree is not good either ;)
 
 ## Subtask ✌️
 
-**Divide a big task into smaller ones**. Completing some small tasks will motivate you to get more done. Also keeps the stress away since you feel you are making progress.
+**Divide a big task into smaller ones**. Completing some small tasks will motivate you to get more done. Also keeps the stress away since you feel you are making progress. Another benefit of sub tasking is that makes estimations more accurate.
 
-Even the most ambitious projects and tallest buildings started with laying down one brick/block. Likewise, no matter how big your project is, when you break it down into smaller pieces, it makes it easier to reason about.
+Even the most ambitious projects and tallest buildings started with laying down one block at a time. Likewise, no matter how big your project is when you break it down into smaller pieces, that you make it easier to reason about.
 
 Tackling a small task is less daunting to deal with the project as a whole, so you will be less likely to procrastinate and stress about it.
 
@@ -326,10 +328,15 @@ http://www.gurl.com/2016/09/08/tips-on-how-to-make-the-most-perfect-bullet-journ
       <b>
         <a href="https://amzn.to/2RxM3w0">Rocketbook Everlast Reusable Smart Notebook</a>
       </b>
-      This nice to avoid getting distracted with phone/table notifications and being able to save your notes digitally (evernote/email).
-      <a target="_blank"  href="https://www.amazon.com/gp/product/B06ZXWVZ3X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B06ZXWVZ3X&linkCode=as2&tag=adrian0ea-20&linkId=b0e7cd8801dc03ea32af135c8222b701"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=B06ZXWVZ3X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=adrian0ea-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=adrian0ea-20&l=am2&o=1&a=B06ZXWVZ3X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+      <span>
+        This nice to avoid getting distracted with phone/table notifications and being able to save your notes digitally
+        (evernote/email).
+      </span>
+      <a target="_blank" href="https://www.amazon.com/gp/product/B06ZXWVZ3X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B06ZXWVZ3X&linkCode=as2&tag=adrian0ea-20&linkId=b0e7cd8801dc03ea32af135c8222b701">
+        <img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=B06ZXWVZ3X&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=adrian0ea-20">
+      </a>
+      <img src="//ir-na.amazon-adsystem.com/e/ir?t=adrian0ea-20&l=am2&o=1&a=B06ZXWVZ3X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
     </li>
-
     <li>
       <b>
         <a href="https://itunes.apple.com/us/app/rocketbook-app/id1036898971?mt=8">Rocketbook App</a>
@@ -338,7 +345,7 @@ http://www.gurl.com/2016/09/08/tips-on-how-to-make-the-most-perfect-bullet-journ
     </li>
   </ul>
 
-<hr>
+  <hr>
 </details>
 
 ## Sleep 😴
