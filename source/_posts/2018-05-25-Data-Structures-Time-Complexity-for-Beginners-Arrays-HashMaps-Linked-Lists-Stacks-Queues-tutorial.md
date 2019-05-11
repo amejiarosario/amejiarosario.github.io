@@ -278,7 +278,7 @@ Going back to the drawer analogy, bins have a label rather than a number.
 **HashMap is like a drawer that stores things on bins and labels them**
 {% img /images/hashmap-drawer.jpg "HashMap is like a drawer that stores things on bins and labels them" %}
 
-In this example, if you are looking for the [DSA.js book](https://gum.co/dsajs), you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the container labeled as "books". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
+In this example, if you are looking for the [DSA.js book](https://books.adrianmejia.com), you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the container labeled as "books". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
 
 In arrays, the data is referenced using a numeric index (relatively to the position). However, HashMaps uses labels that could be a string, number, object or anything. Internally, the HashMap uses an Array, and it maps the labels to array indexes using a *hash function*.
 

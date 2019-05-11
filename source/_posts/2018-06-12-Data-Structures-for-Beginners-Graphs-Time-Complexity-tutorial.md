@@ -75,6 +75,8 @@ isAdjacent (using HashSet) | O(1) | [O(1)](#Matrix.getAdjacents)
 
 <!-- http://ccicada.org/wp-content/uploads/2017/06/Community-Detection-with-Hierarchical-Clustering-Algorithms-Feb-3-2017.pdf -->
 
+Before we dive into interesting graph algorithms, let's first clarify the naming conventions and graph properties.
+
 A graph is a data structure where a **node** can have zero or more adjacent elements.
 
 The connection between two nodes is called **edge**. Nodes can also be called **vertices**.
@@ -105,7 +107,7 @@ Not all vertices have to be connected in the graph. You might have isolated node
 <!-- { img /images/digraph-subgraph.png digraph with isolated subgraphs } -->
 {% img /images/connected-vs-complete-graph.jpg Complete vs Connected graph %}
 
-For a complete graph, each node should have `#nodes - 1` edges. In the previous example we have 7 vertices, so each node has 6 edges.
+For a complete graph, each node should have `#nodes - 1` edges. In the previous example, we have seven vertices, so each node has six edges.
 
 
 # Graph Applications
@@ -179,7 +181,7 @@ It's important to notice that for undirected graphs the adjacency matrix will **
 
 What is the time complexity of finding connections of two vertices?
 
-> Querying if two nodes are connected in an adjacency matrix is *O(1)*.
+> Querying if two nodes are connected in an adjacency matrix takes a constant time or *O(1)*.
 
 <a id="Matrix.space"></a>
 
