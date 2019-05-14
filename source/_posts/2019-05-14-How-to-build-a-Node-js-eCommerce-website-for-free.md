@@ -88,7 +88,7 @@ app.post('/webhook', async (req, res) => {
 
   if (event.type === 'payment_intent.succeeded') {
     // TODO: send event to RabbitMQ instead of generating the PDF here.
-    // It's not good practice to block a request handler with long
+    // It's not good practice to block a request handler with long processes
     const { sendPdfToBuyer } = require('./process-pdf');
     sendPdfToBuyer(event);
   }
@@ -121,13 +121,19 @@ async function sendPdfToBuyer(webhookEvent) {
 
 # Sending emails
 
-Sending emails was a little trickier than I thought. First, I was using my domain name, so I have to set up the `MX` DNS settings to make it work. However, I notice all my test email to myself ended up on the junk mail.
+Sending emails was a little trickier than I thought.
+
+## DNS settings and authentication
+
+First, I was using my domain name, so I have to set up the DNS settings to make it work. However, I notice all my test emails to myself ended up on the junk mail.
 
 Reading more about the topic I realized that I have to authenticate emails using SPF and DKIM, I still don't know what they are in details, but they allow email providers (Gmail, Yahoo) to verify you are who you say you are. They are setup also using DNS settings given by the emailing service provides.
 
 I set up the setting initially with Sendgrid but was still getting my emails to the junk folder. I moved to Mailgun and got better results. For some reason, `hotmail.com` would always reject the emails. As I learned unless you pay for a dedicated IP address the email service provider would use a "shared" IP in many accounts. If for some reason the IP gets a bad reputation then your emails will go to spam folder even if you have never sent an email before! I got this fixed by opening a support ticket and after they changed the IP it was working fine with any address.
 
-The final part related to emails is doing a template. I have never done it before. The difference between email templates and web pages HTML is that on the email you should embed everything into the message itself. Spam filters don't like external link loading additional resources.
+## Email Templates
+
+The final part related to emails is doing a template. I have never done it before. The difference between HTML for email templates and web pages HTML is that on the email you should embed everything into the message itself. Spam filters don't like external link loading additional resources. So, every CSS should be inline and has to also be responsible.
 
 Well, there you have it: an e-commerce store that collects the payments and sends digital goods to buyers. Let's close talking about the cost of maintenance.
 
