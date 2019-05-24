@@ -4,9 +4,9 @@ title: "Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)"
 date: 2012-09-11 22:50
 updated: 2012-09-11 22:50
 comments: true
-pageviews__total: 343304
-pageviews__recent: 1053
-pageviews__avg_time: 1012
+pageviews__total: 344659
+pageviews__recent: 1061
+pageviews__avg_time: 1072
 photos__background_color: 'white'
 bitly: 'http://bit.ly/backbone-1'
 photos:

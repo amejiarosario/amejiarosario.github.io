@@ -3,9 +3,9 @@ layout: post
 title: "Getting started with Node.js modules: require, exports, imports and beyond"
 comments: true
 toc: true
-pageviews__total: 104220
-pageviews__recent: 11070
-pageviews__avg_time: 728
+pageviews__total: 118495
+pageviews__recent: 11150
+pageviews__avg_time: 722
 tutorial__order: 0
 photos__background_color: '#333'
 photos:

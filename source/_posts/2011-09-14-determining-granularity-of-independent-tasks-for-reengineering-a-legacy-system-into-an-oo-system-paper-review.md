@@ -4,9 +4,9 @@ title: Determining granularity of independent tasks for reengineering a legacy s
 created: 1316015015000
 updated: 1316015015000
 comments: true
-pageviews__total: 49
+pageviews__total: 46
 pageviews__recent: 1
-pageviews__avg_time: 114
+pageviews__avg_time: 113
 tutorial__order: 0
 # categories: [paper review, wide spectrum language (wsl), unified  modelling language (uml), reverse engineering, cobol  legacy systems, reengineering]
 ---
