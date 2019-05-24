@@ -30,6 +30,9 @@ You are probably using programs with graphs and trees. Let's say for instance th
 
 In the previous post, we explore linear data structures like arrays, linked lists, sets, stacks and so on. This one builds on top of what we learned.
 
+You can find all these implementations and more in the Github repo:
+[https://github.com/amejiarosario/dsa.js](https://github.com/amejiarosario/dsa.js)
+
 ---
 This post is part of a tutorial series:
 

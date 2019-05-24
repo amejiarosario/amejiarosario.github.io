@@ -269,7 +269,7 @@ Delete (`Array.splice`) | *`O(n)`*
 <!-- https://en.wikipedia.org/wiki/Associative_array -->
 <!-- https://medium.com/front-end-hacking/es6-map-vs-object-what-and-when-b80621932373 -->
 
-HashMaps has many names like HashTable, HashMap, Map, Dictionary, Associative Arrays and so on. The concept is the same while the implementation might change slightly.
+Maps, dictionaries, and associative arrays all describe the same abstract data type. But hash map implementations are distinct from tree map implementations in that one uses a hash table and one uses a binary search tree.
 
 > Hashtable is a data structure that **maps** keys to values
 

@@ -113,11 +113,7 @@ That's all; we have a tree data structure!
 
 The node `abe` is the **root** and `bart`, `lisa` and `maggie` are the **leaf** nodes of the tree. Notice that the tree's node can have a different number of descendants: 0, 1, 3, or any other value.
 
-# Binary Trees
-
-Trees nodes can have zero or more children. However, when a tree has at the most two children, then it's called **binary tree**.
-
-A binary tree is one of the most common forms of trees and has many applications such as:
+Tree data structures have many applications such as:
 
 <!-- - Searching in a time complexity of *O(log n)*. -->
 <!-- - Cryptography: [Generate pseudorandom numbers](https://www.cs.princeton.edu/courses/archive/fall07/cos433/prf_goldreich.pdf) -->
@@ -126,7 +122,11 @@ A binary tree is one of the most common forms of trees and has many applications
 - Databases
 - Priority Queues
 - Querying an LDAP (Lightweight Directory Access Protocol)
-- Searching through an XML/HTML file using the Document Object Model (DOM) interface.
+- Representing the Document Object Model (DOM) for HTML on Websites.
+
+# Binary Trees
+
+Trees nodes can have zero or more children. However, when a tree has at the most two children, then it's called **binary tree**.
 
 ## Full, Complete and Perfect binary trees
 

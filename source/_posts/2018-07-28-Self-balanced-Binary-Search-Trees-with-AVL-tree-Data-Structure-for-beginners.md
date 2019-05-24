@@ -31,6 +31,9 @@ Binary Search Trees are used for many things that we might not be aware of. For 
 
 In this post, we are going to explore different techniques to balance a tree. We are going to use rotations to move nodes around and the AVL algorithm to keep track if the tree is balanced or needs adjustments. Let's dig in!
 
+You can find all these implementations and more in the Github repo:
+[https://github.com/amejiarosario/dsa.js](https://github.com/amejiarosario/dsa.js)
+
 ---
 This post is part of a tutorial series:
 
