@@ -152,14 +152,13 @@
 
     <!-- social scripts -->
     <% if(is_home()){ %>
-      <script async defer src="https://apis.google.com/js/platform.js" ></script>
-      <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <!-- <script async defer src="https://apis.google.com/js/platform.js" ></script> -->
       <script async defer src="https://buttons.github.io/buttons.js"></script>
       <!--<script async defer src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>-->
     <% } %>
 
     <% if(is_post()){ %>
-      <script src="https://gumroad.com/js/gumroad.js"></script>
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
 
       <!-- adthis -->
       <script type="text/javascript">
@@ -170,6 +169,7 @@
       </script>
       <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
 
+      <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
       <%- js('js/posts') -%>
     <% } %>
   </body>
