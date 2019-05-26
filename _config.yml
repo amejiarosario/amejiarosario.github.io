@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Adrian Mejia Blog
+title: Adrian Mejia | JavaScript, Algorithms and Web development Tutorials
 subtitle: var life = ['work_smart', 'have_fun', 'make_history'];
-description: This site is about programming and software engineering. Featuring Algorithms and data structures, JavaScript, MEAN stack (AngularJS, NodeJS, MongoDB and Express), BackboneJS, RESTful APIs.
+description: JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.
 author: Adrian Mejia
 language: en
 timezone: America/New_York
