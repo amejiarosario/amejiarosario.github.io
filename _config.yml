@@ -16,6 +16,7 @@ disqus_shortname: adrianmejia
 #url: https://adrianmejia.herokuapp.com
 url: https://adrianmejia.com
 root: /
+# permalink: :title/
 permalink: blog/:year/:month/:day/:title/
 permalink_defaults:
 logo: /images/logo.png
@@ -35,7 +36,7 @@ new_post_name: :year-:month-:day-:title.md
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
-filename_case: 0
+filename_case: 1
 render_drafts: false
 post_asset_folder: false
 relative_link: false

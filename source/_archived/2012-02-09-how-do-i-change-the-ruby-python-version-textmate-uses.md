@@ -5,9 +5,10 @@ created: 1328766604000
 updated: 1328766604000
 comments: true
 pageviews__total: 552
-pageviews__recent: 5
-pageviews__avg_time: 139
+pageviews__recent: 3
+pageviews__avg_time: 141
 tutorial__order: 0
+alias: /blog/2012/02/09/how-do-i-change-the-ruby-python-version-textmate-uses/
 #categories: [ruby, textmate, python]
 ---
 <p>&nbsp;</p>

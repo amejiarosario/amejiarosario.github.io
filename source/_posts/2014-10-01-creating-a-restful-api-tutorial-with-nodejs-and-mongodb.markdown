@@ -4,9 +4,9 @@ title: "Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)"
 date: 2014-10-01 17:26:42 -0400
 updated: 2016-10-14 15:50:35 -0400
 comments: true
-pageviews__total: 563455
-pageviews__recent: 626
-pageviews__avg_time: 2180
+pageviews__total: 563647
+pageviews__recent: 641
+pageviews__avg_time: 2074
 photos:
   - /images/RESTfulAPIs_NodeJS__mongodb_small.png
   - /images/RESTfulAPIs_NodeJS__mongodb_large.png
@@ -15,6 +15,7 @@ bitly: 'http://bit.ly/creating-node-api1'
 toc: true
 # tags: [nodejs, javascript, tutorials, mongodb, mean stack]
 tutorial__order: 2
+alias: /blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/
 tags:
   - NodeJS
   - ExpressJS

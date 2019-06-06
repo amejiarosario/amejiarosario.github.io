@@ -2,15 +2,16 @@
 layout: post
 title: Analysis of Recursive Algorithms
 comments: true
-pageviews__total: 4856
-pageviews__recent: 348
-pageviews__avg_time: 265
+pageviews__total: 5098
+pageviews__recent: 405
+pageviews__avg_time: 264
 tutorial__order: 100
 toc: true
 photos:
   - /images/data-structures-analysis-of-recursive-algorithms-small.jpg
   - /images/data-structures-analysis-of-recursive-algorithms-large.jpg
 photos__background_color: '#F4F0EF'
+alias: /blog/2018/04/24/Analysis-of-Recursive-Algorithms/
 tags:
   - big-o notation
   - algorithms

@@ -5,13 +5,14 @@ date: 2016-04-08 16:41:32 -0400
 updated: 2016-04-08 16:41:32 -0400
 comments: true
 toc: true
-pageviews__total: 32289
-pageviews__recent: 501
-pageviews__avg_time: 348
+pageviews__total: 32538
+pageviews__recent: 480
+pageviews__avg_time: 349
 photos:
   - /images/angularjs_directives_small.png
   - /images/angularjs_directives_large.png
 photos__background_color: '#B12928'
+alias: /blog/2016/04/08/creating-custom-angularjs-directives-for-beginners/
 tutorial__order: 0
 tags:
   - angularjs

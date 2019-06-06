@@ -8,6 +8,7 @@ pageviews__total: 19
 pageviews__recent: 1
 pageviews__avg_time: 8
 tutorial__order: 0
+alias: /blog/2011/11/04/update-drupal-sites/
 tags:
   - drupal
 categories:

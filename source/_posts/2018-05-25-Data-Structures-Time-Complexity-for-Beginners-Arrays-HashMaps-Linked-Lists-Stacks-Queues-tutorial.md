@@ -1,16 +1,17 @@
 ---
 layout: post
-title: "Data Structures for Beginners: Arrays, HashMaps, and Lists"
+title: "Data Structures in JavaScript: Arrays, HashMaps, and Lists"
 comments: true
-pageviews__total: 22332
-pageviews__recent: 3214
-pageviews__avg_time: 942
+pageviews__total: 23537
+pageviews__recent: 3096
+pageviews__avg_time: 1467
 tutorial__order: 4
 toc: true
 photos:
   - /images/data-structures-time-complexity-lists-arrays-stacks-queues-hash-maps-sets-small.jpg
   - /images/data-structures-time-complexity-lists-arrays-stacks-queues-hash-maps-sets-large.jpg
 photos__background_color: '#F4F0EF'
+alias: /blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/
 tags:
   - big-o notation
   - algorithms

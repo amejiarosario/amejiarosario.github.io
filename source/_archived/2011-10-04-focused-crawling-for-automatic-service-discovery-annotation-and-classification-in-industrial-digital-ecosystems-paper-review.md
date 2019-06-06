@@ -8,6 +8,7 @@ pageviews__total: 50
 pageviews__recent: 2
 pageviews__avg_time: 127
 tutorial__order: 0
+alias: /blog/2011/10/04/focused-crawling-for-automatic-service-discovery-annotation-and-classification-in-industrial-digital-ecosystems-paper-review/
 #categories: [paper review, e-learning, focused crawling, web semantics]
 ---
 H. Dong et al. (2011) [1] introduce an approach to enhance disperse and heterogeneous industrial digital ecosystem for e-Learning. Its target is to discover and classify the industrial information automatically using focused crawlers. The focused crawler perform 5 operations: webpage fetcher (multithreading web crawling given a URL list), policy center  (fetching boundaries, max. depth, multithreading priority), webpage pool (store data as plain text), webpage parser (use heuristics rules on website layouts to extract desired data), service metadata generator (produce metadata and in ontology markup language), and service metadata classifier (used structured domains of knowledge to classify the data). [4] also explain in detail the Ontology Markup Language (OML) and perform several test and performance measures, such as harvest rate, precision, recall, harmony, f-measure, fallout rate, and more.

@@ -5,21 +5,21 @@ date: 2014-09-28 23:50:24 -0400
 updated: 2016-08-06 19:31:57 -0400
 comments: true
 toc: true
-pageviews__total: 632035
-pageviews__recent: 1648
-pageviews__avg_time: 1087
+pageviews__total: 632862
+pageviews__recent: 1698
+pageviews__avg_time: 1094
 photos__background_color: '#25A9DD'
 bitly: 'http://bit.ly/angular-4-beginners'
 photos:
   - /images/AngularJSTutorial_small.png
   - /images/AngularJSTutorial_large.png
 tutorial__order: 1
+alias: /blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/
 tags:
   - angular
   - angular 1.x
   - javascript
   - Tutorial_MEAN-Stack
-alias: /blog/2014/09/28/angularjs-tutorial-for-begineers-with-nodejs-expressjs-and-mongodb/
 categories:
   - Technologies
   - Web Development

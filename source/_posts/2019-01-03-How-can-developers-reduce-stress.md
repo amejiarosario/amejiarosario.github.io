@@ -2,15 +2,16 @@
 layout: post
 title: How can developers reduce stress
 comments: true
-pageviews__total: 1569
-pageviews__recent: 78
-pageviews__avg_time: 375
+pageviews__total: 1647
+pageviews__recent: 63
+pageviews__avg_time: 358
 tutorial__order: 0
 toc: true
 photos:
   - /images/how-to-deal-with-stress-small.jpg
   - /images/how-to-deal-with-stress-large.jpg
 photos__background_color: '#F5A623'
+alias: /blog/2019/01/03/How-can-developers-reduce-stress/
 tags:
   - stress management
 categories:

@@ -4,14 +4,15 @@ title: >-
   How you can change the world by learning Data Structures and Algorithms
 comments: true
 toc: true
-pageviews__total: 44439
-pageviews__recent: 1360
-pageviews__avg_time: 6661
+pageviews__total: 45102
+pageviews__recent: 1218
+pageviews__avg_time: 6670
 tutorial__order: 1
 photos:
 - /images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg
 - /images/data-structures-algorithms-time-complexity-big-o-notation-large.jpg
 photos__background_color: '#F4F0EF'
+alias: /blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/
 tags:
   - big-o notation
   - algorithms

@@ -2,9 +2,9 @@
 layout: draft
 title: How to build a Node.js eCommerce website for free
 comments: true
-pageviews__total: 360
-pageviews__recent: 178
-pageviews__avg_time: 336
+pageviews__total: 372
+pageviews__recent: 266
+pageviews__avg_time: 317
 tutorial__order: 0
 toc: true
 photos:
@@ -15,6 +15,7 @@ tags:
   - e-commerce
 categories:
   - Programming
+alias: /blog/2019/05/13/How-to-build-a-Node-js-eCommerce-website-for-free/
 date: 2019-05-13 14:43:24
 updated: 2019-05-14 16:22:24
 ---

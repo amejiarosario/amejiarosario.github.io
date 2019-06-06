@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 'Tree Data Structures for Beginners'
+title: 'Tree Data Structures in JavaScript for Beginners'
 comments: true
-pageviews__total: 11997
-pageviews__recent: 921
+pageviews__total: 12517
+pageviews__recent: 1129
 pageviews__avg_time: 316
 tutorial__order: 6
 toc: true
@@ -11,6 +11,7 @@ photos:
   - /images/data-structures-for-beginners-trees-binary-search-tree-small.jpg
   - /images/data-structures-for-beginners-trees-binary-search-tree-large.jpg
 photos__background_color: '#F4F0EF'
+alias: /blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/
 tags:
   - big-o notation
   - algorithms

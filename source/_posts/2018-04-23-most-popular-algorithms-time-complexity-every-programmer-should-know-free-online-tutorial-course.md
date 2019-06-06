@@ -3,14 +3,15 @@ layout: post
 title: 8 time complexities that every programmer should know
 comments: true
 toc: true
-pageviews__total: 28945
-pageviews__recent: 3809
-pageviews__avg_time: 243
+pageviews__total: 31306
+pageviews__recent: 4452
+pageviews__avg_time: 497
 tutorial__order: 2
 photos:
 - /images/data-structures-must-know-algorithms-running-time-complexity-small.jpg
 - /images/data-structures-must-know-algorithms-running-time-complexity-large.jpg
 photos__background_color: '#F4F0EF'
+alias: /blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/
 tags:
   - big-o notation
   - algorithms

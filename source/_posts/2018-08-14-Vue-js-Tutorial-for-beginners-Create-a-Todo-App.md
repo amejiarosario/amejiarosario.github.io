@@ -2,15 +2,16 @@
 layout: post
 title: 'Vue.js Tutorial for beginners'
 comments: true
-pageviews__total: 10500
-pageviews__recent: 668
-pageviews__avg_time: 368
+pageviews__total: 10791
+pageviews__recent: 603
+pageviews__avg_time: 370
 tutorial__order: 0
 toc: true
 photos:
   - /images/vuejs-vuerouter-tutorial-todo-app-small.jpg
   - /images/vuejs-vuerouter-tutorial-todo-app-large.jpg
 photos__background_color: '#FB4F3B'
+alias: /blog/2018/08/04/Vue-js-Tutorial-for-beginners-Create-a-Todo-App/
 tags:
   - javascript
   - todo app

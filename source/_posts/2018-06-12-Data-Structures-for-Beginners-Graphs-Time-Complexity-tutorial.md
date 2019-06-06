@@ -1,16 +1,17 @@
 ---
 layout: post
-title: 'Graph Data Structures for Beginners'
+title: 'Graph Data Structures in JavaScript for Beginners'
 comments: true
-pageviews__total: 21460
-pageviews__recent: 1996
-pageviews__avg_time: 270
+pageviews__total: 22178
+pageviews__recent: 1742
+pageviews__avg_time: 276
 tutorial__order: 5
 toc: true
 photos:
   - /images/graph-data-structures-time-complexity-small.jpg
   - /images/graph-data-structures-time-complexity-large.jpg
 photos__background_color: '#F4F0EF'
+alias: /blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/
 tags:
   - big-o notation
   - algorithms

@@ -2,8 +2,8 @@
 layout: post
 title: How to perform Atomic Operations on MongoDB?
 comments: true
-pageviews__total: 214
-pageviews__recent: 93
+pageviews__total: 280
+pageviews__recent: 108
 pageviews__avg_time: 92
 tutorial__order: 0
 toc: true
@@ -11,6 +11,7 @@ photos:
   - /images/atomic-operations-mongodb-small.png
   - /images/atomic-operations-mongodb-large.png
 photos__background_color: '#5691C8'
+alias: /blog/2019/03/14/How-to-perform-Atomic-Operations-on-MongoDB/
 tags:
   - mongodb
 categories:

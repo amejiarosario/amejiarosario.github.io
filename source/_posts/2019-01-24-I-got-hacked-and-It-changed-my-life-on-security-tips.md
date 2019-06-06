@@ -2,15 +2,16 @@
 layout: post
 title: 45 Security Tips to Avoid Hacking
 comments: true
-pageviews__total: 739
-pageviews__recent: 43
-pageviews__avg_time: 329
+pageviews__total: 758
+pageviews__recent: 35
+pageviews__avg_time: 324
 tutorial__order: 0
 toc: true
 photos:
   - /images/i-got-hacked-change-life-security-tips-small.jpg
   - /images/i-got-hacked-change-life-security-tips-large.jpg
 photos__background_color: '#A6282E'
+alias: /blog/2019/01/24/I-got-hacked-and-It-changed-my-life-on-security-tips/
 tags:
   - security
 categories:

@@ -4,9 +4,10 @@ title: "How to scale a Nodejs app based on number of users"
 date: 2016-03-23 17:34:11 -0400
 updated: 2016-03-23 17:34:11 -0400
 comments: true
-pageviews__total: 35999
-pageviews__recent: 290
-pageviews__avg_time: 3250
+pageviews__total: 36250
+pageviews__recent: 315
+pageviews__avg_time: 3272
+alias: /blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/
 photos:
   - /images/scalabilty_matryoshka_small.png
   - /images/scalabilty_matryoshka_large.png

@@ -5,9 +5,10 @@ created: 1328337152000
 updated: 1328337152000
 comments: true
 toc: true
-pageviews__total: 9457
-pageviews__recent: 53
-pageviews__avg_time: 805
+pageviews__total: 9474
+pageviews__recent: 54
+pageviews__avg_time: 812
+alias: /blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/
 # categories: [how-to, apache, nutch, search engines, web crawlers]
 photos:
   - /images/apache_nutch_web_crawler_small.png

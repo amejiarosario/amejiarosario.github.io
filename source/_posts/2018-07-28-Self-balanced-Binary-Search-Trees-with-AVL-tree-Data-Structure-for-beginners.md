@@ -2,15 +2,16 @@
 layout: post
 title: Self-balanced Binary Search Trees with AVL in JavaScript
 comments: true
-pageviews__total: 6083
+pageviews__total: 6333
 pageviews__recent: 477
-pageviews__avg_time: 249
+pageviews__avg_time: 258
 tutorial__order: 7
 toc: true
 photos:
   - /images/data-structures-algorithms-avl-binary-search-trees-small.jpg
   - /images/data-structures-algorithms-avl-binary-search-trees-large.jpg
 photos__background_color: '#F4F0EF'
+alias: /blog/2018/07/16/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/
 tags:
   - big-o notation
   - algorithms
