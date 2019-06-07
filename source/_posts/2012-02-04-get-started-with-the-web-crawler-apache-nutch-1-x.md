@@ -16,9 +16,8 @@ photos:
 photos__background_color: '#E08300'
 tutorial__order: 0
 tags:
-  - web crawlers
 categories:
-  - Technologies
+  - Coding
 ---
 <p>Apache Nutch is an open source <strong>scalable</strong> Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [<a href="http://en.wikipedia.org/wiki/Nutch">*</a>]</p>
 <!--More-->

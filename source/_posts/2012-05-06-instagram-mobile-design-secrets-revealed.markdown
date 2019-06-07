@@ -11,10 +11,8 @@ tutorial__order: 0
 alias: /blog/2012/05/06/instagram-mobile-design-secrets-revealed/
 tags:
   - startups
-  - production
-  - scalability
 categories:
-  - Technologies
+  - Learnings
 ---
 
 Instagram is a very nice iPhone App. It allows you to give effects to your photos easily. Additionally, it’s blazing fast to upload your photos, and share them in other social networks such as Facebook, Twitter and/or Foursquare.

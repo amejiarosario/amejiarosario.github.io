@@ -10,6 +10,9 @@ pageviews__avg_time: 399
 tutorial__order: 0
 #categories: [subversion, eclipse]
 alias: /blog/2012/02/11/adding-subversion-svn-properties-to-your-code/
+tags:
+categories:
+  - Coding
 ---
 <p>When you are coding in a team enviroment it&#39;s good to have the subversion properties in your files, that way any other developer can see quickly who made the last changes and when.</p>
 <p>You can add the following lines at the bottom of your code:</p>

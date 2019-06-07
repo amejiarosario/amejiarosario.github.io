@@ -10,10 +10,9 @@ pageviews__avg_time: 563
 # categories: [windows, tips, how-to]
 tutorial__order: 0
 tags:
-  - windows
+  - troubleshooting
 categories:
-  - Technologies
-  - Troubleshooting
+  - Coding
 ---
 <p>At work, I use an Windows XP machine and it some times get really slowly. I noticed from the task manager (ctrl+shift+esc) that the process MsMpEng.exe is consuming most of my CPU time!</p>
 <p><strong>MsMpEng.exe</strong> is a process associated to <em>Windows Defender</em> that help you to "<em>protected</em>" the computer, but sometimes it requires too much resources. So, if eating up your available CPU it is better to disable it.</p>

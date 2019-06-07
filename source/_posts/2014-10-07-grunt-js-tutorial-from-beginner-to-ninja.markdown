@@ -18,10 +18,8 @@ tutorial__order: 0
 tags:
   - gruntjs
   - nodejs
-  - javascript
 categories:
-  - Technologies
-  - Web Development
+  - Coding
 ---
 
 Sometimes you find yourself doing the same tasks again and again, especially during web development. It is time to automate repetitive tasks and use that time in more creative activities. This is where Grunt comes in. Grunt is a popular task runner that runs on NodeJS. It can minify CSS/JavaScript, run linting tools (JSHint, JSlint, CSSlint), deploy to server, and run test cases when you change a file to name a few. All the information I found about Grunt and similar Javascript test runners were too verbose and not very helpful to get started quickly. So, I decided to make this tutorial.

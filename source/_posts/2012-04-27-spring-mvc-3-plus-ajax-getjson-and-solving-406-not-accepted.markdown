@@ -15,8 +15,8 @@ tags:
   - java
   - spring mvc
 categories:
-  - Technologies
-  - Troubleshooting
+  - Coding
+  - Web Development
 ---
 <p>I wanted to add AJAX to Spring MVC application. So, I did what most us do, go through the documentation or blog of the Spring Source. But, after playing around I didn't get it to work properly so here are some details that might save you some time.</p>
 

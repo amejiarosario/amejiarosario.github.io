@@ -13,11 +13,10 @@ photos:
 photos__background_color: '#F4F0EF'
 alias: /blog/2018/04/24/Analysis-of-Recursive-Algorithms/
 tags:
-  - big-o notation
   - algorithms
   - tutorial_algorithms
 categories:
-  - Programming
+  - Coding
   - Data Structures and Algorithms (DSA)
 date: 2018-04-24 08:44:35
 updated: 2018-04-24 08:44:35

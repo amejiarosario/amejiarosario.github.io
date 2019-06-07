@@ -14,11 +14,10 @@ photos:
 photos__background_color: '#F4F0EF'
 alias: /blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/
 tags:
-  - big-o notation
   - algorithms
   - tutorial_algorithms
 categories:
-  - Programming
+  - Coding
   - Data Structures and Algorithms (DSA)
 date: 2018-04-04 16:16:07
 updated: 2019-04-05 16:12:00

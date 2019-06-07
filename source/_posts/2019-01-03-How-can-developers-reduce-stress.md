@@ -13,9 +13,9 @@ photos:
 photos__background_color: '#F5A623'
 alias: /blog/2019/01/03/How-can-developers-reduce-stress/
 tags:
-  - stress management
+  - productivity
 categories:
-  - Miscellaneous
+  - Learnings
 date: 2019-01-03 19:28:50
 updated: 2019-04-30 09:31:00
 ---

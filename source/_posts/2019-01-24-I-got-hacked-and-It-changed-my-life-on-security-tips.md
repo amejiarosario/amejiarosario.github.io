@@ -15,7 +15,7 @@ alias: /blog/2019/01/24/I-got-hacked-and-It-changed-my-life-on-security-tips/
 tags:
   - security
 categories:
-  - Miscellaneous
+  - Learnings
 date: 2019-01-24 16:08:53
 updated: 2019-01-24 16:08:53
 ---

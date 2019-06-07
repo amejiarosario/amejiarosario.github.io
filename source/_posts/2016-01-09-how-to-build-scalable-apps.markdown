@@ -16,10 +16,9 @@ photos:
   - /images/scaling_apps_2016_large.png
 tutorial__order: 0
 tags:
-  - scalability
-  - production
+  - scaling
 categories:
-  - Technologies
+  - Coding
 ---
 Scaling application is not an easy topic to cover in one post. So in this first post, you can find “the mindset” to build scalable apps using the 12-factor principles. In the [next post](/blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/), you will find more down to earth examples one how to scale based on the number of users.
 

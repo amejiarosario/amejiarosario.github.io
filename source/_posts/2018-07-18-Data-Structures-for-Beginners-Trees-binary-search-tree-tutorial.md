@@ -13,11 +13,10 @@ photos:
 photos__background_color: '#F4F0EF'
 alias: /blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/
 tags:
-  - big-o notation
   - algorithms
   - tutorial_algorithms
 categories:
-  - Programming
+  - Coding
   - Data Structures and Algorithms (DSA)
 date: 2018-06-11 18:49:30
 updated: 2019-05-23 15:17:30

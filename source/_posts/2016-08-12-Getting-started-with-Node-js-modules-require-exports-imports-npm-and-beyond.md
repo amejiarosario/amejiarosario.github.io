@@ -13,11 +13,9 @@ photos:
  - /images/node-modules-small.png
  - /images/node-modules-large.png
 tags:
-  - NodeJS
-  - javascript
+  - nodejs
 categories:
-  - Programming
-  - Web Development
+  - Coding
 date: 2016-08-12 16:30:23
 updated: 2019-01-28 16:50:23
 ---

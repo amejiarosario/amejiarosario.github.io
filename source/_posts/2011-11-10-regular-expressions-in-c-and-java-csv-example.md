@@ -10,10 +10,9 @@ pageviews__avg_time: 765
 tutorial__order: 0
 alias: /blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/
 tags:
-  - java
-  - c#
+  - regex
 categories:
-  - Technologies
+  - Coding
 #categories: [c#, csv, regex, java]
 ---
 <p>Regular expressions are used to find matches in texts. The following is a real application of Regex in C# and Java.&nbsp;</p>

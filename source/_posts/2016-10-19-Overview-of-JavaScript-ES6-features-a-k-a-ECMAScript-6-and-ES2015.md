@@ -13,10 +13,9 @@ photos:
   - /images/es6-core-features-overview-small.png
   - /images/es6-core-features-overview-large.png
 tags:
-  - javascript
+  - javascript es6
 categories:
-  - Programming
-  - Web Development
+  - Coding
 date: 2016-10-19 17:01:34
 updated: 2016-10-25 12:02:34
 ---

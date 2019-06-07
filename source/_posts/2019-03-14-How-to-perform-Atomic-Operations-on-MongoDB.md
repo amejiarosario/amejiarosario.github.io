@@ -15,7 +15,7 @@ alias: /blog/2019/03/14/How-to-perform-Atomic-Operations-on-MongoDB/
 tags:
   - mongodb
 categories:
-  - Programming
+  - Coding
 date: 2019-03-14 06:40:00
 updated: 2019-03-14 06:40:00
 author: DanishWadhwa

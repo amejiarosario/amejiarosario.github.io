@@ -12,8 +12,7 @@ tutorial__order: 0
 tags:
   - git
 categories:
-  - Technologies
-  - Troubleshooting
+  - Coding
 ---
 You might want to commit from a git repository from time to time for several purposes (backup, control version, continuous integration, etc). One way to accomplish that is using the CronTab (Cron is used to run periodic task in Unix-like systems).
 <!--More-->

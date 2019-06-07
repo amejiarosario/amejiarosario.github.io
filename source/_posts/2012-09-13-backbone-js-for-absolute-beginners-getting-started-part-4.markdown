@@ -16,11 +16,12 @@ photos:
 tutorial__order: 4
 tags:
   - backbonejs
-  - javascript
+  - todo app
   - tutorial_backbonejs
 categories:
-  - Technologies
+  - Coding
   - Web Development
+  - Backbone
 ---
 
 This tutorial is about BackboneJS Routes.

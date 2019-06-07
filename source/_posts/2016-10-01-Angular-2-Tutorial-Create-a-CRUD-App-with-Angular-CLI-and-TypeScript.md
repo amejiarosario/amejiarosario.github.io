@@ -14,12 +14,11 @@ photos:
   - /images/angular-2-tutorial-angular-cli-large.png
 tags:
   - angular
-  - angular 2+
-  - javascript
   - todo app
 categories:
-  - Programming
+  - Coding
   - Web Development
+  - Angular
 date: 2016-10-01 17:16:03
 updated: 2018-08-07 18:17:23
 ---

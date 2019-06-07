@@ -10,10 +10,9 @@ alias: /blog/2016/06/25/List-tasks-in-npm-grunt-gulp-and-rake/
 tags:
   - gruntjs
   - gulpjs
-  - javascript
+  - nodejs
 categories:
-  - Programming
-  - Web Development
+  - Coding
 date: 2016-06-25 15:14:49
 ---
 

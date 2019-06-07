@@ -10,9 +10,9 @@ pageviews__avg_time: 180
 tutorial__order: 0
 alias: /blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/
 tags:
-  - drupal
+  - troubleshooting
 categories:
-  - Technologies
+  - Coding
 #categories: [drupal, wysiwyg, imce, ckeditor]
 ---
 <p>It have been a pain for me to upload images and deal with tons of WYSIWYG editors... After many trials in this post I recompiled my experiences and the best method that I have found so far. If you have any suggestion I&#39;m willing to hear it, too.</p>

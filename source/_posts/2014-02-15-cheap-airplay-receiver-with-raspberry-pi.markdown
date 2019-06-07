@@ -16,7 +16,7 @@ photos:
 tags:
   - raspberrypi
 categories:
-  - Technologies
+  - Coding
 ---
 
 I got excited about the idea of having a Raspberry Pi. It is in essence one of the smallest complete computer that you can get for $35 bucks! Ok, after I got one I had to do something useful with it... So I make it a Airplay receiver to play music remotely from any of my apple devices!

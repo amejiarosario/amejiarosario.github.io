@@ -13,12 +13,9 @@ photos:
  - /images/node-package-manager-small.png
  - /images/node-package-manager-large.png
 tags:
-  - npm
   - nodejs
-  - javascript
 categories:
-  - Programming
-  - Web Development
+  - Coding
 date: 2016-08-19 16:18:32
 updated: 2016-08-19 16:18:32
 ---

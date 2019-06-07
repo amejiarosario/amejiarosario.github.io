@@ -16,13 +16,13 @@ photos:
 tutorial__order: 1
 alias: /blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/
 tags:
-  - angular
-  - angular 1.x
-  - javascript
-  - Tutorial_MEAN-Stack
+  - angularjs
+  - nodejs
+  - tutorial_mean-stack
 categories:
-  - Technologies
+  - Coding
   - Web Development
+  - Angular
 ---
 
 This tutorial is meant to be as clear as possible. At the same time, we are going to cover the concepts that you will need most of the time. All the good stuff without the fat :)

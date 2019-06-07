@@ -15,10 +15,9 @@ photos:
 toc: true
 tutorial__order: 0
 tags:
-  - scalability
-  - production
+  - scaling
 categories:
-  - Technologies
+  - Coding
 ---
 
 Massive success is the best that could happen to any application. But, it could be a blessing and a curse for developers. Dealing with downtime, high availability and trying to scale. The following is a guideline on how to scale the web applications as the number of users grows.

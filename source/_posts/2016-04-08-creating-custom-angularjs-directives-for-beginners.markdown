@@ -16,11 +16,11 @@ alias: /blog/2016/04/08/creating-custom-angularjs-directives-for-beginners/
 tutorial__order: 0
 tags:
   - angularjs
-  - angular 1.x
   - javascript
 categories:
-  - Technologies
+  - Coding
   - Web Development
+  - Angular
 ---
 
 Directives are one of the most important concepts to understand Angular. This tutorial takes through the basics and beyond. We will cover how to build your own HTML extensions through directives.

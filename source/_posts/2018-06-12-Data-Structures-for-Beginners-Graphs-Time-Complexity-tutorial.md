@@ -13,11 +13,10 @@ photos:
 photos__background_color: '#F4F0EF'
 alias: /blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/
 tags:
-  - big-o notation
   - algorithms
   - tutorial_algorithms
 categories:
-  - Programming
+  - Coding
   - Data Structures and Algorithms (DSA)
 date: 2018-05-14 05:19:22
 updated: 2018-05-14 05:19:22

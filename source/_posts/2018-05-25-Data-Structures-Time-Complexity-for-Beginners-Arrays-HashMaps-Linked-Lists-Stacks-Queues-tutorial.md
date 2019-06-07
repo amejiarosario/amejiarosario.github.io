@@ -13,11 +13,10 @@ photos:
 photos__background_color: '#F4F0EF'
 alias: /blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/
 tags:
-  - big-o notation
   - algorithms
   - tutorial_algorithms
 categories:
-  - Programming
+  - Coding
   - Data Structures and Algorithms (DSA)
 date: 2018-04-28 19:20:40
 updated: 2019-04-22 15:49:40

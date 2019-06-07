@@ -12,9 +12,9 @@ photos:
   - /images/ecommerce-app-nodejs-large.png
 photos__background_color: '#343434'
 tags:
-  - e-commerce
+  - nodejs
 categories:
-  - Programming
+  - Coding
 alias: /blog/2019/05/13/How-to-build-a-Node-js-eCommerce-website-for-free/
 date: 2019-05-13 14:43:24
 updated: 2019-05-14 16:22:24

@@ -14,10 +14,8 @@ photos:
  - /images/node-web-server-large.png
 tags:
   - nodejs
-  - javascript
 categories:
-  - Programming
-  - Web Development
+  - Coding
 date: 2016-08-24 17:54:42
 updated: 2016-08-24 17:54:42
 ---

@@ -10,10 +10,9 @@ pageviews__avg_time: 384
 tutorial__order: 0
 alias: /blog/2011/12/22/learning-algorithms-from-scratch-algorithms-for-dummies/
 tags:
-  - big-o notation
   - algorithms
 categories:
-  - Programming
+  - Coding
   - Data Structures and Algorithms (DSA)
 ---
 

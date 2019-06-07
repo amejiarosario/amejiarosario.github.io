@@ -16,12 +16,12 @@ alias: /blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-
 tutorial__order: 2
 tags:
   - backbonejs
-  - javascript
-  - tutorial_backbonejs
   - todo app
+  - tutorial_backbonejs
 categories:
-  - Technologies
+  - Coding
   - Web Development
+  - Backbone
 ---
 
 This tutorial builts on top of the [first part](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/) and continue with BacboneJS's Models, Collections and Views.

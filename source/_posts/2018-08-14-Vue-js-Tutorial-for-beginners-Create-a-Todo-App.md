@@ -15,10 +15,11 @@ alias: /blog/2018/08/04/Vue-js-Tutorial-for-beginners-Create-a-Todo-App/
 tags:
   - javascript
   - todo app
-  - vue.js
+  - vuejs
 categories:
-  - Programming
+  - Coding
   - Web Development
+  - Vue
 date: 2018-08-04 21:30:22
 updated: 2018-08-04 21:30:22
 ---

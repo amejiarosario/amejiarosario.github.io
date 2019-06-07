@@ -16,14 +16,15 @@ photos__background_color: '#7EBE42'
 alias: /blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/
 tutorial__order: 3
 tags:
-  - angularjs
-  - angular 1.x
-  - mean stack
-  - javascript
-  - Tutorial_MEAN-Stack
+  - nodejs
+  - mongodb
+  - todo app
+  - express
+  - tutorial_mean-stack
 categories:
-  - Technologies
+  - Coding
   - Web Development
+  - Angular
 ---
 We are going to build a full stack Todo App using the MEAN (MongoDB, ExpressJS, AngularJS and NodeJS). This is the last part of [three-post series tutorial](/tags/Tutorial-MEAN-Stack/).
 

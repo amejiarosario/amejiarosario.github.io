@@ -16,10 +16,9 @@ photos:
 photos__background_color: '#F2ED5B'
 tutorial__order: 0
 tags:
-  - big-o notation
   - algorithms
 categories:
-  - Programming
+  - Coding
   - Data Structures and Algorithms (DSA)
 ---
 

@@ -13,11 +13,10 @@ photos:
 photos__background_color: '#F4F0EF'
 alias: /blog/2018/07/16/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/
 tags:
-  - big-o notation
   - algorithms
   - tutorial_algorithms
 categories:
-  - Programming
+  - Coding
   - Data Structures and Algorithms (DSA)
 date: 2018-07-16 15:43:11
 updated: 2019-05-30 15:43:11

@@ -18,11 +18,11 @@ toc: true
 tutorial__order: 1
 tags:
   - backbonejs
-  - javascript
   - tutorial_backbonejs
 categories:
-  - Technologies
+  - Coding
   - Web Development
+  - Backbone
 ---
 
 Backbone.js is a JavaScript library, among many others, that is gaining special attention in the web development community because it's ease of use and the structure that it provides to JavaScript applications.

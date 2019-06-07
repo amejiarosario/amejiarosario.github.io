@@ -16,11 +16,11 @@ photos:
 tutorial__order: 3
 tags:
   - backbonejs
-  - javascript
   - tutorial_backbonejs
 categories:
-  - Technologies
+  - Coding
   - Web Development
+  - Backbone
 ---
 
 In tutorial we are going to continue learning about BackboneJS: CRUD.

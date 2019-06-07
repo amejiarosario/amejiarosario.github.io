@@ -10,10 +10,9 @@ pageviews__avg_time: 562
 # categories: [tips, c#, gotchas, .net, how-to]
 tutorial__order: 0
 tags:
-  - c#
+  - troubleshooting
 categories:
-  - Technologies
-  - Troubleshooting
+  - Coding
 ---
 <p>In the .NET framework, the method Assembly -&gt; Get Manifest Resource Stream has a gotcha that could take some time to figure out why is not working as intented. I was working in a piece of code (show below), and the GetManifestResourceStream always returned NULL exception error. Even though the file was there...</p>
 <!--More-->

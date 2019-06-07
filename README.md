@@ -32,13 +32,63 @@ grunt --help
 rake -T
 ```
 
+
+# Classification of content
+
+## Categories
+
+Coding 45
+  Data Structures and Algorithms (DSA) 9
+  Web Development 12
+    Angular 5
+    Backbone 4
+    Ruby on Rails 1
+    Vue 1
+Learnings 6
+
+
+## Tags
+
+Tutorial_MEAN-Stack
+algorithms
+angular
+angularjs
+backbonejs
+drupal
+javascript es6
+express
+git
+gruntjs
+gulpjs
+java
+javascript
+mongodb
+nodejs
+php
+productivity
+raspberrypi
+regex
+ruby on rails
+scaling
+security
+spring mvc
+startups
+todo app
+troubleshooting
+tutorial_algorithms
+tutorial_backbonejs
+vuejs
+
+
+<!--
+
 # Topics of Interests
 
-This list changes as my I evolve over time:
+This list changes as I evolve over time:
 
 - Web Development
   - HTML/CSS/JS
-  - Scalability
+  - scaling
   - javascript as universal language for Web Development
     - Node
     - Angular 1/2+
@@ -55,7 +105,6 @@ This list changes as my I evolve over time:
   - most sold/used books, cars, games, apps, websites, movies, music, videos,...
   - History of humanity
 
-# Classification of content
 
 ## Categories
 
@@ -100,7 +149,7 @@ Around 5 tags per page
 -samba
 
 - production
-- scalability
+- scaling
 
 
 ### Operating Systems
@@ -121,8 +170,10 @@ Around 5 tags per page
     - course_angular
     - course_e-commerce-app-with-mean
 
-Types (DON'T USE)
+  Types (DON'T USE)
     - snippets
     - articles
     - tutorials
     - books
+
+-->

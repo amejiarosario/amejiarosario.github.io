@@ -9,11 +9,10 @@ pageviews__total: 4165
 pageviews__recent: 6
 pageviews__avg_time: 128
 tutorial__order: 0
-alias:
 tags:
   - startups
 categories:
-  - Technologies
+  - Learnings
 
 ---
 

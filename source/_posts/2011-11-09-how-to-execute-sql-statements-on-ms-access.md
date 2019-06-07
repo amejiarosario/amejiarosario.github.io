@@ -10,6 +10,10 @@ pageviews__avg_time: 100
 tutorial__order: 0
 alias: /blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/
 #categories: [ms access, sql, visual basic, macros, how-to]
+tags:
+  - troubleshooting
+categories:
+  - Coding
 ---
 Sometimes is quicker to use SQL statements than create tables using the MS Access Visual Designer. For instance, if you already have the SQL code from other databases this could be useful.
 <!--More-->

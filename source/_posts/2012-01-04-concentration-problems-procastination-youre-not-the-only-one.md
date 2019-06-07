@@ -10,6 +10,10 @@ pageviews__avg_time: 131
 tutorial__order: 0
 alias: /blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/
 #categories: [concentration, procrastination, attention]
+tags:
+  - productivity
+categories:
+  - Learnings
 ---
 <p>&nbsp;</p>
 <p>Procastination and concentration problems are big deals from a lot of people, specially for students. There are too many distractions that are more fun than our homework.</p>

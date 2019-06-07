@@ -17,14 +17,14 @@ toc: true
 tutorial__order: 2
 alias: /blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/
 tags:
-  - NodeJS
-  - ExpressJS
-  - MongoDB
-  - javascript
-  - Tutorial_MEAN-Stack
+  - nodejs
+  - mongodb
+  - express
+  - tutorial_mean-stack
 categories:
-  - Technologies
+  - Coding
   - Web Development
+  - Angular
 ---
 
 Welcome to this tutorial about RESTful API using Node.js (Express.js) and MongoDB (mongoose)! We are going to learn how to install and use each component individually and then proceed to create a RESTful API.

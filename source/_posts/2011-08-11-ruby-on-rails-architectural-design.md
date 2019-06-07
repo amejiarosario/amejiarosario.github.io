@@ -5,7 +5,7 @@ created: 1313082237000
 updated: 1313082237000
 comments: true
 pageviews__total: 51812
-pageviews__recent: 336  
+pageviews__recent: 336
 pageviews__avg_time: 700
 toc: true
 # categories: [ruby on rails, software architecture, web frameworks, web development, agile frameworks, twitter]
@@ -15,11 +15,11 @@ photos:
 photos__background_color: '#B42738'
 tutorial__order: 0
 tags:
-  - ruby
   - ruby on rails
 categories:
-  - Technologies
+  - Coding
   - Web Development
+  - Ruby on Rails
 ---
 
 **Abstract**. – Ruby on Rails is a web development framework for database back-ended applications. This framework is becoming very popular in the agile development due to its productivity and agility features. Ruby on Rails have built-in solutions to many common problems that developer face during web development. Furthermore, this framework favors convention over configuration, which makes the web development more agile. Additionally, these conventions make the web applications more maintainable as well, because the developers adopt the Rails convention and sensitive defaults.
