@@ -1,2 +1,5 @@
 # Also using hexo-generator-alias to avoid vendor locked-in
 /blog/:year/:month/:date/* /:splat
+
+# Redirect default Netlify subdomain to primary domain
+https://angry-engelbart-d10917.netlify.com/* https://adrianmejia.com/:splat 301!
