@@ -1,0 +1,2 @@
+# Also using hexo-generator-alias to avoid vendor locked-in
+/blog/:year/:month/:date/* /:splat

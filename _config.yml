@@ -16,10 +16,14 @@ disqus_shortname: adrianmejia
 #url: https://adrianmejia.herokuapp.com
 url: https://adrianmejia.com
 root: /
-# permalink: :title/
-permalink: blog/:year/:month/:day/:title/
+permalink: :title/
+# permalink: blog/:year/:month/:day/:title/
 permalink_defaults:
 logo: /images/logo.png
+
+# Include/Exclude Files/Folders
+include:
+  - "_redirects"
 
 # Directory
 source_dir: source
