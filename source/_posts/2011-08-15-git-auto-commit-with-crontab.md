@@ -9,6 +9,7 @@ pageviews__recent: 218
 pageviews__avg_time: 1214
 #categories: [unix, crontab, git, drupal, drush, how-to]
 tutorial__order: 0
+alias: /blog/2011/08/15/git-auto-commit-with-crontab/
 tags:
   - git
 categories:

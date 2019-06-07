@@ -9,6 +9,7 @@ pageviews__recent: 393
 pageviews__avg_time: 562
 # categories: [tips, c#, gotchas, .net, how-to]
 tutorial__order: 0
+alias: /blog/2011/07/18/cs-getmanifestresourcestream-gotcha/
 tags:
   - troubleshooting
 categories:

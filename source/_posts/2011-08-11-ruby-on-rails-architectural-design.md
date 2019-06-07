@@ -14,6 +14,7 @@ photos:
   - /images/ruby_on_rails_architecture_large.png
 photos__background_color: '#B42738'
 tutorial__order: 0
+alias: /blog/2011/08/11/ruby-on-rails-architectural-design/
 tags:
   - ruby on rails
 categories:

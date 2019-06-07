@@ -8,6 +8,7 @@ pageviews__total: 1889
 pageviews__recent: 36
 pageviews__avg_time: 379
 tutorial__order: 0
+alias: /blog/2011/08/06/php-dom-explained-and-exemplified/
 tags:
   - php
 categories:

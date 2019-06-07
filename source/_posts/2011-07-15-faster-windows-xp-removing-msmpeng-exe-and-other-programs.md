@@ -9,6 +9,7 @@ pageviews__recent: 596
 pageviews__avg_time: 563
 # categories: [windows, tips, how-to]
 tutorial__order: 0
+alias: /blog/2011/07/15/faster-windows-xp-removing-msmpeng-exe-and-other-programs/
 tags:
   - troubleshooting
 categories:
