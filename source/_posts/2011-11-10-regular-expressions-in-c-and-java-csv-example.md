@@ -4,9 +4,9 @@ title: Regular Expressions in C# and Java - CSV Example
 created: 1320937797000
 updated: 1320937797000
 comments: true
-pageviews__total: 2864
-pageviews__recent: 18
-pageviews__avg_time: 765
+pageviews__total: 2899
+pageviews__recent: 21
+pageviews__avg_time: 563
 tutorial__order: 0
 alias: /blog/2011/11/10/regular-expressions-in-c-and-java-csv-example/
 tags:

@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "googleapis": "14.1.0"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
   }
 }

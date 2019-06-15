@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const postsPath = path.join(__dirname, '..', 'source', '_posts');
-console.log(postsPath);
+// console.log(postsPath);
 
 function parseGa(data) {
   const hash = new Map();
@@ -15,7 +15,7 @@ function parseGa(data) {
     // console.log(pagePath, pageviews);
 
     if (!postName) {
-      // console.error('No key!! ', key, pagePath);
+      console.error('No postname!! ', { pagePath, postName, pageviews});
       continue;
     }
 
@@ -70,7 +70,7 @@ function updateBlog(recent, total) {
               console.error({ error });
               reject(error);
             }
-            console.log({ fullPath, key, gaRecent, gaTotal });
+            // console.log({ fullPath, key, gaRecent, gaTotal });
 
             if (gaTotal) {
               content = content.replace(/pageviews__total:\s+\d*\n/, `pageviews__total: ${gaTotal.pageviews}\n`);
@@ -95,8 +95,8 @@ function updateBlog(recent, total) {
                 console.error(err);
                 reject(err);
               } else {
-                console.log(`\twrote successful: ${key}`); // ${content.length} on
-                console.log(`\tcontent: ${content.length} - ${content.substring(0, 300)}`);
+                // console.log(`\twrote successful: ${key}`); // ${content.length} on
+                // console.log(`\tcontent: ${content.length} - ${content.substring(0, 300)}`);
               }
             });
           });
@@ -123,8 +123,8 @@ function pageViewsBlogUpdater(recentPath, totalPath) {
 module.exports = pageViewsBlogUpdater;
 
 function tester() {
-  const recentPath = './data/pageviews-28daysAgo-yesterday-1548368649582.json';
-  const totalPath = './data/pageviews-2011-06-10-yesterday-1548368648808.json';
+  const recentPath = './data/pageviews-28daysAgo-yesterday-1560610123559.json';
+  const totalPath = './data/pageviews-2011-07-12-yesterday-1560610122947.json';
 
   pageViewsBlogUpdater(recentPath, totalPath);
 
