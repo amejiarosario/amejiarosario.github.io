@@ -75,6 +75,9 @@ a {
   & :hover {
     // @extend .mdl-shadow--6dp;
   }
+  margin-bottom: 15px;
+  margin-right: 15px;
+  border-radius: 10px;
 }
 $index: 0;
 @each $color in #D24D57 #C93756 #34495E #5D3F6A #4B77BE #87D37C #D9B611 #6C7A89 #7A7E8A #00A187 #89C4F4 {

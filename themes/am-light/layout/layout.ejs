@@ -53,7 +53,7 @@
     <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
     <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
 
-    <link rel="canonical" href="<%- url.replace('index.html', '') %>" />
+    <link rel="canonical" href="<%- url.replace('index.html', '').toLowerCase() %>" />
     <!-- Open Graph -->
     <meta property="og:url" content="<%- url.replace('index.html', '') %>" />
     <meta property="og:site_name" content="<%- config.title %>" />
