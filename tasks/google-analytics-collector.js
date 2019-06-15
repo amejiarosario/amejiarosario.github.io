@@ -1,7 +1,7 @@
-var google = require('googleapis');
+const google = require('googleapis');
 // var analyticsreporting = google.analyticsreporting('v4');
-var https = require('https');
-var fs = require('fs');
+const https = require('https');
+const fs = require('fs');
 
 // const startDate = '28daysAgo';
 // // const startDate = '2011-06-10';
@@ -17,7 +17,6 @@ var fs = require('fs');
  * @returns {*}
  */
 function downloadFiles(startDate = '2011-07-12', endDate = 'yesterday') {
-
   // const DISCOVERY_URI = 'https://analyticsreporting.googleapis.com/$discovery/rest';
   // const VIEW_ID = '58359416';
   // http://stackoverflow.com/questions/24918629/inserting-an-event-with-the-nodejs-google-calendar-api-returns-400-missing-end
@@ -28,34 +27,34 @@ function downloadFiles(startDate = '2011-07-12', endDate = 'yesterday') {
 
   const authClient = new google.auth.JWT(SERVICE_ACCOUNT_EMAIL, KEY_FILE_LOCATION, null, SCOPES);
 
-  return new Promise(function(resolve, reject){
-    authClient.authorize(function(err, token) {
+  return new Promise(((resolve, reject) => {
+    authClient.authorize((err, token) => {
       if (err) {
         console.log('--- Google Error --- ', err);
         reject(err);
         return;
       }
 
-      console.log('Token: ', token);
-      var req = url + token.access_token;
-      console.log(req);
+      // console.log('Token: ', token);
+      const req = url + token.access_token;
+      // console.log(req);
 
       https.get(req, (res) => {
-        let body = [];
-        console.log('statusCode: ', res.statusCode);
-        console.log('headers: ', res.headers);
+        const body = [];
+        // console.log('statusCode: ', res.statusCode);
+        // console.log('headers: ', res.headers);
 
         res.on('data', (d) => {
           // process.stdout.write(d);
-          process.stdout.write('.');
+          // process.stdout.write('.');
           // console.log(JSON.stringify(d, null, 2));
           body.push(d);
         });
 
         res.on('end', (d) => {
-          console.log('----- FINISHED -----');
-          const  filename = `./data/pageviews-${startDate}-${endDate}-${+new Date()}.json`;
-          fs.writeFile(filename, body.join(""), function(err) {
+          // console.log('----- FINISHED -----');
+          const filename = `./data/pageviews-${startDate}-${endDate}-${+new Date()}.json`;
+          fs.writeFile(filename, body.join(''), (err) => {
             if (err) {
               return console.log(err);
             }
@@ -63,13 +62,13 @@ function downloadFiles(startDate = '2011-07-12', endDate = 'yesterday') {
 
             resolve(filename);
           });
-        })
+        });
       }).on('error', (e) => {
         console.error(e);
         reject(err);
       });
     });
-  });
+  }));
 }
 
 module.exports = downloadFiles;
