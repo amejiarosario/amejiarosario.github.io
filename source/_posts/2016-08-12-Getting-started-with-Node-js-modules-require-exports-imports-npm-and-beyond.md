@@ -28,13 +28,19 @@ Modules are a crucial concept to understand Node.js projects. In this post, we c
 
 Node modules allow you to write reusable code. You can nest them one inside another. Using the Node Package Manager (NPM), you can publish your modules and make them available to the community. Also, NPM enables you to reuse modules made by other developers.
 
+> We are using Node 10.x for the examples and ES6 syntax. However, the concepts are valid for any version.
+---
+
 In this section, we are going to cover how to create Node modules and each one of its components:
 
+- NodeJS vs ECMAScripts
 - Require
 - Exports
 - Module.exports
 
-> We are using Node 10.x for the examples and ES6 syntax. However, the concepts are valid for any version.
+# NodeJS vs ECMAScripts
+Node modules are not very complicated but they can easily be confused with the use of the export/import key word that is part of ECMAScript 2015 specifications (see MDN reference for export/import key words).  Modularizing NodeJS does follow some similar features and uses simlar words, but the syntax is different.  For example in ECMAScript processing you would use 
+`import * as [variable name] from 'moduleFileName.js'` or other similar type of jargon.  NodeJS scripts will not recognize the 'import' keyword.  Instead, the `require` keyword is used to import files (in the NodeJS mannor) and therefore replaces the functionality of the 'import' keyword. Even with all this said, there is a use for the import keyword but it requires a special syntax and conditions that are explained below.
 
 # Require
 
