@@ -20,31 +20,27 @@ date: 2016-08-12 16:30:23
 updated: 2019-01-28 16:50:23
 ---
 
-Getting started with Node.js modules: require, exports, imports and beyond.
+Getting started with Node.js modules: `require`, `exports`, `imports`, and beyond.
 
 Modules are a crucial concept to understand Node.js projects. In this post, we cover Node modules: `require`, `exports` and, the future `import`.
 
 <!-- more -->
 
-Node modules allow you to write reusable code. You can nest them one inside another. Using the Node Package Manager (NPM), you can publish your modules and make them available to the community. Also, NPM enables you to reuse modules made by other developers.
+Node modules allow you to write reusable code. You can nest them one inside another. Using the Node Package Manager (NPM), you can publish your modules and make them available to the community. Also, NPM enables you to reuse modules created by other developers.
 
-> We are using Node 10.x for the examples and ES6 syntax. However, the concepts are valid for any version.
+> We are using Node 12.x for the examples and ES6+ syntax. However, the concepts are valid for any version.
 ---
 
 In this section, we are going to cover how to create Node modules and each one of its components:
 
-- NodeJS vs ECMAScripts
 - Require
 - Exports
-- Module.exports
-
-# NodeJS vs ECMAScripts
-Node modules are not very complicated but they can easily be confused with the use of the export/import key word that is part of ECMAScript 2015 specifications (see MDN reference for export/import key words).  Modularizing NodeJS does follow some similar features and uses simlar words, but the syntax is different.  For example in ECMAScript processing you would use 
-`import * as [variable name] from 'moduleFileName.js'` or other similar type of jargon.  NodeJS scripts will not recognize the 'import' keyword.  Instead, the `require` keyword is used to import files (in the NodeJS mannor) and therefore replaces the functionality of the 'import' keyword. Even with all this said, there is a use for the import keyword but it requires a special syntax and conditions that are explained below.
+- Module (module.exports vs. export)
+- Import
 
 # Require
 
-`require` are used to consume modules. It allows you to include modules in your programs. You can add built-in core Node.js modules, community-based modules (`node_modules`) and local modules.
+`require` are used to consume modules. It allows you to include modules in your programs. You can add built-in core Node.js modules, community-based modules (`node_modules`), and local modules.
 
 Let's say we want to read a file from the filesystem. Node has a core module called 'fs':
 
@@ -67,7 +63,7 @@ The `require` function will look for files in the following order:
 
 # Exports
 
-The `exports` keyword gives you the chance to "export" your own objects and methods. Let's do an example:
+The `exports` keyword gives you the chance to "export" your objects and methods. Let's do an example:
 
 ```javascript circle.js
 const PI = 3.14159265359;
@@ -104,7 +100,7 @@ You can think of each Node.js module as a self-contained function like the follo
 });
 ```
 
-We have already covered `exports` and `require`. Notice the relationship between `module.exports` and `exports`. They point to the same reference. But, if you assign something directly to `exports` you will break its link to `module.exports`. More on that in the next section.
+We have already covered `exports` and `require`. Notice the relationship between `module.exports` and `exports`. They point to the same reference. But, if you assign something directly to `exports` you will break its link to `module.exports` — more on that in the next section.
 
 For our convenience `__filename` and `__dirname` are defined. They provide the full path to the current file and directory. The latter excludes the filename and prints out the directory path.
 
@@ -116,7 +112,7 @@ For instance, for our `./circle.js` module, it would be something like this:
 
 Ok, we have covered `exports`, `require`, `__filename`, and `__dirname`. The only one we haven't covered is `module`. Let's go for it!
 
-# Module.exports vs Exports
+# Module.exports vs. Exports
 
 The `module` is not global; it is local for each module. It contains metadata about a module like id, exports, parent, children, and so on.
 
@@ -158,7 +154,7 @@ Use `module.exports` to:
 
 # Imports
 
-Starting with version 8.5.0+, Node.js supports ES modules natively with a feature flag and new file extention `*.mjs`.
+Starting with version 8.5.0+, Node.js supports ES modules natively with a feature flag and new file extension `*.mjs`.
 
 For instance, our previous `circle.js` can be rewritten as `circle.mjs` as follows:
 
@@ -191,6 +187,9 @@ And, finally you can run it using the experimental module feature flag:
 ```bash
 node --experimental-modules main.mjs
 ```
+
+**NOTE**: If you have a `*.mjs` you cannot use `require` or it will throw and error.
+`.mjs` is for `import` ECMAScript Modules and `.js` is for regular `require` modules.
 
 If you don't like experimental modules, another alternative is to use a transpiler. That converts modern JavaScript to older versions for you. Good options are
 [TypeScript](https://www.typescriptlang.org/docs/handbook/modules.html),
