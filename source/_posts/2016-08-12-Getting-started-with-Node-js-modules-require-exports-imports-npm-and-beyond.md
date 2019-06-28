@@ -17,7 +17,7 @@ tags:
 categories:
   - Coding
 date: 2016-08-12 16:30:23
-updated: 2019-01-28 16:50:23
+updated: 2019-06-28 14:18:23
 ---
 
 Getting started with Node.js modules: `require`, `exports`, `imports`, and beyond.
@@ -29,7 +29,7 @@ Modules are a crucial concept to understand Node.js projects. In this post, we c
 Node modules allow you to write reusable code. You can nest them one inside another. Using the Node Package Manager (NPM), you can publish your modules and make them available to the community. Also, NPM enables you to reuse modules created by other developers.
 
 > We are using Node 12.x for the examples and ES6+ syntax. However, the concepts are valid for any version.
----
+
 
 In this section, we are going to cover how to create Node modules and each one of its components:
 
@@ -57,9 +57,49 @@ As you can see, we imported the "fs" module into our code. It allows us to use a
 
 The `require` function will look for files in the following order:
 
-1. Built-in core Node.js modules (like `fs`)
-2. Modules in the `node_modules` folder.
-3. If the module name has a `./`, `/` or `../`, it will look for the directory/file in the given path. It matches the file extensions: `*.js`, `*.json` and `*.node`.
+1. **Built-in** core Node.js modules (like `fs`)
+2. **NPM Modules**. It will look in the `node_modules` folder.
+3. **Local Modules**. If the module name has a `./`, `/` or `../`, it will look for the directory/file in the given path. It matches the file extensions: `*.js`, `*.json`, `*.mjs`, `*.cjs`, `*.wasm` and `*.node`.
+
+Let's now explain each in little more details with
+
+## Built-in Modules
+
+When you install node, it comes with many built-in modules. Node comes with batteries included ;)
+
+Some of the most used core modules are:
+
+- [fs](https://nodejs.org/api/fs.html): Allows you to manipulate (create/read/write) files and directories.
+- [path](https://nodejs.org/api/path.html): utilities to work with files and directories paths.
+- [http](https://nodejs.org/api/http.html): create HTTP servers and clients for web development.
+- [url](https://nodejs.org/api/url.html): utilities for parsing URLs and extracting elements from it.
+
+These you don't have to install it, you can import them and use them in your programs.
+
+## NPM Modules
+
+NPM modules are 3rd-party modules that you can use after you install them. To name a few:
+
+- [lodash](https://www.npmjs.com/package/lodash): a collection of utility functions for manipulating arrays, objects, and strings.
+- [request](https://www.npmjs.com/package/request): HTTP client simpler to use than the built-in `http` module.
+- [express](https://www.npmjs.com/package/express): HTTP server for building websites and API. Again, simpler to use than the built-in `http` module.
+
+These you have to install them first, like this:
+
+```
+npm install express
+```
+
+and then you can reference them like built-in modules, but this time they are going to be served from the `node_modules` folder that contains all the 3rd-party libraries.
+
+```js
+const express = require('express');
+```
+
+## Creating your own Nodejs modules
+
+If you can't find a built-in or 3rd-party library that does what you want, you will have to develop it yourself.
+In the following sections, you are going to learn how to do that using `exports`.
 
 # Exports
 
@@ -121,7 +161,7 @@ The `module` is not global; it is local for each module. It contains metadata ab
 ```javascript cat.js
 class Cat {
   makeSound() {
-    return 'Meowww';
+    return `${this.constructor.name}: Meowww`;
   }
 }
 
@@ -188,13 +228,45 @@ And, finally you can run it using the experimental module feature flag:
 node --experimental-modules main.mjs
 ```
 
-**NOTE**: If you have a `*.mjs` you cannot use `require` or it will throw and error.
-`.mjs` is for `import` ECMAScript Modules and `.js` is for regular `require` modules.
-
 If you don't like experimental modules, another alternative is to use a transpiler. That converts modern JavaScript to older versions for you. Good options are
 [TypeScript](https://www.typescriptlang.org/docs/handbook/modules.html),
 [Babel](https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs), and
 [Rollup](https://rollupjs.org/guide/en#importing).
+
+## Troubleshooting `import` and `require` issues
+
+### Experimental Flag
+If you don't use the experimental flag `node --experimental-modules` and you try to use `import` you will get an error like this:
+
+```
+internal/modules/cjs/loader.js:819
+  throw new ERR_REQUIRE_ESM(filename);
+  ^
+
+Error [ERR_REQUIRE_ESM]: Must use import to load ES Module: bla bla blah
+```
+
+### File extension .mjs vs .js (or .cjs)
+
+If you have a `*.mjs` file you cannot use `require` or it will throw and error (`ReferenceError: require is not defined`).
+`.mjs` is for `import` ECMAScript Modules and `.js` is for regular `require` modules.
+
+However, with `*.mjs` you can load both kinds of modules!
+
+```js
+import { area, circumference } from './circle.mjs';
+import Cat from './cat.js';
+
+const r = 3;
+console.log(`Circle with radius ${r} has
+  area: ${area(r)};
+  circumference: ${circumference(r)}`);
+
+const cat = new Cat();
+console.log(cat.makeSound());
+```
+
+Notice that `cat.js` is using commonJS modules.
 
 # Summary
 
