@@ -4,9 +4,9 @@ title: Git auto-commit with Crontab
 created: 1313420094000
 updated: 1313420094000
 comments: true
-pageviews__total: 9498
-pageviews__recent: 221
-pageviews__avg_time: 889
+pageviews__total: 9602
+pageviews__recent: 226
+pageviews__avg_time: 865
 #categories: [unix, crontab, git, drupal, drush, how-to]
 tutorial__order: 0
 alias: /blog/2011/08/15/git-auto-commit-with-crontab/
