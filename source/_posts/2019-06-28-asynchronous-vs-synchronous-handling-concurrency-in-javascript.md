@@ -12,12 +12,10 @@ photos:
   - /images/async-vs-sync-concurrency-in-javascript-large.png
 photos__background_color: '#816D99'
 tags:
-  - big-o notation
-  - algorithms
-  - tutorial_algorithms
+  - javascript
+  - node.js
 categories:
-  - Programming
-  - Data Structures and Algorithms (DSA)
+  - Coding
 date: 2019-07-01 13:15:01
 updated: 2019-07-01 13:15:01
 ---
@@ -30,7 +28,7 @@ Is it working? Nope; It's idle!
 
 Your computer's processor waits for a network request to come out. It idles for the hard drive to spin out the requested data, and it pauses for external events (I/O).
 
-Take a look to the following graph to see the average time these system event takes (in nanoseconds)
+Take a look at the following graph to see the average time this system event takes (in nanoseconds)
 <!-- ![Latency Access Time by I/O](/images/latency-access-time.png) -->
 ![Latency Access Time by I/O](/images/Latency-vs-System-Event.png)
 
