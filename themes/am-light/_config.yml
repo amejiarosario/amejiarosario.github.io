@@ -4,7 +4,7 @@ menu:
   Trending: '/#trending-posts'
   Popular: '/#popular-posts'
   About: '/#about'
-  Blog: /blog
+  Blog: /blog/
 
 asides:
   - tagcloud

@@ -13,7 +13,8 @@ photos:
 photos__background_color: '#816D99'
 tags:
   - javascript
-  - node.js
+  - nodejs
+  - tutorial_async-javascript
 categories:
   - Coding
 date: 2019-07-01 13:15:01
@@ -234,7 +235,7 @@ Now that you are (hopefully) convinced why writing non-blocking code is necessar
 
 In JavaScript, we can handle asynchronous code using:
 
-- Callbacks
+- [Callbacks](/callbacks-concurrency-in-javascript-node)
 - Promises
 - Async/Await functions
 - Generators
