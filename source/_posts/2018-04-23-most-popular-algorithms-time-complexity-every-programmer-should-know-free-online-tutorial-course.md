@@ -3,8 +3,8 @@ layout: post
 title: 8 time complexities that every programmer should know
 comments: true
 toc: true
-pageviews__total: 36191
-pageviews__recent: 5871
+pageviews__total: 37220
+pageviews__recent: 5966
 pageviews__avg_time: 255
 tutorial__order: 2
 photos:
