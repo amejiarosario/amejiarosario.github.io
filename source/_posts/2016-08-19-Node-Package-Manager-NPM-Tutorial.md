@@ -70,11 +70,11 @@ This set of commands created a new folder called `meanshop2`. The `init` command
 }
 ```
 
-Feel free to edit any of the properties values, such as author, description. Notice, that version starts with `1.0.0`. We are going to talk more about versioning later on this tutorial.
+Feel free to edit any of the properties values, such as author, description. Note that the version starts with `1.0.0`. We are going to talk more about versioning later on this tutorial.
 
 # How to download NPM packages?
 
-You can download <abbr title="Node Package Manager">NPM</abbr> packages using `npm install <package_name>`. By default, npm will grap the latest version, but you can also expecify an exact verision.
+You can download <abbr title="Node Package Manager">NPM</abbr> packages using `npm install <package_name>`. By default, npm will grab the latest version, but you can also specify an exact version.
 
 Let's install two packages `lodash` and `express` as follows:
 
@@ -131,7 +131,7 @@ You can search for all NPM modules on [npmjs.com](https://www.npmjs.com/browse/s
 
 # How to view my installed NPM packages?
 
-Sometimes is useful to see the list of packages that you have installed on your system. You can do that with the following commands:
+Sometimes it is useful to see the list of packages that you have installed on your system. You can do that with the following commands:
 
 ```bash List packages
 # list all installed dependencies
