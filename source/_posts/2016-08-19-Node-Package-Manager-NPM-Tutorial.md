@@ -26,7 +26,7 @@ This tutorial goes from how to install NPM to manage packages dependencies. Whil
 
 Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows you to publish packages to the NPM website and find new modules.
 
-In this section, we are going to get hands on NPM. We will cover from how to install it to how to download, uninstall and manage packages. While we are doing this we will use practical examples to drive the concepts home.
+In this section, we are going to get hands-on NPM. We will cover how to install it to how to download, uninstall, and manage packages. While we are doing this, we will use practical examples to drive the concepts home.
 
 # How to install/update NPM?
 
@@ -46,7 +46,7 @@ You can also use the shortcut for `npm install` like `npm i`.
 
 # How to start a NodeJs project?
 
-Node projects and packages use a special file called `package.json`. It contains dependencies and more information to run the project. Let's start by creating that using the `npm init` command. We are going to call our project `meanshop2`, but call it whatever you want ;)
+Node projects and packages use a particular file called `package.json`. It contains dependencies and more information to run the project. Let's start by creating that using the `npm init` command. We are going to call our project `meanshop2`, but call it whatever you want ;)
 
 ```bash initializing a Node project/package
 mkdir meanshop2 && cd meanshop2
@@ -86,7 +86,7 @@ npm install lodash --save
 npm install express@4.14.0 --save
 ```
 
-`npm install` is going to create a new folder called `node_modules`. This is where all the dependencies live.
+`npm install` is going to create a new folder called `node_modules`, where all the dependencies live.
 
 Notice that for the second package we are specifying the exact version. You can use the `@` symbol and then the version number.
 
@@ -97,7 +97,7 @@ npm install
 
 ```
 
-<abbr title="Node Package Manager">NPM</abbr> will add packages to dependencies if you use the `--save` flag. Otherwise `npm` won't include it. To automate the process you can run:
+<abbr title="Node Package Manager">NPM</abbr> will add packages to dependencies if you use the `--save` flag. Otherwise, `npm` won't include it. To automate the process, you can run:
 
 ```bash Smarter NPM's defaults
 npm config set save=true
@@ -106,7 +106,7 @@ npm config set save-exact=true
 
 The `save=true` will make that the packages get auto-installed. `save-exact=true` will lock the current version and prevent automatic updates and break the project.
 
-To sum up, here are the commands
+To sum up, here are the commands:
 
 ```bash NPM install commands
 # install a package globally
@@ -118,14 +118,14 @@ npm install <package_name>
 # install a package locally and save it as dependency (package.json)
 npm install <package_name> --save-dev
 
-# install package locally, save it as dependency with the exact version
+# install package locally, save it as a dependency with the exact version
 npm install <package_name> --save   --save-exact
 
-# install all dependencies listed on package.json
+# install all dependencies listed in package.json
 npm install
 ```
 
-Usually, you use `--save-dev` vs `--save` when you need use package that is not part of the project. For instance, testing libraries, building assets tools, etc.
+Usually, you use `--save-dev` vs. `--save` when you need use package that is not part of the project. For instance, testing libraries, building assets tools, etc.
 
 You can search for all NPM modules on [npmjs.com](https://www.npmjs.com/browse/star)
 
@@ -149,9 +149,9 @@ Semantic Versioning (<abbr title="Semantic Versioning">SemVer</abbr>) is version
 
   - **Major releases: breaking changes.** Major changes that change (breaks) how the API worked before. For instance, removed functions.
   - **Minor releases: new features**. Changes that keeps the API working as before and adds new functionality.
-  - **Patch releases: bug fixes**. Patches doesn't add functionality nor removes/changes functionality. It's scope only to bug fixes.
+  - **Patch releases: bug fixes**. Patches don't add functionality nor remove/changes functionality. It's scope only to bug fixes.
 
-You can specify on the `package.json` how packages can be updated. You can use `~` for updating patches. `^` for upgrading minor releases and `*` for major releases.
+You can specify in the `package.json` how packages can be updated. You can use `~` for updating patches. `^` for upgrading minor releases and `*` for major releases.
 
 ![SemVer Breaking.Feature.Fix](/images/semver-major-minor-patch-breaking-feature-fix.png)
 
@@ -161,14 +161,14 @@ Like this:
   - Minor releases: `^1.0.7`, or `1.x` or just `1`.
   - Major releases: `*` or `x`.
 
-As you could imagine, not all developers respect the Semantic Version rules. Try to follow the rules yourself, but don't trust that all will do. You can have your project working well with a `1.0.8` version and all in a sudden it breaks with `1.0.9`. It happened to me before, so I prefer to use: `--save-exact`, when makes sense.
+As you could imagine, not all developers respect the Semantic Version rules. Try to follow the rules yourself, but don't trust that all will do. You can have your project working well with a `1.0.8` version and all in a sudden it breaks with `1.0.9`. It happened to me before, so I prefer to use: `--save-exact`, when it makes sense.
 
 # How to uninstall NPM packages?
 
 You can uninstall <abbr title="Node Package Manager">NPM</abbr> packages using the following commands:
 
 ```bash Uninstalling NPM packages
-# uninstall package and leave it listed as dep
+# uninstall the package and leave it listed as dep
 npm uninstall lodash
 
 # uninstall and remove from dependencies
@@ -178,11 +178,11 @@ npm uninstall --save lodash
 npm uninstall -g <package_name>
 
 # remove uninstalled packages from node_modules
-npm prune # remove extranous
+npm prune # remove extraneous
 ```
 
 # Summary
 
-<abbr title="Node Package Manager">NPM</abbr> is a powerful tool. It helps us to create Node projects/modules, manage its dependencies and much more. In this section, we covered the main commands that you would most often.
+<abbr title="Node Package Manager">NPM</abbr> is a powerful tool. It helps us to create Node projects/modules, manage its dependencies, and much more. In this section, we covered the main commands that you would most often.
 
-Furthermore, we cover <abbr title="Semantic Versioning">SemVer</abbr>. It is used in many systems (Ruby Gems, etc.) not just in the Node community. SemVer is three-part number versioning system: Major.Minor.Patch. You can also think as Breaking.Feature.Patch.
+Furthermore, we cover <abbr title="Semantic Versioning">SemVer</abbr>. It is used in many systems (Ruby Gems, etc.) not just in the Node community. SemVer is a three-part number versioning system: Major.Minor.Patch. You can also think as Breaking.Feature.Patch.
