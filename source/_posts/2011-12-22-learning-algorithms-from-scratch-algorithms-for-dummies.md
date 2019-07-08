@@ -4,7 +4,7 @@ title: Learning Algorithms from Scratch / Algorithms for Dummies
 created: 1324582027000
 updated: 1324582027000
 comments: true
-pageviews__total: 42657
+pageviews__total: 42644
 pageviews__recent: 33
 pageviews__avg_time: 206
 tutorial__order: 0

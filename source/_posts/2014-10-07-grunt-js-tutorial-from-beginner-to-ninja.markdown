@@ -5,9 +5,9 @@ date: 2014-10-07 10:41:13 -0400
 updated: 2014-10-07 10:41:13 -0400
 comments: true
 toc: true
-pageviews__total: 53310
-pageviews__recent: 116
-pageviews__avg_time: 266
+pageviews__total: 53360
+pageviews__recent: 125
+pageviews__avg_time: 267
 # categories: [javascript, nodejs, gruntjs, build tools]
 alias: /blog/2014/10/07/grunt-js-tutorial-from-beginner-to-ninja/
 photos:
