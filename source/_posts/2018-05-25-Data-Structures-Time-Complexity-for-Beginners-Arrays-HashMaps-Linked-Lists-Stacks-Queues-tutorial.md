@@ -78,7 +78,7 @@ Set (using Binary Search Tree) | O(log(n)) | - |  O(log(n)) |  O(log(n)) | Imple
 [Linked List (singly)](#Singly-Linked-Lists) | [O(n)](#SinglyLinkedList.addLast) | - | [O(n)](#LinkedList.contains) | [O(n)](#LinkedList.remove) | Adding/Removing to the start of the list is `O(1)`. [Details here](#Singly-Linked-Lists-time-complexity).
 [Linked List (doubly)](#Doubly-Linked-Lists) | [O(n)](#DoublyLinkedList.add) | - | [O(n)](#LinkedList.contains) | [O(n)](#LinkedList.remove)  | Adding/Deleting from the beginning/end is `O(1)`. But, deleting/adding from the middle is `O(n)`. [Details here](#Doubly-Linked-Lists-time-complexity)
 [Stack (array implementation)](#Stacks) | [O(1)](#Stacks) | - | - | [O(1)](#Stacks) | Insert/delete is last-in, first-out (LIFO)
-[Queue (naive array impl.)](#QueueNaiveImpl) | [O(n)](#QueueNaiveImpl) | - | - | [O(1)](#QueueNaiveImpl) | Insert (`Array.shift`) is O(n)
+[Queue (naïve array impl.)](#QueueNaiveImpl) | [O(1)](#QueueNaiveImpl) | - | - | [O(n)](#QueueNaiveImpl) | Remove (`Array.shift`) is _O(n)_
 [Queue (array implementation)](#QueueArrayImpl) | [O(1)](#QueueArrayImpl) | - | - | [O(1)](#QueueArrayImpl) | Worst time insert is O(n). However amortized is O(1)
 [Queue (list implementation)](#QueueListImpl) | [O(1)](#QueueListImpl) | - | - | [O(1)](#QueueListImpl) | Using Doubly Linked List with reference to the last element.
 
@@ -1619,7 +1619,7 @@ Set (using Binary Search Tree) | O(log(n)) | - |  O(log(n)) |  O(log(n)) | Imple
 [Linked List (singly)](#Singly-Linked-Lists) | [O(n)](#SinglyLinkedList.addLast) | - | [O(n)](#LinkedList.contains) | [O(n)](#LinkedList.remove) | Adding/Removing to the start of the list is `O(1)`. [Details here](#Singly-Linked-Lists-time-complexity).
 [Linked List (doubly)](#Doubly-Linked-Lists) | [O(n)](#DoublyLinkedList.add) | - | [O(n)](#LinkedList.contains) | [O(n)](#LinkedList.remove)  | Adding/Deleting from the beginning/end is `O(1)`. But, deleting/adding from the middle is `O(n)`. [Details here](#Doubly-Linked-Lists-time-complexity)
 [Stack (array implementation)](#Stacks) | [O(1)](#Stacks) | - | - | [O(1)](#Stacks) | Insert/delete is last-in, first-out (LIFO)
-[Queue (naive array impl.)](#QueueNaiveImpl) | [O(n)](#QueueNaiveImpl) | - | - | [O(1)](#QueueNaiveImpl) | Insert (`Array.shift`) is O(n)
+[Queue (naïve array impl.)](#QueueNaiveImpl) | [O(1)](#QueueNaiveImpl) | - | - | [O(n)](#QueueNaiveImpl) | Remove (`Array.shift`) is _O(n)_
 [Queue (array implementation)](#QueueArrayImpl) | [O(1)](#QueueArrayImpl) | - | - | [O(1)](#QueueArrayImpl) | Worst time insert is O(n). However amortized is O(1)
 [Queue (list implementation)](#QueueListImpl) | [O(1)](#QueueListImpl) | - | - | [O(1)](#QueueListImpl) | Using Doubly Linked List with reference to the last element.
 
