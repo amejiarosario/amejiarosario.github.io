@@ -236,7 +236,7 @@ Now that you are (hopefully) convinced why writing non-blocking code is necessar
 In JavaScript, we can handle asynchronous code using:
 
 - [Callbacks](/callbacks-concurrency-in-javascript-node)
-- Promises
+- [Promises](/promises-tutorial-concurrency-in-javascript-node)
 - Async/Await functions
 - Generators
 

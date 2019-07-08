@@ -10,31 +10,31 @@ toc: true
 photos:
   - /images/promises-concurrency-in-javascript-small.png
   - /images/promises-concurrency-in-javascript-large.png
-photos__background_color: '#FBE000'
+photos__background_color: '#EEE8D5'
 tags:
   - javascript
   - nodejs
   - tutorial_async-javascript
 categories:
   - Coding
-date: 2019-07-03 19:06:12
-updated: 2019-07-03 19:06:12
+date: 2019-07-08 19:26:12
+updated: 2019-07-08 19:26:12
 ---
 
-This is the ultimate JavaScript Promises tutorial: recipes and examples for everyday situations.
+This post is the ultimate JavaScript Promises tutorial: recipes and examples for everyday situations (or that's the goal 😉). We cover all the necessary methods like `then`, `catch`, and `finally`. Also, we go over more complex situations like executing promises in parallel with `Promise.all`, timing out APIs with `Promise.race`, promise chaining and some best practices and gotchas.
 
 <!-- more -->
 
-_NOTE: I'd like this post to be up-to-date with the most common use cases for promises. If you have a question about promises and is not answered here. Please, make a comment or reach out me directly [@amejiarosario](https://twitter.com/amejiarosario). I'll look into it and update this post._
+_NOTE: I'd like this post to be up-to-date with the most common use cases for promises. If you have a question about promises and is not answered here. Please, comment below or reach out me directly [@amejiarosario](https://twitter.com/amejiarosario). I'll look into it and update this post._
 
 # JavaScript Promises
 
 A promise is an object that allows you to handle asynchronous operations. It's an alternative to plain old callbacks.
 
-Promises make working with async code a breeze because they:
+Promises have many advantages over callbacks. To name a few:
 
-- Makes code easier to read.
-- Provides combined error handling.
+- Make the async code easier to read.
+- Provide combined error handling.
 - Better control flow. You can have async actions execute in parallel or series.
 
 Callbacks tend to form deeply nested structures (a.k.a. Callback hell). Like the following:
@@ -52,7 +52,7 @@ a(() => {
 });
 ```
 
-If you convert those functions to promises, they can be chained producing a more maintainable code. Something like this:
+If you convert those functions to promises, they can be chained producing more maintainable code. Something like this:
 
 ```js
 Promise.resolve()
@@ -63,7 +63,7 @@ Promise.resolve()
   .catch(console.error);
 ```
 
-As you can see in the example above. The promise object exposes the methods `.then` and `.catch`. We are going to explore these methods later.
+As you can see, in the example above, the promise object exposes the methods `.then` and `.catch`. We are going to explore these methods later.
 
 ## How do I convert an existing callback API to promises?
 
@@ -71,16 +71,17 @@ We can convert callbacks into promises using the Promise constructor.
 
 The Promise constructor takes a callback with two arguments `resolve` and `reject`.
 
-- **Resolve**: is a callback that should be invoke when the async operation is completed.
-- **Reject**: is a callback function to be invoke when an error occurs.
+- **Resolve**: is a callback that should be invoked when the async operation is completed.
+- **Reject**: is a callback function to be invoked when an error occurs.
 
 The constructor returns an object immediately, the promise instance. You can get notified when the promise is "done" using the method `.then` in the promise instance. Let's see an example.
 
 ### Wait, aren't promises just callbacks?
 
-Yes and no. Promises are not "just" callbacks but they do use asynchronous callbacks on the `.then` and `.catch` methods. Promises are an abstraction on top of callbacks that allows you to chain multiple async operations and handle errors in a common place. Let's see it in action.
+Yes and no. Promises are not "just" callbacks, but they do use asynchronous callbacks on the `.then` and `.catch` methods. Promises are an abstraction on top of callbacks that allows you to chain multiple async operations and handle errors more elegantly. Let's see it in action.
 
 #### Promises anti-pattern (promise hell)
+Before jumping into how to convert callbacks to promises, let's see how NOT to it.
 
 Please don't convert callbacks to promises from this:
 
@@ -103,7 +104,7 @@ a().then(() => {
   return b().then(() => {
     return c().then(() => {
       return d().then(() =>{
-        // please never ever do to this! ;)
+        // ⚠️ Please never ever do to this! ⚠️
       });
     });
   });
@@ -112,7 +113,7 @@ a().then(() => {
 
 Always keep your promises as flat as you can.
 
-Like this:
+It's better to do this:
 
 ```js
 a()
@@ -121,11 +122,11 @@ a()
   .then(d)
 ```
 
-Let's do some real life examples! 💪
+Let's do some real-life examples! 💪
 
 ### Promesifying Timeouts
 
-Let's see an example. What do you think will be output of the following program?
+Let's see an example. What do you think will be the output of the following program?
 
 <script defer async src="https://embed.runkit.com" data-element-id="my-element"></script>
 <pre id="my-element">
@@ -164,32 +165,32 @@ It's the latter, because
 > When a promise it's `resolve`d, it can no longer be `reject`ed.
 
 
-Once you call one method (`resolve` or `reject`) the other is invalidated since the promise in a *settled* state. Let's explore all the states of a promise.
+Once you call one method (`resolve` or `reject`) the other is invalidated since the promise in a *settled* state. Let's explore all the different states of a promise.
 
 ## Promise states
 
-There are 4 state in which the promises can be:
+There are four states in which the promises can be:
 
 - ⏳ **Pending**: initial state. Async operation is still in process.
-- ✅ **Fulfilled**: operation was successful. It invokes `.then` callback. E.g., `.then(onSuccess)`.
-- ⛔️ **Rejected**: operation failed. It invokes the `.catch` or `.then` second argument (if any). E.g., `.catch(onError)` or `.then(..., onError)`
-- 😵 **Settled**: it's the promise final state. Promise is dead. Nothing else can be resolved or rejected anymore. The `.finally` method is invoked.
+- ✅ **Fulfilled**: the operation was successful. It invokes `.then` callback. E.g., `.then(onSuccess)`.
+- ⛔️ **Rejected**: the operation failed. It invokes the `.catch` or `.then` 's second argument (if any). E.g., `.catch(onError)` or `.then(..., onError)`
+- 😵 **Settled**: it's the promise final state. The promise is dead. Nothing else can be resolved or rejected anymore. The `.finally` method is invoked.
 
 ![Promises four states](/images/promises-states.png)
 
 ## Promise instance methods
 
-The Promise API exposes 3 main methods: `then`, `catch` and `finally`. Let's explore each one and provide examples.
+The Promise API exposes three main methods: `then`, `catch` and `finally`. Let's explore each one and provide examples.
 
 ### Promise then
 
-The `then` method allow you to get notify when the asynchronous operation is done, either succeeded or failed. It takes two arguments, one for the successful execution and other one if an error happens.
+The `then` method allows you to get notified when the asynchronous operation is done, either succeeded or failed. It takes two arguments, one for the successful execution and the other one if an error happens.
 
 ```js
 promise.then(onSuccess, onError);
 ```
 
-You can also omit the 2nd argument and use the `.catch` method instead to handle errors.
+You can also omit the 2nd argument and use the `.catch` the method instead to handle errors.
 
 `then` returns a new promise so you can chain multiple promises together. Like in the example below:
 
@@ -200,7 +201,7 @@ Promise.resolve()
   .then(() => console.log('then#3'));
 ```
 
-`Promise.resolve` just immediately resolves the promise as successful. So all the following `then` are called. The output would be
+`Promise.resolve` immediately resolves the promise as successful. So all the following `then` are called. The output would be
 
 ```
 then#1
@@ -212,7 +213,7 @@ Let's see how to handle errors on promises with `then` and `catch`.
 
 ### Promise catch
 
-Promise `.catch` method takes a function as an argument which handles errors if they occur. If everything goes well the catch method is never called.
+Promise `.catch` the method takes a function as an argument which handles errors if they occur. If everything goes well, the catch method is never called.
 
 Let's say we have the following promises, which one resolves or rejects after 1 second and print out their letter.
 
@@ -238,9 +239,9 @@ The output is the following:
 
 ![promise catch](/images/promise-catch.gif)
 
-For this case, you will see `a`, `b` and the error message on `c`. The function `d` will never get executed because the error broke the sequence.
+For this case, you will see `a`, `b` and the error message on `c`. The function` will never get executed because the error broke the sequence.
 
-Also you can handle the error using the 2nd argument of the `then` function. However, be aware that `catch` will not execute anymore.
+Also, you can handle the error using the 2nd argument of the `then` function. However, be aware that `catch` will not execute anymore.
 
 ```js
 Promise.resolve()
@@ -254,7 +255,7 @@ Promise.resolve()
 ![promise then error handling](/images/promise-then-on-error.gif)
 
 As you can see the catch doesn't get called because we are handling the error on the `.then(..., onError)` part.
-`d` is not being called regardless. If you want to completely ignore the error and continue with the execution you can add a `catch` on `c`.
+`d` is not being called regardless. If you want to ignore the error and continue with the execution of the promise chain, you can add a `catch` on `c`. Something like this:
 
 ```js
 Promise.resolve()
@@ -267,12 +268,12 @@ Promise.resolve()
 
 ![promise then error handling](/images/promise-catch-ignored.gif)
 
-Now `d` gets executed!! In all the others cases it didn't.
-This early `catch` is not desired in most cases, it can lead to things failing silently and make your async operations harder to debug.
+Now `d` gets executed!! In all the other cases, it didn't.
+This early `catch` is not desired in most cases, it can lead to things falling silently and make your async operations harder to debug.
 
 ### Promise finally
 
-The finally method is called only when the promise is settled.
+The `finally` method is called only when the promise is settled.
 
 You can use a `.then` after the `.catch`, in case you want a piece of code to execute always, even after a failure.
 
@@ -300,14 +301,14 @@ Promise.resolve()
 
 ## Promise class Methods
 
-There are 4 static methods that you can use directly from the `Promise` object.
+There are four static methods that you can use directly from the `Promise` object.
 
 - Promise.all
 - Promise.reject
 - Promise.resolve
 - Promise.race
 
-Let's see each one an provide and example.
+Let's see each one and provide examples.
 
 ### Promise.resolve and Promise.reject
 
@@ -319,7 +320,7 @@ Promise.resolve('Yay!!!')
   .catch(console.error)
 ```
 
-This will output `Yay!!!` as expected.
+This code will output `Yay!!!` as expected.
 
 ```js
 Promise.reject('Oops 🔥')
@@ -331,11 +332,11 @@ The output will be a console error with the error reason of `Oops 🔥`.
 
 ### Executing promises in Parallel with Promise.all
 
-Usually, promises are executed in series, one after another, but if they are independent from each other.
+Usually, promises are executed in series, one after another, but if they are independent of each other.
 
 Let's say are polling data from 2 different APIs. Since they are not related we can do all at once with `Promise.all()`.
 
-For this example we are going to pull the Bitcoin price in dollar and convert it to EUR. As you imagine both API calls can be call in parallel, however we need a way to know when both are done to calculate the price. We can use `Promise.all` which means that when all promises are done a new promise will be return will the results.
+For this example, we are going to pull the Bitcoin price in USD and convert it to EUR. As you imagine, both API calls can be called in parallel. However, we need a way to know when both are done to calculate the final price. We can use `Promise.all`. When all promises are done, a new promise will be returning will the results.
 
 <script defer async src="https://embed.runkit.com" data-element-id="promise-all"></script>
 <pre id="promise-all">
@@ -359,7 +360,7 @@ Promise.all([bitcoinPromise, dollarPromise])
 </pre>
 
 
-As you can see, `Promise.all` accepts an array of promises. When the request both requests are done then we can proceed to calculate the price.
+As you can see, `Promise.all` accepts an array of promises. When the request both requests are completed, then we can proceed to calculate the price.
 
 Let's do another example and time it:
 
@@ -376,13 +377,13 @@ Promise.all([a(), b(), c(), d()])
   .finally(() => console.timeEnd('promise.all'));
 ```
 
-How long is going to take to solve each of these promise? 5 seconds? 1 second? or 2 seconds?
+How long is it going to take to solve each of these promises? 5 seconds? 1 second? Or 2 seconds?
 
-You can do the experiment on the devTools and report back your results ;)
+You can experiment with the dev tools and report back your results ;)
 
 ### Promise race
 
-The `Promise.race(iterable)` takes a collection promises and resolves as soon as the first promise settles.
+The `Promise.race(iterable)` takes a collection of promises and resolves as soon as the first promise settles.
 
 ```js
 const a = () => new Promise((resolve) => setTimeout(() => resolve('a'), 2000));
@@ -399,11 +400,11 @@ Promise.race([a(), b(), c(), d()])
 
 What's the output?
 
-It's `b`! This is a race and only the fastest gets to be part of the result. 🏁
+It's `b`! With `Promise.race` only the fastest gets to be part of the result. 🏁
 
 You might wonder: _What's the usage of the Promise race?_
 
-To be honest, I haven't use it as often as the others. But, it can come handy in some cases like timing out promises and [batching array of requests](#How-to-limit-parallel-promises).
+I haven't used it as often as the others. But, it can come handy in some cases like timing out promises and [batching array of requests](#How-to-limit-parallel-promises).
 
 #### Timing out requests with Promise race
 
@@ -434,7 +435,7 @@ Promise.race([
 
 ## Promises FAQ
 
-This are tricks and tips using all the elements that we explained before.
+This section covers tricks and tips using all the promises methods that we explained before.
 
 ### Executing promises in series and passing arguments
 
@@ -451,11 +452,11 @@ fs.readFile('file.txt', 'utf8')
 ```
 
 On this example, we read file 1 and write it to the output file. Later, we read file 2 and append it to the output file again.
-As you can see, `writeFile` promise returns the content of the file and you can use it in the next `then` clause.
+As you can see, `writeFile` promise returns the content of the file, and you can use it in the next `then` clause.
 
 ### How do I chain multiple conditional promises?
 
-You might have a case where you want to skip certain steps on a promise chain. You can do that in two ways.
+You might have a case where you want to skip specific steps on a promise chain. You can do that in two ways.
 
 <script defer async src="https://embed.runkit.com" data-element-id="ex1"></script>
 <pre id="ex1">
@@ -477,7 +478,7 @@ Promise.resolve()
   .then(() => console.log('done'))
 </pre>
 
-If you run the code example you will notice that only `a` and `d` are executed as expected.
+If you run the code example, you will notice that only `a` and `d` are executed as expected.
 
 An alternative way is creating a chain and then only add them if
 ```js
@@ -493,10 +494,10 @@ chain
 
 ### How to limit parallel promises?
 
-To accomplish this we have to throttle `Promise.all` somehow.
+To accomplish this, we have to throttle `Promise.all` somehow.
 
-Let's say you have many concurrent requests to do. If you do a `Promise.all` that won't be good. Specially when the API is rate limited.
-So, we need to develop and function that does that for use. Let's call it `promiseAllThrottled`.
+Let's say you have many concurrent requests to do. If you do a `Promise.all` that won't be good (especially when the API is rate limited).
+So, we need to develop and function that does that for us. Let's call it `promiseAllThrottled`.
 
 ```js
 // simulate 10 async tasks that takes 5 seconds to complete.
@@ -509,7 +510,7 @@ promiseAllThrottled(requests, { concurrency: 3 })
   .catch(error => console.error('Oops something went wrong', error));
 ```
 
-The output is something like this:
+The output should be something like this:
 
 ![promise throttle](/images/promise-throttle.gif)
 
@@ -551,5 +552,5 @@ function promiseAllThrottled(iterable, { concurrency = 3 } = {}) {
 }
 ```
 
-The `promiseAllThrottled` takes promises one by one. It execute the promises and add it to the queue. If the queue is less than the concurrency limit it keeps adding to the queue. Once the limit is reached then we use `Promise.race` to wait for one promise to finish so we can replace it with a new one.
-The trick here, is that the promise remove itself from the queue when is done.
+The `promiseAllThrottled` takes promises one by one. It executes the promises and adds it to the queue. If the queue is less than the concurrency limit, it keeps adding to the line. Once the limit is reached, then we use `Promise.race` to wait for one promise to finish so we can replace it with a new one.
+The trick here is that the promise removes itself from the queue when it is done.

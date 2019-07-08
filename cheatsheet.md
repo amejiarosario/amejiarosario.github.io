@@ -7,7 +7,7 @@ hexo s -dp 5000            # server on port 5000
 hexo s --draft -dp 5000    # serve drafts on port 5000
 
 # update GA stats
-cd tasks && node google-analytics-runner.js && cd -
+cd tasks && node google-analytics-runner.js && cd - && git add . && git commit -am 'update ga stats' && ggpush
 
 # change index in
 # _config.yml
