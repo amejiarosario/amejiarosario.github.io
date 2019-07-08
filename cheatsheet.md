@@ -5,9 +5,6 @@
 ```bash
 hexo s -dp 5000            # server on port 5000
 hexo s --draft -dp 5000    # serve drafts on port 5000
-# hexo g                     # generate
-
-git commit # commit post modifications
 
 # update GA stats
 cd tasks && node google-analytics-runner.js && cd -
@@ -17,11 +14,16 @@ cd tasks && node google-analytics-runner.js && cd -
 # themes/am-light/source/js/search.es6
 hexo clean && hexo algolia # index search
 
-ggpush # push source so edit this post works
-
-hexo d -g                  # generate and deploy to github pages/netlify
+hexo d -g && ggpush
 
 # https://app.netlify.com/sites/angry-engelbart-d10917/overview # Check is deployed
+
+### ----------
+
+git commit # commit post modifications
+# hexo g                     # generate
+ggpush # push source so edit this post works
+hexo d -g                  # generate and deploy to github pages/netlify
 ```
 
 ## Update Google Analytics stats

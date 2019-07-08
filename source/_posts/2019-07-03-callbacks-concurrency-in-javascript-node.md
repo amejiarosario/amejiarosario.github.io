@@ -63,15 +63,12 @@ So far, we have only seen callbacks that are executed immediately; however, most
 
 > An asynchronous callback is a function that is passed as an argument to another function _and gets invoke zero or multiple times after certain events happens_.
 
-It's like when your friends tell you to call them back when you arrive at the restaurant. You coming to the restaurant is the "event" that _triggers_ the callback. Something similar happens in the programming world. The event could be the file content is ready or a response from a network request, iterating a list or X milliseconds time pass.
+It's like when your friends tell you to call them back when you arrive at the restaurant. You coming to the restaurant is the "event" that _triggers_ the callback. Something similar happens in the programming world. The event could be you click a button, a file is loaded into memory, and request to a server API, and so on.
 
 Let's see an example with two callbacks:
 
 ```js
-const id = setInterval(() => {
-  console.log('tick');
-}, 1e3);
-
+const id = setInterval(() => console.log('tick ⏰'), 1e3);
 setTimeout(() => clearInterval(id), 5e3);
 ```
 
