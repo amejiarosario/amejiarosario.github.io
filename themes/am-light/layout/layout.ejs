@@ -172,5 +172,11 @@
 
       <%- js('js/posts') -%>
     <% } %>
+
+    <!-- uxa -->
+    <img src="http://app.uxeranalytics.com/image1.png?uxa=blog" alt="test" id="pxl1">
+    <script>
+      document.getElementById('pxl1').src += `&ref=${escape(document.referrer)}&url=${escape(window.location.href)}`;
+    </script>
   </body>
 </html>
