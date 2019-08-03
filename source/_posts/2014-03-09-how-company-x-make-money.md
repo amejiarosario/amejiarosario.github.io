@@ -5,8 +5,8 @@ date: 2014-03-09 21:39:42 -0400
 updated: 2014-03-09 21:39:42 -0400
 comments: true
 alias: /blog/2014/03/09/how-company-x-make-money/
-pageviews__total: 4235
-pageviews__recent: 4
+pageviews__total: 4220
+pageviews__recent: 5
 pageviews__avg_time: 127
 tutorial__order: 0
 tags:

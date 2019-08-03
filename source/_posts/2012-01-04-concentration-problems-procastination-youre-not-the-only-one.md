@@ -5,7 +5,7 @@ created: 1325695584000
 updated: 1325695584000
 comments: true
 pageviews__total: 447
-pageviews__recent: 3
+pageviews__recent: 2
 pageviews__avg_time: 80
 tutorial__order: 0
 alias: /blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/
