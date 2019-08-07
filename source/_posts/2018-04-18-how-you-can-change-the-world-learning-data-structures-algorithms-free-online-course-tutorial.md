@@ -151,7 +151,7 @@ We can represent `getMin` as a function of the size of the input `n` based on th
 * Line 7: 1 operation
 * Line 9-13: it is a loop that executes size of `n` times
   * Line 10: 1 operation
-  * Line 11: this one is tricky. It is inside a conditional. We will assume the worst case where the array is sorted in ascending order. The condition (`if` block) will be executed each time. Thus, 1 operation
+  * Line 11: this one is tricky. It is inside a conditional. We will assume the worst case where the array is sorted in descending order. The condition (`if` block) will be executed each time. Thus, 1 operation
 * Line 14: 1 operation
 
 All in all, we have `3` operations outside the loop and `2` inside the `forEach` block. Since the loop goes for the size of `n`, this leaves us with `2(n) + 3`.
