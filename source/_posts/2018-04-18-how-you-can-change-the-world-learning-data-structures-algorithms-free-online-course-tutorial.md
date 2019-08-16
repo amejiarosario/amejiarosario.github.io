@@ -4,8 +4,8 @@ title: >-
   How you can change the world by learning Data Structures and Algorithms
 comments: true
 toc: true
-pageviews__total: 47266
-pageviews__recent: 915
+pageviews__total: 47301
+pageviews__recent: 945
 pageviews__avg_time: 876
 tutorial__order: 1
 photos:

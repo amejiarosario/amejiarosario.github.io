@@ -130,6 +130,10 @@
       <%- body %>
     </main>
 
+    <!-- uxa -->
+    <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1">
+    <script async defer src="//data.uxeranalytics.com/uxa.js"></script>
+
     <footer class="page-footer">
       <div class="container">
         <div class="p-y-2">
@@ -172,11 +176,5 @@
 
       <%- js('js/posts') -%>
     <% } %>
-
-    <!-- uxa -->
-    <img src="http://app.uxeranalytics.com/image1.png?uxa=blog" alt="test" id="pxl1">
-    <script>
-      document.getElementById('pxl1').src += `&ref=${escape(document.referrer)}&url=${escape(window.location.href)}`;
-    </script>
   </body>
 </html>
