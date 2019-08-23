@@ -450,7 +450,7 @@ where:
 > n<sup>log<sub>b</sub>a</sup>
 
 
-This value will help us to find which mater method case we are solving.
+This value will help us to find which master method case we are solving.
 
 3) Finally, we compare the recursion runtime from step 2) and the runtime `f(n)` from step 1). Based on that we have the following cases:
 
@@ -581,7 +581,7 @@ function merge(a = [], b = []) {
 ```
 As you can see, it has two functions `sort` and `merge`. Merge is an auxiliary function that runs once through the collection `a` and `b`, so it's running time is O(n). Let's apply the Master Method to find the running time.
 
-## Mater Method for Mergesort
+## Master Method for Mergesort
 
 We are going to apply the <a href="#Master-Method-for-recursive-algorithms">Master Method that we explained above</a> to find the runtime:
 
