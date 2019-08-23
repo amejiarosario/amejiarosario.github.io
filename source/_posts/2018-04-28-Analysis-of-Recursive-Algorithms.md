@@ -2,9 +2,9 @@
 layout: post
 title: Analysis of Recursive Algorithms
 comments: true
-pageviews__total: 6066
-pageviews__recent: 361
-pageviews__avg_time: 170
+pageviews__total: 6343
+pageviews__recent: 439
+pageviews__avg_time: 168
 tutorial__order: 100
 toc: true
 photos:
