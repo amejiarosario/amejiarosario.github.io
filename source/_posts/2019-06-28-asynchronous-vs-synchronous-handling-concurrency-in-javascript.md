@@ -2,9 +2,9 @@
 layout: post
 title: What every programmer should know about Synchronous vs. Asynchronous Code
 comments: true
-pageviews__total: 247
-pageviews__recent: 113
-pageviews__avg_time: 208
+pageviews__total: 436
+pageviews__recent: 162
+pageviews__avg_time: 206
 tutorial__order: 0
 toc: true
 photos:

@@ -2,8 +2,8 @@
 layout: post
 title: How to perform Atomic Operations on MongoDB?
 comments: true
-pageviews__total: 1014
-pageviews__recent: 210
+pageviews__total: 1243
+pageviews__recent: 246
 pageviews__avg_time: 100
 tutorial__order: 0
 toc: true
