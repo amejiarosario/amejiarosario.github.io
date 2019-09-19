@@ -19,7 +19,7 @@ categories:
   - Coding
   - Data Structures and Algorithms (DSA)
 date: 2018-04-05 16:10:09
-updated: 2019-04-02 15:16:53
+updated: 2019-09-19 11:39:53
 ---
 
 # Summary
@@ -59,7 +59,7 @@ Before we dive in, here is the **big O cheatsheet** and examples that we are goi
 <tr>
 <td class="green"><i>O(n)</i></td>
 <td class="green">Linear</td>
-<td># <a href="#The-largest-item-on-an-unsorted-array">Find max element in unsorted array</a>,<br># <a href="#">Duplicate elements in array with Hash Map</a></td>
+<td># <a href="#The-largest-item-on-an-unsorted-array">Find max element in unsorted array</a>,<br># Duplicate elements in array with Hash Map</td>
 </tr>
 <tr>
 <td class="green"><i>O(n log n)</i></td>
