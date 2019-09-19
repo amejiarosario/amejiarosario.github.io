@@ -28,7 +28,7 @@ We are going to learn the top algorithm's running time that every developer shou
 
 <!-- more -->
 
-In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money, and enabled new technology. So, this is paramount to know how to measure algorithms performance.
+In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money, and enable new technology. So, this is paramount to know how to measure algorithms performance.
 
 To recap **time complexity** estimates how an algorithm performs regardless kind of machine it runs on. You can get the time complexity by "counting" the number of operations performed by your code. This time complexity is defined as a function of the input size `n` using Big-O notation. `n` indicates the magnitude of the input, while O is the growth rate function.
 
@@ -49,7 +49,7 @@ Before we dive in, here is the **big O cheatsheet** and examples that we are goi
 <tr>
 <td class="green"><i>O(1)</i></td>
 <td class="green">Constant</td>
-<td># <a href="#odd-or-even">Odd or Even number</a>,<br># <a href="#Look-up-table">Look-up table (on average)</a></td>
+<td># <a href="#Odd-or-Even">Odd or Even number</a>,<br># <a href="#Look-up-table">Look-up table (on average)</a></td>
 </tr>
 <tr>
 <td class="green"><i>O(log n)</i></td>
@@ -59,7 +59,7 @@ Before we dive in, here is the **big O cheatsheet** and examples that we are goi
 <tr>
 <td class="green"><i>O(n)</i></td>
 <td class="green">Linear</td>
-<td># <a href="#Largest-item-on-an-unsorted-array">Find max element in unsorted array</a>,<br># <a href="#">Duplicate elements in array with Hash Map</a></td>
+<td># <a href="#The-largest-item-on-an-unsorted-array">Find max element in unsorted array</a>,<br># <a href="#">Duplicate elements in array with Hash Map</a></td>
 </tr>
 <tr>
 <td class="green"><i>O(n log n)</i></td>
@@ -145,7 +145,7 @@ Find if a number is odd or even.
 
 It doesn't matter if n is `10` or `10,001`, it will execute line 2 one time.
 
-> Do not be fool by one-liners. They don't always translate to constant times. You have to be aware of how they are implemented.
+> Do not be fooled by one-liners. They don't always translate to constant times. You have to be aware of how they are implemented.
 
 If you have a method like `Array.sort()` or any other array or object methods, you have to look into the implementation to determine its running time.
 
@@ -610,7 +610,7 @@ n<sup>1</sup> = n
 
 # O(2^n) - Exponential time
 
-Exponential (base 2) running time means that the calculations performed by an algorithm double every as the input grows.
+Exponential (base 2) running time means that the calculations performed by an algorithm double every time as the input grows.
 
 ## Subsets of a Set
 
@@ -623,7 +623,7 @@ getSubsets('ab') // => ['', 'a', 'b', 'ab']
 
 Did you notice any pattern?
 
-- The first returns have an empty element.
+- The first returns an empty element.
 - The second case returns the empty element + the 1st element.
 - The 3rd case returns precisely the results of 2nd case + the same array with the 2nd element `b` appended to it.
 
