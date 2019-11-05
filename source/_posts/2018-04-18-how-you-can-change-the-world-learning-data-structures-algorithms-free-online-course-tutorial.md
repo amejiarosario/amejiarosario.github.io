@@ -87,6 +87,8 @@ Without further ado, let’s step up our game!
 
 # What are algorithms?
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/y0kt0BI5IZ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Algorithms (as you might know) are steps of how to do some task. For example, when you cook, you follow a **recipe** to prepare a dish. If you play a game, you are devising **strategies** to help you win. Likewise, algorithms in computers are a set of instructions used to solve a problem.
 
 > Algorithms are instructions to perform a task
