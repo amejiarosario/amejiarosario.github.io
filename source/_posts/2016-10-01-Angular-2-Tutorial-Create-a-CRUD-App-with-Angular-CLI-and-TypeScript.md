@@ -20,7 +20,7 @@ categories:
   - Web Development
   - Angular
 date: 2016-10-01 17:16:03
-updated: 2018-08-07 18:17:23
+updated: 2019-11-06 10:46:23
 ---
 
 This tutorial gets you off the ground with Angular. We are going to use the official CLI (command line) tool to generate boilerplate code.
@@ -35,12 +35,12 @@ This tutorial is targeted to people familiar with JavaScript and HTML/CSS. You a
 You can verify by typing:
 ```bash
 node --version
-# v10.8.0
+# v12.13.0
 npm --version
-# 6.2.0
+# 6.12.0
 ```
 
-If you get the versions Node 4.x.x and NPM 3.x.x. or higher you are all set. If not you have to get the latest versions.
+If you get the versions Node 4.x.x and NPM 3.x.x. or higher you are all set. If not, you have to get the latest versions.
 
 Let's move on to Angular. We are going to create a Todo app. We will be able to CRUD (create-read-update-delete) tasks:
 
@@ -53,17 +53,18 @@ Angular CLI is the best way to get us started. We can download the tool and crea
 
 ```bash
 # install angular-cli globally
-npm install -g @angular/cli@6.1.2
+npm install -g @angular/cli@8.3.17
 # npm install -g @angular/cli # get latest
 
 # Check angular CLI is installed
 ng --version
-# Angular CLI: 6.1.2
+# Angular CLI: 8.3.17
 ```
 If the versions don't match then you can remove previously installed angular CLI with the following commands:
 ```bash
 npm uninstall -g @angular/cli
-yarn global remove @angular/cli
+# If you use yarn:
+# yarn global remove @angular/cli
 ```
 Once you have the right version, do:
 
@@ -85,17 +86,18 @@ The command `ng new` will do a bunch of things for us:
 Let's run the app!
 
 ```bash
+cd Todos
 # builds the app and run it on port 9000
 ng serve ---port 9000
 ```
 
-Open your browser on http://localhost:9000/, and you should see "Loading..." and then it should switch to "Welcome to app!". Awesome!
+Open your browser on http://localhost:9000/, and you should see "Todos app is running!". Awesome!
 
 Now let's dive into the `src` folder and get familiarized with the structure.
 
 ## package.json
 
-Open the `package.json` file and take a look at the dependencies. We have all the angular dependencies with the prefix `@angular/...`. Other dependencies are needed for Angular to run, such as RxJS, Zone.js, and some others. We are going to cover them in other posts.
+Open the `package.json` file and take a look at the dependencies. We have all the angular dependencies with the prefix `@angular/...`. Other dependencies (not exclusively for Angular) are also needed, such as RxJS, Zone.js, and some others. We are going to cover them in other posts.
 
 ## src/index.html
 
@@ -110,7 +112,7 @@ We are building an SPA (single page application), so everything is going to be l
 
 ## src/main.ts
 
-`main.ts` is where our application starts bootstrapping (loading). Angular can be used not just in browsers, but also on other platforms such as mobile apps or even desktop apps. So, when we start our application, we have to specify what platform we want to target. That's why we import: `platform-browser-dynamic`. Notice that we are also importing the `AppModule` from `./app`.
+`main.ts` is where our application starts bootstrapping (loading). Angular can be used not just in browsers, but also on other platforms such as mobile apps or even desktop apps. So, when we start our application, we have to specify what platform we want to target. That's why we import: `platform-browser-dynamic`. Notice that we are also importing the `AppModule` from `./app.module`.
 
 The most important line is:
 
@@ -136,13 +138,24 @@ We are going to be using this file often. The most important part is the metadat
 
 `AppComponent` looks a little similar to the app module, but instead of `@NgModule` we have `@Component`. Again, the most important part is the value of the attributes (metadata). We have `selector`, `templateUrl` and `styleUrls`:
 
--  `selector`: is the name of the component. Remember that we had `<app-root>Loading...</app-root>`? AppComponent is where it's defined.
+-  `selector`: is the name of the component. Do you remember the `<app-root></app-root>` on the index.html? This is where it's defined.
 `templateUrl`: This is where the HTML code is. `<app-root>` will be replaced for whatever you have in the template.
 - `styleUrls`: You can have styles that only apply to this component. This is pretty neat! You can change the styles with confidence knowing that it won't bleed into other parts of the website.
 
-Inside the `AppComponent` class you can define variables (e.g. `title`) that are used in the templates (e.g. `{{title}}`).
+Inside the `AppComponent` class you can define variables (e.g. `title`) that are used in the templates (e.g. `app.component.html`).
 
-> Let's change the title from `Welcome to {{ title }}!` to `{{ title }}`. Also, remove everything else.
+Let's remove the placeholders from `app.component.html`. Replace all the content already there with:
+
+```html
+<div style="text-align:center">
+  <h1>
+    {{ title }}
+  </h1>
+</div>
+
+
+<router-outlet></router-outlet>
+```
 
 Test your changes running:
 
@@ -152,7 +165,7 @@ ng serve ---port 9000
 
 You should see the new message.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/ec0b9f9">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/bf23970">[changes diff]</a>
 
 # Creating a new Component with Angular CLI
 
@@ -165,22 +178,22 @@ ng generate component todo
 This command will create a new folder with four files:
 
 ```
-create src/app/todo/todo.component.css
-create src/app/todo/todo.component.html
-create src/app/todo/todo.component.spec.ts
-create src/app/todo/todo.component.ts
+CREATE src/app/todo/todo.component.scss (0 bytes)
+CREATE src/app/todo/todo.component.html (19 bytes)
+CREATE src/app/todo/todo.component.spec.ts (614 bytes)
+CREATE src/app/todo/todo.component.ts (262 bytes)
 ```
 
 And it will add the new Todo component to the `AppModule`:
 
 ```
-UPDATE src/app/app.module.ts
+UPDATE src/app/app.module.ts (467 bytes)
 ```
 
 Go ahead and inspect each one. It will look similar to the app components.
 Let 's add our new component to the App component.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/bd5ec41">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/27b354e">[changes diff]</a>
 
 Go to `src/app/app.component.html`, and replace everything with:
 
@@ -190,7 +203,7 @@ Go to `src/app/app.component.html`, and replace everything with:
 
 If you have `ng serve` running, it should automatically update and show `todo works!`
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/8bcd39a">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/64e8060">[changes diff]</a>
 
 # Todo Template
 
@@ -253,7 +266,7 @@ If you have `ng serve` running, it should automatically update and show `todo wo
 
 The above HTML code has the general structure about how we want to represent our tasks. Right now it has hard-coded todo's. We are going to slowly turn it into a dynamic app using Angular data bindings.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/7dd4f78">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/c0ddc65">[changes diff]</a>
 
 Next, let's add some styling!
 
@@ -288,7 +301,7 @@ If you stop and start `ng serve`, then you will notice the changes.
 
 We have the skeleton so far. Now we are going to make it dynamic and allow users to add/remove/update/sort tasks. We are going to do two versions one serverless and another one using a Node.js/Express server. We are going to be using promises all the time, so when we use a real API, the service is the only one that has to change.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/67ae866">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/d3106d7">[changes diff]</a>
 
 # Todo Service
 
@@ -301,11 +314,11 @@ ng g service todo/todo
 This will create two files:
 
 ```
-create src/app/todo/todo.service.spec.ts
-create src/app/todo/todo.service.ts
+CREATE src/app/todo/todo.service.spec.ts (323 bytes)
+CREATE src/app/todo/todo.service.ts (133 bytes)
 ```
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/c4fa45d">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/9e5d935">[changes diff]</a>
 
 # CRUD Functionality
 
@@ -378,7 +391,7 @@ export class TodoComponent implements OnInit {
 
 The first change is importing our `TodoService` and adding it to the providers. Then we use the constructor of the component to load the `TodoService`. While we inject the service, we can hold a private instance of it in the variable `todoService`. Finally, we use it in the `getTodos` method. This will make a variable `todos` available in the template where we can render the tasks.
 
-Let's change the template so we can render the data from the service. Go to the `todo.component.html` and change what is inside the `<ul class="todo-list"> ... </ul>` for this one:
+Let's change the template so we can render the data from the service. Go to the `todo.component.html` and change, from line 11, what is inside the `<ul class="todo-list"> ... </ul>` for this one:
 
 ```html TodoTemplate src/app/todo/todo.component.html
     <ul class="todo-list">
@@ -393,7 +406,7 @@ Let's change the template so we can render the data from the service. Go to the 
     </ul>
 ```
 
-Also change the 32 in the template from:
+Also change the line 27 in the template from:
 
 ```html (partial) src/app/todo/todo.component.html
 <span class="todo-count"><strong>0</strong> item left</span>
@@ -414,9 +427,9 @@ Now, let's go over what we just did. We can see that we added new data-binding i
 - `*ngFor`: iterates through the `todos` array that we defined in the component and assigned in the `let todo` part.
 - `[ngClass]`: applies a class when the expression evaluates to true. In our case, it uses class `completed` when `isDone` is true.
 - `[checked]`: applies the `checked` attribute when the expression evaluates to true (`todo.isDone`).
-- `{{todo.title}}`: Render the todo title. The same happened with `{{activeTasks}}`.
+- <code>&lbrace;&lbrace;todo.title&rbrace;&rbrace;</code>: Render the todo title. The same happened with <code>&lbrace;&lbrace;activeTasks&rbrace;&rbrace;</code>.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/876c331">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/83c0c17">[changes diff]</a>
 
 ## CREATE: using the input form
 
@@ -479,11 +492,13 @@ import { FormsModule } from '@angular/forms';
 ```
 Now it should add new tasks to the list!
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/049b52b4d823c62f922e5d6e5f386fa96cc6b0fe">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/dd432b4">[changes diff]</a>
 
 ## UPDATE: on double click
 
 Let's add an event listener to double-click on each todo. That way, we can change the content. Editing is tricky since we need to display an input form. Then when the user clicks enter it should update the value. Finally, it should hide the input and show the label with the updated value. Let's do that by keeping a temp variable called `editing` which could be true or false.
+
+Go to line 16, and change the content inside the `<li>...</li>`:
 
 ```html src/app/todo/todo.component.html
 <li *ngFor="let todo of todos" [ngClass]="{completed: todo.isDone, editing: todo.editing}" >
@@ -500,10 +515,15 @@ Let's add an event listener to double-click on each todo. That way, we can chang
          (keyup.enter)="updateTodo(todo, updatedTodo.value)">
 </li>
 ```
-Notice that we are adding a local variable in the template `#updateTodo`. Then we use it to get the value like `updateTodo.value` and pass it to a function.
+Notice that we are adding a local variable in the template `#updatedTodo`. Then we use it to get the value like `updateTodo.value` and pass it to the function `updateTodo`.
 We want to update the variables on `blur` (when you click somewhere else) or on `enter`. Let's add the function that updates the value in the component.
 
 Also, notice that we have a new CSS class applied to the element called `editing`. This is going to take care through CSS to hide and show the input element when needed.
+
+Give it a try, double click on any task!
+
+If you press <kbd>enter</kbd> you would notice an error in the console `ERROR TypeError: _co.updateTodo is not a function`.
+That's because we haven't defined `updateTodo` yet:
 
 ```javascript src/app/todo/todo.component.ts
 updateTodo(todo, newValue) {
@@ -526,19 +546,22 @@ We update the new todo's title, and after the service has processed the update, 
     });
   }
 ```
-Now, we can edit tasks! Yay!
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/7f7700b">[changes diff]</a>
+Now, give it a try again. We can edit tasks! Yay!
+
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/f1270ef">[changes diff]</a>
 
 ## DELETE: clicking X
 
-This is like the other actions. We add an event listenter on the destroy button:
+This is like the other actions. We add an event listenter on the destroy button, on line 20:
 
 ```html src/app/todo/todo.component.html
 <button class="destroy" (click)="destroyTodo(todo)"></button>
 ```
 
-Then we add the function to the component:
+To make it work, we have to define the delete functionality on the component and service.
+
+The method to the component looks something like this:
 
 ```javascript src/app/todo/todo.component.ts
   destroyTodo(todo) {
@@ -562,7 +585,7 @@ and finally, we add the method to the service:
 
 Now test it out in the browser!
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/4703dd01d19ed3d84501e67f7fef5b51dee7585e">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/a4aeaa4">[changes diff]</a>
 
 # Routing and Navigation
 
@@ -614,7 +637,7 @@ Let's go to `app/app.component.html` and replace `<app-todo></app-todo>` for `<r
 
 Test the app in the browser and verify that now the URL is by default `http://localhost:9000/all`.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/3a38b4d">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/2e2bae9">[changes diff]</a>
 
 ## Using routerLink and ActivatedRoute
 
@@ -669,9 +692,9 @@ export class TodoComponent implements OnInit {
 
 We added `ActivatedRoute` as a dependency and in the constructor. ActivatedRoute gives us access to the all the `route` params such as `path`. Notice that we are using it in the `NgOnInit` and set the path accordantly.
 
-Go to the browser and check out that the URL matches the active button. But, it doesn't filter anything yet. Let's fix that.
+Go to the browser and check out that the URL matches the active button. But, it doesn't filter anything yet. Let's fix that next.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/bd3cc91ae8aed975c7d6e64ad76c53e985726364">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/b3487a2">[changes diff]</a>
 
 ## Filtering data based on the route
 
@@ -712,9 +735,11 @@ We added a new parameter `query`, which takes the `path` (active, completed or a
   }
 {% endcodeblock %}
 
-So we added a filter by `isDone` when we pass either `completed` or `active`. If the query is anything else, we return all the todos tasks. That's pretty much it, test it out!
+So we added a filter by `isDone` when we pass either `completed` or `active`. If the query is anything else, we return all the todos tasks.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/653e543">[changes diff]</a>
+That's pretty much it for filtering and routes, test it out!
+
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/b87857d">[changes diff]</a>
 
 # Clearing out completed tasks
 
@@ -737,19 +762,20 @@ clearCompleted() {
 In the same way we have to create `deleteCompleted` in the service:
 
 {% codeblock lang:js mark:3 TodoService src/app/todo/todo.service.ts %}
-deleteCompleted() {
-  return new Promise(resolve => {
-    todos = todos.filter(todo => !todo.isDone);
-    resolve(todos);
-  });
-}
+  deleteCompleted() {
+    return new Promise(resolve => {
+      TODOS = TODOS.filter(todo => !todo.isDone);
+      resolve(TODOS);
+    });
+  }
 {% endcodeblock %}
 
-We use the filter to get the active tasks and replace the `todos` array with it.
+We use the filter to get the active tasks and replace the `TODOS` array with it.
+Since, we are overwriting the variable we need to make it a `let TODOS ...` instead of a `const TODOS ...`.
 
 That's it we have completed all the functionality.
 
-<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/4ef542f">[changes diff]</a>
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/30c699b">[changes diff]</a>
 
 # Deploying the app
 
@@ -760,6 +786,18 @@ ng build --prod
 ```
 
 It will minify and concatenate the assets for serving the app faster.
+
+You might get some errors like `Property ... is private and only accessible within class 'TodoComponent'.`.
+You can fix that by making all the variables that are used on the template `public`. Instead of private:
+
+```js src/app/todo/todo.component.ts
+  public todos;
+  public activeTasks;
+  public newTodo;
+  public path;
+```
+
+Now `ng build --prod` should work. By default it will create assets on the `dist` folder.
 
 If you want to deploy to a Github page you can do the following:
 
@@ -787,7 +825,6 @@ src/app/todo/todo.component.html(47,42): : Property 'path' is private and only a
 src/app/todo/todo.component.html(7,8): : Property 'newTodo' is private and only accessible within class 'TodoComponent'.
 ```
 
-Then you need to change `private` to `public` like [this](https://github.com/amejiarosario/angular-todo-app/commit/33e2b3e268789de449ecbf521bc3501e649f8d07). This is because the Template in Angular is treated like a separate class.
-
+Then you need to change `private` to `public` like [this](https://github.com/amejiarosario/angular-todo-app/commit/cbf4e20). This is because the Template in Angular is treated like a separate class.
 
 That's all folks!
