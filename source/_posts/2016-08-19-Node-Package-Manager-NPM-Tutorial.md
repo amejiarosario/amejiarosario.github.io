@@ -3,9 +3,9 @@ layout: post
 title: Node Package Manager (NPM) Tutorial
 comments: true
 toc: true
-pageviews__total: 2723
-pageviews__recent: 47
-pageviews__avg_time: 240
+pageviews__total: 2970
+pageviews__recent: 14
+pageviews__avg_time: 185
 tutorial__order: 0
 photos__background_color: '#235E7E'
 alias: /blog/2016/08/19/Node-Package-Manager-NPM-Tutorial/

@@ -2,9 +2,9 @@
 layout: post
 title: 45 Security Tips to Avoid Hacking
 comments: true
-pageviews__total: 792
-pageviews__recent: 55
-pageviews__avg_time: 221
+pageviews__total: 935
+pageviews__recent: 31
+pageviews__avg_time: 227
 tutorial__order: 0
 toc: true
 photos:
