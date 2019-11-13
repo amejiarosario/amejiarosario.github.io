@@ -2,9 +2,9 @@
 layout: post
 title: Self-balanced Binary Search Trees with AVL in JavaScript
 comments: true
-pageviews__total: 8230
-pageviews__recent: 326
-pageviews__avg_time: 190
+pageviews__total: 8307
+pageviews__recent: 330
+pageviews__avg_time: 193
 tutorial__order: 7
 toc: true
 photos:

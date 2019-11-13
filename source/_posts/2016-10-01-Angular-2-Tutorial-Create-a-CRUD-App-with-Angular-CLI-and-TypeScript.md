@@ -3,9 +3,9 @@ layout: post
 title: 'Angular Tutorial: Create a CRUD App with Angular CLI and TypeScript'
 comments: true
 toc: true
-pageviews__total: 131757
-pageviews__recent: 1700
-pageviews__avg_time: 1618
+pageviews__total: 132595
+pageviews__recent: 1813
+pageviews__avg_time: 1624
 tutorial__order: 0
 photos__background_color: '#DD3229'
 alias: /blog/2016/10/01/Angular-2-Tutorial-Create-a-CRUD-App-with-Angular-CLI-and-TypeScript/
@@ -378,7 +378,7 @@ export class TodoComponent implements OnInit {
   getTodos(){
     return this.todoService.get().then(todos => {
       this.todos = todos;
-      this.activeTasks = this.todos.filter(todo => todo.isDone).length;
+      this.activeTasks = this.todos.filter(todo => !todo.isDone).length;
     });
   }
 
@@ -711,7 +711,7 @@ ngOnInit() {
 getTodos(query = ''){
   return this.todoService.get(query).then(todos => {
     this.todos = todos;
-    this.activeTasks = this.todos.filter(todo => todo.isDone).length;
+    this.activeTasks = this.todos.filter(todo => !todo.isDone).length;
   });
 }
 {% endcodeblock %}
@@ -776,6 +776,47 @@ Since, we are overwriting the variable we need to make it a `let TODOS ...` inst
 That's it we have completed all the functionality.
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/30c699b">[changes diff]</a>
+
+# Checking off tasks enhancements
+
+When we click on the checkbox, it gets the mark. However, the tasks doesn't get crossout.
+
+Let's fix that by toggling `isDone` field when we click on task.
+Add `(click)="toggleTodo(todo)"` to the checkbox element.
+
+```html src/app/todo/todo.component.html:17
+  <div class="view">
+    <input class="toggle"
+      type="checkbox"
+      [checked]="todo.isDone"
+      (click)="toggleTodo(todo)">
+    <label (dblclick)="todo.editing = true">{{todo.title}}</label>
+    <button class="destroy" (click)="destroyTodo(todo)"></button>
+  </div>
+```
+
+Since we are using the `toggleTodo` function we have to define it in the controller and service.
+
+Controller implementation:
+
+```js src/app/todo/todo.component.ts:62
+  toggleTodo(todo) {
+    this.todoService.toggle(todo).then(() => {
+      return this.getTodos();
+    });
+  }
+```
+
+Service implementation:
+
+```js src/app/todo/todo.service.ts:62
+  toggle(selected) {
+    selected.isDone = !selected.isDone;
+    return Promise.resolve();
+  }
+```
+
+We are returning a promise, in case we later want to replace the in-memory array for a API call or external storage.
 
 # Deploying the app
 

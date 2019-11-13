@@ -4,8 +4,8 @@ title: What technologies are using the most influential Internet companies?
 created: 1310520950000
 updated: 1310520950000
 comments: true
-pageviews__total: 302
-pageviews__recent: 2
+pageviews__total: 304
+pageviews__recent: 1
 pageviews__avg_time: 112
 tutorial__order: 0
 alias: /blog/2011/07/12/what-technologies-are-using-the-most-influential-internet-companies/

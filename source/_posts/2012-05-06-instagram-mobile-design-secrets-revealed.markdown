@@ -4,8 +4,8 @@ title: "Instagram mobile design secrets revealed"
 date: 2012-05-06 21:45
 updated: 2012-05-06 21:45
 comments: true
-pageviews__total: 813
-pageviews__recent: 4
+pageviews__total: 816
+pageviews__recent: 3
 pageviews__avg_time: 130
 tutorial__order: 0
 alias: /blog/2012/05/06/instagram-mobile-design-secrets-revealed/

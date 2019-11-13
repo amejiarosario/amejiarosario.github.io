@@ -14,7 +14,7 @@ cd tasks && node google-analytics-runner.js && cd - && git add . && git commit -
 # themes/am-light/source/js/search.es6
 hexo clean && hexo algolia # index search
 
-hexo d -g && ggpush
+hexo d -g
 
 # https://app.netlify.com/sites/angry-engelbart-d10917/overview # Check is deployed
 

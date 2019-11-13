@@ -5,8 +5,8 @@ created: 1329003331000
 updated: 1329003331000
 comments: true
 pageviews__total: 2325
-pageviews__recent: 6
-pageviews__avg_time: 262
+pageviews__recent: 9
+pageviews__avg_time: 261
 tutorial__order: 0
 #categories: [subversion, eclipse]
 alias: /blog/2012/02/11/adding-subversion-svn-properties-to-your-code/
