@@ -818,6 +818,8 @@ Service implementation:
 
 We are returning a promise, in case we later want to replace the in-memory array for a API call or external storage.
 
+<a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/0affc59">[changes diff]</a>
+
 # Deploying the app
 
 You can generate all your assets for production running this command:
