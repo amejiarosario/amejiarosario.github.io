@@ -19,7 +19,7 @@ categories:
   - Coding
   - Data Structures and Algorithms (DSA)
 date: 2018-04-28 19:20:40
-updated: 2019-04-22 15:49:40
+updated: 2019-11-25 20:17:40
 ---
 
 When we are developing software, we have to store data in memory. However, there are many types of data structures, such as arrays, maps, sets, lists, trees, graphs, etc. and choosing the right one for the task can be tricky. So, this series of posts will help you to know the trade-offs, so, you can use the right tool for the job!
@@ -1080,7 +1080,8 @@ We start by constructing the root or head element.
 {% codeblock linked-list.js lang:js %}
 class LinkedList {
   constructor() {
-    this.root = null;
+    this.root = null; // first/head/root element
+    this.size = 0; // total number of elements in the list
   }
 
   // ...
@@ -1656,4 +1657,3 @@ https://adrianmejia.com/blog/2018/04/28/data-structures-time-complexity-for-begi
 
 https://www.yuque.com/ruanyf/share/issue-10
 -->
-
