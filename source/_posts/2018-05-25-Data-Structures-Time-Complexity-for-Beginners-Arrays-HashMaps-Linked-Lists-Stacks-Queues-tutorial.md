@@ -1155,21 +1155,33 @@ The runtime again is *O(n)* because we have to iterate until the second-last ele
 Adding an element to the head of the list is like this:
 
 {% codeblock LinkedList.addFirst lang:js%}
-  addFirst(value) {
-    const node = new Node(value);
-    node.next = this.first;
-    this.first = node;
-  }
+/**
+  * Adds element to the begining of the list. Similar to Array.unshift
+  * Runtime: O(1)
+  * @param {any} value
+  */
+addFirst(value) {
+  const node = new Node(value);
+  node.next = this.root;
+  this.root = node;
+}
 {% endcodeblock %}
 
 Adding and removing elements from the beginning is a constant time because we hold a reference to the first element:
 
 {% codeblock LinkedList.removeFirst lang:js%}
-  addFirst(value) {
-    const node = new Node(value);
-    node.next = this.first;
-    this.first = node;
+/**
+  * Removes element from the start of the list (head/root). It's Similar `Array.shift`
+  * Runtime: O(1)
+  */
+removeFirst() {
+  const first = this.root;
+
+  if (first) {
+    this.root = first.next;
+    return first.value;
   }
+}
 {% endcodeblock %}
 
 As expected, the runtime for removing/adding to the first element from a linked List is always constant *O(1)*
