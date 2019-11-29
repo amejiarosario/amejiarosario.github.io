@@ -378,11 +378,11 @@ This algorithm has a cubic running time: `O(n^3)`.
 
 # O(log n) - Logarithmic time
 
-Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let's say that we want to look for a word in an old fashion dictionary. It has every word sorted alphabetically. There are at least two ways to do it:
+Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let's say that we want to look for a word in a dictionary (good old physcial book). It has every word sorted alphabetically. There are at least two ways to do it:
 
 Algorithm A:
 
-- Start at the beginning of the book and go in order until you find the contact you are looking for.
+- Start at the beginning of the book and go in order until you find the word you are looking for.
 
 Algorithm B:
 
