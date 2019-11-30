@@ -378,18 +378,19 @@ This algorithm has a cubic running time: `O(n^3)`.
 
 # O(log n) - Logarithmic time
 
-Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let's say that we want to look for a word in a dictionary (good old physcial book). It has every word sorted alphabetically. There are at least two ways to do it:
+Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let's say that we want to look for a book in a dictionary. As you know, this book has every word sorted alphabetically. If are looking for a word, then there are at least two ways to do it:
 
 Algorithm A:
 
-- Start at the beginning of the book and go in order until you find the word you are looking for.
+1. Start at the firts page of the book and go word by word until you find what you are looking for.
 
 Algorithm B:
 
-- Open the book in the middle and check the first word on it.
-- If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half.
+1. Open the book in the middle and check the first word on it.
+1. If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half. 
+1. Divide the reminder in half again, and repeat step #2 until you find the word you are looking for.
 
-Which one is faster? The first algorithms go word by word _O(n)_, while the algorithm B split the problem in half on each iteration _O(log n)_. This 2nd algorithm is a binary search.
+Which one is faster? The first algorithms go word by word _O(n)_, while the algorithm B split the problem in half on each iteration _O(log n)_. This 2nd algorithm is a **binary search**.
 
 ## Binary search
 
@@ -414,6 +415,7 @@ function indexOf(array, element, offset = 0) {
   }
 }
 
+// Usage example with a list of names in ascending order:
 const directory = ["Adrian", "Bella", "Charlotte", "Daniel", "Emma", "Hanna", "Isabella", "Jayden", "Kaylee", "Luke", "Mia", "Nora", "Olivia", "Paisley", "Riley", "Thomas", "Wyatt", "Xander", "Zoe"];
 console.log(indexOf(directory, 'Hanna'));   // => 5
 console.log(indexOf(directory, 'Adrian'));  // => 0
@@ -438,21 +440,25 @@ When analyzing recursive algorithms, we care about these three things:
 > T(n) = a T(n/b) + f(n)
 
 where:
-- `n`: the size of the recursion problem. duh? :)
-- `a`: the number of sub-problems. For our case, we only split the problem into another subproblem.
-- `b`: the factor by which `n` is reduced. For our example, we divide `n` in half each time.
-- `f(n)`: the running time outside the recursion. E.g., O(1)
+- `T`: time complexity fuction in terms of the input size `n`.
+- `n`: the size of the input. duh? :)
+- `a`: the number of sub-problems. For our case, we only split the problem into one subproblem. So, `a=1`.
+- `b`: the factor by which `n` is reduced. For our example, we divide `n` in half each time. Thus, `b=2`.
+- `f(n)`: the running time outside the recursion. Since dividing by 2 is constant time, we have `f(n) = O(1)`.
 
 2) Once we know the values of `a`, `b` and `f(n)`. We can determine the runtime of the recursion using this formula:
 
 > n<sup>log<sub>b</sub>a</sup>
 
-
 This value will help us to find which master method case we are solving.
+
+For binary search, we have:
+
+n<sup>log<sub>b</sub>a</sup> = n<sup>log<sub>2</sub>1</sup> = n<sub>0</sub> = 1
 
 3) Finally, we compare the recursion runtime from step 2) and the runtime `f(n)` from step 1). Based on that, we have the following cases:
 
-### **Case 1**: Most of the work done in the recursion.
+#### **Case 1**: Most of the work done in the recursion.
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> > `f(n)`,
 
@@ -460,7 +466,7 @@ If <code>n<sup>log<sub>b</sub>a</sup></code> > `f(n)`,
 
 > <i>O(n<sup>log<sub>b</sub>a</sup>)</i>
 
-### **Case 2**: The runtime of the work done in the recursion and outside is the same
+#### **Case 2**: The runtime of the work done in the recursion and outside is the same
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> === `f(n)`,
 
@@ -468,7 +474,7 @@ If <code>n<sup>log<sub>b</sub>a</sup></code> === `f(n)`,
 
 > <i>O(n<sup>log<sub>b</sub>a</sup> log(n))</i>
 
-### **Case 3**: Most of the work is done outside the recursion
+#### **Case 3**: Most of the work is done outside the recursion
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> < `f(n)`,
 

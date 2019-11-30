@@ -6,7 +6,6 @@
     "version": "3.8.0"
   },
   "dependencies": {
-    "angular-cli": "^1.0.0-beta.17",
     "global": "^4.3.1",
     "hexo": "^3.2.0",
     "hexo-algoliasearch": "amejiarosario/hexo-algoliasearch",
@@ -26,9 +25,10 @@
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-jade": "^0.3.0",
     "hexo-renderer-marked": "amejiarosario/hexo-renderer-marked#bump-marked-version",
-    "hexo-renderer-sass": "^0.2.0",
+    "hexo-renderer-sass": "0.4.0",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
-    "humanize-plus": "1.8.2"
+    "humanize-plus": "1.8.2",
+    "node-sass": "^4.13.0"
   }
 }
