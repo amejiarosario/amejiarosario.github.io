@@ -248,7 +248,7 @@ Error [ERR_REQUIRE_ESM]: Must use import to load ES Module: bla bla blah
 
 ### File extension .mjs vs .js (or .cjs)
 
-If you have a `*.mjs` file you cannot use `require` or it will throw and error (`ReferenceError: require is not defined`).
+If you have a `*.mjs` file you cannot use `require` or it will throw an error (`ReferenceError: require is not defined`).
 `.mjs` is for `import` ECMAScript Modules and `.js` is for regular `require` modules.
 
 However, with `*.mjs` you can load both kinds of modules!

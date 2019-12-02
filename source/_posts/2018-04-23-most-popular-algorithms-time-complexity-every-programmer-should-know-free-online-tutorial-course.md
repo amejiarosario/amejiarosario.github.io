@@ -458,7 +458,7 @@ n<sup>log<sub>b</sub>a</sup> = n<sup>log<sub>2</sub>1</sup> = n<sub>0</sub> = 1
 
 3) Finally, we compare the recursion runtime from step 2) and the runtime `f(n)` from step 1). Based on that, we have the following cases:
 
-#### **Case 1**: Most of the work done in the recursion.
+**_Case 1_: Most of the work done in the recursion.**
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> > `f(n)`,
 
@@ -466,7 +466,7 @@ If <code>n<sup>log<sub>b</sub>a</sup></code> > `f(n)`,
 
 > <i>O(n<sup>log<sub>b</sub>a</sup>)</i>
 
-#### **Case 2**: The runtime of the work done in the recursion and outside is the same
+**_Case 2_: The runtime of the work done in the recursion and outside is the same**
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> === `f(n)`,
 
@@ -474,7 +474,7 @@ If <code>n<sup>log<sub>b</sub>a</sup></code> === `f(n)`,
 
 > <i>O(n<sup>log<sub>b</sub>a</sup> log(n))</i>
 
-#### **Case 3**: Most of the work is done outside the recursion
+**_Case 3_: Most of the work is done outside the recursion**
 
 If <code>n<sup>log<sub>b</sub>a</sup></code> < `f(n)`,
 
