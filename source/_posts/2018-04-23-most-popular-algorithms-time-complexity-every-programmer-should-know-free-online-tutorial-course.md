@@ -3,9 +3,9 @@ layout: post
 title: 8 time complexities that every programmer should know
 comments: true
 toc: true
-pageviews__total: 77534
-pageviews__recent: 7843
-pageviews__avg_time: 819
+pageviews__total: 95129
+pageviews__recent: 6981
+pageviews__avg_time: 1902
 tutorial__order: 2
 photos:
 - /images/data-structures-must-know-algorithms-running-time-complexity-small.jpg
@@ -555,31 +555,50 @@ This's how it works:
 Here's the code for merge sort:
 
 ```js
-function sort(n) {
-  const length = n.length;
+/**
+ * Sort array in asc order using merge-sort
+ * @example
+ *    sort([3, 2, 1]) => [1, 2, 3]
+ *    sort([3]) => [3]
+ *    sort([3, 2]) => [2, 3]
+ * @param {array} array
+ */
+function sort(array = []) {
+  const size = array.length;
   // base case
-  if(length === 1) {
-    return n;
+  if (size < 2) {
+    return array;
   }
-  if(length === 2) {
-    return n[0] > n[1] ? [n[1], n[0]] : [n[0], n[1]];
+  if (size === 2) {
+    return array[0] > array[1] ? [array[1], array[0]] : array;
   }
   // slit and merge
-  const mid = length/2;
-  return merge(sort(n.slice(0, mid)), sort(n.slice(mid)));
+  const mid = parseInt(size / 2, 10);
+  return merge(sort(array.slice(0, mid)), sort(array.slice(mid)));
 }
 
-function merge(a = [], b = []) {
+/**
+ * Merge two arrays in asc order
+ * @example
+ *    merge([2,5,9], [1,6,7]) => [1, 2, 5, 6, 7, 9]
+ * @param {array} array1
+ * @param {array} array2
+ * @returns {array} merged arrays in asc order
+ */
+function merge(array1 = [], array2 = []) {
   const merged = [];
+  let array1Index = 0;
+  let array2Index = 0;
   // merge elements on a and b in asc order. Run-time O(a + b)
-  for (let ai = 0, bi = 0; ai < a.length || bi < b.length;) {
-    if(ai >= a.length || a[ai] > b[bi]) {
-      merged.push(b[bi++]);
+  while (array1Index < array1.length || array2Index < array2.length) {
+    if (array1Index >= array1.length || array1[array1Index] > array2[array2Index]) {
+      merged.push(array2[array2Index]);
+      array2Index += 1;
     } else {
-      merged.push(a[ai++]);
+      merged.push(array1[array1Index]);
+      array1Index += 1;
     }
   }
-
   return merged;
 }
 ```

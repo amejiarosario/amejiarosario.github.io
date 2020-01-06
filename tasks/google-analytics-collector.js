@@ -21,7 +21,8 @@ function downloadFiles(startDate = '2011-07-12', endDate = 'yesterday') {
   // const VIEW_ID = '58359416';
   // http://stackoverflow.com/questions/24918629/inserting-an-event-with-the-nodejs-google-calendar-api-returns-400-missing-end
   const SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
-  const KEY_FILE_LOCATION = '/Users/admejiar/OneDrive/1 PROJECTS/adrianmejia.com/keys/MyProject-625a1c430e16.p12';
+  // const KEY_FILE_LOCATION = '/Users/admejiar/OneDrive/1 PROJECTS/adrianmejia.com/keys/MyProject-625a1c430e16.p12';
+  const KEY_FILE_LOCATION = '/mnt/d/OneDrive/1\ PROJECTS/adrianmejia.com/keys/MyProject-625a1c430e16.p12';
   const SERVICE_ACCOUNT_EMAIL = 'analytics@global-student-137718.iam.gserviceaccount.com';
   const url = `https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A58359416&start-date=${startDate}&end-date=${endDate}&metrics=ga%3AbounceRate%2Cga%3Apageviews%2Cga%3AavgTimeOnPage&dimensions=ga%3ApagePath&sort=-ga%3Apageviews&samplingLevel=higher_precision&include-empty-rows=false&access_token=`;
 

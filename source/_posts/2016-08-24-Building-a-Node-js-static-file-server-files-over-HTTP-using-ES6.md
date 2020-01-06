@@ -3,9 +3,9 @@ layout: post
 title: Building a Node.js static file server (files over HTTP) using ES6+
 comments: true
 toc: true
-pageviews__total: 44970
-pageviews__recent: 1085
-pageviews__avg_time: 451
+pageviews__total: 46660
+pageviews__recent: 629
+pageviews__avg_time: 463
 tutorial__order: 0
 photos__background_color: '#8E44AD'
 alias: /blog/2016/08/24/Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6/

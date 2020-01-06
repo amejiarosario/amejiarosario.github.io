@@ -5,9 +5,9 @@ date: 2014-09-28 23:50:24 -0400
 updated: 2016-08-06 19:31:57 -0400
 comments: true
 toc: true
-pageviews__total: 640308
-pageviews__recent: 1083
-pageviews__avg_time: 469
+pageviews__total: 642234
+pageviews__recent: 853
+pageviews__avg_time: 404
 photos__background_color: '#25A9DD'
 bitly: 'http://bit.ly/angular-4-beginners'
 photos:
