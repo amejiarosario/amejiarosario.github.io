@@ -28,9 +28,11 @@ We are going to learn the top algorithm's running time that every developer shou
 
 <!-- more -->
 
-In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money, and enable new technology. So, this is paramount to know how to measure algorithms performance.
+In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money, and enable new technology. So, this is paramount to know how to measure algorithms' performance.
 
-To recap **time complexity** estimates how an algorithm performs regardless kind of machine it runs on. You can get the time complexity by "counting" the number of operations performed by your code. This time complexity is defined as a function of the input size `n` using Big-O notation. `n` indicates the magnitude of the input, while O is the growth rate function.
+## What is time complexity?
+
+To recap **time complexity** estimates how an algorithm performs regardless kind of machine it runs on. You can get the time complexity by "counting" the number of operations performed by your code. This time complexity is defined as a function of the input size `n` using Big-O notation. `n` indicates the size of the input, while O is the worst-case scenario growth rate function.
 
 We use the Big-O notation to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
 
@@ -124,9 +126,19 @@ This post is part of a tutorial series:
 
 # O(1) - Constant time
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mnv6sV-Ih8s?rel=0&start=520" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 `O(1)` describes algorithms that take the same amount of time to compute regardless of the input size.
 
 For instance, if a function takes the identical time to process ten elements as well as 1 million items, then we say that it has a constant growth rate or `O(1)`. Let’s see some cases.
+
+Examples of constant runtime algorithms:
+Find if an item on the array is even or odd.
+Check if an item on an array is null
+Print the first element from a list
+Find a value on a map
+
+For our discussion, we are going to implement the first and last example.
 
 ## Odd or Even
 
@@ -149,7 +161,7 @@ It doesn't matter if n is `10` or `10,001`, it will execute line 2 one time.
 
 If you have a method like `Array.sort()` or any other array or object methods, you have to look into the implementation to determine its running time.
 
-Primitive operations like sum, multiplication, subtraction, division, modulo, bit shift, etc. have a constant runtime. This can be shocking! But, let's go in details why they are constant time. If you use the schoolbook long multiplication algorithm, it would take <code>O(n<sup>2</sup>)</code> to multiply two numbers. However, most programming languages limit numbers to max value (e.g. in JS: `Number.MAX_VALUE` is `1.7976931348623157e+308`). So, you cannot operate numbers that yield a result greater than the `MAX_VALUE`. So, primitive operations are bound to be completed on a fixed amount of instructions `O(1)` or throw overflow errors (in JS, `Infinity` keyword).
+Primitive operations like sum, multiplication, subtraction, division, modulo, bit shift, etc. have a constant runtime. This can be shocking! But, let's go in detail why they are constant time. If you use the schoolbook long multiplication algorithm, it would take <code>O(n<sup>2</sup>)</code> to multiply two numbers. However, most programming languages limit numbers to max value (e.g. in JS: `Number.MAX_VALUE` is `1.7976931348623157e+308`). So, you cannot operate numbers that yield a result greater than the `MAX_VALUE`. So, primitive operations are bound to be completed on a fixed amount of instructions `O(1)` or throw overflow errors (in JS, `Infinity` keyword).
 
 <!-- Addition O(n), Multiplication O(n^2) https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations -->
 
@@ -157,7 +169,7 @@ Primitive operations like sum, multiplication, subtraction, division, modulo, bi
 
 ## Look-up table
 
-Given a string find its word frequency data.
+Given a string, find its word frequency data.
 
 ```js
 const dictionary = {the: 22038615, be: 12545825, and: 10741073, of: 10343885, a: 10144200, in: 6996437, to: 6332195 /* ... */};
@@ -172,15 +184,22 @@ console.log(getWordFrequency(dictionary, 'in'));
 
 Again, we can be sure that even if the dictionary has 10 or 1 million words, it would still execute line 4 once to find the word. However, if we decided to store the dictionary as an array rather than a hash map, then it would be a different story. In the next section, we are going to explore what's the running time to find an item in an array.
 
-> Only a hash table with a perfect *hash function* will have a worst-case runtime of *O(1)*. The ideal hash function is not practical, so there will be some collisions and workarounds leads to a worst-case runtime of *O(n)*. Still, on *average* the lookup time is *O(1)*.
+> Only a hash table with a perfect *hash function* will have a worst-case runtime of *O(1)*. The ideal hash function is not practical, so there will be some collisions and workarounds that leads to a worst-case runtime of *O(n)*. Still, on *average*, the lookup time is *O(1)*.
 
 # O(n) - Linear time
 
-Linear running time algorithms are widespread. Linear runtime means that the program visits every element from the input.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mnv6sV-Ih8s?rel=0&start=732" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Linear running time algorithms are widespread. These algorithms imply that the program visits every element from the input.
 
 Linear time complexity _`O(n)`_ means that as the input grows, the algorithms take proportionally longer to complete.
 
 Some examples:
+- Get the max/min value in an array.
+- Find a given element in a collection.
+- Print all the values in a list.
+
+Let's implement the first example.
 
 ## The largest item on an unsorted array
 
@@ -234,15 +253,22 @@ findMax([4,5,6,1,9,2,8,3,7])
 // n: 9, counter: 9
 ```
 
-Now imagine that you have an array of one million items. Do you think it will take the same time? Of course not, it will take longer to the size of the input. If we plot it n and `findMax` running time we will have a graph like a linear equation.
+Now imagine that you have an array of one million items. Do you think it will take the same time? Of course not, it will take longer to the size of the input. If we plot it n and `findMax` running time, we will have a graph like a linear equation.
 
 {% img /images/linear-running-time-o(n).jpg 'Linear Running time O(n) example' %}
 
 # O(n^2) - Quadratic time
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZRCTMYv2fRU?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 A function with a quadratic time complexity has a growth rate of n<sup>2</sup>. If the input is size 2, it will do four operations. If the input is size 8, it will take 64, and so on.
 
-Here are some code examples of quadratic algorithms:
+Here are some examples of quadratic algorithms:
+- Check if a collection has duplicated values.
+- Sorting items in a collection using bubble sort, insertion sort, or selection sort.
+- Find all possible ordered pairs in an array.
+
+Let's implement the first two.
 
 ## Has duplicates
 
@@ -342,7 +368,7 @@ Expand:
 
 Polynomial running is represented as O(n<sup>c</sup>), when `c > 1`. As you already saw, two inner loops almost translate to O(n<sup>2</sup>) since it has to go through the array twice in most cases. Are three nested loops cubic? If each one visit all elements, then yes!
 
-Usually, we want to stay away from polynomial running times (quadratic, cubic, n<sup>c</sup> …) since they take longer to compute as the input grows fast. However, they are not the worst.
+Usually, we want to stay away from polynomial running times (quadratic, cubic, n<sup>c</sup>, etc.) since they take longer to compute as the input grows fast. However, they are not the worst.
 
 
 ## Triple nested loops
@@ -350,7 +376,7 @@ Let's say you want to find the solutions for a multi-variable equation that look
 
 > 3x + 9y + 8z = 79
 
-This naïve program will give you all the solutions that satisfy the equation where `x`, `y` and `z` < `n`.
+This naïve program will give you all the solutions that satisfy the equation where `x`, `y`, and `z` < `n`.
 
 ```js
 function findXYZ(n) {
@@ -378,17 +404,19 @@ This algorithm has a cubic running time: `O(n^3)`.
 
 # O(log n) - Logarithmic time
 
-Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let's say that we want to look for a book in a dictionary. As you know, this book has every word sorted alphabetically. If are looking for a word, then there are at least two ways to do it:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cCPOayp1vek?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let's say that we want to look for a book in a dictionary. As you know, this book has every word sorted alphabetically. If you are looking for a word, then there are at least two ways to do it:
 
 Algorithm A:
 
-1. Start at the firts page of the book and go word by word until you find what you are looking for.
+1. Start on the first page of the book and go word by word until you find what you are looking for.
 
 Algorithm B:
 
 1. Open the book in the middle and check the first word on it.
 1. If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half. 
-1. Divide the reminder in half again, and repeat step #2 until you find the word you are looking for.
+1. Divide the remainder in half again, and repeat step #2 until you find the word you are looking for.
 
 Which one is faster? The first algorithms go word by word _O(n)_, while the algorithm B split the problem in half on each iteration _O(log n)_. This 2nd algorithm is a **binary search**.
 
@@ -440,7 +468,7 @@ When analyzing recursive algorithms, we care about these three things:
 > T(n) = a T(n/b) + f(n)
 
 where:
-- `T`: time complexity fuction in terms of the input size `n`.
+- `T`: time complexity function in terms of the input size `n`.
 - `n`: the size of the input. duh? :)
 - `a`: the number of sub-problems. For our case, we only split the problem into one subproblem. So, `a=1`.
 - `b`: the factor by which `n` is reduced. For our example, we divide `n` in half each time. Thus, `b=2`.
@@ -507,7 +535,7 @@ Thus,
 
 3) Finally, getting the runtime. Based on the comparison of the expressions from the previous steps, find the case it matches.
 
-As we saw in the previous step the work outside and inside the recursion has the same runtime, so we are in **case 2**.
+As we saw in the previous step, the work outside and inside the recursion has the same runtime, so we are in **case 2**.
 
 > O(n<sup>log<sub>b</sub>a</sup> log(n))
 
@@ -518,7 +546,6 @@ O(n<sup>log<sub>2</sub>1</sup> log(n))
 O(n<sup>0</sup> log(n))
 
 O(log(n))  **👈 this is running time of a binary search**
-
 
 <!--
 
@@ -539,14 +566,19 @@ https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms) -->
 
 # O(n log n) - Linearithmic
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PADwBMuehYc?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Linearithmic time complexity it's slightly slower than a linear algorithm. However, it's still much better than a quadratic algorithm (you will see a graph at the very end of the post).
+
+**Examples of Linearithmic algorithms:**
+- Efficient sorting algorithms like merge sort, quicksort and others.
 
 ## Mergesort
 
 What's the best way to sort an array?  Before, we proposed a solution using bubble sort that has a time complexity of O(n<sup>2</sup>). Can we do better?
 
 We can use an algorithm called `mergesort` to improve it.
-This's how it works:
+This is how mergesort works:
 
 1. We are going to divide the array recursively until the elements are two or less.
 2. We know how to sort two items, so we sort them iteratively (base case).
@@ -635,15 +667,26 @@ n<sup>1</sup> = n
 
 # O(2^n) - Exponential time
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LDwZK4I6QDc?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Exponential (base 2) running time means that the calculations performed by an algorithm double every time as the input grows.
 
-## Subsets of a Set
+**Examples of exponential runtime algorithms:**
+- Power Set: all the subsets on a set.
+- Fibonacci.
+- Travelling salesman problem using dyanmic programming.
+
+## Power Set
+
+To understand the power set, let's imaging you are buying pizza. 
+The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pinapple.
+Let's call each topping A, B, C, D. What are your choices? You can select no topping (you are on a diet ;), you can choose one topping, or two or three or all of them, and so on. The power set gives you all the possibilities (BTW, there 16 with 4 toppings as you will see later)
 
 Finding all distinct subsets of a given set. For instance, let's do some examples to try to come up with an algorithm to solve it:
 ```js
-getSubsets('') // =>  ['']
-getSubsets('a') // => ['', 'a']
-getSubsets('ab') // => ['', 'a', 'b', 'ab']
+powerset('') // =>  ['']
+powerset('a') // => ['', 'a']
+powerset('ab') // => ['', 'a', 'b', 'ab']
 ```
 
 Did you notice any pattern?
@@ -657,7 +700,7 @@ What if you want to find the subsets of `abc`? Well, it would be precisely the s
 As you noticed, every time the input gets longer, the output is twice as long as the previous one. Let's code it:
 
 ```js
-function getSubsets(n = '') {
+function powerset(n = '') {
   const array = Array.from(n);
   const base = [''];
 
@@ -668,8 +711,6 @@ function getSubsets(n = '') {
     return previous.concat(previousPlusElement);
   }, base);
 
-  console.log(`getSubsets(${n}) // ${results.slice(0, 15).join(', ')}... `);
-  console.log(`n: ${array.length}, counter: ${results.length};`);
   return results;
 }
 ```
@@ -677,17 +718,17 @@ function getSubsets(n = '') {
 If we run that function for a couple of cases we will get:
 
 ```js
-getSubsets('') // ...
+powerset('') // ...
 // n = 0, f(n) = 1;
-getSubsets('a') // , a...
+powerset('a') // , a...
 // n = 1, f(n) = 2;
-getSubsets('ab') // , a, b, ab...
+powerset('ab') // , a, b, ab...
 // n = 2, f(n) = 4;
-getSubsets('abc') // , a, b, ab, c, ac, bc, abc...
+powerset('abc') // , a, b, ab, c, ac, bc, abc...
 // n = 3, f(n) = 8;
-getSubsets('abcd') // , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...
+powerset('abcd') // , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...
 // n = 4, f(n) = 16;
-getSubsets('abcde') // , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...
+powerset('abcde') // , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...
 // n = 5, f(n) = 32;
 ```
 
@@ -696,6 +737,8 @@ As expected, if you plot `n` and `f(n)`, you will notice that it would be exactl
 **Note:** You should avoid functions with exponential running times (if possible) since they don't scale well. The time it takes to process the output doubles with every additional input size. But exponential running time is not the worst yet; others go even slower. Let's see one more example in the next section.
 
 # O(n!) - Factorial time
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/snBRcJlrnVw?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Factorial is the multiplication of all positive integer numbers less than itself. For instance:
 
