@@ -5,9 +5,9 @@ date: 2012-04-27 02:17
 updated: 2012-04-27 02:17
 comments: true
 toc: true
-pageviews__total: 18288
-pageviews__recent: 34
-pageviews__avg_time: 495
+pageviews__total: 18277
+pageviews__recent: 32
+pageviews__avg_time: 476
 # categories: [spring mvc, j2ee, jquery, ajax]
 alias: /blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted/
 tutorial__order: 0
