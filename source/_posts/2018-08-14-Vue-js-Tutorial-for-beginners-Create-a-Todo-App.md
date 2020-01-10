@@ -58,7 +58,7 @@ Open your favorite code editor (I recommend [Code](https://code.visualstudio.com
 
 Take a look at the `package.json` dependencies:
 
-```js app.js
+```js package.json (fragment)
   "dependencies": {
     "todomvc-app-css": "2.1.2",
     "vue": "2.5.17",
@@ -76,8 +76,8 @@ We installed `Vue` and `VueRouter` dependencies. Also, we have the nice CSS libr
 Open the `index.html` file.  There we have the basic HTML structure for the Todo app that we are going to build upon:
 
 - Line 9: Loads the CSS from NPM module `node_modules/todomvc-app-css/index.css`.
-- Line 23: We have the `ul` and some hard-coded todo lists. We are going to change this in a bit.
-- Line 73: we have multiple script files that load Vue, VueRouter and an empty `app.js`.
+- Line 24: We have the `ul` and some hard-coded todo lists. We are going to change this in a bit.
+- Line 75: we have multiple script files that load Vue, VueRouter and an empty `app.js`.
 
 Now, you know the basic structure where we are going to work on. Let's get started with Vue! 🖖
 
@@ -102,9 +102,19 @@ const todoApp = new Vue({
 });
 ```
 
-The `el` is the element where Vue is going to be mounted. If you notice in the `index.html` that's the section part. The `data` object is reactive. It keeps track of changes and re-render the DOM if needed. Go to the index page and change `<h1>todos</h1>` for `<h1>{% raw %}{{ title }}{% endraw %}</h1>`. The rest remains the same:
+Notice the 2nd line with `el: '.todoapp'`. The `el` is the element where Vue is going to be mounted.
 
-{% codeblock index.html lang:js mark:3 %}
+If you notice in the `index.html` that's the section part. As shown in the fragment below.
+
+```html index.html (fragment)
+<body>
+
+  <section class="todoapp">
+```
+
+Going back to the `app.js` file, let's now take a look into the `data` attribute, that binds the title. The `data` object is reactive. It keeps track of changes and re-render the DOM if needed. Go to the index.html page and change `<h1>todos</h1>` for `<h1>{% raw %}{{ title }}{% endraw %}</h1>`. The rest remains the same:
+
+{% codeblock index.html (fragment) lang:js mark:3 %}
   <section class="todoapp">
     <header class="header">
       <h1>{% raw %}{{ title }}{% endraw %}</h1>
@@ -121,13 +131,13 @@ You can also go to the console and change it `todoApp.title = "Bucket List"` and
 
 Note: besides the curly braces you can also use `v-text`:
 
-```html index.html
+```html index.html (fragment)
 <h1 v-text="title"></h1>
 ```
 
-Let's do something useful and put an initial todo list:
+Let's go back to `app.js` and do something useful inside the `data` object. Let's put an initial todo list:
 
-```js app.js
+```js app.js (fragment)
 const todoApp = new Vue({
   el: '.todoapp',
   data: {
@@ -141,7 +151,7 @@ const todoApp = new Vue({
 });
 ```
 
-Now that we have the list we need to replace the `<li>` elements with each of the elements in the `data.todos` array.
+Now that we have the list on the data, we need to replace the `<li>` elements in `index.html` with each of the elements in the `data.todos` array.
 
 Let's do the CRUD (Create-Read-Update-Delete) of a Todo application.
 
@@ -153,7 +163,7 @@ As you can see everything starting with `v-` is defined by the Vue library.
 
 We can iterate through elements using `v-for` as follows:
 
-```html index.html
+```html index.html (fragment)
   <li v-for="todo in todos">
     <div class="view">
       <input class="toggle" type="checkbox">
@@ -183,7 +193,7 @@ In Vue, we can listen to an event using `v-on:EVENT_NAME`. E.g.:
 
 Let's use the `keyup.enter` to create a todo:
 
-```html index.html
+```html index.html (fragment)
   <input class="new-todo" placeholder="What needs to be done?"
     v-on:keyup.enter="createTodo"
     autofocus>
@@ -191,7 +201,7 @@ Let's use the `keyup.enter` to create a todo:
 
 On `enter` we are calling `createTodo` method, but it's not defined yet. Let's define it on `app.js` as follows:
 
-```js app.js
+```js app.js (fragment)
   methods: {
     createTodo(event) {
       const textbox = event.target;
@@ -209,7 +219,7 @@ If you click the checkbox (or checkcirlcle) we would like the class `completed` 
 
 `v-bind` can be applied to any HTML attribute such as `class`, `title` and so forth. Since `v-bind` is used a lot we can have a shortcut `:`, so instead of `v-bind:class` it becomes `:class`.
 
-```html index.html
+```html index.html (fragment)
 <li v-for="todo in todos" :class="{ completed: todo.isDone }">
 ```
 
@@ -238,7 +248,7 @@ You should see the update. Cool!
 
 We want to double click on any list and that it automatically becomes a checkbox. We have some CSS magic to do that, the only thing we need to do is to apply the `editing` class.
 
-```html index.html
+```html index.html (fragment)
         <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
         <li v-for="todo in todos" :class="{ completed: todo.isDone }">
           <div class="view">
@@ -289,14 +299,14 @@ We created a new variable `editing` in data. We just set whatever todo we are cu
 
 Next, we need to apply the `editing` class:
 
-```html
+```html index.html (fragment)
 <li v-for="todo in todos" :class="{ completed: todo.isDone, editing: todo === editing }">
 ```
 When `data.editing` matches the `todo` , then we apply the CSS class. Try it out!
 
 If you try it out, you will notice you can enter on edit mode, but there's no way to exit from it (yet). Let's fix that.
 
-```html
+```html index.html (fragment)
           <input class="edit"
             @keyup.esc="cancelEditing"
             @keyup.enter="finishEditing"
@@ -312,7 +322,7 @@ Before, we implemented the `startEditing` function. Now, we need to complete the
 
 Let's go to the `app.js` and define these two functions.
 
-```js app.js
+```js app.js (fragment)
     finishEditing(event) {
       if (!this.editing) { return; }
       const textbox = event.target;
@@ -334,13 +344,13 @@ Cancel is pretty straightforward. It just set editing to null.
 
 Finally, the last step to complete the CRUD operations is deleting. We are going to listen for click events on the destroy icon:
 
-```html
+```html index.html (fragment)
 <button class="destroy" @click="destroyTodo(todo)"></button>
 ```
 
 also, `destroyTodo` implementation is as follows:
 
-```js app.js
+```js app.js (fragment)
     destroyTodo(todo) {
       const index = this.todos.indexOf(todo);
       this.todos.splice(index, 1);
@@ -359,13 +369,13 @@ It's always a good idea to `trim` user inputs, so any accidental whitespace does
 
 Right now the `item left` count is always 0. We want the number of remaining tasks.  We could do something like this:
 
-```html
+```html anti-example
 <strong>{{ todos.filter(t => !t.isDone).length }}</strong> item(s) left</span>
 ```
 
 That's a little ugly to stick out all that logic into the template. That's why Vue has the `computed`  section!
 
-```js app.js
+```js app.js (fragment)
   computed: {
     activeTodos() {
       return this.todos.filter(t => !t.isDone);
@@ -375,7 +385,7 @@ That's a little ugly to stick out all that logic into the template. That's why V
 
 Now the template is cleaner:
 
-```html
+```html index.html (fragment)
 <strong>{{ activeTodos.length }}</strong> item(s) left</span>
 ```
 
@@ -394,7 +404,7 @@ Try completing other tasks and verify that the count gets updated.
 
 We want to show `clear completed` button only if there are any completed task. We can accomplish this with the `v-show` directive:
 
-```html
+```html index.html (fragment)
 <button class="clear-completed" @click="clearCompleted" v-show="completedTodos.length">Clear completed</button>
 ```
 
@@ -402,14 +412,14 @@ The v-show will hide the element if the expression evaluates to false or 0.
 
 One way to clearing out completed tasks is by assigning the `activeTodos` property to the `todos`:
 
-```js app.js
+```js app.js (fragment)
     clearCompleted() {
       this.todos = this.activeTodos;
     }
 ```
 Also, we have to add the computed property `completedTodos` that we use in the v-show
 
-```js
+```js app.js (fragment)
     completedTodos() {
       return this.todos.filter(t => t.isDone);
     }
@@ -425,7 +435,7 @@ Also, we have to add the computed property `completedTodos` that we use in the v
 
 We can hide the footer and central section if there's no todo list.
 
-```html
+```html index.html (fragment)
 <section class="main" v-if="todos.length">... </section>
 <footer class="footer" v-if="todos.length">...</footer>
 ```
@@ -447,13 +457,13 @@ The way `localStorage` works is straightforward. It is global variable and has o
 
 We are going to use `getItem` and `setItem`. First we need to define a storage key:
 
-```js app.js
+```js app.js (fragment)
 const LOCAL_STORAGE_KEY = 'todo-app-vue';
 ```
 
 Then we replace `data.todos` to get items (if any) from the local storage:
 
-```js app.js
+```js app.js (fragment)
   data: {
     title: 'Todos',
     todos: JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [
@@ -475,7 +485,7 @@ For saving, we are going to use the Vue watchers.
 
 > Vue watchers vs. Computed properties. Computed properties are usually used to "compute" and cache the value of 2 or more properties. Watchers are more low level than computed properties. Watchers allow you to "watch" for changes on a single property. This is useful for performing expensive operations like saving to DB, API calls and so on.
 
-```js
+```js app.js (fragment)
   watch: {
     todos: {
       deep: true,
@@ -504,6 +514,8 @@ In the next tutorial, we are going to switch gears a little bit and go deeper in
 
 We learned a lot! Here is a summary:
 
+<!-- encode html with https://mothereff.in/html-entities -->
+
 <div class="table--responsive">
   <table class="table">
     <caption>Binders</caption>
@@ -512,54 +524,64 @@ We learned a lot! Here is a summary:
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
     <tbody>
       <tr>
         <td> Mustache </td>
         <td>Variable that is replaced with variable's value</td>
         <td>
-          `<h1>{{ title }}</h1>`
+          <pre><code>&#x3C;h1&#x3E;{{ title }}&#x3C;/h1&#x3E;</code></pre>
         </td>
       </tr>
       <tr>
         <td> v-bind </td>
         <td>Bind to HTML attribute</td>
         <td>
-          `<span v-bind:title="tooltip"></span>` <br>
-          `<div v-bind:id="dynamicId"></div>`
-          `<button v-bind:disabled="isButtonDisabled">Button</button>`
+          <pre>
+          <code>
+&#x3C;span v-bind:title=&#x22;tooltip&#x22;&#x3E;&#x3C;/span&#x3E;
+&#x3C;div v-bind:id=&#x22;dynamicId&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;button v-bind:disabled=&#x22;isButtonDisabled&#x22;&#x3E;Button&#x3C;/button&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> :</td>
         <td>Shortcut for v-bind</td>
         <td>
-          `<span :title="tooltip"></span>`
-          `<li v-bind:class="{completed: todo.isDone }"></li>`
+          <pre>
+          <code>
+&#x3C;span :title=&#x22;tooltip&#x22;&#x3E;&#x3C;/span&#x3E;
+&#x3C;li v-bind:class=&#x22;{completed: todo.isDone }&#x22;&#x3E;&#x3C;/li&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> v-text </td>
         <td>Inject text into the element</td>
         <td>
-          `<h1 v-text="title"></h1>`
+          <pre>
+          <code>
+&#x3C;h1 v-text=&#x22;title&#x22;&#x3E;&#x3C;/h1&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> v-html </td>
         <td>Inject raw HTML into the element</td>
         <td>
-          `<blog-post v-html="content"></blog-post>`
+          <pre>
+          <code>
+&#x3C;blog-post v-html=&#x22;content&#x22;&#x3E;&#x3C;/blog-post&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
     </tbody>
   </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>List Rendering</caption>
@@ -568,60 +590,73 @@ We learned a lot! Here is a summary:
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
     <tbody>
       <tr>
         <td> v-for </td>
         <td>Iterate over elements</td>
         <td>
-          `<li v-for="todo in todos">{{todo.text}}</li>`
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;todo in todos&#x22;&#x3E;{% raw %} {{todo.text}}{% endraw %}&#x3C;/li&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> v-for </td>
         <td>Iterate with index</td>
         <td>
-          `<li v-for="(item, index) in items">`<br>
-          `{% raw %}  {{ parentMessage }} - {{ index }} - {{ item.message }}{% endraw %}`<br>
-          `</li>`
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;(item, index) in items&#x22;&#x3E;
+{% raw %}  {{ parentMessage }} - {{ index }} - {{ item.message }}{% endraw %}
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> v-for </td>
         <td>Iterate over object's values</td>
         <td>
-          `<li v-for="value in object">`<br>
-          `{% raw %}  {{ value }}  {% endraw %}`<br>
-          `</li>`
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;value in object&#x22;&#x3E;
+{% raw %}  {{ value }}  {% endraw %}
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> v-for </td>
         <td>Iterate over object's keys/values</td>
         <td>
-          `<li v-for="(value, key) in object">`<br>
-          `{% raw %}  {{ key }}: {{ value }}  {% endraw %}`<br>
-          `</li>`
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;(value, key) in object&#x22;&#x3E;
+{% raw %}  {{ key }}: {{ value }}  {% endraw %}
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> v-for </td>
         <td>Iterate with keys, values and index</td>
         <td>
-          `<li v-for="(value, key, index) in object">`<br>
-          `{% raw %}  {{index}}.{{ key }}: {{ value }}  {% endraw %}`<br>
-          `</li>`
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;(value, key, index) in object&#x22;&#x3E;
+{% raw %}  {{index}}.{{ key }}: {{ value }}  {% endraw %}
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
     </tbody>
   </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>Events</caption>
@@ -630,55 +665,68 @@ We learned a lot! Here is a summary:
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
     <tbody>
       <tr>
         <td> v-on:click </td>
         <td>Invoke callback on click</td>
         <td>
-          `<button class="destroy" v-on:click="destroyTodo(todo)"></button>`
+          <pre>
+          <code>
+&#x3C;button class=&#x22;destroy&#x22; v-on:click=&#x22;destroyTodo(todo)&#x22;&#x3E;&#x3C;/button&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> @ </td>
         <td>`@` is shorcut for `v-on:`</td>
         <td>
-          `<input class="edit"
-              @keyup.esc="cancelEditing"
-              @keyup.enter="finishEditing"
-              @blur="finishEditing">`
+          <pre>
+          <code>
+&#x3C;input class=&#x22;edit&#x22;
+    @keyup.esc=&#x22;cancelEditing&#x22;
+    @keyup.enter=&#x22;finishEditing&#x22;
+    @blur=&#x22;finishEditing&#x22;&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
-        <td> v-on:dblclick </td>
+        <td>v-on:dblclick </td>
         <td>Invoke callback on double-click</td>
         <td>
-          `<label @dblclick="startEditing(todo)">{{todo.text}}</label>`
+          <pre>
+          <code>
+&#x3C;label @dblclick=&#x22;startEditing(todo)&#x22;&#x3E;{% raw %}{{todo.text}}{% endraw %}&#x3C;/label&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> @keyup.enter </td>
         <td>Invoke callback on keyup <kbd>enter</kbd></td>
         <td>
-          `<input @keyup.enter="createTodo">`
+          <pre>
+          <code>
+&#x3C;input @keyup.enter=&#x22;createTodo&#x22;&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> @keyup.esc </td>
         <td>Invoke callback on keyup <kbd>esc</kbd></td>
         <td>
-          `<input @keyup.esc="cancelEditing">`
+          <pre>
+          <code>
+&#x3C;input @keyup.esc=&#x22;cancelEditing&#x22;&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
     </tbody>
   </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>Conditional Rendering</caption>
@@ -687,28 +735,32 @@ We learned a lot! Here is a summary:
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
     <tbody>
       <tr>
         <td> v-show </td>
         <td>Show or hide the element if the expression evaluates to truthy</td>
         <td>
-          `<button v-show="completedTodos.length">Clear completed</button>`
+          <pre>
+          <code>
+&#x3C;button v-show=&#x22;completedTodos.length&#x22;&#x3E;Clear completed&#x3C;/button&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
       <tr>
         <td> v-if </td>
         <td>Remove or add the element if the expression evaluates to truthy</td>
         <td>
-          `<footer v-if="todos.length">...</footer>`
+          <pre>
+          <code>
+&#x3C;footer v-if=&#x22;todos.length&#x22;&#x3E;...&#x3C;/footer&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
     </tbody>
   </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>Automatic Data<->DOM Sync</caption>
@@ -717,32 +769,32 @@ We learned a lot! Here is a summary:
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
     <tbody>
       <tr>
         <td> v-model </td>
         <td>Keep data and DOM in sync automatially</td>
         <td>
-          `<input class="toggle" type="checkbox" v-model="todo.isDone">`
+          <pre>
+          <code>
+&#x3C;input class=&#x22;toggle&#x22; type=&#x22;checkbox&#x22; v-model=&#x22;todo.isDone&#x22;&#x3E;
+          </code>
+          </pre>
         </td>
       </tr>
-
     </tbody>
   </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>Vue instance</caption>
     <thead>
-      <th>Examples</th>
+      <th>Example with all attributes</th>
     </thead>
-
     <tbody>
       <tr>
         <td>
-
-```js
+          <pre>
+          <code>
 // Vue Instance
 const todoApp = new Vue({
   // element matcher
@@ -783,11 +835,10 @@ const todoApp = new Vue({
     }
   },
 });
-```
-
+          </code>
+          </pre>
         </td>
       </tr>
-
     </tbody>
   </table>
 </div>
