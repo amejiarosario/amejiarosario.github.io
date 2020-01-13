@@ -24,7 +24,7 @@ updated: 2019-09-19 11:39:53
 
 # Summary
 
-We are going to learn the top algorithm's running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it's handy to compare different solutions for the same problem. By the end, you would be able to eyeball different implementations and know which one will perform better.
+Learn how to compare algorithms and develop code that scales! In this post, we cover 8 big o notations and provide an example or 2 for each. We are going to learn the top algorithm's running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it's handy to compare multiple solutions for the same problem. By the end of it, you would be able to eyeball different implementations and know which one will perform better without running the code!
 
 <!-- more -->
 
@@ -132,11 +132,11 @@ This post is part of a tutorial series:
 
 For instance, if a function takes the identical time to process ten elements as well as 1 million items, then we say that it has a constant growth rate or `O(1)`. Let’s see some cases.
 
-Examples of constant runtime algorithms:
-Find if an item on the array is even or odd.
-Check if an item on an array is null
-Print the first element from a list
-Find a value on a map
+**Examples of constant runtime algorithms**:
+- Find if a number is even or odd.
+- Check if an item on an array is null.
+- Print the first element from a list.
+- Find a value on a map.
 
 For our discussion, we are going to implement the first and last example.
 
@@ -194,7 +194,7 @@ Linear running time algorithms are widespread. These algorithms imply that the p
 
 Linear time complexity _`O(n)`_ means that as the input grows, the algorithms take proportionally longer to complete.
 
-Some examples:
+**Examples of linear time algorithms**:
 - Get the max/min value in an array.
 - Find a given element in a collection.
 - Print all the values in a list.
@@ -263,7 +263,7 @@ Now imagine that you have an array of one million items. Do you think it will ta
 
 A function with a quadratic time complexity has a growth rate of n<sup>2</sup>. If the input is size 2, it will do four operations. If the input is size 8, it will take 64, and so on.
 
-Here are some examples of quadratic algorithms:
+Here are some **examples of quadratic algorithms**:
 - Check if a collection has duplicated values.
 - Sorting items in a collection using bubble sort, insertion sort, or selection sort.
 - Find all possible ordered pairs in an array.
@@ -277,11 +277,11 @@ You want to find duplicate words in an array. A naïve solution will be the foll
 ```js
 function hasDuplicates(n) {
   const duplicates = [];
-  let counter = 0;
+  let counter = 0; // debug
 
   for (let outter = 0; outter < n.length; outter++) {
     for (let inner = 0; inner < n.length; inner++) {
-      counter++;
+      counter++; // debug
 
       if(outter === inner) continue;
 
@@ -291,7 +291,7 @@ function hasDuplicates(n) {
     }
   }
 
-  console.log(`n: ${n.length}, counter: ${counter}`);
+  console.log(`n: ${n.length}, counter: ${counter}`); // debug
   return false;
 }
 ```
@@ -322,7 +322,7 @@ Let's see another example.
 
   ## Bubble sort
 
-We want to sort the elements in an array.
+We want to sort the elements in an array. One way to do this is using bubble sort as follows:
 
 ```js
 function sort(n) {
@@ -346,7 +346,7 @@ function sort(n) {
 }
 ```
 
-Also, you might notice that for a colossal `n`, the time it takes to solve the problem increases a lot. Can you spot the relationship between nested loops and the running time? When a function has a single loop, it usually translates into a running time complexity of O(n). Now, this function has 2 nested loops and quadratic running time: O(n<sup>2</sup>).
+Also, you might notice that for a very big `n`, the time it takes to solve the problem increases a lot. Can you spot the relationship between nested loops and the running time? When a function has a single loop, it usually translates into a running time complexity of O(n). Now, this function has 2 nested loops and quadratic running time: O(n<sup>2</sup>).
 
 <!--
 
@@ -672,7 +672,7 @@ n<sup>1</sup> = n
 Exponential (base 2) running time means that the calculations performed by an algorithm double every time as the input grows.
 
 **Examples of exponential runtime algorithms:**
-- Power Set: all the subsets on a set.
+- Power Set: finding all the subsets on a set.
 - Fibonacci.
 - Travelling salesman problem using dyanmic programming.
 
@@ -697,7 +697,7 @@ Did you notice any pattern?
 
 What if you want to find the subsets of `abc`? Well, it would be precisely the subsets of 'ab' and again the subsets of `ab` with `c` appended at the end of each element.
 
-As you noticed, every time the input gets longer, the output is twice as long as the previous one. Let's code it:
+As you noticed, every time the input gets longer, the output is twice as long as the previous one. Let's code it up:
 
 ```js
 function powerset(n = '') {
@@ -749,6 +749,12 @@ It grows pretty quickly:
 > 20! = 2,432,902,008,176,640,000
 
 As you might guess, you want to stay away if possible from algorithms that have this running time!
+
+**Examples of O(n!) factorial runtime algorithms**:
+- Permutations of a string.
+- Solving the traveling salesman problem with a brute-force search
+
+Let's solve the first example.
 
 ## Permutations
 
