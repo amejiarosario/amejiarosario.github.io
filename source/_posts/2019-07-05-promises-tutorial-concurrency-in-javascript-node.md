@@ -25,7 +25,7 @@ This post is the ultimate JavaScript Promises tutorial: recipes and examples for
 
 <!-- more -->
 
-_NOTE: I'd like this post to be up-to-date with the most common use cases for promises. If you have a question about promises and is not answered here. Please, comment below or reach out me directly [@amejiarosario](https://twitter.com/amejiarosario). I'll look into it and update this post._
+_NOTE: I'd like this post to be up-to-date with the most common use cases for promises. If you have a question about promises and is not answered here. Please, comment below or reach out me directly [@iAmAdrianMejia](https://twitter.com/iAmAdrianMejia). I'll look into it and update this post._
 
 # JavaScript Promises
 
