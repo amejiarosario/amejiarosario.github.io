@@ -107,9 +107,10 @@ const mimeType = {
   '.mp3': 'audio/mpeg',
   '.svg': 'image/svg+xml',
   '.pdf': 'application/pdf',
+  '.zip': 'application/zip',
   '.doc': 'application/msword',
   '.eot': 'application/vnd.ms-fontobject',
-  '.ttf': 'application/x-font-ttf'
+  '.ttf': 'application/x-font-ttf',
 };
 
 http.createServer(function (req, res) {
