@@ -94,6 +94,7 @@ const path = require('path');
 const port = process.argv[2] || 9000;
 
 // maps file extention to MIME types
+// full list can be found here: https://www.freeformatter.com/mime-types-list.html
 const mimeType = {
   '.ico': 'image/x-icon',
   '.html': 'text/html',
@@ -107,8 +108,8 @@ const mimeType = {
   '.svg': 'image/svg+xml',
   '.pdf': 'application/pdf',
   '.doc': 'application/msword',
-  '.eot': 'appliaction/vnd.ms-fontobject',
-  '.ttf': 'aplication/font-sfnt'
+  '.eot': 'application/vnd.ms-fontobject',
+  '.ttf': 'application/x-font-ttf'
 };
 
 http.createServer(function (req, res) {
