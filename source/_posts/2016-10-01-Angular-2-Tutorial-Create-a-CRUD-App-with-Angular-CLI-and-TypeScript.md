@@ -44,7 +44,7 @@ If you get the versions Node 4.x.x and NPM 3.x.x. or higher you are all set. If 
 
 Let's move on to Angular. We are going to create a Todo app. We will be able to CRUD (create-read-update-delete) tasks:
 
-- Live Demo: [Angular Todo app preview](https://amejiarosario.github.io/angular-todo-app/)
+- Live Demo: [Angular Todo app preview](https://angular-todo-app-crud.netlify.com)
 - Repository [angular-todo-app](https://github.com/amejiarosario/angular-todo-app)
 
 # Understanding ng new
@@ -60,14 +60,16 @@ npm install -g @angular/cli@8.3.17
 ng --version
 # Angular CLI: 8.3.17
 ```
-If the versions don't match then you can remove previously installed angular CLI with the following commands:
-```bash
-npm uninstall -g @angular/cli
-# If you use yarn:
-# yarn global remove @angular/cli
-```
-Once you have the right version, do:
 
+You can update to the lastest version at any time using:
+
+```bash
+ng update @angular/cli @angular/core
+```
+
+The rest of the steps remain the same regarless of the version.
+
+Scafold the app using the following command.
 ```bash
 # create a new project
 ng new Todos --style=scss
