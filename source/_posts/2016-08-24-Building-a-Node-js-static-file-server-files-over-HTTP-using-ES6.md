@@ -3,9 +3,9 @@ layout: post
 title: Building a Node.js static file server (files over HTTP) using ES6+
 comments: true
 toc: true
-pageviews__total: 46729
-pageviews__recent: 621
-pageviews__avg_time: 458
+pageviews__total: 47395
+pageviews__recent: 556
+pageviews__avg_time: 452
 tutorial__order: 0
 photos__background_color: '#8E44AD'
 alias: /blog/2016/08/24/Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6/
@@ -94,6 +94,7 @@ const path = require('path');
 const port = process.argv[2] || 9000;
 
 // maps file extention to MIME types
+// full list can be found here: https://www.freeformatter.com/mime-types-list.html
 const mimeType = {
   '.ico': 'image/x-icon',
   '.html': 'text/html',
@@ -106,9 +107,10 @@ const mimeType = {
   '.mp3': 'audio/mpeg',
   '.svg': 'image/svg+xml',
   '.pdf': 'application/pdf',
+  '.zip': 'application/zip',
   '.doc': 'application/msword',
-  '.eot': 'appliaction/vnd.ms-fontobject',
-  '.ttf': 'aplication/font-sfnt'
+  '.eot': 'application/vnd.ms-fontobject',
+  '.ttf': 'application/x-font-ttf',
 };
 
 http.createServer(function (req, res) {

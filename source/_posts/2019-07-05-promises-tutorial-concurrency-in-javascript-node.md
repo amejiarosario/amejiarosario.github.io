@@ -2,9 +2,9 @@
 layout: post
 title: The JavaScript Promise Tutorial
 comments: true
-pageviews__total: 1377
-pageviews__recent: 237
-pageviews__avg_time: 207
+pageviews__total: 1644
+pageviews__recent: 233
+pageviews__avg_time: 230
 tutorial__order: 0
 toc: true
 photos:
@@ -25,7 +25,7 @@ This post is the ultimate JavaScript Promises tutorial: recipes and examples for
 
 <!-- more -->
 
-_NOTE: I'd like this post to be up-to-date with the most common use cases for promises. If you have a question about promises and is not answered here. Please, comment below or reach out me directly [@amejiarosario](https://twitter.com/amejiarosario). I'll look into it and update this post._
+_NOTE: I'd like this post to be up-to-date with the most common use cases for promises. If you have a question about promises and is not answered here. Please, comment below or reach out me directly [@iAmAdrianMejia](https://twitter.com/iAmAdrianMejia). I'll look into it and update this post._
 
 # JavaScript Promises
 

@@ -3,9 +3,9 @@ layout: post
 title: 8 time complexities that every programmer should know
 comments: true
 toc: true
-pageviews__total: 96114
-pageviews__recent: 6630
-pageviews__avg_time: 1906
+pageviews__total: 105418
+pageviews__recent: 7936
+pageviews__avg_time: 1939
 tutorial__order: 2
 photos:
 - /images/data-structures-must-know-algorithms-running-time-complexity-small.jpg
@@ -299,7 +299,7 @@ function hasDuplicates(n) {
 Time complexity analysis:
 - Line 2-3: 2 operations
 - Line 5-6: double-loop of size n, so `n^2`.
-- Line 7-13: has ~3 operations inside the double-
+- Line 7-13: has ~3 operations inside the double-loop
 
 We get `3n^2 + 2`.
 
@@ -400,7 +400,7 @@ console.log(findXYZ(10)); // => [{x: 0, y: 7, z: 2}, ...]
 
 This algorithm has a cubic running time: `O(n^3)`.
 
-**Note:** We could do a more efficient solution but did it this way to show an example of a cubic runtime.
+**Note:** We could do a more efficient solution to solve multi-variable equations but this works for the purpose of showing an example of a cubic runtime.
 
 # O(log n) - Logarithmic time
 
@@ -415,7 +415,7 @@ Algorithm A:
 Algorithm B:
 
 1. Open the book in the middle and check the first word on it.
-1. If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half. 
+1. If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half.
 1. Divide the remainder in half again, and repeat step #2 until you find the word you are looking for.
 
 Which one is faster? The first algorithms go word by word _O(n)_, while the algorithm B split the problem in half on each iteration _O(log n)_. This 2nd algorithm is a **binary search**.
@@ -678,8 +678,8 @@ Exponential (base 2) running time means that the calculations performed by an al
 
 ## Power Set
 
-To understand the power set, let's imaging you are buying pizza. 
-The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pinapple.
+To understand the power set, let's imagine you are buying a pizza.
+The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pineapple.
 Let's call each topping A, B, C, D. What are your choices? You can select no topping (you are on a diet ;), you can choose one topping, or two or three or all of them, and so on. The power set gives you all the possibilities (BTW, there 16 with 4 toppings as you will see later)
 
 Finding all distinct subsets of a given set. For instance, let's do some examples to try to come up with an algorithm to solve it:

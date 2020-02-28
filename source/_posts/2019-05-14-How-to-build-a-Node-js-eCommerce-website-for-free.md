@@ -2,9 +2,9 @@
 layout: draft
 title: How to build a Node.js eCommerce website for free
 comments: true
-pageviews__total: 11020
-pageviews__recent: 725
-pageviews__avg_time: 257
+pageviews__total: 11963
+pageviews__recent: 614
+pageviews__avg_time: 271
 tutorial__order: 0
 toc: true
 photos:
@@ -29,8 +29,8 @@ Running an online store that sells digital goods is easier than ever. Thanks to 
 
 A 10,000-feet view description would be something like this:
 
-<!-- https://twitter.com/amejiarosario/status/1127918275705413632 -->
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Finished creating my own system to sell ebooks! <a href="https://t.co/9w0DHBU8T8">https://t.co/9w0DHBU8T8</a> It was harder than I thought but it was fun. When payments are completed, a webhook is sent to my server, which grabs the ebook PDF from S3. A <a href="https://twitter.com/hashtag/Node?src=hash&amp;ref_src=twsrc%5Etfw">#Node</a> process stamp the document and uses API to send it by email</p>&mdash; Adrian.js (@amejiarosario) <a href="https://twitter.com/amejiarosario/status/1127918275705413632?ref_src=twsrc%5Etfw">May 13, 2019</a></blockquote>
+<!-- https://twitter.com/iAmAdrianMejia/status/1127918275705413632 -->
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Finished creating my own system to sell ebooks! <a href="https://t.co/9w0DHBU8T8">https://t.co/9w0DHBU8T8</a> It was harder than I thought but it was fun. When payments are completed, a webhook is sent to my server, which grabs the ebook PDF from S3. A <a href="https://twitter.com/hashtag/Node?src=hash&amp;ref_src=twsrc%5Etfw">#Node</a> process stamp the document and uses API to send it by email</p>&mdash; Adrian.js (@iAmAdrianMejia) <a href="https://twitter.com/iAmAdrianMejia/status/1127918275705413632?ref_src=twsrc%5Etfw">May 13, 2019</a></blockquote>
 
 **TL; DR:** The e-Commerce site final stack is the following:
 - Node.js (Backend processing: payment webhooks)
