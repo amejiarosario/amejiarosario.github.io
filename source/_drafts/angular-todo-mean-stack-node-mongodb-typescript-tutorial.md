@@ -1,6 +1,6 @@
 ---
 layout: draft
-title: Todo App with the MEAN Stack Tutorial (Angular 9, Node and Mongodb)
+title: Modern MEAN Stack Tutorial (Angular, Node, Typescript and Mongodb)
 comments: true
 pageviews__total: 0
 pageviews__recent: 0
@@ -8,9 +8,9 @@ pageviews__avg_time: 0
 tutorial__order: 0
 toc: true
 photos:
-  - /images/placeholder-small.jpg
-  - /images/placeholder-large.jpg
-photos__background_color: '#F4F0EF'
+  - /images/modern-mean-small.png
+  - /images/modern-mean-large.png
+photos__background_color: '#1F77B4'
 tags:
   - angular
   - mean stack
@@ -23,7 +23,8 @@ updated: 2020-02-27 18:51:28
 ---
 
 
-Sunt commodo enim magna ex sint reprehenderit sunt proident reprehenderit. Pariatur sint est proident ullamco id cillum proident Lorem officia et commodo incididunt. Incididunt esse irure fugiat anim aliqua anim. Id enim commodo labore ad aliqua. Adipisicing non aliqua nisi anim nisi consequat dolore nulla deserunt minim aliquip veniam fugiat.
+The <abbr title="MongoDB, Express, Angular and Node.js">MEAN</abbr> stack allows you to build complete applications using one programming language: JavaScript. In this tutorial, we built upon the first part ([Creating an Angular app](/angular-2-tutorial-create-a-crud-app-with-angular-cli-and-typescript/)) which built the front-end, and this part builds the backend with a RESTful API and Database.
+
 
 <!-- more -->
 

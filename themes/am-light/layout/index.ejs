@@ -39,7 +39,7 @@
 
     <h1 id="popular-posts">Popular</h1>
     <div class="simple-row">
-      <% site.posts.sort('pageviews__total', -1).limit(4).each(function(post, i){ %>
+      <% site.posts.sort('pageviews__total', -1).limit(10).each(function(post, i){ %>
         <%- partial('_partials/post-thumbnail', { post: post, klass: false }) %>
       <% }) %>
     </div>
