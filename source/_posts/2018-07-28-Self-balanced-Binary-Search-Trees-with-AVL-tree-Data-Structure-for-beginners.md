@@ -465,14 +465,13 @@ AVL tree is just a layer on top of a regular Binary Search Tree (BST). The add/r
 
 Let's implement the AVL Tree.
 
-{% codeblock AvlTree lang:js mark:7,15 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/avl-tree.js Code %}
+{% codeblock AvlTree lang:js mark:6,14 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/avl-tree.js Code %}
 const BinarySearchTree = require('./binary-search-tree');
-const { balanceUptream } = require('./tree-rotations');
 
 class AvlTree extends BinarySearchTree {
   add(value) {
     const node = super.add(value);
-    balanceUptream(node);
+    balanceUpstream(node);
     return node;
   }
 
@@ -480,7 +479,7 @@ class AvlTree extends BinarySearchTree {
     const node = super.find(value);
     if (node) {
       const found = super.remove(value);
-      balanceUptream(node.parent);
+      balanceUpstream(node.parent);
       return found;
     }
 
@@ -491,17 +490,19 @@ class AvlTree extends BinarySearchTree {
 
 If you need to review the dependencies here are the links to the implementations:
 - [binary-search-tree](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js)
-- [tree-rotations](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js)
+- [balanceUpstream](https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/trees/avl-tree.js#L46)
 
 The `balanceUpstream` function gets executed after an insertion or deletion.
 
-{% codeblock balanceUptream lang:js mark:4 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-rotations.js#L121 Context %}
-function balanceUptream(node) {
+{% codeblock balanceUpstream lang:js mark:5 https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/trees/avl-tree.js#L46 Context %}
+function balanceUpstream(node) {
   let current = node;
+  let newParent;
   while (current) {
-    balance(current);
+    newParent = balance(current);
     current = current.parent;
   }
+  return newParent;
 }
 {% endcodeblock %}
 
