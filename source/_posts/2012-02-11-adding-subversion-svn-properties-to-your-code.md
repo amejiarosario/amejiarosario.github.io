@@ -4,9 +4,9 @@ title: Adding Subversion (SVN) Properties to your code
 created: 1329003331000
 updated: 1329003331000
 comments: true
-pageviews__total: 2386
-pageviews__recent: 11
-pageviews__avg_time: 267
+pageviews__total: 2343
+pageviews__recent: 10
+pageviews__avg_time: 261
 tutorial__order: 0
 #categories: [subversion, eclipse]
 alias: /blog/2012/02/11/adding-subversion-svn-properties-to-your-code/

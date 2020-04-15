@@ -4,9 +4,9 @@ title: "Cheap Airplay receiver with Raspberry Pi"
 date: 2014-02-15 13:59:26 -0400
 updated: 2014-02-15 13:59:26 -0400
 comments: true
-pageviews__total: 6485
-pageviews__recent: 3
-pageviews__avg_time: 614
+pageviews__total: 6603
+pageviews__recent: 5
+pageviews__avg_time: 386
 tutorial__order: 0
 photos__background_color: '#E4F4FD'
 alias: /blog/2014/02/15/cheap-airplay-receiver-with-raspberry-pi/
