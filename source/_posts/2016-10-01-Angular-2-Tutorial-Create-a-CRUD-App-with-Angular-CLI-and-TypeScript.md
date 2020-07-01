@@ -53,15 +53,15 @@ Angular CLI is the best way to get us started. We can download the tool and crea
 
 ```bash
 # install angular-cli globally
-npm install -g @angular/cli@8.3.17
+npm install -g @angular/cli@9.1.7
 # npm install -g @angular/cli # get latest
 
 # Check angular CLI is installed
 ng --version
-# Angular CLI: 8.3.17
+# Angular CLI: 9.1.7 ...
 ```
 
-You can update to the lastest version at any time using:
+You can update to the lastest versions in the future using:
 
 ```bash
 ng update @angular/cli @angular/core
@@ -126,15 +126,19 @@ We are loading our `AppModule` into the browser platform. Now, let's take a look
 
 ## App directory
 
-The app directory contains the components used to mount the rest of the application. In there the `<app-root>` that we so in the `index.html` is defined. Let's start with `app.module`
+The `app` directory contains the components used to mount the rest of the application. In this directory, you can find the app module, component and routing.
+
+If you remember in the `index.html`, there's a  `<app-root>`. This is where this component is defined.
+
+Let's start by opening `app.module`.
 
 ### app.module.ts
 
 We are going to be using this file often. The most important part is the metadata inside the `@NgModule`. There we have `declarations`, `imports`, `providers` and `bootstrap`.
 
-- Declarations: goes all your components (e.g., AppComponent, TodoComponent)
-- Imports: routes and modules go here.
-- Bootstrap: list the components you want to load when the app starts. In our case is `AppComponent`.
+- **Declarations**: goes all your components (e.g., AppComponent, TodoComponent)
+- **Imports**: routes and modules go here.
+- **Bootstrap**: list the components you want to load when the app starts. In our case is `AppComponent`.
 
 ### app.component.ts
 
@@ -286,7 +290,8 @@ This will install a CSS file that we can use to style our Todo app and make it l
 
 `angular.json` is a special file that tells the Angular CLI how to build your application. You can define how to name your root folder, tests and much more. What we care right now, is telling the angular CLI to use our new CSS file from the node modules. You can do it by adding the following line into the `styles` array:
 
-```javascript
+
+{% codeblock lang:js mark:6 %}
       "architect": {
         "build": {
           "options": {
@@ -295,7 +300,7 @@ This will install a CSS file that we can use to style our Todo app and make it l
               "node_modules/todomvc-app-css/index.css"
             ],
             "scripts": []
-```
+{% endcodeblock %}
 
 If you stop and start `ng serve`, then you will notice the changes.
 
