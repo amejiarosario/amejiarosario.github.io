@@ -4,7 +4,7 @@ title: "How to build scalable apps?"
 date: 2016-01-09 10:43:27 -0500
 updated: 2016-01-09 10:43:27 -0500
 comments: true
-pageviews__total: 3722
+pageviews__total: 3777
 pageviews__recent: 6
 pageviews__avg_time: 153
 toc: true

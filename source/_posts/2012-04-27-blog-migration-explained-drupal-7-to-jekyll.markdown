@@ -5,8 +5,8 @@ date: 2012-04-27 22:00
 updated: 2012-04-27 22:00
 comments: true
 pageviews__total: 557
-pageviews__recent: 2
-pageviews__avg_time: 253
+pageviews__recent: 1
+pageviews__avg_time: 261
 tutorial__order: 0
 alias: /blog/2012/04/27/blog-migration-explained-drupal-7-to-jekyll/
 tags:
