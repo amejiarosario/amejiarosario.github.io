@@ -2,9 +2,9 @@
 layout: post
 title: "Data Structures in JavaScript: Arrays, HashMaps, and Lists"
 comments: true
-pageviews__total: 63402
-pageviews__recent: 2374
-pageviews__avg_time: 531
+pageviews__total: 63947
+pageviews__recent: 2319
+pageviews__avg_time: 532
 tutorial__order: 4
 toc: true
 photos:

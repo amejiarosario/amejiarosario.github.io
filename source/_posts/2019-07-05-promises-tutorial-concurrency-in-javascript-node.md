@@ -2,9 +2,9 @@
 layout: post
 title: The JavaScript Promise Tutorial
 comments: true
-pageviews__total: 2440
-pageviews__recent: 163
-pageviews__avg_time: 201
+pageviews__total: 2505
+pageviews__recent: 156
+pageviews__avg_time: 216
 tutorial__order: 0
 toc: true
 photos:
