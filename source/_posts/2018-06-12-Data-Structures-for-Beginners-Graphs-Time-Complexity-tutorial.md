@@ -322,8 +322,8 @@ class Graph {
   // ...
 }
 
-Graph.UNDIRECTED = Symbol('directed graph'); // one-way edges
-Graph.DIRECTED = Symbol('undirected graph'); // two-ways edges
+Graph.UNDIRECTED = Symbol('directed graph'); // two-ways edges
+Graph.DIRECTED = Symbol('undirected graph'); // one-way edges
 {% endcodeblock %}
 
 The first thing that we need to know is if the graph is directed or undirected. That makes a difference when we are adding edges.
@@ -593,7 +593,7 @@ isAdjacent (using HashSet) | O(1) | [O(1)](#Matrix.getAdjacents)
 
 <!-- areConnected | | -->
 
-As you can see, an adjacency list is faster in almost all operations. The only action that the adjacency matrix will outperform the adjacency list is checking if a node is adjacent to other. However, if we change our implementation from Array to a HashSet, we can get it in constant time as well :)
+As you can see, an adjacency list is faster in almost all operations. The only action that the adjacency matrix will outperform the adjacency list is checking if a node is adjacent to other. However, if we change our implementation from Array to a HashSet, we can get it in constant time as well.
 
 
 # Summary
@@ -624,5 +624,3 @@ As we saw, Graphs can help to model many real-life scenarios such as airports, s
 
   https://betterdev.link/issues/54
 -->
-
-

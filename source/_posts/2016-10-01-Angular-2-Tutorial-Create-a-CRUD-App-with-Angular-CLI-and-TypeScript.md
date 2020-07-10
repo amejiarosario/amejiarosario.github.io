@@ -877,4 +877,11 @@ src/app/todo/todo.component.html(7,8): : Property 'newTodo' is private and only 
 
 Then you need to change `private` to `public` like [this](https://github.com/amejiarosario/angular-todo-app/commit/cbf4e20). This is because the Template in Angular is treated like a separate class.
 
+
+# What's next? Build Server API
+
+Check out this next post to learn how to build an API and connect it with this angular app:
+
+[Modern MEAN Stack Tutorial with Docker](/angular-todo-mean-stack-node-mongodb-typescript-tutorial/)
+
 That's all folks!

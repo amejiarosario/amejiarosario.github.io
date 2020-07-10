@@ -29,6 +29,8 @@ This tutorial is meant to be as clear as possible. At the same time, we are goin
 
 <!--More-->
 
+> Check out the updated version of this post in here: [Create a CRUD App with Angular 9+ and TypeScript](/Angular-2-Tutorial-Create-a-CRUD-App-with-Angular-CLI-and-TypeScript/)
+
 MEAN Stack tutorial series:
 
 1. AngularJS tutorial for beginners (Part I) **👈 you are here**

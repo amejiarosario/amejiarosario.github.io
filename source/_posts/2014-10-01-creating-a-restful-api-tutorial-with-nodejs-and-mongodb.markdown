@@ -31,6 +31,8 @@ Welcome to this tutorial about RESTful API using Node.js (Express.js) and MongoD
 
 <!--More-->
 
+> Check out the updated version of this post with Angular 9+, Node.js 12+ in here: [Modern MEAN Stack Tutorial with Docker](/angular-todo-mean-stack-node-mongodb-typescript-tutorial/)
+
 MEAN Stack tutorial series:
 
 1. [AngularJS tutorial for beginners (Part I)](/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/)
