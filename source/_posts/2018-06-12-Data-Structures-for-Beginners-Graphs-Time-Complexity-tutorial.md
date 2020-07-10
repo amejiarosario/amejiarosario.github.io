@@ -462,7 +462,7 @@ Let's see how we can accomplish this in code:
   }
 {% endcodeblock %}
 
-As you can see, we are using a `Queue` where the first node in is also the first node to be visited (FIFO).
+As you can see, we are using a `Queue` where the first node in is also the first node to be visited (FIFO). You can find the [Queue implementation here](https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/5628a2772513a05ceb3f088976b81914c9951fd2/src/data-structures/queues/queue.js#L47).
 
 We are as well using [JavaScript generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator), notice the `*` in front of the function. This generator iterates one value at a time. That's useful for large graphs (millions of nodes) because in most cases you don't need to visit every single node.
 
@@ -499,6 +499,8 @@ Depth-first search is another way to navigate a graph from an initial vertex by 
 {% img https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif Depth First Search in a graph %}
 
 The iterative implementation of a DFS is identical to the BFS, but instead of using a `Queue` you use a `Stack`:
+
+NOTE: [stack implementation](https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/stacks/stack.js)
 
 {% codeblock Graph.dfs lang:js mark:3 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
   *dfs(first) {
