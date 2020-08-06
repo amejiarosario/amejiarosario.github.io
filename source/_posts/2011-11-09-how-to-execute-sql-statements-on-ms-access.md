@@ -4,9 +4,9 @@ title: How to execute SQL statements on MS Access?
 created: 1320855136000
 updated: 1320855136000
 comments: true
-pageviews__total: 3133
-pageviews__recent: 81
-pageviews__avg_time: 227
+pageviews__total: 3232
+pageviews__recent: 80
+pageviews__avg_time: 229
 tutorial__order: 0
 alias: /blog/2011/11/09/how-to-execute-sql-statements-on-ms-access/
 #categories: [ms access, sql, visual basic, macros, how-to]

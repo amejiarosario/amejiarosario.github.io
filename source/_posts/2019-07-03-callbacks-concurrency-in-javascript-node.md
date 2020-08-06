@@ -2,9 +2,9 @@
 layout: post
 title: Understanding JavaScript Callbacks and best practices
 comments: true
-pageviews__total: 2493
-pageviews__recent: 133
-pageviews__avg_time: 189
+pageviews__total: 2581
+pageviews__recent: 139
+pageviews__avg_time: 185
 tutorial__order: 0
 toc: true
 photos:
@@ -28,6 +28,15 @@ Callbacks are one of the critical elements to understand JavaScript and Node.js.
 This post assumes you know the [difference between synchronous and asynchronous code](/asynchronous-vs-synchronous-handling-concurrency-in-javascript).
 
 JavaScript is an event-driven language. Instead of waiting for things to happen, it executes while listening for events. The way you respond to an event is using callbacks.
+
+<hr>
+
+**Related Posts:**
+1. [Async vs Sync in JavaScript](/asynchronous-vs-synchronous-handling-concurrency-in-javascript/)
+2. [JavaScript Callbacks](/callbacks-concurrency-in-javascript-node/) (this one)
+3. [JavaScript Promises](/promises-tutorial-concurrency-in-javascript-node/)
+
+<hr>
 
 # JavaScript callbacks
 
@@ -238,3 +247,12 @@ Callbacks are not the only way to deal with asynchronous code. In the following 
 - Generators
 
 Stay tuned!
+
+<hr>
+
+**Related Posts:**
+1. [Async vs Sync in JavaScript](/asynchronous-vs-synchronous-handling-concurrency-in-javascript/)
+2. [JavaScript Callbacks](/callbacks-concurrency-in-javascript-node/) (this one)
+3. [JavaScript Promises](/promises-tutorial-concurrency-in-javascript-node/)
+
+<hr>

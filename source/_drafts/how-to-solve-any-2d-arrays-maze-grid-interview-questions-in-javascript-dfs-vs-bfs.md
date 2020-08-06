@@ -47,6 +47,13 @@ You can also think of a Queue as a line of people waiting for their turn to talk
 You might wonder, what's the big deal with the Queues? With an array, you can add and remove from any place that you want. Isn't an array better then? Well, it depends on the application. Let's do an example.
 </details>
 
+# Breath First Search (BFS)
+
+
+
+
+# Interview Questions
+
 Let's say you are interviewing at a tech company and you get asked the following:
 
 # A chess knight problem ♘

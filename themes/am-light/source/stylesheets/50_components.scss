@@ -170,13 +170,22 @@ kbd:active {
   box-shadow: 1px 1px 0px #ddd inset;
 }
 
+// Definition lists
+
+dt {
+  font-weight: bold;
+}
+dd {
+  font-style: italic;
+}
+
 
 // Details and summary styles
 
 details {
   margin: 1rem auto;
   padding: 0 1rem;
-  width: 35em;
+  width: 100%;
   max-width: calc(100% - 2rem);
   position: relative;
   border: 1px solid #78909C;
@@ -214,6 +223,7 @@ details {
 }
 
 summary {
+  outline: none; // remove blue border: https://stackoverflow.com/a/21092084/684957
   padding: 1rem 2em 1rem 0;
   display: block;
   position: relative;
@@ -246,4 +256,13 @@ summary {
   &::-webkit-details-marker {
     display: none;
   }
+}
+
+
+// runkit
+
+pre.runkit {
+  border: none;
+  background-color: inherit;
+  overflow: hidden;
 }

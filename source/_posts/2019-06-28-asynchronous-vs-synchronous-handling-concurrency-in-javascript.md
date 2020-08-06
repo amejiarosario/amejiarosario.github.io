@@ -2,9 +2,9 @@
 layout: post
 title: What every programmer should know about Synchronous vs. Asynchronous Code
 comments: true
-pageviews__total: 4180
-pageviews__recent: 312
-pageviews__avg_time: 244
+pageviews__total: 4511
+pageviews__recent: 304
+pageviews__avg_time: 252
 tutorial__order: 0
 toc: true
 photos:
@@ -38,6 +38,15 @@ As you can see in the chart above, one CPU can execute an instruction every one 
 But not everything is lost! You can use that time to perform other tasks if you use a non-blocking (asynchronous) code in your programs! That's exactly what are you going to learn on this post.
 
 **⚠️ NOTE**: Most programs on your operating system are non-blocking so a single CPU can perform many tasks while it waits for others to complete. Also, modern processors have multiple cores to increase the parallelism.
+
+<hr>
+
+**Related Posts:**
+1. [Async vs Sync in JavaScript](/asynchronous-vs-synchronous-handling-concurrency-in-javascript/) (this one)
+2. [JavaScript Callbacks](/callbacks-concurrency-in-javascript-node/)
+3. [JavaScript Promises](/promises-tutorial-concurrency-in-javascript-node/)
+
+<hr>
 
 # Synchronous vs. Asynchronous in Node.js
 
