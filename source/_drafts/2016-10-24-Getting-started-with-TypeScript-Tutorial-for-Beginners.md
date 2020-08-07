@@ -12,6 +12,7 @@ photos:
   - /images/typescript-tutorial-getting-started-small.png
   - /images/typescript-tutorial-getting-started-large.png
 tags:
+  - drafts
   - TypeScript
   - JavaScript
 categories:

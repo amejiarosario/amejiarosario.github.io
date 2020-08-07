@@ -12,6 +12,7 @@ photos:
   - /images/placeholder-large.jpg
 photos__background_color: '#F4F0EF'
 tags:
+  - drafts
   - test
 categories:
   - Test

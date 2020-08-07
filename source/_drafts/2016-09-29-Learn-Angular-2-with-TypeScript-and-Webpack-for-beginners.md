@@ -12,6 +12,7 @@ photos:
   - /images/angular-2-tutorials-small.png
   - /images/angular-2-tutorials-large.png
 tags:
+  - drafts
   - angular
   - angular 2+
   - javascript

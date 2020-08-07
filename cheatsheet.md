@@ -2,6 +2,8 @@
 
 ## most used
 
+http://localhost:5151/tags/drafts/
+
 ```bash
 hexo s -dp 5000            # server on port 5000
 hexo s --draft -dp 5000    # serve drafts on port 5000
