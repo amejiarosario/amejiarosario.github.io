@@ -184,9 +184,9 @@ dd {
 
 details {
   margin: 1rem auto;
-  padding: 0 1rem;
+  padding: 0px 2rem;
   width: 100%;
-  max-width: calc(100% - 2rem);
+  // max-width: calc(100% - 2rem);
   position: relative;
   border: 1px solid #78909C;
   border-radius: 6px;
@@ -220,6 +220,10 @@ details {
       opacity: .6;
     }
   }
+}
+
+details .content {
+  padding: 15px;
 }
 
 summary {

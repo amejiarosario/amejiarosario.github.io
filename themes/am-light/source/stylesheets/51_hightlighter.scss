@@ -14,8 +14,12 @@ $highlight-purple: #cc99cc;
 
 $article-padding: 20px;
 $color-border: #ddd;
-$font-size: 0.80em;
+$font-size: 0.85em;
 $line-height: 1.6em;
+$font-family: "Fira Code", "Ubuntu Mono", "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+
+// @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
 
 article {
   pre {
@@ -51,11 +55,11 @@ article {
     font-size: $font-size;
   }
   pre {
-    font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+    font-family: $font-family;
   }
   // hightlighted inline words `someting`
   code {
-    font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+    font-family: $font-family;
     background: rgba(27,31,35,.05);
     text-shadow: 0 1px #fff;
     padding: .2em .4em;
@@ -67,12 +71,14 @@ article {
     background: none;
     text-shadow: none;
     padding: 0;
+    border: 1px solid red;
   }
   .highlight {
     pre {
       border: none;
       margin: 0;
       padding: 0;
+      padding-right: 10px; // so code has some padding
     }
     table {
       margin: 0;
@@ -120,7 +126,7 @@ article {
     padding: 15px 20px 15px 0;
     .gist-file {
       border: none;
-      font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+      font-family: $font-family;
       margin: 0;
       .gist-data {
         background: none;
@@ -267,8 +273,9 @@ pre {
 
 // runkit
 
-pre.runkit {
+pre.runkit, pre.clear {
   border: none;
   background-color: inherit;
   overflow: hidden;
+  color: inherit;
 }
