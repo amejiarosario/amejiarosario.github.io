@@ -4,9 +4,9 @@ title: >-
   How to solve any graph/Maze interview questions in JavaScript? DFS
   vs. BFS
 comments: true
-pageviews__total: 0
-pageviews__recent: 0
-pageviews__avg_time: 0
+pageviews__total: 1234
+pageviews__recent: 212
+pageviews__avg_time: 46
 tutorial__order: 0
 toc: true
 photos:

@@ -2,9 +2,9 @@
 layout: post
 title: Understanding JavaScript Callbacks and best practices
 comments: true
-pageviews__total: 2581
-pageviews__recent: 139
-pageviews__avg_time: 185
+pageviews__total: 2671
+pageviews__recent: 156
+pageviews__avg_time: 166
 tutorial__order: 0
 toc: true
 photos:

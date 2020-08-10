@@ -2,9 +2,9 @@
 layout: draft
 title: How to build a Node.js eCommerce website for free
 comments: true
-pageviews__total: 15468
-pageviews__recent: 475
-pageviews__avg_time: 273
+pageviews__total: 15493
+pageviews__recent: 468
+pageviews__avg_time: 272
 tutorial__order: 0
 toc: true
 photos:
