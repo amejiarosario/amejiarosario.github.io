@@ -132,67 +132,67 @@
 //   // console.log(ids, offsets);
 // })();
 
-(function newScrollSpy() {
-  var ScrollSpy = /** @class */ (function () {
-    function ScrollSpy(activeClass, tocLevelPrefixClass, maxLevel) {
-      this.tocItemsByLevels = [];
-      this.docItems = [];
-      this.currentActives = [];
-      this.tocLevelPrefixClass = tocLevelPrefixClass;
-      this.activeClass = activeClass;
-      this.maxLevel = maxLevel;
-    }
-    ScrollSpy.prototype.getTocItems = function () {
-      this.tocItemsByLevels = [];
-      for (var level = 1; level <= this.maxLevel; level++) {
-        this.tocItemsByLevels[level] = Array.from(
-          document.querySelectorAll(".toc-level-" + level)
-        ).reverse();
-      }
-    };
-    ScrollSpy.prototype.calculateDocItemsOffsets = function () {
-      for (var level = 1; level <= this.maxLevel; level++) {
-        this.tocItemsByLevels[level].forEach(function (el) {
-          var id = el.href.split("#")[1];
-          var doc = document.getElementById(id);
-          var offset = doc.offsetTop - 1;
-          // modify in-place
-          // el.docOffsetTop = offset;
-          el.setAttribute("data-doc-offset", offset);
-        });
-      }
-    };
-    ScrollSpy.prototype.removeActives = function () {
-      var _this = this;
-      this.currentActives.forEach(function (el) {
-        return el.classList.remove(_this.activeClass);
-      });
-      this.currentActives = [];
-    };
-    ScrollSpy.prototype.setActiveClasses = function () {
-      this.removeActives();
-      var current = getScrollY();
-      for (var level = 1; level <= this.maxLevel; level++) {
-        var doc = this.tocItemsByLevels[level].find(function (el) {
-          var offset = el.getAttribute("data-doc-offset");
-          return offset >= current;
-        });
-        doc.classList.add(this.activeClass);
-        this.currentActives.push(doc);
-      }
-    };
-    return ScrollSpy;
-  })();
+// (function newScrollSpy() {
+//   var ScrollSpy = /** @class */ (function () {
+//     function ScrollSpy(activeClass, tocLevelPrefixClass, maxLevel) {
+//       this.tocItemsByLevels = [];
+//       this.docItems = [];
+//       this.currentActives = [];
+//       this.tocLevelPrefixClass = tocLevelPrefixClass;
+//       this.activeClass = activeClass;
+//       this.maxLevel = maxLevel;
+//     }
+//     ScrollSpy.prototype.getTocItems = function () {
+//       this.tocItemsByLevels = [];
+//       for (var level = 1; level <= this.maxLevel; level++) {
+//         this.tocItemsByLevels[level] = Array.from(
+//           document.querySelectorAll(".toc-level-" + level)
+//         ).reverse();
+//       }
+//     };
+//     ScrollSpy.prototype.calculateDocItemsOffsets = function () {
+//       for (var level = 1; level <= this.maxLevel; level++) {
+//         this.tocItemsByLevels[level].forEach(function (el) {
+//           var id = el.href.split("#")[1];
+//           var doc = document.getElementById(id);
+//           var offset = doc.offsetTop - 1;
+//           // modify in-place
+//           // el.docOffsetTop = offset;
+//           el.setAttribute("data-doc-offset", offset);
+//         });
+//       }
+//     };
+//     ScrollSpy.prototype.removeActives = function () {
+//       var _this = this;
+//       this.currentActives.forEach(function (el) {
+//         return el.classList.remove(_this.activeClass);
+//       });
+//       this.currentActives = [];
+//     };
+//     ScrollSpy.prototype.setActiveClasses = function () {
+//       this.removeActives();
+//       var current = getScrollY();
+//       for (var level = 1; level <= this.maxLevel; level++) {
+//         var doc = this.tocItemsByLevels[level].find(function (el) {
+//           var offset = el.getAttribute("data-doc-offset");
+//           return offset >= current;
+//         });
+//         doc.classList.add(this.activeClass);
+//         this.currentActives.push(doc);
+//       }
+//     };
+//     return ScrollSpy;
+//   })();
 
-  // wait for everything to be loaded
-  document.addEventListener("DOMContentLoaded", (event) => {
-    const scrollSpy = new ScrollSpy();
-    scrollSpy.getTocItems();
+//   // wait for everything to be loaded
+//   document.addEventListener("DOMContentLoaded", (event) => {
+//     const scrollSpy = new ScrollSpy();
+//     scrollSpy.getTocItems();
 
-    window.addEventListener("scroll", scrollSpy.setActiveClasses);
-    window.addEventListener("resize", scrollSpy.calculateDocItemsOffsets);
-  });
-})();
+//     window.addEventListener("scroll", scrollSpy.setActiveClasses);
+//     window.addEventListener("resize", scrollSpy.calculateDocItemsOffsets);
+//   });
+// })();
 
 /**
  * Get current scroll y position
