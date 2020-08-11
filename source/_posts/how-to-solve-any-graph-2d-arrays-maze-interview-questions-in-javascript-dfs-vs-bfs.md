@@ -36,13 +36,13 @@ Graphs are one of my favorite data structures because you can model many real-li
 3. How to solve problems using Graph traversing algorithms such as Breadth-First Search (BFS) or Depth-First Search.
 4. When can you use only BFS or DFS or both?
 
-# Graph Representations
+## Graph Representations
 
 A Graph can be represented in many ways depending on the problem as a class, Map + Array/Set, implicit graph or adjacency matrix.
 
 **TL;DR**: _When building reusable libraries, you can go with the Graph class implementation. However, when solving a problem quickly (during interviews or one-off problems), go with the implicit implementation if possible or Map+Array representation if you need to build the graph upfront. Don't use [adjacency matrix](https://adrianmejia.com/data-structures-for-beginners-graphs-time-complexity-tutorial/#Adjacency-Matrix) since it usually uses more memory than other alternatives._
 
-## Graph as a Class
+### Graph as a Class
 
 You can use OOP to represent graphs, like this:
 
@@ -67,7 +67,7 @@ class Graph {
 - <abbr title="Object Oriented Programming">OOP</abbr> Style.
 - Might be time consuming to implement during coding interviews.
 
-## Graph as Map + Array
+### Graph as Map + Array
 
 Other way to represent graph is like an Map + Array:
 
@@ -94,7 +94,7 @@ const graph = new Map([
 - Might not be reusable since it's tailor to the specific problem in hand.
 - Build the entire graph before solving the problem.
 
-## Implicit Graph
+### Implicit Graph
 
 Some times you don't have to build a graph upfront. You can calculate adjacent nodes as you go.
 
@@ -129,11 +129,11 @@ function getNeighbors(node) {
 
 Let's do some examples of each one so we can drive these concepts home!
 
-# Solving graph problems
+## Solving graph problems
 
 Let's see how you can use the afore mention implementations to solve real interview questions.
 
-## Explicit Graph Structure (Map + Array)
+### Explicit Graph Structure (Map + Array)
 
 Let's say you are working for a genealogy company, and you need to find if two people are related given a family tree (graph).
 
@@ -297,7 +297,7 @@ function isRelated (graph, node, target, seen = new Set()) {
 
 As you can see, we can either use a BFS or DFS approach to solve the problem. Not all questions are like that. In the next example, you will see that one of them leads to a more optimal solution than the other.
 
-## Implicit Graph: Build and Traverse as you go
+### Implicit Graph: Build and Traverse as you go
 
 Let's solve this example of a combination lock.
 
@@ -398,7 +398,7 @@ If you want to see more levels of combination take a look here:
 </div>
 </details>
 
-# Breadth-First-Search (BFS) vs Depth-First-Search (DFS)
+## Breadth-First-Search (BFS) vs Depth-First-Search (DFS)
 
 The most common graph traversal algorithms are breadth-first-search (BFS) and depth-first-search (DFS). BFS covers all cases adjacent paths nearby and then expand, while DFS goes deep on one way and only comes back when there's nowhere else to go.
 
@@ -444,11 +444,11 @@ You want to use BFS when...
 Since the board is infinite, DFS won't work for us. If it chooses a path that doesn't contain the target location, it will never find an end. So, BFS is the right approach here!
 
 
-# Steps to solve algorithmic questions on interviews
+## Steps to solve algorithmic questions on interviews
 
 In these section, we are going to practice some real interview questions. First, we are going to introduce 10 steps to avoid you getting in stuck in an interview. Finally, we are going to cover some examples. The only way to get better at it is through Practice, Practice, and more Practice.
 
-## Ten steps to avoid getting stuck
+### Ten steps to avoid getting stuck
 
 1. 👂 Listen/read carefully and repeat the question out loud (in your own words).
 2. 🗣  Ask clarifying questions to help understand the problem better.
@@ -461,7 +461,7 @@ In these section, we are going to practice some real interview questions. First,
 9. 💻  RUN YOUR CODE if allowed
 10. 🐛  Fix issues as they emerge and repeat previews steps if necessary.
 
-## Interview Questions for Practice
+### Interview Questions for Practice
 
 Here are some exercises for you to practice the ten steps and the solutions to some.
 These steps are especially necessary when you are not given the function signature nor examples.
@@ -469,7 +469,7 @@ Sometimes, you have to figure them out by asking questions.
 
 Let's do a simulation!
 
-### Chess Knight Problem ♞
+#### Chess Knight Problem ♞
 
 > Given an **infinite** chessboard, find out how many moves does the knight needs to reach a given square on the board.
 
@@ -651,7 +651,7 @@ Most BFS problems follow the same pattern:
 8. Add neighbors to queue and increase the distance.
 9. If you didn't find the answer, return something like -1/null/undefined.
 
-### BFS Template
+#### BFS Template
 
 ```js
 function bfs(target) {
@@ -680,7 +680,7 @@ function getNeighbors(node) {
 
 Here's another exercise to practice
 
-### Maze Path
+#### Maze Path
 
 
 <blockquote>

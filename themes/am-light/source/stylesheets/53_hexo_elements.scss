@@ -111,23 +111,23 @@
 }
 
 // toc
-.toc-content {
-  counter-reset: section;
+// .toc-content {
+//   counter-reset: section;
 
-  h1 {
-      counter-reset: subsection;
-  }
+//   h1 {
+//       counter-reset: subsection;
+//   }
 
-  h1:before {
-      counter-increment: section;
-      content: counter(section) ". ";
-  }
+//   h1:before {
+//       counter-increment: section;
+//       content: counter(section) ". ";
+//   }
 
-  h2:before {
-      counter-increment: subsection;
-      content: counter(section) "." counter(subsection) " ";
-  }
-}
+//   h2:before {
+//       counter-increment: subsection;
+//       content: counter(section) "." counter(subsection) " ";
+//   }
+// }
 
 .toc-title {
   border-bottom: 1px solid #e3e3e3;
@@ -160,12 +160,8 @@
 
   }
 
-  .toc-level-2 {
-    display: none;
-  }
-
-  .toc-level-3 {
-    display: none;
+  .toc-level-2, .toc-level-3, .toc-level-4, .toc-level-5, .toc-level-6 {
+    // display: none; // hide toc and get enabled by JS in posts.es6
   }
 }
 
