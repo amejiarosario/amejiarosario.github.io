@@ -6,7 +6,7 @@ updated: 1320876440000
 comments: true
 pageviews__total: 850
 pageviews__recent: 2
-pageviews__avg_time: 143
+pageviews__avg_time: 145
 tutorial__order: 0
 alias: /blog/2011/11/09/how-to-setup-drupal-wysiwyg-and-images-uploading/
 tags:

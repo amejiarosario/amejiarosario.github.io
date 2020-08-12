@@ -3,7 +3,7 @@ layout: post
 title: Node Package Manager (NPM) Tutorial
 comments: true
 toc: true
-pageviews__total: 3155
+pageviews__total: 3156
 pageviews__recent: 15
 pageviews__avg_time: 196
 tutorial__order: 0
