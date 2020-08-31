@@ -6320,7 +6320,7 @@ In the following sections, you are going to learn how to do that using <code>exp
     <link href="https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/"/>
     <id>https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/</id>
     <published>2016-06-25T19:14:49.000Z</published>
-    <updated>2020-08-31T20:10:15.770Z</updated>
+    <updated>2020-08-31T21:02:52.880Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm run</span><br><span class="line">yarn run</span><br><span class="line">grunt --<span class="built_in">help</span></span><br><span class="line">gulp --tasks</span><br><span class="line">rake --tasks</span><br></pre></td></tr></table></figure>
 ]]></content>
