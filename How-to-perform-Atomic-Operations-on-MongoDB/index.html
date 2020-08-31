@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>How to perform Atomic Operations on MongoDB? | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/how-to-perform-atomic-operations-on-mongodb/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/How-to-perform-Atomic-Operations-on-MongoDB/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="The NoSQL database system has been able to gain momentum in the past few years due to its flexibility and other benefits. Mongo is the leader when it comes to NoSQL. There are plenty of amazing features of MongoDB, and one of them are atomic operations. In the upcoming sections of this article, we will go deep into atomic operations, its use, and how you can apply it to your projects." />
+    <meta property="og:image" content="https://adrianmejia.com/images/atomic-operations-mongodb-large.png" />
+    <meta property="og:title" content="How to perform Atomic Operations on MongoDB?" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "How to perform Atomic Operations on MongoDB?",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/atomic-operations-mongodb-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2019-03-14T06:40:00-04:00",
+  "dateModified": "2019-03-14T06:40:00-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "The NoSQL database system has been able to gain momentum in the past few years due to its flexibility and other benefits. Mongo is the leader when it comes to NoSQL. There are plenty of amazing features of MongoDB, and one of them are atomic operations. In the upcoming sections of this article, we will go deep into atomic operations, its use, and how you can apply it to your projects."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a>
+    </div>
+
+    <h1>How to perform Atomic Operations on MongoDB?</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2019-03-14T10:40:00.000Z" itemprop="dateUpdated">March 14th 2019</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          3.0k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/How-to-perform-Atomic-Operations-on-MongoDB/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a><span class="tag-list-count">3</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #5691C8">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/atomic-operations-mongodb-large.png">
+        <source srcset="/images/atomic-operations-mongodb-small.png">
+        <img src="/images/atomic-operations-mongodb-large.png" alt="How to perform Atomic Operations on MongoDB?">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>The NoSQL database system has been able to gain momentum in the past few years due to its flexibility and other benefits. Mongo is the leader when it comes to NoSQL. There are plenty of amazing features of MongoDB, and one of them are atomic operations. In the upcoming sections of this article, we will go deep into atomic operations, its use, and how you can apply it to your projects.</p>
+<a id="more"></a>
+
+<p>Before moving forward to checking out how we can apply atomic operations in MongoDB, we will be looking at some of the critical points that you need to keep in your mind in regards to MongoDB:</p>
+<ul>
+<li>MongoDB does not support atomicity for multi-document transactions. However, version 4.0 onwards will support multi-document transactions in several cases.</li>
+<li>It is only possible to use the atomicity feature of MongoDB in a single document (not in case of version 4.0). Suppose, there is a document that consists of 35 fields. In that document, there will either be updates in all 35 fields or none.</li>
+<li>The atomicity feature is only limited to the document level.</li>
+</ul>
+<hr>
+<p>If you want to jump into the NoSQL database, you should consider <a target="_blank" rel="noopener" href="https://www.simplilearn.com/big-data-and-analytics/mongodb-certification-training">MongoDB certification</a>. It will give you a strong foundation and skills to use MongoDB to solve real-world problems. There is a considerable job demand for MongoDB professionals.</p>
+<hr>
+<h1 id="Introduction-to-Atomic-Operations"><a href="#Introduction-to-Atomic-Operations" class="headerlink" title="Introduction to Atomic Operations"></a>Introduction to Atomic Operations</h1><p>The atomic operations in database terminology is a chained and sophisticated database operations series. In this series, either all aspects of the series will be affected, or nothing will be altered. In atomic operations, there is no such thing as a partial database change.</p>
+<p>In atomic operations, there is only a room for complete database updates and changes. In case of any partial updates, the whole database will roll back.</p>
+<p>We use atomic operations in a case where the partial update will create more harm in comparison to rolling back. There are some instances in the real world where we need to maintain our database in this manner. In the latter part of this article, we will discuss more in depth about it.</p>
+<p>We can explain atomic operations in MongoDB clearly with the use of ACID, a.k.a. Atomicity, Consistency, Isolation, and Durability.</p>
+<ul>
+<li>Here is a simple rule of <em>atomicity</em> for every single operation, “either all or none.”</li>
+<li>The <em>consistency</em> property will play a crucial role in atomicity. It will ensure that each transaction will ultimately lead to a valid state of some kind.</li>
+<li>The <em>isolation</em> property of the database will play a part in guaranteeing the systematic process of the concurrent transaction, which means one by one.</li>
+<li>Finally, the <em>durability</em> property will come into play. This property ensures the permanency of the database after each database transaction regardless of errors, crashes, and power loss.</li>
+</ul>
+<h1 id="Modeling-e-Commerce-Products-in-MongoDB"><a href="#Modeling-e-Commerce-Products-in-MongoDB" class="headerlink" title="Modeling e-Commerce Products in MongoDB"></a>Modeling e-Commerce Products in MongoDB</h1><p>We should maintain atomicity in MongoDB by compiling all the related information in a single document, which will update consistently. We can create such type of consistency via embedded documents. The embedded is for ensuring that every single update that takes place in the document is atomic.</p>
+<p>Here is how the document looks like for representing item purchase information.</p>
+<h2 id="Creating-a-new-product"><a href="#Creating-a-new-product" class="headerlink" title="Creating a new product"></a>Creating a new product</h2><p>Let’s say we have an e-Commerce app and we want to model a product on MongoDB with atomic operations. We can do something like this:</p>
+<figure class="highlight js"><figcaption><span>creating a product on MongoDB</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">use AtomicMongoDB;</span><br><span class="line"><span class="comment">// =&gt; switched to db AtomicMongoDB</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// create an iPhone product with embedded buyers</span></span><br><span class="line">db.AtominMongoDB.save(&#123;</span><br><span class="line">  <span class="string">&quot;_id&quot;</span>: <span class="number">1111</span>,</span><br><span class="line">  <span class="string">&quot;item_name&quot;</span>: <span class="string">&quot;Apple iPhone Xs Max 512GB&quot;</span>,</span><br><span class="line">  <span class="string">&quot;price&quot;</span>: <span class="number">1450</span>,</span><br><span class="line">  <span class="string">&quot;category&quot;</span>: <span class="string">&quot;handset&quot;</span>,</span><br><span class="line">  <span class="string">&quot;warranty_period&quot;</span>: <span class="number">5</span>,</span><br><span class="line">  <span class="string">&quot;city&quot;</span>: <span class="string">&quot;Toronto&quot;</span>,</span><br><span class="line">  <span class="string">&quot;country&quot;</span>: <span class="string">&quot;Canada&quot;</span>,</span><br><span class="line">  <span class="string">&quot;item_total&quot;</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">&quot;item_available&quot;</span>: <span class="number">6</span>,</span><br><span class="line">  <span class="string">&quot;item_bought_by&quot;</span>: [&#123;</span><br><span class="line">      <span class="string">&quot;customer&quot;</span>: <span class="string">&quot;Bob&quot;</span>,</span><br><span class="line">      <span class="string">&quot;date&quot;</span>: <span class="string">&quot;6-Feb-2019&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;customer&quot;</span>: <span class="string">&quot;Alice&quot;</span>,</span><br><span class="line">      <span class="string">&quot;date&quot;</span>: <span class="string">&quot;5-Jan-2019&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;customer&quot;</span>: <span class="string">&quot;Anita&quot;</span>,</span><br><span class="line">      <span class="string">&quot;date&quot;</span>: <span class="string">&quot;4-Dec-2018&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;customer&quot;</span>: <span class="string">&quot;Abhishek&quot;</span>,</span><br><span class="line">      <span class="string">&quot;date&quot;</span>: <span class="string">&quot;10-Dec-2018&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// =&gt; WriteResult(&#123; &quot;nMatched&quot; : 0, &quot;nUpserted&quot; : 1, &quot;nModified&quot; : 0, &quot;_id&quot; : 1111 &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Verify the document was saved</span></span><br><span class="line">db.AtominMongoDB.find().pretty();</span><br></pre></td></tr></table></figure>
+
+
+<p>In the above document, we have created a model, embedded document. We have produced a report from the purchase in the item_bought_by field. This single document will manage everything about the purchase and the stock. In this document, it will see whether the item that the customer orders are in the stock or not. The customer’s order processes through the item_available field.</p>
+<h2 id="Decreasing-count-on-a-purchase"><a href="#Decreasing-count-on-a-purchase" class="headerlink" title="Decreasing count on a purchase"></a>Decreasing count on a purchase</h2><p>In the case of availability, we will subtract the <code>item_available</code> field by 1. After we complete that part, we will record the information of the customer, and, i.e., name and the purchase date, in the item_bought_by field. We will again look at another document where we will be using the <code>findAndmodify</code> statement to fulfill this purpose.
+By using <code>findAndmodify</code> statement, the document will perform search and update activity simultaneously in the report.</p>
+<figure class="highlight js"><figcaption><span>buying a product</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">db.AtominMongoDB.findAndModify(&#123;</span><br><span class="line">  query: &#123;</span><br><span class="line">    _id: <span class="number">1111</span>,</span><br><span class="line">    item_available: &#123;</span><br><span class="line">      $gt: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  update: &#123;</span><br><span class="line">    $inc: &#123;</span><br><span class="line">      item_available: <span class="number">-1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    $push: &#123;</span><br><span class="line">      item_bought_by: &#123;</span><br><span class="line">        customer: <span class="string">&quot;Adrian&quot;</span>,</span><br><span class="line">        date: <span class="string">&quot;14-Mar-2019&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// =&gt; returns found document</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Verify new customer was added and stock number decreased</span></span><br><span class="line">db.AtominMongoDB.find().pretty();</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   &quot;_id&quot;: 1111,</span></span><br><span class="line"><span class="comment">//   &quot;item_name&quot;: &quot;Apple iPhone Xs Max 512GB&quot;,</span></span><br><span class="line"><span class="comment">//   &quot;price&quot;: 1450,</span></span><br><span class="line"><span class="comment">//   &quot;category&quot;: &quot;handset&quot;,</span></span><br><span class="line"><span class="comment">//   &quot;warranty_period&quot;: 5,</span></span><br><span class="line"><span class="comment">//   &quot;city&quot;: &quot;Toronto&quot;,</span></span><br><span class="line"><span class="comment">//   &quot;country&quot;: &quot;Canada&quot;,</span></span><br><span class="line"><span class="comment">//   &quot;item_total&quot;: 10,</span></span><br><span class="line"><span class="comment">//   &quot;item_available&quot;: 5,</span></span><br><span class="line"><span class="comment">//   &quot;item_bought_by&quot;: [&#123;</span></span><br><span class="line"><span class="comment">//       &quot;customer&quot;: &quot;Bob&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;date&quot;: &quot;6-Feb-2019&quot;</span></span><br><span class="line"><span class="comment">//     &#125;,</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//       &quot;customer&quot;: &quot;Alice&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;date&quot;: &quot;5-Jan-2019&quot;</span></span><br><span class="line"><span class="comment">//     &#125;,</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//       &quot;customer&quot;: &quot;Anita&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;date&quot;: &quot;4-Dec-2018&quot;</span></span><br><span class="line"><span class="comment">//     &#125;,</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//       &quot;customer&quot;: &quot;Abhishek&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;date&quot;: &quot;10-Dec-2018&quot;</span></span><br><span class="line"><span class="comment">//     &#125;,</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//       &quot;customer&quot;: &quot;Adrian&quot;,</span></span><br><span class="line"><span class="comment">//       &quot;date&quot;: &quot;14-Mar-2019&quot;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//   ]</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>In the above document, we searched for the item, setting the ID as 1111. If the system finds such a thing, we activate the subtraction function and deduct 1 in the item_available field. We will also update the field <code>item_bought_by</code> in which we insert the name of the customer along with the purchase date.</p>
+<p>Finally, we print the full information with the function, find and pretty method. We can see that the item_available field will come down from 6 to 5 while adding the customer name and the purchase date in the <code>item_bought_by</code> field.</p>
+<p>One more example to make you more precise about the use of atomic operations in MongoDB</p>
+<h2 id="Modeling-books-on-MongoDB-and-performing-atomic-operations"><a href="#Modeling-books-on-MongoDB-and-performing-atomic-operations" class="headerlink" title="Modeling books on MongoDB and performing atomic operations"></a>Modeling books on MongoDB and performing atomic operations</h2><p>In the above case, we dealt mainly with the product order and the record keeping of customers. In this example, we will be using the function of the simple book store and make it work out in MongoDB via atomic operations.</p>
+<p>Let’s suppose in that book store, and we need to maintain the record of books along with the number of copies available for checkout, including crucial details about checkout.</p>
+<p>We should sync the number of copies available, and checkout information must for the program to work. We will be embedding the checkout and the <code>available</code> field for ensuring that the two areas will be updated atomically.</p>
+<figure class="highlight js"><figcaption><span>create a book on mongo</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create a new book</span></span><br><span class="line">db.books.save(&#123;</span><br><span class="line">  _id: <span class="number">222222</span>,</span><br><span class="line">  title: <span class="string">&quot;Data Structures &amp; Algorithms in JavaScript&quot;</span>,</span><br><span class="line">  author: [ <span class="string">&quot;Adrian Mejia&quot;</span> ],</span><br><span class="line">  published_date: ISODate(<span class="string">&quot;2019-02-15&quot;</span>),</span><br><span class="line">  pages: <span class="number">216</span>,</span><br><span class="line">  language: <span class="string">&quot;English&quot;</span>,</span><br><span class="line">  publisher_id: <span class="string">&quot;Independent&quot;</span>,</span><br><span class="line">  available: <span class="number">156</span>,</span><br><span class="line">  checkout: [ &#123; <span class="attr">by</span>: <span class="string">&quot;Ivan&quot;</span>, <span class="attr">date</span>: ISODate(<span class="string">&quot;2019-04-14&quot;</span>) &#125; ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Updating the checkout field with new information is essential. We will be using <code>db.collection.updateOne()</code> method for atomically updating available and checkout field.</p>
+<figure class="highlight js"><figcaption><span>Purchasing a book</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">db.books.updateOne(&#123;</span><br><span class="line">  _id: <span class="number">222222</span>,</span><br><span class="line">  available: &#123; <span class="attr">$gt</span>: <span class="number">0</span> &#125;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  $inc: &#123; <span class="attr">available</span>: <span class="number">-1</span> &#125;,</span><br><span class="line">  $push: &#123;</span><br><span class="line">    checkout: &#123;</span><br><span class="line">      by: <span class="string">&quot;Abby&quot;</span>,</span><br><span class="line">      date: <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>The above command will return the following:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">&quot;acknowledged&quot;</span> : <span class="literal">true</span>, <span class="string">&quot;matchedCount&quot;</span> : <span class="number">1</span>, <span class="string">&quot;modifiedCount&quot;</span> : <span class="number">1</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>The <code>matchedCount</code> field is responsible for comparing the condition for updates. We can see that 1 document fulfilled the requirements due to which the operation updated 1 document (<code>modifiedCount</code>).</p>
+<p>There could also be the case where no documents are matched, according to the update condition. In that situation, both the <code>matchedCount</code> and <code>modifiedCount</code> field would be 0. What this means is that you will not be able to purchase the book and continue with a checkout process.</p>
+<h1 id="Final-Say"><a href="#Final-Say" class="headerlink" title="Final Say"></a>Final Say</h1><p>Finally, we have finished the topic of how you can use atomic operations via MongoDB. It was not that difficult, was it? Although it is not possible to work out with multi-document tasks, but using atomic operations in MongoDB is simple. With that said, MongoDB starting from version 4.0 will be supporting atomic operations in numerous scenarios.</p>
+<p>There are plenty of real-world issues where we can use an atomic operation like in purchase record. It will prevent mutual exclusions; hence, it will stop the corruption of data in many ways.</p>
+<p>Take a close look at the source codes in the article and follow it as you see fit. After practicing for a few times, you can naturally apply the atomic operation in the real-world problems where needed.</p>
+<p>Do you have any confusions? If yes, feel free to leave a comment below. We will reply to your comment for clearing out your difficulties. In case you want to add more insights, you can put forward your opinion in the comment below.</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-03-14-How-to-perform-Atomic-Operations-on-MongoDB.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/How-to-build-a-Node-js-eCommerce-website-for-free/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  How to build a Node.js eCommerce website for free
+                
+              </div>
+            </a>
+          
+          
+            <a href="/I-got-hacked-and-It-changed-my-life-on-security-tips/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">45 Security Tips to Avoid Hacking</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+            <section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/DanishWadhwa.png" alt="Adrian Mejia">
+  <p class="p-x-1 muted">Danish Wadhwa is a HubSpot certified marketing expert and IT pro. With a handful of experience in the web, he has served a number of clients across the world.  As a techno-savvy person, he believes in experimenting with new tools and techniques.</p>
+</section>
+
+            
+
+          <div class="m-y-4">
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-03-14-How-to-perform-Atomic-Operations-on-MongoDB.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction-to-Atomic-Operations"><span class="toc-number">1.</span> <span class="toc-text">Introduction to Atomic Operations</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Modeling-e-Commerce-Products-in-MongoDB"><span class="toc-number">2.</span> <span class="toc-text">Modeling e-Commerce Products in MongoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-new-product"><span class="toc-number">2.1.</span> <span class="toc-text">Creating a new product</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Decreasing-count-on-a-purchase"><span class="toc-number">2.2.</span> <span class="toc-text">Decreasing count on a purchase</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Modeling-books-on-MongoDB-and-performing-atomic-operations"><span class="toc-number">2.3.</span> <span class="toc-text">Modeling books on MongoDB and performing atomic operations</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Final-Say"><span class="toc-number">3.</span> <span class="toc-text">Final Say</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/How-to-perform-Atomic-Operations-on-MongoDB/';
+      this.page.identifier = 'https://adrianmejia.com/How-to-perform-Atomic-Operations-on-MongoDB/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

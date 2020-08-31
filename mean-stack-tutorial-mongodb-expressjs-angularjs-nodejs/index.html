@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III) | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="We are going to build a full stack Todo App using the MEAN (MongoDB, ExpressJS, AngularJS and NodeJS). This is the last part of three-post series tutorial." />
+    <meta property="og:image" content="https://adrianmejia.com/images/mean_large.png" />
+    <meta property="og:title" content="MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/mean_large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2014-10-03T06:59:34-04:00",
+  "dateModified": "2016-08-06T21:47:53-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "We are going to build a full stack Todo App using the MEAN (MongoDB, ExpressJS, AngularJS and NodeJS). This is the last part of three-post series tutorial."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a> > <a class="category-link" href="/categories/coding/web-development/">Web Development</a> > <a class="category-link" href="/categories/coding/web-development/angular/">Angular</a>
+    </div>
+
+    <h1>MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2016-08-07T01:47:53.000Z" itemprop="dateUpdated">August 6th 2016</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          251.9k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/express/" rel="tag">express</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-app/" rel="tag">todo app</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-mean-stack/" rel="tag">tutorial_mean-stack</a><span class="tag-list-count">3</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #7EBE42">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/mean_large.png">
+        <source srcset="/images/mean_small.png">
+        <img src="/images/mean_large.png" alt="MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>We are going to build a full stack Todo App using the MEAN (MongoDB, ExpressJS, AngularJS and NodeJS). This is the last part of <a href="/tags/Tutorial-MEAN-Stack/">three-post series tutorial</a>.</p>
+<a id="more"></a>
+
+<p>MEAN Stack tutorial series:</p>
+<ol>
+<li><a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/">AngularJS tutorial for beginners (Part I)</a></li>
+<li><a href="/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/">Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)</a></li>
+<li>MEAN Stack Tutorial: MongoDB, ExpressJS, AngularJS and NodeJS (Part III) <strong>👈 you are here</strong></li>
+</ol>
+<p>Before completing the app, let’s cover some background about the this stack. If you rather jump to the hands-on part click here to <a href="#start">get started</a>.</p>
+<h1 id="Why-MEAN-stack"><a href="#Why-MEAN-stack" class="headerlink" title="Why MEAN stack?"></a>Why MEAN stack?</h1><p><a href="#start">TL; DR</a>: NodeJS has been built from bottom up a non-blocking I/O paradigm, which gives you more efficiency per CPU core than using threads in other languages like <a target="_blank" rel="noopener" href="http://strongloop.com/strongblog/node-js-is-faster-than-java/">Java</a>.</p>
+<p>LAMP (Linux-Apache-MySQL-PHP) has dominated web application stack for many years now. Well-known platforms such as Wikipedia, Wordpress, and even Facebook uses it or started with it. Enterprise, usually, used go down the Java path: Hibernate, Spring, Struts, JBoss. More agile frameworks also have been used such as Ruby on Rails and for Python Django and Pylon.</p>
+<img src="/images/mean_vs_lamp_stack.png" class="" title="LAMP vs MEAN stack">
+
+<p><strong>Ubiquitous</strong></p>
+<p>Well, it turns out, that JavaScript it is everywhere. It used to be limited to browsers. But, now you can found it in smartphones, servers, robots, Arduino, RaspberryPi… Thus, it does not matter what technology you use to build web applications, you need to be familiar with Javascript. In that case, then, it is a time saver to use wherever it fits, especially for building web applications. MEAN stack is embracing that, using Javascript to create end-to-end web applications.
+​
+<strong>Non-blocking architecture</strong></p>
+<p>JavaScript is a dynamic, object-oriented, and functional scripting language. One of the features that make it win over Java Applets decades ago, it was its lightness and non-blocking event loop.
+Blocking means that when one line of code is executing, the rest of it is locked waiting to finish. On the other hand, non-blocking gives to each line of code a shot and then through callbacks it can come back when an event happens.
+Programming languages that are blocking (Java, Ruby, Python, PHP, …) overcomes concurrency using many threads of execution while JavaScript handles it using non-blocking event loop in a single thread.</p>
+<img src="/images/blocking_vs_non_blocking_io.png" class="">
+
+<p>As you can see, a single thread of execution in Node can handle perform multiple tasks vs a non-blocking style that execute each one sequentially. You can read more about it in <a href="[strongloop.com](http://strongloop.com/strongblog/node-js-is-faster-than-java/)" target="_blank">NodeJS faster than Java</a> article.</p>
+<p>Some companies like <a target="_blank" rel="noopener" href="https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/">Paypal</a> moved from Java backend to NodeJS and reported a increased performance, lower average response times, and development speed gains.  Similarly happens to <a target="_blank" rel="noopener" href="https://engineering.groupon.com/2013/misc/i-tier-dismantling-the-monoliths/">Groupon</a> that came from Java/Rails monoliths.</p>
+<p><strong>Agile and vibrant community</strong></p>
+<p>The community behind Javascript is quite vibrant. It has permeated in almost all the fields of technology: data visualization, server-side, databases, robotics, building tools and many more.</p>
+<p><a id="start"></a></p>
+<h1 id="TODO-app-with-MEAN"><a href="#TODO-app-with-MEAN" class="headerlink" title="TODO app with MEAN"></a>TODO app with MEAN</h1><p>In this section are going to put together everything that we learnt in the <a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/">two</a> <a href="/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/">previous</a> tutorials.</p>
+<h2 id="MEAN-Backend-with-MongoDB-ExpressJS-and-NodeJS"><a href="#MEAN-Backend-with-MongoDB-ExpressJS-and-NodeJS" class="headerlink" title="MEAN Backend with MongoDB, ExpressJS and NodeJS"></a>MEAN Backend with MongoDB, ExpressJS and NodeJS</h2><p>In the <a href="/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/">previous post</a>, we have gone through the process of building a RESTful API and we are going to be building on top of that. <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/todoAPIjs">Repository here</a>.</p>
+<figure class="highlight bash"><figcaption><span>Getting the back-end code build on Part II</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/amejiarosario/todoAPIjs.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="MEAN-stack-front-end-with-AngularJS"><a href="#MEAN-stack-front-end-with-AngularJS" class="headerlink" title="MEAN stack front-end with AngularJS"></a>MEAN stack front-end with AngularJS</h2><p>Similarly, we have build a very lean todoApp in the <a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/">first part</a> of this tutorial. You can <a target="_blank" rel="noopener" href="https://gist.githubusercontent.com/amejiarosario/068143b53e54db43ef38/raw/ngTodo.html">download the file</a> to follow along and see it in action <a target="_blank" rel="noopener" href="https://cdn.rawgit.com/amejiarosario/068143b53e54db43ef38/raw/ngTodo.html">here</a>. You might notice the angularJS app is very simple and even it is entirely in one file for simplicity sake. In further tutorials, we are going to make it more modular, split in files, add tests and stylesheets.</p>
+<p>Let’s go first to the ExpressJS app (todoAPIjs) and review the default routing system:</p>
+<ol>
+<li><code>app.js</code> loads the all the routes.</li>
+<li>The root path (<code>/</code>) is mounted on the <code>routes/index.js</code></li>
+<li><code>routes/index.js</code> sets the variable title and renders <code>index.ejs</code>.</li>
+</ol>
+<figure class="highlight javascript"><figcaption><span>Tracing ExpressJS index route</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">var</span> routes = <span class="built_in">require</span>(<span class="string">&#x27;./routes/index&#x27;</span>);</span><br><span class="line">app.use(<span class="string">&#x27;/&#x27;</span>, routes);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ./routes/index.js</span></span><br><span class="line">router.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.render(<span class="string">&#x27;index&#x27;</span>, &#123; <span class="attr">title</span>: <span class="string">&#x27;Express&#x27;</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ./views/index.ejs</span></span><br><span class="line">    &lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;Welcome to &lt;%= title %&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The best place to load our <code>./views/index.ejs</code>. So let’s copy the body content from ngTodo.html content in there and change in <code>./routes/index.js</code> title to “ngTodo App”. Don’t forget to add ng-app on the top. <code>&lt;html ng-app=&quot;app&quot;&gt;</code>.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/todoAPIjs/commit/ebf20f4093aa20c867777b4b3db825429b54a20d">diff</a></p>
+<h1 id="Wiring-up-the-App"><a href="#Wiring-up-the-App" class="headerlink" title="Wiring up the App"></a>Wiring up the App</h1><h2 id="AngularJS-Read-with-http"><a href="#AngularJS-Read-with-http" class="headerlink" title="AngularJS Read with $http"></a>AngularJS Read with $http</h2><p>As you might notice, in the factory, we have a fixed array. We need to change it to communicate with the API that we just build.</p>
+<p><code>$http</code> is Anguar core sevice that allow to make <code>XMLHttpRequest</code> or <code>jsonp</code> request. You can either pass an object with http verb and url or call call $http.verb (<code>$http.get</code>, <code>$http.post</code>).</p>
+<p><code>$http</code> returns a promise which has a <code>success</code> and <code>error</code> function.</p>
+<figure class="highlight javascript"><figcaption><span>AngularJS $HTTP Usage Example</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$http(&#123;<span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>, <span class="attr">url</span>: <span class="string">&#x27;/todos&#x27;</span>&#125;).</span><br><span class="line">  success(<span class="function"><span class="keyword">function</span>(<span class="params">data, status, headers, config</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// this callback will be called asynchronously</span></span><br><span class="line">    <span class="comment">// when the response is available.</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;todos: &#x27;</span>, data );</span><br><span class="line">  &#125;).</span><br><span class="line">  error(<span class="function"><span class="keyword">function</span>(<span class="params">data, status, headers, config</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// called asynchronously if an error occurs</span></span><br><span class="line">    <span class="comment">// or server returns response with an error status.</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Oops and error&#x27;</span>, data);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Let’s try it out in our app. Go to <code>views/index.ejs</code> and do this changes:</p>
+<figure class="highlight javascript"><figcaption><span>Using $http to retrieve data from database</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Service</span></span><br><span class="line">.factory(<span class="string">&#x27;Todos&#x27;</span>, [<span class="string">&#x27;$http&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$http</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> $http.get(<span class="string">&#x27;/todos&#x27;</span>);</span><br><span class="line">&#125;])</span><br><span class="line"></span><br><span class="line"><span class="comment">// Controller</span></span><br><span class="line">.controller(<span class="string">&#x27;TodoController&#x27;</span>, [<span class="string">&#x27;$scope&#x27;</span>, <span class="string">&#x27;Todos&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, Todos</span>) </span>&#123;</span><br><span class="line">  Todos.success(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    $scope.todos = data;</span><br><span class="line">  &#125;).error(<span class="function"><span class="keyword">function</span>(<span class="params">data, status</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data, status);</span><br><span class="line">    $scope.todos = [];</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/todoAPIjs/commit/0221aebd62e88445629debe4f132684686cf48ec">diff</a></p>
+<p><code>$http.get</code> will request data using the <code>GET</code> method.</p>
+<blockquote>
+<p>Try it in your browser!s If you have data from the <a href="http://adrianmejia.com/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/#browser-and-postman">previous tutorial</a> you should be able to see it.</p>
+</blockquote>
+<p>To <strong>start the server</strong>, you can use</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<p>or if you have it installed</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodemon</span><br></pre></td></tr></table></figure>
+
+<h2 id="AngularJS-Read-with-resource"><a href="#AngularJS-Read-with-resource" class="headerlink" title="AngularJS Read with $resource"></a>AngularJS Read with $resource</h2><p>If you click in one of the Todo elements and get redirected to the detail page, you will not see anything yet. We need to update the <code>TodoDetailCtrl</code> first. Even though we already have the GET verb working. We have a different URL requirement for <code>/todos/:id</code> for the other methods. There’s an Angular service that has a higher level of abstraction of $http to deal with RESTful requests. It is called <code>$resource</code>.</p>
+<p>Initialize as:
+<code>$resource(url, [paramDefaults], [actions], options);</code></p>
+<p>It comes with the following actions already defined; it is missing one though… Can you tell?</p>
+<figure class="highlight javascript"><figcaption><span>$resource actions</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">&#x27;get&#x27;</span>:    &#123;<span class="attr">method</span>:<span class="string">&#x27;GET&#x27;</span>&#125;,  <span class="comment">// get individual record</span></span><br><span class="line">  <span class="string">&#x27;save&#x27;</span>:   &#123;<span class="attr">method</span>:<span class="string">&#x27;POST&#x27;</span>&#125;, <span class="comment">// create record</span></span><br><span class="line">  <span class="string">&#x27;query&#x27;</span>:  &#123;<span class="attr">method</span>:<span class="string">&#x27;GET&#x27;</span>, <span class="attr">isArray</span>:<span class="literal">true</span>&#125;, <span class="comment">// get list all records</span></span><br><span class="line">  <span class="string">&#x27;remove&#x27;</span>: &#123;<span class="attr">method</span>:<span class="string">&#x27;DELETE&#x27;</span>&#125;, <span class="comment">// remove record</span></span><br><span class="line">  <span class="string">&#x27;delete&#x27;</span>: &#123;<span class="attr">method</span>:<span class="string">&#x27;DELETE&#x27;</span>&#125; &#125;; <span class="comment">// same, remove record</span></span><br></pre></td></tr></table></figure>
+
+<p>The instances are used in the following way (examples will come later):</p>
+<ul>
+<li>GET: <code>Resource.get([parameters], [success], [error])</code></li>
+<li>Non-GET: <code>Resource.action([parameters], postData, [success], [error])</code></li>
+<li>Non-GET: <code>resourceInstance.$action([parameters], [success], [error])</code></li>
+</ul>
+<p><code>$resource</code> is not part of the Angular core, so it requires to <code>ngResource</code> and the dependency. We can get it from the CDN:</p>
+<figure class="highlight html"><figcaption><span>ngResource dependency</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-resource.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This is what need to set it up:</p>
+<figure class="highlight javascript"><figcaption><span>$resource.query()</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// add ngResource dependency</span></span><br><span class="line">  angular.module(<span class="string">&#x27;app&#x27;</span>, [<span class="string">&#x27;ngRoute&#x27;</span>, <span class="string">&#x27;ngResource&#x27;</span>])</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">        .factory(<span class="string">&#x27;Todos&#x27;</span>, [<span class="string">&#x27;$resource&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$resource</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> $resource(<span class="string">&#x27;/todos/:id&#x27;</span>, <span class="literal">null</span>, &#123;</span><br><span class="line">            <span class="string">&#x27;update&#x27;</span>: &#123; <span class="attr">method</span>:<span class="string">&#x27;PUT&#x27;</span> &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;])</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">        .controller(<span class="string">&#x27;TodoController&#x27;</span>, [<span class="string">&#x27;$scope&#x27;</span>, <span class="string">&#x27;Todos&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, Todos</span>) </span>&#123;</span><br><span class="line">          $scope.todos = Todos.query();</span><br><span class="line">        &#125;])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Angular will render an empty <code>$scope.todos</code>. but, when <code>Todos.query()</code> comes with the data from the server it will re-render the UI.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/todoAPIjs/commit/2aff6fe004bf7f7b2cd1b91d53e6958c3b158a20">diff</a></p>
+<h2 id="AngularJS-Create"><a href="#AngularJS-Create" class="headerlink" title="AngularJS Create"></a>AngularJS Create</h2><p>We will need to create a new text box, a button to send a <code>POST</code> request to server and add it to the <code>$scope</code>.</p>
+<blockquote>
+<p>We are using inline templates with <code>id=&quot;/todos.html&quot;</code> and <code>id=&quot;/todoDetails.html&quot;</code>. They are not physical files. Just <code>ng-template</code> that we create in the <a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/">part I</a> of these <a href="/tags/Tutorial-MEAN-Stack/">tutorial series</a>.</p>
+</blockquote>
+<p>Add this code at the bottom of the <code>id=&quot;/todos.html&quot;</code> template:</p>
+<figure class="highlight html"><figcaption><span>New textbox for adding Todos</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">New task <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">ng-model</span>=<span class="string">&quot;newTodo&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">&quot;save()&quot;</span>&gt;</span>Create<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Notice that we are using a new directive <code>ng-click</code>, this one executes a function when it clicked. Angular makes sure that the behaviour is consistent across different browsers.</p>
+<figure class="highlight javascript"><figcaption><span>Save function $resource.$save(...)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.controller(<span class="string">&#x27;TodoController&#x27;</span>, [<span class="string">&#x27;$scope&#x27;</span>, <span class="string">&#x27;Todos&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, Todos</span>) </span>&#123;</span><br><span class="line">  $scope.todos = Todos.query();</span><br><span class="line"></span><br><span class="line">  $scope.save = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!$scope.newTodo || $scope.newTodo.length &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">var</span> todo = <span class="keyword">new</span> Todos(&#123; <span class="attr">name</span>: $scope.newTodo, <span class="attr">completed</span>: <span class="literal">false</span> &#125;);</span><br><span class="line"></span><br><span class="line">    todo.$save(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      $scope.todos.push(todo);</span><br><span class="line">      $scope.newTodo = <span class="string">&#x27;&#x27;</span>; <span class="comment">// clear textbox</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+
+
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/todoAPIjs/commit/46dd14023e2d9eff72d1366dbba9c9c8c872e07b">diff</a></p>
+<h2 id="Show-Todo-details"><a href="#Show-Todo-details" class="headerlink" title="Show Todo details"></a>Show Todo details</h2><p>Every time you click a todo link, it is showing an empty fields. Let’s fix that. First we need set the real <code>_id</code> to the links instead of <code>$index</code>.</p>
+<figure class="highlight html"><figcaption><span>Change the ID link in the `id</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">&quot;todo in todos | filter: search&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">ng-model</span>=<span class="string">&quot;todo.completed&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#/&#123;&#123;todo._id&#125;&#125;&quot;</span>&gt;</span>&#123;&#123;todo.name&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><figcaption><span>Update TodoDetailCtrl with $resource.get</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.controller(<span class="string">&#x27;TodoDetailCtrl&#x27;</span>, [<span class="string">&#x27;$scope&#x27;</span>, <span class="string">&#x27;$routeParams&#x27;</span>, <span class="string">&#x27;Todos&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, $routeParams, Todos</span>) </span>&#123;</span><br><span class="line">  $scope.todo = Todos.get(&#123;<span class="attr">id</span>: $routeParams.id &#125;);</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+
+<p>Notice the change from
+<code>$scope.todo = Todos[$routeParams.id];</code>
+to
+<code>$scope.todo = Todos.get(&#123;id: $routeParams.id &#125;);</code></p>
+<p>Now you should be able to see the details :)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/todoAPIjs/commit/2484107294163a25621fba3785601adb32229ae9">diff</a></p>
+<h2 id="AngularJS-Update-in-line-editing"><a href="#AngularJS-Update-in-line-editing" class="headerlink" title="AngularJS Update (in-line editing)"></a>AngularJS Update (in-line editing)</h2><p>This is going to be a very cool feature. Let’s meet these new directives:</p>
+<ul>
+<li><p><strong>ng-show</strong>: this directive shows the element if the expression evaluates to true. Otherwise, the content is hidden.</p>
+</li>
+<li><p><strong>ng-change</strong>: directive for input elements that evaluates the expression after any change.</p>
+</li>
+</ul>
+<p>Replace the template with <code>id=&quot;/todos.html&quot;</code> with the following:</p>
+<figure class="highlight html"><figcaption><span>Template todos.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Template --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/ng-template&quot;</span> <span class="attr">id</span>=<span class="string">&quot;/todos.html&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">  Search: <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">ng-model</span>=<span class="string">&quot;search.name&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">&quot;todo in todos | filter: search&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">ng-model</span>=<span class="string">&quot;todo.completed&quot;</span> <span class="attr">ng-change</span>=<span class="string">&quot;update($index)&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">ng-show</span>=<span class="string">&quot;!editing[$index]&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#/</span></span></span><span class="template-variable">&#123;&#123;<span class="name">todo._id</span>&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">&quot;</span>&gt;</span></span><span class="template-variable">&#123;&#123;<span class="name">todo.name</span>&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-show</span>=<span class="string">&quot;!editing[$index]&quot;</span> <span class="attr">ng-click</span>=<span class="string">&quot;edit($index)&quot;</span>&gt;</span>edit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span></span><br><span class="line"></span><br><span class="line"><span class="handlebars"><span class="xml">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">ng-show</span>=<span class="string">&quot;editing[$index]&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">ng-model</span>=<span class="string">&quot;todo.name&quot;</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-show</span>=<span class="string">&quot;editing[$index]&quot;</span> <span class="attr">ng-click</span>=<span class="string">&quot;update($index)&quot;</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-show</span>=<span class="string">&quot;editing[$index]&quot;</span> <span class="attr">ng-click</span>=<span class="string">&quot;cancel($index)&quot;</span>&gt;</span>Cancel<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">  New task <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">ng-model</span>=<span class="string">&quot;newTodo&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">&quot;save()&quot;</span>&gt;</span>Create<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>Now let’s change the controller to handle the inline editing:</p>
+<figure class="highlight javascript"><figcaption><span>Todo Controller</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">.controller(<span class="string">&#x27;TodoController&#x27;</span>, [<span class="string">&#x27;$scope&#x27;</span>, <span class="string">&#x27;Todos&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, Todos</span>) </span>&#123;</span><br><span class="line">  $scope.editing = [];</span><br><span class="line">  $scope.todos = Todos.query();</span><br><span class="line"></span><br><span class="line">  $scope.save = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!$scope.newTodo || $scope.newTodo.length &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">var</span> todo = <span class="keyword">new</span> Todos(&#123; <span class="attr">name</span>: $scope.newTodo, <span class="attr">completed</span>: <span class="literal">false</span> &#125;);</span><br><span class="line"></span><br><span class="line">    todo.$save(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      $scope.todos.push(todo);</span><br><span class="line">      $scope.newTodo = <span class="string">&#x27;&#x27;</span>; <span class="comment">// clear textbox</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  $scope.update = <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> todo = $scope.todos[index];</span><br><span class="line">    Todos.update(&#123;<span class="attr">id</span>: todo._id&#125;, todo);</span><br><span class="line">    $scope.editing[index] = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  $scope.edit = <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">    $scope.editing[index] = angular.copy($scope.todos[index]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  $scope.cancel = <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">    $scope.todos[index] = angular.copy($scope.editing[index]);</span><br><span class="line">    $scope.editing[index] = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+
+<p>We added a new variable <code>$scope.editing</code> which shows or hides the form to edit the values. Furthermore, notice ng-click functions: edit, update and cancel.</p>
+<blockquote>
+<p>Let’s see what they do. Try it out!</p>
+</blockquote>
+<p>While were are editing notice that we copy the original todo task into the editing variable. This server for two purposes:</p>
+<ol>
+<li><p>It evaluates to <code>true</code> and show the forms with <code>ng-show</code></p>
+</li>
+<li><p>It holds a copy of the original value in case we press cancel.</p>
+</li>
+</ol>
+<p>Now, going to the Todo Details. We would like that to be updated as well and add notes.</p>
+<figure class="highlight html"><figcaption><span>Todo Details</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/ng-template&quot;</span> <span class="attr">id</span>=<span class="string">&quot;/todoDetails.html&quot;</span>&gt;</span></span><br><span class="line"><span class="handlebars"><span class="xml">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><span class="template-variable">&#123;&#123; <span class="name">todo.name</span> &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">  completed: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">ng-model</span>=<span class="string">&quot;todo.completed&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">  note: <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">ng-model</span>=<span class="string">&quot;todo.note&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span></span><br><span class="line"></span><br><span class="line"><span class="handlebars"><span class="xml">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">&quot;update()&quot;</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/&quot;</span>&gt;</span>Cancel<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Similarly, we added an update method. However, this time we do not need to pass any index, since it is just one todo at a time. After it has been saved, it goes back to root path <code>/</code>.</p>
+<figure class="highlight javascript"><figcaption><span>TodoDetailCtrl controller</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.controller(<span class="string">&#x27;TodoDetailCtrl&#x27;</span>, [<span class="string">&#x27;$scope&#x27;</span>, <span class="string">&#x27;$routeParams&#x27;</span>, <span class="string">&#x27;Todos&#x27;</span>, <span class="string">&#x27;$location&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, $routeParams, Todos, $location</span>) </span>&#123;</span><br><span class="line">  $scope.todo = Todos.get(&#123;<span class="attr">id</span>: $routeParams.id &#125;);</span><br><span class="line"></span><br><span class="line">  $scope.update = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    Todos.update(&#123;<span class="attr">id</span>: $scope.todo._id&#125;, $scope.todo, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      $location.url(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Awesome! Time to check it out in the browser!</p>
+</blockquote>
+<p><code>$location.url([url])</code> is a getter/setter method that allows us to change url, thus routing/view.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/todoAPIjs/commit/b6394448e1e1e8384815877df764507d6562dc4d">diff</a></p>
+<h2 id="AngularJS-Delete"><a href="#AngularJS-Delete" class="headerlink" title="AngularJS Delete"></a>AngularJS Delete</h2><p>These are the changes added to perform the remove functionality:</p>
+<p>A. Add removes button in the <code>li</code> element:</p>
+<figure class="highlight html"><figcaption><span>todos.html Template</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-show</span>=<span class="string">&quot;!editing[$index]&quot;</span> <span class="attr">ng-click</span>=<span class="string">&quot;remove($index)&quot;</span>&gt;</span>remove<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Do the same for the details Template</p>
+<figure class="highlight html"><figcaption><span>todoDetails.html Template</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">ng-click</span>=<span class="string">&quot;remove()&quot;</span>&gt;</span>Remove<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>B. Add remove functionality in the controllers</p>
+<figure class="highlight javascript"><figcaption><span>TodoController</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$scope.remove = <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> todo = $scope.todos[index];</span><br><span class="line">  Todos.remove(&#123;<span class="attr">id</span>: todo._id&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $scope.todos.splice(index, <span class="number">1</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>And also in the details controllers</p>
+<figure class="highlight javascript"><figcaption><span>todoDetails controller</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$scope.remove = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  Todos.remove(&#123;<span class="attr">id</span>: $scope.todo._id&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $location.url(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>When we remove elements from the todos array <code>$scope.todos.splice(index, 1)</code> they also disappear from the DOM. Very cool, huh?</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/todoAPIjs/commit/b9ff3a863c78d72e71b5cc9eb573bb3cb9d87179">diff</a></p>
+<blockquote>
+<p><strong>Congratulations! You are now a MEAN developer!</strong></p>
+</blockquote>
+<h1 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h1><p>Learn how to use GruntJS to automate repetitive tasks in your MEAN Stack workflow.</p>
+<p><a href="/blog/2014/10/07/grunt-js-tutorial-from-beginner-to-ninja/">GruntJS Tutorial</a></p>
+<p>Also, you can learn more about full-stack framework solutions.</p>
+<h2 id="Full-Stack-Javascript-Web-Frameworks"><a href="#Full-Stack-Javascript-Web-Frameworks" class="headerlink" title="Full-Stack Javascript Web Frameworks"></a>Full-Stack Javascript Web Frameworks</h2><p>What we did in these three series tutorial could have been done with just few keystrokes in the comamnd line ;). However, it’s good to know what’s going on. But at this point you do. So, I will introduce you to some frameworks that can save you a lot of time.</p>
+<p><strong>Using MEAN.io</strong></p>
+<p><a target="_blank" rel="noopener" href="http://mean.io/">MeanIO</a> uses a customized CLI tool: ‘mean’. Its approach for modularity is leaned towards self-contained packages that have code for both client and server files. At moment of writing this, it has nine packages ranging from MEAN-Admin, Translation, file uploads, image crop and more.</p>
+<p><strong>Using MEAN.js</strong></p>
+<p><a target="_blank" rel="noopener" href="http://meanjs.org/">MeanJS</a> it is a fork from the creator of MEAN.IO, it uses Yeoman generators to generate Angular’s CRUD modules, routes, controllers, views, services, and more. Also has generators for Express: models, controllers, routes and tests. It has excellent documentation.</p>
+<h2 id="Others-Frameworks-to-look-at"><a href="#Others-Frameworks-to-look-at" class="headerlink" title="Others Frameworks to look at"></a>Others Frameworks to look at</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.meteor.com/">Meteor</a> - Meteor is an open-source platform for building top-quality web apps in a fraction of the time, whether you’re an expert developer or just getting started.</li>
+<li><a target="_blank" rel="noopener" href="http://sailsjs.org/">Sails</a> - The web framework of your dreams.
+for your next web application.</li>
+<li><a target="_blank" rel="noopener" href="https://developer.yahoo.com/cocktails/mojito/">Yahoo! Mojito</a> - A JavaScript MVC framework for mobile applications, one of the Yahoo! Cocktails.</li>
+<li><a target="_blank" rel="noopener" href="http://towerjs.org/">Tower.js</a> - Small components for building apps, manipulating data, and automating a distributed infrastructure.</li>
+</ul>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2014-10-03-mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs.markdown">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/grunt-js-tutorial-from-beginner-to-ninja/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  Grunt JS tutorial from Beginner to Ninja
+                
+              </div>
+            </a>
+          
+          
+            <a href="/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+              
+                <div class="container">
+                <h1 class="capitalize">tutorial mean stack Series</h1>
+                <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/">
+    
+      <img src="/images/AngularJSTutorial_small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>AngularJS tutorial for beginners with NodeJS ExpressJS and MongoDB (Part I)</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/">
+    
+      <img src="/images/RESTfulAPIs_NodeJS__mongodb_small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/">
+    
+      <img src="/images/mean_small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2014-10-03-mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs.markdown')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-MEAN-stack"><span class="toc-number">1.</span> <span class="toc-text">Why MEAN stack?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TODO-app-with-MEAN"><span class="toc-number">2.</span> <span class="toc-text">TODO app with MEAN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MEAN-Backend-with-MongoDB-ExpressJS-and-NodeJS"><span class="toc-number">2.1.</span> <span class="toc-text">MEAN Backend with MongoDB, ExpressJS and NodeJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MEAN-stack-front-end-with-AngularJS"><span class="toc-number">2.2.</span> <span class="toc-text">MEAN stack front-end with AngularJS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Wiring-up-the-App"><span class="toc-number">3.</span> <span class="toc-text">Wiring up the App</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Read-with-http"><span class="toc-number">3.1.</span> <span class="toc-text">AngularJS Read with $http</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Read-with-resource"><span class="toc-number">3.2.</span> <span class="toc-text">AngularJS Read with $resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Create"><span class="toc-number">3.3.</span> <span class="toc-text">AngularJS Create</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-Todo-details"><span class="toc-number">3.4.</span> <span class="toc-text">Show Todo details</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Update-in-line-editing"><span class="toc-number">3.5.</span> <span class="toc-text">AngularJS Update (in-line editing)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AngularJS-Delete"><span class="toc-number">3.6.</span> <span class="toc-text">AngularJS Delete</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What%E2%80%99s-next"><span class="toc-number">4.</span> <span class="toc-text">What’s next?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Full-Stack-Javascript-Web-Frameworks"><span class="toc-number">4.1.</span> <span class="toc-text">Full-Stack Javascript Web Frameworks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Others-Frameworks-to-look-at"><span class="toc-number">4.2.</span> <span class="toc-text">Others Frameworks to look at</span></a></li></ol></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/';
+      this.page.identifier = 'https://adrianmejia.com/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

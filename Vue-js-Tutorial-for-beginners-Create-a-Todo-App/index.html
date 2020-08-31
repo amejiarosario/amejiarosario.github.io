@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Vue.js Tutorial for beginners | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/vue-js-tutorial-for-beginners-create-a-todo-app/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/Vue-js-Tutorial-for-beginners-Create-a-Todo-App/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="In this tutorial, you are going to learn the basics of Vue.js. While we learn, we are going to build a Todo app that will help us to put in practice what we learn." />
+    <meta property="og:image" content="https://adrianmejia.com/images/vuejs-vuerouter-tutorial-todo-app-large.jpg" />
+    <meta property="og:title" content="Vue.js Tutorial for beginners" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Vue.js Tutorial for beginners",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/vuejs-vuerouter-tutorial-todo-app-large.jpg",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2018-08-04T21:30:22-04:00",
+  "dateModified": "2018-08-04T21:30:22-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "In this tutorial, you are going to learn the basics of Vue.js. While we learn, we are going to build a Todo app that will help us to put in practice what we learn."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a> > <a class="category-link" href="/categories/coding/web-development/">Web Development</a> > <a class="category-link" href="/categories/coding/web-development/vue/">Vue</a>
+    </div>
+
+    <h1>Vue.js Tutorial for beginners</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2018-08-05T01:30:22.000Z" itemprop="dateUpdated">August 4th 2018</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          16.6k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/Vue-js-Tutorial-for-beginners-Create-a-Todo-App/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-app/" rel="tag">todo app</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuejs/" rel="tag">vuejs</a><span class="tag-list-count">1</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #FB4F3B">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/vuejs-vuerouter-tutorial-todo-app-large.jpg">
+        <source srcset="/images/vuejs-vuerouter-tutorial-todo-app-small.jpg">
+        <img src="/images/vuejs-vuerouter-tutorial-todo-app-large.jpg" alt="Vue.js Tutorial for beginners">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>In this tutorial, you are going to learn the basics of Vue.js. While we learn, we are going to build a Todo app that will help us to put in practice what we learn.</p>
+<a id="more"></a>
+
+<p>A good way to learn a new framework, It’s by doing a Todo app. It’s an excellent way to compare framework features. It’s quick to implement and easy to understand. However, don’t be fooled by the simplicity, we are going to take it to the next level. We are going to explore advanced topics as well such as Vue Routing, Components, directives and many more!</p>
+<p>Let’s first setup the dev environment, so we can focus on Vue! 🖖</p>
+<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><p>We are going to start with essential HTML elements and CSS files and no JavaScript. You will learn how to add all the JavaScript functionality using Vue.js.</p>
+<p>To get started quickly, clone the following repo and check out the <code>start-here</code> branch:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/amejiarosario/vue-todo-app.git</span><br><span class="line"><span class="built_in">cd</span> vue-todo-app</span><br><span class="line">git checkout start-here</span><br><span class="line"></span><br><span class="line">npm install</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<p>After running <code>npm start</code>, your browser should open on port <code>http://127.0.0.1:8080</code> and show the todo app.</p>
+<p><img src="/images/todo-app.jpg" alt="todo-app"></p>
+<p>Try to interact with it. You cannot create a new Todos, nor can you delete them or edit them. We are going to implement that!</p>
+<p>Open your favorite code editor (I recommend <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Code</a>) on <code>vue-todo-app</code> directory.</p>
+<h2 id="Package-json"><a href="#Package-json" class="headerlink" title="Package.json"></a>Package.json</h2><p>Take a look at the <code>package.json</code> dependencies:</p>
+<figure class="highlight js"><figcaption><span>package.json (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;todomvc-app-css&quot;</span>: <span class="string">&quot;2.1.2&quot;</span>,</span><br><span class="line">  <span class="string">&quot;vue&quot;</span>: <span class="string">&quot;2.5.17&quot;</span>,</span><br><span class="line">  <span class="string">&quot;vue-router&quot;</span>: <span class="string">&quot;3.0.1&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;devDependencies&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;live-server&quot;</span>: <span class="string">&quot;1.2.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We installed <code>Vue</code> and <code>VueRouter</code> dependencies. Also, we have the nice CSS library for Todo apps and <code>live-server</code> to serve and reload the page when we make changes. That’s all we would need for this tutorial.</p>
+<h2 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h2><p>Open the <code>index.html</code> file.  There we have the basic HTML structure for the Todo app that we are going to build upon:</p>
+<ul>
+<li>Line 9: Loads the CSS from NPM module <code>node_modules/todomvc-app-css/index.css</code>.</li>
+<li>Line 24: We have the <code>ul</code> and some hard-coded todo lists. We are going to change this in a bit.</li>
+<li>Line 75: we have multiple script files that load Vue, VueRouter and an empty <code>app.js</code>.</li>
+</ul>
+<p>Now, you know the basic structure where we are going to work on. Let’s get started with Vue! 🖖</p>
+<h1 id="Getting-started-with-Vue"><a href="#Getting-started-with-Vue" class="headerlink" title="Getting started with Vue"></a>Getting started with Vue</h1><p>As you might know…</p>
+<blockquote>
+<p>Vue.js is a <em>reactive</em> JavaScript framework to build UI components.</p>
+</blockquote>
+<p>It’s reactive because the data and the DOM are linked. That means, that when data changes, it automatically updates the DOM. Let’s try that!</p>
+<h2 id="Vue-Data-amp-v-text"><a href="#Vue-Data-amp-v-text" class="headerlink" title="Vue Data &amp; v-text"></a>Vue Data &amp; v-text</h2><p>Go to <code>app.js</code> and type the following:</p>
+<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> todoApp = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;.todoapp&#x27;</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    title: <span class="string">&#x27;Hello Vue!&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Notice the 2nd line with <code>el: &#39;.todoapp&#39;</code>. The <code>el</code> is the element where Vue is going to be mounted.</p>
+<p>If you notice in the <code>index.html</code> that’s the section part. As shown in the fragment below.</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;todoapp&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Going back to the <code>app.js</code> file, let’s now take a look into the <code>data</code> attribute, that binds the title. The <code>data</code> object is reactive. It keeps track of changes and re-render the DOM if needed. Go to the index.html page and change <code>&lt;h1&gt;todos&lt;/h1&gt;</code> for <code>&lt;h1&gt;{{ title }}&lt;/h1&gt;</code>. The rest remains the same:</p>
+<figure class="highlight js"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;section <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;todoapp&quot;</span>&gt;</span><br><span class="line">  &lt;header <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;header&quot;</span>&gt;</span><br><span class="line marked">    &lt;h1&gt;&#123;&#123; title &#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;input <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;new-todo&quot;</span> placeholder=<span class="string">&quot;What needs to be done?&quot;</span> autofocus&gt;</span><br><span class="line">  &lt;/header&gt;</span><br><span class="line">  &lt;!--  ...  --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>If you have <code>npm start</code> running you will see that the title changed!</p>
+<p>You can also go to the console and change it <code>todoApp.title = &quot;Bucket List&quot;</code> and see that it updates the DOM.</p>
+<p><img src="/images/vue-reactive.gif" alt="vue"></p>
+<p>Note: besides the curly braces you can also use <code>v-text</code>:</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-text</span>=<span class="string">&quot;title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Let’s go back to <code>app.js</code> and do something useful inside the <code>data</code> object. Let’s put an initial todo list:</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> todoApp = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;.todoapp&#x27;</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    title: <span class="string">&#x27;Todos&#x27;</span>,</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">&#x27;Learn JavaScript ES6+ goodies&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">&#x27;Learn Vue&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">&#x27;Build something awesome&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Now that we have the list on the data, we need to replace the <code>&lt;li&gt;</code> elements in <code>index.html</code> with each of the elements in the <code>data.todos</code> array.</p>
+<p>Let’s do the CRUD (Create-Read-Update-Delete) of a Todo application.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/2d1f2e5">review diff</a></p>
+<h2 id="READ-List-rendering-with-v-for"><a href="#READ-List-rendering-with-v-for" class="headerlink" title="READ: List rendering with v-for"></a>READ: List rendering with <code>v-for</code></h2><p>As you can see everything starting with <code>v-</code> is defined by the Vue library.</p>
+<p>We can iterate through elements using <code>v-for</code> as follows:</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;todo in todos&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;view&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>&#123;&#123;todo.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;destroy&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;edit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Rule the web&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>You can remove the other <code>&lt;li&gt;</code> tag that was just a placeholder.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/3dc4871">review diff</a></p>
+<h2 id="CREATE-Todo-and-event-directives"><a href="#CREATE-Todo-and-event-directives" class="headerlink" title="CREATE Todo and event directives"></a>CREATE Todo and event directives</h2><p>We are going to implement the create functionality. We have a textbox, and when we press enter, we would like to add whatever we typed to the list.</p>
+<p>In Vue, we can listen to an event using <code>v-on:EVENT_NAME</code>. E.g.:</p>
+<ul>
+<li>v-on:click</li>
+<li>v-on:dbclick</li>
+<li>v-on:keyup</li>
+<li>v-on:keyup.enter</li>
+</ul>
+<p><strong>Protip</strong>: since <code>v-on:</code> is used a lot, there’s a shortcut <code>@</code>. E.g. Instead of <code>v-on:keyup.enter</code> it can be <code>@keyup.enter</code>.</p>
+<p>Let’s use the <code>keyup.enter</code> to create a todo:</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;new-todo&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;What needs to be done?&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-on:keyup.enter</span>=<span class="string">&quot;createTodo&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">autofocus</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>On <code>enter</code> we are calling <code>createTodo</code> method, but it’s not defined yet. Let’s define it on <code>app.js</code> as follows:</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  createTodo(event) &#123;</span><br><span class="line">    <span class="keyword">const</span> textbox = event.target;</span><br><span class="line">    <span class="built_in">this</span>.todos.push(&#123; <span class="attr">text</span>: textbox.value, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">    textbox.value = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/fcd305c">review diff</a></p>
+<h2 id="Applying-classes-dynamically-amp-Vue-v-bind"><a href="#Applying-classes-dynamically-amp-Vue-v-bind" class="headerlink" title="Applying classes dynamically &amp; Vue v-bind"></a>Applying classes dynamically &amp; Vue <code>v-bind</code></h2><p>If you click the checkbox (or checkcirlcle) we would like the class <code>completed</code> to be applied to the element. We can accomplish this by using the <code>v-bind</code> directive.</p>
+<p><code>v-bind</code> can be applied to any HTML attribute such as <code>class</code>, <code>title</code> and so forth. Since <code>v-bind</code> is used a lot we can have a shortcut <code>:</code>, so instead of <code>v-bind:class</code> it becomes <code>:class</code>.</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;todo in todos&quot;</span> <span class="attr">:class</span>=<span class="string">&quot;&#123; completed: todo.isDone &#125;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now if a Todo list is completed, it will become cross out. However, if we click on the checkbox, it doesn’t update the <code>isDone</code> property.  Let’s fix that next.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/2145c36">review diff</a></p>
+<h2 id="Keep-DOM-and-data-in-sync-with-Vue-v-model"><a href="#Keep-DOM-and-data-in-sync-with-Vue-v-model" class="headerlink" title="Keep DOM and data in sync with Vue v-model"></a>Keep DOM and data in sync with Vue v-model</h2><p>The todos have a property called <code>isDone</code> if it’s true we want the checkbox to be marked. That’s data -&gt; DOM. We also want if we change the DOM (click the checkbox) we want to update the data (DOM -&gt; data). This bi-directional communication is easy to do using <code>v-model</code>, it will keep it in sync for you!</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;todo.isDone&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>If you test the app now, you can see when you click the checkbox; also the text gets cross out. Yay!</p>
+<p>You can also go to the console and verify that if you change the data directly, it will immediately update the HTML. Type the following in the browser console where you todo app is running:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">todoApp.todos[2].isDone &#x3D; true</span><br></pre></td></tr></table></figure>
+<p>You should see the update. Cool!</p>
+<h2 id="UPDATE-todo-list-with-a-double-click"><a href="#UPDATE-todo-list-with-a-double-click" class="headerlink" title="UPDATE todo list with a double-click"></a>UPDATE todo list with a double-click</h2><p>We want to double click on any list and that it automatically becomes a checkbox. We have some CSS magic to do that, the only thing we need to do is to apply the <code>editing</code> class.</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- List items should get the class `editing` when editing and `completed` when marked as completed --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;todo in todos&quot;</span> <span class="attr">:class</span>=<span class="string">&quot;&#123; completed: todo.isDone &#125;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;view&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;todo.isDone&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>&#123;&#123;todo.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;destroy&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;edit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Rule the web&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Similar to what we did with the <code>completed</code> class, we need to add a condition when we start editing.</p>
+<p>Starting with the label, we want to start editing when we double-click on it. Vue provides <code>v-on:dblclick</code> or shorthand <code>@dblclick</code>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> @<span class="attr">dblclick</span>=<span class="string">&quot;startEditing(todo)&quot;</span>&gt;</span>&#123;&#123;todo.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>In the <code>app.js</code> we can define start editing as follows:</p>
+<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> todoApp = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;.todoapp&#x27;</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    title: <span class="string">&#x27;Todos&#x27;</span>,</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">&#x27;Learn JavaScript ES6+ goodies&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">&#x27;Learn Vue&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">&#x27;Build something awesome&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">    editing: <span class="literal">null</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    createTodo(event) &#123;</span><br><span class="line">      <span class="keyword">const</span> textbox = event.target;</span><br><span class="line">      <span class="built_in">this</span>.todos.push(&#123; <span class="attr">text</span>: textbox.value, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">      textbox.value = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    startEditing(todo) &#123;</span><br><span class="line">      <span class="built_in">this</span>.editing = todo;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>We created a new variable <code>editing</code> in data. We just set whatever todo we are currently editing. We want only to edit one at a time, so this works perfectly. When you double-click the label, the <code>startEditing</code> function is called and set the <code>editing</code> variable to the current todo element.</p>
+<p>Next, we need to apply the <code>editing</code> class:</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;todo in todos&quot;</span> <span class="attr">:class</span>=<span class="string">&quot;&#123; completed: todo.isDone, editing: todo === editing &#125;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>When <code>data.editing</code> matches the <code>todo</code> , then we apply the CSS class. Try it out!</p>
+<p>If you try it out, you will notice you can enter on edit mode, but there’s no way to exit from it (yet). Let’s fix that.</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;edit&quot;</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">keyup.esc</span>=<span class="string">&quot;cancelEditing&quot;</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">keyup.enter</span>=<span class="string">&quot;finishEditing&quot;</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">blur</span>=<span class="string">&quot;finishEditing&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:value</span>=<span class="string">&quot;todo.text&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>First, we want the input textbox to have the <code>value</code> of the <code>todo.text</code> when we enter to the editing mode. We can accomplish this using <code>:value=&quot;todo.text&quot;</code>. Remember that colon <code>:</code> is a shorthand for <code>v-bind</code>.</p>
+<p>Before, we implemented the <code>startEditing</code> function. Now, we need to complete the edit functionality with these two more methods:</p>
+<ul>
+<li><code>finishEditing</code>: applies changes to the <code>todo.text</code>. This is triggered by pressing <kbd>enter</kbd> or clicking elsewhere (blur).</li>
+<li><code>cancelEditing</code>: discard the changes and leave <code>todos</code> list untouched. This happens when you press the <kbd>esc</kbd> key.</li>
+</ul>
+<p>Let’s go to the <code>app.js</code> and define these two functions.</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">finishEditing(event) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">this</span>.editing) &#123; <span class="keyword">return</span>; &#125;</span><br><span class="line">  <span class="keyword">const</span> textbox = event.target;</span><br><span class="line">  <span class="built_in">this</span>.editing.text = textbox.value;</span><br><span class="line">  <span class="built_in">this</span>.editing = <span class="literal">null</span>;</span><br><span class="line">&#125;,</span><br><span class="line">cancelEditing() &#123;</span><br><span class="line">  <span class="built_in">this</span>.editing = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Cancel is pretty straightforward. It just set editing to null.</p>
+<p><code>finishEditing</code> will take the input current’s value (event.target.value) and copy over the todo element that is currently being edited. That’s it!</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/4af7d31">review diff</a></p>
+<h2 id="DELETE-todo-list-on-click-event"><a href="#DELETE-todo-list-on-click-event" class="headerlink" title="DELETE todo list on @click event"></a>DELETE todo list on @click event</h2><p>Finally, the last step to complete the CRUD operations is deleting. We are going to listen for click events on the destroy icon:</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;destroy&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;destroyTodo(todo)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>also, <code>destroyTodo</code> implementation is as follows:</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">destroyTodo(todo) &#123;</span><br><span class="line">  <span class="keyword">const</span> index = <span class="built_in">this</span>.todos.indexOf(todo);</span><br><span class="line">  <span class="built_in">this</span>.todos.splice(index, <span class="number">1</span>);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/a73e058">review diff</a></p>
+<h2 id="Trimming-inputs"><a href="#Trimming-inputs" class="headerlink" title="Trimming inputs"></a>Trimming inputs</h2><p>It’s always a good idea to <code>trim</code> user inputs, so any accidental whitespace doesn’t get in the way with <code>textbox.value.trim()</code>.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/45b4eed44abd9a4cfec3b3977b61fe7031ff6c4e">review diff</a></p>
+<h2 id="Items-left-count-with-computed-properties"><a href="#Items-left-count-with-computed-properties" class="headerlink" title="Items left count with  computed properties"></a>Items left count with  <code>computed</code> properties</h2><p>Right now the <code>item left</code> count is always 0. We want the number of remaining tasks.  We could do something like this:</p>
+<figure class="highlight html"><figcaption><span>anti-example</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123; todos.filter(t =&gt; !t.isDone).length &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item(s) left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>That’s a little ugly to stick out all that logic into the template. That’s why Vue has the <code>computed</code>  section!</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  activeTodos() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.todos.filter(<span class="function"><span class="params">t</span> =&gt;</span> !t.isDone);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now the template is cleaner:</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123; activeTodos.length &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item(s) left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>You might ask, why use a computed property when we can create a method instead?</p>
+<blockquote>
+<p>Computed vs. Methods. Computed properties are <strong>cached</strong> and updated when their dependencies changes. The computed property would return immediately without having to evaluate the function if no changes happened. On the other hand, Methods will <strong>always</strong> run the function.</p>
+</blockquote>
+<p>Try completing other tasks and verify that the count gets updated.</p>
+<p><img src="/images/items-left.gif" alt="items-left"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/24ae5a0f74c226325d88a2aaecad9e40b35760fb">review diff</a></p>
+<h2 id="Clearing-completed-tasks-amp-conditional-rendering-with-v-show"><a href="#Clearing-completed-tasks-amp-conditional-rendering-with-v-show" class="headerlink" title="Clearing completed tasks &amp; conditional rendering with v-show"></a>Clearing completed tasks &amp; conditional rendering with <code>v-show</code></h2><p>We want to show <code>clear completed</code> button only if there are any completed task. We can accomplish this with the <code>v-show</code> directive:</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;clear-completed&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;clearCompleted&quot;</span> <span class="attr">v-show</span>=<span class="string">&quot;completedTodos.length&quot;</span>&gt;</span>Clear completed<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>The v-show will hide the element if the expression evaluates to false or 0.</p>
+<p>One way to clearing out completed tasks is by assigning the <code>activeTodos</code> property to the <code>todos</code>:</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">clearCompleted() &#123;</span><br><span class="line">  <span class="built_in">this</span>.todos = <span class="built_in">this</span>.activeTodos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Also, we have to add the computed property <code>completedTodos</code> that we use in the v-show</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">completedTodos() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.todos.filter(<span class="function"><span class="params">t</span> =&gt;</span> t.isDone);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/dd7dd90">review diff</a></p>
+<h1 id="Vue-Conditional-Rendering-v-show-vs-v-if"><a href="#Vue-Conditional-Rendering-v-show-vs-v-if" class="headerlink" title="Vue Conditional Rendering: v-show vs v-if"></a>Vue Conditional Rendering: <code>v-show</code> vs <code>v-if</code></h1><p><code>v-show</code> and <code>v-if</code> looks very similar, but they work differently. <code>v-if</code> removes the element from the DOM and disable events, while <code>v-show</code> hides it with the CSS <code>display: none;</code>. So, <code>v-if</code> is more expensive than <code>v-show</code>.</p>
+<blockquote>
+<p>If you foresee the element being toggling visibility very often then you should use <code>v-show</code>. If not, then use <code>v-if</code>.</p>
+</blockquote>
+<p>We can hide the footer and central section if there’s no todo list.</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span> <span class="attr">v-if</span>=<span class="string">&quot;todos.length&quot;</span>&gt;</span>... <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">v-if</span>=<span class="string">&quot;todos.length&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/790b241">review diff</a></p>
+<h1 id="Local-Storage"><a href="#Local-Storage" class="headerlink" title="Local Storage"></a>Local Storage</h1><p>On every refresh, our list gets reset. This is useful for dev but not for users. Let’s persist our Todos in the local storage.</p>
+<blockquote>
+<p>Local storage vs. Session storage. <strong>Session</strong> data goes away when you close the window or expire after a specific time. <strong>Local storage</strong> doesn’t have an expiration time.</p>
+</blockquote>
+<p>The way <code>localStorage</code> works is straightforward. It is global variable and has only 4 methods:</p>
+<ul>
+<li><code>localStorage.setItem(key, value)</code>: key/value storage. <code>key</code> and <code>value</code> are coerced into a string.</li>
+<li><code>localStorage.getItem(key)</code>: get the item by key.</li>
+<li><code>localStorage.removeItem(key)</code>: remove item matching the key.</li>
+<li><code>localStorage.clear()</code>: clear all items for the current hostname.</li>
+</ul>
+<p>We are going to use <code>getItem</code> and <code>setItem</code>. First we need to define a storage key:</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> LOCAL_STORAGE_KEY = <span class="string">&#x27;todo-app-vue&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Then we replace <code>data.todos</code> to get items (if any) from the local storage:</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  title: <span class="string">&#x27;Todos&#x27;</span>,</span><br><span class="line">  todos: <span class="built_in">JSON</span>.parse(<span class="built_in">localStorage</span>.getItem(LOCAL_STORAGE_KEY)) || [</span><br><span class="line">    &#123; <span class="attr">text</span>: <span class="string">&#x27;Learn JavaScript ES6+ goodies&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">text</span>: <span class="string">&#x27;Learn Vue&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">text</span>: <span class="string">&#x27;Build something awesome&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  ],</span><br><span class="line">  editing: <span class="literal">null</span>,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>We have to use <code>JSON.parse</code> because everything gets stored as a string and we need to convert it to an object.</p>
+<p><code>getItem</code> will retrieve the saved todos from the <code>localstorage</code>. However, we are saying it yet. Let’s see how we can do that.</p>
+<h1 id="Vue-Watchers"><a href="#Vue-Watchers" class="headerlink" title="Vue Watchers"></a>Vue Watchers</h1><p>For saving, we are going to use the Vue watchers.</p>
+<blockquote>
+<p>Vue watchers vs. Computed properties. Computed properties are usually used to “compute” and cache the value of 2 or more properties. Watchers are more low level than computed properties. Watchers allow you to “watch” for changes on a single property. This is useful for performing expensive operations like saving to DB, API calls and so on.</p>
+</blockquote>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  todos: &#123;</span><br><span class="line">    deep: <span class="literal">true</span>,</span><br><span class="line">    handler(newValue) &#123;</span><br><span class="line">      <span class="built_in">localStorage</span>.setItem(LOCAL_STORAGE_KEY, <span class="built_in">JSON</span>.stringify(newValue));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>This expression watches for changes in our <code>todos</code> data. Deep means that it recursively watches for changes in the values inside arrays and objects. If there’s a change, we save them to the local storage.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/vue-todo-app/commit/579da19">review diff</a></p>
+<p>Once you change some todos, you will see they are stored in the local storage. You can access them using the browser’s dev tools:</p>
+<p><img src="/images/local-storage-devtools.jpg" alt="local storage"></p>
+<p>The last part to implement is the routing! However, for that, we need to explain some more concepts and will do that in the next post.</p>
+<hr>
+<p>In the next tutorial, we are going to switch gears a little bit and go deeper into Vue Components, Routing, and Local Storage. Stay tuned!</p>
+<h1 id="Summary-Vue-cheatsheet"><a href="#Summary-Vue-cheatsheet" class="headerlink" title="Summary: Vue cheatsheet"></a>Summary: Vue cheatsheet</h1><p>We learned a lot! Here is a summary:</p>
+<!-- encode html with https://mothereff.in/html-entities -->
+
+<div class="table--responsive">
+  <table class="table">
+    <caption>Binders</caption>
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Examples</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td> Mustache </td>
+        <td>Variable that is replaced with variable's value</td>
+        <td>
+          <pre><code>&#x3C;h1&#x3E;&#123;&#123; title &#125;&#125;&#x3C;/h1&#x3E;</code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-bind </td>
+        <td>Bind to HTML attribute</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;span v-bind:title=&#x22;tooltip&#x22;&#x3E;&#x3C;/span&#x3E;
+&#x3C;div v-bind:id=&#x22;dynamicId&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;button v-bind:disabled=&#x22;isButtonDisabled&#x22;&#x3E;Button&#x3C;/button&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> :</td>
+        <td>Shortcut for v-bind</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;span :title=&#x22;tooltip&#x22;&#x3E;&#x3C;/span&#x3E;
+&#x3C;li v-bind:class=&#x22;&#123;completed: todo.isDone &#125;&#x22;&#x3E;&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-text </td>
+        <td>Inject text into the element</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;h1 v-text=&#x22;title&#x22;&#x3E;&#x3C;/h1&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-html </td>
+        <td>Inject raw HTML into the element</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;blog-post v-html=&#x22;content&#x22;&#x3E;&#x3C;/blog-post&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table--responsive">
+  <table class="table">
+    <caption>List Rendering</caption>
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Examples</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate over elements</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;todo in todos&#x22;&#x3E; {{todo.text}}&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate with index</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;(item, index) in items&#x22;&#x3E;
+  {{ parentMessage }} - {{ index }} - {{ item.message }}
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate over object's values</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;value in object&#x22;&#x3E;
+  {{ value }}  
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate over object's keys/values</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;(value, key) in object&#x22;&#x3E;
+  {{ key }}: {{ value }}  
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate with keys, values and index</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;(value, key, index) in object&#x22;&#x3E;
+  {{index}}.{{ key }}: {{ value }}  
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table--responsive">
+  <table class="table">
+    <caption>Events</caption>
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Examples</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td> v-on:click </td>
+        <td>Invoke callback on click</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;button class=&#x22;destroy&#x22; v-on:click=&#x22;destroyTodo(todo)&#x22;&#x3E;&#x3C;/button&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> @ </td>
+        <td>`@` is shorcut for `v-on:`</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;input class=&#x22;edit&#x22;
+    @keyup.esc=&#x22;cancelEditing&#x22;
+    @keyup.enter=&#x22;finishEditing&#x22;
+    @blur=&#x22;finishEditing&#x22;&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>v-on:dblclick </td>
+        <td>Invoke callback on double-click</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;label @dblclick=&#x22;startEditing(todo)&#x22;&#x3E;{{todo.text}}&#x3C;/label&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> @keyup.enter </td>
+        <td>Invoke callback on keyup <kbd>enter</kbd></td>
+        <td>
+          <pre>
+          <code>
+&#x3C;input @keyup.enter=&#x22;createTodo&#x22;&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> @keyup.esc </td>
+        <td>Invoke callback on keyup <kbd>esc</kbd></td>
+        <td>
+          <pre>
+          <code>
+&#x3C;input @keyup.esc=&#x22;cancelEditing&#x22;&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table--responsive">
+  <table class="table">
+    <caption>Conditional Rendering</caption>
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Examples</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td> v-show </td>
+        <td>Show or hide the element if the expression evaluates to truthy</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;button v-show=&#x22;completedTodos.length&#x22;&#x3E;Clear completed&#x3C;/button&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-if </td>
+        <td>Remove or add the element if the expression evaluates to truthy</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;footer v-if=&#x22;todos.length&#x22;&#x3E;...&#x3C;/footer&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table--responsive">
+  <table class="table">
+    <caption>Automatic Data<->DOM Sync</caption>
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Examples</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td> v-model </td>
+        <td>Keep data and DOM in sync automatially</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;input class=&#x22;toggle&#x22; type=&#x22;checkbox&#x22; v-model=&#x22;todo.isDone&#x22;&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table--responsive">
+  <table class="table">
+    <caption>Vue instance</caption>
+    <thead>
+      <th>Example with all attributes</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <pre>
+          <code>
+// Vue Instance
+const todoApp = new Vue(&#123;
+  // element matcher
+  el: '.todoapp',
+
+<p>  // Reactive data, when something changes here it gets updated on the templates
+  // data should be a function so every instance get’s a different data
+  data() &#123;
+    return &#123;
+      title: ‘Todos’,
+      editing: null,
+    &#125;
+  &#125;,</p>
+<p>  // invoke this functions on event handlers, etc.
+  methods: &#123;
+    createTodo(event) &#123;
+      const textbox = event.target;
+      this.todos.push(&#123; text: textbox.value.trim(), isDone: false &#125;);
+      textbox.value = ‘’;
+    &#125;,
+  &#125;,</p>
+<p>  // cached methods (only get invokes when data changes)
+  computed: &#123;
+    activeTodos() &#123;
+      return this.todos.filter(t =&gt; !t.isDone);
+    &#125;,
+  &#125;,</p>
+<p>  // watch for changes on the data
+  watch: &#123;
+    todos: &#123;
+      deep: true,
+      handler(newValue, oldValue) &#123;
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newValue));
+      &#125;
+    &#125;
+  &#125;,
+&#125;);
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table></p>
+</div>
+
+
+<!-- Feeback
+https://news.ycombinator.com/item?id=17762421
+Good intro, few nitpicks:
+- it should be mentioned that components have to return data as a function [0]
+
+- v-for should ideally be used with keys [1]
+
+[0] https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Fu...
+
+[1] https://vuejs.org/v2/guide/list.html#key
+
+One should definitely mention the vue.js docs for basics.
+
+-->
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2018-08-14-Vue-js-Tutorial-for-beginners-Create-a-Todo-App.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/How-can-developers-reduce-stress/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  How can developers reduce stress
+                
+              </div>
+            </a>
+          
+          
+            <a href="/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">Self-balanced Binary Search Trees with AVL in JavaScript</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2018-08-14-Vue-js-Tutorial-for-beginners-Create-a-Todo-App.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Setup"><span class="toc-number">1.</span> <span class="toc-text">Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Package-json"><span class="toc-number">1.1.</span> <span class="toc-text">Package.json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#index-html"><span class="toc-number">1.2.</span> <span class="toc-text">index.html</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Getting-started-with-Vue"><span class="toc-number">2.</span> <span class="toc-text">Getting started with Vue</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-Data-amp-v-text"><span class="toc-number">2.1.</span> <span class="toc-text">Vue Data &amp; v-text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#READ-List-rendering-with-v-for"><span class="toc-number">2.2.</span> <span class="toc-text">READ: List rendering with v-for</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CREATE-Todo-and-event-directives"><span class="toc-number">2.3.</span> <span class="toc-text">CREATE Todo and event directives</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Applying-classes-dynamically-amp-Vue-v-bind"><span class="toc-number">2.4.</span> <span class="toc-text">Applying classes dynamically &amp; Vue v-bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keep-DOM-and-data-in-sync-with-Vue-v-model"><span class="toc-number">2.5.</span> <span class="toc-text">Keep DOM and data in sync with Vue v-model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UPDATE-todo-list-with-a-double-click"><span class="toc-number">2.6.</span> <span class="toc-text">UPDATE todo list with a double-click</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DELETE-todo-list-on-click-event"><span class="toc-number">2.7.</span> <span class="toc-text">DELETE todo list on @click event</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Trimming-inputs"><span class="toc-number">2.8.</span> <span class="toc-text">Trimming inputs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Items-left-count-with-computed-properties"><span class="toc-number">2.9.</span> <span class="toc-text">Items left count with  computed properties</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Clearing-completed-tasks-amp-conditional-rendering-with-v-show"><span class="toc-number">2.10.</span> <span class="toc-text">Clearing completed tasks &amp; conditional rendering with v-show</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue-Conditional-Rendering-v-show-vs-v-if"><span class="toc-number">3.</span> <span class="toc-text">Vue Conditional Rendering: v-show vs v-if</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Local-Storage"><span class="toc-number">4.</span> <span class="toc-text">Local Storage</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue-Watchers"><span class="toc-number">5.</span> <span class="toc-text">Vue Watchers</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary-Vue-cheatsheet"><span class="toc-number">6.</span> <span class="toc-text">Summary: Vue cheatsheet</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/Vue-js-Tutorial-for-beginners-Create-a-Todo-App/';
+      this.page.identifier = 'https://adrianmejia.com/Vue-js-Tutorial-for-beginners-Create-a-Todo-App/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

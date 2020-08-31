@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>The JavaScript Promise Tutorial | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/promises-tutorial-concurrency-in-javascript-node/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/promises-tutorial-concurrency-in-javascript-node/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="This post is intended to be the ultimate JavaScript Promises tutorial: recipes and examples for everyday situations (or that’s the goal 😉). We cover all the necessary methods like then, catch, and finally. Also, we go over more complex situations like executing promises in parallel with Promise.all, timing out APIs with Promise.race, promise chaining and some best practices and gotchas." />
+    <meta property="og:image" content="https://adrianmejia.com/images/promises-concurrency-in-javascript-large.png" />
+    <meta property="og:title" content="The JavaScript Promise Tutorial" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "The JavaScript Promise Tutorial",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/promises-concurrency-in-javascript-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2019-07-08T19:26:12-04:00",
+  "dateModified": "2020-08-06T14:25:12-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "This post is intended to be the ultimate JavaScript Promises tutorial: recipes and examples for everyday situations (or that’s the goal 😉). We cover all the necessary methods like then, catch, and finally. Also, we go over more complex situations like executing promises in parallel with Promise.all, timing out APIs with Promise.race, promise chaining and some best practices and gotchas."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a>
+    </div>
+
+    <h1>The JavaScript Promise Tutorial</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2020-08-06T18:25:12.000Z" itemprop="dateUpdated">August 6th 2020</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          3.2k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/promises-tutorial-concurrency-in-javascript-node/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-async-javascript/" rel="tag">tutorial_async-javascript</a><span class="tag-list-count">3</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #EEE8D5">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/promises-concurrency-in-javascript-large.png">
+        <source srcset="/images/promises-concurrency-in-javascript-small.png">
+        <img src="/images/promises-concurrency-in-javascript-large.png" alt="The JavaScript Promise Tutorial">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>This post is intended to be the ultimate JavaScript Promises tutorial: recipes and examples for everyday situations (or that’s the goal 😉). We cover all the necessary methods like <code>then</code>, <code>catch</code>, and <code>finally</code>. Also, we go over more complex situations like executing promises in parallel with <code>Promise.all</code>, timing out APIs with <code>Promise.race</code>, promise chaining and some best practices and gotchas.</p>
+<a id="more"></a>
+
+<p><em>NOTE: I’d like this post to be up-to-date with the most common use cases for promises. If you have a question about promises and it’s not answered here. Please, comment below or reach out to me directly <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">@iAmAdrianMejia</a>. I’ll look into it and update this post.</em></p>
+<hr>
+
+<p><strong>Related Posts:</strong></p>
+<ol>
+<li><a href="/asynchronous-vs-synchronous-handling-concurrency-in-javascript/">Async vs Sync in JavaScript</a></li>
+<li><a href="/callbacks-concurrency-in-javascript-node/">JavaScript Callbacks</a></li>
+<li><a href="/promises-tutorial-concurrency-in-javascript-node/">JavaScript Promises</a> (this one)</li>
+</ol>
+<hr>
+
+<h1 id="JavaScript-Promises"><a href="#JavaScript-Promises" class="headerlink" title="JavaScript Promises"></a>JavaScript Promises</h1><p>A promise is an object that allows you to handle asynchronous operations. It’s an alternative to plain old callbacks.</p>
+<p>Promises have many advantages over callbacks. To name a few:</p>
+<ul>
+<li>Make the async code easier to read.</li>
+<li>Provide combined error handling.</li>
+<li>Better control flow. You can have async actions execute in parallel or series.</li>
+</ul>
+<p>Callbacks tend to form deeply nested structures (a.k.a. Callback hell). Like the following:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  b(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    c(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      d(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// and so on ...</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>If you convert those functions to promises, they can be chained producing more maintainable code. Something like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve()</span><br><span class="line">  .then(a)</span><br><span class="line">  .then(b)</span><br><span class="line">  .then(c)</span><br><span class="line">  .then(d)</span><br><span class="line">  .catch(<span class="built_in">console</span>.error);</span><br></pre></td></tr></table></figure>
+
+<p>As you can see, in the example above, the promise object exposes the methods <code>.then</code> and <code>.catch</code>. We are going to explore these methods later.</p>
+<h2 id="How-do-I-convert-an-existing-callback-API-to-promises"><a href="#How-do-I-convert-an-existing-callback-API-to-promises" class="headerlink" title="How do I convert an existing callback API to promises?"></a>How do I convert an existing callback API to promises?</h2><p>We can convert callbacks into promises using the Promise constructor.</p>
+<p>The Promise constructor takes a callback with two arguments <code>resolve</code> and <code>reject</code>.</p>
+<ul>
+<li><strong>Resolve</strong>: is a callback that should be invoked when the async operation is completed.</li>
+<li><strong>Reject</strong>: is a callback function to be invoked when an error occurs.</li>
+</ul>
+<p>The constructor returns an object immediately, the promise instance. You can get notified when the promise is “done” using the method <code>.then</code> in the promise instance. Let’s see an example.</p>
+<h3 id="Wait-aren’t-promises-just-callbacks"><a href="#Wait-aren’t-promises-just-callbacks" class="headerlink" title="Wait, aren’t promises just callbacks?"></a>Wait, aren’t promises just callbacks?</h3><p>Yes and no. Promises are not “just” callbacks, but they do use asynchronous callbacks on the <code>.then</code> and <code>.catch</code> methods. Promises are an abstraction on top of callbacks that allows you to chain multiple async operations and handle errors more elegantly. Let’s see it in action.</p>
+<h4 id="Promises-anti-pattern-promise-hell"><a href="#Promises-anti-pattern-promise-hell" class="headerlink" title="Promises anti-pattern (promise hell)"></a>Promises anti-pattern (promise hell)</h4><p>Before jumping into how to convert callbacks to promises, let’s see how NOT to it.</p>
+<p>Please don’t convert callbacks to promises from this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  b(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    c(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      d(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// and so on ...</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>To this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a().then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> b().then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> c().then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> d().then(<span class="function">() =&gt;</span>&#123;</span><br><span class="line">        <span class="comment">// ⚠️ Please never ever do to this! ⚠️</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Always keep your promises as flat as you can.</p>
+<p>It’s better to do this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a()</span><br><span class="line">  .then(b)</span><br><span class="line">  .then(c)</span><br><span class="line">  .then(d)</span><br></pre></td></tr></table></figure>
+
+<p>Let’s do some real-life examples! 💪</p>
+<h3 id="Promesifying-Timeouts"><a href="#Promesifying-Timeouts" class="headerlink" title="Promesifying Timeouts"></a>Promesifying Timeouts</h3><p>Let’s see an example. What do you think will be the output of the following program?</p>
+<script defer async src="https://embed.runkit.com" data-element-id="my-element"></script>
+<pre id="my-element" class="runkit">
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('time is up ⏰');
+  }, 1e3);
+
+  setTimeout(() => {
+    reject('Oops 🔥');
+  }, 2e3);
+});
+
+promise
+  .then(console.log)
+  .catch(console.error);
+</pre>
+
+<p>Is the output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">time is up ⏰</span><br><span class="line">Oops! 🔥</span><br></pre></td></tr></table></figure>
+
+<p>or is it</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time is up ⏰</span><br></pre></td></tr></table></figure>
+
+<p>?</p>
+<p>It’s the latter, because</p>
+<blockquote>
+<p>When a promise it’s <code>resolve</code>d, it can no longer be <code>reject</code>ed.</p>
+</blockquote>
+<p>Once you call one method (<code>resolve</code> or <code>reject</code>) the other is invalidated since the promise in a <em>settled</em> state. Let’s explore all the different states of a promise.</p>
+<h2 id="Promise-states"><a href="#Promise-states" class="headerlink" title="Promise states"></a>Promise states</h2><p>There are four states in which the promises can be:</p>
+<ul>
+<li>⏳ <strong>Pending</strong>: initial state. Async operation is still in process.</li>
+<li>✅ <strong>Fulfilled</strong>: the operation was successful. It invokes <code>.then</code> callback. E.g., <code>.then(onSuccess)</code>.</li>
+<li>⛔️ <strong>Rejected</strong>: the operation failed. It invokes the <code>.catch</code> or <code>.then</code> ‘s second argument (if any). E.g., <code>.catch(onError)</code> or <code>.then(..., onError)</code></li>
+<li>😵 <strong>Settled</strong>: it’s the promise final state. The promise is dead. Nothing else can be resolved or rejected anymore. The <code>.finally</code> method is invoked.</li>
+</ul>
+<p><img src="/images/promises-states.png" alt="Promises four states"></p>
+<h2 id="Promise-instance-methods"><a href="#Promise-instance-methods" class="headerlink" title="Promise instance methods"></a>Promise instance methods</h2><p>The Promise API exposes three main methods: <code>then</code>, <code>catch</code> and <code>finally</code>. Let’s explore each one and provide examples.</p>
+<h3 id="Promise-then"><a href="#Promise-then" class="headerlink" title="Promise then"></a>Promise then</h3><p>The <code>then</code> method allows you to get notified when the asynchronous operation is done, either succeeded or failed. It takes two arguments, one for the successful execution and the other one if an error happens.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onSuccess, onError);</span><br></pre></td></tr></table></figure>
+<p>You can also use catch to handle errors:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(onSuccess).catch(onError);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Promise chaining</strong></p>
+<p><code>then</code> returns a new promise so you can chain multiple promises together. Like in the example below:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve()</span><br><span class="line">  .then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;then#1&#x27;</span>))</span><br><span class="line">  .then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;then#2&#x27;</span>))</span><br><span class="line">  .then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;then#3&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p><code>Promise.resolve</code> immediately resolves the promise as successful. So all the following <code>then</code> are called. The output would be</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">then#1</span><br><span class="line">then#2</span><br><span class="line">then#3</span><br></pre></td></tr></table></figure>
+
+<p>Let’s see how to handle errors on promises with <code>then</code> and <code>catch</code>.</p>
+<h3 id="Promise-catch"><a href="#Promise-catch" class="headerlink" title="Promise catch"></a>Promise catch</h3><p>Promise <code>.catch</code> the method takes a function as an argument that handles errors if they occur. If everything goes well, the catch method is never called.</p>
+<p>Let’s say we have the following promises: one resolves or rejects after 1 second and prints out their letter.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">&#x27;a&#x27;</span>), resolve() &#125;, <span class="number">1e3</span>));</span><br><span class="line"><span class="keyword">const</span> b = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">&#x27;b&#x27;</span>), resolve() &#125;, <span class="number">1e3</span>));</span><br><span class="line"><span class="keyword">const</span> c = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">&#x27;c&#x27;</span>), reject(<span class="string">&#x27;Oops!&#x27;</span>) &#125;, <span class="number">1e3</span>));</span><br><span class="line"><span class="keyword">const</span> d = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">&#x27;d&#x27;</span>), resolve() &#125;, <span class="number">1e3</span>));</span><br></pre></td></tr></table></figure>
+
+<p>Notice that <code>c</code> simulates a rejection with <code>reject(&#39;Oops!&#39;)</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve()</span><br><span class="line">  .then(a)</span><br><span class="line">  .then(b)</span><br><span class="line">  .then(c)</span><br><span class="line">  .then(d)</span><br><span class="line">  .catch(<span class="built_in">console</span>.error)</span><br></pre></td></tr></table></figure>
+
+<p>The output is the following:</p>
+<p><img src="/images/promise-catch.gif" alt="promise catch"></p>
+<p>In this case, you will see <code>a</code>, <code>b</code>, and the error message on <code>c</code>. The function` will never get executed because the error broke the sequence.</p>
+<p>Also, you can handle the error using the 2nd argument of the <code>then</code> function. However, be aware that <code>catch</code> will not execute anymore.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve()</span><br><span class="line">  .then(a)</span><br><span class="line">  .then(b)</span><br><span class="line">  .then(c)</span><br><span class="line">  .then(d, <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;c errored out but no big deal&#x27;</span>))</span><br><span class="line">  .catch(<span class="built_in">console</span>.error)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/promise-then-on-error.gif" alt="promise then error handling"></p>
+<p>As you can see the catch doesn’t get called because we are handling the error on the <code>.then(..., onError)</code> part.
+<code>d</code> is not being called regardless. If you want to ignore the error and continue with the execution of the promise chain, you can add a <code>catch</code> on <code>c</code>. Something like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve()</span><br><span class="line">  .then(a)</span><br><span class="line">  .then(b)</span><br><span class="line">  .then(<span class="function">() =&gt;</span> c().catch(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;error ignored&#x27;</span>)))</span><br><span class="line">  .then(d)</span><br><span class="line">  .catch(<span class="built_in">console</span>.error)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/promise-catch-ignored.gif" alt="promise then error handling"></p>
+<p>Now’d<code>gets executed!! In all the other cases, it didn&#39;t. This early</code>catch` is not desired in most cases; it can lead to things falling silently and make your async operations harder to debug.</p>
+<h3 id="Promise-finally"><a href="#Promise-finally" class="headerlink" title="Promise finally"></a>Promise finally</h3><p>The <code>finally</code> method is called only when the promise is settled.</p>
+<p>You can use a <code>.then</code> after the <code>.catch</code>, in case you want a piece of code to execute always, even after a failure.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve()</span><br><span class="line">  .then(a)</span><br><span class="line">  .then(b)</span><br><span class="line">  .then(c)</span><br><span class="line">  .then(d)</span><br><span class="line">  .catch(<span class="built_in">console</span>.error)</span><br><span class="line">  .then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;always called&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>or you can use the <code>.finally</code> keyword:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve()</span><br><span class="line">  .then(a)</span><br><span class="line">  .then(b)</span><br><span class="line">  .then(c)</span><br><span class="line">  .then(d)</span><br><span class="line">  .catch(<span class="built_in">console</span>.error)</span><br><span class="line">  .finally(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;always called&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="Promise-class-Methods"><a href="#Promise-class-Methods" class="headerlink" title="Promise class Methods"></a>Promise class Methods</h2><p>There are four static methods that you can use directly from the <code>Promise</code> object.</p>
+<ul>
+<li>Promise.all</li>
+<li>Promise.reject</li>
+<li>Promise.resolve</li>
+<li>Promise.race</li>
+</ul>
+<p>Let’s see each one and provide examples.</p>
+<h3 id="Promise-resolve-and-Promise-reject"><a href="#Promise-resolve-and-Promise-reject" class="headerlink" title="Promise.resolve and Promise.reject"></a>Promise.resolve and Promise.reject</h3><p>These two are helper functions that resolve or reject immediately. You can pass a <code>reason</code> that will be passed on the next <code>.then</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">&#x27;Yay!!!&#x27;</span>)</span><br><span class="line">  .then(<span class="built_in">console</span>.log)</span><br><span class="line">  .catch(<span class="built_in">console</span>.error)</span><br></pre></td></tr></table></figure>
+
+<p>This code will output <code>Yay!!!</code> as expected.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.reject(<span class="string">&#x27;Oops 🔥&#x27;</span>)</span><br><span class="line">  .then(<span class="built_in">console</span>.log)</span><br><span class="line">  .catch(<span class="built_in">console</span>.error)</span><br></pre></td></tr></table></figure>
+
+<p>The output will be a console error with the error reason of <code>Oops 🔥</code>.</p>
+<h3 id="Executing-promises-in-Parallel-with-Promise-all"><a href="#Executing-promises-in-Parallel-with-Promise-all" class="headerlink" title="Executing promises in Parallel with Promise.all"></a>Executing promises in Parallel with Promise.all</h3><p>Usually, promises are executed in series, one after another, but you can use them in parallel as well.</p>
+<p>Let’s say are polling data from 2 different APIs. If they are not related, we can do trigger both requests at once with <code>Promise.all()</code>.</p>
+<p>For this example, we will pull the Bitcoin price in USD and convert it to EUR. For that, we have two independent API calls. One for BTC/USD and other to get EUR/USD. As you imagine, both API calls can be called in parallel. However, we need a way to know when both are done to calculate the final price. We can use <code>Promise.all</code>. When all promises are done, a new promise will be returning will the results.</p>
+<script defer async src="https://embed.runkit.com" data-element-id="promise-all"></script>
+<pre id="promise-all" class="runkit">
+const axios = require('axios');
+
+const bitcoinPromise = axios.get('https://api.coinpaprika.com/v1/coins/btc-bitcoin/markets');
+const dollarPromise = axios.get('https://api.exchangeratesapi.io/latest?base=USD');
+const currency = 'EUR';
+
+// Get the price of bitcoins on
+Promise.all([bitcoinPromise, dollarPromise])
+  .then(([bitcoinMarkets, dollarExchanges]) => {
+    const byCoinbaseBtc = d => d.exchange_id === 'coinbase-pro' && d.pair === 'BTC/USD';
+    const coinbaseBtc = bitcoinMarkets.data.find(byCoinbaseBtc)
+    const coinbaseBtcInUsd = coinbaseBtc.quotes.USD.price;
+    const rate = dollarExchanges.data.rates[currency];
+    return rate * coinbaseBtcInUsd;
+  })
+  .then(price => console.log(`The Bitcoin in ${currency} is ${price.toLocaleString()}`))
+  .catch(console.log);
+</pre>
+
+
+<p>As you can see, <code>Promise.all</code> accepts an array of promises. When the request for both requests are completed, then we can proceed to calculate the price.</p>
+<p>Let’s do another example and time it:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> resolve(<span class="string">&#x27;a&#x27;</span>), <span class="number">2000</span>));</span><br><span class="line"><span class="keyword">const</span> b = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> resolve(<span class="string">&#x27;b&#x27;</span>), <span class="number">1000</span>));</span><br><span class="line"><span class="keyword">const</span> c = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> resolve(<span class="string">&#x27;c&#x27;</span>), <span class="number">1000</span>));</span><br><span class="line"><span class="keyword">const</span> d = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> resolve(<span class="string">&#x27;d&#x27;</span>), <span class="number">1000</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">&#x27;promise.all&#x27;</span>);</span><br><span class="line"><span class="built_in">Promise</span>.all([a(), b(), c(), d()])</span><br><span class="line">  .then(<span class="function"><span class="params">results</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Done! <span class="subst">$&#123;results&#125;</span>`</span>))</span><br><span class="line">  .catch(<span class="built_in">console</span>.error)</span><br><span class="line">  .finally(<span class="function">() =&gt;</span> <span class="built_in">console</span>.timeEnd(<span class="string">&#x27;promise.all&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>How long is it going to take to solve each of these promises? 5 seconds? 1 second? Or 2 seconds?</p>
+<p>You can experiment with the dev tools and report back your results ;)</p>
+<h3 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise race"></a>Promise race</h3><p>The <code>Promise.race(iterable)</code> takes a collection of promises and resolves as soon as the first promise settles.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> resolve(<span class="string">&#x27;a&#x27;</span>), <span class="number">2000</span>));</span><br><span class="line"><span class="keyword">const</span> b = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> resolve(<span class="string">&#x27;b&#x27;</span>), <span class="number">1000</span>));</span><br><span class="line"><span class="keyword">const</span> c = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> resolve(<span class="string">&#x27;c&#x27;</span>), <span class="number">1000</span>));</span><br><span class="line"><span class="keyword">const</span> d = <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> resolve(<span class="string">&#x27;d&#x27;</span>), <span class="number">1000</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">&#x27;promise.race&#x27;</span>);</span><br><span class="line"><span class="built_in">Promise</span>.race([a(), b(), c(), d()])</span><br><span class="line">  .then(<span class="function"><span class="params">results</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Done! <span class="subst">$&#123;results&#125;</span>`</span>))</span><br><span class="line">  .catch(<span class="built_in">console</span>.error)</span><br><span class="line">  .finally(<span class="function">() =&gt;</span> <span class="built_in">console</span>.timeEnd(<span class="string">&#x27;promise.race&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>What’s the output?</p>
+<p>It’s <code>b</code>! With <code>Promise.race</code> only the fastest gets to be part of the result. 🏁</p>
+<p>You might wonder: _ What’s the usage of the Promise race?_</p>
+<p>I haven’t used it as often as the others. But, it can come handy in some cases like timing out promises and <a href="#How-to-limit-parallel-promises">batching array of requests</a>.</p>
+<h4 id="Timing-out-requests-with-Promise-race"><a href="#Timing-out-requests-with-Promise-race" class="headerlink" title="Timing out requests with Promise race"></a>Timing out requests with Promise race</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.race([</span><br><span class="line">  fetch(<span class="string">&#x27;http://slowwly.robertomurray.co.uk/delay/3000/url/https://api.jsonbin.io/b/5d1fb4dd138da811182c69af&#x27;</span>),</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;request timeout&#x27;</span>)), <span class="number">1000</span>))</span><br><span class="line">])</span><br><span class="line">.then(<span class="built_in">console</span>.log)</span><br><span class="line">.catch(<span class="built_in">console</span>.error);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/promise-race-fail.gif" alt="Promise race timeout"></p>
+<p>If the request is fast enough, then you have the result.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.race([</span><br><span class="line">  fetch(<span class="string">&#x27;http://slowwly.robertomurray.co.uk/delay/1/url/https://api.jsonbin.io/b/5d1fb4dd138da811182c69af&#x27;</span>),</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;request timeout&#x27;</span>)), <span class="number">1000</span>))</span><br><span class="line">])</span><br><span class="line">.then(<span class="built_in">console</span>.log)</span><br><span class="line">.catch(<span class="built_in">console</span>.error);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/promise-race-pass.gif" alt="Promise race"></p>
+<h2 id="Promises-FAQ"><a href="#Promises-FAQ" class="headerlink" title="Promises FAQ"></a>Promises FAQ</h2><p>This section covers tricks and tips using all the promises methods that we explained before.</p>
+<h3 id="Executing-promises-in-series-and-passing-arguments"><a href="#Executing-promises-in-series-and-passing-arguments" class="headerlink" title="Executing promises in series and passing arguments"></a>Executing promises in series and passing arguments</h3><p>This time we are going to use the promises API for Node’s <code>fs</code> and we are going to concatenate two files:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>).promises; <span class="comment">// requires node v8+</span></span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">&#x27;file.txt&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">content1</span> =&gt;</span> fs.writeFile(<span class="string">&#x27;output.txt&#x27;</span>, content1))</span><br><span class="line">  .then(<span class="function">() =&gt;</span> fs.readFile(<span class="string">&#x27;file2.txt&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>))</span><br><span class="line">  .then(<span class="function"><span class="params">content2</span> =&gt;</span> fs.writeFile(<span class="string">&#x27;output.txt&#x27;</span>, content2, &#123; <span class="attr">flag</span>: <span class="string">&#x27;a+&#x27;</span> &#125;))</span><br><span class="line">  .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.log(error));</span><br></pre></td></tr></table></figure>
+
+<p>In this example, we read file 1 and write it to the output file. Later, we read file 2 and append it to the output file again.
+As you can see, <code>writeFile</code> promise returns the content of the file, and you can use it in the next <code>then</code> clause.</p>
+<h3 id="How-do-I-chain-multiple-conditional-promises"><a href="#How-do-I-chain-multiple-conditional-promises" class="headerlink" title="How do I chain multiple conditional promises?"></a>How do I chain multiple conditional promises?</h3><p>You might have a case where you want to skip specific steps on a promise chain. You can do that in two ways.</p>
+<script defer async src="https://embed.runkit.com" data-element-id="ex1"></script>
+<pre id="ex1" class="runkit">
+const a = () => new Promise((resolve) => setTimeout(() => { console.log('a'), resolve() }, 1e3));
+const b = () => new Promise((resolve) => setTimeout(() => { console.log('b'), resolve() }, 2e3));
+const c = () => new Promise((resolve) => setTimeout(() => { console.log('c'), resolve() }, 3e3));
+const d = () => new Promise((resolve) => setTimeout(() => { console.log('d'), resolve() }, 4e3));
+
+const shouldExecA = true;
+const shouldExecB = false;
+const shouldExecC = false;
+const shouldExecD = true;
+
+Promise.resolve()
+  .then(() => shouldExecA && a())
+  .then(() => shouldExecB && b())
+  .then(() => shouldExecC && c())
+  .then(() => shouldExecD && d())
+  .then(() => console.log('done'))
+</pre>
+
+<p>If you run the code example, you will notice that only <code>a</code> and <code>d</code> are executed as expected.</p>
+<p>An alternative way is creating a chain and then only add them if</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> chain = <span class="built_in">Promise</span>.resolve();</span><br><span class="line"><span class="keyword">if</span> (shouldExecA) chain = chain.then(a);</span><br><span class="line"><span class="keyword">if</span> (shouldExecB) chain = chain.then(b);</span><br><span class="line"><span class="keyword">if</span> (shouldExecC) chain = chain.then(c);</span><br><span class="line"><span class="keyword">if</span> (shouldExecD) chain = chain.then(d);</span><br><span class="line"></span><br><span class="line">chain</span><br><span class="line">  .then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&#x27;done&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="How-to-limit-parallel-promises"><a href="#How-to-limit-parallel-promises" class="headerlink" title="How to limit parallel promises?"></a>How to limit parallel promises?</h3><p>To accomplish this, we have to throttle <code>Promise.all</code> somehow.</p>
+<p>Let’s say you have many concurrent requests to do. If you use a <code>Promise.all</code> that won’t be good (especially when the API is rate limited).
+So, we need to develop and function that does that for us. Let’s call it <code>promiseAllThrottled</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// simulate 10 async tasks that takes 5 seconds to complete.</span></span><br><span class="line"><span class="keyword">const</span> requests = <span class="built_in">Array</span>(<span class="number">10</span>)</span><br><span class="line">  .fill()</span><br><span class="line">  .map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> <span class="function">() =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>((<span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">`exec&#x27;ing task #<span class="subst">$&#123;i&#125;</span>`</span>), resolve(<span class="string">`task #<span class="subst">$&#123;i&#125;</span>`</span>); &#125;, <span class="number">5000</span>))));</span><br><span class="line"></span><br><span class="line">promiseAllThrottled(requests, &#123; <span class="attr">concurrency</span>: <span class="number">3</span> &#125;)</span><br><span class="line">  .then(<span class="built_in">console</span>.log)</span><br><span class="line">  .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(<span class="string">&#x27;Oops something went wrong&#x27;</span>, error));</span><br></pre></td></tr></table></figure>
+
+<p>The output should be something like this:</p>
+<p><img src="/images/promise-throttle.gif" alt="promise throttle"></p>
+<p>So, the code above will limit the concurrency to 3 tasks executing in parallel. This is one possible implementation of <code>promiseAllThrottled</code> using <code>Promise.race</code> to throttle the number of active tasks at a given time:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Similar to Promise.all but a concurrency limit</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;Array&#125;</span> </span>iterable Array of functions that returns a promise</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;Object&#125;</span> </span>concurrency max number of parallel promises running</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseAllThrottled</span>(<span class="params">iterable, &#123; concurrency = <span class="number">3</span> &#125; = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> promises = [];</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">enqueue</span>(<span class="params">current = <span class="number">0</span>, queue = []</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// return if done</span></span><br><span class="line">    <span class="keyword">if</span> (current === iterable.length) &#123; <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(); &#125;</span><br><span class="line">    <span class="comment">// take one promise from collection</span></span><br><span class="line">    <span class="keyword">const</span> promise = iterable[current];</span><br><span class="line">    <span class="keyword">const</span> activatedPromise = promise();</span><br><span class="line">    <span class="comment">// add promise to the final result array</span></span><br><span class="line">    promises.push(activatedPromise);</span><br><span class="line">    <span class="comment">// add current activated promise to queue and remove it when done</span></span><br><span class="line">    <span class="keyword">const</span> autoRemovePromise = activatedPromise.then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// remove promise from the queue when done</span></span><br><span class="line">      <span class="keyword">return</span> queue.splice(queue.indexOf(autoRemovePromise), <span class="number">1</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// add promise to the queue</span></span><br><span class="line">    queue.push(autoRemovePromise);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// if queue length &gt;= concurrency, wait for one promise to finish before adding more.</span></span><br><span class="line">    <span class="keyword">const</span> readyForMore = queue.length &lt; concurrency ? <span class="built_in">Promise</span>.resolve() : <span class="built_in">Promise</span>.race(queue);</span><br><span class="line">    <span class="keyword">return</span> readyForMore.then(<span class="function">() =&gt;</span> enqueue(current + <span class="number">1</span>, queue));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> enqueue()</span><br><span class="line">    .then(<span class="function">() =&gt;</span> <span class="built_in">Promise</span>.all(promises));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The <code>promiseAllThrottled</code> takes promises one by one. It executes the promises and adds it to the queue. If the queue is less than the concurrency limit, it keeps adding to the queue. Once the limit is reached, we use <code>Promise.race</code> to wait for one promise to finish so we can replace it with a new one.
+The trick here is that the promise auto removes itself from the queue when it is done. Also, we use race to detect when a promise has finished, and it adds a new one.</p>
+<hr>
+
+<p><strong>Related Posts:</strong></p>
+<ol>
+<li><a href="/asynchronous-vs-synchronous-handling-concurrency-in-javascript/">Async vs Sync in JavaScript</a></li>
+<li><a href="/callbacks-concurrency-in-javascript-node/">JavaScript Callbacks</a></li>
+<li><a href="/promises-tutorial-concurrency-in-javascript-node/">JavaScript Promises</a> (this one)</li>
+</ol>
+<hr>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-07-05-promises-tutorial-concurrency-in-javascript-node.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/angular-todo-mean-stack-node-mongodb-typescript-tutorial/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  Modern MEAN Stack Tutorial with Docker (Angular, Node, Typescript and Mongodb)
+                
+              </div>
+            </a>
+          
+          
+            <a href="/callbacks-concurrency-in-javascript-node/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">Understanding JavaScript Callbacks and best practices</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+              
+                <div class="container">
+                <h1 class="capitalize">tutorial async javascript Series</h1>
+                <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/asynchronous-vs-synchronous-handling-concurrency-in-javascript/">
+    
+      <img src="/images/async-vs-sync-concurrency-in-javascript-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>What every programmer should know about Synchronous vs. Asynchronous Code</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/callbacks-concurrency-in-javascript-node/">
+    
+      <img src="/images/callbacks-concurrency-in-javascript-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Understanding JavaScript Callbacks and best practices</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/promises-tutorial-concurrency-in-javascript-node/">
+    
+      <img src="/images/promises-concurrency-in-javascript-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>The JavaScript Promise Tutorial</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-07-05-promises-tutorial-concurrency-in-javascript-node.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-Promises"><span class="toc-number">1.</span> <span class="toc-text">JavaScript Promises</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-do-I-convert-an-existing-callback-API-to-promises"><span class="toc-number">1.1.</span> <span class="toc-text">How do I convert an existing callback API to promises?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Wait-aren%E2%80%99t-promises-just-callbacks"><span class="toc-number">1.1.1.</span> <span class="toc-text">Wait, aren’t promises just callbacks?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Promises-anti-pattern-promise-hell"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Promises anti-pattern (promise hell)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promesifying-Timeouts"><span class="toc-number">1.1.2.</span> <span class="toc-text">Promesifying Timeouts</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-states"><span class="toc-number">1.2.</span> <span class="toc-text">Promise states</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-instance-methods"><span class="toc-number">1.3.</span> <span class="toc-text">Promise instance methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-then"><span class="toc-number">1.3.1.</span> <span class="toc-text">Promise then</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-catch"><span class="toc-number">1.3.2.</span> <span class="toc-text">Promise catch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-finally"><span class="toc-number">1.3.3.</span> <span class="toc-text">Promise finally</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-class-Methods"><span class="toc-number">1.4.</span> <span class="toc-text">Promise class Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-resolve-and-Promise-reject"><span class="toc-number">1.4.1.</span> <span class="toc-text">Promise.resolve and Promise.reject</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Executing-promises-in-Parallel-with-Promise-all"><span class="toc-number">1.4.2.</span> <span class="toc-text">Executing promises in Parallel with Promise.all</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-race"><span class="toc-number">1.4.3.</span> <span class="toc-text">Promise race</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Timing-out-requests-with-Promise-race"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">Timing out requests with Promise race</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promises-FAQ"><span class="toc-number">1.5.</span> <span class="toc-text">Promises FAQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Executing-promises-in-series-and-passing-arguments"><span class="toc-number">1.5.1.</span> <span class="toc-text">Executing promises in series and passing arguments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-do-I-chain-multiple-conditional-promises"><span class="toc-number">1.5.2.</span> <span class="toc-text">How do I chain multiple conditional promises?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-limit-parallel-promises"><span class="toc-number">1.5.3.</span> <span class="toc-text">How to limit parallel promises?</span></a></li></ol></li></ol></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/promises-tutorial-concurrency-in-javascript-node/';
+      this.page.identifier = 'https://adrianmejia.com/promises-tutorial-concurrency-in-javascript-node/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+article pre {
+  background: #2d3748;
+  margin: 0 -8px;
+  padding: 15px 20px;
+  border-style: solid;
+  border-color: #ddd;
+  border-width: 1px 0;
+  overflow: auto;
+  color: #ccc;
+  line-height: 22.400000000000002px; }
+
+article .highlight {
+  border-radius: 10px;
+  background: #2d3748;
+  margin: 0 -8px;
+  padding: 15px 20px;
+  border-style: solid;
+  border-color: #ddd;
+  border-width: 1px 0;
+  overflow: auto;
+  color: #ccc;
+  line-height: 22.400000000000002px; }
+  article .highlight .gutter pre {
+    color: #666;
+    font-size: 0.85em; }
+
+article .gist .gist-file .gist-data .line-numbers {
+  color: #666;
+  font-size: 0.85em; }
+
+article pre {
+  font-family: "Fira Code", "Ubuntu Mono", "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace; }
+
+article code {
+  font-family: "Fira Code", "Ubuntu Mono", "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+  background: rgba(27, 31, 35, 0.05);
+  text-shadow: 0 1px #fff;
+  padding: .2em .4em;
+  font-size: 0.85em;
+  border-radius: 3px;
+  color: #f2777a; }
+
+article pre code {
+  background: none;
+  text-shadow: none;
+  padding: 0;
+  border: 1px solid red; }
+
+article .highlight pre {
+  border: none;
+  margin: 0;
+  padding: 0;
+  padding-right: 10px; }
+
+article .highlight table {
+  margin: 0;
+  width: auto; }
+
+article .highlight td {
+  border: none;
+  padding: 0; }
+
+article .highlight figcaption {
+  font-size: 0.85em;
+  color: #999;
+  line-height: 1em;
+  margin-bottom: 1em; }
+  article .highlight figcaption:before {
+    content: "";
+    display: table; }
+  article .highlight figcaption:after {
+    content: "";
+    display: table;
+    clear: both; }
+  article .highlight figcaption a {
+    float: right; }
+
+article .highlight .gutter pre {
+  text-align: right;
+  padding-right: 20px; }
+
+article .highlight .line {
+  height: 22.400000000000002px; }
+  article .highlight .line.marked {
+    background: #515151; }
+
+article .gist {
+  margin: 0 -20px;
+  border-style: solid;
+  border-color: #ddd;
+  border-width: 1px 0;
+  padding: 15px 20px 15px 0; }
+  article .gist .gist-file {
+    border: none;
+    font-family: "Fira Code", "Ubuntu Mono", "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+    margin: 0; }
+    article .gist .gist-file .gist-data {
+      background: none;
+      border: none; }
+      article .gist .gist-file .gist-data .line-numbers {
+        background: none;
+        border: none;
+        padding: 0 20px 0 0; }
+      article .gist .gist-file .gist-data .line-data {
+        padding: 0 !important; }
+    article .gist .gist-file .highlight {
+      margin: 0;
+      padding: 0;
+      border: none; }
+    article .gist .gist-file .gist-meta {
+      color: #999;
+      font: 0.85em "Helvetica Neue", Helvetica, Arial, sans-serif;
+      text-shadow: 0 0;
+      padding: 0;
+      margin-top: 1em;
+      margin-left: 20px; }
+      article .gist .gist-file .gist-meta a {
+        color: #258fb8;
+        font-weight: normal; }
+        article .gist .gist-file .gist-meta a:hover {
+          text-decoration: underline; }
+
+pre {
+  font-size: 0.85em; }
+  pre .comment, pre .title {
+    color: #999; }
+  pre .variable, pre .attribute, pre .tag, pre .regexp, pre .ruby .constant {
+    color: #f2777a; }
+  pre .xml .tag .title, pre .xml .pi, pre .xml .doctype {
+    color: #f2777a; }
+  pre .html .doctype {
+    color: #f2777a; }
+  pre .css .id, pre .css .class, pre .css .pseudo {
+    color: #f2777a; }
+  pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+    color: #f99157; }
+  pre .class, pre .ruby .class .title, pre .css .rules .attribute, pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+    color: #9c9; }
+  pre .css .hexcolor {
+    color: #6cc; }
+  pre .function {
+    color: #69c; }
+  pre .python .decorator, pre .python .title {
+    color: #69c; }
+  pre .ruby .function .title, pre .ruby .title .keyword {
+    color: #69c; }
+  pre .perl .sub, pre .javascript .title, pre .coffeescript .title {
+    color: #69c; }
+  pre .keyword, pre .javascript .function {
+    color: #c9c; }
+
+.copy-btn {
+  position: relative;
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #333;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #eee;
+  background-image: linear-gradient(#fcfcfc, #eee);
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+.copy-btn::before {
+  font-family: 'FontAwesome';
+  font-weight: 400;
+  content: "\f0ea"; }
+
+.checkMark {
+  background-color: #99cc99;
+  background-image: none; }
+
+.checkMark::before {
+  font-family: 'FontAwesome';
+  font-weight: 400;
+  content: "\f00c"; }
+
+.highlight {
+  position: relative; }
+
+.highlight .copy-btn {
+  transition: opacity .3s ease-in-out;
+  opacity: 0;
+  padding: 2px 6px;
+  position: absolute;
+  right: 8px;
+  bottom: 8px; }
+
+.highlight:hover .copy-btn,
+.highlight .copy-btn:focus {
+  opacity: 1; }
+
+pre.runkit, pre.clear {
+  border: none;
+  background-color: inherit;
+  overflow: hidden;
+  color: inherit; }

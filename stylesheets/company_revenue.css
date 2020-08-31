@@ -1,0 +1,105 @@
+.company-details {
+  display: none;
+}
+
+.company-details-modal .ui-dialog-titlebar {
+  display: none;
+}
+
+.company-details .revenue-active {
+  color: rgb(56, 170, 56);
+  /*green;*/
+}
+
+.company-details #sources {
+  font-size: 50%;
+}
+
+.company-details .revenue-inactive {
+  color: #E1E1E1;
+  /*15% gray http://www.tinygorilla.com/Easter_eggs/PallateHex.html*/
+}
+
+.company-details h2 {
+  border-bottom: 1px dotted rgb(170, 168, 168);
+  padding-bottom: 15px;
+}
+
+.company-details .profitable {
+  color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.company-details .active {
+  /* green */
+  background: rgb(56, 170, 56);
+}
+
+.company-details {
+  color: #666666;
+}
+
+.company-details .inactive {
+  /* red */
+  background: rgb(233, 74, 74);
+}
+
+#companies-holder {
+  width: 100%;
+  /*max-width: 282px;*/
+  /*min-height: 410px;*/
+  margin: 25px auto 15px auto;
+  background: #D7D7D7;
+}
+
+ul#companies-holder {
+  list-style: none;
+  list-style-type: none;
+}
+
+#companies-holder li {
+  width: 121px;
+  height: 121px;
+  margin: 10px;
+  float: left;
+  overflow: hidden;
+  position: relative;
+}
+
+#companies-holder li a {
+  width: 108px;
+  background-color: #D7D7D7;
+  border-radius: 60px;
+  display: block;
+  padding: 6px;
+  white-space: normal;
+}
+
+#companies-holder li a:hover {
+  background-color: rgba(170, 35, 0, 0.7);
+  transition: background-color 0.3s linear;
+}
+
+#companies-holder li span {
+  width: 104px;
+  height: 104px;
+  background: -o-linear-gradient(top, #d2d2d2, white);
+  border: 2px solid #fff;
+  border-radius: 54px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#companies-holder li img {
+  margin: 0 auto;
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}

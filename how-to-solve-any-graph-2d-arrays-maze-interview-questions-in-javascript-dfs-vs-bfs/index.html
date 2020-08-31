@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Graphs are one of my favorite data structures because you can model many real-life situations with them. Such problems involve finding the shortest paths between 2 or more locations, scheduling courses, finding relationships in family trees, solving mazes, and many more! As a result, it’s ubiquitous in tech interview questions. In this article, we are going to demystify it." />
+    <meta property="og:image" content="https://adrianmejia.com/images/graph-interview-questions-large.png" />
+    <meta property="og:title" content="How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/graph-interview-questions-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2020-08-06T16:30:14-04:00",
+  "dateModified": "2020-08-06T16:30:14-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "Graphs are one of my favorite data structures because you can model many real-life situations with them. Such problems involve finding the shortest paths between 2 or more locations, scheduling courses, finding relationships in family trees, solving mazes, and many more! As a result, it’s ubiquitous in tech interview questions. In this article, we are going to demystify it."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/programming/">Programming</a> > <a class="category-link" href="/categories/programming/data-structures-and-algorithms-dsa/">Data Structures and Algorithms (DSA)</a>
+    </div>
+
+    <h1>How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2020-08-06T20:30:14.000Z" itemprop="dateUpdated">August 6th 2020</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          2.0k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithms/" rel="tag">algorithms</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/big-o-notation/" rel="tag">big-o notation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-algorithms/" rel="tag">tutorial_algorithms</a><span class="tag-list-count">8</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #F4F0EF">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/graph-interview-questions-large.png">
+        <source srcset="/images/graph-interview-questions-small.png">
+        <img src="/images/graph-interview-questions-large.png" alt="How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>Graphs are one of my favorite data structures because you can model many real-life situations with them. Such problems involve finding the shortest paths between 2 or more locations, scheduling courses, finding relationships in family trees, solving mazes, and many more! As a result, it’s ubiquitous in tech interview questions. In this article, we are going to demystify it.</p>
+<a id="more"></a>
+
+<p><strong>In this article you will learn:</strong></p>
+<ol>
+<li>10 steps to avoid getting stuck during coding questions in interviews</li>
+<li>How to translate a maze or some “real life” problems into a graph.</li>
+<li>How to solve problems using Graph traversing algorithms such as Breadth-First Search (BFS) or Depth-First Search.</li>
+<li>When can you use only BFS or DFS or both?</li>
+</ol>
+<h2 id="Graph-Representations"><a href="#Graph-Representations" class="headerlink" title="Graph Representations"></a>Graph Representations</h2><p>A Graph can be represented in many ways depending on the problem as a class, Map + Array/Set, implicit graph or adjacency matrix.</p>
+<p><strong>TL;DR</strong>: <em>When building reusable libraries, you can go with the Graph class implementation. However, when solving a problem quickly (during interviews or one-off problems), go with the implicit implementation if possible or Map+Array representation if you need to build the graph upfront. Don’t use <a href="https://adrianmejia.com/data-structures-for-beginners-graphs-time-complexity-tutorial/#Adjacency-Matrix">adjacency matrix</a> since it usually uses more memory than other alternatives.</em></p>
+<h3 id="Graph-as-a-Class"><a href="#Graph-as-a-Class" class="headerlink" title="Graph as a Class"></a>Graph as a Class</h3><p>You can use OOP to represent graphs, like this:</p>
+<figure class="highlight js"><figcaption><span>Graph Class</span><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/graphs/graph.js">Full Implementation</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">  addVertex(value) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  removeVertex(value) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  addEdge(source, destination) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  removeEdge(source, destination) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">  areAdjacents(source, destination) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  areConnected(source, destination) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  findPath(source, destination, path = <span class="keyword">new</span> <span class="built_in">Map</span>()) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  findAllPaths(source, destination, path = <span class="keyword">new</span> <span class="built_in">Map</span>()) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Graph as a class:</strong></p>
+<ul>
+<li>Very useful for creating libraries or reusable algorithms (find a path, are connected, etc.).</li>
+<li><abbr title="Object Oriented Programming">OOP</abbr> Style.</li>
+<li>Might be time consuming to implement during coding interviews.</li>
+</ul>
+<h3 id="Graph-as-Map-Array"><a href="#Graph-as-Map-Array" class="headerlink" title="Graph as Map + Array"></a>Graph as Map + Array</h3><p>Other way to represent graph is like an Map + Array:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> graph = &#123;</span><br><span class="line">  a: [<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>],</span><br><span class="line">  b: [<span class="string">&#x27;c&#x27;</span>],</span><br><span class="line">  c: [],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>ES6+ Map:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> graph = <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;a&#x27;</span>, [<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]],</span><br><span class="line">  [<span class="string">&#x27;b&#x27;</span>, [<span class="string">&#x27;c&#x27;</span>]],</span><br><span class="line">  [<span class="string">&#x27;c&#x27;</span>, []],</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Graph as a HashMap:</strong></p>
+<ul>
+<li>Very quick to implement</li>
+<li>Might not be reusable since it’s tailor to the specific problem in hand.</li>
+<li>Build the entire graph before solving the problem.</li>
+</ul>
+<h3 id="Implicit-Graph"><a href="#Implicit-Graph" class="headerlink" title="Implicit Graph"></a>Implicit Graph</h3><p>Some times you don’t have to build a graph upfront. You can calculate adjacent nodes as you go.</p>
+<p>For instance, this a template for finding a node in an implicit graph using BFS:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bfs</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> queue = [[<span class="number">0</span>, <span class="number">0</span>]]; <span class="comment">// 1. Initialize queue with Node and current distance 0</span></span><br><span class="line">  <span class="keyword">const</span> seen = <span class="keyword">new</span> <span class="built_in">Set</span>(<span class="number">0</span>); <span class="comment">// 2. Initialize set</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> [current, distance] <span class="keyword">of</span> queue) &#123; <span class="comment">// 3. Loop until the queue is empty</span></span><br><span class="line">    <span class="keyword">if</span> (current === target) <span class="keyword">return</span> distance; <span class="comment">// 4. Check dequeued is solution</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> [neighbor, currDist] <span class="keyword">of</span> getNeighbors(node)) &#123; <span class="comment">// 5. Get next possible moves (neighbor nodes)</span></span><br><span class="line">      <span class="keyword">if</span> (seen.has(neighbor) <span class="keyword">continue</span>; <span class="comment">// 6. Skip seen nodes</span></span><br><span class="line">      seen.add(neighbor); <span class="comment">// 7. Mark next node as seen.</span></span><br><span class="line">      queue.push([neighbor, currDist + <span class="number">1</span>]); <span class="comment">// 8. Add neighbor to queue and increase the distance.</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// 9. If you didn&#x27;t find the answer, return something like -1/null/undefined.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNeighbors</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// <span class="doctag">TODO:</span> implement based on the problem.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Graph on the go</strong>:</p>
+<ul>
+<li>Quick to implement</li>
+<li>Might not be reusable since it’s tailor to the specific problem in hand.</li>
+<li>It doesn’t need to build the complete graph up-front; it will discover adjacent nodes as it goes.</li>
+</ul>
+<p>Let’s do some examples of each one so we can drive these concepts home!</p>
+<h2 id="Solving-graph-problems"><a href="#Solving-graph-problems" class="headerlink" title="Solving graph problems"></a>Solving graph problems</h2><p>Let’s see how you can use the afore mention implementations to solve real interview questions.</p>
+<h3 id="Explicit-Graph-Structure-Map-Array"><a href="#Explicit-Graph-Structure-Map-Array" class="headerlink" title="Explicit Graph Structure (Map + Array)"></a>Explicit Graph Structure (Map + Array)</h3><p>Let’s say you are working for a genealogy company, and you need to find if two people are related given a family tree (graph).</p>
+<p>In this case, we can translate the family tree into a graph, where the nodes are the people, and the edges are their relationships (Father/Mother, Son/Daugther, etc.)</p>
+<p>Let’s take a family for instance and represent it as a graph:</p>
+<details>
+  <summary>The Simpson Family Tree Example</summary>
+
+<div class="content">
+
+<img src="/images/the-simpsons-family-tree.png" class="" title="The Simpsons Family Tree">
+
+<p>This might be something like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// people:</span></span><br><span class="line">nodes = [<span class="string">&quot;Bart&quot;</span>, <span class="string">&quot;Homer&quot;</span>, <span class="string">&quot;Marge&quot;</span>, <span class="string">&quot;Lisa&quot;</span>, <span class="string">&quot;Moe&quot;</span>, <span class="string">&quot;Herb&quot;</span>, <span class="string">&quot;Abraham&quot;</span>, <span class="string">&quot;Mona&quot;</span>, <span class="string">&quot;Selma&quot;</span>, <span class="string">&quot;Clancy&quot;</span>, <span class="string">&quot;Jackie&quot;</span>, <span class="string">&quot;Bob&quot;</span>];</span><br><span class="line"><span class="comment">// relationships:</span></span><br><span class="line">edges = [[<span class="string">&quot;Bart&quot;</span>,<span class="string">&quot;Homer&quot;</span>],[<span class="string">&quot;Bart&quot;</span>,<span class="string">&quot;Marge&quot;</span>],[<span class="string">&quot;Lisa&quot;</span>,<span class="string">&quot;Homer&quot;</span>],[<span class="string">&quot;Lisa&quot;</span>,<span class="string">&quot;Marge&quot;</span>],[<span class="string">&quot;Herb&quot;</span>,<span class="string">&quot;Abraham&quot;</span>],[<span class="string">&quot;Herb&quot;</span>,<span class="string">&quot;Mona&quot;</span>],[<span class="string">&quot;Homer&quot;</span>,<span class="string">&quot;Abraham&quot;</span>],[<span class="string">&quot;Homer&quot;</span>,<span class="string">&quot;Mona&quot;</span>],[<span class="string">&quot;Selma&quot;</span>,<span class="string">&quot;Clancy&quot;</span>],[<span class="string">&quot;Selma&quot;</span>,<span class="string">&quot;Jackie&quot;</span>],[<span class="string">&quot;Marge&quot;</span>,<span class="string">&quot;Clancy&quot;</span>],[<span class="string">&quot;Marge&quot;</span>,<span class="string">&quot;Jackie&quot;</span>],[<span class="string">&quot;Bob&quot;</span>,<span class="string">&quot;Herb&quot;</span>]];</span><br></pre></td></tr></table></figure>
+
+</div>
+</details>
+
+<p><strong>Interview Question</strong>: Given a graph (nodes and edges) and queries return for each query element <code>true</code> if they are related or false if they are not.</p>
+<p>Example 1:</p>
+<ul>
+<li><p>Input:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nodes &#x3D; [&quot;Bart&quot;, &quot;Homer&quot;, &quot;Moe&quot;]</span><br><span class="line">edges &#x3D; [[&quot;Bart&quot;,&quot;Homer&quot;]]</span><br><span class="line">queries &#x3D; [[&quot;Bart&quot;,&quot;Homer&quot;], [&quot;Bart&quot;,&quot;Moe&quot;]];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[true, false]</span><br></pre></td></tr></table></figure>
+<p>Bart and Homer are related, so the first element is <code>true</code>;
+Bart and Moe are NOT related, so the 2nd element is <code>false</code>.</p>
+</li>
+<li><p>Function signature:</p>
+</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findRelated</span>(<span class="params">nodes: <span class="built_in">any</span>[], edges: [<span class="built_in">any</span>, <span class="built_in">any</span>][], queries: [<span class="built_in">any</span>, <span class="built_in">any</span>][]</span>): <span class="title">boolean</span>[] </span>&#123;</span><br><span class="line">  <span class="comment">// <span class="doctag">TODO:</span> Implement</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Here are some ideas on how to solve this problem:</p>
+<ul>
+<li>We need to traverse the graph from a starting point to a destination.</li>
+<li>If there’s a path, the two people are related (e.g., Home and Bart)</li>
+<li>If no path is found, then the two people are NOT related (e.g., Bart and Moe).</li>
+<li>We can solve this problem by using DFS or BFS.</li>
+</ul>
+<p>Do you want to give it a try before looking at the solution? When you are ready, hit <code>run</code>!</p>
+<pre class="runkit">
+function findRelated(nodes, edges, queries) {
+  // Write your code here
+}
+
+// or here ;)
+
+// ---------------------
+// ------- Tests -------
+// ---------------------
+const assert = require('assert');
+let nodes, edges, queries, expected;
+
+// TEST 1
+nodes = ["Bart", "Homer", "Marge", "Lisa", "Moe"]; // people
+edges = [["Bart","Homer"],["Bart","Marge"],["Lisa","Homer"],["Lisa","Marge"]]; // relationships
+queries = [['Bart', 'Lisa'], ['Homer', 'Moe']]; // questions
+expected = [true, false];
+assert.deepEqual(findRelated(nodes, edges, queries), expected);
+
+// TEST 2
+nodes = [1,2,3,4,5];
+edges = [[1,2],[1,3],[2,5]];
+queries = [[1, 1], [1, 2], [1, 4], [1, 5]];
+expected = [true, true, false, true];
+assert.deepEqual(findRelated(nodes, edges, queries), expected);
+
+// TEST 3
+nodes = ["Bart", "Homer", "Marge", "Lisa", "Moe", "Herb", "Abraham", "Mona", "Selma", "Clancy", "Jackie", "Bob"];
+edges = [["Bart","Homer"],["Bart","Marge"],["Lisa","Homer"],["Lisa","Marge"],["Herb","Abraham"],["Herb","Mona"],["Homer","Abraham"],["Homer","Mona"],["Selma","Clancy"],["Selma","Jackie"],["Marge","Clancy"],["Marge","Jackie"],["Bob","Herb"]];
+queries = [['Bart', 'Lisa'], ['Homer', 'Moe'], ['Lisa', 'Bob'], ['Bart', 'Selma'], ['Moe', 'Lisa']];
+expected = [true, false, true, true, false];
+assert.deepEqual(findRelated(nodes, edges, queries), expected);
+
+console.log('All tests passed! 👏 🎂');
+</pre>
+
+<p>Here’s my solution to this problem…</p>
+<details>
+  <summary>Solution and Explanation for find related</summary>
+  <div class="content">
+
+<p>The very first thing that we need to do is to build the graph.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findRelated</span>(<span class="params">nodes, edges, queries</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> graph = nodes.reduce(<span class="function">(<span class="params">map, node</span>) =&gt;</span> map.set(node, []), <span class="keyword">new</span> <span class="built_in">Map</span>());</span><br><span class="line">  edges.forEach(<span class="function">(<span class="params">[u, v]</span>) =&gt;</span> &#123;</span><br><span class="line">    graph.get(u).push(v);</span><br><span class="line">    graph.get(v).push(u); <span class="comment">// undirected graph (2-ways)</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> queries.map(<span class="function">(<span class="params">[u, v]</span>) =&gt;</span> isRelated(graph, u, v));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>How does it work?</p>
+<ul>
+<li>The first function, <code>findRelated</code> builds the graph. We are using an undirected graph, so we have to add the relationship both ways</li>
+<li>After creating the graph, we iterate over each query and use the helper function <code>isRelated</code> to test if connected.</li>
+</ul>
+<p>The <code>isRelated</code> function can be implemented as a BFS or DFS.</p>
+<p>Let’s see BFS first:</p>
+<ul>
+<li>The helper function <code>isRelated</code>, have a start and destination node. We use a <code>Queue</code> to navigate the graph.</li>
+<li>We also need a <code>Set</code> to keep track of the visited nodes, otherwise, we can fall into an infinite loop.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isRelated</span> (<span class="params">graph, start, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> queue = [start];</span><br><span class="line">    <span class="keyword">const</span> seen = <span class="keyword">new</span> <span class="built_in">Set</span>([start]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> node <span class="keyword">of</span> queue) &#123;</span><br><span class="line">        <span class="keyword">if</span> (node === target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        graph.get(node).forEach(<span class="function"><span class="params">adj</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (seen.has(adj)) <span class="keyword">return</span>;</span><br><span class="line">            seen.add(adj);</span><br><span class="line">            queue.push(adj);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Using DFS:</p>
+<ul>
+<li>Usually, DFS is implemented using a Stack, we are using a recursive call which makes use the call stack.</li>
+<li>Notice that we also keep track of the <code>seen</code> nodes using a set.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isRelated</span> (<span class="params">graph, node, target, seen = new Set()</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node === target) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (seen.has(node)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    seen.add(node);</span><br><span class="line">    <span class="keyword">return</span> graph.get(node).some(<span class="function"><span class="params">adj</span> =&gt;</span> isRelated(graph, adj, target, seen));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div>
+</details>
+
+<p>As you can see, we can either use a BFS or DFS approach to solve the problem. Not all questions are like that. In the next example, you will see that one of them leads to a more optimal solution than the other.</p>
+<h3 id="Implicit-Graph-Build-and-Traverse-as-you-go"><a href="#Implicit-Graph-Build-and-Traverse-as-you-go" class="headerlink" title="Implicit Graph: Build and Traverse as you go"></a>Implicit Graph: Build and Traverse as you go</h3><p>Let’s solve this example of a combination lock.</p>
+<blockquote>
+
+<img src="/images/padlock.png" alt="Padlock Problem" style="float:right;">
+
+<p>You have a combination lock. It has 4 wheels that go from <code>0</code> to <code>9</code>. Your job is to <strong>find the minimum amount of wheel turns to get to a target combination</strong>. The starting point is always <code>0000</code>. However, there are several combinations that you have to avoid: deadends. If you get into a dead-end, the wheels will not turn anymore. If the target combination is impossible to reach return <code>-1</code>, otherwise return the minimum number of wheel turns.</p>
+</blockquote>
+
+<div style="clear: both;"></div>
+
+<p>Examples 1:</p>
+<ul>
+<li><strong>Input</strong>: <em>deadends</em> = [“8888”], <em>target</em> = “0109”</li>
+<li><strong>Output</strong>: <code>2</code></li>
+<li><strong>Explanation</strong>: <code>0000 -&gt; 0009 -&gt; 0109</code></li>
+</ul>
+<p>Examples 2:</p>
+<ul>
+<li><strong>Input</strong>: <em>deadends</em> = [“8887”,”8889”,”8878”,”8898”,”8788”,”8988”,”7888”,”9888”], <em>target</em> = “8888”</li>
+<li><strong>Output</strong>: <code>-1</code></li>
+<li><strong>Explanation</strong>: We can’t reach without crossing a deadend.</li>
+</ul>
+<p>Do you want to give it a try?</p>
+<pre class="runkit">
+function openLock(deadends, target) {
+  // your code goes here!
+}
+
+// ---------------------
+// ------- Tests -------
+// ---------------------
+const assert = require('assert');
+let deadends, target;
+
+deadends = ['8888'];
+target = '0109';
+assert.deepEqual(openLock(deadends, target), 2, 'Test #1');
+
+deadends = ['8887','8889','8878','8898','8788','8988','7888']
+target = '8888';
+assert.deepEqual(openLock(deadends, target), 8, 'Test #2');
+
+console.log('All tests passed! 👏 🥦');
+</pre>
+
+<details>
+  <summary>Solution for open the lock</summary>
+
+<div class="content">
+
+<p>We could solve the problem using DFS or BFS. However, BFS is much more performant… why?
+We are looking for a minimum amount of turns. As soon as BFS found the target, that is guaranteed to be the minimum. However, that’s not the case for DFS. It goes deep and might found a solution quicker, but it might not be the minimum amount of turns. With DFS, we have to traverse ALL possibilities to see which path to the target is the shortest.</p>
+<p>Here’s the BFS solution</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">openLock</span>(<span class="params">deadends, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> stop = <span class="keyword">new</span> <span class="built_in">Set</span>(deadends);</span><br><span class="line">  <span class="keyword">const</span> queue = [[<span class="string">&#x27;0000&#x27;</span>, <span class="number">0</span>]];</span><br><span class="line">  <span class="keyword">const</span> seen = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">&#x27;0000&#x27;</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> [current, turns] <span class="keyword">of</span> queue) &#123;</span><br><span class="line">    <span class="keyword">if</span> (stop.has(current)) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">if</span> (current === target) <span class="keyword">return</span> turns;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> next <span class="keyword">of</span> getNextTurns(current)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (seen.has(next)) <span class="keyword">continue</span>;</span><br><span class="line">      seen.add(next);</span><br><span class="line">      queue.push([next, turns + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNextTurns</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(str).reduce(<span class="function">(<span class="params">arr, char, i</span>) =&gt;</span> arr.concat(</span><br><span class="line">      <span class="string">`<span class="subst">$&#123; str.slice(<span class="number">0</span>, i) &#125;</span><span class="subst">$&#123; (<span class="built_in">Number</span>(char) + <span class="number">1</span>) % <span class="number">10</span> &#125;</span><span class="subst">$&#123; str.slice(i+<span class="number">1</span>) &#125;</span>`</span>,</span><br><span class="line">      <span class="string">`<span class="subst">$&#123; str.slice(<span class="number">0</span>, i) &#125;</span><span class="subst">$&#123; (<span class="built_in">Number</span>(char) + <span class="number">9</span>) % <span class="number">10</span> &#125;</span><span class="subst">$&#123; str.slice(i+<span class="number">1</span>) &#125;</span>`</span>,</span><br><span class="line">    ), []);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We will generate around 8 combinations on each step, and these 8 combinations create 7 more each one (we skip seen nodes) and so on.</p>
+<img src="/images/padlock-combinaitons-graph.svg" class="" title="combinations graph">
+
+<p>If you want to see more levels of combination take a look here:
+<a href="/images/padlock-combinaitons-graph-2.svg" target="_new">combinations graph up to 3 levels</a></p>
+</div>
+</details>
+
+<h2 id="Breadth-First-Search-BFS-vs-Depth-First-Search-DFS"><a href="#Breadth-First-Search-BFS-vs-Depth-First-Search-DFS" class="headerlink" title="Breadth-First-Search (BFS) vs Depth-First-Search (DFS)"></a>Breadth-First-Search (BFS) vs Depth-First-Search (DFS)</h2><p>The most common graph traversal algorithms are breadth-first-search (BFS) and depth-first-search (DFS). BFS covers all cases adjacent paths nearby and then expand, while DFS goes deep on one way and only comes back when there’s nowhere else to go.</p>
+<table>
+  <tr>
+    <td>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif" alt="https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif">
+    </td>
+    <td>
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif" alt="https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif">
+    </td>
+  </tr>
+  <tr>
+    <td>
+Breadth-First-Search (BFS)
+    </td>
+    <td>
+Depth-First-Search (DFS)
+    </td>
+  </tr></p>
+</table>
+
+
+<p>In the pictures above, you can see that BFS goes level by level, while DFS goes as deep as it can in a branch.</p>
+<p>In general, you want to use DFS when…</p>
+<ul>
+<li>The solutions are far away from the starting point.</li>
+<li>If the graph/tree/maze might be wide but not too deep (e.g., graph is finite).</li>
+<li>There are too many adjacent nodes to be practical for BFS.</li>
+<li>Usually used for game simulations where the number of possible moves is massive. DFS make a decision, then explore all paths through this decision. And if this decision leads to a win situation, we stop.</li>
+<li><strong>Real-world applications of DFS</strong>: topological sorting (use for scheduling a sequence of jobs or tasks based on their dependencies), spreadsheets, build systems, data serialization, etc.</li>
+</ul>
+<p>You want to use BFS when…</p>
+<ul>
+<li>The solution is near to the starting point.</li>
+<li>If the graph/tree/maze is extremely deep but not too wide (e.g., the graph might be infinite).</li>
+<li>The number of adjacent nodes is limited. (e.g., for our case, each cell has 8 next possible moves)</li>
+<li>Usually used for finding the shortest path between two nodes.</li>
+<li><strong>Real-world applications of BFS</strong>: anything that can benefit from finding the shortest path, such as GPS Navigation systems (Google Maps), Peer to peer (P2P) applications such as the torrent clients. Other usages are web crawlers, social networks, etc.</li>
+</ul>
+<p>Since the board is infinite, DFS won’t work for us. If it chooses a path that doesn’t contain the target location, it will never find an end. So, BFS is the right approach here!</p>
+<h2 id="Steps-to-solve-algorithmic-questions-on-interviews"><a href="#Steps-to-solve-algorithmic-questions-on-interviews" class="headerlink" title="Steps to solve algorithmic questions on interviews"></a>Steps to solve algorithmic questions on interviews</h2><p>In these section, we are going to practice some real interview questions. First, we are going to introduce 10 steps to avoid you getting in stuck in an interview. Finally, we are going to cover some examples. The only way to get better at it is through Practice, Practice, and more Practice.</p>
+<h3 id="Ten-steps-to-avoid-getting-stuck"><a href="#Ten-steps-to-avoid-getting-stuck" class="headerlink" title="Ten steps to avoid getting stuck"></a>Ten steps to avoid getting stuck</h3><ol>
+<li>👂 Listen/read carefully and repeat the question out loud (in your own words).</li>
+<li>🗣  Ask clarifying questions to help understand the problem better.</li>
+<li>🎨  Create 2-3 examples and draw diagrams about the problem.</li>
+<li>💪 Find a brute force solution as soon as possible (how would you do it manually). But don’t implement it yet!</li>
+<li>🎯  Determine what’s the best time complexity, theoretically. E.g. <code>O(n)</code> or <code>O(m * n)</code>, etc.</li>
+<li>🧠  Brainstorm different approaches (Think out loud). State the runtime (Big O) of each one.</li>
+<li>📝 Let’s CODE: Implement the best approach you have so far (or the brute force, better something than nothing) while following a <strong>simple and short</strong> example. You can write the code while testing multiple cases at once to save time.</li>
+<li>🏃‍♂️ DRY RUN: Test your implementation <strong>on your mind.</strong> Imagine you are the compiler, and you have to tell the output of EACH LINE. Make fixes as needed. (For some companies, the code execution is disabled (Facebook), and others use a Google Doc (Google), so it’s vital to learn to test the code in your mind.)</li>
+<li>💻  RUN YOUR CODE if allowed</li>
+<li>🐛  Fix issues as they emerge and repeat previews steps if necessary.</li>
+</ol>
+<h3 id="Interview-Questions-for-Practice"><a href="#Interview-Questions-for-Practice" class="headerlink" title="Interview Questions for Practice"></a>Interview Questions for Practice</h3><p>Here are some exercises for you to practice the ten steps and the solutions to some.
+These steps are especially necessary when you are not given the function signature nor examples.
+Sometimes, you have to figure them out by asking questions.</p>
+<p>Let’s do a simulation!</p>
+<h4 id="Chess-Knight-Problem-♞"><a href="#Chess-Knight-Problem-♞" class="headerlink" title="Chess Knight Problem ♞"></a>Chess Knight Problem ♞</h4><blockquote>
+<p>Given an <strong>infinite</strong> chessboard, find out how many moves does the knight needs to reach a given square on the board.</p>
+</blockquote>
+<p><strong>Asking Clarifying questions</strong></p>
+<p>Once you understand the statement, the first thing you need to do before doing any code is to <strong>ask clarifying questions</strong>. Try to come up with some questions you would ask before looking at my clarifying questions below.</p>
+<details>
+  <summary>Examples of clarifying questions...</summary>
+
+<dl>
+  <dt>What do you mean by infinite board?</dt>
+  <dd>A regular chess board it's an 8x8 grid but for this questions we have a infinite board (very big limits 1M+ x 1M+). This means the solution better be efficient.</dd>
+</dl>
+
+<dl>
+  <dt>How do we know the initial position of the knight?</dt>
+  <dd>Let's say it starts in the coordinates 0,0.</dd>
+</dl>
+
+<dl>
+  <dt>How does the knight moves again? Is like an `L`, right?</dt>
+  <dd>Yes, It may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L)</dd>
+</dl>
+
+<dl>
+  <dt>Given enough movements does the knight reach every point in the board?</dt>
+  <dd>
+
+<p>Yes
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Knights-Tour-Animation.gif" alt="https://upload.wikimedia.org/wikipedia/commons/c/ca/Knights-Tour-Animation.gif"></p>
+  </dd>
+</dl>
+
+<dl>
+  <dt>How's the target location given? As an x, y coordinates?</dt>
+  <dd>Yes, coordinates relative to the starting point.</dd>
+</dl>
+
+</details>
+
+
+<p>After you ask some clarifying questions, the next step is to come up with some examples. Before you write any code, try to identify edge cases and possible scalability problems. Examples are critical to your success! Let’s draw a board with some possible target positions.</p>
+<img src="/images/infinite-chessboard.png" class="" title="infinite chessboard">
+
+
+<p>The first case, T1, is in the best-case scenario. It’s just one hop away; the second case is compelling because you have to move away from the starting point and then come back. The other two cases are just far away destinations.</p>
+<p>Now that you have some examples, it’s time to brainstorm approaches! No coding yet!</p>
+<p>If you are familiar with graphs, you might notice that this can be seen as a graph problem. The starting position can be seen as a node, and then each of the next 8 locations are the adjacent nodes.</p>
+<img src="/images/chessboard-knight-next-moves.png" class="" title="chessboard knight next moves">
+
+
+<p>So basically, once we have a starting point and adjacent nodes that we can visit, this can be solved using a graph traversal algorithm.</p>
+<p><strong>Solution</strong></p>
+<p>First, give it a try yourself before looking at my answer, but don’t spin your wheels for too long.  If you haven’t get it working after 35 minutes, take a peek at the answer. Then try again on your own.</p>
+<pre class="runkit">
+/**
+ * Given an infinite chessboard, find out how many moves does
+ * the knight needs to reach a given square coordinate on the board.
+ *
+ * @param {Number} dx - Destination x coordinate
+ * @param {Number} dy - Destination y coordinate
+ * @returns {Number} minimum number of moves to reach target
+ */
+function knightMoves(dx, dy) {
+    // write your awesome code here!
+}
+
+// ---------------------
+// ------- Tests -------
+// ---------------------
+const assert = require('assert');
+
+assert.equal(knightMoves(0, 0), 0, 'finds t0');
+assert.equal(knightMoves(1, 2), 1, 'finds t1');
+assert.equal(knightMoves(0, 1), 3, 'finds t2');
+assert.equal(knightMoves(6, -6), 4, 'finds t3');
+assert.equal(knightMoves(0, 7), 5, 'finds t4');
+assert.equal(knightMoves(170, 123), 99, 'finds far far away galaxies');
+
+console.log('Congrats! 👏👏👏  All tests passed! 🎂');
+</pre>
+
+<details>
+  <summary>My answer (click to expand)</summary>
+
+
+<p>Here’s an interview friendly solution:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">knightMoves</span>(<span class="params">dx, dy</span>) </span>&#123; <span class="comment">// destination x and y</span></span><br><span class="line">  <span class="keyword">const</span> queue = [[[<span class="number">0</span>, <span class="number">0</span>], <span class="number">0</span>]];</span><br><span class="line">  <span class="keyword">const</span> seen = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">0</span>, <span class="number">0</span>].toString());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> [[x, y], moves] <span class="keyword">of</span> queue) &#123; <span class="comment">// current x and y</span></span><br><span class="line">    <span class="keyword">if</span> (x === dx &amp;&amp; y === dy) <span class="keyword">return</span> moves;</span><br><span class="line">    <span class="keyword">const</span> next = [<span class="number">1</span>, <span class="number">-1</span>].map(<span class="function">(<span class="params">i</span>) =&gt;</span> [<span class="number">2</span>, <span class="number">-2</span>].map(<span class="function">(<span class="params">j</span>) =&gt;</span> [[x + i, y + j], [x + j, y + i]])).flat(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> [nx, ny] <span class="keyword">of</span> next) &#123; <span class="comment">// next x and y</span></span><br><span class="line">      <span class="keyword">if</span> (seen.has([nx, ny].toString())) <span class="keyword">continue</span>;</span><br><span class="line">      seen.add([nx, ny].toString());</span><br><span class="line">      queue.push([[nx, ny], moves + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>What??? No fancy <code>Graph</code> nor <code>Queue</code> class? And less than 20 lines of code?! Yep 😉</p>
+<p>We have an old-school array as a Queue, where we store 3 values: the <code>[x, y]</code> coordinate and the number of <code>moves</code> so far. We initialized everything to <code>0</code>.</p>
+<p>It’s vital to keep track of the positions that you have “seen.” Otherwise, you will repeat visited places and make your program very slow or run out of memory! For that, we have a <code>Set</code>.</p>
+<p>GOTCHA: the <code>Set</code> in JavaScript for Array values works by reference and not by value. To overcome this issue, we have to convert the array to a string.</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line"></span><br><span class="line">s.add([<span class="number">0</span>, <span class="number">0</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(s.has([<span class="number">0</span>, <span class="number">0</span>])); <span class="comment">// false 🙀</span></span><br><span class="line"></span><br><span class="line">s.add([<span class="number">0</span>, <span class="number">0</span>].toString());</span><br><span class="line"><span class="built_in">console</span>.log(s.has([<span class="number">0</span>, <span class="number">0</span>].toString())); <span class="comment">// true 👍</span></span><br></pre></td></tr></table></figure>
+
+<p>Ok, moving on, We reach the <code>for...of</code> loop. Here we dequeue values. Notice that we are NOT using <code>queue.shift()</code>, to take values from the front of the queue. This is because <code>shift</code> has a time complexity of <code>O(n)</code>. It will take the first element from the array and then “shift” all the other elements one position. Imagine that you have an array of millions of items. It will move all of them! There are two ways to avoid that overhead; we iterate the queue or implement a queue using a LinkedList.</p>
+<p>After we dequeue an element, the first thing we do is to check if it is a solution. If it is, we return the number of movements that took us to get there, and we are done!</p>
+<p>If the dequeued element didn’t match the target, we need to calculate the next eight possible positions given the current x and y. Remember a knight moves in L, so it will be translated to <code>1</code> position on <code>x</code> and <code>2</code> on <code>y</code> or vice-versa:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> next = [[x + <span class="number">1</span>, y + <span class="number">2</span>], [x + <span class="number">2</span>, y + <span class="number">1</span>], [x + <span class="number">2</span>, y - <span class="number">1</span>], [x + <span class="number">1</span>, y - <span class="number">2</span>], [x - <span class="number">1</span>, y - <span class="number">2</span>], [x - <span class="number">2</span>, y - <span class="number">1</span>], [x - <span class="number">2</span>, y + <span class="number">1</span>], [x - <span class="number">1</span>, y + <span class="number">2</span>]];</span><br><span class="line"><span class="comment">// for x=0, y=0: [[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2]]</span></span><br></pre></td></tr></table></figure>
+
+<p>You can also get fancy and calculate it using two <code>Array.map</code>s</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> next = [<span class="number">1</span>, <span class="number">-1</span>].map(<span class="function">(<span class="params">i</span>) =&gt;</span> [<span class="number">2</span>, <span class="number">-2</span>].map(<span class="function">(<span class="params">j</span>) =&gt;</span> [[x + i, y + j], [x + j, y + i]])).flat(<span class="number">2</span>);</span><br><span class="line"><span class="comment">// for x=0, y=0: [[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2]]</span></span><br></pre></td></tr></table></figure>
+
+<p>Or also, using two <code>Array.reduce</code>s</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> next = [<span class="number">1</span>, <span class="number">-1</span>].reduce(<span class="function">(<span class="params">a, i</span>) =&gt;</span> [<span class="number">2</span>, <span class="number">-2</span>].reduce(<span class="function">(<span class="params">b, j</span>) =&gt;</span> [...b, [x + i, y + j], [x + j, y + i]], a), []);</span><br><span class="line"><span class="comment">// for x=0, y=0: [[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2]]</span></span><br></pre></td></tr></table></figure>
+
+<p>Once you generate the 8 next positions, you need to add them all to the queue and add <code>+1</code> to the current place. Finally, we don’t add a location to the queue if we have already seen it before.</p>
+<p>That’s it!</p>
+</details>
+
+<p>How did you do? Paste your solution and questions in the comments section!</p>
+<p>Most BFS problems follow the same pattern:</p>
+<ol>
+<li>Initialize queue</li>
+<li>Initialize set to keep track of the visited positions.</li>
+<li>Loop until the queue is empty or you find a solution.</li>
+<li>Dequeue element from the queue and check if it’s a solution.</li>
+<li>If it’s not part of the solution, move to get the next possible moves (neighbor nodes).</li>
+<li>Skip seen nodes.</li>
+<li>Mark the next node, as seen.</li>
+<li>Add neighbors to queue and increase the distance.</li>
+<li>If you didn’t find the answer, return something like -1/null/undefined.</li>
+</ol>
+<h4 id="BFS-Template"><a href="#BFS-Template" class="headerlink" title="BFS Template"></a>BFS Template</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bfs</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> queue = [[<span class="number">0</span>, <span class="number">0</span>]]; <span class="comment">// 1. Initialize queue with Node and current distance 0</span></span><br><span class="line">  <span class="keyword">const</span> seen = <span class="keyword">new</span> <span class="built_in">Set</span>(<span class="number">0</span>); <span class="comment">// 2. Initialize set</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> [current, distance] <span class="keyword">of</span> queue) &#123; <span class="comment">// 3. Loop until the queue is empty</span></span><br><span class="line">    <span class="keyword">if</span> (current === target) <span class="keyword">return</span> distance; <span class="comment">// 4. Check dequeued is solution</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> [neighbor, currDist] <span class="keyword">of</span> getNeighbors(node)) &#123; <span class="comment">// 5. Get next possible moves (neighbor nodes)</span></span><br><span class="line">      <span class="keyword">if</span> (seen.has(neighbor) <span class="keyword">continue</span>; <span class="comment">// 6. Skip seen nodes</span></span><br><span class="line">      seen.add(neighbor); <span class="comment">// 7. Mark next node as seen.</span></span><br><span class="line">      queue.push([neighbor, currDist + <span class="number">1</span>]); <span class="comment">// 8. Add neighbor to queue and increase the distance.</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// 9. If you didn&#x27;t find the answer, return something like -1/null/undefined.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNeighbors</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// <span class="doctag">TODO:</span> implement based on the problem.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</details>
+
+<p>Here’s another exercise to practice</p>
+<h4 id="Maze-Path"><a href="#Maze-Path" class="headerlink" title="Maze Path"></a>Maze Path</h4><blockquote>
+
+<p>You have a ball at a starting point, that can roll up, down, left and right. However, the ball won’t stop rolling until it hits a wall. Your task is to check if there’s a path from start to destination. You may assume that the borders of the maze are all walls.</p>
+<p>The maze is represented in a grid (2d array):</p>
+<ul>
+<li>Walls are represented as <code>1</code>.</li>
+<li>Empty spaces are <code>0</code>.</li>
+</ul>
+<p>E.g.:</p>
+<img src="/images/maze-ball-game-by-me2.png" alt="maze ball game" style="float:right; margin: 10px;">
+<pre class="clear">
+start = [ 0, 4 ]
+end = [ 4, 4 ]
+maze = [
+  [ 0, 0, 1, 0, 0 ],
+  [ 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 1, 0 ],
+  [ 1, 1, 0, 1, 1 ],
+  [ 0, 0, 0, 0, 0 ]
+]
+</pre>
+
+</blockquote>
+<div style="clear: both;"></div>
+
+
+<p>Give it a try!</p>
+<pre class="runkit">
+/**
+ * You have a ball at a starting point that can roll up, down, left and right.
+ * However, the ball won't stop rolling until it hits a wall.
+ * Your tasks is to check if there's a path from start to destination
+ * You may assume that the borders of the maze are all walls.
+ *
+ * @param {number[][]} maze - 2D array where 1 = wall and 0 = empty.
+ * @param {number[]} start - [row, col] of the starting point
+ * @param {number[]} destination - [row, col] target destination
+ * @return {boolean}
+ */
+function hasPath(maze, start, destination) {
+
+};
+
+// --- testing ---
+
+const assert = require('assert');
+
+assert.equal(hasPath([
+  [ 0 ]
+], [0, 0], [0, 0]), true, 'should pass case #1');
+
+assert.equal(hasPath([
+  [ 1 ]
+], [0, 0], [0, 0]), false, 'should pass case #2');
+
+assert.equal(hasPath([
+  [ 0, 0, 0 ]
+], [0, 0], [0, 2]), true, 'should pass case #3');
+
+assert.equal(hasPath([
+    [ 0, 0, 0 ],
+], [0, 0], [0, 1]), false, 'should pass case #4');
+
+assert.equal(hasPath([
+  [ 0, 1, 0 ],
+], [0, 0], [0, 2]), false, 'should pass case #5');
+
+assert.equal(hasPath([
+  [ 0, 1, 0 ],
+  [ 0, 0, 0 ],
+], [0, 2], [0, 0]), true, 'should pass case #6');
+
+assert.equal(hasPath([
+  [ 0, 0, 1, 0, 0 ],
+  [ 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 1, 0 ],
+  [ 1, 1, 0, 1, 1 ],
+  [ 0, 0, 0, 0, 0 ]
+], [ 0, 4 ], [ 3, 2 ]), false, 'should pass case #7');
+
+assert.equal(hasPath([
+  [ 0, 0, 1, 0, 0 ],
+  [ 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 1, 0 ],
+  [ 1, 1, 0, 1, 1 ],
+  [ 0, 0, 0, 0, 0 ]
+], [ 0, 4 ], [ 4, 4 ]), true, 'should pass case #8');
+
+console.log('Congrats! 👏👏👏  All tests passed! 🍎');
+</pre>
+
+
+<details>
+  <summary>My answer to the maze problem</summary>
+  <div class="content">
+
+<p>We can solve this problem using the BFS template.
+The tricky part is to know that the ball is going to roll until it hit a wall.
+So, we have to roll in one direction until we hit a wall (1) or end.</p>
+<!--  https://stackblitz.com/edit/angular-maze-505 -->
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPath</span>(<span class="params">maze, start, dest</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> queue = [[start, <span class="number">0</span>]];</span><br><span class="line">  <span class="keyword">const</span> seen = <span class="keyword">new</span> <span class="built_in">Set</span>([start.join()]);</span><br><span class="line">  <span class="keyword">const</span> directions = [[<span class="number">0</span>,<span class="number">1</span>], [<span class="number">0</span>,<span class="number">-1</span>], [<span class="number">1</span>,<span class="number">0</span>], [<span class="number">-1</span>,<span class="number">0</span>]]; <span class="comment">// right, left, down and up.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> [[r, c], dist] <span class="keyword">of</span> queue) &#123;</span><br><span class="line">    <span class="keyword">if</span> (r === dest[<span class="number">0</span>] &amp;&amp; c === dest[<span class="number">1</span>] &amp;&amp; maze[r] &amp;&amp; maze[r][c] === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> [dr, dc] <span class="keyword">of</span> directions) &#123;</span><br><span class="line">      <span class="keyword">let</span> nr = r, nc = c; <span class="comment">// IMPORTANT: reset coordinates</span></span><br><span class="line">      <span class="keyword">while</span> (maze[nr + dr] &amp;&amp; maze[nr + dr][nc + dc] === <span class="number">0</span>) &#123;</span><br><span class="line">          nr += dr;</span><br><span class="line">          nc += dc;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (seen.has([nr, nc].join())) <span class="keyword">continue</span>;</span><br><span class="line">      seen.add([nr, nc].join());</span><br><span class="line">      queue.push([[nr, nc], dist + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</details>
+
+
+<p>How did you do? Feel free to ask me any questions below!</p>
+<!-- the end -->
+
+<script src="https://embed.runkit.com"></script>
+<script>
+const elements = [...document.getElementsByClassName('runkit')]
+const notebooks = elements.reduce((notebooks, element) => {
+    const innerText = element.firstChild
+    const currentCell = window.RunKit.createNotebook({
+        element,
+        gutterStyle: 'inside', //element.getAttribute("data-gutter"),
+        source: innerText.textContent,
+        nodeVersion: '14',
+        // Remove the text content of the pre tag after the embed has loaded
+        onLoad: () => innerText.remove()
+    })
+  return notebooks;
+}, []);
+</script>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+          
+            <a href="/angular-todo-mean-stack-node-mongodb-typescript-tutorial/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">Modern MEAN Stack Tutorial with Docker (Angular, Node, Typescript and Mongodb)</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+              
+                <div class="container">
+                <h1 class="capitalize">tutorial algorithms Series</h1>
+                <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/">
+    
+      <img src="/images/graph-interview-questions-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">
+    
+      <img src="/images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How you can change the world by learning Data Structures and Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">
+    
+      <img src="/images/data-structures-must-know-algorithms-running-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>8 time complexities that every programmer should know</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/">
+    
+      <img src="/images/data-structures-time-complexity-lists-arrays-stacks-queues-hash-maps-sets-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Data Structures in JavaScript: Arrays, HashMaps, and Lists</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">
+    
+      <img src="/images/graph-data-structures-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Graph Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">
+    
+      <img src="/images/data-structures-for-beginners-trees-binary-search-tree-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Tree Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">
+    
+      <img src="/images/data-structures-algorithms-avl-binary-search-trees-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Self-balanced Binary Search Trees with AVL in JavaScript</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Analysis-of-Recursive-Algorithms/">
+    
+      <img src="/images/data-structures-analysis-of-recursive-algorithms-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Analysis of Recursive Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Graph-Representations"><span class="toc-number">1.</span> <span class="toc-text">Graph Representations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Graph-as-a-Class"><span class="toc-number">1.1.</span> <span class="toc-text">Graph as a Class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Graph-as-Map-Array"><span class="toc-number">1.2.</span> <span class="toc-text">Graph as Map + Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Implicit-Graph"><span class="toc-number">1.3.</span> <span class="toc-text">Implicit Graph</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solving-graph-problems"><span class="toc-number">2.</span> <span class="toc-text">Solving graph problems</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Explicit-Graph-Structure-Map-Array"><span class="toc-number">2.1.</span> <span class="toc-text">Explicit Graph Structure (Map + Array)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Implicit-Graph-Build-and-Traverse-as-you-go"><span class="toc-number">2.2.</span> <span class="toc-text">Implicit Graph: Build and Traverse as you go</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Breadth-First-Search-BFS-vs-Depth-First-Search-DFS"><span class="toc-number">3.</span> <span class="toc-text">Breadth-First-Search (BFS) vs Depth-First-Search (DFS)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps-to-solve-algorithmic-questions-on-interviews"><span class="toc-number">4.</span> <span class="toc-text">Steps to solve algorithmic questions on interviews</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ten-steps-to-avoid-getting-stuck"><span class="toc-number">4.1.</span> <span class="toc-text">Ten steps to avoid getting stuck</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Interview-Questions-for-Practice"><span class="toc-number">4.2.</span> <span class="toc-text">Interview Questions for Practice</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Chess-Knight-Problem-%E2%99%9E"><span class="toc-number">4.2.1.</span> <span class="toc-text">Chess Knight Problem ♞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BFS-Template"><span class="toc-number">4.2.2.</span> <span class="toc-text">BFS Template</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Maze-Path"><span class="toc-number">4.2.3.</span> <span class="toc-text">Maze Path</span></a></li></ol></li></ol></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/';
+      this.page.identifier = 'https://adrianmejia.com/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

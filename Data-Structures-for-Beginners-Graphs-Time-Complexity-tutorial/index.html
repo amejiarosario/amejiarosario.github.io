@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Graph Data Structures in JavaScript for Beginners | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/data-structures-for-beginners-graphs-time-complexity-tutorial/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="In this post, we are going to explore non-linear data structures like graphs. Also, we’ll cover the central concepts and typical applications.
+You are probably using programs with graphs and trees. Let’s say for instance that you want to know the shortest path between your workplace and home, you can use graph algorithms to get the answer! We are going to look into this and other fun challenges." />
+    <meta property="og:image" content="https://adrianmejia.com/images/graph-data-structures-time-complexity-large.jpg" />
+    <meta property="og:title" content="Graph Data Structures in JavaScript for Beginners" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Graph Data Structures in JavaScript for Beginners",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/graph-data-structures-time-complexity-large.jpg",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2018-05-14T05:19:22-04:00",
+  "dateModified": "2018-05-14T05:19:22-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "In this post, we are going to explore non-linear data structures like graphs. Also, we’ll cover the central concepts and typical applications.
+You are probably using programs with graphs and trees. Let’s say for instance that you want to know the shortest path between your workplace and home, you can use graph algorithms to get the answer! We are going to look into this and other fun challenges."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a> > <a class="category-link" href="/categories/coding/data-structures-and-algorithms-dsa/">Data Structures and Algorithms (DSA)</a>
+    </div>
+
+    <h1>Graph Data Structures in JavaScript for Beginners</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2018-05-14T09:19:22.000Z" itemprop="dateUpdated">May 14th 2018</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          37.7k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithms/" rel="tag">algorithms</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-algorithms/" rel="tag">tutorial_algorithms</a><span class="tag-list-count">8</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #F4F0EF">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/graph-data-structures-time-complexity-large.jpg">
+        <source srcset="/images/graph-data-structures-time-complexity-small.jpg">
+        <img src="/images/graph-data-structures-time-complexity-large.jpg" alt="Graph Data Structures in JavaScript for Beginners">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>In this post, we are going to explore non-linear data structures like graphs. Also, we’ll cover the central concepts and typical applications.</p>
+<p>You are probably using programs with graphs and trees. Let’s say for instance that you want to know the shortest path between your workplace and home, you can use graph algorithms to get the answer! We are going to look into this and other fun challenges.</p>
+<a id="more"></a>
+
+<p>In the previous post, we explore linear data structures like arrays, linked lists, sets, stacks and so on. This one builds on top of what we learned.</p>
+<p>You can find all these implementations and more in the Github repo:
+<a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js">https://github.com/amejiarosario/dsa.js</a></p>
+<hr>
+<p>This post is part of a tutorial series:</p>
+<p><strong>Learning Data Structures and Algorithms (DSA) for Beginners</strong></p>
+<ol>
+<li><p><a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">Intro to algorithm’s time complexity and Big O notation</a></p>
+<!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">Eight time complexities that every programmer should know</a></p>
+<!-- 1. Eight time complexities that every programmer should know **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/">Data Structures for Beginners: Arrays, HashMaps, and Lists</a></p>
+<!-- 1. Data Structures for Beginners: Arrays, HashMaps, and Lists **👈 you are here** -->
+</li>
+<li><p>Graph Data Structures for Beginners <strong>👈 you are here</strong></p>
+<!-- 1. [Graph Data Structures for Beginners](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/) -->
+</li>
+<li><p><a href="/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">Trees Data Structures for Beginners</a></p>
+<!-- 1. Trees Data Structures for Beginners **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/07/16/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">Self-balanced Binary Search Trees</a></p>
+<!-- 1. Self-balanced Binary Search Trees  **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/04/24/Analysis-of-Recursive-Algorithms/">Appendix I: Analysis of Recursive Algorithms</a></p>
+</li>
+</ol>
+<hr>
+<p>Here is the summary of the operations that we are going to cover on this post:</p>
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>Adjacency List</th>
+<th>Adjacency Matrix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Space</td>
+<td><a href="#List.space">O(&#124;V&#124; + &#124;E&#124;)</a></td>
+<td><a href="#Matrix.space">O(&#124;V&#124;<sup>2</sup>)</a></td>
+</tr>
+<tr>
+<td>addVertex</td>
+<td><a href="#Graph.addVertex">O(1)</a></td>
+<td><a href="#Matrix.addVertex">O(&#124;V&#124;<sup>2</sup>)</a></td>
+</tr>
+<tr>
+<td>removeVertex</td>
+<td><a href="#Graph.removeVertex">O(&#124;V&#124; + &#124;E&#124;)</a></td>
+<td><a href="#Matrix.addVertex">O(&#124;V&#124;<sup>2</sup>)</a></td>
+</tr>
+<tr>
+<td>addEdge</td>
+<td><a href="#Graph.addEdge">O(1)</a></td>
+<td><a href="#Matrix.addVertex">O(1)</a></td>
+</tr>
+<tr>
+<td>removeEdge (using Array)</td>
+<td><a href="#Graph.removeEdge">O(&#124;E&#124;)</a></td>
+<td><a href="#Matrix.addVertex">O(1)</a></td>
+</tr>
+<tr>
+<td>removeEdge (using HashSet)</td>
+<td>O(1)</td>
+<td><a href="#Matrix.addVertex">O(1)</a></td>
+</tr>
+<tr>
+<td>getAdjacents</td>
+<td><a href="#Node.getAdjacents">O(&#124;E&#124;)</a></td>
+<td><a href="#Matrix.getAdjacents">O(&#124;V&#124;)</a></td>
+</tr>
+<tr>
+<td>isAdjacent (using Array)</td>
+<td><a href="#Node.getAdjacents">O(&#124;E&#124;)</a></td>
+<td><a href="#Matrix.getAdjacents">O(1)</a></td>
+</tr>
+<tr>
+<td>isAdjacent (using HashSet)</td>
+<td>O(1)</td>
+<td><a href="#Matrix.getAdjacents">O(1)</a></td>
+</tr>
+</tbody></table>
+<h1 id="Graphs-Basics"><a href="#Graphs-Basics" class="headerlink" title="Graphs Basics"></a>Graphs Basics</h1><!-- http://ccicada.org/wp-content/uploads/2017/06/Community-Detection-with-Hierarchical-Clustering-Algorithms-Feb-3-2017.pdf -->
+
+<p>Before we dive into interesting graph algorithms, let’s first clarify the naming conventions and graph properties.</p>
+<p>A graph is a data structure where a <strong>node</strong> can have zero or more adjacent elements.</p>
+<p>The connection between two nodes is called <strong>edge</strong>. Nodes can also be called <strong>vertices</strong>.</p>
+<img src="/images/graph-parts.jpg" class="" title="Graph is composed of vertices and edges">
+<!-- { img http://btechsmartclass.com/DS/images/Graph%201.png Graph is composed of vertices and edges } -->
+
+<p>The <strong>degree</strong> is the number of edges connected to a vertex. E.g., the <code>purple</code> vertex has a degree of 3 while the <code>blue</code> one has a degree of 1.</p>
+<p>If the edges are bi-directional, then we have an <strong>undirected graph</strong>. But, if the edges have a direction, then we have a <strong>directed graph</strong> or <strong>di-graph</strong> for short. You can think of it as a one-way street (directed) or two-way street (undirected).</p>
+<!-- image of graph behind a map: edges is POI and edges are the streets -->
+<!-- { img https://koenig-media.raywenderlich.com/uploads/2017/01/graph6.png "Directed and Undirected graphs" } -->
+<img src="/images/directed-vs-undirected-graph.jpg" class="" title="Directed vs Undirected graph">
+
+<p>Vertex can have edges that go to itself (e.g., <code>blue</code> node), this is called <strong>self-loop</strong>.</p>
+<p>A graph can have <strong>cycles</strong> which means that if you traverse through the node, you could get the same node more than once. The graph without cycles is called <strong>acyclic graph</strong>.</p>
+<!-- { img http://apprize.info/php/hadoop_1/hadoop_1.files/image190.jpg Acyclic vs Cyclic Graphs } -->
+<img src="/images/cyclic-vs-acyclic-directed-graph.jpg" class="" title="Cyclic vs Acyclic directed graph">
+
+<p>Also, acyclic undirected graphs are called <strong>tree</strong>. We are going to cover trees in depth in the next post.</p>
+<p>Not all vertices have to be connected in the graph. You might have isolated nodes or even separated subgraphs. If all nodes  have at least one edge, then we have a <strong>connected graph</strong>. When all nodes are connected to all other nodes, then we have a <strong>complete graph</strong>.</p>
+<!-- { img /images/digraph-subgraph.png digraph with isolated subgraphs } -->
+<img src="/images/connected-vs-complete-graph.jpg" class="" title="Complete vs Connected graph">
+
+<p>For a complete graph, each node should have <code>#nodes - 1</code> edges. In the previous example, we have seven vertices, so each node has six edges.</p>
+<h1 id="Graph-Applications"><a href="#Graph-Applications" class="headerlink" title="Graph Applications"></a>Graph Applications</h1><p>When edges have values/cost assigned to them, we say we have a <strong>weighted graph</strong>. If the weight is absent, we can assume it’s 1.</p>
+<img src="/images/airports-weighted-graph.jpg" class="" title="Airports weighted graph">
+
+<p>Weighted graphs have many applications depending on the domain where you need to solve a problem. To name a few:</p>
+<ul>
+<li><p>Airline Traffic (image above)</p>
+<ul>
+<li>Node/vertex = Airport</li>
+<li>Edges = direct flights between two airports</li>
+<li>Weight = miles between two airports</li>
+</ul>
+</li>
+<li><p>GPS Navigation</p>
+<ul>
+<li>Node = road intersection</li>
+<li>Edge = road</li>
+<li>Weight = time required to go from one intersection to another</li>
+</ul>
+</li>
+<li><p>Networks routing</p>
+<ul>
+<li>Node = server</li>
+<li>Edge = data link</li>
+<li>Weight = connection speed</li>
+</ul>
+</li>
+</ul>
+<p>In general, graphs have many real-world applications like:</p>
+<ul>
+<li>Electronic circuits</li>
+<li>Flight reservations</li>
+<li>Driving directions</li>
+<li>Telcom: Cell tower frequency planning</li>
+<li>Social networks. E.g., Facebook uses a graph for suggesting friends</li>
+<li>Recommendations: Amazon/Netflix uses graphs to make suggestions for products/movies</li>
+<li>Graphs help to plan the logistics of delivering goods</li>
+</ul>
+<img src="/images/map-graph.jpg" class="" title="Graph applications: pathfinder">
+
+<p>We just learned the basics of graphs and some applications. Let’s cover how to represent graphs in JavaScript.</p>
+<h1 id="Representing-graphs"><a href="#Representing-graphs" class="headerlink" title="Representing graphs"></a>Representing graphs</h1><p>There are two primary ways of representing graph:</p>
+<ol>
+<li>Adjacency list</li>
+<li>Adjacency Matrix</li>
+</ol>
+<p>Let’s explain it with the following directed graph (digraph) as an example:</p>
+<img src="/images/digraph.png" class="" title="digraph">
+
+<p>We digraph with 4 nodes. When a vertex has a link to itself (e.g. <code>a</code>) is called <strong>self-loop</strong>.</p>
+<!-- Notice that `a` has **self-loop**. -->
+<!-- img https://www.ida.liu.se/opendsa/OpenDSA/Books/TDDD86_2014/html/_images/GraphRep.png Graph representation: Adjacency list and matrix  -->
+
+<h2 id="Adjacency-Matrix"><a href="#Adjacency-Matrix" class="headerlink" title="Adjacency Matrix"></a>Adjacency Matrix</h2><p>The adjacency matrix is one way of representing a graph using a two-dimensional array (NxN matrix). In the intersection of nodes, we add 1 (or other weight) if they are connected and <code>0</code> or <code>-</code> if they are not connected.</p>
+<p>Using the same example as before, we can build the following adjacency matrix:</p>
+<figure class="highlight plain"><figcaption><span>Adjacency Matrix</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  a b c d e</span><br><span class="line">a 1 1 - - -</span><br><span class="line">b - - 1 - -</span><br><span class="line">c - - - 1 -</span><br><span class="line">d - 1 1 - -</span><br></pre></td></tr></table></figure>
+
+<p>As you can see, the matrix list all nodes horizontally and vertically. If there a few connections we called <strong>sparse graph</strong> if there are many connections (close to the max number of links) we called it <strong>dense graph</strong>. If all possible connections are reached, then we have a <strong>complete graph</strong>.</p>
+<p>It’s important to notice that for undirected graphs the adjacency matrix will <strong>always</strong> be symmetrical by the diagonal. However, that’s not always the case on a digraph (like our example).</p>
+<p>What is the time complexity of finding connections of two vertices?</p>
+<blockquote>
+<p>Querying if two nodes are connected in an adjacency matrix takes a constant time or <em>O(1)</em>.</p>
+</blockquote>
+<p><a id="Matrix.space"></a></p>
+<p>What is the space complexity?</p>
+<blockquote>
+<p>Storing a graph as an adjacency matrix has a space complexity of <em>O(n<sup>2</sup>)</em>, where <code>n</code> is the number of vertices. Also, represented as <em>O(|V|<sup>2</sup>)</em></p>
+</blockquote>
+<p><a id="Matrix.addVertex"></a></p>
+<p>What is the runtime to add a vertex?</p>
+<p>The vertices are stored as a <em><code>V</code><em>x</em><code>V</code></em> matrix. So, every time a vertex is added, the matrix needs to be reconstructed to a <em><code>V+1</code><em>x</em><code>V+1</code></em>.</p>
+<blockquote>
+<p>Adding a vertex on an adjacency matrix is <em>O(|V|<sup>2</sup>)</em></p>
+</blockquote>
+<p><a id="Matrix.getAdjacents"></a></p>
+<p>What about getting the adjacent nodes?</p>
+<p>Since the matrix has a VxV matrix, to get all the adjacent nodes to a given vertex, we would have to go to the node row and get all its edges with the other nodes.</p>
+<p>In our previous example, let’s say we want all the adjacent nodes to <code>b</code>. We have to get the full row where b is with all the other nodes.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  a b c d e</span><br><span class="line">b - - 1 - -</span><br></pre></td></tr></table></figure>
+
+<p>We have to visit all nodes so,</p>
+<blockquote>
+<p>Getting adjacent nodes on an adjacency matrix is <em>O(|V|)</em></p>
+</blockquote>
+<p>Imagine that you need to represent Facebook network as a graph. You would have to create a matrix of 2 billion x 2 billion, where most of it would be empty! Nobody would know everybody else just a few thousands at most.</p>
+<p>In general, we deal with sparse graphs so the matrix will waste a lot of space. That’s why in most implementation we would use an adjacency list rather than the matrix.</p>
+<h2 id="Adjacency-List"><a href="#Adjacency-List" class="headerlink" title="Adjacency List"></a>Adjacency List</h2><p>Adjacency List is one of the most common ways to represent graphs. Each node has a list of all the nodes connected to it.</p>
+<p>Graphs can be represented as an adjacency list using an Array (or HashMap) containing the nodes. Each of these node entries includes a list (array, linked list, set, etc.) that list its adjacent nodes.</p>
+<p>For instance, in the graph above we have that <code>a</code> has a connection to <code>b</code> and also a self-loop to itself. In turn, <code>b</code> has a connection to <code>c</code> and so on:</p>
+<figure class="highlight plain"><figcaption><span>Adjacency List</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a -&gt; &#123; a b &#125;</span><br><span class="line">b -&gt; &#123; c &#125;</span><br><span class="line">c -&gt; &#123; d &#125;</span><br><span class="line">d -&gt; &#123; b c &#125;</span><br></pre></td></tr></table></figure>
+
+<p>As you can imagine if you want to know if a node is connected to another node, you would have to go through the list.</p>
+<blockquote>
+<p>Querying if two nodes are connected in an adjacency list is <em>O(n)</em>, where <code>n</code> is the number of vertices. Also represented as <em>O(|V|)</em></p>
+</blockquote>
+<p><a id="List.space"></a></p>
+<p>What about the space complexity?</p>
+<blockquote>
+<p>Storing a graph as an adjacency list has a space complexity of <em>O(n)</em>, where <code>n</code> is the sum of vertices and edges. Also, represented as <em>O(|V| + |E|)</em></p>
+</blockquote>
+<h1 id="Adjacency-List-Graph-HashMap-Implementation"><a href="#Adjacency-List-Graph-HashMap-Implementation" class="headerlink" title="Adjacency List Graph HashMap Implementation"></a>Adjacency List Graph HashMap Implementation</h1><p>The adjacency list is the most common way of representing graphs. There are several ways to implement the adjacency list:</p>
+<p>One of them is using a HashMap. The <code>key</code> is the value of the node, and the <code>value</code> is an array of adjacency.</p>
+<figure class="highlight js"><figcaption><span>Adjacency List as a Hashmap</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> graph = &#123;</span><br><span class="line">  a: [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>],</span><br><span class="line">  b: [<span class="string">&#x27;c&#x27;</span>],</span><br><span class="line">  c: [<span class="string">&#x27;d&#x27;</span>],</span><br><span class="line">  d: [<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Graph usually needs the following operations:</p>
+<ul>
+<li>Add and remove vertices</li>
+<li>Add and remove edges</li>
+</ul>
+<p>Adding and removing vertices involves updating the adjacency list.</p>
+<p>Let’s say that we want to remove the vertex <code>b</code>. We could do <code>delete graph[&#39;b&#39;];</code>, however, we still have to remove the references on the adjacency list on <code>d</code> and <code>a</code>.</p>
+<p>Every time we remove a node, we would have to iterate through all the nodes’ list <em>O(|V| + |E|)</em>.  Can we do better? We will answer that soon, but first, let’s *implement our list in a more object-oriented way so we can swap implementations easily.</p>
+<h1 id="Adjacency-List-Graph-OO-Implementation"><a href="#Adjacency-List-Graph-OO-Implementation" class="headerlink" title="Adjacency List Graph OO Implementation"></a>Adjacency List Graph OO Implementation</h1><p>Let’s start with the <code>Node</code> class that holds the vertex’s value and its adjacent vertices. We can also have helper functions for adding and removing adjacent nodes from the list.</p>
+<p><a id="Node.getAdjacents"></a></p>
+<figure class="highlight js"><figcaption><span>Node</span><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/node.js">Commented Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = value;</span><br><span class="line">    <span class="built_in">this</span>.adjacents = []; <span class="comment">// adjacency list</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addAdjacent(node) &#123;</span><br><span class="line marked">    <span class="built_in">this</span>.adjacents.push(node);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  removeAdjacent(node) &#123;</span><br><span class="line">    <span class="keyword">const</span> index = <span class="built_in">this</span>.adjacents.indexOf(node);</span><br><span class="line">    <span class="keyword">if</span>(index &gt; <span class="number">-1</span>) &#123;</span><br><span class="line marked">      <span class="built_in">this</span>.adjacents.splice(index, <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getAdjacents() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.adjacents;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  isAdjacent(node) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.adjacents.indexOf(node) &gt; <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice that <code>adjacent</code> runtime is <em>O(1)</em>, while <code>remove adjacent</code> is <em>O(|E|)</em>. What if instead of an array use a HashSet 🧐? It could be <em>O(1)</em>. But, let first get it working and later we can make it faster.</p>
+<blockquote>
+<p>Make it work. Make it right. Make it faster.</p>
+</blockquote>
+<p>Ok, now that we have the <code>Node</code> class, let’s build the Graph class that can perform operations such as adding/removing vertices and edges.</p>
+<p><strong>Graph.constructor</strong></p>
+<figure class="highlight js"><figcaption><span>Graph.constructor</span><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line marked">  <span class="keyword">constructor</span>(edgeDirection = Graph.DIRECTED) &#123;</span><br><span class="line">    <span class="built_in">this</span>.nodes = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line marked">    <span class="built_in">this</span>.edgeDirection = edgeDirection;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line marked">Graph.UNDIRECTED = <span class="built_in">Symbol</span>(<span class="string">&#x27;directed graph&#x27;</span>); <span class="comment">// two-ways edges</span></span><br><span class="line marked">Graph.DIRECTED = <span class="built_in">Symbol</span>(<span class="string">&#x27;undirected graph&#x27;</span>); <span class="comment">// one-way edges</span></span><br></pre></td></tr></table></figure>
+
+<p>The first thing that we need to know is if the graph is directed or undirected. That makes a difference when we are adding edges.</p>
+<p><a id="Graph.addEdge"></a></p>
+<p><strong>Graph.addEdge</strong></p>
+<p>To add an edge we need two nodes. One is the source, and the other is the destination.</p>
+<figure class="highlight js"><figcaption><span>Graph.addEdge</span><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">addEdge(source, destination) &#123;</span><br><span class="line">  <span class="keyword">const</span> sourceNode = <span class="built_in">this</span>.addVertex(source);</span><br><span class="line">  <span class="keyword">const</span> destinationNode = <span class="built_in">this</span>.addVertex(destination);</span><br><span class="line"></span><br><span class="line">  sourceNode.addAdjacent(destinationNode);</span><br><span class="line"></span><br><span class="line marked">  <span class="keyword">if</span>(<span class="built_in">this</span>.edgeDirection === Graph.UNDIRECTED) &#123;</span><br><span class="line">    destinationNode.addAdjacent(sourceNode);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [sourceNode, destinationNode];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We add an edge from the source vertex to the destination. If we have an undirected graph, then we also add from target node to source since it’s bidirectional.</p>
+<blockquote>
+<p>The runtime of adding an edge from a graph adjacency list is: <em>O(1)</em></p>
+</blockquote>
+<p>If we try to add an edge and the nodes don’t exist, we need to create them first. Let’s do that next!</p>
+<p><a id="Graph.addVertex"></a></p>
+<p><strong>Graph.addVertex</strong></p>
+<!-- If you take a look at the constructor, you will notice that we created a HashMap to hold all the nodes in the graph. We use the hashMap to know if the vertex already exists and get it quickly. -->
+
+<p>The way we create a node is that we add it to the <code>this.nodes</code> Map. The map store a key/value pair, where the <code>key</code> is the vertex’s value while the map <code>value</code> is the instance of the node class. Take a look at line 5-6:</p>
+<figure class="highlight js"><figcaption><span>Graph.addVertex</span><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">addVertex(value) &#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">this</span>.nodes.has(value)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.nodes.get(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line marked">    <span class="keyword">const</span> vertex = <span class="keyword">new</span> Node(value);</span><br><span class="line marked">    <span class="built_in">this</span>.nodes.set(value, vertex);</span><br><span class="line">    <span class="keyword">return</span> vertex;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If the node already exists we don’t want to overwrite it. So, we first check if it already exists and if it doesn’t, then we create it.</p>
+<blockquote>
+<p>The runtime of adding a vertex from a graph adjacency list is: <em>O(1)</em></p>
+</blockquote>
+<p><a id="Graph.removeVertex"></a></p>
+<p><strong>Graph.removeVertex</strong></p>
+<p>Removing a node from the graph, it’s a little bit more involved. We have to check if the node to be deleted it’s in use as an adjacent node.</p>
+<figure class="highlight js"><figcaption><span>Graph.removeVertex</span><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">removeVertex(value) &#123;</span><br><span class="line">  <span class="keyword">const</span> current = <span class="built_in">this</span>.nodes.get(value);</span><br><span class="line">  <span class="keyword">if</span>(current) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> node <span class="keyword">of</span> <span class="built_in">this</span>.nodes.values()) &#123;</span><br><span class="line marked">      node.removeAdjacent(current);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line marked">  <span class="keyword">return</span> <span class="built_in">this</span>.nodes.delete(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We have to go through each vertex and then each adjacent node (edges).</p>
+<blockquote>
+<p>The runtime of removing a vertex from a graph adjacency list is <em>O(|V| + |E|)</em></p>
+</blockquote>
+<p>Finally, let’s remove implement removing an edge!</p>
+<p><a id="Graph.removeEdge"></a></p>
+<p><strong>Graph.removeEdge</strong></p>
+<p>Removing an edge is pretty straightforward and similar to <code>addEdge</code>.</p>
+<figure class="highlight js"><figcaption><span>Graph.removeVertex</span><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">removeEdge(source, destination) &#123;</span><br><span class="line">  <span class="keyword">const</span> sourceNode = <span class="built_in">this</span>.nodes.get(source);</span><br><span class="line">  <span class="keyword">const</span> destinationNode = <span class="built_in">this</span>.nodes.get(destination);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(sourceNode &amp;&amp; destinationNode) &#123;</span><br><span class="line marked">    sourceNode.removeAdjacent(destinationNode);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">this</span>.edgeDirection === Graph.UNDIRECTED) &#123;</span><br><span class="line marked">      destinationNode.removeAdjacent(sourceNode);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [sourceNode, destinationNode];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The main difference between <code>addEdge</code> and <code>removeEdge</code> is that:</p>
+<ul>
+<li>If the vertices don’t exist, we won’t create them.</li>
+<li>We use <code>Node.removeAdjacent</code> instead of <code>Node.addAdjacent</code>.</li>
+</ul>
+<p>Since <code>removeAdjacent</code> has to go through all the adjacent vertices we have the following runtime:</p>
+<blockquote>
+<p>The runtime of removing an edge from a graph adjacency list is <em>O(|E|)</em></p>
+</blockquote>
+<p>We are going to explore how to search for values from a node.</p>
+<h1 id="Breadth-first-search-BFS-Graph-search"><a href="#Breadth-first-search-BFS-Graph-search" class="headerlink" title="Breadth-first search (BFS) - Graph search"></a>Breadth-first search (BFS) - Graph search</h1><p>Breadth-first search is a way to navigate a graph from an initial vertex by visiting all the adjacent nodes first.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif" class="" title="Breadth First Search in a graph">
+
+<p>Let’s see how we can accomplish this in code:</p>
+<figure class="highlight js"><figcaption><span>Graph.bfs</span><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">*bfs(first) &#123;</span><br><span class="line">  <span class="keyword">const</span> visited = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line marked">  <span class="keyword">const</span> visitList = <span class="keyword">new</span> Queue();</span><br><span class="line"></span><br><span class="line">  visitList.add(first);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(!visitList.isEmpty()) &#123;</span><br><span class="line">    <span class="keyword">const</span> node = visitList.remove();</span><br><span class="line">    <span class="keyword">if</span>(node &amp;&amp; !visited.has(node)) &#123;</span><br><span class="line">      <span class="keyword">yield</span> node;</span><br><span class="line">      visited.set(node);</span><br><span class="line">      node.getAdjacents().forEach(<span class="function"><span class="params">adj</span> =&gt;</span> visitList.add(adj));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>As you can see, we are using a <code>Queue</code> where the first node in is also the first node to be visited (FIFO). You can find the <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/5628a2772513a05ceb3f088976b81914c9951fd2/src/data-structures/queues/queue.js#L47">Queue implementation here</a>.</p>
+<p>We are as well using <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator">JavaScript generators</a>, notice the <code>*</code> in front of the function. This generator iterates one value at a time. That’s useful for large graphs (millions of nodes) because in most cases you don’t need to visit every single node.</p>
+<p>This an example of how to use the BFS that we just created:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> graph = <span class="keyword">new</span> Graph(Graph.UNDIRECTED);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first] = graph.addEdge(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">graph.addEdge(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">graph.addEdge(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">graph.addEdge(<span class="number">5</span>, <span class="number">2</span>);</span><br><span class="line">graph.addEdge(<span class="number">6</span>, <span class="number">3</span>);</span><br><span class="line">graph.addEdge(<span class="number">7</span>, <span class="number">3</span>);</span><br><span class="line">graph.addEdge(<span class="number">8</span>, <span class="number">4</span>);</span><br><span class="line">graph.addEdge(<span class="number">9</span>, <span class="number">5</span>);</span><br><span class="line">graph.addEdge(<span class="number">10</span>, <span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">bfsFromFirst = graph.bfs(first);</span><br><span class="line"></span><br><span class="line">bfsFromFirst.next().value.value; <span class="comment">// 1</span></span><br><span class="line">bfsFromFirst.next().value.value; <span class="comment">// 2</span></span><br><span class="line">bfsFromFirst.next().value.value; <span class="comment">// 3</span></span><br><span class="line">bfsFromFirst.next().value.value; <span class="comment">// 4</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>You can find more illustrstions of usage in the <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.spec.js">test cases</a>. Let’s move on to the DFS!</p>
+<h1 id="Depth-first-search-DFS-Graph-search"><a href="#Depth-first-search-DFS-Graph-search" class="headerlink" title="Depth-first search (DFS)  - Graph search"></a>Depth-first search (DFS)  - Graph search</h1><p>Depth-first search is another way to navigate a graph from an initial vertex by recursively the first adjacent node of each vertex found.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif" class="" title="Depth First Search in a graph">
+
+<p>The iterative implementation of a DFS is identical to the BFS, but instead of using a <code>Queue</code> you use a <code>Stack</code>:</p>
+<p>NOTE: <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/stacks/stack.js">stack implementation</a></p>
+<figure class="highlight js"><figcaption><span>Graph.dfs</span><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">*dfs(first) &#123;</span><br><span class="line">  <span class="keyword">const</span> visited = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line marked">  <span class="keyword">const</span> visitList = <span class="keyword">new</span> Stack();</span><br><span class="line"></span><br><span class="line">  visitList.add(first);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(!visitList.isEmpty()) &#123;</span><br><span class="line">    <span class="keyword">const</span> node = visitList.remove();</span><br><span class="line">    <span class="keyword">if</span>(node &amp;&amp; !visited.has(node)) &#123;</span><br><span class="line">      <span class="keyword">yield</span> node;</span><br><span class="line">      visited.set(node);</span><br><span class="line">      node.getAdjacents().forEach(<span class="function"><span class="params">adj</span> =&gt;</span> visitList.add(adj));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We can test our graph as follow.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> graph = <span class="keyword">new</span> Graph(Graph.UNDIRECTED);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first] = graph.addEdge(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">graph.addEdge(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">graph.addEdge(<span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">graph.addEdge(<span class="number">5</span>, <span class="number">2</span>);</span><br><span class="line">graph.addEdge(<span class="number">6</span>, <span class="number">3</span>);</span><br><span class="line">graph.addEdge(<span class="number">7</span>, <span class="number">3</span>);</span><br><span class="line">graph.addEdge(<span class="number">8</span>, <span class="number">4</span>);</span><br><span class="line">graph.addEdge(<span class="number">9</span>, <span class="number">5</span>);</span><br><span class="line">graph.addEdge(<span class="number">10</span>, <span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">dfsFromFirst = graph.dfs(first);</span><br><span class="line">visitedOrder = <span class="built_in">Array</span>.from(dfsFromFirst);</span><br><span class="line"><span class="keyword">const</span> values = visitedOrder.map(<span class="function"><span class="params">node</span> =&gt;</span> node.value);</span><br><span class="line"><span class="built_in">console</span>.log(values); <span class="comment">// [1, 4, 8, 3, 7, 6, 10, 2, 5, 9]</span></span><br></pre></td></tr></table></figure>
+
+<p>As you can see the graph is the same on BFS and DFS, however, the order how the nodes were visited is very different. BFS went from 1 to 10 in that order, while DFS went as deep as it could on each node.</p>
+<!--Let's see some applications were DFS and BFS can be useful.
+
+## Find the path in a Graph
+
+Let's say you are exploring your social network and you want to know who can introduce you to Mark Zuckerberg.
+
+{ img /images/you-mark-connections-graph2.png "Friends graph between you and Mark Zuckerberg" %}
+
+Your code use a DFS or BFS and iterate until you find the vertex you are looking for (e.g., Mark). It will indicate us if two vertices are **connected**. Let's start with that
+
+{ codeblock Graph.areConnected lang:js mark:6 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js Full Code }
+  areConnected(source, destination) {
+    const sourceNode = this.nodes.get(source);
+    const destinationNode = this.nodes.get(destination);
+
+    if(sourceNode && destinationNode) {
+      const bfsFromFirst = this.bfs(sourceNode);
+      for (const node of bfsFromFirst) {
+        if(node === destinationNode) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+{ endcodeblock }
+
+With this function, we get if two nodes are connected or not. However, they don't give us a path.-->
+
+<h1 id="Graph-Time-and-Space-Complexity"><a href="#Graph-Time-and-Space-Complexity" class="headerlink" title="Graph Time and Space Complexity"></a>Graph Time and Space Complexity</h1><p>We have seen some of the basic operations of a Graph. How to add and remove vertices and edges. Here’s a summary of what we have covered so far:</p>
+<!-- Implementation | Space | addVertex | removeVertex | addEdge | removeEdge | getAdjacents | areConnected -->
+<!-- - | - | - | - | - | - | - | - &#124; -->
+<!-- Adjacency List | -->
+
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>Adjacency List</th>
+<th>Adjacency Matrix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Space</td>
+<td><a href="#List.space">O(&#124;V&#124; + &#124;E&#124;)</a></td>
+<td><a href="#Matrix.space">O(&#124;V&#124;<sup>2</sup>)</a></td>
+</tr>
+<tr>
+<td>addVertex</td>
+<td><a href="#Graph.addVertex">O(1)</a></td>
+<td><a href="#Matrix.addVertex">O(&#124;V&#124;<sup>2</sup>)</a></td>
+</tr>
+<tr>
+<td>removeVertex</td>
+<td><a href="#Graph.removeVertex">O(&#124;V&#124; + &#124;E&#124;)</a></td>
+<td><a href="#Matrix.addVertex">O(&#124;V&#124;<sup>2</sup>)</a></td>
+</tr>
+<tr>
+<td>addEdge</td>
+<td><a href="#Graph.addEdge">O(1)</a></td>
+<td><a href="#Matrix.addVertex">O(1)</a></td>
+</tr>
+<tr>
+<td>removeEdge (using Array)</td>
+<td><a href="#Graph.removeEdge">O(&#124;E&#124;)</a></td>
+<td><a href="#Matrix.addVertex">O(1)</a></td>
+</tr>
+<tr>
+<td>removeEdge (using HashSet)</td>
+<td>O(1)</td>
+<td><a href="#Matrix.addVertex">O(1)</a></td>
+</tr>
+<tr>
+<td>getAdjacents</td>
+<td><a href="#Node.getAdjacents">O(&#124;E&#124;)</a></td>
+<td><a href="#Matrix.getAdjacents">O(&#124;V&#124;)</a></td>
+</tr>
+<tr>
+<td>isAdjacent (using Array)</td>
+<td><a href="#Node.getAdjacents">O(&#124;E&#124;)</a></td>
+<td><a href="#Matrix.getAdjacents">O(1)</a></td>
+</tr>
+<tr>
+<td>isAdjacent (using HashSet)</td>
+<td>O(1)</td>
+<td><a href="#Matrix.getAdjacents">O(1)</a></td>
+</tr>
+</tbody></table>
+<!-- areConnected | | -->
+
+<p>As you can see, an adjacency list is faster in almost all operations. The only action that the adjacency matrix will outperform the adjacency list is checking if a node is adjacent to other. However, if we change our implementation from Array to a HashSet, we can get it in constant time as well.</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>As we saw, Graphs can help to model many real-life scenarios such as airports, social networks, internet and so on. We covered some of the most basic algorithms such as Breadth-First Search (BFS) and Depth-First Search (DFS). Also, we studied about implementations trade-offs such as adjacency list and matrix. Subscribe to my newsletter and don’t miss any of my posts, because there are many other applications that we are going to learn soon, such as finding the shortest path between nodes and different exciting graph algorithms!</p>
+<!-- https://www.slideshare.net/hafsakomal/graphs-49204527 -->
+<!-- https://www.slideshare.net/Abrish06/graph-48747573?next_slideshow=1 -->
+
+<!-- http://ccicada.org/wp-content/uploads/2017/06/Community-Detection-with-Hierarchical-Clustering-Algorithms-Feb-3-2017.pdf -->
+
+<!-- https://dreampuf.github.io/GraphvizOnline/ -->
+<!-- http://www.webgraphviz.com/ -->
+<!-- http://graphviz.readthedocs.io/en/stable/examples.html -->
+
+<!-- https://www.python.org/doc/essays/graphs/ -->
+
+<!-- Social Network Visualizations -->
+<!-- http://socilab.com/#home -->
+<!-- http://blog.stephenwolfram.com/2012/08/wolframalpha-personal-analytics-for-facebook/ -->
+
+
+<!-- https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/graph -->
+<!-- https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/graph/breadth-first-search -->
+
+<!-- Backlinks
+
+  https://betterdev.link/issues/54
+-->
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2018-06-12-Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  Tree Data Structures in JavaScript for Beginners
+                
+              </div>
+            </a>
+          
+          
+            <a href="/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">Data Structures in JavaScript: Arrays, HashMaps, and Lists</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+              
+                <div class="container">
+                <h1 class="capitalize">tutorial algorithms Series</h1>
+                <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/">
+    
+      <img src="/images/graph-interview-questions-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">
+    
+      <img src="/images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How you can change the world by learning Data Structures and Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">
+    
+      <img src="/images/data-structures-must-know-algorithms-running-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>8 time complexities that every programmer should know</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/">
+    
+      <img src="/images/data-structures-time-complexity-lists-arrays-stacks-queues-hash-maps-sets-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Data Structures in JavaScript: Arrays, HashMaps, and Lists</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">
+    
+      <img src="/images/graph-data-structures-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Graph Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">
+    
+      <img src="/images/data-structures-for-beginners-trees-binary-search-tree-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Tree Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">
+    
+      <img src="/images/data-structures-algorithms-avl-binary-search-trees-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Self-balanced Binary Search Trees with AVL in JavaScript</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Analysis-of-Recursive-Algorithms/">
+    
+      <img src="/images/data-structures-analysis-of-recursive-algorithms-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Analysis of Recursive Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2018-06-12-Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Graphs-Basics"><span class="toc-number">1.</span> <span class="toc-text">Graphs Basics</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Graph-Applications"><span class="toc-number">2.</span> <span class="toc-text">Graph Applications</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Representing-graphs"><span class="toc-number">3.</span> <span class="toc-text">Representing graphs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Adjacency-Matrix"><span class="toc-number">3.1.</span> <span class="toc-text">Adjacency Matrix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adjacency-List"><span class="toc-number">3.2.</span> <span class="toc-text">Adjacency List</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Adjacency-List-Graph-HashMap-Implementation"><span class="toc-number">4.</span> <span class="toc-text">Adjacency List Graph HashMap Implementation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Adjacency-List-Graph-OO-Implementation"><span class="toc-number">5.</span> <span class="toc-text">Adjacency List Graph OO Implementation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Breadth-first-search-BFS-Graph-search"><span class="toc-number">6.</span> <span class="toc-text">Breadth-first search (BFS) - Graph search</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Depth-first-search-DFS-Graph-search"><span class="toc-number">7.</span> <span class="toc-text">Depth-first search (DFS)  - Graph search</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Graph-Time-and-Space-Complexity"><span class="toc-number">8.</span> <span class="toc-text">Graph Time and Space Complexity</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">9.</span> <span class="toc-text">Summary</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/';
+      this.page.identifier = 'https://adrianmejia.com/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

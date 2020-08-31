@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>What every programmer should know about Synchronous vs. Asynchronous Code | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/asynchronous-vs-synchronous-handling-concurrency-in-javascript/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/asynchronous-vs-synchronous-handling-concurrency-in-javascript/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="There are multiple ways of handling concurrency on programming languages. Some languages use various threads, while others use the asynchronous model. We are going to explore the latter in detail and provide examples to distinguish between synchronous vs. asynchronous. Btw, What do you think your CPU does most of the time?" />
+    <meta property="og:image" content="https://adrianmejia.com/images/async-vs-sync-concurrency-in-javascript-large.png" />
+    <meta property="og:title" content="What every programmer should know about Synchronous vs. Asynchronous Code" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "What every programmer should know about Synchronous vs. Asynchronous Code",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/async-vs-sync-concurrency-in-javascript-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2019-07-01T13:15:01-04:00",
+  "dateModified": "2019-07-01T13:15:01-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "There are multiple ways of handling concurrency on programming languages. Some languages use various threads, while others use the asynchronous model. We are going to explore the latter in detail and provide examples to distinguish between synchronous vs. asynchronous. Btw, What do you think your CPU does most of the time?"
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a>
+    </div>
+
+    <h1>What every programmer should know about Synchronous vs. Asynchronous Code</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2019-07-01T17:15:01.000Z" itemprop="dateUpdated">July 1st 2019</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          4.7k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/asynchronous-vs-synchronous-handling-concurrency-in-javascript/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-async-javascript/" rel="tag">tutorial_async-javascript</a><span class="tag-list-count">3</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #816D99">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/async-vs-sync-concurrency-in-javascript-large.png">
+        <source srcset="/images/async-vs-sync-concurrency-in-javascript-small.png">
+        <img src="/images/async-vs-sync-concurrency-in-javascript-large.png" alt="What every programmer should know about Synchronous vs. Asynchronous Code">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>There are multiple ways of handling concurrency on programming languages. Some languages use various threads, while others use the asynchronous model. We are going to explore the latter in detail and provide examples to distinguish between synchronous vs. asynchronous. Btw, What do you think your CPU does most of the time?</p>
+<a id="more"></a>
+
+<p>Is it working? Nope; It’s idle!</p>
+<p>Your computer’s processor waits for a network request to come out. It idles for the hard drive to spin out the requested data, and it pauses for external events (I/O).</p>
+<p>Take a look at the following graph to see the average time this system event takes (in nanoseconds)</p>
+<!-- ![Latency Access Time by I/O](/images/latency-access-time.png) -->
+<p><img src="/images/Latency-vs-System-Event.png" alt="Latency Access Time by I/O"></p>
+<p>As you can see in the chart above, one CPU can execute an instruction every one ns (approx.). However, if are in NYC and you make a request to a website in San Francisco, the CPU will “waste” 157 million cycles waiting for it to come back!</p>
+<p>But not everything is lost! You can use that time to perform other tasks if you use a non-blocking (asynchronous) code in your programs! That’s exactly what are you going to learn on this post.</p>
+<p><strong>⚠️ NOTE</strong>: Most programs on your operating system are non-blocking so a single CPU can perform many tasks while it waits for others to complete. Also, modern processors have multiple cores to increase the parallelism.</p>
+<hr>
+
+<p><strong>Related Posts:</strong></p>
+<ol>
+<li><a href="/asynchronous-vs-synchronous-handling-concurrency-in-javascript/">Async vs Sync in JavaScript</a> (this one)</li>
+<li><a href="/callbacks-concurrency-in-javascript-node/">JavaScript Callbacks</a></li>
+<li><a href="/promises-tutorial-concurrency-in-javascript-node/">JavaScript Promises</a></li>
+</ol>
+<hr>
+
+<h1 id="Synchronous-vs-Asynchronous-in-Node-js"><a href="#Synchronous-vs-Asynchronous-in-Node-js" class="headerlink" title="Synchronous vs. Asynchronous in Node.js"></a>Synchronous vs. Asynchronous in Node.js</h1><p>Let’s see how we can develop non-blocking code that squeezes out the performance to the maximum.
+Synchronous code is also called “blocking” because it halts the program until all the resources are available. However, asynchronous code is also known as “non-blocking” because the program continues executing and doesn’t wait for external resources (I/O) to be available.</p>
+<blockquote>
+<p>💡 In computing, input/output or <code>I/O</code> (or <code>io</code> or <code>IO</code>) is the communication between a program and the outside world (file system, databases, network requests, and so on).</p>
+</blockquote>
+<p>We are going to compare two different ways of reading files using a blocking I/O model and then using a non-blocking I/O model.</p>
+<p>First, consider the following blocking code.</p>
+<h2 id="Synchronous-code-for-reading-from-a-file-in-Node-js"><a href="#Synchronous-code-for-reading-from-a-file-in-Node-js" class="headerlink" title="Synchronous code for reading from a file in Node.js"></a>Synchronous code for reading from a file in Node.js</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;start&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> data = fs.readFileSync(<span class="string">&#x27;./file.txt&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>); <span class="comment">// blocks here until file is read</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;data: &#x27;</span>, data.trim());</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;end&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>What’s the output of this program?</strong></p>
+<p>We are using Node’s <code>readFileSync</code>.</p>
+<blockquote>
+<p><code>Sync</code> = Synchronous = Blocking I/O model</p>
+</blockquote>
+<blockquote>
+<p><code>Async</code> = Asynchronous = Non-blocking I/O model</p>
+</blockquote>
+<p>That means that the program is going to wait around 23M CPU cycles for your HDD to come back with the content of the <code>file.txt</code>, which is the original message <code>Hello World!</code>.</p>
+<p>The output would be:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start</span><br><span class="line">data:  Hello World! 👋 🌍</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p><strong>How can make this code non-blocking?</strong></p>
+<p>I’m glad you asked. Luckily most Node.js functions are non-blocking (asynchronous) by default.</p>
+<p>Actually, Ryan Dahl created Node because he was not happy with the limitations of the Apache HTTP server. Apache creates a thread for each connection which consumes more resources. On the other hand, Node.js combines JavaScript engine, an event loop, and an I/O layer to handle multiple requests efficiently.</p>
+<p><img src="/images/blocking-vs-non-blocking-api.png" alt="blocking vs. non-blocking API"></p>
+<p>As you can see, asynchronous functions can handle more operations while it waits for IO resources to be ready.</p>
+<p>Let’s see an example of reading from a file using the asynchronous code.</p>
+<h2 id="Asynchronous-code-for-reading-from-a-file-in-Node-js"><a href="#Asynchronous-code-for-reading-from-a-file-in-Node-js" class="headerlink" title="Asynchronous code for reading from a file in Node.js"></a>Asynchronous code for reading from a file in Node.js</h2><p>We can read from the file without blocking the rest of the code like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;start&#x27;</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">&#x27;./file.txt&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;file.txt data: &#x27;</span>, data.trim());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;end&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>What’s the output of this program?</p>
+<details>
+  <summary>See the answer</summary>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start</span><br><span class="line">end</span><br><span class="line">file.txt data:  Hello World! 👋 🌍</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<!-- - Answer
+
+        start
+        end
+        file.txt data:  Hello World! 👋 🌍 -->
+
+<p>Many people get surprised by the fact that <code>start</code> and <code>end</code> comes before the <code>data</code> output. 👀</p>
+<p>The <code>end</code> comes before the file output because the program doesn’t halt and continue executing whatever is next.</p>
+<p>That’s cool, but does it make a lot of difference? It does, let’s bigger files and time it!</p>
+<h2 id="Blocking-vs-Non-Blocking-I-O-model-Benchmark"><a href="#Blocking-vs-Non-Blocking-I-O-model-Benchmark" class="headerlink" title="Blocking vs. Non-Blocking I/O model Benchmark"></a>Blocking vs. Non-Blocking I/O model Benchmark</h2><p>For this benchmark, let’s read a big file. I just went to my downloads and took the heaviest. (You can try this experiment at home and comment your results)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">&#x27;readFileSync&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; <span class="number">10</span>; x++) &#123;</span><br><span class="line">  <span class="keyword">const</span> largeFile = fs.readFileSync(<span class="string">&#x27;/users/admejiar/Downloads/Docker.dmg&#x27;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`File size#<span class="subst">$&#123;x&#125;</span>: <span class="subst">$&#123;<span class="built_in">Math</span>.round(largeFile.length / <span class="number">1e6</span>)&#125;</span> MB`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> data = fs.readFileSync(<span class="string">&#x27;./file.txt&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>); <span class="comment">// blocks here until file is read</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;file.txt data: &#x27;</span>, data.trim());</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">&#x27;readFileSync&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Notice that we are using <code>console.time</code> which is very nice for benchmarking since it calculates how many milliseconds it took. The output is the following:</p>
+<pre><code>File size#0: 523 MB
+File size#1: 523 MB
+File size#2: 523 MB
+File size#3: 523 MB
+File size#4: 523 MB
+File size#5: 523 MB
+File size#6: 523 MB
+File size#7: 523 MB
+File size#8: 523 MB
+File size#9: 523 MB
+file.txt data:  Hello World! 👋 🌍
+readFileSync: 2572.060ms</code></pre>
+<p>It took 2.5 seconds to read all ten files and the <code>file.txt</code>.</p>
+<p>Let’s try now the same with non-blocking:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">&#x27;readFile&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; <span class="number">10</span>; x++) &#123;</span><br><span class="line">  fs.readFile(<span class="string">&#x27;/users/admejiar/Downloads/Docker.dmg&#x27;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`File size#<span class="subst">$&#123;x&#125;</span>: <span class="subst">$&#123;<span class="built_in">Math</span>.round(data.length / <span class="number">1e6</span>)&#125;</span> MB`</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">&#x27;./file.txt&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;file.txt data: &#x27;</span>, data.trim());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">&#x27;readFile&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>And here is the output:</p>
+<pre><code>readFile: 0.731ms
+file.txt data:  Hello World! 👋 🌍
+File size#7: 523 MB
+File size#9: 523 MB
+File size#4: 523 MB
+File size#2: 523 MB
+File size#6: 523 MB
+File size#5: 523 MB
+File size#1: 523 MB
+File size#8: 523 MB
+File size#0: 523 MB
+File size#3: 523 MB</code></pre>
+<p>Wow! Totally random! 🤯</p>
+<p>It got to the <code>console.timeEnd</code> in less than a millisecond! The small <code>file.txt</code> came later, and then the large files all in a different order. As you can see non-blocking waits for nobody. Whoever is ready will come out first. Even though it is not deterministic, it has many advantages.</p>
+<p>Benchmarking asynchronous code is not as straight forward since we have to wait for all the operations to finish (which <code>console.timeEnd</code> is not doing). We are going to provide a better benchmark when we cover <code>Promise</code>s.</p>
+<p>Take a look at this picture:</p>
+<p><img src="/images/synchronous-asynchronous-javascript.png" alt="synchronous vs. asynchronous javascript"></p>
+<p>That async programs will take as long the most time-consuming task. It executes tasks in parallel while the blocking model does it in sequence.</p>
+<h1 id="Advantages-of-non-blocking-code"><a href="#Advantages-of-non-blocking-code" class="headerlink" title="Advantages of non-blocking code"></a>Advantages of non-blocking code</h1><p>Non-blocking code is much more performant. Blocking code waste around 90% of CPU cycles waiting for the network or disk to get the data. Using non-blocking code is a more straightforward way to have concurrency without having to deal with multiple execution threads.</p>
+<p>For instance, let’s say you have an API server. In the image below, you can see how much more requests you can handle using non-blocking vs. using the blocking code.</p>
+<p><img src="/images/blocking-vs-non-blocking-api.png" alt="blocking vs. non-blocking API"></p>
+<p>As you saw earlier, the blocking API server, attend one request at a time. It serves the request #1, and it idles for the database and then is free to serve the other requests. However, the non-blocking API can take multiple requests while it waits for the database to come back.</p>
+<p>Now that you are (hopefully) convinced why writing non-blocking code is necessary, let’s see different ways we can manage it. So far, we used callbacks, but there are other ways to handle it.</p>
+<p>In JavaScript, we can handle asynchronous code using:</p>
+<ul>
+<li><a href="/callbacks-concurrency-in-javascript-node">Callbacks</a></li>
+<li><a href="/promises-tutorial-concurrency-in-javascript-node">Promises</a></li>
+<li>Async/Await functions</li>
+<li>Generators</li>
+</ul>
+<p>I’m going to cover each one in a separate post. Stay tuned!</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-06-28-asynchronous-vs-synchronous-handling-concurrency-in-javascript.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/callbacks-concurrency-in-javascript-node/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  Understanding JavaScript Callbacks and best practices
+                
+              </div>
+            </a>
+          
+          
+            <a href="/How-to-build-a-Node-js-eCommerce-website-for-free/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">How to build a Node.js eCommerce website for free</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+              
+                <div class="container">
+                <h1 class="capitalize">tutorial async javascript Series</h1>
+                <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/asynchronous-vs-synchronous-handling-concurrency-in-javascript/">
+    
+      <img src="/images/async-vs-sync-concurrency-in-javascript-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>What every programmer should know about Synchronous vs. Asynchronous Code</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/callbacks-concurrency-in-javascript-node/">
+    
+      <img src="/images/callbacks-concurrency-in-javascript-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Understanding JavaScript Callbacks and best practices</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/promises-tutorial-concurrency-in-javascript-node/">
+    
+      <img src="/images/promises-concurrency-in-javascript-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>The JavaScript Promise Tutorial</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-06-28-asynchronous-vs-synchronous-handling-concurrency-in-javascript.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Synchronous-vs-Asynchronous-in-Node-js"><span class="toc-number">1.</span> <span class="toc-text">Synchronous vs. Asynchronous in Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Synchronous-code-for-reading-from-a-file-in-Node-js"><span class="toc-number">1.1.</span> <span class="toc-text">Synchronous code for reading from a file in Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Asynchronous-code-for-reading-from-a-file-in-Node-js"><span class="toc-number">1.2.</span> <span class="toc-text">Asynchronous code for reading from a file in Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Blocking-vs-Non-Blocking-I-O-model-Benchmark"><span class="toc-number">1.3.</span> <span class="toc-text">Blocking vs. Non-Blocking I&#x2F;O model Benchmark</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Advantages-of-non-blocking-code"><span class="toc-number">2.</span> <span class="toc-text">Advantages of non-blocking code</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/asynchronous-vs-synchronous-handling-concurrency-in-javascript/';
+      this.page.identifier = 'https://adrianmejia.com/asynchronous-vs-synchronous-handling-concurrency-in-javascript/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

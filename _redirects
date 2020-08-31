@@ -1,0 +1,12 @@
+# Also using hexo-generator-alias to avoid vendor locked-in
+/blog/:year/:month/:date/:slug /:slug 301!
+/posts/* /:splat 301!
+
+# Redirect default Netlify subdomain to primary domain
+https://angry-engelbart-d10917.netlify.com/* https://adrianmejia.com/:splat 301!
+https://blog.adrianmejia.com/* https://adrianmejia.com/:splat 301!
+https://yabor.adrianmejia.com/* https://adrianmejia.com/:splat 301!
+
+
+# yabor CNAME angry-engelbart-d10917.netlify.com.
+# blog CNAME angry-engelbart-d10917.netlify.com.

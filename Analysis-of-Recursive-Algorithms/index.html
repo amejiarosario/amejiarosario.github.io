@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Analysis of Recursive Algorithms | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/analysis-of-recursive-algorithms/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/Analysis-of-Recursive-Algorithms/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="
+
+
+
+Analyzing the running time of non-recursive algorithms is pretty straightforward. You count the lines of code, and if there are any loops, you multiply by the length. However, recursive algorithms are not that intuitive. They divide the input into one or more subproblems. On this post, we are going to learn how to get the big O notation for most recursive algorithms." />
+    <meta property="og:image" content="https://adrianmejia.com/images/data-structures-analysis-of-recursive-algorithms-large.jpg" />
+    <meta property="og:title" content="Analysis of Recursive Algorithms" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Analysis of Recursive Algorithms",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/data-structures-analysis-of-recursive-algorithms-large.jpg",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2018-04-24T08:44:35-04:00",
+  "dateModified": "2018-04-24T08:44:35-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "
+
+
+
+Analyzing the running time of non-recursive algorithms is pretty straightforward. You count the lines of code, and if there are any loops, you multiply by the length. However, recursive algorithms are not that intuitive. They divide the input into one or more subproblems. On this post, we are going to learn how to get the big O notation for most recursive algorithms."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a> > <a class="category-link" href="/categories/coding/data-structures-and-algorithms-dsa/">Data Structures and Algorithms (DSA)</a>
+    </div>
+
+    <h1>Analysis of Recursive Algorithms</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2018-04-24T12:44:35.000Z" itemprop="dateUpdated">April 24th 2018</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          14.6k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/Analysis-of-Recursive-Algorithms/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithms/" rel="tag">algorithms</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-algorithms/" rel="tag">tutorial_algorithms</a><span class="tag-list-count">8</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #F4F0EF">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/data-structures-analysis-of-recursive-algorithms-large.jpg">
+        <source srcset="/images/data-structures-analysis-of-recursive-algorithms-small.jpg">
+        <img src="/images/data-structures-analysis-of-recursive-algorithms-large.jpg" alt="Analysis of Recursive Algorithms">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+<p>Analyzing the running time of non-recursive algorithms is pretty straightforward. You count the lines of code, and if there are any loops, you multiply by the length. However, recursive algorithms are not that intuitive. They divide the input into one or more subproblems. On this post, we are going to learn how to get the big O notation for most recursive algorithms.</p>
+<a id="more"></a>
+
+<p>We are going to explore how to obtain the time complexity of recursive algorithms. For that, we are going to use the <strong>Master Theorem</strong> (or master method).</p>
+<!-- One is the **Master Theorem** and other is the **Recursion Tree**.  -->
+
+<hr>
+<p>This post is part of a tutorial series:</p>
+<p><strong>Learning Data Structures and Algorithms (DSA) for Beginners</strong></p>
+<ol>
+<li><p><a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">Intro to algorithm’s time complexity and Big O notation</a></p>
+<!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">Eight time complexities that every programmer should know</a></p>
+<!-- 1. Eight time complexities that every programmer should know **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/">Data Structures for Beginners: Arrays, HashMaps, and Lists</a></p>
+<!-- 1. Data Structures for Beginners: Arrays, HashMaps, and Lists **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">Graph Data Structures for Beginners</a></p>
+<!-- 1. Graph Data Structures for Beginners **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">Trees Data Structures for Beginners</a></p>
+<!-- 1. Trees Data Structures for Beginners **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/07/16/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">Self-balanced Binary Search Trees</a></p>
+<!-- 1. Self-balanced Binary Search Trees  **👈 you are here** -->
+</li>
+<li><p>Appendix I: Analysis of Recursive Algorithms <strong>👈 you are here</strong></p>
+<!-- 1. [Appendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/) -->
+</li>
+</ol>
+<hr>
+<h1 id="Master-Theorem"><a href="#Master-Theorem" class="headerlink" title="Master Theorem"></a>Master Theorem</h1><p>The Master Theorem is the easiest way of obtaining runtime of recursive algorithms. First, you need to identify three elements:</p>
+<ul>
+<li><em><code>a</code></em>: Subproblems. How many recursion (split) functions are there? E.g., the Binary search has 1 split, Merge Sort has 2 split, etc.</li>
+<li><em><code>b</code></em>: Relative subproblem size. What rate is the input reduced? E.g., Binary search and Merge sort cut input in half.</li>
+<li><em><code>f(n)</code></em> Runtime of the work done outside the recursion? E.g. `O(n)` or `O(1)`</li>
+</ul>
+<p>The general formula for the Master Theorem is:</p>
+<blockquote>
+<p>` T(n) = a * T(n / b) + f(n) `</p>
+</blockquote>
+<p>Once, we have <code>a</code>, <code>b</code> and <code>f(n)</code> we can determine the runtime of the work done by the recursion. That is given by:</p>
+<blockquote>
+<p>` O(n^(log_b a)) `</p>
+</blockquote>
+<p>Finally, we compare the runtime of the split/recursion functions and <em><code>f(n)</code></em>. There are 3 possible cases:</p>
+<p><strong>Case 1</strong> Recursion/split runtime is higher: `n^(log_b a) &gt; f(n)`</p>
+<blockquote>
+<p>Final runtime: `O(n^(log_b a))`</p>
+</blockquote>
+<p><strong>Case 2</strong> Same runtime inside and outside recursion: `n^(log_b a) ~~ f(n)`</p>
+<blockquote>
+<p>Final runtime: `O(n^(log_b a) log n)`</p>
+</blockquote>
+<p><strong>Case 3:</strong> Recursion/split runtime is lower: `n^(log_b a) &lt; f(n)`</p>
+<blockquote>
+<p>Final runtime: `O(f(n))`</p>
+</blockquote>
+<p>These 3 cases might see a little abstract at first, but after a few examples, it will be more evident.</p>
+<h1 id="Master-Theorem-Examples"><a href="#Master-Theorem-Examples" class="headerlink" title="Master Theorem Examples"></a>Master Theorem Examples</h1><p>In the [previous post])(/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/) we used Master Method to get the time complexity for the <a href="/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#Binary-search">binary search</a> and <a href="/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#Mergesort">merge sort</a>. Both of them fall into the case 2. Let’s explore some other examples.</p>
+<h2 id="Case-1-Example"><a href="#Case-1-Example" class="headerlink" title="Case 1 Example"></a>Case 1 Example</h2><p>What’s the runtime of this recursion?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">recursiveFn1</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(!n) &#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> <span class="keyword">return</span> recursiveFn1(n/<span class="number">4</span>) + recursiveFn1(n/<span class="number">4</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>1)</strong> Let’s identify <code>a</code>, <code>b</code> and <code>f(n)</code> from the Master Theorem</p>
+<ul>
+<li>Sub-problems? 2, so <code>a=2</code></li>
+<li>Sub-problems size? it’s 1/4 of the original <code>n</code> size, thus <code>b=4</code></li>
+<li>Runtime without recursion? Constant, therefore <code>f(n) = 1</code>.</li>
+</ul>
+<p>Substituting the values we get:</p>
+<p>` T(n) = a * T(n / b) + f(n) `</p>
+<p>` T(n) = 2 * T(n / 4) + 1 `</p>
+<p><strong>2)</strong> What’s the runtime of the recursion by itself? Using the formula, we get:</p>
+<p>` n^(log_b a) `</p>
+<p>` n^(log_4 2) = n^0.5 = sqrt(n)`</p>
+<p><strong>3)</strong> Comparing <code>f(n)</code> with the result in step 2, we see that it matches case 1.</p>
+<p>Since `O(n^0.5) &gt; O(1)` then the runtime is:</p>
+<p>` O(n^(log_b a)) `</p>
+<p>` O(n^(log_4 2)) `</p>
+<blockquote>
+<p>`  O(sqrt(n)) `</p>
+</blockquote>
+<h2 id="Case-2-Example"><a href="#Case-2-Example" class="headerlink" title="Case 2 Example"></a>Case 2 Example</h2><p>What would be the runtime of the mergesort if instead of splitting the array in 2 we split it up in 3?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">const</span> length = n.length;</span><br><span class="line"> <span class="comment">// base case</span></span><br><span class="line"> <span class="keyword">if</span>(length === <span class="number">1</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line"> <span class="keyword">if</span>(length === <span class="number">2</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> n[<span class="number">0</span>] &gt; n[<span class="number">1</span>] ? [n[<span class="number">1</span>], n[<span class="number">0</span>]] : [n[<span class="number">0</span>], n[<span class="number">1</span>]];</span><br><span class="line">  &#125;</span><br><span class="line"> <span class="comment">// slit and merge</span></span><br><span class="line"> <span class="keyword">const</span> third = length/<span class="number">3</span>;</span><br><span class="line"> <span class="keyword">return</span> merge(</span><br><span class="line"> sort(n.slice(<span class="number">0</span>, third)),</span><br><span class="line"> sort(n.slice(third, <span class="number">2</span> * third)),</span><br><span class="line"> sort(n.slice(<span class="number">2</span> * third))</span><br><span class="line"> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">a = [], b = [], c = []</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">const</span> merged = [];</span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">let</span> ai = <span class="number">0</span>, bi = <span class="number">0</span>, ci = <span class="number">0</span>; ai &lt; a.length || bi &lt; b.length || ci &lt; c.length;) &#123;</span><br><span class="line"> <span class="keyword">const</span> nonNullValues = [a[ai], b[bi], c[ci]].filter(<span class="function"><span class="params">x</span> =&gt;</span> x === <span class="number">0</span> || x );</span><br><span class="line"> <span class="keyword">const</span> min = <span class="built_in">Math</span>.min.apply(<span class="literal">null</span>, nonNullValues);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span>(min === a[ai]) &#123;</span><br><span class="line"> merged.push(a[ai++]);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(min === b[bi]) &#123;</span><br><span class="line"> merged.push(b[bi++]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"> merged.push(c[ci++]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> merged;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>So, this new implementation divides the input into 3 subproblems (<code>a = 3</code>). The input size is divided by 3 (<code>b=3</code>). The work to <code>merge</code> the 3 sub-problems is still <code>O(n)</code>.</p>
+<p><strong>1)</strong> Using the Master Theorem, we get:</p>
+<p>` T(n) = a * T(n / b) + f(n) `</p>
+<p>` T(n) = 3 * T(n / 3) + n `</p>
+<p><strong>2)</strong> Let’s compute the amount of work done in the recursion:</p>
+<p>` n^(log_b a) `</p>
+<p>` n^(log_3 3) = n `</p>
+<p><strong>3)</strong> Since <code>f(n)</code> and the recursive work is the same: <code>n</code>, we are looking at the <em>case 2</em>. Thus, the runtime is:</p>
+<p>`O(n^(log_b a) log n)`</p>
+<p>`O(n^(log_3 3) log n)`</p>
+<blockquote>
+<p>`O(n log n)`</p>
+</blockquote>
+<p>It’s the same as merge sort dividing the input into 2 subproblems and half <code>n</code>.</p>
+<h2 id="Case-3-Example"><a href="#Case-3-Example" class="headerlink" title="Case 3 Example"></a>Case 3 Example</h2><p>The case 3 of the Master Method is not very common in real life. It implies that most of the work is done in the base case of the recursion. If most work is done outside the recursion, it means that we can re-write the code in a non-recursive way.</p>
+<p>Anyways, let’s solve this example:</p>
+<p><strong>1)</strong> ` T(n) = 3 * T(n / 2) + n^2 `</p>
+<ul>
+<li>a=3</li>
+<li>b=2</li>
+<li>f(n) = n^2</li>
+</ul>
+<p><strong>2)</strong> Calculate recursive work:</p>
+<p>` n^(log_2 3) `</p>
+<p>` n^(1.48) `</p>
+<p><strong>3)</strong> Since <em><code>f(n)</code></em> is bigger than the recursive work we have:</p>
+<blockquote>
+<p>` O(n^2) `</p>
+</blockquote>
+<h1 id="Master-Method-Exceptions"><a href="#Master-Method-Exceptions" class="headerlink" title="Master Method Exceptions"></a>Master Method Exceptions</h1><p>The master method is handy but there are certain cases when you cannot use it.</p>
+<ul>
+<li><em><code>T(n)</code></em> is not monotone. E.g. ` T(n) = sin n`.</li>
+<li><em><code>f(n)</code></em> is not polynomial. E.g. ` T(n) = 2 * T(n/2) + 2^n `.</li>
+<li><em><code>b</code></em> cannot be expressed as a constant. E.g. ` T(n) = 2 * T(sqrt(n)) + n `.</li>
+</ul>
+<p>For these cases, you would have to recursion tree method or substitution method. We are going to explore these methods in future posts after covering the fundamentals.</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>On this post, we provided the tools to quickly obtain the runtime of recursive algorithms that split input by a constant factor. We covered the Master Method and provided examples for each one of its possible cases.</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2018-04-28-Analysis-of-Recursive-Algorithms.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  Data Structures in JavaScript: Arrays, HashMaps, and Lists
+                
+              </div>
+            </a>
+          
+          
+            <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">8 time complexities that every programmer should know</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+              
+                <div class="container">
+                <h1 class="capitalize">tutorial algorithms Series</h1>
+                <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/">
+    
+      <img src="/images/graph-interview-questions-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">
+    
+      <img src="/images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How you can change the world by learning Data Structures and Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">
+    
+      <img src="/images/data-structures-must-know-algorithms-running-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>8 time complexities that every programmer should know</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/">
+    
+      <img src="/images/data-structures-time-complexity-lists-arrays-stacks-queues-hash-maps-sets-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Data Structures in JavaScript: Arrays, HashMaps, and Lists</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">
+    
+      <img src="/images/graph-data-structures-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Graph Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">
+    
+      <img src="/images/data-structures-for-beginners-trees-binary-search-tree-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Tree Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">
+    
+      <img src="/images/data-structures-algorithms-avl-binary-search-trees-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Self-balanced Binary Search Trees with AVL in JavaScript</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Analysis-of-Recursive-Algorithms/">
+    
+      <img src="/images/data-structures-analysis-of-recursive-algorithms-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Analysis of Recursive Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2018-04-28-Analysis-of-Recursive-Algorithms.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Master-Theorem"><span class="toc-number">1.</span> <span class="toc-text">Master Theorem</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Master-Theorem-Examples"><span class="toc-number">2.</span> <span class="toc-text">Master Theorem Examples</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-1-Example"><span class="toc-number">2.1.</span> <span class="toc-text">Case 1 Example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-2-Example"><span class="toc-number">2.2.</span> <span class="toc-text">Case 2 Example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-3-Example"><span class="toc-number">2.3.</span> <span class="toc-text">Case 3 Example</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Master-Method-Exceptions"><span class="toc-number">3.</span> <span class="toc-text">Master Method Exceptions</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">4.</span> <span class="toc-text">Summary</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/Analysis-of-Recursive-Algorithms/';
+      this.page.identifier = 'https://adrianmejia.com/Analysis-of-Recursive-Algorithms/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

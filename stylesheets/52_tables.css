@@ -1,0 +1,60 @@
+.post-content > table, .post-content > div > table {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-collapse: collapse;
+  background-color: white; }
+  .post-content > table caption, .post-content > div > table caption {
+    text-align: left;
+    font-size: 1.2em;
+    margin-top: 1em; }
+  .post-content > table thead, .post-content > div > table thead {
+    padding-bottom: 1em; }
+  .post-content > table tbody tr, .post-content > div > table tbody tr {
+    position: relative;
+    height: 48px;
+    transition-duration: 0.28s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-property: background-color; }
+    .post-content > table tbody tr:hover, .post-content > div > table tbody tr:hover {
+      background-color: #eeeeee; }
+  .post-content > table td, .post-content > table th, .post-content > div > table td, .post-content > div > table th {
+    padding: 0 18px 12px 18px; }
+  .post-content > table td:first-of-type, .post-content > table th:first-of-type, .post-content > div > table td:first-of-type, .post-content > div > table th:first-of-type {
+    padding-left: 24px; }
+  .post-content > table td:last-of-type, .post-content > table th:last-of-type, .post-content > div > table td:last-of-type, .post-content > div > table th:last-of-type {
+    padding-right: 24px; }
+  .post-content > table td, .post-content > div > table td {
+    position: relative;
+    vertical-align: middle;
+    height: 48px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding-top: 12px;
+    box-sizing: border-box; }
+    .post-content > table td.red, .post-content > div > table td.red {
+      background-color: #FFEBEE; }
+    .post-content > table td.orange, .post-content > div > table td.orange {
+      background-color: #FFF3E0; }
+    .post-content > table td.green, .post-content > div > table td.green {
+      background-color: #E8F5E9; }
+    .post-content > table td:hover, .post-content > div > table td:hover {
+      filter: brightness(0.95); }
+  .post-content > table th, .post-content > div > table th {
+    position: relative;
+    vertical-align: bottom;
+    text-overflow: ellipsis;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 24px;
+    letter-spacing: 0;
+    height: 3em;
+    color: rgba(0, 0, 0, 0.54);
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    background-color: #eeeeee; }
+
+.table--responsive {
+  overflow-x: auto;
+  width: 100%; }
+  .table--responsive td, .table--responsive th {
+    overflow: hidden;
+    white-space: nowrap; }

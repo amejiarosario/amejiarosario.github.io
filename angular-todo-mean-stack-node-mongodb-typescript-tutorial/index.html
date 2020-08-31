@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Modern MEAN Stack Tutorial with Docker (Angular, Node, Typescript and Mongodb) | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/angular-todo-mean-stack-node-mongodb-typescript-tutorial/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/angular-todo-mean-stack-node-mongodb-typescript-tutorial/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="The MEAN stack allows you to build complete applications using one programming language: JavaScript. In this tutorial, we built upon the first part (Creating an Angular app) which built the front-end, and this part builds the backend with a RESTful API and Database." />
+    <meta property="og:image" content="https://adrianmejia.com/images/modern-mean-large.png" />
+    <meta property="og:title" content="Modern MEAN Stack Tutorial with Docker (Angular, Node, Typescript and Mongodb)" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Modern MEAN Stack Tutorial with Docker (Angular, Node, Typescript and Mongodb)",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/modern-mean-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2020-02-27T18:51:28-05:00",
+  "dateModified": "2020-02-27T18:51:28-05:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "The MEAN stack allows you to build complete applications using one programming language: JavaScript. In this tutorial, we built upon the first part (Creating an Angular app) which built the front-end, and this part builds the backend with a RESTful API and Database."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a> > <a class="category-link" href="/categories/coding/web-development/">Web Development</a> > <a class="category-link" href="/categories/coding/web-development/angular/">Angular</a>
+    </div>
+
+    <h1>Modern MEAN Stack Tutorial with Docker (Angular, Node, Typescript and Mongodb)</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2020-02-27T23:51:28.000Z" itemprop="dateUpdated">February 27th 2020</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          0.9k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/angular-todo-mean-stack-node-mongodb-typescript-tutorial/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/" rel="tag">angular</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mean-stack/" rel="tag">mean stack</a><span class="tag-list-count">1</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #1F77B4">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/modern-mean-large.png">
+        <source srcset="/images/modern-mean-small.png">
+        <img src="/images/modern-mean-large.png" alt="Modern MEAN Stack Tutorial with Docker (Angular, Node, Typescript and Mongodb)">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>The <abbr title="MongoDB, Express, Angular and Node.js">MEAN</abbr> stack allows you to build complete applications using one programming language: JavaScript. In this tutorial, we built upon the first part (<a href="/angular-2-tutorial-create-a-crud-app-with-angular-cli-and-typescript/">Creating an Angular app</a>) which built the front-end, and this part builds the backend with a RESTful API and Database.</p>
+<a id="more"></a>
+
+<h1 id="REST-API-with-Node-js"><a href="#REST-API-with-Node-js" class="headerlink" title="REST API with Node.js"></a>REST API with Node.js</h1><p>We are going to use express generator and create a folder called <code>server</code>.</p>
+<p>First install the generator packages:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g express-generator</span><br></pre></td></tr></table></figure>
+
+<p>Note: You should have Node and NPM/Yarn installed.</p>
+<h2 id="REST-API-using-ExpressJS"><a href="#REST-API-using-ExpressJS" class="headerlink" title="REST API using ExpressJS"></a>REST API using ExpressJS</h2><p>Now let’s scaffold the app using the generator:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">express server -e</span><br></pre></td></tr></table></figure>
+
+<p>Let’s install all its dependencies on the server folder:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> server &amp;&amp; npm i</span><br></pre></td></tr></table></figure>
+
+<p>and now let’s make sure it’s working:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+<!-- env DEBUG="server:*" npm start -->
+
+<p>Go to localhost on port 3000 and make sure you can see a “Welcome to Express”</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:3000/">http://localhost:3000/</a></p>
+<blockquote>
+<p>Changes: <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/a3fcacd">a3fcacd</a> - REST API using ExpressJS: scaffold</p>
+</blockquote>
+<h2 id="Creating-a-host-alias-for-the-server"><a href="#Creating-a-host-alias-for-the-server" class="headerlink" title="Creating a host alias for the server"></a>Creating a host alias for the server</h2><p>We want to run the server to work regarless of the enviroment where we run it. (It will be useful for Docker later on)</p>
+<p>For that we can create an alias by editing the <code>hosts</code>:</p>
+<ul>
+<li>Windows: <code>c:\windows\system32\drivers\etc\hosts</code></li>
+<li>Linux/Mac: <code>/etc/hosts</code></li>
+</ul>
+<p>Once you can open the file, you drop the following line at the end:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 server</span><br></pre></td></tr></table></figure>
+
+<p>Now you should be able to access the server by visiting:</p>
+<p><a target="_blank" rel="noopener" href="http://server:3000/">http://server:3000/</a></p>
+<p>(If you have trouble editing the host file take a look <a target="_blank" rel="noopener" href="https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/">here</a>)</p>
+<h2 id="Creating-API-routes-and-responding-to-requests"><a href="#Creating-API-routes-and-responding-to-requests" class="headerlink" title="Creating API routes and responding to requests"></a>Creating API routes and responding to requests</h2><p>Now we are going to create a new route:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;api&#x2F;todos[&#x2F;:id]</span><br></pre></td></tr></table></figure>
+
+<p>This route will get all our todos, update, and delete them.</p>
+<p>Create a new router file called todos in the following path:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch server&#x2F;routes&#x2F;todos.js</span><br></pre></td></tr></table></figure>
+
+<p>and add this initial content:</p>
+<figure class="highlight js"><figcaption><span>server/routes/todos.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> TODOS = [</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Create API to get this list&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Connect API with Angular&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Connect server with mongo&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Publish app&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* GET /api/todos */</span></span><br><span class="line">router.get(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    res.json(TODOS);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    res.status(<span class="number">500</span>).json(&#123; error &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+
+<p>All this doing is replying to the GET comamnds and returning a hard-coded list of todos.
+We are replace it later, to get data from mongo instead.</p>
+<p>Then we need to register the route as follows:</p>
+<figure class="highlight js"><figcaption><span>server/app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> todosRouter = <span class="built_in">require</span>(<span class="string">&#x27;./routes/todos&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="string">&#x27;/api/todos&#x27;</span>, todosRouter);</span><br></pre></td></tr></table></figure>
+
+<p>This register the new path <code>/api/todos</code>. When we get any call on this path, our <code>todosRouter</code> will handle it.</p>
+<p>You can run restart your server, or use nodemon to pick up changes and refresh browser.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm i -g nodemon</span></span><br><span class="line">nodemon server/bin/www</span><br></pre></td></tr></table></figure>
+
+<p>That should get running your server, now you can see it in action using CURL:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET server:3000/api/todos</span><br><span class="line"><span class="comment"># curl -XGET localhost:3000/api/todos</span></span><br></pre></td></tr></table></figure>
+
+<p>This command should get you all the lists in JSON format!</p>
+<p>In the next step, we are going to query the server using Angular intead of <code>curl</code>.
+After that, we are going complete the rest of operations (update, delete, create).</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/6f8a502">6f8a502</a> - Creating API routes and responding to requests</p>
+</blockquote>
+<h1 id="Connecting-REST-API-with-Angular-App"><a href="#Connecting-REST-API-with-Angular-App" class="headerlink" title="Connecting REST API with Angular App."></a>Connecting REST API with Angular App.</h1><p>Let’s now prepare our angular App to use the server API that just created.</p>
+<p>As you might now, when you run <code>ng serve</code>, it will trigger a development server.
+However, out API is a completely different server. To be able to connect the two, we need create a proxy.</p>
+<h2 id="Creating-a-proxy-in-Angular-to-talk-to-the-API-server"><a href="#Creating-a-proxy-in-Angular-to-talk-to-the-API-server" class="headerlink" title="Creating a proxy in Angular to talk to the API server"></a>Creating a proxy in Angular to talk to the API server</h2><p>Let’s create a new file, that will tell Angular when to look for certain HTTP paths.
+In this case, we are going to defer all <code>/api</code> to our express server.</p>
+<figure class="highlight js"><figcaption><span>src/proxy.conf.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;/api&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;target&quot;</span>: <span class="string">&quot;http://server:3000&quot;</span>,</span><br><span class="line">    <span class="string">&quot;secure&quot;</span>: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(This will need the <a href="#Creating-a-host-alias-for-the-server">host alias</a> from the step before)</p>
+<p>Then, we have to tell Angular to load this file when we are serving the app.
+We are going to do that in the <code>angular.json</code> file.</p>
+<p>If you are using the same version of angular CLI, you need to insert this on line 71:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;proxyConfig&quot;: &quot;src&#x2F;proxy.conf.json&quot;</span><br></pre></td></tr></table></figure>
+
+<p>For some context, here are the surrounding elements:</p>
+<figure class="highlight js"><figcaption><span>angular.json > projects > Todos > architect > serve > options</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;$schema&quot;</span>: <span class="string">&quot;./node_modules/@angular/cli/lib/config/schema.json&quot;</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="string">&quot;projects&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;Todos&quot;</span>: &#123;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      <span class="string">&quot;architect&quot;</span>: &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="string">&quot;serve&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;builder&quot;</span>: <span class="string">&quot;@angular-devkit/build-angular:dev-server&quot;</span>,</span><br><span class="line">          <span class="string">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;browserTarget&quot;</span>: <span class="string">&quot;Todos:build&quot;</span>,</span><br><span class="line">            <span class="string">&quot;proxyConfig&quot;</span>: <span class="string">&quot;src/proxy.conf.json&quot;</span>  <span class="comment">// &lt;-- Insert this line</span></span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="comment">// ...</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;&#125;,</span><br><span class="line">  <span class="string">&quot;defaultProject&quot;</span>: <span class="string">&quot;Todos&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now our app, will pass all requests that starts with <code>/api</code> to <code>http://localhost:3000</code> (or whatever path you specified on the proxy.conf).</p>
+<p>Next, we are going to make use of this new routes!</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/e81ddb8">e81ddb8</a> - Creating a proxy in Angular to talk to the API server</p>
+</blockquote>
+<h2 id="Using-HTTP-Client-to-talk-to-server"><a href="#Using-HTTP-Client-to-talk-to-server" class="headerlink" title="Using HTTP Client to talk to server"></a>Using HTTP Client to talk to server</h2><p>To talk to the server we are going to use the <code>HttpClient</code> module.</p>
+<p>Let’s go to the app.module and let’s import it:</p>
+<figure class="highlight js"><figcaption><span>src/app/app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; HttpClientModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common/http&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent,</span><br><span class="line">    TodoComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule,</span><br><span class="line">    FormsModule,</span><br><span class="line">    RouterModule.forRoot(routes),</span><br><span class="line">    HttpClientModule, <span class="comment">// &lt;---- import module</span></span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now that the HttpClient is available in our app, let’s add it to the service and make use of it.</p>
+<figure class="highlight ts"><figcaption><span>src/app/todo/todo.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; HttpClient &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common/http&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> API = <span class="string">&#x27;/api/todos&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>(&#123;</span><br><span class="line">  providedIn: <span class="string">&#x27;root&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> TodoService &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> http: HttpClient</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  get(params = &#123;&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.get(API, &#123; params &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>We change the <code>TodoService.get</code> to use http client. However, the component was reponding to a Promise and the http.get returns an Observable. So, let’s change it.</p>
+<p>Change the getTodos method from the old one, to use this one that handles an observable.</p>
+<figure class="highlight ts"><figcaption><span>src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getTodos(query = <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.todoService.get(query).subscribe(<span class="function"><span class="params">todos</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.todos = todos;</span><br><span class="line">    <span class="built_in">this</span>.activeTasks = <span class="built_in">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> !todo.isDone).length;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The main difference is that instad of a <code>.then</code>, we are using <code>.subscribe</code>. Everything else remains the same (for now).</p>
+<p>That’s it, let’s test it out!</p>
+<p>Run this commands on your terminal:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># run node server</span></span><br><span class="line">nodemon server/bin/www</span><br></pre></td></tr></table></figure>
+
+<p>on another terminal session run also:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># run angular app</span></span><br><span class="line">ng serve</span><br></pre></td></tr></table></figure>
+
+<p>Once you have both running, you can go to <a target="_blank" rel="noopener" href="http://localhost:4200/all">http://localhost:4200/all</a> and you can verify that it’s coming from your server!</p>
+<p>If you are running <code>nodemon</code>, you can change the TODOS on <code>server/routes/todos.js</code> and refresh the browser and see how it changes.</p>
+<p>But, we don’t want to have hard-coded tasks. Let’s create a proper DB with Mongo.</p>
+<h1 id="Setting-up-MongoDB"><a href="#Setting-up-MongoDB" class="headerlink" title="Setting up MongoDB"></a>Setting up MongoDB</h1><p>It’s time to get MongoDB up and running. If don’t have it install, you have a couple of options:</p>
+<details>
+ <summary>Docker (Windows/macOS/Linux) [Preferred]</summary>
+
+<ol>
+<li><p>Download the <a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/">docker engine</a></p>
+</li>
+<li><p>Pull Mongo image</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mongo</span><br></pre></td></tr></table></figure>
+
+<p>NOTE: More details in the rest of the post.</p>
+</li>
+</ol>
+</details>
+
+<details>
+ <summary>Official Website (Windows/macOS/Linux)</summary>
+
+<p> You can download it from here:</p>
+<p> <a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/administration/install-community/">https://docs.mongodb.com/manual/administration/install-community/</a></p>
+</details>
+
+
+<details>
+ <summary>Brew (macOS)</summary>
+
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew tap mongodb/brew</span><br><span class="line">brew install mongodb-community</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<p>We are going to use docker since it’s a nice way to have everything running together with one command.
+Also, you can deploy it to the cloud and scale it easily.</p>
+<h2 id="Dockerizing-the-MEAN-stack"><a href="#Dockerizing-the-MEAN-stack" class="headerlink" title="Dockerizing the MEAN stack"></a>Dockerizing the MEAN stack</h2><p>Let’s get everything running (Node Server, Angular and Mongo).
+We are going to create a docker-compose file, where is going to list all our services and we can run them all at once.</p>
+<figure class="highlight yml"><figcaption><span>docker-compose.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.7&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">app:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">node:lts-alpine</span></span><br><span class="line">    <span class="attr">working_dir:</span> <span class="string">/app</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./:/app</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">4200</span><span class="string">:4200</span></span><br><span class="line">    <span class="comment"># --host 0.0.0.0 to listen to all the interfaces from the container (dev env)</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">&gt;</span></span><br><span class="line">      <span class="string">sh</span> <span class="string">-c</span> <span class="string">&quot;npm install &amp;&amp;</span></span><br><span class="line"><span class="string">             npx ng serve --host 0.0.0.0&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">node:lts-alpine</span></span><br><span class="line">    <span class="attr">working_dir:</span> <span class="string">/server</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./server:/server</span></span><br><span class="line">    <span class="comment"># port 3000 has to match src/proxy.conf.json</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">3000</span><span class="string">:3000</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">mongo</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MONGO_HOST:</span> <span class="string">mongo</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">&gt;</span></span><br><span class="line">      <span class="string">sh</span> <span class="string">-c</span> <span class="string">&quot;npm i -g nodemon &amp;&amp; npm install &amp;&amp; nodemon ./bin/www&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">mongo:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mongo</span></span><br></pre></td></tr></table></figure>
+
+<p>All right, now we can get all full-stack app running with one command:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up --build</span><br></pre></td></tr></table></figure>
+
+<p>NOTE: close other terminals running node or angular, so the ports don’t conflict.</p>
+<p>This will create 3 containers for our Angular App, Node Server and Mongo DB. You can also see all the logs in one place.</p>
+<p>After you wait a minute or so you should be able to open the app on <a target="_blank" rel="noopener" href="http://localhost:4200/">http://localhost:4200/</a>.</p>
+<p>Now we can make use of mongo. Keep docker-compose running and now let’s remove the hard-coded tests and use the database.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/0763db0">0763db0</a> - docker compose</p>
+</blockquote>
+<h2 id="Creating-MongoDB-schema-with-Mongoose"><a href="#Creating-MongoDB-schema-with-Mongoose" class="headerlink" title="Creating MongoDB schema with Mongoose"></a>Creating MongoDB schema with Mongoose</h2><p>Let’s install Mongoose, which is a library for managing MongoDB from Node.js.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> server &amp;&amp; npm i mongoose@5.9.18</span><br></pre></td></tr></table></figure>
+
+<p>NOTE: make sure you installed it on the <code>./server/package.json</code>, rather than the client side packages <code>./packages.json</code>.</p>
+<p>The first thing we need to do is to connect to Mongo when our server starts. Go to <code>server/app.js</code> and add the following code:</p>
+<figure class="highlight js"><figcaption><span>server/app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// connect to db</span></span><br><span class="line"><span class="keyword">const</span> user = process.env.MONGO_USER;</span><br><span class="line"><span class="keyword">const</span> mongoPort = process.env.MONGO_PORT || <span class="number">27017</span>;</span><br><span class="line"><span class="keyword">const</span> mongoHost = process.env.MONGO_HOST || <span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> auth = user ? <span class="string">`<span class="subst">$&#123;user&#125;</span>:<span class="subst">$&#123;process.env.MONGO_PASS&#125;</span>@`</span> : <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> DB_STRING = <span class="string">`mongodb://<span class="subst">$&#123;auth&#125;</span><span class="subst">$&#123;mongoHost&#125;</span>:<span class="subst">$&#123;mongoPort&#125;</span>/todos`</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Running node <span class="subst">$&#123;process.version&#125;</span>...`</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Connecting to DB... <span class="subst">$&#123;DB_STRING&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123; <span class="attr">useNewUrlParser</span>: <span class="literal">true</span>, <span class="attr">useUnifiedTopology</span>: <span class="literal">true</span>&#125;;</span><br><span class="line">mongoose.connect(DB_STRING, config)</span><br><span class="line">  .then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Connected!`</span>))</span><br><span class="line">  .catch(<span class="built_in">console</span>.error);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/15f6e25">15f6e25</a> - add db string to connect to mongo</p>
+</blockquote>
+<p>We can pass some ENV variables like <code>MONGO_HOST</code>. If we run it locally, it will use localhost, but if run it on docker we want to pass a hostname. You can see that in the <code>docker-compose.yml</code> file.</p>
+<p>Now, let’s define our data model for Mongo. Let’s create a folder <code>models</code> inside <code>server</code> and add file called “todos.js”.</p>
+<figure class="highlight js"><figcaption><span>server/models/todo.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; Schema, model &#125; = mongoose;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> TodoSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">  title: <span class="built_in">String</span>,</span><br><span class="line">  isDone: <span class="built_in">Boolean</span>,</span><br><span class="line">  notes: <span class="built_in">String</span>,</span><br><span class="line">  updated_at: &#123; <span class="attr">type</span>: <span class="built_in">Date</span>, <span class="attr">default</span>: <span class="built_in">Date</span>.now &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = model(<span class="string">&#x27;Todo&#x27;</span>, TodoSchema);</span><br></pre></td></tr></table></figure>
+
+<p>This is basically defining what fields we want to store and what are the types.
+The <code>updated_at</code> will update automatically when we create a new todo.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/436b0ad">436b0ad</a> - npm i mongoose</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/b2674f3">b2674f3</a> - Creating MongoDB schema with Mongoose</p>
+</blockquote>
+<h2 id="Adding-all-all-the-API-routes-to-modify-data-in-DB"><a href="#Adding-all-all-the-API-routes-to-modify-data-in-DB" class="headerlink" title="Adding all all the API routes to modify data in DB"></a>Adding all all the API routes to modify data in DB</h2><p>Let’s all the routes to be able to create, read, update and delete data from Mongo.</p>
+<p>The Mongoose library provide some convenience methods to do CRUD operations:</p>
+<ul>
+<li><strong>Todo.find</strong>: find data matching a given query. (<code>&#123;&#125;</code>, get all, while <code>&#123;isDone: true&#125;</code> get only completed tasks).</li>
+<li><strong>Todo.create</strong>: Create a new todo</li>
+<li><strong>Todo.findByIdAndUpdate</strong>: Find todo by given id and update its content.</li>
+<li><strong>Todo.findByIdAndDelete</strong>: Find todo by given id and delete it.</li>
+<li><strong>Todo.deleteMany</strong>: Delete everything matching a given query.</li>
+</ul>
+<p>Here’s the routes by their matching HTTP verb (GET, PUT, POST, DELETE). In the next sections we are going to tests all these routes and go over some more details.</p>
+<figure class="highlight js"><figcaption><span>server/routes/todos.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Todo = <span class="built_in">require</span>(<span class="string">&#x27;../models/todo&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* GET /api/todos */</span></span><br><span class="line">router.get(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> list = <span class="keyword">await</span> Todo.find(req.query);</span><br><span class="line">    res.json(list);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    res.status(<span class="number">500</span>).json(&#123; error &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* POST /api/todos */</span></span><br><span class="line">router.post(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> todo = <span class="keyword">await</span> Todo.create(req.body);</span><br><span class="line">    res.json(todo);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    res.status(<span class="number">500</span>).json(&#123; error &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* PUT /api/todos/:id */</span></span><br><span class="line">router.put(<span class="string">&#x27;/:id&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> options = &#123; <span class="attr">new</span>: <span class="literal">true</span> &#125;;</span><br><span class="line">    <span class="keyword">const</span> todo = <span class="keyword">await</span> Todo.findByIdAndUpdate(req.params.id, req.body, options);</span><br><span class="line">    res.json(todo);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    res.status(<span class="number">500</span>).json(&#123; error &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* DELETE /api/todos/:id */</span></span><br><span class="line">router.delete(<span class="string">&#x27;/:id&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> todo = <span class="keyword">await</span> Todo.findByIdAndDelete(req.params.id);</span><br><span class="line">    res.json(todo);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    res.status(<span class="number">500</span>).json(&#123; error &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Beaware: it can delete all data from db if body is empty (DON&#x27;T expoose deleteMany in PRODUCTION!)</span></span><br><span class="line"><span class="comment">/* DELETE /api/todos */</span></span><br><span class="line">router.delete(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> todo = <span class="keyword">await</span> Todo.deleteMany(req.body);</span><br><span class="line">    res.json(todo);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    res.status(<span class="number">500</span>).json(&#123; error &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+
+<p>We many routes on this step, take your time to go through them.
+In the next section, we are going to tests them using <code>curl</code> and then integrated with Angular.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/f4f2281">f4f2281</a> - Adding all all the API routes to modify data in DB</p>
+</blockquote>
+<h2 id="Testing-the-API-CRUD-operations"><a href="#Testing-the-API-CRUD-operations" class="headerlink" title="Testing the API CRUD operations"></a>Testing the API CRUD operations</h2><p>Since we install a new package <code>mongoose</code>, we have to run <code>npm install</code> in the docker containers. Otherwise, file changes are pick up automatically and you don’t need to restart.</p>
+<p>Stop <code>docker-compose</code> and start it again <code>docker-compose up --build</code>.</p>
+<h3 id="Creating-a-new-task-and-getting-lists"><a href="#Creating-a-new-task-and-getting-lists" class="headerlink" title="Creating a new task and getting lists"></a>Creating a new task and getting lists</h3><p>You can create a new taks using the following command:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST server:3000/api/todos -H <span class="string">&quot;Content-Type: application/json&quot;</span> -d <span class="string">&#x27;&#123;&quot;title&quot;: &quot;CRUD API&quot;, &quot;isDone&quot;: false&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, let’s see if it’s there:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET server:3000/api/todos</span><br></pre></td></tr></table></figure>
+
+<p>You should have got soemthing like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;&quot;_id&quot;:&quot;5edc2a6d0c41d60054ad715f&quot;,&quot;title&quot;:&quot;CRUD API&quot;,&quot;isDone&quot;:false,&quot;updated_at&quot;:&quot;2020-06-06T23:44:45.966Z&quot;,&quot;__v&quot;:0&#125;]⏎</span><br></pre></td></tr></table></figure>
+
+<p>You can also check Angular on <a target="_blank" rel="noopener" href="http://localhost:4200/all">http://localhost:4200/all</a>. The new task should be there!</p>
+<h3 id="Update-data-with-PUT-method"><a href="#Update-data-with-PUT-method" class="headerlink" title="Update data with PUT method"></a>Update data with PUT method</h3><p>If you remember from your routes file, we are using the method PUT to update tasks.</p>
+<figure class="highlight js"><figcaption><span>server/routes/todos.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* PUT /api/todos */</span></span><br><span class="line">router.put(<span class="string">&#x27;/:id&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> options = &#123; <span class="attr">new</span>: <span class="literal">true</span> &#125;;</span><br><span class="line">    <span class="keyword">const</span> todo = <span class="keyword">await</span> Todo.findByIdAndUpdate(req.params.id, req.body, options);</span><br><span class="line">    res.json(todo);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    res.json(<span class="number">500</span>, &#123; error &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>By default <code>findByIdAndUpdate</code> returns the original document.
+We are passing <code>&#123; new: true &#125;</code> so we can return the updated document.</p>
+<p>For updating a task you need the <code>_id</code>. You can get it from the previous step, when we listed all the tasks. For my case the _id is <code>5edc2a6d0c41d60054ad715f</code>, find yours and replace it in the next command:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPUT server:3000/api/todos/5edc2a6d0c41d60054ad715f -H <span class="string">&quot;Content-Type: application/json&quot;</span> -d <span class="string">&#x27;&#123;&quot;title&quot;: &quot;Finish PUT API&quot;, &quot;isDone&quot;: true, &quot;note&quot;: &quot;New Field&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>As you can see in the last update, we can modified existing field and also add new values like the <code>note</code> field.</p>
+<h3 id="Erasing-data-with-DELETE-method"><a href="#Erasing-data-with-DELETE-method" class="headerlink" title="Erasing data with DELETE method"></a>Erasing data with DELETE method</h3><p>For our todo route, we also defined the DELETE method. Similar to update, we need to pass and <code>id</code>.</p>
+<figure class="highlight js"><figcaption><span>server/routes/todos.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* DELETE /api/todos */</span></span><br><span class="line">router.delete(<span class="string">&#x27;/:id&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> todo = <span class="keyword">await</span> Todo.findByIdAndDelete(req.params.id);</span><br><span class="line">    res.json(todo);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    res.status(<span class="number">500</span>).json(&#123; error &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Again, remember to replace the next call with yout <code>_id</code>:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X DELETE server:3000/api/todos/5edc2a6d0c41d60054ad715f</span><br></pre></td></tr></table></figure>
+
+<p>If you check the UI, all tasks will be gone: <a target="_blank" rel="noopener" href="http://localhost:4200/all">http://localhost:4200/all</a>.</p>
+<p>As much fun as <code>curl</code> is, let’s move on an complete all these functionalities in Angular.</p>
+<h1 id="Angular-Service-to-talk-to-server"><a href="#Angular-Service-to-talk-to-server" class="headerlink" title="Angular Service to talk to server"></a>Angular Service to talk to server</h1><p>There are two main changes that we need to make, in other to use the API server.</p>
+<ol>
+<li>We need to change the <code>TodoService</code> service to use HTTP client.</li>
+<li>Change the <code>TodoComponent</code> compoenent to use the methods.</li>
+</ol>
+<h2 id="Angular-service-using-HTTP-client"><a href="#Angular-service-using-HTTP-client" class="headerlink" title="Angular service using HTTP client"></a>Angular service using HTTP client</h2><p>In the following code, we using the HTTP client to make the appropiate calls:</p>
+<figure class="highlight js"><figcaption><span>src/app/todo/todo.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">iimport &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpClient &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/common/http&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> interface ITodo &#123;</span><br><span class="line">  _id?: string;</span><br><span class="line">  title: string;</span><br><span class="line">  isDone: boolean;</span><br><span class="line">  notes: string;</span><br><span class="line">  update_at: string;</span><br><span class="line">  editing ?: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> API = <span class="string">&#x27;/api/todos&#x27;</span>;</span><br><span class="line"></span><br><span class="line">@Injectable(&#123;</span><br><span class="line">  providedIn: <span class="string">&#x27;root&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">TodoService</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(private http: HttpClient) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  get(params = &#123;&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.get(API, &#123; params &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  add(data: ITodo) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.post(API, data);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  put(changed: ITodo) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.put(<span class="string">`<span class="subst">$&#123;API&#125;</span>/<span class="subst">$&#123;changed._id&#125;</span>`</span>, changed);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toggle(selected: ITodo) &#123;</span><br><span class="line">    selected.isDone = !selected.isDone;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.put(selected);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span>(selected: ITodo) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.delete(<span class="string">`<span class="subst">$&#123;API&#125;</span>/<span class="subst">$&#123;selected._id&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  deleteCompleted(body = &#123; <span class="attr">isDone</span>: <span class="literal">true</span> &#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.http.request(<span class="string">&#x27;delete&#x27;</span>, <span class="string">`<span class="subst">$&#123;API&#125;</span>`</span>, &#123; body &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This basically, matches the HTTP verbs that we used in curl and pass the payloads.</p>
+<p>Let’s now change the TodoComponent that goes along with these changes.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/a93291c">a93291c</a> - Angular service using HTTP client</p>
+</blockquote>
+<h2 id="Angular-TodoComponet-updates"><a href="#Angular-TodoComponet-updates" class="headerlink" title="Angular TodoComponet updates"></a>Angular TodoComponet updates</h2><p>Here’s what your component should look like this:</p>
+<figure class="highlight ts"><figcaption><span>src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ActivatedRoute &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; TodoService, ITodo &#125; <span class="keyword">from</span> <span class="string">&#x27;./todo.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-todo&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./todo.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./todo.component.scss&#x27;</span>],</span><br><span class="line">  providers: [TodoService]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> TodoComponent <span class="keyword">implements</span> OnInit &#123;</span><br><span class="line">  <span class="keyword">public</span> todos: ITodo[];</span><br><span class="line">  <span class="keyword">public</span> activeTasks: <span class="built_in">number</span>;</span><br><span class="line">  <span class="keyword">public</span> newTodo: <span class="built_in">string</span>;</span><br><span class="line">  <span class="keyword">public</span> path: <span class="built_in">string</span>;</span><br><span class="line">  <span class="keyword">public</span> mapToQuery = &#123;</span><br><span class="line">    all: &#123;&#125;,</span><br><span class="line">    active: &#123; isDone: <span class="literal">false</span> &#125;,</span><br><span class="line">    completed: &#123; isDone: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> todoService: TodoService, <span class="keyword">private</span> route: ActivatedRoute</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="built_in">this</span>.route.params.subscribe(<span class="function"><span class="params">params</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.path = params.status;</span><br><span class="line">      <span class="built_in">this</span>.getTodos(<span class="built_in">this</span>.path);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addTodo() &#123;</span><br><span class="line">    <span class="built_in">this</span>.todoService</span><br><span class="line">      .add(&#123; title: <span class="built_in">this</span>.newTodo, isDone: <span class="literal">false</span> &#125; <span class="keyword">as</span> unknown <span class="keyword">as</span> ITodo)</span><br><span class="line">      .subscribe(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.getTodos();</span><br><span class="line">        <span class="built_in">this</span>.newTodo = <span class="string">&#x27;&#x27;</span>; <span class="comment">// clear input form value</span></span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getTodos(route = <span class="string">&#x27;all&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> query = <span class="built_in">this</span>.mapToQuery[route];</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.todoService</span><br><span class="line">      .get(query)</span><br><span class="line">      .subscribe(<span class="function">(<span class="params">todos: ITodo[]</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.todos = todos;</span><br><span class="line">        <span class="built_in">this</span>.activeTasks = <span class="built_in">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> !todo.isDone).length;</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  updateTodo(todo: ITodo, newValue: <span class="built_in">string</span>) &#123;</span><br><span class="line">    todo.title = newValue;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.todoService.put(todo).subscribe(<span class="function">() =&gt;</span> <span class="built_in">this</span>.getTodos());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  destroyTodo(todo: ITodo) &#123;</span><br><span class="line">    <span class="built_in">this</span>.todoService.delete(todo).subscribe(<span class="function">() =&gt;</span> <span class="built_in">this</span>.getTodos());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toggleTodo(todo: ITodo) &#123;</span><br><span class="line">    <span class="built_in">this</span>.todoService.toggle(todo).subscribe(<span class="function">() =&gt;</span> <span class="built_in">this</span>.getTodos());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  clearCompleted() &#123;</span><br><span class="line">    <span class="built_in">this</span>.todoService.deleteCompleted().subscribe(<span class="function">() =&gt;</span> <span class="built_in">this</span>.getTodos());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Let’s go over each part on the next sections.</p>
+<h3 id="Sending-Queries-with-HTTP-GET"><a href="#Sending-Queries-with-HTTP-GET" class="headerlink" title="Sending Queries with HTTP GET"></a>Sending Queries with HTTP GET</h3><p>In the component, one the first thing we do is check the route params (path):</p>
+<figure class="highlight js"><figcaption><span>recap: src/app/todo/todo.component.ts (exerpt)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ngOnInit() &#123;</span><br><span class="line">  <span class="built_in">this</span>.route.params.subscribe(<span class="function"><span class="params">params</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.path = params[<span class="string">&#x27;status&#x27;</span>];</span><br><span class="line">    <span class="built_in">this</span>.getTodos(<span class="built_in">this</span>.path);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>When you click on the buttons <code>All</code>, <code>Active</code> and <code>Completed</code>, that will trigger a route change.</p>
+<p>To recap, these buttons use the router link. So, every time you click on them, they will change the URL.</p>
+<figure class="highlight html"><figcaption><span>recap: src/app/todo/todo.component.html (exerpt)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;filters&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>]=<span class="string">&quot;[&#x27;/all&#x27;]&quot;</span> [<span class="attr">class.selected</span>]=<span class="string">&quot;path === &#x27;all&#x27;&quot;</span>&gt;</span>All<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>]=<span class="string">&quot;[&#x27;/active&#x27;]&quot;</span> [<span class="attr">class.selected</span>]=<span class="string">&quot;path === &#x27;active&#x27;&quot;</span>&gt;</span>Active<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>]=<span class="string">&quot;[&#x27;/completed&#x27;]&quot;</span> [<span class="attr">class.selected</span>]=<span class="string">&quot;path === &#x27;completed&#x27;&quot;</span>&gt;</span>Completed<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>After we change the url, the next thing we do is to call <code>getTodos</code>. Let’s see that next.</p>
+<h3 id="Get-all-todos"><a href="#Get-all-todos" class="headerlink" title="Get all todos"></a>Get all todos</h3><p>We can get all services using the following:</p>
+<figure class="highlight js"><figcaption><span>src/app/todo/todo.component.ts (exerpt)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getTodos(route = <span class="string">&#x27;all&#x27;</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> query = <span class="built_in">this</span>.mapToQuery[route];</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.todoService</span><br><span class="line">    .get(query)</span><br><span class="line">    .subscribe(<span class="function">(<span class="params">todos: ITodo[]</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.todos = todos;</span><br><span class="line">      <span class="built_in">this</span>.activeTasks = <span class="built_in">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> !todo.isDone).length;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We <code>this.todoService.get</code> will issue an HTTP get and retrive all the tasks from database and update todos. It also update the number of active tasks (the ones that are not done).</p>
+<p>The <code>getTodos</code> receives an argument (<code>route</code>) with the path which will be one of these: <code>all</code>, <code>active</code> or <code>complete</code>. However, MongoDb doesn’t understand these words. We have to map it (<code>mapToQuery</code>) to something a proper query like <code>&#123; isDone: true &#125;</code>. That MongoDB will understand.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/e33d540">e33d540</a> - Angular TodoComponet updates</p>
+</blockquote>
+<h3 id="Modifying-the-todos"><a href="#Modifying-the-todos" class="headerlink" title="Modifying the todos"></a>Modifying the todos</h3><p>All the other operations, like update, clear, toggle are very similar. They trigger an action and then call <code>getTodos</code> so the UI is up to date with the latest changes.</p>
+<p>That’s all!</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/angular-todo-mean-stack-node-mongodb-typescript-tutorial.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS
+                
+              </div>
+            </a>
+          
+          
+            <a href="/promises-tutorial-concurrency-in-javascript-node/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">The JavaScript Promise Tutorial</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/angular-todo-mean-stack-node-mongodb-typescript-tutorial.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#REST-API-with-Node-js"><span class="toc-number">1.</span> <span class="toc-text">REST API with Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#REST-API-using-ExpressJS"><span class="toc-number">1.1.</span> <span class="toc-text">REST API using ExpressJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-host-alias-for-the-server"><span class="toc-number">1.2.</span> <span class="toc-text">Creating a host alias for the server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-API-routes-and-responding-to-requests"><span class="toc-number">1.3.</span> <span class="toc-text">Creating API routes and responding to requests</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Connecting-REST-API-with-Angular-App"><span class="toc-number">2.</span> <span class="toc-text">Connecting REST API with Angular App.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-proxy-in-Angular-to-talk-to-the-API-server"><span class="toc-number">2.1.</span> <span class="toc-text">Creating a proxy in Angular to talk to the API server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-HTTP-Client-to-talk-to-server"><span class="toc-number">2.2.</span> <span class="toc-text">Using HTTP Client to talk to server</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Setting-up-MongoDB"><span class="toc-number">3.</span> <span class="toc-text">Setting up MongoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerizing-the-MEAN-stack"><span class="toc-number">3.1.</span> <span class="toc-text">Dockerizing the MEAN stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-MongoDB-schema-with-Mongoose"><span class="toc-number">3.2.</span> <span class="toc-text">Creating MongoDB schema with Mongoose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-all-all-the-API-routes-to-modify-data-in-DB"><span class="toc-number">3.3.</span> <span class="toc-text">Adding all all the API routes to modify data in DB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Testing-the-API-CRUD-operations"><span class="toc-number">3.4.</span> <span class="toc-text">Testing the API CRUD operations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-a-new-task-and-getting-lists"><span class="toc-number">3.4.1.</span> <span class="toc-text">Creating a new task and getting lists</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Update-data-with-PUT-method"><span class="toc-number">3.4.2.</span> <span class="toc-text">Update data with PUT method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Erasing-data-with-DELETE-method"><span class="toc-number">3.4.3.</span> <span class="toc-text">Erasing data with DELETE method</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Angular-Service-to-talk-to-server"><span class="toc-number">4.</span> <span class="toc-text">Angular Service to talk to server</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular-service-using-HTTP-client"><span class="toc-number">4.1.</span> <span class="toc-text">Angular service using HTTP client</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular-TodoComponet-updates"><span class="toc-number">4.2.</span> <span class="toc-text">Angular TodoComponet updates</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sending-Queries-with-HTTP-GET"><span class="toc-number">4.2.1.</span> <span class="toc-text">Sending Queries with HTTP GET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Get-all-todos"><span class="toc-number">4.2.2.</span> <span class="toc-text">Get all todos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modifying-the-todos"><span class="toc-number">4.2.3.</span> <span class="toc-text">Modifying the todos</span></a></li></ol></li></ol></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/angular-todo-mean-stack-node-mongodb-typescript-tutorial/';
+      this.page.identifier = 'https://adrianmejia.com/angular-todo-mean-stack-node-mongodb-typescript-tutorial/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Getting started with Node.js modules: require, exports, imports and beyond | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/getting-started-with-node-js-modules-require-exports-imports-npm-and-beyond/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Getting started with Node.js modules: require, exports, imports, and beyond.
+Modules are a crucial concept to understand Node.js projects. In this post, we cover Node modules: require, exports and, the future import." />
+    <meta property="og:image" content="https://adrianmejia.com/images/node-modules-large.png" />
+    <meta property="og:title" content="Getting started with Node.js modules: require, exports, imports and beyond" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Getting started with Node.js modules: require, exports, imports and beyond",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/node-modules-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2016-08-12T16:30:23-04:00",
+  "dateModified": "2019-06-28T14:18:23-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "Getting started with Node.js modules: require, exports, imports, and beyond.
+Modules are a crucial concept to understand Node.js projects. In this post, we cover Node modules: require, exports and, the future import."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a>
+    </div>
+
+    <h1>Getting started with Node.js modules: require, exports, imports and beyond</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2019-06-28T18:18:23.000Z" itemprop="dateUpdated">June 28th 2019</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          280.5k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">12</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #333">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/node-modules-large.png">
+        <source srcset="/images/node-modules-small.png">
+        <img src="/images/node-modules-large.png" alt="Getting started with Node.js modules: require, exports, imports and beyond">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>Getting started with Node.js modules: <code>require</code>, <code>exports</code>, <code>imports</code>, and beyond.</p>
+<p>Modules are a crucial concept to understand Node.js projects. In this post, we cover Node modules: <code>require</code>, <code>exports</code> and, the future <code>import</code>.</p>
+<a id="more"></a>
+
+<p>Node modules allow you to write reusable code. You can nest them one inside another. Using the Node Package Manager (NPM), you can publish your modules and make them available to the community. Also, NPM enables you to reuse modules created by other developers.</p>
+<blockquote>
+<p>We are using Node 12.x for the examples and ES6+ syntax. However, the concepts are valid for any version.</p>
+</blockquote>
+<p>In this section, we are going to cover how to create Node modules and each one of its components:</p>
+<ul>
+<li>Require</li>
+<li>Exports</li>
+<li>Module (module.exports vs. export)</li>
+<li>Import</li>
+</ul>
+<h1 id="Require"><a href="#Require" class="headerlink" title="Require"></a>Require</h1><p><code>require</code> are used to consume modules. It allows you to include modules in your programs. You can add built-in core Node.js modules, community-based modules (<code>node_modules</code>), and local modules.</p>
+<p>Let’s say we want to read a file from the filesystem. Node has a core module called ‘fs’:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line marked"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(<span class="string">&#x27;./file.txt&#x27;</span>, <span class="string">&#x27;utf-8&#x27;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>(err) &#123; <span class="keyword">throw</span> err; &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;data: &#x27;</span>, data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>As you can see, we imported the “fs” module into our code. It allows us to use any function attached to it, like “readFile” and many others.</p>
+<p>The <code>require</code> function will look for files in the following order:</p>
+<ol>
+<li><strong>Built-in</strong> core Node.js modules (like <code>fs</code>)</li>
+<li><strong>NPM Modules</strong>. It will look in the <code>node_modules</code> folder.</li>
+<li><strong>Local Modules</strong>. If the module name has a <code>./</code>, <code>/</code> or <code>../</code>, it will look for the directory/file in the given path. It matches the file extensions: <code>*.js</code>, <code>*.json</code>, <code>*.mjs</code>, <code>*.cjs</code>, <code>*.wasm</code> and <code>*.node</code>.</li>
+</ol>
+<p>Let’s now explain each in little more details with</p>
+<h2 id="Built-in-Modules"><a href="#Built-in-Modules" class="headerlink" title="Built-in Modules"></a>Built-in Modules</h2><p>When you install node, it comes with many built-in modules. Node comes with batteries included ;)</p>
+<p>Some of the most used core modules are:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://nodejs.org/api/fs.html">fs</a>: Allows you to manipulate (create/read/write) files and directories.</li>
+<li><a target="_blank" rel="noopener" href="https://nodejs.org/api/path.html">path</a>: utilities to work with files and directories paths.</li>
+<li><a target="_blank" rel="noopener" href="https://nodejs.org/api/http.html">http</a>: create HTTP servers and clients for web development.</li>
+<li><a target="_blank" rel="noopener" href="https://nodejs.org/api/url.html">url</a>: utilities for parsing URLs and extracting elements from it.</li>
+</ul>
+<p>These you don’t have to install it, you can import them and use them in your programs.</p>
+<h2 id="NPM-Modules"><a href="#NPM-Modules" class="headerlink" title="NPM Modules"></a>NPM Modules</h2><p>NPM modules are 3rd-party modules that you can use after you install them. To name a few:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/lodash">lodash</a>: a collection of utility functions for manipulating arrays, objects, and strings.</li>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/request">request</a>: HTTP client simpler to use than the built-in <code>http</code> module.</li>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/express">express</a>: HTTP server for building websites and API. Again, simpler to use than the built-in <code>http</code> module.</li>
+</ul>
+<p>These you have to install them first, like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express</span><br></pre></td></tr></table></figure>
+
+<p>and then you can reference them like built-in modules, but this time they are going to be served from the <code>node_modules</code> folder that contains all the 3rd-party libraries.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Creating-your-own-Nodejs-modules"><a href="#Creating-your-own-Nodejs-modules" class="headerlink" title="Creating your own Nodejs modules"></a>Creating your own Nodejs modules</h2><p>If you can’t find a built-in or 3rd-party library that does what you want, you will have to develop it yourself.
+In the following sections, you are going to learn how to do that using <code>exports</code>.</p>
+<h1 id="Exports"><a href="#Exports" class="headerlink" title="Exports"></a>Exports</h1><p>The <code>exports</code> keyword gives you the chance to “export” your objects and methods. Let’s do an example:</p>
+<figure class="highlight javascript"><figcaption><span>circle.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> PI = <span class="number">3.14159265359</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">exports</span>.area = <span class="function"><span class="params">radius</span> =&gt;</span> (radius ** <span class="number">2</span>) * PI;</span><br><span class="line"><span class="built_in">exports</span>.circumference = <span class="function"><span class="params">radius</span> =&gt;</span> <span class="number">2</span> * radius * PI;</span><br></pre></td></tr></table></figure>
+
+<p>In the code below, we are exporting the <code>area</code> and <code>circumference</code> functions. We defined the <code>PI</code> constant, but this is only accessible within the module. Only the elements associated with <code>exports</code> are available outside the module.</p>
+<p>So, we can consume it using <code>require</code> in another file like follows:</p>
+<figure class="highlight javascript"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> circle = <span class="built_in">require</span>(<span class="string">&#x27;./circle&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> r = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Circle with radius <span class="subst">$&#123;r&#125;</span> has</span></span><br><span class="line"><span class="string">  area: <span class="subst">$&#123;circle.area(r)&#125;</span>;</span></span><br><span class="line"><span class="string">  circumference: <span class="subst">$&#123;circle.circumference(r)&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Noticed that this time we prefix the module name with <code>./</code>. That indicates that the module is a local file.</p>
+<h1 id="Module-Wrapper"><a href="#Module-Wrapper" class="headerlink" title="Module Wrapper"></a>Module Wrapper</h1><p>You can think of each Node.js module as a self-contained function like the following one:</p>
+<figure class="highlight javascript"><figcaption><span>Module Wrapper</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">module</span>.exports = <span class="built_in">exports</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Your module code ...</span></span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>We have already covered <code>exports</code> and <code>require</code>. Notice the relationship between <code>module.exports</code> and <code>exports</code>. They point to the same reference. But, if you assign something directly to <code>exports</code> you will break its link to <code>module.exports</code> — more on that in the next section.</p>
+<p>For our convenience <code>__filename</code> and <code>__dirname</code> are defined. They provide the full path to the current file and directory. The latter excludes the filename and prints out the directory path.</p>
+<p>For instance, for our <code>./circle.js</code> module, it would be something like this:</p>
+<ul>
+<li><p><code>__filename</code>: <code>/User/adrian/code/circle.js</code></p>
+</li>
+<li><p><code>__dirname</code>: <code>/User/adrian/code</code></p>
+</li>
+</ul>
+<p>Ok, we have covered <code>exports</code>, <code>require</code>, <code>__filename</code>, and <code>__dirname</code>. The only one we haven’t covered is <code>module</code>. Let’s go for it!</p>
+<h1 id="Module-exports-vs-Exports"><a href="#Module-exports-vs-Exports" class="headerlink" title="Module.exports vs. Exports"></a>Module.exports vs. Exports</h1><p>The <code>module</code> is not global; it is local for each module. It contains metadata about a module like id, exports, parent, children, and so on.</p>
+<p><code>exports</code> is an alias of <code>module.exports</code>. Consequently, whatever you assign to <code>exports</code> is also available on <code>module.exports</code>. However, if you assign something directly to exports, then you lose the shortcut to <code>module.exports</code>. E.g.</p>
+<figure class="highlight javascript"><figcaption><span>cat.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;</span><br><span class="line">  makeSound() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.constructor.name&#125;</span>: Meowww`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// exports = Cat; // It will not work with `new Cat();`</span></span><br><span class="line"><span class="comment">// exports.Cat = Cat; // It will require `new Cat.Cat();` to work (yuck!)</span></span><br><span class="line"><span class="built_in">module</span>.exports = Cat;</span><br></pre></td></tr></table></figure>
+
+<p>Try the following case with <code>exports</code> and then with <code>module.exports</code>.</p>
+<figure class="highlight javascript"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Cat = <span class="built_in">require</span>(<span class="string">&#x27;./cat&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line"><span class="built_in">console</span>.log(cat.makeSound());</span><br></pre></td></tr></table></figure>
+
+<p>To sum up, when to use <code>module.exports</code> vs <code>exports</code>:</p>
+<p>Use <code>exports</code> to:</p>
+<ul>
+<li>Export named function. e.g. <code>exports.area</code>, <code>exports.circumference</code>.</li>
+</ul>
+<p>Use <code>module.exports</code> to:</p>
+<ol>
+<li><p>If you want to export an object, class, function at the root level (e.g. <code>module.exports = Cat</code>)</p>
+</li>
+<li><p>If you prefer to return a single object that exposes multiple assignments. e.g.<code>module.exports = &#123;area, circumference&#125;;</code></p>
+</li>
+</ol>
+<h1 id="Imports"><a href="#Imports" class="headerlink" title="Imports"></a>Imports</h1><p>Starting with version 8.5.0+, Node.js supports ES modules natively with a feature flag and new file extension <code>*.mjs</code>.</p>
+<p>For instance, our previous <code>circle.js</code> can be rewritten as <code>circle.mjs</code> as follows:</p>
+<figure class="highlight javascript"><figcaption><span>circle.mjs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> PI = <span class="number">3.14159265359</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">area</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (radius ** <span class="number">2</span>) * PI;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">circumference</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">2</span> * radius * PI;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then, we can use import:</p>
+<figure class="highlight javascript"><figcaption><span>main.mjs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; area, circumference &#125; <span class="keyword">from</span> <span class="string">&#x27;./circle.mjs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> r = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Circle with radius <span class="subst">$&#123;r&#125;</span> has</span></span><br><span class="line"><span class="string">  area: <span class="subst">$&#123;area(r)&#125;</span>;</span></span><br><span class="line"><span class="string">  circunference: <span class="subst">$&#123;circumference(r)&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+
+<p>And, finally you can run it using the experimental module feature flag:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node --experimental-modules main.mjs</span><br></pre></td></tr></table></figure>
+
+<p>If you don’t like experimental modules, another alternative is to use a transpiler. That converts modern JavaScript to older versions for you. Good options are
+<a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/modules.html">TypeScript</a>,
+<a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs">Babel</a>, and
+<a target="_blank" rel="noopener" href="https://rollupjs.org/guide/en#importing">Rollup</a>.</p>
+<h2 id="Troubleshooting-import-and-require-issues"><a href="#Troubleshooting-import-and-require-issues" class="headerlink" title="Troubleshooting import and require issues"></a>Troubleshooting <code>import</code> and <code>require</code> issues</h2><h3 id="Experimental-Flag"><a href="#Experimental-Flag" class="headerlink" title="Experimental Flag"></a>Experimental Flag</h3><p>If you don’t use the experimental flag <code>node --experimental-modules</code> and you try to use <code>import</code> you will get an error like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">internal&#x2F;modules&#x2F;cjs&#x2F;loader.js:819</span><br><span class="line">  throw new ERR_REQUIRE_ESM(filename);</span><br><span class="line">  ^</span><br><span class="line"></span><br><span class="line">Error [ERR_REQUIRE_ESM]: Must use import to load ES Module: bla bla blah</span><br></pre></td></tr></table></figure>
+
+<h3 id="File-extension-mjs-vs-js-or-cjs"><a href="#File-extension-mjs-vs-js-or-cjs" class="headerlink" title="File extension .mjs vs .js (or .cjs)"></a>File extension .mjs vs .js (or .cjs)</h3><p>If you have a <code>*.mjs</code> file you cannot use <code>require</code> or it will throw an error (<code>ReferenceError: require is not defined</code>).
+<code>.mjs</code> is for <code>import</code> ECMAScript Modules and <code>.js</code> is for regular <code>require</code> modules.</p>
+<p>However, with <code>*.mjs</code> you can load both kinds of modules!</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; area, circumference &#125; <span class="keyword">from</span> <span class="string">&#x27;./circle.mjs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Cat <span class="keyword">from</span> <span class="string">&#x27;./cat.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> r = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Circle with radius <span class="subst">$&#123;r&#125;</span> has</span></span><br><span class="line"><span class="string">  area: <span class="subst">$&#123;area(r)&#125;</span>;</span></span><br><span class="line"><span class="string">  circumference: <span class="subst">$&#123;circumference(r)&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line"><span class="built_in">console</span>.log(cat.makeSound());</span><br></pre></td></tr></table></figure>
+
+<p>Notice that <code>cat.js</code> is using commonJS modules.</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>We learned about how to create Node.js modules and used it in our code.  Modules allow us to reuse code easily. They provide functionality that is isolated from other modules. The <code>require</code> function is used to load modules. The <code>exports</code> and <code>module.exports</code> allow us to define what parts of our code we want to expose. We also explored the difference between <code>module.exports</code> and <code>exports</code>. Finally, we took a quick pick about what’s coming up for modules using <code>imports</code>.</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-08-12-Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/Node-Package-Manager-NPM-Tutorial/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  Node Package Manager (NPM) Tutorial
+                
+              </div>
+            </a>
+          
+          
+            <a href="/List-tasks-in-npm-grunt-gulp-and-rake/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">List tasks in NPM, Yarn, Grunt, Gulp and Rake</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-08-12-Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Require"><span class="toc-number">1.</span> <span class="toc-text">Require</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Built-in-Modules"><span class="toc-number">1.1.</span> <span class="toc-text">Built-in Modules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NPM-Modules"><span class="toc-number">1.2.</span> <span class="toc-text">NPM Modules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-your-own-Nodejs-modules"><span class="toc-number">1.3.</span> <span class="toc-text">Creating your own Nodejs modules</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Exports"><span class="toc-number">2.</span> <span class="toc-text">Exports</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-Wrapper"><span class="toc-number">3.</span> <span class="toc-text">Module Wrapper</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-exports-vs-Exports"><span class="toc-number">4.</span> <span class="toc-text">Module.exports vs. Exports</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Imports"><span class="toc-number">5.</span> <span class="toc-text">Imports</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Troubleshooting-import-and-require-issues"><span class="toc-number">5.1.</span> <span class="toc-text">Troubleshooting import and require issues</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Experimental-Flag"><span class="toc-number">5.1.1.</span> <span class="toc-text">Experimental Flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-extension-mjs-vs-js-or-cjs"><span class="toc-number">5.1.2.</span> <span class="toc-text">File extension .mjs vs .js (or .cjs)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">6.</span> <span class="toc-text">Summary</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/';
+      this.page.identifier = 'https://adrianmejia.com/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

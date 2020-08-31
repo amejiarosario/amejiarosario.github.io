@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Angular Tutorial: Create a CRUD App with Angular CLI and TypeScript | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/angular-2-tutorial-create-a-crud-app-with-angular-cli-and-typescript/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/Angular-2-Tutorial-Create-a-CRUD-App-with-Angular-CLI-and-TypeScript/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms." />
+    <meta property="og:image" content="https://adrianmejia.com/images/angular-2-tutorial-angular-cli-large.png" />
+    <meta property="og:title" content="Angular Tutorial: Create a CRUD App with Angular CLI and TypeScript" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Angular Tutorial: Create a CRUD App with Angular CLI and TypeScript",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/angular-2-tutorial-angular-cli-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2016-10-01T17:16:03-04:00",
+  "dateModified": "2019-11-06T10:46:23-05:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": ""
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a> > <a class="category-link" href="/categories/coding/web-development/">Web Development</a> > <a class="category-link" href="/categories/coding/web-development/angular/">Angular</a>
+    </div>
+
+    <h1>Angular Tutorial: Create a CRUD App with Angular CLI and TypeScript</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2019-11-06T15:46:23.000Z" itemprop="dateUpdated">November 6th 2019</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          149.5k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/Angular-2-Tutorial-Create-a-CRUD-App-with-Angular-CLI-and-TypeScript/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/" rel="tag">angular</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-app/" rel="tag">todo app</a><span class="tag-list-count">5</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #DD3229">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/angular-2-tutorial-angular-cli-large.png">
+        <source srcset="/images/angular-2-tutorial-angular-cli-small.png">
+        <img src="/images/angular-2-tutorial-angular-cli-large.png" alt="Angular Tutorial: Create a CRUD App with Angular CLI and TypeScript">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>This tutorial gets you off the ground with Angular. We are going to use the official CLI (command line) tool to generate boilerplate code.</p>
+<h1 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h1><p>This tutorial is targeted to people familiar with JavaScript and HTML/CSS. You also will need:</p>
+<ul>
+<li>Node.js up and running.</li>
+<li>NPM (Node package manager) or Yarn installed.</li>
+</ul>
+<p>You can verify by typing:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node --version</span><br><span class="line"><span class="comment"># v12.13.0</span></span><br><span class="line">npm --version</span><br><span class="line"><span class="comment"># 6.12.0</span></span><br></pre></td></tr></table></figure>
+
+<p>If you get the versions Node 4.x.x and NPM 3.x.x. or higher you are all set. If not, you have to get the latest versions.</p>
+<p>Let’s move on to Angular. We are going to create a Todo app. We will be able to CRUD (create-read-update-delete) tasks:</p>
+<ul>
+<li>Live Demo: <a target="_blank" rel="noopener" href="https://angular-todo-app-crud.netlify.com/">Angular Todo app preview</a></li>
+<li>Repository <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app">angular-todo-app</a></li>
+</ul>
+<h1 id="Understanding-ng-new"><a href="#Understanding-ng-new" class="headerlink" title="Understanding ng new"></a>Understanding ng new</h1><p>Angular CLI is the best way to get us started. We can download the tool and create a new project by running:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># install angular-cli globally</span></span><br><span class="line">npm install -g @angular/cli@9.1.7</span><br><span class="line"><span class="comment"># npm install -g @angular/cli # get latest</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Check angular CLI is installed</span></span><br><span class="line">ng --version</span><br><span class="line"><span class="comment"># Angular CLI: 9.1.7 ...</span></span><br></pre></td></tr></table></figure>
+
+<p>You can update to the lastest versions in the future using:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng update @angular/cli @angular/core</span><br></pre></td></tr></table></figure>
+
+<p>The rest of the steps remain the same regarless of the version.</p>
+<p>Scafold the app using the following command.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create a new project</span></span><br><span class="line">ng new Todos --style=scss</span><br></pre></td></tr></table></figure>
+
+<p><strong>Note</strong> The last command takes some minutes. Leave it running and continue reading this tutorial.</p>
+<p>The command <code>ng new</code> will do a bunch of things for us:</p>
+<ol>
+<li>Initialize a git repository</li>
+<li>Creates an <code>package.json</code> files with all the Angular dependencies.</li>
+<li>Setup TypeScript, Webpack, Tests (Jasmine, Protractor, Karma). Don’t worry if you don’t know what they are. We are going to cover them later.</li>
+<li>It creates the <code>src</code> folder with the bootstrapping code to load our app into the browser</li>
+<li>Finally, it does an <code>npm install</code> to get all the packages into <code>node_modules</code>.</li>
+</ol>
+<p>Let’s run the app!</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Todos</span><br><span class="line"><span class="comment"># builds the app and run it on port 9000</span></span><br><span class="line">ng serve ---port 9000</span><br></pre></td></tr></table></figure>
+
+<p>Open your browser on <a target="_blank" rel="noopener" href="http://localhost:9000/">http://localhost:9000/</a>, and you should see “Todos app is running!”. Awesome!</p>
+<p>Now let’s dive into the <code>src</code> folder and get familiarized with the structure.</p>
+<h2 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h2><p>Open the <code>package.json</code> file and take a look at the dependencies. We have all the angular dependencies with the prefix <code>@angular/...</code>. Other dependencies (not exclusively for Angular) are also needed, such as RxJS, Zone.js, and some others. We are going to cover them in other posts.</p>
+<h2 id="src-index-html"><a href="#src-index-html" class="headerlink" title="src/index.html"></a>src/index.html</h2><p>We are building an SPA (single page application), so everything is going to be loaded into the <code>index.html</code>. Let’s take a look in the <code>src/index.html</code>. It’s pretty standard HTML5 code, except for two elements that are specific for our app:</p>
+<ol>
+<li><code>&lt;base href=&quot;/&quot;&gt;</code></li>
+<li><code>&lt;app-root&gt;Loading...&lt;/app-root&gt;</code></li>
+</ol>
+<p><code>base href</code> is needed for Angular routing to work correctly. We are going to cover Routing later.</p>
+<p><code>&lt;app-root&gt;</code> this is not a standard HTML tag. Our Angular App defines it. It’s an Angular <strong>component</strong>. More on this later.</p>
+<h2 id="src-main-ts"><a href="#src-main-ts" class="headerlink" title="src/main.ts"></a>src/main.ts</h2><p><code>main.ts</code> is where our application starts bootstrapping (loading). Angular can be used not just in browsers, but also on other platforms such as mobile apps or even desktop apps. So, when we start our application, we have to specify what platform we want to target. That’s why we import: <code>platform-browser-dynamic</code>. Notice that we are also importing the <code>AppModule</code> from <code>./app.module</code>.</p>
+<p>The most important line is:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">platformBrowserDynamic().bootstrapModule(AppModule);</span><br></pre></td></tr></table></figure>
+
+<p>We are loading our <code>AppModule</code> into the browser platform. Now, let’s take a look at the <code>./app/app.module.ts</code> directory.</p>
+<h2 id="App-directory"><a href="#App-directory" class="headerlink" title="App directory"></a>App directory</h2><p>The <code>app</code> directory contains the components used to mount the rest of the application. In this directory, you can find the app module, component and routing.</p>
+<p>If you remember in the <code>index.html</code>, there’s a  <code>&lt;app-root&gt;</code>. This is where this component is defined.</p>
+<p>Let’s start by opening <code>app.module</code>.</p>
+<h3 id="app-module-ts"><a href="#app-module-ts" class="headerlink" title="app.module.ts"></a>app.module.ts</h3><p>We are going to be using this file often. The most important part is the metadata inside the <code>@NgModule</code>. There we have <code>declarations</code>, <code>imports</code>, <code>providers</code> and <code>bootstrap</code>.</p>
+<ul>
+<li><strong>Declarations</strong>: goes all your components (e.g., AppComponent, TodoComponent)</li>
+<li><strong>Imports</strong>: routes and modules go here.</li>
+<li><strong>Bootstrap</strong>: list the components you want to load when the app starts. In our case is <code>AppComponent</code>.</li>
+</ul>
+<h3 id="app-component-ts"><a href="#app-component-ts" class="headerlink" title="app.component.ts"></a>app.component.ts</h3><p><code>AppComponent</code> looks a little similar to the app module, but instead of <code>@NgModule</code> we have <code>@Component</code>. Again, the most important part is the value of the attributes (metadata). We have <code>selector</code>, <code>templateUrl</code> and <code>styleUrls</code>:</p>
+<ul>
+<li><code>selector</code>: is the name of the component. Do you remember the <code>&lt;app-root&gt;&lt;/app-root&gt;</code> on the index.html? This is where it’s defined.
+<code>templateUrl</code>: This is where the HTML code is. <code>&lt;app-root&gt;</code> will be replaced for whatever you have in the template.</li>
+<li><code>styleUrls</code>: You can have styles that only apply to this component. This is pretty neat! You can change the styles with confidence knowing that it won’t bleed into other parts of the website.</li>
+</ul>
+<p>Inside the <code>AppComponent</code> class you can define variables (e.g. <code>title</code>) that are used in the templates (e.g. <code>app.component.html</code>).</p>
+<p>Let’s remove the placeholders from <code>app.component.html</code>. Replace all the content already there with:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;text-align:center&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">    &#123;&#123; title &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Test your changes running:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve ---port 9000</span><br></pre></td></tr></table></figure>
+
+<p>You should see the new message.</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/bf23970">[changes diff]</a></p>
+<h1 id="Creating-a-new-Component-with-Angular-CLI"><a href="#Creating-a-new-Component-with-Angular-CLI" class="headerlink" title="Creating a new Component with Angular CLI"></a>Creating a new Component with Angular CLI</h1><p>Let’s create a new component to display the tasks. We can quickly create by typing:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng generate component todo</span><br></pre></td></tr></table></figure>
+
+<p>This command will create a new folder with four files:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE src&#x2F;app&#x2F;todo&#x2F;todo.component.scss (0 bytes)</span><br><span class="line">CREATE src&#x2F;app&#x2F;todo&#x2F;todo.component.html (19 bytes)</span><br><span class="line">CREATE src&#x2F;app&#x2F;todo&#x2F;todo.component.spec.ts (614 bytes)</span><br><span class="line">CREATE src&#x2F;app&#x2F;todo&#x2F;todo.component.ts (262 bytes)</span><br></pre></td></tr></table></figure>
+
+<p>And it will add the new Todo component to the <code>AppModule</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE src&#x2F;app&#x2F;app.module.ts (467 bytes)</span><br></pre></td></tr></table></figure>
+
+<p>Go ahead and inspect each one. It will look similar to the app components.
+Let ‘s add our new component to the App component.</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/27b354e">[changes diff]</a></p>
+<p>Go to <code>src/app/app.component.html</code>, and replace everything with:</p>
+<figure class="highlight html"><figcaption><span>src/app/app.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">app-todo</span>&gt;</span><span class="tag">&lt;/<span class="name">app-todo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>If you have <code>ng serve</code> running, it should automatically update and show <code>todo works!</code></p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/64e8060">[changes diff]</a></p>
+<h1 id="Todo-Template"><a href="#Todo-Template" class="headerlink" title="Todo Template"></a>Todo Template</h1><p>“todo works!” is not useful. Let’s change that by adding some HTML code to represent our todo tasks. Go to the <code>src/app/todo/todo.component.html</code> file and copy-paste this HTML code:</p>
+<figure class="highlight html"><figcaption><span>TodoTemplate src/app/todo/todo.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;todoapp&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">&quot;header&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Todo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;new-todo&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;What needs to be done?&quot;</span> <span class="attr">autofocus</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- This section should be hidden by default and shown when there are todos --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;todo-list&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- These are here just to show the structure of the list items --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- List items should get the class `editing` when editing and `completed` when marked as completed --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;completed&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;view&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span>&gt;</span>Install angular-cli<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;destroy&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;edit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Create a TodoMVC template&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;view&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span>&gt;</span>Understand Angular2 apps<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;destroy&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;edit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Rule the web&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- This footer should hidden by default and shown when there are todos --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- This should be `0 items left` by default --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;todo-count&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>0<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Remove this if you don&#x27;t implement routing --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;filters&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;selected&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#/&quot;</span>&gt;</span>All<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#/active&quot;</span>&gt;</span>Active<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#/completed&quot;</span>&gt;</span>Completed<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Hidden if no completed items are left ↓ --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;clear-completed&quot;</span>&gt;</span>Clear completed<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>The above HTML code has the general structure about how we want to represent our tasks. Right now it has hard-coded todo’s. We are going to slowly turn it into a dynamic app using Angular data bindings.</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/c0ddc65">[changes diff]</a></p>
+<p>Next, let’s add some styling!</p>
+<h1 id="Styling-the-todo-app"><a href="#Styling-the-todo-app" class="headerlink" title="Styling the todo app"></a>Styling the todo app</h1><p>We are going to use a community maintained CSS for Todo apps. We can go ahead and download the CSS:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save todomvc-app-css</span><br></pre></td></tr></table></figure>
+
+<p>This will install a CSS file that we can use to style our Todo app and make it look nice. In the next section, we are going to explain how to use it with the <code>angular-cli.json</code>.</p>
+<h1 id="Adding-global-styles-to-angular-json"><a href="#Adding-global-styles-to-angular-json" class="headerlink" title="Adding global styles to angular.json"></a>Adding global styles to angular.json</h1><p><code>angular.json</code> is a special file that tells the Angular CLI how to build your application. You can define how to name your root folder, tests and much more. What we care right now, is telling the angular CLI to use our new CSS file from the node modules. You can do it by adding the following line into the <code>styles</code> array:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;architect&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;build&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;options&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;styles&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;src/styles.scss&quot;</span>,</span><br><span class="line marked">        <span class="string">&quot;node_modules/todomvc-app-css/index.css&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">&quot;scripts&quot;</span>: []</span><br></pre></td></tr></table></figure>
+
+<p>If you stop and start <code>ng serve</code>, then you will notice the changes.</p>
+<img src="/images/angular2-todo-app-preview.png" class="" title="Angular Todo App">
+
+<p>We have the skeleton so far. Now we are going to make it dynamic and allow users to add/remove/update/sort tasks. We are going to do two versions one serverless and another one using a Node.js/Express server. We are going to be using promises all the time, so when we use a real API, the service is the only one that has to change.</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/d3106d7">[changes diff]</a></p>
+<h1 id="Todo-Service"><a href="#Todo-Service" class="headerlink" title="Todo Service"></a>Todo Service</h1><p>Let’s first start by creating a service that contains an initial list of tasks that we want to manage. We are going to use a <code>service</code> to manipulate the data. Let’s create the service with the CLI by typing:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g service todo/todo</span><br></pre></td></tr></table></figure>
+
+<p>This will create two files:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE src&#x2F;app&#x2F;todo&#x2F;todo.service.spec.ts (323 bytes)</span><br><span class="line">CREATE src&#x2F;app&#x2F;todo&#x2F;todo.service.ts (133 bytes)</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/9e5d935">[changes diff]</a></p>
+<h1 id="CRUD-Functionality"><a href="#CRUD-Functionality" class="headerlink" title="CRUD Functionality"></a>CRUD Functionality</h1><p>For enabling the create-read-update-delete functionality, we are going to be modifying three files:</p>
+<ul>
+<li>src/app/todo/todo.<strong>service</strong>.ts</li>
+<li>src/app/todo/todo.<strong>component</strong>.ts</li>
+<li>src/app/todo/todo.component.<strong>html</strong></li>
+</ul>
+<p>Let’s get started!</p>
+<h2 id="READ-Get-all-tasks"><a href="#READ-Get-all-tasks" class="headerlink" title="READ: Get all tasks"></a>READ: Get all tasks</h2><p>Let’s modify the <code>todo.service</code> to be able to get tasks:</p>
+<figure class="highlight js"><figcaption><span>TodoService src/app/todo/todo.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line marked"><span class="keyword">const</span> TODOS = [</span><br><span class="line marked">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Install Angular CLI&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line marked">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Style app&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line marked">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Finish service functionality&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line marked">  &#123; <span class="attr">title</span>: <span class="string">&#x27;Setup API&#x27;</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line marked">];</span><br><span class="line"></span><br><span class="line">@Injectable(&#123;</span><br><span class="line">  providedIn: <span class="string">&#x27;root&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">TodoService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line marked">  <span class="keyword">constructor</span>() &#123; &#125;</span><br><span class="line marked"></span><br><span class="line marked">  get() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(TODOS));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now we need to change our todo component to use the service that we created.</p>
+<figure class="highlight js"><figcaption><span>TodoComponent src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; TodoService &#125; <span class="keyword">from</span> <span class="string">&#x27;./todo.service&#x27;</span>;</span><br><span class="line marked"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-todo&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./todo.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./todo.component.scss&#x27;</span>],</span><br><span class="line marked">  providers: [TodoService]</span><br><span class="line marked">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">TodoComponent</span> <span class="title">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line">  private todos;</span><br><span class="line marked">  private activeTasks;</span><br><span class="line marked"></span><br><span class="line marked">  <span class="keyword">constructor</span>(private todoService: TodoService) &#123; &#125;</span><br><span class="line marked"></span><br><span class="line marked">  getTodos()&#123;</span><br><span class="line marked">    <span class="keyword">return</span> <span class="built_in">this</span>.todoService.get().then(<span class="function"><span class="params">todos</span> =&gt;</span> &#123;</span><br><span class="line marked">      <span class="built_in">this</span>.todos = todos;</span><br><span class="line marked">      <span class="built_in">this</span>.activeTasks = <span class="built_in">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> !todo.isDone).length;</span><br><span class="line marked">    &#125;);</span><br><span class="line marked">  &#125;</span><br><span class="line marked"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">    <span class="built_in">this</span>.getTodos();</span><br><span class="line marked">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>The first change is importing our <code>TodoService</code> and adding it to the providers. Then we use the constructor of the component to load the <code>TodoService</code>. While we inject the service, we can hold a private instance of it in the variable <code>todoService</code>. Finally, we use it in the <code>getTodos</code> method. This will make a variable <code>todos</code> available in the template where we can render the tasks.</p>
+<p>Let’s change the template so we can render the data from the service. Go to the <code>todo.component.html</code> and change, from line 11, what is inside the <code>&lt;ul class=&quot;todo-list&quot;&gt; ... &lt;/ul&gt;</code> for this one:</p>
+<figure class="highlight html"><figcaption><span>TodoTemplate src/app/todo/todo.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;todo-list&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let todo of todos&quot;</span> [<span class="attr">ngClass</span>]=<span class="string">&quot;&#123;completed: todo.isDone&#125;&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;view&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> [<span class="attr">checked</span>]=<span class="string">&quot;todo.isDone&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span>&gt;</span>&#123;&#123;todo.title&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;destroy&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;edit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;todo.title&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Also change the line 27 in the template from:</p>
+<figure class="highlight html"><figcaption><span>(partial) src/app/todo/todo.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;todo-count&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>0<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>replace it with:</p>
+<figure class="highlight html"><figcaption><span>(partial) src/app/todo/todo.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;todo-count&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123;activeTasks&#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>When your browser updates you should have something like this:</p>
+<img src="/images/angular2-todo-app-service.png" class="" title="Todo app rendering tasks from service">
+
+<p>Now, let’s go over what we just did. We can see that we added new data-binding into the template:</p>
+<ul>
+<li><code>*ngFor</code>: iterates through the <code>todos</code> array that we defined in the component and assigned in the <code>let todo</code> part.</li>
+<li><code>[ngClass]</code>: applies a class when the expression evaluates to true. In our case, it uses class <code>completed</code> when <code>isDone</code> is true.</li>
+<li><code>[checked]</code>: applies the <code>checked</code> attribute when the expression evaluates to true (<code>todo.isDone</code>).</li>
+<li><code>&lbrace;&lbrace;todo.title&rbrace;&rbrace;</code>: Render the todo title. The same happened with <code>&lbrace;&lbrace;activeTasks&rbrace;&rbrace;</code>.</li>
+</ul>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/83c0c17">[changes diff]</a></p>
+<h2 id="CREATE-using-the-input-form"><a href="#CREATE-using-the-input-form" class="headerlink" title="CREATE: using the input form"></a>CREATE: using the input form</h2><p>Let’s start with the template this time. We have an input element for creating new tasks. Let’s listen to changes in the input form and when we click enter it creates the TODO.</p>
+<figure class="highlight html"><figcaption><span>Line 5 src/app/todo/todo.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;new-todo&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">placeholder</span>=<span class="string">&quot;What needs to be done?&quot;</span></span></span><br><span class="line"><span class="tag">       [(<span class="attr">ngModel</span>)]=<span class="string">&quot;newTodo&quot;</span></span></span><br><span class="line"><span class="tag">       (<span class="attr">keyup.enter</span>)=<span class="string">&quot;addTodo()&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">autofocus</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Notice that we are using a new variable called <code>newTodo</code> and method called <code>addTodo()</code>. Let’s go to the controller and give it some functionality:</p>
+<figure class="highlight javascript"><figcaption><span>src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private newTodo;</span><br><span class="line"></span><br><span class="line">addTodo()&#123;</span><br><span class="line">  <span class="built_in">this</span>.todoService.add(&#123; <span class="attr">title</span>: <span class="built_in">this</span>.newTodo, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.getTodos();</span><br><span class="line">  &#125;).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.newTodo = <span class="string">&#x27;&#x27;</span>; <span class="comment">// clear input form value</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>First, we created a private variable that we are going to use to get values from the input form. Then we created a new <code>todo</code> using the todo service method <code>add</code>. It doesn’t exist yet, so we are going to create it next:</p>
+<figure class="highlight javascript"><figcaption><span>src/app/todo/todo.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">add(data) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    TODOS.push(data);</span><br><span class="line">    resolve(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The above code adds the new element into the <code>todos</code> array and resolves the promise. That’s all. Go ahead a test it out creating a new todo element.</p>
+<p>You might get an error saying:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Can&#39;t bind to &#39;ngModel&#39; since it isn&#39;t a known property of &#39;input&#39;</span><br></pre></td></tr></table></figure>
+<p>To use the two-way data binding you need to import <code>FormsModule</code> in the <code>app.module.ts</code>. So let’s do that.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; FormsModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/forms&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  imports: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    FormsModule</span><br><span class="line">  ],</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Now it should add new tasks to the list!</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/dd432b4">[changes diff]</a></p>
+<h2 id="UPDATE-on-double-click"><a href="#UPDATE-on-double-click" class="headerlink" title="UPDATE: on double click"></a>UPDATE: on double click</h2><p>Let’s add an event listener to double-click on each todo. That way, we can change the content. Editing is tricky since we need to display an input form. Then when the user clicks enter it should update the value. Finally, it should hide the input and show the label with the updated value. Let’s do that by keeping a temp variable called <code>editing</code> which could be true or false.</p>
+<p>Go to line 16, and change the content inside the <code>&lt;li&gt;...&lt;/li&gt;</code>:</p>
+<figure class="highlight html"><figcaption><span>src/app/todo/todo.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let todo of todos&quot;</span> [<span class="attr">ngClass</span>]=<span class="string">&quot;&#123;completed: todo.isDone, editing: todo.editing&#125;&quot;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;view&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> [<span class="attr">checked</span>]=<span class="string">&quot;todo.isDone&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> (<span class="attr">dblclick</span>)=<span class="string">&quot;todo.editing = true&quot;</span>&gt;</span>&#123;&#123;todo.title&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;destroy&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;edit&quot;</span></span></span><br><span class="line"><span class="tag">         #<span class="attr">updatedTodo</span></span></span><br><span class="line"><span class="tag">         [<span class="attr">value</span>]=<span class="string">&quot;todo.title&quot;</span></span></span><br><span class="line"><span class="tag">         (<span class="attr">blur</span>)=<span class="string">&quot;updateTodo(todo, updatedTodo.value)&quot;</span></span></span><br><span class="line"><span class="tag">         (<span class="attr">keyup.escape</span>)=<span class="string">&quot;todo.editing = false&quot;</span></span></span><br><span class="line"><span class="tag">         (<span class="attr">keyup.enter</span>)=<span class="string">&quot;updateTodo(todo, updatedTodo.value)&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Notice that we are adding a local variable in the template <code>#updatedTodo</code>. Then we use it to get the value like <code>updateTodo.value</code> and pass it to the function <code>updateTodo</code>.
+We want to update the variables on <code>blur</code> (when you click somewhere else) or on <code>enter</code>. Let’s add the function that updates the value in the component.</p>
+<p>Also, notice that we have a new CSS class applied to the element called <code>editing</code>. This is going to take care through CSS to hide and show the input element when needed.</p>
+<p>Give it a try, double click on any task!</p>
+<p>If you press <kbd>enter</kbd> you would notice an error in the console <code>ERROR TypeError: _co.updateTodo is not a function</code>.
+That’s because we haven’t defined <code>updateTodo</code> yet:</p>
+<figure class="highlight javascript"><figcaption><span>src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">updateTodo(todo, newValue) &#123;</span><br><span class="line">  todo.title = newValue;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.todoService.put(todo).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    todo.editing = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.getTodos();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We update the new todo’s title, and after the service has processed the update, we set editing to false. Finally, we reload all the tasks again. Let’s add the <code>put</code> action on the service.</p>
+<figure class="highlight javascript"><figcaption><span>src/app/todo/todo.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">put(changed) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> index = TODOS.findIndex(<span class="function"><span class="params">todo</span> =&gt;</span> todo === changed);</span><br><span class="line">    TODOS[index].title = changed.title;</span><br><span class="line">    resolve(changed);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now, give it a try again. We can edit tasks! Yay!</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/f1270ef">[changes diff]</a></p>
+<h2 id="DELETE-clicking-X"><a href="#DELETE-clicking-X" class="headerlink" title="DELETE: clicking X"></a>DELETE: clicking X</h2><p>This is like the other actions. We add an event listenter on the destroy button, on line 20:</p>
+<figure class="highlight html"><figcaption><span>src/app/todo/todo.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;destroy&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;destroyTodo(todo)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>To make it work, we have to define the delete functionality on the component and service.</p>
+<p>The method to the component looks something like this:</p>
+<figure class="highlight javascript"><figcaption><span>src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">destroyTodo(todo) &#123;</span><br><span class="line">  <span class="built_in">this</span>.todoService.delete(todo).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.getTodos();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>and finally, we add the method to the service:</p>
+<figure class="highlight javascript"><figcaption><span>src/app/todo/todo.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span>(selected) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> index = TODOS.findIndex(<span class="function"><span class="params">todo</span> =&gt;</span> todo === selected);</span><br><span class="line">    TODOS.splice(index, <span class="number">1</span>);</span><br><span class="line">    resolve(<span class="literal">true</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now test it out in the browser!</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/a4aeaa4">[changes diff]</a></p>
+<h1 id="Routing-and-Navigation"><a href="#Routing-and-Navigation" class="headerlink" title="Routing and Navigation"></a>Routing and Navigation</h1><p>It’s time to activate the routing. When we click on the <code>active</code> button, we want to show only the ones that are active. Similarly, we want to filter by <code>completed</code>. Additionally, we want to the filters to change the route <code>/active</code> or <code>/completed</code> URLs.</p>
+<p>In <code>AppModule</code>, we need to add the <code>router</code> library and define the routes as follows:</p>
+<figure class="highlight js"><figcaption><span>AppModule src/app/app.module.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/platform-browser&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; FormsModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/forms&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/http&#x27;</span>;</span><br><span class="line marked"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./app.component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; TodoComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;./todo/todo.component&#x27;</span>;</span><br><span class="line"></span><br><span class="line marked"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line marked">  &#123; <span class="attr">path</span>: <span class="string">&#x27;:status&#x27;</span>, <span class="attr">component</span>: TodoComponent &#125;,</span><br><span class="line marked">  &#123; <span class="attr">path</span>: <span class="string">&#x27;**&#x27;</span>, <span class="attr">redirectTo</span>: <span class="string">&#x27;/all&#x27;</span> &#125;</span><br><span class="line marked">];</span><br><span class="line"></span><br><span class="line">@NgModule(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent,</span><br><span class="line">    TodoComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    FormsModule,</span><br><span class="line">    HttpModule,</span><br><span class="line marked">    RouterModule.forRoot(routes)</span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>First, we import the routing library. Then we define the routes that we need. We could have said <code>path: &#39;active&#39;, component: TodoComponent</code> and then repeat the same for <code>completed</code>. But instead, we define a parameter called <code>:status</code> that could take any value (<code>all</code>, <code>completed</code>, <code>active</code>). Any other value path we are going to redirect it to <code>/all</code>. That’s what the <code>**</code> means.</p>
+<p>Finally, we add it to the imports. So the app module uses it. Since the AppComponent is using routes, now we need to define the <code>&lt;router-outlet&gt;</code>. That’s the place where the routes are going to render the component based on the path (in our case <code>TodoComponent</code>).</p>
+<p>Let’s go to <code>app/app.component.html</code> and replace <code>&lt;app-todo&gt;&lt;/app-todo&gt;</code> for <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code>:</p>
+<figure class="highlight html"><figcaption><span>app/app.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Test the app in the browser and verify that now the URL is by default <code>http://localhost:9000/all</code>.</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/2e2bae9">[changes diff]</a></p>
+<h2 id="Using-routerLink-and-ActivatedRoute"><a href="#Using-routerLink-and-ActivatedRoute" class="headerlink" title="Using routerLink and ActivatedRoute"></a>Using routerLink and ActivatedRoute</h2><p><code>routerLink</code> is the replacement of <code>href</code> for our dynamic routes. We have set it up to be <code>/all</code>, <code>/complete</code> and <code>/active</code>. Notice that the expression is an array. You can pass each part of the URL as an element of the collection.</p>
+<figure class="highlight html"><figcaption><span>src/app/todo/todo.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;filters&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line marked">    <span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>]=<span class="string">&quot;[&#x27;/all&#x27;]&quot;</span> [<span class="attr">class.selected</span>]=<span class="string">&quot;path === &#x27;all&#x27;&quot;</span>&gt;</span>All<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line marked">    <span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>]=<span class="string">&quot;[&#x27;/active&#x27;]&quot;</span> [<span class="attr">class.selected</span>]=<span class="string">&quot;path === &#x27;active&#x27;&quot;</span>&gt;</span>Active<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line marked">    <span class="tag">&lt;<span class="name">a</span> [<span class="attr">routerLink</span>]=<span class="string">&quot;[&#x27;/completed&#x27;]&quot;</span> [<span class="attr">class.selected</span>]=<span class="string">&quot;path === &#x27;completed&#x27;&quot;</span>&gt;</span>Completed<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>What we are doing is applying the <code>selected</code> class if the path matches the button. Yet, we haven’t populate the the <code>path</code> variable yet. So let’s do that:</p>
+<figure class="highlight js"><figcaption><span>TodoComponent src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Component, OnInit &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line marked"><span class="keyword">import</span> &#123; ActivatedRoute &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/router&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; TodoService &#125; <span class="keyword">from</span> <span class="string">&#x27;./todo.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: <span class="string">&#x27;app-todo&#x27;</span>,</span><br><span class="line">  templateUrl: <span class="string">&#x27;./todo.component.html&#x27;</span>,</span><br><span class="line">  styleUrls: [<span class="string">&#x27;./todo.component.scss&#x27;</span>],</span><br><span class="line">  providers: [TodoService]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">TodoComponent</span> <span class="title">implements</span> <span class="title">OnInit</span> </span>&#123;</span><br><span class="line">  private todos;</span><br><span class="line">  private activeTasks;</span><br><span class="line">  private newTodo;</span><br><span class="line marked">  private path;</span><br><span class="line"></span><br><span class="line marked">  <span class="keyword">constructor</span>(private todoService: TodoService, private route: ActivatedRoute) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line marked">    <span class="built_in">this</span>.route.params.subscribe(<span class="function"><span class="params">params</span> =&gt;</span> &#123;</span><br><span class="line marked">      <span class="built_in">this</span>.path = params[<span class="string">&#x27;status&#x27;</span>];</span><br><span class="line marked">      <span class="built_in">this</span>.getTodos();</span><br><span class="line marked">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We added <code>ActivatedRoute</code> as a dependency and in the constructor. ActivatedRoute gives us access to the all the <code>route</code> params such as <code>path</code>. Notice that we are using it in the <code>NgOnInit</code> and set the path accordantly.</p>
+<p>Go to the browser and check out that the URL matches the active button. But, it doesn’t filter anything yet. Let’s fix that next.</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/b3487a2">[changes diff]</a></p>
+<h2 id="Filtering-data-based-on-the-route"><a href="#Filtering-data-based-on-the-route" class="headerlink" title="Filtering data based on the route"></a>Filtering data based on the route</h2><p>To filter todos by active and completed, we need to pass a parameter to the <code>todoService.get</code>.</p>
+<figure class="highlight js"><figcaption><span>TodoComponent src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ngOnInit() &#123;</span><br><span class="line">  <span class="built_in">this</span>.route.params.subscribe(<span class="function"><span class="params">params</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.path = params[<span class="string">&#x27;status&#x27;</span>];</span><br><span class="line marked">    <span class="built_in">this</span>.getTodos(<span class="built_in">this</span>.path);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line marked">getTodos(query = <span class="string">&#x27;&#x27;</span>)&#123;</span><br><span class="line marked">  <span class="keyword">return</span> <span class="built_in">this</span>.todoService.get(query).then(<span class="function"><span class="params">todos</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.todos = todos;</span><br><span class="line">    <span class="built_in">this</span>.activeTasks = <span class="built_in">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> !todo.isDone).length;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We added a new parameter <code>query</code>, which takes the <code>path</code> (active, completed or all). Then, we pass that parameter to the service. Let’s handle that in the service:</p>
+<figure class="highlight js"><figcaption><span>TodoService src/app/todo/todo.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line marked">get(query = <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data;</span><br><span class="line"></span><br><span class="line marked">    <span class="keyword">if</span> (query === <span class="string">&#x27;completed&#x27;</span> || query === <span class="string">&#x27;active&#x27;</span>)&#123;</span><br><span class="line marked">      <span class="keyword">const</span> isCompleted = query === <span class="string">&#x27;completed&#x27;</span>;</span><br><span class="line marked">      data = TODOS.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.isDone === isCompleted);</span><br><span class="line marked">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line marked">      data = TODOS;</span><br><span class="line marked">    &#125;</span><br><span class="line"></span><br><span class="line">    resolve(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>So we added a filter by <code>isDone</code> when we pass either <code>completed</code> or <code>active</code>. If the query is anything else, we return all the todos tasks.</p>
+<p>That’s pretty much it for filtering and routes, test it out!</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/b87857d">[changes diff]</a></p>
+<h1 id="Clearing-out-completed-tasks"><a href="#Clearing-out-completed-tasks" class="headerlink" title="Clearing out completed tasks"></a>Clearing out completed tasks</h1><p>One last UI functionality, clearing out completed tasks button. Let’s first add the click event on the template:</p>
+<figure class="highlight html"><figcaption><span>src/app/todo/todo.component.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;clear-completed&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;clearCompleted()&quot;</span>&gt;</span>Clear completed<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>We referenced a new function <code>clearCompleted</code> that we haven’t create yet. Let’s create it in the TodoComponent:</p>
+<figure class="highlight js"><figcaption><span>TodoComponent src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clearCompleted() &#123;</span><br><span class="line marked">  <span class="built_in">this</span>.todoService.deleteCompleted().then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.getTodos();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In the same way we have to create <code>deleteCompleted</code> in the service:</p>
+<figure class="highlight js"><figcaption><span>TodoService src/app/todo/todo.service.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deleteCompleted() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line marked">    TODOS = TODOS.filter(<span class="function"><span class="params">todo</span> =&gt;</span> !todo.isDone);</span><br><span class="line">    resolve(TODOS);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We use the filter to get the active tasks and replace the <code>TODOS</code> array with it.
+Since, we are overwriting the variable we need to make it a <code>let TODOS ...</code> instead of a <code>const TODOS ...</code>.</p>
+<p>That’s it we have completed all the functionality.</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/30c699b">[changes diff]</a></p>
+<h1 id="Checking-off-tasks-enhancements"><a href="#Checking-off-tasks-enhancements" class="headerlink" title="Checking off tasks enhancements"></a>Checking off tasks enhancements</h1><p>When we click on the checkbox, it gets the mark. However, the tasks doesn’t get crossout.</p>
+<p>Let’s fix that by toggling <code>isDone</code> field when we click on task.
+Add <code>(click)=&quot;toggleTodo(todo)&quot;</code> to the checkbox element.</p>
+<figure class="highlight html"><figcaption><span>src/app/todo/todo.component.html:17</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;view&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;toggle&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span></span></span><br><span class="line"><span class="tag">    [<span class="attr">checked</span>]=<span class="string">&quot;todo.isDone&quot;</span></span></span><br><span class="line"><span class="tag">    (<span class="attr">click</span>)=<span class="string">&quot;toggleTodo(todo)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> (<span class="attr">dblclick</span>)=<span class="string">&quot;todo.editing = true&quot;</span>&gt;</span>&#123;&#123;todo.title&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;destroy&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;destroyTodo(todo)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Since we are using the <code>toggleTodo</code> function we have to define it in the controller and service.</p>
+<p>Controller implementation:</p>
+<figure class="highlight js"><figcaption><span>src/app/todo/todo.component.ts:62</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">toggleTodo(todo) &#123;</span><br><span class="line">  <span class="built_in">this</span>.todoService.toggle(todo).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.getTodos();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Service implementation:</p>
+<figure class="highlight js"><figcaption><span>src/app/todo/todo.service.ts:62</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">toggle(selected) &#123;</span><br><span class="line">  selected.isDone = !selected.isDone;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>We are returning a promise, in case we later want to replace the in-memory array for a API call or external storage.</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/0affc59">[changes diff]</a></p>
+<h1 id="Deploying-the-app"><a href="#Deploying-the-app" class="headerlink" title="Deploying the app"></a>Deploying the app</h1><p>You can generate all your assets for production running this command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng build --prod</span><br></pre></td></tr></table></figure>
+
+<p>It will minify and concatenate the assets for serving the app faster.</p>
+<p>You might get some errors like <code>Property ... is private and only accessible within class &#39;TodoComponent&#39;.</code>.
+You can fix that by making all the variables that are used on the template <code>public</code>. Instead of private:</p>
+<figure class="highlight js"><figcaption><span>src/app/todo/todo.component.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public todos;</span><br><span class="line">public activeTasks;</span><br><span class="line">public newTodo;</span><br><span class="line">public path;</span><br></pre></td></tr></table></figure>
+
+<p>Now <code>ng build --prod</code> should work. By default it will create assets on the <code>dist</code> folder.</p>
+<p>If you want to deploy to a Github page you can do the following:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng build --prod --output-path docs --base-href <span class="string">&quot;/angular-todo-app/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Replace <code>/angular-todo-app/</code> with the name of your project name. Finally, go to settings and set up serving Github pages using the <code>/docs</code> folder:</p>
+<p><img src="https://user-images.githubusercontent.com/418605/43802468-dd515c14-9a63-11e8-8262-b5b837170640.png" alt="image"></p>
+<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>If when you compile for production you get an error like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">The variable used in the template needs to be declared as &quot;public&quot;. Template is treated as a separate Typescript class.</span><br><span class="line"></span><br><span class="line">ERROR in src&#x2F;app&#x2F;todo&#x2F;todo.component.html(7,8): : Property &#39;newTodo&#39; is private and only accessible within class &#39;TodoComponent&#39;.</span><br><span class="line">src&#x2F;app&#x2F;todo&#x2F;todo.component.html(19,11): : Property &#39;todos&#39; is private and only accessible within class &#39;TodoComponent&#39;.</span><br><span class="line">src&#x2F;app&#x2F;todo&#x2F;todo.component.html(38,38): : Property &#39;activeTasks&#39; is private and only accessible within class &#39;TodoComponent&#39;.</span><br><span class="line">src&#x2F;app&#x2F;todo&#x2F;todo.component.html(41,36): : Property &#39;path&#39; is private and only accessible within class &#39;TodoComponent&#39;.</span><br><span class="line">src&#x2F;app&#x2F;todo&#x2F;todo.component.html(44,39): : Property &#39;path&#39; is private and only accessible within class &#39;TodoComponent&#39;.</span><br><span class="line">src&#x2F;app&#x2F;todo&#x2F;todo.component.html(47,42): : Property &#39;path&#39; is private and only accessible within class &#39;TodoComponent&#39;.</span><br><span class="line">src&#x2F;app&#x2F;todo&#x2F;todo.component.html(7,8): : Property &#39;newTodo&#39; is private and only accessible within class &#39;TodoComponent&#39;.</span><br></pre></td></tr></table></figure>
+
+<p>Then you need to change <code>private</code> to <code>public</code> like <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/angular-todo-app/commit/cbf4e20">this</a>. This is because the Template in Angular is treated like a separate class.</p>
+<h1 id="What’s-next-Build-Server-API"><a href="#What’s-next-Build-Server-API" class="headerlink" title="What’s next? Build Server API"></a>What’s next? Build Server API</h1><p>Check out this next post to learn how to build an API and connect it with this angular app:</p>
+<p><a href="/angular-todo-mean-stack-node-mongodb-typescript-tutorial/">Modern MEAN Stack Tutorial with Docker</a></p>
+<p>That’s all folks!</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-10-01-Angular-2-Tutorial-Create-a-CRUD-App-with-Angular-CLI-and-TypeScript.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/Overview-of-JavaScript-ES6-features-a-k-a-ECMAScript-6-and-ES2015/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  Overview of JavaScript ES6 features (a.k.a ECMAScript 6 and ES2015+)
+                
+              </div>
+            </a>
+          
+          
+            <a href="/Building-a-Node-js-static-file-server-files-over-HTTP-using-ES6/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">Building a Node.js static file server (files over HTTP) using ES6+</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2016-10-01-Angular-2-Tutorial-Create-a-CRUD-App-with-Angular-CLI-and-TypeScript.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Prerequisites"><span class="toc-number">1.</span> <span class="toc-text">Prerequisites</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Understanding-ng-new"><span class="toc-number">2.</span> <span class="toc-text">Understanding ng new</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#package-json"><span class="toc-number">2.1.</span> <span class="toc-text">package.json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#src-index-html"><span class="toc-number">2.2.</span> <span class="toc-text">src&#x2F;index.html</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#src-main-ts"><span class="toc-number">2.3.</span> <span class="toc-text">src&#x2F;main.ts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-directory"><span class="toc-number">2.4.</span> <span class="toc-text">App directory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-module-ts"><span class="toc-number">2.4.1.</span> <span class="toc-text">app.module.ts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#app-component-ts"><span class="toc-number">2.4.2.</span> <span class="toc-text">app.component.ts</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Creating-a-new-Component-with-Angular-CLI"><span class="toc-number">3.</span> <span class="toc-text">Creating a new Component with Angular CLI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Todo-Template"><span class="toc-number">4.</span> <span class="toc-text">Todo Template</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Styling-the-todo-app"><span class="toc-number">5.</span> <span class="toc-text">Styling the todo app</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Adding-global-styles-to-angular-json"><span class="toc-number">6.</span> <span class="toc-text">Adding global styles to angular.json</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Todo-Service"><span class="toc-number">7.</span> <span class="toc-text">Todo Service</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CRUD-Functionality"><span class="toc-number">8.</span> <span class="toc-text">CRUD Functionality</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#READ-Get-all-tasks"><span class="toc-number">8.1.</span> <span class="toc-text">READ: Get all tasks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CREATE-using-the-input-form"><span class="toc-number">8.2.</span> <span class="toc-text">CREATE: using the input form</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UPDATE-on-double-click"><span class="toc-number">8.3.</span> <span class="toc-text">UPDATE: on double click</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DELETE-clicking-X"><span class="toc-number">8.4.</span> <span class="toc-text">DELETE: clicking X</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Routing-and-Navigation"><span class="toc-number">9.</span> <span class="toc-text">Routing and Navigation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-routerLink-and-ActivatedRoute"><span class="toc-number">9.1.</span> <span class="toc-text">Using routerLink and ActivatedRoute</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Filtering-data-based-on-the-route"><span class="toc-number">9.2.</span> <span class="toc-text">Filtering data based on the route</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Clearing-out-completed-tasks"><span class="toc-number">10.</span> <span class="toc-text">Clearing out completed tasks</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Checking-off-tasks-enhancements"><span class="toc-number">11.</span> <span class="toc-text">Checking off tasks enhancements</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Deploying-the-app"><span class="toc-number">12.</span> <span class="toc-text">Deploying the app</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Troubleshooting"><span class="toc-number">13.</span> <span class="toc-text">Troubleshooting</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What%E2%80%99s-next-Build-Server-API"><span class="toc-number">14.</span> <span class="toc-text">What’s next? Build Server API</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/Angular-2-Tutorial-Create-a-CRUD-App-with-Angular-CLI-and-TypeScript/';
+      this.page.identifier = 'https://adrianmejia.com/Angular-2-Tutorial-Create-a-CRUD-App-with-Angular-CLI-and-TypeScript/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

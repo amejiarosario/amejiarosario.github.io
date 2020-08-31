@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Grunt JS tutorial from Beginner to Ninja | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/grunt-js-tutorial-from-beginner-to-ninja/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/grunt-js-tutorial-from-beginner-to-ninja/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Sometimes you find yourself doing the same tasks again and again, especially during web development. It is time to automate repetitive tasks and use that time in more creative activities. This is where Grunt comes in. Grunt is a popular task runner that runs on NodeJS. It can minify CSS/JavaScript, run linting tools (JSHint, JSlint, CSSlint), deploy to server, and run test cases when you change a file to name a few. All the information I found about Grunt and similar Javascript test runners were too verbose and not very helpful to get started quickly. So, I decided to make this tutorial." />
+    <meta property="og:image" content="https://adrianmejia.com/images/gruntjs_large.png" />
+    <meta property="og:title" content="Grunt JS tutorial from Beginner to Ninja" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Grunt JS tutorial from Beginner to Ninja",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/gruntjs_large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2014-10-07T10:41:13-04:00",
+  "dateModified": "2014-10-07T10:41:13-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "Sometimes you find yourself doing the same tasks again and again, especially during web development. It is time to automate repetitive tasks and use that time in more creative activities. This is where Grunt comes in. Grunt is a popular task runner that runs on NodeJS. It can minify CSS/JavaScript, run linting tools (JSHint, JSlint, CSSlint), deploy to server, and run test cases when you change a file to name a few. All the information I found about Grunt and similar Javascript test runners were too verbose and not very helpful to get started quickly. So, I decided to make this tutorial."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a>
+    </div>
+
+    <h1>Grunt JS tutorial from Beginner to Ninja</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2014-10-07T14:41:13.000Z" itemprop="dateUpdated">October 7th 2014</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          54.7k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/grunt-js-tutorial-from-beginner-to-ninja/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/gruntjs/" rel="tag">gruntjs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">12</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #D27B2E">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/gruntjs_large.png">
+        <source srcset="/images/gruntjs_small.png">
+        <img src="/images/gruntjs_large.png" alt="Grunt JS tutorial from Beginner to Ninja">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>Sometimes you find yourself doing the same tasks again and again, especially during web development. It is time to automate repetitive tasks and use that time in more creative activities. This is where Grunt comes in. Grunt is a popular task runner that runs on NodeJS. It can minify CSS/JavaScript, run linting tools (JSHint, JSlint, CSSlint), deploy to server, and run test cases when you change a file to name a few. All the information I found about Grunt and similar Javascript test runners were too verbose and not very helpful to get started quickly. So, I decided to make this tutorial.</p>
+<a id="more"></a>
+
+<h1 id="Beginner-Grunt-js-101"><a href="#Beginner-Grunt-js-101" class="headerlink" title="Beginner: Grunt.js 101"></a>Beginner: Grunt.js 101</h1><p>Grunt.js is a Javascript task runner. At its bare core it does file manipulation (mkdir, reads, write, copy), print messages and helper methods to organize and configure multiple tasks. It takes care of differences among Operating Systems for you. However, the real power comes in with the number of available plugins ready to use. Usually named <code>grunt-contrib-*</code>. Let’s start from scratch!</p>
+<h1 id="Hello-Wold-from-GruntJS"><a href="#Hello-Wold-from-GruntJS" class="headerlink" title="Hello Wold from GruntJS"></a>Hello Wold from GruntJS</h1><p>You need to <a href="/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/#nodejs">install Node.js and NPM</a> to follow along with this example.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir grunt101 &amp;&amp; <span class="built_in">cd</span> grunt101</span><br><span class="line"></span><br><span class="line"><span class="comment"># start Node.js project and answer the questions (or leave it in blank)</span></span><br><span class="line">npm init</span><br><span class="line"></span><br><span class="line"><span class="comment"># add Grunt as a dependency</span></span><br><span class="line">npm install grunt  --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>If you run the grunt command you will get a message like this:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grunt</span><br><span class="line"><span class="comment"># A valid Gruntfile could not be found. Please see the getting started guide for more information on how to configure grunt: http://gruntjs.com/getting-started</span></span><br><span class="line"><span class="comment"># Fatal error: Unable to find Gruntfile.</span></span><br></pre></td></tr></table></figure>
+
+<p>So, let’s create the <code>Gruntfile.js</code> file:</p>
+<figure class="highlight javascript"><figcaption><span>Gruntfile.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grunt = <span class="built_in">require</span>(<span class="string">&#x27;grunt&#x27;</span>);</span><br><span class="line"></span><br><span class="line">grunt.registerTask(<span class="string">&#x27;default&#x27;</span>, <span class="string">&#x27;default task description&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;hello world&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>If you run <code>grunt</code> again, you will see a message. The default task is run when nothing else it is specified. We are going to create a 2nd task called ‘hello’ and it is going to accept a parameter that we can pass along with the task name separated with a colon. As follows: <code>grunt hello:adrian</code>. We can handle errors using <code>grunt.warn</code>. Every time a <code>grunt.warn</code> is found the task will stop executing, and it will give its warning message.. You can override using <code>--force</code>. Try all this commands and noticed the different effects: <code>grunt</code>, <code>grunt hello</code>, <code>grunt hello --force</code>, <code>grunt hello:adrian</code>.</p>
+<figure class="highlight javascript"><figcaption><span>Gruntfile.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grunt = <span class="built_in">require</span>(<span class="string">&#x27;grunt&#x27;</span>);</span><br><span class="line"></span><br><span class="line">grunt.registerTask(<span class="string">&#x27;default&#x27;</span>, <span class="string">&#x27;default task description&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;hello world&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.registerTask(<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;say hello&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!name || !name.length)</span><br><span class="line">    grunt.warn(<span class="string">&#x27;you need to provide a name.&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;hello &#x27;</span> + name);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>We can chain multiple grunt tasks by using and array. Change the <code>Gruntfile.js</code> for the following and see what will happen when you type <code>grunt</code>.</p>
+<figure class="highlight javascript"><figcaption><span>Gruntfile.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> grunt = <span class="built_in">require</span>(<span class="string">&#x27;grunt&#x27;</span>);</span><br><span class="line"></span><br><span class="line">grunt.registerTask(<span class="string">&#x27;world&#x27;</span>, <span class="string">&#x27;world task description&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;hello world&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.registerTask(<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;say hello&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!name || !name.length)</span><br><span class="line">    grunt.warn(<span class="string">&#x27;you need to provide a name.&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;hello &#x27;</span> + name);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.registerTask(<span class="string">&#x27;default&#x27;</span>, [<span class="string">&#x27;world&#x27;</span>, <span class="string">&#x27;hello:adrian&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Reference-1-Grunt-tasks-config-and-warnings"><a href="#Reference-1-Grunt-tasks-config-and-warnings" class="headerlink" title="Reference 1: Grunt tasks, config and warnings"></a>Reference 1: Grunt tasks, config and warnings</h1><p>Here are some of the methods that we have used so far and some more that we will use in the next examples:</p>
+<h2 id="Grunt-config"><a href="#Grunt-config" class="headerlink" title="Grunt config"></a>Grunt config</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.config#grunt.config.init">grunt.initConfig(configObject)</a>: Initialize a configuration object. It can be accessed by <code>grunt.config.get</code>.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.config#grunt.config.get">grunt.config.get([prop])</a>:  get the prop value from the <code>grunt.initConfig</code>. The property could be deeply nested (e.g. <code>concat.options.dest</code>) and the values inside <code>&lt;% %&gt;</code> are expanded.</p>
+</li>
+</ul>
+<h2 id="Grunt-tasks"><a href="#Grunt-tasks" class="headerlink" title="Grunt tasks"></a>Grunt tasks</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.task#grunt.task.registertask">grunt.registerTask(taskName[, description], taskFunction)</a>: register a task.<ul>
+<li><strong>taskName</strong>: required to register the task and it allows the task to be e executed with <code>grunt taskName</code> or called by other grunt task.</li>
+<li><strong>description</strong>: (optional) string describing task.</li>
+<li><strong>taskFunction</strong>: function which can accept parameters separated by colons (:). E.g. <code>grunt taskName:arg1:arg2</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.task#grunt.task.registertask">grunt.task.registerTask(taskName, taskList)</a>: register task.<ul>
+<li><strong>taskName</strong>: required to register the task and it allows the task to be e executed with <code>grunt taskName</code> or called by other grunt task.</li>
+<li><strong>taskList</strong>: array of taskNames to be executed, in the order specified, when the taskName is called. E.g.: <code>grunt.registerTask(&#39;concatAll&#39;, [&#39;concat:templates&#39;, &#39;concat:javascripts&#39;, &#39;concat:stylesheets&#39;]);</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.task#grunt.task.registermultitask">grunt.registerMultiTask(taskName[, description], taskFunction)</a>: multi-tasks accepts the same parameters as <code>grunt.registerTask</code>. However, it reads <code>grunt.initConfig</code> parameters differently:<ol>
+<li>Grunt looks for a config that matches the taskName.</li>
+<li>MultiTask can have multiple configurations referred as <code>this.target</code> and the value as <code>this.data</code>.</li>
+<li>All the “targets” are run if it is not specified otherwise.</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight javascript"><figcaption><span>registerMultiTask Example</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">  print: &#123;</span><br><span class="line">    target1: [<span class="string">&#x27;index.html&#x27;</span>, <span class="string">&#x27;src/styles.css&#x27;</span>, <span class="number">2</span>],</span><br><span class="line">    target2: <span class="string">&#x27;data&#x27;</span>,</span><br><span class="line">    hello: <span class="string">&#x27;world&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grunt.registerMultiTask(<span class="string">&#x27;print&#x27;</span>, <span class="string">&#x27;print targets&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  grunt.log.writeln(<span class="built_in">this</span>.target + <span class="string">&#x27;: &#x27;</span> + <span class="built_in">this</span>.data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>You can specify one target <code>grunt print:hello</code> or run all them <code>grunt print</code> which will produce this output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Running &quot;print:target1&quot; (print) task</span><br><span class="line">target1: index.html,src&#x2F;styles.css,2</span><br><span class="line"></span><br><span class="line">Running &quot;print:target2&quot; (print) task</span><br><span class="line">target2: data</span><br><span class="line"></span><br><span class="line">Running &quot;print:hello&quot; (print) task</span><br><span class="line">hello: world</span><br></pre></td></tr></table></figure>
+
+<h2 id="Grunt-Errors-and-Warnings"><a href="#Grunt-Errors-and-Warnings" class="headerlink" title="Grunt Errors and Warnings"></a>Grunt Errors and Warnings</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.fail#grunt.fail.warn">grunt.fail.warn(error [, errorcode])</a>: prints to STDOUT a message and abort grunt executions. It can be override using <code>--force</code> and it can show the stack trace if <code>--stack</code> is given. e.g. <code>grunt taskName --force --stack</code>.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.fail#grunt.fail.fatal">grunt.fail.fatal(error [, errorcode])</a>: similar to <code>warn</code>, displays message to STDOUT and terminate Grunt. Cannot be <code>--force</code>ed and it emits a beep unless <code>--no-color</code> parameter is passed. It also accepts <code>--stack</code>. E.g. <code>grunt taskName --no-color --stack</code>.</p>
+</li>
+</ul>
+<h1 id="Example-Forex-and-grunt-multiple-async-calls-handling"><a href="#Example-Forex-and-grunt-multiple-async-calls-handling" class="headerlink" title="Example: Forex and grunt multiple async calls handling"></a>Example: Forex and grunt multiple async calls handling</h1><p>The idea is get conversion rates from a base currency (e.g. USD) to a target currency (e.g. EUR). We are using a <code>registerMultiTask</code>, so the taskName ‘currency’ matches its property in the <code>config.init</code>. Notice that we can has additional arbitrary data such as endpoint URL.</p>
+<p>Async calls can be a little tricky in Javascript. We are going to do multiple HTTP request. Since <code>http.get</code> is async Grunt will finish the task before even receiving any response. <code>this.async()</code> solves the issue, we just need to call it when we are done.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">  grunt.config.init(&#123;</span><br><span class="line">    currency: &#123;</span><br><span class="line">      USD: [<span class="string">&#x27;EUR&#x27;</span>, <span class="string">&#x27;GBP&#x27;</span>, <span class="string">&#x27;DOP&#x27;</span>],</span><br><span class="line">      DOP: [<span class="string">&#x27;USD&#x27;</span>]</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    endpoint: &#123;</span><br><span class="line">      host: <span class="string">&#x27;http://www.freecurrencyconverter3api.com&#x27;</span>,</span><br><span class="line">      path: <span class="string">&#x27;/api/v2/convert?compact=y&amp;q=&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.registerMultiTask(<span class="string">&#x27;currency&#x27;</span>, <span class="string">&#x27;Fetches currency exchange rates&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>),</span><br><span class="line">      done = <span class="built_in">this</span>.async(),</span><br><span class="line">      responses = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> baseCurrency = <span class="built_in">this</span>.target;</span><br><span class="line">    <span class="keyword">var</span> targetCurrencies = <span class="built_in">this</span>.data;</span><br><span class="line"></span><br><span class="line">    grunt.config.requires(<span class="string">&#x27;endpoint&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    targetCurrencies.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">targetCurrency, i, arr</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> convertTo = baseCurrency + <span class="string">&#x27;_&#x27;</span> + targetCurrency,</span><br><span class="line">        body = [];</span><br><span class="line">        url = grunt.config.get(<span class="string">&#x27;endpoint.host&#x27;</span>);</span><br><span class="line"></span><br><span class="line">      url += grunt.config.get(<span class="string">&#x27;endpoint.path&#x27;</span>) + convertTo;</span><br><span class="line"></span><br><span class="line">      http.get(url, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        res.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">          body.push(data);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        res.on(<span class="string">&#x27;end&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">var</span> conversion = <span class="built_in">JSON</span>.parse(body.join());</span><br><span class="line">          grunt.log.ok(baseCurrency + <span class="string">&#x27;/&#x27;</span> + targetCurrency + <span class="string">&#x27; =&gt; &#x27;</span> + conversion[convertTo].val);</span><br><span class="line">          <span class="comment">// if got all responses: done!</span></span><br><span class="line">          <span class="keyword">if</span>(responses++ == arr.length - <span class="number">1</span>)</span><br><span class="line">            done();</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;).on(<span class="string">&#x27;error&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">        grunt.warn(<span class="string">&#x27;Please verify endpoint host and path: &lt;&#x27;</span>+ url +<span class="string">&#x27;&gt;. It might be incorrect or down.&#x27;</span>);</span><br><span class="line">        done(err);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Reference-2-Grunt-Files-and-logs"><a href="#Reference-2-Grunt-Files-and-logs" class="headerlink" title="Reference 2: Grunt Files and logs"></a>Reference 2: Grunt Files and logs</h1><h2 id="Grunt-logs"><a href="#Grunt-logs" class="headerlink" title="Grunt logs"></a>Grunt logs</h2><p>All them stars with the prefix <code>grunt.log</code> and accepts a <code>msg</code> which is displayed to STDOUT (usually the screen). Here are the differences between them:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.log#grunt.log.writeln-grunt.verbose.writeln">writeln([msg]), write(msg) and subhead(msg)</a>: writes message to STDOUT. <code>grunt.log.writeln</code> will do the same as <code>grunt.log.write</code> but without trailing newline. <code>subhead(msg)</code> will print the message in bold and proceeded by a newline and a trailing newline as well.</li>
+</ul>
+<p>The following methods adds a “&gt;&gt;” before the message in the screen which could be of different colors depending on the method:</p>
+<ul>
+<li><code>grunt.log.error([msg])</code>: print message prefixed with a RED “&gt;&gt;”.</li>
+<li><code>grunt.log.ok([msg])</code>: print message prefixed with a GREEN “&gt;&gt;”.</li>
+</ul>
+<h2 id="Grunt-files"><a href="#Grunt-files" class="headerlink" title="Grunt files"></a>Grunt files</h2><p><strong>Files</strong></p>
+<p>All has an optional attributes <code>options</code> that could be <code>encoding</code> among others.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.file#grunt.file.write">grunt.file.write(filepath, contents [, options])</a>: writes contents to file, creates path if necessary.</li>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.file#grunt.file.read">grunt.file.read(filepath [, options])</a>: returns file content.</li>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.file#grunt.file.readjson">grunt.file.readJSON(filepath [, options])</a>: reads file content and parse it to JSON.</li>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.file#grunt.file.delete">grunt.file.delete(filepath [, options])</a>: deletes files recursively.</li>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.file#grunt.file.copy">grunt.file.copy(srcpath, destpath [, options])</a>: copy file from <code>srcpath</code> to <code>destpath</code>.</li>
+</ul>
+<p><strong>Directories</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.file#grunt.file.mkdir">grunt.file.mkdir(dirpath [, mode])</a>: creates directory and any intermediary. Like <code>mkdir -p</code>.</li>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.file#grunt.file.expand">grunt.file.expand([options, ] patterns)</a>: returns an array with all the files matching a pattern. It can also accept and array of patterns. Preceding a patter with <code>!</code> will negate them. E.g. <code>[&#39;**/*.js&#39;, !**/*spec.js]</code> =&gt; get all javascript (including subdirectories) but NOT the ones that ends with spec.js.</li>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/api/grunt.file#grunt.file.recurse">grunt.file.recurse(rootdir, callback)</a>: expand path and return a callback function with the following signature <code>callback(abspath, rootdir, subdir, filename)</code>.</li>
+</ul>
+<h1 id="Example-2-Gruntfile-for-files-manipulation"><a href="#Example-2-Gruntfile-for-files-manipulation" class="headerlink" title="Example 2: Gruntfile for files manipulation"></a>Example 2: Gruntfile for files manipulation</h1><p>GruntJS comes with built-in functions for basic <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt/blob/master/lib/grunt/file.js">file system handling</a>. To see the function in action. Create four directories: <code>stylesheets</code>, <code>javascripts</code>, <code>templates</code> and put files on first three. The idea is to concatenate all the files into one index.html and placed it a newly created <code>public</code> folder.</p>
+<p>Here’s the grunt file that will copy and concatenate all the files for us:</p>
+<figure class="highlight javascript"><figcaption><span>Gruntfile.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">  grunt.config.init(&#123;</span><br><span class="line">    concat: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        dest: <span class="string">&#x27;tmp&#x27;</span>,</span><br><span class="line">        templates: [<span class="string">&#x27;templates/header.html&#x27;</span>, <span class="string">&#x27;templates/footer.html&#x27;</span>],</span><br><span class="line">        javascripts: [<span class="string">&#x27;javascripts/*.js&#x27;</span>],</span><br><span class="line">        stylesheets: [<span class="string">&#x27;stylesheets&#x27;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> recursiveConcat = <span class="function"><span class="keyword">function</span>(<span class="params">source, result</span>)</span>&#123;</span><br><span class="line">    grunt.file.expand(source).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(grunt.file.isDir(file))&#123;</span><br><span class="line">        grunt.file.recurse(file, <span class="function"><span class="keyword">function</span>(<span class="params">f</span>)</span>&#123;</span><br><span class="line">          result = recursiveConcat(f, result);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        grunt.log.writeln(<span class="string">&#x27;Concatenating &#x27;</span> + file + <span class="string">&#x27; to other &#x27;</span> + result.length + <span class="string">&#x27; characters.&#x27;</span>);</span><br><span class="line">        result += grunt.file.read(file);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="string">&#x27;concat&#x27;</span>, <span class="string">&#x27;concatenates files&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">type</span>)</span>&#123;</span><br><span class="line">    grunt.config.requires(<span class="string">&#x27;concat.options.&#x27;</span> + type); <span class="comment">// fail the task if this propary is missing.</span></span><br><span class="line">    grunt.config.requires(<span class="string">&#x27;concat.options.dest&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> files = grunt.config.get(<span class="string">&#x27;concat.options.&#x27;</span> + type),</span><br><span class="line">      dest = grunt.config.get(<span class="string">&#x27;concat.options.dest&#x27;</span>),</span><br><span class="line">      concatenated = recursiveConcat(files, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    grunt.log.writeln(<span class="string">&#x27;Writing &#x27;</span> + concatenated.length + <span class="string">&#x27; chars to &#x27;</span> + <span class="string">&#x27;tmp/&#x27;</span> + type);</span><br><span class="line">    grunt.file.write(dest + <span class="string">&#x27;/&#x27;</span> + type, concatenated);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="string">&#x27;concatAll&#x27;</span>, [<span class="string">&#x27;concat:templates&#x27;</span>, <span class="string">&#x27;concat:javascripts&#x27;</span>, <span class="string">&#x27;concat:stylesheets&#x27;</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">&#x27;default&#x27;</span>, [<span class="string">&#x27;concatAll&#x27;</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>A more complete example can be found in the repository where we have the join and open function as well.</p>
+<h2 id="Reference-3-Inside-Grunt-tasks"><a href="#Reference-3-Inside-Grunt-tasks" class="headerlink" title="Reference 3: Inside Grunt tasks"></a>Reference 3: Inside Grunt tasks</h2><p>Inside all Grunt task there are number of functions available through <code>this</code>:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://gruntjs.com/inside-tasks#this.async">this.async</a>: designed for async tasks. Grunt will normally end the task without waiting for the callback to be executed. If you need Grunt to wait use <code>done()</code>.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> done = <span class="built_in">this</span>.async();</span><br><span class="line"></span><br><span class="line">http.get(<span class="string">&#x27;http://adrianmejia.com&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">  res.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ... process data ...</span></span><br><span class="line">    done(); <span class="comment">// forces Grunt to wait until data is received.</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;).on(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">  done(err); <span class="comment">// or an error is received.</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/inside-tasks#this.requires">this.requires</a>: list of taskNames that should executed successfully first. E.g. <code>this.requires([&#39;concat&#39;, &#39;jshint&#39;])</code>.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/inside-tasks#this.name">this.name</a>: this is the name of the task. E.g. <code>grunt hello</code>, then <code>this.name === &#39;name&#39;</code>.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/inside-tasks#this.args">this.args</a>: returns an array with the parameters. E.g. <code>grunt hello:crazy:world</code>, then <code>this.args</code> will return <code>[&#39;crazy&#39;, &#39;world&#39;]</code>.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/inside-tasks#this.options">this.options([defaultsObj])</a>: it gets options values from the <code>config.init</code>, optionally you can also pass an object containing the default values. Notice in the example below that even though console.log has a <code>this.options(&#123;gzip: true&#125;)</code> it gets override by the options parameters. If not one it is specified in the <code>config.init</code> then it will use the default gzip: true.</p>
+</li>
+</ul>
+<p><strong>Inside MultiTasks</strong></p>
+<p>Consider this <code>grunt.config.init</code> example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>)</span>&#123;</span><br><span class="line">  grunt.config.init(&#123;</span><br><span class="line">    multiTaskName: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        gzip: <span class="literal">false</span></span><br><span class="line">      &#125;,</span><br><span class="line">      target1: &#123;</span><br><span class="line">        src: <span class="string">&#x27;stylesheets/*.css&#x27;</span>,</span><br><span class="line">        dest: <span class="string">&#x27;public&#x27;</span>,</span><br><span class="line">        ext: <span class="string">&#x27;.min.css&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      target2: &#123;</span><br><span class="line">        src: <span class="string">&#x27;*.js&#x27;</span>,</span><br><span class="line">        dest: <span class="string">&#x27;public&#x27;</span>,</span><br><span class="line">        ext: <span class="string">&#x27;.min.js&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.registerMultiTask(<span class="string">&#x27;multiTaskName&#x27;</span>, <span class="string">&#x27;example&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;this.options&#x27;</span>, <span class="built_in">this</span>.options(&#123;<span class="attr">gzip</span>: <span class="literal">true</span>&#125;));</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;this.data&#x27;</span>, <span class="built_in">this</span>.data);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;this.files&#x27;</span>, <span class="built_in">this</span>.files);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;this.filesSrc&#x27;</span>, <span class="built_in">this</span>.filesSrc);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><figcaption><span>Output example</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">grunt multiTaskName</span><br><span class="line"><span class="comment"># Running &quot;multiTaskName:target1&quot; (multiTaskName) task</span></span><br><span class="line"><span class="comment"># this.options &#123; gzip: false &#125;</span></span><br><span class="line"><span class="comment"># this.data &#123; src: &#x27;stylesheets/*.css&#x27;, dest: &#x27;public&#x27;, ext: &#x27;.min.css&#x27; &#125;</span></span><br><span class="line"><span class="comment"># this.files [ &#123; src: [Getter],</span></span><br><span class="line"><span class="comment">#     dest: &#x27;public&#x27;,</span></span><br><span class="line"><span class="comment">#     ext: &#x27;.min.css&#x27;,</span></span><br><span class="line"><span class="comment">#     orig: &#123; src: [Object], dest: &#x27;public&#x27;, ext: &#x27;.min.css&#x27; &#125; &#125; ]</span></span><br><span class="line"><span class="comment"># this.filesSrc [ &#x27;stylesheets/h1.css&#x27;, &#x27;stylesheets/h2.css&#x27; ]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Running &quot;multiTaskName:target2&quot; (multiTaskName) task</span></span><br><span class="line"><span class="comment"># this.options &#123; gzip: false &#125;</span></span><br><span class="line"><span class="comment"># this.data &#123; src: &#x27;*.js&#x27;, dest: &#x27;public&#x27;, ext: &#x27;.min.js&#x27; &#125;</span></span><br><span class="line"><span class="comment"># this.files [ &#123; src: [Getter],</span></span><br><span class="line"><span class="comment">#     dest: &#x27;public&#x27;,</span></span><br><span class="line"><span class="comment">#     ext: &#x27;.min.js&#x27;,</span></span><br><span class="line"><span class="comment">#     orig: &#123; src: [Object], dest: &#x27;public&#x27;, ext: &#x27;.min.js&#x27; &#125; &#125; ]</span></span><br><span class="line"><span class="comment"># this.filesSrc [ &#x27;Gruntfile.js&#x27; ]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/inside-tasks#this.target">this.target</a>: name of the target current target. If you call it <code>grunt multiTaskName</code>, it will run like multiple tasks calling each target one at a time. <code>this.target</code> will be equal to <code>target1</code> and then <code>target2</code>.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/inside-tasks#this.files">this.files</a>: return a (single) array that has all the properties for the current target. Take a look the the output above.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/inside-tasks#this.filessrc">this.filesSrc</a>: it expands files and paths against <code>src</code> and return an array with them.</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://gruntjs.com/inside-tasks#this.data">this.data</a>: contains the raw data of the target parameters.</p>
+</li>
+</ul>
+<h1 id="Intermediate-Using-Grunt-js-plugins"><a href="#Intermediate-Using-Grunt-js-plugins" class="headerlink" title="Intermediate: Using Grunt.js plugins"></a>Intermediate: Using Grunt.js plugins</h1><p>Chances are that there is a plugin for most of your needs. Last time I checked there were 3,638 plugins for grunt. This are the 10 most popular:</p>
+<h2 id="Installing-a-grunt-plugin"><a href="#Installing-a-grunt-plugin" class="headerlink" title="Installing a grunt plugin"></a>Installing a grunt plugin</h2><p>Let’s say we want to install jshint.</p>
+<ol>
+<li>Get the plugin module</li>
+</ol>
+<p>Download it from npm:</p>
+<p><code>npm install grunt-contrib-jshint --save-dev</code></p>
+<p>or from github:</p>
+<p><code>npm install https://github.com/YOUR_USERNAME/grunt-contrib-YOUR-PLUGIN --save-dev</code></p>
+<ol start="2">
+<li>Load it in your Gruntfile</li>
+</ol>
+<p><code>grunt.loadNpmTasks(&#39;grunt-contrib-jshint&#39;);</code></p>
+<p>or</p>
+<p><code>grunt.loadNpmTasks(&#39;grunt-contrib-YOUR-PLUGIN&#39;);</code></p>
+<h2 id="10-most-popular-grunt-plugins"><a href="#10-most-popular-grunt-plugins" class="headerlink" title="10 most popular grunt plugins"></a>10 most popular grunt plugins</h2><p>1- <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt-contrib-jshint">jshint</a>: Validate files with JSHint. Uses <code>.jshintrc</code> to settings.</p>
+<figure class="highlight javascript"><figcaption><span>.jshintrc (example)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;curly&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&quot;eqnull&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&quot;eqeqeq&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&quot;undef&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&quot;globals&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;jQuery&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2- <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt-contrib-watch">watch</a>: Run predefined tasks whenever watched file patterns are added, changed or deleted. Spawn runs task in a child process but having set to <code>spawn: false</code> is faster.</p>
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  scripts: &#123;</span><br><span class="line">    files: [<span class="string">&#x27;**/*.js&#x27;</span>],</span><br><span class="line">    tasks: [<span class="string">&#x27;jshint&#x27;</span>],</span><br><span class="line">    options: &#123;</span><br><span class="line">      spawn: <span class="literal">false</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>3- <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt-contrib-uglify">uglify</a>: minifies javascript files.</p>
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">uglify: &#123;</span><br><span class="line">  my_target: &#123;</span><br><span class="line">    files: &#123;</span><br><span class="line">      <span class="string">&#x27;dest/output.min.js&#x27;</span>: [<span class="string">&#x27;src/input1.js&#x27;</span>, <span class="string">&#x27;src/input2.js&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4- <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt-contrib-clean">clean</a>: Clean files and folders.</p>
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">clean: &#123;</span><br><span class="line">  <span class="comment">// Deletes all .js files, but skips min.js files</span></span><br><span class="line">  js: [<span class="string">&quot;path/to/dir/*.js&quot;</span>, <span class="string">&quot;!path/to/dir/*.min.js&quot;</span>]</span><br><span class="line"></span><br><span class="line">  <span class="comment">// delete all files and directories here</span></span><br><span class="line">  build: [<span class="string">&quot;path/to/dir/one&quot;</span>, <span class="string">&quot;path/to/dir/two&quot;</span>],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5- <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt-contrib-concat">concat</a>: Concatenate files.</p>
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example simple)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">concat: &#123;</span><br><span class="line">  options: &#123;</span><br><span class="line">    separator: <span class="string">&#x27;;&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  dist: &#123;</span><br><span class="line">    src: [<span class="string">&#x27;src/intro.js&#x27;</span>, <span class="string">&#x27;src/project.js&#x27;</span>, <span class="string">&#x27;src/outro.js&#x27;</span>],</span><br><span class="line">    dest: <span class="string">&#x27;dist/built.js&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (adding banners and multiple targets)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pkg: grunt.file.readJSON(<span class="string">&#x27;package.json&#x27;</span>),</span><br><span class="line">concat: &#123;</span><br><span class="line">  options: &#123;</span><br><span class="line">    stripBanners: <span class="literal">true</span>,</span><br><span class="line">    banner: <span class="string">&#x27;/*! &lt;%= pkg.name %&gt; - v&lt;%= pkg.version %&gt; - &#x27;</span> +</span><br><span class="line">      <span class="string">&#x27;&lt;%= grunt.template.today(&quot;yyyy-mm-dd&quot;) %&gt; */&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  dist: &#123;</span><br><span class="line">    <span class="string">&#x27;dist/with_extras.js&#x27;</span>: [<span class="string">&#x27;src/main.js&#x27;</span>, <span class="string">&#x27;src/extras.js&#x27;</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>6- <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt-contrib-cssmin">cssmin</a>: Compress CSS files.</p>
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cssmin: &#123;</span><br><span class="line">  combine: &#123;</span><br><span class="line">    files: &#123;</span><br><span class="line">      <span class="string">&#x27;path/to/output.css&#x27;</span>: [<span class="string">&#x27;path/to/input_one.css&#x27;</span>, <span class="string">&#x27;path/to/input_two.css&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example with banner and adding .min.css extension)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cssmin: &#123;</span><br><span class="line">  add_banner: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      banner: <span class="string">&#x27;/* My minified css file */&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    files: [&#123;</span><br><span class="line">      expand: <span class="literal">true</span>,</span><br><span class="line">      cwd: <span class="string">&#x27;release/css/&#x27;</span>,</span><br><span class="line">      src: [<span class="string">&#x27;*.css&#x27;</span>, <span class="string">&#x27;!*.min.css&#x27;</span>],</span><br><span class="line">      dest: <span class="string">&#x27;release/css/&#x27;</span>,</span><br><span class="line">      ext: <span class="string">&#x27;.min.css&#x27;</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7- <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt-contrib-connect">connect</a>: runs server as long as Grunt is running. It can be persistent passing <code>keepalive</code> like this <code>grunt connect:keepalive</code>.</p>
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">connect: &#123;</span><br><span class="line">  server: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      port: <span class="number">9001</span>,</span><br><span class="line">      base: <span class="string">&#x27;www-root&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>8- <a target="_blank" rel="noopener" href="https://github.com/karma-runner/grunt-karma">karma</a>: runs karma testing tool.</p>
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">karma: &#123;</span><br><span class="line">  unit: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      files: [<span class="string">&#x27;test/**/*.js&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example referencing karma.conf and overriding parameters)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">karma: &#123;</span><br><span class="line">  unit: &#123;</span><br><span class="line">    configFile: <span class="string">&#x27;karma.conf.js&#x27;</span>,</span><br><span class="line">    runnerPort: <span class="number">9999</span>,</span><br><span class="line">    singleRun: <span class="literal">true</span>,</span><br><span class="line">    browsers: [<span class="string">&#x27;PhantomJS&#x27;</span>],</span><br><span class="line">    logLevel: <span class="string">&#x27;ERROR&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>9- <a target="_blank" rel="noopener" href="https://github.com/gruntjs/grunt-contrib-less">less</a>: Compile LESS files to CSS.</p>
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">less: &#123;</span><br><span class="line">  development: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      paths: [<span class="string">&quot;assets/css&quot;</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    files: &#123;</span><br><span class="line">      <span class="string">&quot;path/to/result.css&quot;</span>: <span class="string">&quot;path/to/source.less&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  production: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      paths: [<span class="string">&quot;assets/css&quot;</span>],</span><br><span class="line">      cleancss: <span class="literal">true</span>,</span><br><span class="line">      modifyVars: &#123;</span><br><span class="line">        imgPath: <span class="string">&#x27;&quot;http://mycdn.com/path/to/images&quot;&#x27;</span>,</span><br><span class="line">        bgColor: <span class="string">&#x27;red&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    files: &#123;</span><br><span class="line">      <span class="string">&quot;path/to/result.css&quot;</span>: <span class="string">&quot;path/to/source.less&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>10- <a target="_blank" rel="noopener" href="https://github.com/sindresorhus/grunt-concurrent">concurrent</a>: Run grunt tasks concurrently.</p>
+<figure class="highlight javascript"><figcaption><span>grunt.config.init (example)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">concurrent: &#123;</span><br><span class="line">  target1: [<span class="string">&#x27;coffee&#x27;</span>, <span class="string">&#x27;sass&#x27;</span>],</span><br><span class="line">  target2: [<span class="string">&#x27;jshint&#x27;</span>, <span class="string">&#x27;mocha&#x27;</span>],</span><br><span class="line">  target3: &#123;</span><br><span class="line">    tasks: [<span class="string">&#x27;nodemon&#x27;</span>, <span class="string">&#x27;watch&#x27;</span>],</span><br><span class="line">    options: &#123;</span><br><span class="line">      logConcurrentOutput: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In the next blog post, we will continue the tutorial with using GruntJS in a web application, making your own plugins and a comparison between other task runners tools such as Gulp, Gulp, Brunch, Rake::Pipeline and Broccoli.</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2014-10-07-grunt-js-tutorial-from-beginner-to-ninja.markdown">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/how-to-build-scalable-apps/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  How to build scalable apps?
+                
+              </div>
+            </a>
+          
+          
+            <a href="/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">MEAN Stack Tutorial MongoDB ExpressJS AngularJS NodeJS (Part III)</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2014-10-07-grunt-js-tutorial-from-beginner-to-ninja.markdown')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Beginner-Grunt-js-101"><span class="toc-number">1.</span> <span class="toc-text">Beginner: Grunt.js 101</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hello-Wold-from-GruntJS"><span class="toc-number">2.</span> <span class="toc-text">Hello Wold from GruntJS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference-1-Grunt-tasks-config-and-warnings"><span class="toc-number">3.</span> <span class="toc-text">Reference 1: Grunt tasks, config and warnings</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Grunt-config"><span class="toc-number">3.1.</span> <span class="toc-text">Grunt config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grunt-tasks"><span class="toc-number">3.2.</span> <span class="toc-text">Grunt tasks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grunt-Errors-and-Warnings"><span class="toc-number">3.3.</span> <span class="toc-text">Grunt Errors and Warnings</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Example-Forex-and-grunt-multiple-async-calls-handling"><span class="toc-number">4.</span> <span class="toc-text">Example: Forex and grunt multiple async calls handling</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference-2-Grunt-Files-and-logs"><span class="toc-number">5.</span> <span class="toc-text">Reference 2: Grunt Files and logs</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Grunt-logs"><span class="toc-number">5.1.</span> <span class="toc-text">Grunt logs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grunt-files"><span class="toc-number">5.2.</span> <span class="toc-text">Grunt files</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Example-2-Gruntfile-for-files-manipulation"><span class="toc-number">6.</span> <span class="toc-text">Example 2: Gruntfile for files manipulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference-3-Inside-Grunt-tasks"><span class="toc-number">6.1.</span> <span class="toc-text">Reference 3: Inside Grunt tasks</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Intermediate-Using-Grunt-js-plugins"><span class="toc-number">7.</span> <span class="toc-text">Intermediate: Using Grunt.js plugins</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installing-a-grunt-plugin"><span class="toc-number">7.1.</span> <span class="toc-text">Installing a grunt plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-most-popular-grunt-plugins"><span class="toc-number">7.2.</span> <span class="toc-text">10 most popular grunt plugins</span></a></li></ol></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/grunt-js-tutorial-from-beginner-to-ninja/';
+      this.page.identifier = 'https://adrianmejia.com/grunt-js-tutorial-from-beginner-to-ninja/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

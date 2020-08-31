@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>How to build a Node.js eCommerce website for free | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/how-to-build-a-node-js-ecommerce-website-for-free/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/How-to-build-a-Node-js-eCommerce-website-for-free/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="
+
+
+Running an online store that sells digital goods is easier than ever. Thanks to generous free plans for developers, you don’t have to spend a dime to run your e-commerce site for a decent amount of users. In this post, I’ll go over how I put together books.adrianmejia.com to sell my eBook." />
+    <meta property="og:image" content="https://adrianmejia.com/images/ecommerce-app-nodejs-large.png" />
+    <meta property="og:title" content="How to build a Node.js eCommerce website for free" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "How to build a Node.js eCommerce website for free",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/ecommerce-app-nodejs-large.png",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2019-05-13T14:43:24-04:00",
+  "dateModified": "2019-05-14T16:22:24-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "
+
+
+Running an online store that sells digital goods is easier than ever. Thanks to generous free plans for developers, you don’t have to spend a dime to run your e-commerce site for a decent amount of users. In this post, I’ll go over how I put together books.adrianmejia.com to sell my eBook."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a>
+    </div>
+
+    <h1>How to build a Node.js eCommerce website for free</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2019-05-14T20:22:24.000Z" itemprop="dateUpdated">May 14th 2019</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          15.5k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/How-to-build-a-Node-js-eCommerce-website-for-free/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">12</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #343434">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/ecommerce-app-nodejs-large.png">
+        <source srcset="/images/ecommerce-app-nodejs-small.png">
+        <img src="/images/ecommerce-app-nodejs-large.png" alt="How to build a Node.js eCommerce website for free">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>Running an online store that sells digital goods is easier than ever. Thanks to generous free plans for developers, you don’t have to spend a dime to run your e-commerce site for a decent amount of users. In this post, I’ll go over how I put together <a target="_blank" rel="noopener" href="https://books.adrianmejia.com/">books.adrianmejia.com</a> to sell my eBook.</p>
+<a id="more"></a>
+
+<p>A 10,000-feet view description would be something like this:</p>
+<!-- https://twitter.com/iAmAdrianMejia/status/1127918275705413632 -->
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Finished creating my own system to sell ebooks! <a target="_blank" rel="noopener" href="https://t.co/9w0DHBU8T8">https://t.co/9w0DHBU8T8</a> It was harder than I thought but it was fun. When payments are completed, a webhook is sent to my server, which grabs the ebook PDF from S3. A <a target="_blank" rel="noopener" href="https://twitter.com/hashtag/Node?src=hash&amp;ref_src=twsrc%5Etfw">#Node</a> process stamp the document and uses API to send it by email</p>&mdash; Adrian.js (@iAmAdrianMejia) <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia/status/1127918275705413632?ref_src=twsrc%5Etfw">May 13, 2019</a></blockquote>
+
+<p><strong>TL; DR:</strong> The e-Commerce site final stack is the following:</p>
+<ul>
+<li>Node.js (Backend processing: payment webhooks)</li>
+<li>Stripe (Payment gateway)</li>
+<li>Heroku (Run server code)</li>
+<li>Netlify (Host static files)</li>
+<li>Amazon S3 (Host assets)</li>
+<li>CircleCI (Test code and generate assets)</li>
+<li>Mailgun (emails platform)</li>
+</ul>
+<p>This diagram shows how each part interacts with each other:
+<img src="/images/e-commerce-app-nodejs3.png" alt="nodejs e-commerce app"></p>
+<h1 id="Automating-the-generation-of-the-assets-PDF"><a href="#Automating-the-generation-of-the-assets-PDF" class="headerlink" title="Automating the generation of the assets (PDF)"></a>Automating the generation of the assets (PDF)</h1><p>I have Github repository where the book docs and code live:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js">https://github.com/amejiarosario/dsa.js</a></p>
+<p>Every time I made a change (or somebody in the community), it triggers some process on CI that run all tests and generate a new updated document and store it AWS S3.</p>
+<p>Generating assets automatically is useful because I want every buyer to get the latest copy.</p>
+<h1 id="Hosting-e-Commerce-site"><a href="#Hosting-e-Commerce-site" class="headerlink" title="Hosting e-Commerce site"></a>Hosting e-Commerce site</h1><p>I always want to try out new JavaScript/CSS frameworks. However, I resisted the temptation and asked my self: Does a page for selling a book need to be dynamic? Nope. So, it will be more performant if I use plain old CSS and HTML. That’s what I did.
+Static pages also have the advantage that can be cached and served from a CDN.</p>
+<p>I used Netlify to host the static website for free. One single <code>git push</code>  will update the site on the domain name of choice (e.g. <a target="_blank" rel="noopener" href="https://books.adrianmejia.com/">books.adrianmejia.com</a>). It also uses a global CDN so your page loads faster from anywhere in the world!</p>
+<h1 id="Processing-Payments"><a href="#Processing-Payments" class="headerlink" title="Processing Payments"></a>Processing Payments</h1><p>The next part is to add a <code>Buy</code> button. Stripe provides a helpful checkout page that they host themselves and take care of the PCI compliance when dealing with credit cards. So, I used that, and they process the payment for me.</p>
+<p>But how do I know if the customer bought my book or got distracted? For that, I need a server that listens for a payment webhook. In the Stripe configuration page, you tell them to send a POST request (webhook) with the customer information when a particular event.</p>
+<p>Here is the code for a simple webhook server</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&#x27;body-parser&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"><span class="keyword">const</span> port = process.env.PORT || <span class="number">5000</span>;</span><br><span class="line"></span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line"></span><br><span class="line">app.listen(port, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Listening for webhooks: http://localhost:<span class="subst">$&#123;port&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.post(<span class="string">&#x27;/webhook&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> event = req.body;</span><br><span class="line"></span><br><span class="line">  res.sendStatus(<span class="number">200</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (event.type === <span class="string">&#x27;payment_intent.succeeded&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> send event to RabbitMQ instead of generating the PDF here.</span></span><br><span class="line">    <span class="comment">// It&#x27;s not good practice to block a request handler with long processes</span></span><br><span class="line">    <span class="keyword">const</span> &#123; sendPdfToBuyer &#125; = <span class="built_in">require</span>(<span class="string">&#x27;./process-pdf&#x27;</span>);</span><br><span class="line">    sendPdfToBuyer(event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// all other routes, prevent node crashing for undefined routes</span></span><br><span class="line">app.route(<span class="string">&#x27;*&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  res.json(&#123; <span class="attr">ok</span>: <span class="number">1</span> &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>And that brings us to the next part, the Node.js server to take care of the rest.</p>
+<h1 id="Backend-processing"><a href="#Backend-processing" class="headerlink" title="Backend processing"></a>Backend processing</h1><p>I created a Node.js server that listened for webhook requests.  When a customer paid for the book an event with the details is sent to this server, and the document pipeline is kicked off.</p>
+<p>The server first downloads the book from AWS S3 bucket, where the latest raw document is. Later, the server uses a library that allows to manipulate the PDF and add the buyer’s stamp on the eBook. Finally, the material is attached to and send through email.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">sendPdfToBuyer</span>(<span class="params">webhookEvent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> email = webhookEvent.data.object.charges.data.map(<span class="function"><span class="params">d</span> =&gt;</span> d.billing_details.email).join(<span class="string">&#x27;, &#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> pdfUrl = <span class="keyword">await</span> getLatestPdfUrl();</span><br><span class="line">  <span class="keyword">const</span> fileName = pdfUrl.split(<span class="string">&#x27;/&#x27;</span>).pop();</span><br><span class="line">  <span class="keyword">const</span> pdfBuffer = <span class="keyword">await</span> downloadPdf(pdfUrl);</span><br><span class="line">  <span class="keyword">const</span> stampedPdfPath = <span class="keyword">await</span> stampedPdfWithBuyerData(&#123; pdfBuffer, email, fileName &#125;);</span><br><span class="line">  <span class="keyword">await</span> sendEmail(&#123; stampedPdfPath, email, fileName &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Sending-emails"><a href="#Sending-emails" class="headerlink" title="Sending emails"></a>Sending emails</h1><p>Sending emails was a little trickier than I thought.</p>
+<h2 id="DNS-settings-and-authentication"><a href="#DNS-settings-and-authentication" class="headerlink" title="DNS settings and authentication"></a>DNS settings and authentication</h2><p>First, I was using my domain name, so I have to set up the DNS settings to make it work. However, I notice all my test emails to myself ended up on the junk mail.</p>
+<p>Reading more about the topic I realized that I have to authenticate emails using SPF and DKIM, I still don’t know what they are in details, but they allow email providers (Gmail, Yahoo) to verify you are who you say you are. They are setup also using DNS settings given by the emailing service provides.</p>
+<p>I set up the setting initially with Sendgrid but was still getting my emails to the junk folder. I moved to Mailgun and got better results. For some reason, <code>hotmail.com</code> would always reject the emails. As I learned unless you pay for a dedicated IP address the email service provider would use a “shared” IP in many accounts. If for some reason the IP gets a bad reputation then your emails will go to spam folder even if you have never sent an email before! I got this fixed by opening a support ticket and after they changed the IP it was working fine with any address.</p>
+<h2 id="Email-Templates"><a href="#Email-Templates" class="headerlink" title="Email Templates"></a>Email Templates</h2><p>The final part related to emails is doing a template. I have never done it before. The difference between HTML for email templates and web pages HTML is that on the email you should embed everything into the message itself. Spam filters don’t like external link loading additional resources. So, every CSS should be inline and has to also be responsible.</p>
+<p>Well, there you have it: an e-commerce store that collects the payments and sends digital goods to buyers. Let’s close talking about the cost of maintenance.</p>
+<h1 id="Cost-of-running-the-e-Commerce-store"><a href="#Cost-of-running-the-e-Commerce-store" class="headerlink" title="Cost of running the e-Commerce store"></a>Cost of running the e-Commerce store</h1><p>This is the breakdown of the monthly costs:</p>
+<ul>
+<li>Hosting static websites: <strong>$0</strong> (if you use Netlify or Github pages)</li>
+<li>Payment Gateway: <strong>$0</strong> (Stripe will only a 2.9% charge if you sell something otherwise $0)</li>
+<li>Node.js server: <strong>$0</strong> (Heroku, AWS, Google Cloud and many others have a free plan for developers)</li>
+<li>Email Service: <strong>$0</strong> (Mailgun and Sendgrid both have free plans. The former allows you to send 10K emails per month)</li>
+</ul>
+<p>The total is: <strong>$0</strong> / mo.</p>
+<p>Note: Like any website, If you want to use a custom domain as I do, you have to pay for it which is about $1/mo.</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-05-14-How-to-build-a-Node-js-eCommerce-website-for-free.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/asynchronous-vs-synchronous-handling-concurrency-in-javascript/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  What every programmer should know about Synchronous vs. Asynchronous Code
+                
+              </div>
+            </a>
+          
+          
+            <a href="/How-to-perform-Atomic-Operations-on-MongoDB/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">How to perform Atomic Operations on MongoDB?</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-05-14-How-to-build-a-Node-js-eCommerce-website-for-free.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Automating-the-generation-of-the-assets-PDF"><span class="toc-number">1.</span> <span class="toc-text">Automating the generation of the assets (PDF)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hosting-e-Commerce-site"><span class="toc-number">2.</span> <span class="toc-text">Hosting e-Commerce site</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Processing-Payments"><span class="toc-number">3.</span> <span class="toc-text">Processing Payments</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Backend-processing"><span class="toc-number">4.</span> <span class="toc-text">Backend processing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sending-emails"><span class="toc-number">5.</span> <span class="toc-text">Sending emails</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS-settings-and-authentication"><span class="toc-number">5.1.</span> <span class="toc-text">DNS settings and authentication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Email-Templates"><span class="toc-number">5.2.</span> <span class="toc-text">Email Templates</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cost-of-running-the-e-Commerce-store"><span class="toc-number">6.</span> <span class="toc-text">Cost of running the e-Commerce store</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/How-to-build-a-Node-js-eCommerce-website-for-free/';
+      this.page.identifier = 'https://adrianmejia.com/How-to-build-a-Node-js-eCommerce-website-for-free/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

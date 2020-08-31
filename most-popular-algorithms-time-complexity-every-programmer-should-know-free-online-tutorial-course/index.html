@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>8 time complexities that every programmer should know | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="SummaryLearn how to compare algorithms and develop code that scales! In this post, we cover 8 big o notations and provide an example or 2 for each. We are going to learn the top algorithm’s running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it’s handy to compare multiple solutions for the same problem. By the end of it, you would be able to eyeball different implementations and know which one will perform better without running the code!" />
+    <meta property="og:image" content="https://adrianmejia.com/images/data-structures-must-know-algorithms-running-time-complexity-large.jpg" />
+    <meta property="og:title" content="8 time complexities that every programmer should know" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "8 time complexities that every programmer should know",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/data-structures-must-know-algorithms-running-time-complexity-large.jpg",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2018-04-05T16:10:09-04:00",
+  "dateModified": "2019-09-19T11:39:53-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "SummaryLearn how to compare algorithms and develop code that scales! In this post, we cover 8 big o notations and provide an example or 2 for each. We are going to learn the top algorithm’s running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it’s handy to compare multiple solutions for the same problem. By the end of it, you would be able to eyeball different implementations and know which one will perform better without running the code!"
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/coding/">Coding</a> > <a class="category-link" href="/categories/coding/data-structures-and-algorithms-dsa/">Data Structures and Algorithms (DSA)</a>
+    </div>
+
+    <h1>8 time complexities that every programmer should know</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2019-09-19T15:39:53.000Z" itemprop="dateUpdated">September 19th 2019</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          158.6k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithms/" rel="tag">algorithms</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-algorithms/" rel="tag">tutorial_algorithms</a><span class="tag-list-count">8</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #F4F0EF">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/data-structures-must-know-algorithms-running-time-complexity-large.jpg">
+        <source srcset="/images/data-structures-must-know-algorithms-running-time-complexity-small.jpg">
+        <img src="/images/data-structures-must-know-algorithms-running-time-complexity-large.jpg" alt="8 time complexities that every programmer should know">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>Learn how to compare algorithms and develop code that scales! In this post, we cover 8 big o notations and provide an example or 2 for each. We are going to learn the top algorithm’s running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it’s handy to compare multiple solutions for the same problem. By the end of it, you would be able to eyeball different implementations and know which one will perform better without running the code!</p>
+<a id="more"></a>
+
+<p>In the <a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">previous post</a>, we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money, and enable new technology. So, this is paramount to know how to measure algorithms’ performance.</p>
+<h2 id="What-is-time-complexity"><a href="#What-is-time-complexity" class="headerlink" title="What is time complexity?"></a>What is time complexity?</h2><p>To recap <strong>time complexity</strong> estimates how an algorithm performs regardless kind of machine it runs on. You can get the time complexity by “counting” the number of operations performed by your code. This time complexity is defined as a function of the input size <code>n</code> using Big-O notation. <code>n</code> indicates the size of the input, while O is the worst-case scenario growth rate function.</p>
+<p>We use the Big-O notation to classify algorithms based on their running time or space (memory used) as the input grows. The <code>O</code> function is the growth rate in function of the input size <code>n</code>.</p>
+<p>Before we dive in, here is the <strong>big O cheatsheet</strong> and examples that we are going to cover on this post. <strong>Click</strong> on them to go to the implementation. 😉</p>
+<table>
+<thead>
+<tr>
+<th>Big O Notation</th>
+<th>Name</th>
+<th>Example(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="green"><i>O(1)</i></td>
+<td class="green">Constant</td>
+<td># <a href="#Odd-or-Even">Odd or Even number</a>,<br># <a href="#Look-up-table">Look-up table (on average)</a></td>
+</tr>
+<tr>
+<td class="green"><i>O(log n)</i></td>
+<td class="green">Logarithmic</td>
+<td># <a href="#Binary-search">Finding element on sorted array with <strong>binary search</strong></a></td>
+</tr>
+<tr>
+<td class="green"><i>O(n)</i></td>
+<td class="green">Linear</td>
+<td># <a href="#The-largest-item-on-an-unsorted-array">Find max element in unsorted array</a>,<br># Duplicate elements in array with Hash Map</td>
+</tr>
+<tr>
+<td class="green"><i>O(n log n)</i></td>
+<td class="green">Linearithmic</td>
+<td># <a href="#Mergesort">Sorting elements in array with <strong>merge sort</strong></a></td>
+</tr>
+<tr>
+<td class="orange"><i>O(n<sup>2</sup>)</i></td>
+<td class="orange">Quadratic</td>
+<td># <a href="#Has-duplicates">Duplicate elements in array **(naïve)**</a>,<br># <a href="#Bubble-sort">Sorting array with <strong>bubble sort</strong></a></td>
+</tr>
+<tr>
+<td class="orange"><i>O(n<sup>3</sup>)</i></td>
+<td class="orange">Cubic</td>
+<td># <a href="#Triple-nested-loops">3 variables equation solver</a></td>
+</tr>
+<tr>
+<td class="red"><i>O(2<sup>n</sup>)</i></td>
+<td class="red">Exponential</td>
+<td># <a href="#Subsets-of-a-Set">Find all subsets</a></td>
+</tr>
+<tr>
+<td class="red"><i>O(n!)</i></td>
+<td class="red">Factorial</td>
+<td># <a href="#Permutations">Find all permutations of a given set/string</a></td>
+</tr>
+</tbody>
+</table>
+
+<p>Now, Let’s go one by one and provide code examples!</p>
+<p>You can find all these implementations and more in the Github repo:
+<a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js">https://github.com/amejiarosario/dsa.js</a></p>
+<hr>
+<p>This post is part of a tutorial series:</p>
+<p><strong>Learning Data Structures and Algorithms (DSA) for Beginners</strong></p>
+<ol>
+<li><p><a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">Intro to algorithm’s time complexity and Big O notation</a></p>
+<!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here** -->
+</li>
+<li><p>Eight time complexities that every programmer should know <strong>👈 you are here</strong></p>
+<!-- 1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/) -->
+</li>
+<li><p><a href="/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/">Data Structures for Beginners: Arrays, HashMaps, and Lists</a></p>
+<!-- 1. Data Structures for Beginners: Arrays, HashMaps, and Lists **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">Graph Data Structures for Beginners</a></p>
+<!-- 1. Graph Data Structures for Beginners **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">Trees Data Structures for Beginners</a></p>
+<!-- 1. Trees Data Structures for Beginners **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/07/16/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">Self-balanced Binary Search Trees</a></p>
+<!-- 1. Self-balanced Binary Search Trees  **👈 you are here** -->
+</li>
+<li><p><a href="/blog/2018/04/24/Analysis-of-Recursive-Algorithms/">Appendix I: Analysis of Recursive Algorithms</a></p>
+<!-- 1. Appendix I: Analysis of Recursive Algorithms **👈 you are here** -->
+</li>
+</ol>
+<hr>
+<!-- table: time complexities -->
+
+<h1 id="O-1-Constant-time"><a href="#O-1-Constant-time" class="headerlink" title="O(1) - Constant time"></a>O(1) - Constant time</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/mnv6sV-Ih8s?rel=0&start=520" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p><code>O(1)</code> describes algorithms that take the same amount of time to compute regardless of the input size.</p>
+<p>For instance, if a function takes the identical time to process ten elements as well as 1 million items, then we say that it has a constant growth rate or <code>O(1)</code>. Let’s see some cases.</p>
+<p><strong>Examples of constant runtime algorithms</strong>:</p>
+<ul>
+<li>Find if a number is even or odd.</li>
+<li>Check if an item on an array is null.</li>
+<li>Print the first element from a list.</li>
+<li>Find a value on a map.</li>
+</ul>
+<p>For our discussion, we are going to implement the first and last example.</p>
+<h2 id="Odd-or-Even"><a href="#Odd-or-Even" class="headerlink" title="Odd or Even"></a>Odd or Even</h2><p>Find if a number is odd or even.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEvenOrOdd</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n % <span class="number">2</span> ? <span class="string">&#x27;Odd&#x27;</span> : <span class="string">&#x27;Even&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(isEvenOrOdd(<span class="number">10</span>)); <span class="comment">// =&gt; Even</span></span><br><span class="line"><span class="built_in">console</span>.log(isEvenOrOdd(<span class="number">10001</span>)); <span class="comment">// =&gt; Odd</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Advanced note:</strong> you could also replace <em><code>n % 2</code></em> with the bit AND operator: <em><code>n &amp; 1</code></em>. If the first bit (<abbr title="Least Significant Bit">LSB</abbr>) is <code>1</code> then is odd otherwise is even.</p>
+<p>It doesn’t matter if n is <code>10</code> or <code>10,001</code>, it will execute line 2 one time.</p>
+<blockquote>
+<p>Do not be fooled by one-liners. They don’t always translate to constant times. You have to be aware of how they are implemented.</p>
+</blockquote>
+<p>If you have a method like <code>Array.sort()</code> or any other array or object methods, you have to look into the implementation to determine its running time.</p>
+<p>Primitive operations like sum, multiplication, subtraction, division, modulo, bit shift, etc. have a constant runtime. This can be shocking! But, let’s go in detail why they are constant time. If you use the schoolbook long multiplication algorithm, it would take <code>O(n<sup>2</sup>)</code> to multiply two numbers. However, most programming languages limit numbers to max value (e.g. in JS: <code>Number.MAX_VALUE</code> is <code>1.7976931348623157e+308</code>). So, you cannot operate numbers that yield a result greater than the <code>MAX_VALUE</code>. So, primitive operations are bound to be completed on a fixed amount of instructions <code>O(1)</code> or throw overflow errors (in JS, <code>Infinity</code> keyword).</p>
+<!-- Addition O(n), Multiplication O(n^2) https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations -->
+
+<p> This example was easy. Let’s do another one.</p>
+<h2 id="Look-up-table"><a href="#Look-up-table" class="headerlink" title="Look-up table"></a>Look-up table</h2><p>Given a string, find its word frequency data.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dictionary = &#123;<span class="attr">the</span>: <span class="number">22038615</span>, <span class="attr">be</span>: <span class="number">12545825</span>, <span class="attr">and</span>: <span class="number">10741073</span>, <span class="attr">of</span>: <span class="number">10343885</span>, <span class="attr">a</span>: <span class="number">10144200</span>, <span class="attr">in</span>: <span class="number">6996437</span>, <span class="attr">to</span>: <span class="number">6332195</span> <span class="comment">/* ... */</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getWordFrequency</span>(<span class="params">dictionary, word</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> dictionary[word];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getWordFrequency(dictionary, <span class="string">&#x27;the&#x27;</span>));</span><br><span class="line"><span class="built_in">console</span>.log(getWordFrequency(dictionary, <span class="string">&#x27;in&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>Again, we can be sure that even if the dictionary has 10 or 1 million words, it would still execute line 4 once to find the word. However, if we decided to store the dictionary as an array rather than a hash map, then it would be a different story. In the next section, we are going to explore what’s the running time to find an item in an array.</p>
+<blockquote>
+<p>Only a hash table with a perfect <em>hash function</em> will have a worst-case runtime of <em>O(1)</em>. The ideal hash function is not practical, so there will be some collisions and workarounds that leads to a worst-case runtime of <em>O(n)</em>. Still, on <em>average</em>, the lookup time is <em>O(1)</em>.</p>
+</blockquote>
+<h1 id="O-n-Linear-time"><a href="#O-n-Linear-time" class="headerlink" title="O(n) - Linear time"></a>O(n) - Linear time</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/mnv6sV-Ih8s?rel=0&start=732" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Linear running time algorithms are widespread. These algorithms imply that the program visits every element from the input.</p>
+<p>Linear time complexity <em><code>O(n)</code></em> means that as the input grows, the algorithms take proportionally longer to complete.</p>
+<p><strong>Examples of linear time algorithms</strong>:</p>
+<ul>
+<li>Get the max/min value in an array.</li>
+<li>Find a given element in a collection.</li>
+<li>Print all the values in a list.</li>
+</ul>
+<p>Let’s implement the first example.</p>
+<h2 id="The-largest-item-on-an-unsorted-array"><a href="#The-largest-item-on-an-unsorted-array" class="headerlink" title="The largest item on an unsorted array"></a>The largest item on an unsorted array</h2><p>Let’s say you want to find the maximum value from an unsorted array.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMax</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max;</span><br><span class="line">  <span class="keyword">let</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n.length; i++) &#123;</span><br><span class="line">    counter++;</span><br><span class="line">    <span class="keyword">if</span>(max === <span class="literal">undefined</span> || max &lt; n[i]) &#123;</span><br><span class="line">      max = n[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`n: <span class="subst">$&#123;n.length&#125;</span>, counter: <span class="subst">$&#123;counter&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>How many operations will the <code>findMax</code> function do?</p>
+<p>Well, it checks every element from <code>n</code>. If the current item is more significant than <code>max</code> it will do an assignment.</p>
+<p>Notice that we added a counter so it can help us count how many times the inner block is executed.</p>
+<p>If you get the time complexity, it would be something like this:</p>
+<ul>
+<li>Line 2-3: 2 operations</li>
+<li>Line 4: a loop of size n</li>
+<li>Line 6-8: 3 operations inside the for-loop.</li>
+</ul>
+<p>So, this gets us <code>3(n) + 2</code>.</p>
+<p>Applying the Big O notation that we learn in the
+<a href="https://adrianmejia.com/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/#Asymptotic-analysis">previous post</a>,
+we only need the biggest order term, thus <code>O(n)</code>.</p>
+<p>We can verify this using our <code>counter</code>. If <code>n</code> has 3 elements:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">findMax([<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>]);</span><br><span class="line"><span class="comment">// n: 3, counter: 3</span></span><br></pre></td></tr></table></figure>
+
+<p>or if <code>n</code> has 9 elements:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">findMax([<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">7</span>])</span><br><span class="line"><span class="comment">// n: 9, counter: 9</span></span><br></pre></td></tr></table></figure>
+
+<p>Now imagine that you have an array of one million items. Do you think it will take the same time? Of course not, it will take longer to the size of the input. If we plot it n and <code>findMax</code> running time, we will have a graph like a linear equation.</p>
+<img src="/images/linear-running-time-o(n).jpg" class="" title="Linear Running time O(n) example">
+
+<h1 id="O-n-2-Quadratic-time"><a href="#O-n-2-Quadratic-time" class="headerlink" title="O(n^2) - Quadratic time"></a>O(n^2) - Quadratic time</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/ZRCTMYv2fRU?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>A function with a quadratic time complexity has a growth rate of n<sup>2</sup>. If the input is size 2, it will do four operations. If the input is size 8, it will take 64, and so on.</p>
+<p>Here are some <strong>examples of quadratic algorithms</strong>:</p>
+<ul>
+<li>Check if a collection has duplicated values.</li>
+<li>Sorting items in a collection using bubble sort, insertion sort, or selection sort.</li>
+<li>Find all possible ordered pairs in an array.</li>
+</ul>
+<p>Let’s implement the first two.</p>
+<h2 id="Has-duplicates"><a href="#Has-duplicates" class="headerlink" title="Has duplicates"></a>Has duplicates</h2><p>You want to find duplicate words in an array. A naïve solution will be the following:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasDuplicates</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> duplicates = [];</span><br><span class="line">  <span class="keyword">let</span> counter = <span class="number">0</span>; <span class="comment">// debug</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> outter = <span class="number">0</span>; outter &lt; n.length; outter++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> inner = <span class="number">0</span>; inner &lt; n.length; inner++) &#123;</span><br><span class="line">      counter++; <span class="comment">// debug</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(outter === inner) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(n[outter] === n[inner]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`n: <span class="subst">$&#123;n.length&#125;</span>, counter: <span class="subst">$&#123;counter&#125;</span>`</span>); <span class="comment">// debug</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Time complexity analysis:</p>
+<ul>
+<li>Line 2-3: 2 operations</li>
+<li>Line 5-6: double-loop of size n, so <code>n^2</code>.</li>
+<li>Line 7-13: has ~3 operations inside the double-loop</li>
+</ul>
+<p>We get <code>3n^2 + 2</code>.</p>
+<p>Again, when we have an asymptotic analysis, we drop all constants and leave the most important term: <code>n^2</code>. So, in big O notation, it would be <code>O(n^2)</code>.</p>
+<p>We are using a counter variable to help us verify. The <code>hasDuplicates</code> function has two loops. If we have an input of 4 words, it will execute the inner block 16 times. If we have 9, it will perform counter 81 times and so forth.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hasDuplicates([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);</span><br><span class="line"><span class="comment">// n: 4, counter: 16</span></span><br></pre></td></tr></table></figure>
+
+<p>and with n size 9:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hasDuplicates([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]);</span><br><span class="line"><span class="comment">// n: 9, counter: 81</span></span><br></pre></td></tr></table></figure>
+<p>Let’s see another example.</p>
+<h2 id="Bubble-sort"><a href="#Bubble-sort" class="headerlink" title="Bubble sort"></a>Bubble sort</h2><p>We want to sort the elements in an array. One way to do this is using bubble sort as follows:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> outer = <span class="number">0</span>; outer &lt; n.length; outer++) &#123;</span><br><span class="line">    <span class="keyword">let</span> outerElement = n[outer];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> inner = outer + <span class="number">1</span>; inner &lt; n.length; inner++) &#123;</span><br><span class="line">      <span class="keyword">let</span> innerElement = n[inner];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(outerElement &gt; innerElement) &#123;</span><br><span class="line">        <span class="comment">// swap</span></span><br><span class="line">        n[outer] = innerElement;</span><br><span class="line">        n[inner] = outerElement;</span><br><span class="line">        <span class="comment">// update references</span></span><br><span class="line">        outerElement = n[outer];</span><br><span class="line">        innerElement = n[inner];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Also, you might notice that for a very big <code>n</code>, the time it takes to solve the problem increases a lot. Can you spot the relationship between nested loops and the running time? When a function has a single loop, it usually translates into a running time complexity of O(n). Now, this function has 2 nested loops and quadratic running time: O(n<sup>2</sup>).</p>
+<!--
+
+As you can probably guess, two inner loops translate to O(n^2) since it has to go through the array twice in most cases.
+
+Usually, we want to stay away from polynomial running times (quadratic, cubic, O(n^c), etc.) since they take longer to compute as the input grows fast. However, they are not the worst. Let's something that takes even longer.
+
+## Quicksort
+---
+
+Expand:
+  * worst case: reverse order
+  * best case: already ordered
+
+---
+-->
+
+<h1 id="O-n-c-Polynomial-time"><a href="#O-n-c-Polynomial-time" class="headerlink" title="O(n^c) - Polynomial time"></a>O(n^c) - Polynomial time</h1><p>Polynomial running is represented as O(n<sup>c</sup>), when <code>c &gt; 1</code>. As you already saw, two inner loops almost translate to O(n<sup>2</sup>) since it has to go through the array twice in most cases. Are three nested loops cubic? If each one visit all elements, then yes!</p>
+<p>Usually, we want to stay away from polynomial running times (quadratic, cubic, n<sup>c</sup>, etc.) since they take longer to compute as the input grows fast. However, they are not the worst.</p>
+<h2 id="Triple-nested-loops"><a href="#Triple-nested-loops" class="headerlink" title="Triple nested loops"></a>Triple nested loops</h2><p>Let’s say you want to find the solutions for a multi-variable equation that looks like this:</p>
+<blockquote>
+<p>3x + 9y + 8z = 79</p>
+</blockquote>
+<p>This naïve program will give you all the solutions that satisfy the equation where <code>x</code>, <code>y</code>, and <code>z</code> &lt; <code>n</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findXYZ</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> solutions = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; n; x++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> y = <span class="number">0</span>; y &lt; n; y++) &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> z = <span class="number">0</span>; z &lt; n; z++) &#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="number">3</span>*x + <span class="number">9</span>*y + <span class="number">8</span>*z === <span class="number">79</span> ) &#123;</span><br><span class="line">          solutions.push(&#123;x, y, z&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> solutions;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findXYZ(<span class="number">10</span>)); <span class="comment">// =&gt; [&#123;x: 0, y: 7, z: 2&#125;, ...]</span></span><br></pre></td></tr></table></figure>
+
+<p>This algorithm has a cubic running time: <code>O(n^3)</code>.</p>
+<p><strong>Note:</strong> We could do a more efficient solution to solve multi-variable equations but this works for the purpose of showing an example of a cubic runtime.</p>
+<h1 id="O-log-n-Logarithmic-time"><a href="#O-log-n-Logarithmic-time" class="headerlink" title="O(log n) - Logarithmic time"></a>O(log n) - Logarithmic time</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/cCPOayp1vek?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let’s say that we want to look for a book in a dictionary. As you know, this book has every word sorted alphabetically. If you are looking for a word, then there are at least two ways to do it:</p>
+<p>Algorithm A:</p>
+<ol>
+<li>Start on the first page of the book and go word by word until you find what you are looking for.</li>
+</ol>
+<p>Algorithm B:</p>
+<ol>
+<li>Open the book in the middle and check the first word on it.</li>
+<li>If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half.</li>
+<li>Divide the remainder in half again, and repeat step #2 until you find the word you are looking for.</li>
+</ol>
+<p>Which one is faster? The first algorithms go word by word <em>O(n)</em>, while the algorithm B split the problem in half on each iteration <em>O(log n)</em>. This 2nd algorithm is a <strong>binary search</strong>.</p>
+<h2 id="Binary-search"><a href="#Binary-search" class="headerlink" title="Binary search"></a>Binary search</h2><p>Find the index of an element in a sorted array.</p>
+<p>If we implement (Algorithm A) going through all the elements in an array, it will take a running time of <code>O(n)</code>. Can we do better? We can try using the fact that the collection is already sorted. Later, we can divide in half as we look for the element in question.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOf</span>(<span class="params">array, element, offset = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// split array in half</span></span><br><span class="line marked">  <span class="keyword">const</span> half = <span class="built_in">parseInt</span>(array.length / <span class="number">2</span>);</span><br><span class="line marked">  <span class="keyword">const</span> current = array[half];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(current === element) &#123;</span><br><span class="line">    <span class="keyword">return</span> offset + half;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(element &gt; current) &#123;</span><br><span class="line">    <span class="keyword">const</span> right = array.slice(half);</span><br><span class="line">    <span class="keyword">return</span> indexOf(right, element, offset + half);</span><br><span class="line marked">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> left = array.slice(<span class="number">0</span>, half)</span><br><span class="line">    <span class="keyword">return</span> indexOf(left, element, offset);</span><br><span class="line marked">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage example with a list of names in ascending order:</span></span><br><span class="line"><span class="keyword">const</span> directory = [<span class="string">&quot;Adrian&quot;</span>, <span class="string">&quot;Bella&quot;</span>, <span class="string">&quot;Charlotte&quot;</span>, <span class="string">&quot;Daniel&quot;</span>, <span class="string">&quot;Emma&quot;</span>, <span class="string">&quot;Hanna&quot;</span>, <span class="string">&quot;Isabella&quot;</span>, <span class="string">&quot;Jayden&quot;</span>, <span class="string">&quot;Kaylee&quot;</span>, <span class="string">&quot;Luke&quot;</span>, <span class="string">&quot;Mia&quot;</span>, <span class="string">&quot;Nora&quot;</span>, <span class="string">&quot;Olivia&quot;</span>, <span class="string">&quot;Paisley&quot;</span>, <span class="string">&quot;Riley&quot;</span>, <span class="string">&quot;Thomas&quot;</span>, <span class="string">&quot;Wyatt&quot;</span>, <span class="string">&quot;Xander&quot;</span>, <span class="string">&quot;Zoe&quot;</span>];</span><br><span class="line"><span class="built_in">console</span>.log(indexOf(directory, <span class="string">&#x27;Hanna&#x27;</span>));   <span class="comment">// =&gt; 5</span></span><br><span class="line"><span class="built_in">console</span>.log(indexOf(directory, <span class="string">&#x27;Adrian&#x27;</span>));  <span class="comment">// =&gt; 0</span></span><br><span class="line"><span class="built_in">console</span>.log(indexOf(directory, <span class="string">&#x27;Zoe&#x27;</span>));     <span class="comment">// =&gt; 18</span></span><br></pre></td></tr></table></figure>
+
+<p>Calculating the time complexity of <code>indexOf</code> is not as straightforward as the previous examples. This function is recursive.</p>
+<p>There are several ways to analyze recursive algorithms. For simplicity, we are going to use the <code>Master Method</code>.</p>
+<h2 id="Master-Method-for-recursive-algorithms"><a href="#Master-Method-for-recursive-algorithms" class="headerlink" title="Master Method for recursive algorithms"></a>Master Method for recursive algorithms</h2><p>Finding the runtime of recursive algorithms is not as easy as counting the operations. This method helps us to determine the runtime of recursive algorithms. We are going to explain this solution using the <code>indexOf</code> function as an illustration.</p>
+<p>When analyzing recursive algorithms, we care about these three things:</p>
+<ul>
+<li>The runtime of the work done outside the recursion (line 3-4): <code>O(1)</code></li>
+<li>How many recursive calls the problem is divided (line 11 or 14): <code>1</code> recursive call. Notice only one or the other will happen, never both.</li>
+<li>How much <code>n</code> is reduced on each recursive call (line 10 or 13): <code>1/2</code>. Every recursive call cuts <code>n</code> in half.</li>
+</ul>
+<ol>
+<li>The Master Method formula is the following:</li>
+</ol>
+<blockquote>
+<p>T(n) = a T(n/b) + f(n)</p>
+</blockquote>
+<p>where:</p>
+<ul>
+<li><code>T</code>: time complexity function in terms of the input size <code>n</code>.</li>
+<li><code>n</code>: the size of the input. duh? :)</li>
+<li><code>a</code>: the number of sub-problems. For our case, we only split the problem into one subproblem. So, <code>a=1</code>.</li>
+<li><code>b</code>: the factor by which <code>n</code> is reduced. For our example, we divide <code>n</code> in half each time. Thus, <code>b=2</code>.</li>
+<li><code>f(n)</code>: the running time outside the recursion. Since dividing by 2 is constant time, we have <code>f(n) = O(1)</code>.</li>
+</ul>
+<ol start="2">
+<li>Once we know the values of <code>a</code>, <code>b</code> and <code>f(n)</code>. We can determine the runtime of the recursion using this formula:</li>
+</ol>
+<blockquote>
+<p>n<sup>log<sub>b</sub>a</sup></p>
+</blockquote>
+<p>This value will help us to find which master method case we are solving.</p>
+<p>For binary search, we have:</p>
+<p>n<sup>log<sub>b</sub>a</sup> = n<sup>log<sub>2</sub>1</sup> = n<sub>0</sub> = 1</p>
+<ol start="3">
+<li>Finally, we compare the recursion runtime from step 2) and the runtime <code>f(n)</code> from step 1). Based on that, we have the following cases:</li>
+</ol>
+<p><strong><em>Case 1</em>: Most of the work done in the recursion.</strong></p>
+<p>If <code>n<sup>log<sub>b</sub>a</sup></code> &gt; <code>f(n)</code>,</p>
+<p><strong>then</strong> runtime is:</p>
+<blockquote>
+<p><i>O(n<sup>log<sub>b</sub>a</sup>)</i></p>
+</blockquote>
+<p><strong><em>Case 2</em>: The runtime of the work done in the recursion and outside is the same</strong></p>
+<p>If <code>n<sup>log<sub>b</sub>a</sup></code> === <code>f(n)</code>,</p>
+<p><strong>then</strong> runtime is:</p>
+<blockquote>
+<p><i>O(n<sup>log<sub>b</sub>a</sup> log(n))</i></p>
+</blockquote>
+<p><strong><em>Case 3</em>: Most of the work is done outside the recursion</strong></p>
+<p>If <code>n<sup>log<sub>b</sub>a</sup></code> &lt; <code>f(n)</code>,</p>
+<p><strong>then</strong> runtime is:</p>
+<blockquote>
+<p><i>O(f(n))</i></p>
+</blockquote>
+<p>Now, let’s combine everything we learned here to get the running time of our binary search function <code>indexOf</code>.</p>
+<h2 id="Master-Method-for-Binary-Search"><a href="#Master-Method-for-Binary-Search" class="headerlink" title="Master Method for Binary Search"></a>Master Method for Binary Search</h2><p>The binary search algorithm slit <code>n</code> on half until a solution is found or array is exhausted. So, using the Master Method:</p>
+<blockquote>
+<p>T(n) = a T(n/b) + f(n)</p>
+</blockquote>
+<ol>
+<li>Find <code>a</code>, <code>b</code> and <code>f(n)</code> and replace it in the formula:</li>
+</ol>
+<ul>
+<li><code>a</code>: the number of sub-problems. For our example, we only split the problem into another subproblem. So <code>a=1</code>.</li>
+<li><code>b</code>: the factor by which <code>n</code> is reduced. For our case, we divide <code>n</code> in half each time. Thus, <code>b=2</code>.</li>
+<li><code>f(n)</code>: the running time outside the recursion: <code>O(1)</code>.</li>
+</ul>
+<p>Thus,</p>
+<blockquote>
+<p>T(n) = T(n/2) + O(1)</p>
+</blockquote>
+<ol start="2">
+<li>Compare the runtime executed inside and outside the recursion:</li>
+</ol>
+<ul>
+<li>Runtime of the work done <strong>outside</strong> the recursion: <code>f(n)</code>. E.g. <code>O(1)</code>.</li>
+<li>Runtime of work done <strong>inside</strong> the recursion given by this formula <code>n<sup>log<sub>b</sub>a</sup></code>. E.g. O(<code>n<sup>log<sub>2</sub>1<sup></code>) = O(<code>n<sup>0<sub></code>) = <code>O(1)</code>.</li>
+</ul>
+<ol start="3">
+<li>Finally, getting the runtime. Based on the comparison of the expressions from the previous steps, find the case it matches.</li>
+</ol>
+<p>As we saw in the previous step, the work outside and inside the recursion has the same runtime, so we are in <strong>case 2</strong>.</p>
+<blockquote>
+<p>O(n<sup>log<sub>b</sub>a</sup> log(n))</p>
+</blockquote>
+<p>Making the substitution we get:</p>
+<p>O(n<sup>log<sub>2</sub>1</sup> log(n))</p>
+<p>O(n<sup>0</sup> log(n))</p>
+<p>O(log(n))  <strong>👈 this is running time of a binary search</strong></p>
+<!--
+
+https://www.youtube.com/watch?v=6CX7s7JnXs0 - Master Method ( incl. Step-By-Step Guide and Examples ) - Analysis
+
+https://stackoverflow.com/questions/tagged/big-o?sort=votes&pageSize=20
+
+https://mauriciopoppe.github.io/function-plot/
+
+https://www.topcoder.com/community/data-science/data-science-tutorials/binary-search/
+
+https://stackoverflow.com/questions/tagged/algorithm
+https://stackoverflow.com/questions/tagged/data-structures
+https://math.stackexchange.com/questions/tagged/recursive-algorithms+algorithms
+
+https://stackoverflow.com/q/13467674/684957
+https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms) -->
+
+<h1 id="O-n-log-n-Linearithmic"><a href="#O-n-log-n-Linearithmic" class="headerlink" title="O(n log n) - Linearithmic"></a>O(n log n) - Linearithmic</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/PADwBMuehYc?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Linearithmic time complexity it’s slightly slower than a linear algorithm. However, it’s still much better than a quadratic algorithm (you will see a graph at the very end of the post).</p>
+<p><strong>Examples of Linearithmic algorithms:</strong></p>
+<ul>
+<li>Efficient sorting algorithms like merge sort, quicksort and others.</li>
+</ul>
+<h2 id="Mergesort"><a href="#Mergesort" class="headerlink" title="Mergesort"></a>Mergesort</h2><p>What’s the best way to sort an array?  Before, we proposed a solution using bubble sort that has a time complexity of O(n<sup>2</sup>). Can we do better?</p>
+<p>We can use an algorithm called <code>mergesort</code> to improve it.
+This is how mergesort works:</p>
+<ol>
+<li>We are going to divide the array recursively until the elements are two or less.</li>
+<li>We know how to sort two items, so we sort them iteratively (base case).</li>
+<li>The final step is merging: we merge in taking one by one from each array such that they are in ascending order.</li>
+</ol>
+<p>Here’s the code for merge sort:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sort array in asc order using merge-sort</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@example</span></span></span><br><span class="line"><span class="comment"> *    sort([3, 2, 1]) =&gt; [1, 2, 3]</span></span><br><span class="line"><span class="comment"> *    sort([3]) =&gt; [3]</span></span><br><span class="line"><span class="comment"> *    sort([3, 2]) =&gt; [2, 3]</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;array&#125;</span> <span class="variable">array</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">array = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> size = array.length;</span><br><span class="line">  <span class="comment">// base case</span></span><br><span class="line">  <span class="keyword">if</span> (size &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (size === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array[<span class="number">0</span>] &gt; array[<span class="number">1</span>] ? [array[<span class="number">1</span>], array[<span class="number">0</span>]] : array;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// slit and merge</span></span><br><span class="line">  <span class="keyword">const</span> mid = <span class="built_in">parseInt</span>(size / <span class="number">2</span>, <span class="number">10</span>);</span><br><span class="line">  <span class="keyword">return</span> merge(sort(array.slice(<span class="number">0</span>, mid)), sort(array.slice(mid)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Merge two arrays in asc order</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@example</span></span></span><br><span class="line"><span class="comment"> *    merge([2,5,9], [1,6,7]) =&gt; [1, 2, 5, 6, 7, 9]</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;array&#125;</span> <span class="variable">array1</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;array&#125;</span> <span class="variable">array2</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns <span class="type">&#123;array&#125;</span> </span>merged arrays in asc order</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">array1 = [], array2 = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> merged = [];</span><br><span class="line">  <span class="keyword">let</span> array1Index = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> array2Index = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// merge elements on a and b in asc order. Run-time O(a + b)</span></span><br><span class="line">  <span class="keyword">while</span> (array1Index &lt; array1.length || array2Index &lt; array2.length) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array1Index &gt;= array1.length || array1[array1Index] &gt; array2[array2Index]) &#123;</span><br><span class="line">      merged.push(array2[array2Index]);</span><br><span class="line">      array2Index += <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      merged.push(array1[array1Index]);</span><br><span class="line">      array1Index += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> merged;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>As you can see, it has two functions <code>sort</code> and <code>merge</code>. Merge is an auxiliary function that runs once through the collection <code>a</code> and <code>b</code>, so it’s running time is O(n). Let’s apply the Master Method to find the running time.</p>
+<h2 id="Master-Method-for-Mergesort"><a href="#Master-Method-for-Mergesort" class="headerlink" title="Master Method for Mergesort"></a>Master Method for Mergesort</h2><p>We are going to apply the <a href="#Master-Method-for-recursive-algorithms">Master Method that we explained above</a> to find the runtime:</p>
+<ol>
+<li><p>Let’s find the values of: <code>T(n) = a T(n/b) + f(n)</code></p>
+<ul>
+<li><code>a</code>: The number of sub-problems is 2 (line 12). So, <code>a = 2</code>.</li>
+<li><code>b</code>: Each of the sub-problems divides <code>n</code> in half. So, <code>b = 2</code></li>
+<li><code>f(n)</code>: The work done outside the recursion is the function <code>merge</code>, which has a runtime of <code>O(n)</code> since it visits all the elements on the given arrays.</li>
+</ul>
+</li>
+</ol>
+<p>Substituting the values:</p>
+<blockquote>
+<p>T(n) = 2 T(n/2) + O(n)</p>
+</blockquote>
+<ol start="2">
+<li>Let’s find the work done in the recursion: <code>n<sup>log<sub>b</sub>a</sup></code>.</li>
+</ol>
+<p>n<sup>log<sub>2</sub>2</sup></p>
+<p>n<sup>1</sup> = n</p>
+<ol start="3">
+<li>Finally, we can see that recursion runtime from step 2) is O(n) and also the non-recursion runtime is O(n). So, we have the <a href="#Case-2-The-runtime-of-the-work-done-in-the-recursion-and-outside-is-the-same"> case 2 </a>: <code><i>O(n<sup>log<sub>b</sub>a</sup> log(n))</i></code></li>
+</ol>
+<p><i>O(n<sup>log<sub>2</sub>2</sup> log(n))</i></p>
+<p><i>O(n<sup>1</sup> log(n))</i></p>
+<p><i>O(n log(n))</i> <strong>👈 this is running time of the merge sort</strong></p>
+<h1 id="O-2-n-Exponential-time"><a href="#O-2-n-Exponential-time" class="headerlink" title="O(2^n) - Exponential time"></a>O(2^n) - Exponential time</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/LDwZK4I6QDc?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Exponential (base 2) running time means that the calculations performed by an algorithm double every time as the input grows.</p>
+<p><strong>Examples of exponential runtime algorithms:</strong></p>
+<ul>
+<li>Power Set: finding all the subsets on a set.</li>
+<li>Fibonacci.</li>
+<li>Travelling salesman problem using dyanmic programming.</li>
+</ul>
+<h2 id="Power-Set"><a href="#Power-Set" class="headerlink" title="Power Set"></a>Power Set</h2><p>To understand the power set, let’s imagine you are buying a pizza.
+The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pineapple.
+Let’s call each topping A, B, C, D. What are your choices? You can select no topping (you are on a diet ;), you can choose one topping, or two or three or all of them, and so on. The power set gives you all the possibilities (BTW, there 16 with 4 toppings as you will see later)</p>
+<p>Finding all distinct subsets of a given set. For instance, let’s do some examples to try to come up with an algorithm to solve it:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powerset(<span class="string">&#x27;&#x27;</span>) <span class="comment">// =&gt;  [&#x27;&#x27;]</span></span><br><span class="line">powerset(<span class="string">&#x27;a&#x27;</span>) <span class="comment">// =&gt; [&#x27;&#x27;, &#x27;a&#x27;]</span></span><br><span class="line">powerset(<span class="string">&#x27;ab&#x27;</span>) <span class="comment">// =&gt; [&#x27;&#x27;, &#x27;a&#x27;, &#x27;b&#x27;, &#x27;ab&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>Did you notice any pattern?</p>
+<ul>
+<li>The first returns an empty element.</li>
+<li>The second case returns the empty element + the 1st element.</li>
+<li>The 3rd case returns precisely the results of 2nd case + the same array with the 2nd element <code>b</code> appended to it.</li>
+</ul>
+<p>What if you want to find the subsets of <code>abc</code>? Well, it would be precisely the subsets of ‘ab’ and again the subsets of <code>ab</code> with <code>c</code> appended at the end of each element.</p>
+<p>As you noticed, every time the input gets longer, the output is twice as long as the previous one. Let’s code it up:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">powerset</span>(<span class="params">n = <span class="string">&#x27;&#x27;</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> array = <span class="built_in">Array</span>.from(n);</span><br><span class="line">  <span class="keyword">const</span> base = [<span class="string">&#x27;&#x27;</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> results = array.reduce(<span class="function">(<span class="params">previous, element</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> previousPlusElement = previous.map(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;el&#125;</span><span class="subst">$&#123;element&#125;</span>`</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> previous.concat(previousPlusElement);</span><br><span class="line">  &#125;, base);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If we run that function for a couple of cases we will get:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">powerset(<span class="string">&#x27;&#x27;</span>) <span class="comment">// ...</span></span><br><span class="line"><span class="comment">// n = 0, f(n) = 1;</span></span><br><span class="line">powerset(<span class="string">&#x27;a&#x27;</span>) <span class="comment">// , a...</span></span><br><span class="line"><span class="comment">// n = 1, f(n) = 2;</span></span><br><span class="line">powerset(<span class="string">&#x27;ab&#x27;</span>) <span class="comment">// , a, b, ab...</span></span><br><span class="line"><span class="comment">// n = 2, f(n) = 4;</span></span><br><span class="line">powerset(<span class="string">&#x27;abc&#x27;</span>) <span class="comment">// , a, b, ab, c, ac, bc, abc...</span></span><br><span class="line"><span class="comment">// n = 3, f(n) = 8;</span></span><br><span class="line">powerset(<span class="string">&#x27;abcd&#x27;</span>) <span class="comment">// , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...</span></span><br><span class="line"><span class="comment">// n = 4, f(n) = 16;</span></span><br><span class="line">powerset(<span class="string">&#x27;abcde&#x27;</span>) <span class="comment">// , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...</span></span><br><span class="line"><span class="comment">// n = 5, f(n) = 32;</span></span><br></pre></td></tr></table></figure>
+
+<p>As expected, if you plot <code>n</code> and <code>f(n)</code>, you will notice that it would be exactly like the function <code>2^n</code>. This algorithm has a running time of <code>O(2^n)</code>.</p>
+<p><strong>Note:</strong> You should avoid functions with exponential running times (if possible) since they don’t scale well. The time it takes to process the output doubles with every additional input size. But exponential running time is not the worst yet; others go even slower. Let’s see one more example in the next section.</p>
+<h1 id="O-n-Factorial-time"><a href="#O-n-Factorial-time" class="headerlink" title="O(n!) - Factorial time"></a>O(n!) - Factorial time</h1><iframe width="560" height="315" src="https://www.youtube.com/embed/snBRcJlrnVw?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Factorial is the multiplication of all positive integer numbers less than itself. For instance:</p>
+<blockquote>
+<p>5! = 5 x 4 x 3 x 2 x 1 = 120</p>
+</blockquote>
+<p>It grows pretty quickly:</p>
+<blockquote>
+<p>20! = 2,432,902,008,176,640,000</p>
+</blockquote>
+<p>As you might guess, you want to stay away if possible from algorithms that have this running time!</p>
+<p><strong>Examples of O(n!) factorial runtime algorithms</strong>:</p>
+<ul>
+<li>Permutations of a string.</li>
+<li>Solving the traveling salesman problem with a brute-force search</li>
+</ul>
+<p>Let’s solve the first example.</p>
+<h2 id="Permutations"><a href="#Permutations" class="headerlink" title="Permutations"></a>Permutations</h2><p>Write a function that computes all the different words that can be formed given a string. E.g.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getPermutations(<span class="string">&#x27;a&#x27;</span>) <span class="comment">// =&gt; [ &#x27;a&#x27;]</span></span><br><span class="line">getPermutations(<span class="string">&#x27;ab&#x27;</span>) <span class="comment">// =&gt;  [ &#x27;ab&#x27;, &#x27;ba&#x27;]</span></span><br><span class="line">getPermutations(<span class="string">&#x27;abc&#x27;</span>) <span class="comment">// =&gt; [ &#x27;abc&#x27;, &#x27;acb&#x27;, &#x27;bac&#x27;, &#x27;bca&#x27;, &#x27;cab&#x27;, &#x27;cba&#x27; ]</span></span><br></pre></td></tr></table></figure>
+
+<p>How would you solve that?</p>
+<p>A straightforward way will be to check if the string has a length of 1 if so, return that string since you can’t arrange it differently.</p>
+<p>For strings with a length bigger than 1, we could use recursion to divide the problem into smaller problems until we get to the length 1 case. We can take out the first character and solve the problem for the remainder of the string until we have a length of 1.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPermutations</span>(<span class="params">string, prefix = <span class="string">&#x27;&#x27;</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(string.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> [prefix + string];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(string).reduce(<span class="function">(<span class="params">result, char, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> reminder = string.slice(<span class="number">0</span>, index) + string.slice(index+<span class="number">1</span>);</span><br><span class="line">    result = result.concat(getPermutations(reminder, prefix + char));</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;, []);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If print out the output, it would be something like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">getPermutations(<span class="string">&#x27;ab&#x27;</span>) <span class="comment">// ab, ba...</span></span><br><span class="line"><span class="comment">// n = 2, f(n) = 2;</span></span><br><span class="line">getPermutations(<span class="string">&#x27;abc&#x27;</span>) <span class="comment">// abc, acb, bac, bca, cab, cba...</span></span><br><span class="line"><span class="comment">// n = 3, f(n) = 6;</span></span><br><span class="line">getPermutations(<span class="string">&#x27;abcd&#x27;</span>) <span class="comment">// abcd, abdc, acbd, acdb, adbc, adcb, bacd...</span></span><br><span class="line"><span class="comment">// n = 4, f(n) = 24;</span></span><br><span class="line">getPermutations(<span class="string">&#x27;abcde&#x27;</span>) <span class="comment">// abcde, abced, abdce, abdec, abecd, abedc, acbde...</span></span><br><span class="line"><span class="comment">// n = 5, f(n) = 120;</span></span><br></pre></td></tr></table></figure>
+
+<p>I tried with a string with a length of 10. It took around 8 seconds!</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">time node ./lib/permutations.js</span><br><span class="line"><span class="comment"># getPermutations(&#x27;abcdefghij&#x27;) // =&gt; abcdefghij, abcdefghji, abcdefgihj, abcdefgijh, abcdefgjhi, abcdefgjih, abcdefhgij...</span></span><br><span class="line"><span class="comment"># // n = 10, f(n) = 3,628,800;</span></span><br><span class="line"><span class="comment"># ./lib/permutations.js  8.06s user 0.63s system 101% cpu 8.562 total</span></span><br></pre></td></tr></table></figure>
+
+<p>I have a little homework for you:</p>
+<blockquote>
+<p>Can you try with a permutation with 11 characters? ;) Comment below what happened to your computer!</p>
+</blockquote>
+<h1 id="All-running-complexities-graphs"><a href="#All-running-complexities-graphs" class="headerlink" title="All running complexities graphs"></a>All running complexities graphs</h1><p>We explored the most common algorithms running times with one or two examples each! They should give you an idea of how to calculate your running times when developing your projects. Below you can find a chart with a graph of all the time complexities that we covered:</p>
+<img src="/images/big-o-running-time-complexity.png" class="" title="Big o running time complexities">
+
+<p>Mind your time complexity!</p>
+<!-- Backlinks and references -->
+
+<!-- https://www.reddit.com/r/compsci/comments/8hwozu/8_time_complexities_that_every_programmer_should/ -->
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2018-04-23-most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/Analysis-of-Recursive-Algorithms/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  Analysis of Recursive Algorithms
+                
+              </div>
+            </a>
+          
+          
+            <a href="/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">How you can change the world by learning Data Structures and Algorithms</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+              
+                <div class="container">
+                <h1 class="capitalize">tutorial algorithms Series</h1>
+                <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/">
+    
+      <img src="/images/graph-interview-questions-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">
+    
+      <img src="/images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How you can change the world by learning Data Structures and Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">
+    
+      <img src="/images/data-structures-must-know-algorithms-running-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>8 time complexities that every programmer should know</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/">
+    
+      <img src="/images/data-structures-time-complexity-lists-arrays-stacks-queues-hash-maps-sets-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Data Structures in JavaScript: Arrays, HashMaps, and Lists</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">
+    
+      <img src="/images/graph-data-structures-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Graph Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">
+    
+      <img src="/images/data-structures-for-beginners-trees-binary-search-tree-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Tree Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">
+    
+      <img src="/images/data-structures-algorithms-avl-binary-search-trees-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Self-balanced Binary Search Trees with AVL in JavaScript</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Analysis-of-Recursive-Algorithms/">
+    
+      <img src="/images/data-structures-analysis-of-recursive-algorithms-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Analysis of Recursive Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2018-04-23-most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">1.</span> <span class="toc-text">Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-time-complexity"><span class="toc-number">1.1.</span> <span class="toc-text">What is time complexity?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#O-1-Constant-time"><span class="toc-number">2.</span> <span class="toc-text">O(1) - Constant time</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Odd-or-Even"><span class="toc-number">2.1.</span> <span class="toc-text">Odd or Even</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Look-up-table"><span class="toc-number">2.2.</span> <span class="toc-text">Look-up table</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#O-n-Linear-time"><span class="toc-number">3.</span> <span class="toc-text">O(n) - Linear time</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-largest-item-on-an-unsorted-array"><span class="toc-number">3.1.</span> <span class="toc-text">The largest item on an unsorted array</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#O-n-2-Quadratic-time"><span class="toc-number">4.</span> <span class="toc-text">O(n^2) - Quadratic time</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Has-duplicates"><span class="toc-number">4.1.</span> <span class="toc-text">Has duplicates</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bubble-sort"><span class="toc-number">4.2.</span> <span class="toc-text">Bubble sort</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#O-n-c-Polynomial-time"><span class="toc-number">5.</span> <span class="toc-text">O(n^c) - Polynomial time</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Triple-nested-loops"><span class="toc-number">5.1.</span> <span class="toc-text">Triple nested loops</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#O-log-n-Logarithmic-time"><span class="toc-number">6.</span> <span class="toc-text">O(log n) - Logarithmic time</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Binary-search"><span class="toc-number">6.1.</span> <span class="toc-text">Binary search</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Master-Method-for-recursive-algorithms"><span class="toc-number">6.2.</span> <span class="toc-text">Master Method for recursive algorithms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Master-Method-for-Binary-Search"><span class="toc-number">6.3.</span> <span class="toc-text">Master Method for Binary Search</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#O-n-log-n-Linearithmic"><span class="toc-number">7.</span> <span class="toc-text">O(n log n) - Linearithmic</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mergesort"><span class="toc-number">7.1.</span> <span class="toc-text">Mergesort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Master-Method-for-Mergesort"><span class="toc-number">7.2.</span> <span class="toc-text">Master Method for Mergesort</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#O-2-n-Exponential-time"><span class="toc-number">8.</span> <span class="toc-text">O(2^n) - Exponential time</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Power-Set"><span class="toc-number">8.1.</span> <span class="toc-text">Power Set</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#O-n-Factorial-time"><span class="toc-number">9.</span> <span class="toc-text">O(n!) - Factorial time</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Permutations"><span class="toc-number">9.1.</span> <span class="toc-text">Permutations</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#All-running-complexities-graphs"><span class="toc-number">10.</span> <span class="toc-text">All running complexities graphs</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/';
+      this.page.identifier = 'https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>

