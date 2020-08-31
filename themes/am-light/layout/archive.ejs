@@ -23,7 +23,7 @@
     <section class="col-md-9 p-a-2">
       <div class="row">
         <!--.sort('pageviews__total', -1)-->
-        <% page.posts.each(function(post, i){ %>
+        <% page.posts.filter(p => !p.unlisted).each(function(post, i){ %>
           <%- partial('_partials/post-thumbnail', { post: post, klass: 'col-md-4 col-sm-6 card' }) %>
         <% }) %>
       </div>
