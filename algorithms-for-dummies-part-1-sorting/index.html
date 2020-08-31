@@ -344,12 +344,12 @@ ga('send', 'pageview');
 
 <p>How do you know a piece of code that you just wrote is good enough?  When you modify a program, how do you know if it is better as you found it? How do scale programs to handle huge amount of data? In fact, You cannot improve what you can’t measure.</p>
 <p>How to measure them? We could count the number of seconds it takes to execute and compare it with other one. However, it’s not just troublesome to timers around code but if we run it in different hardware (e.g. supercomputer) it will seem like more efficient when indeed it’s exactly the same program. Let’s illustrate a better way with an example. Let’s say you want to sort an array of n integers.</p>
-<h1 id="Sorting-Algorithms"><a href="#Sorting-Algorithms" class="headerlink" title="Sorting Algorithms"></a>Sorting Algorithms</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>; x &lt; arr.length; x++)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> y=x; y &gt; <span class="number">0</span> &amp;&amp; arr[y-<span class="number">1</span>] &gt; arr[y]; y--)&#123;</span><br><span class="line">        <span class="keyword">int</span> t = arr[y];</span><br><span class="line">        arr[y] = arr[y-<span class="number">1</span>];</span><br><span class="line">        arr[y-<span class="number">1</span>] = t;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Sorting-Algorithms"><a href="#Sorting-Algorithms" class="headerlink" title="Sorting Algorithms"></a>Sorting Algorithms</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>; x &lt; arr.length; x++)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> y=x; y &gt; <span class="number">0</span> &amp;&amp; arr[y-<span class="number">1</span>] &gt; arr[y]; y--)&#123;</span><br><span class="line">        <span class="keyword">int</span> t = arr[y];</span><br><span class="line">        arr[y] = arr[y-<span class="number">1</span>];</span><br><span class="line">        arr[y-<span class="number">1</span>] = t;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Do you recognize this algorithm? It’s called Insertion sort. It has two nested loops, which means that as the number of elements n in the array <code>arr</code> grows it will take approximately n * n longer to perform the sorting. In big-O notation, this will be represented like O(n^2). More on this notation later.</p>
 <p>What would happen if the array arr is already sorted? That would be the best-case scenario. The inner for loop will never go through all the elements in the array then (because <code>arr[y-1] &gt; arr[y]</code>  won’t be met). So the algorithm in run in O(n).</p>
 <p>We are not living in an ideal world. So O(n^2) will be probably the average time complexity. Can you think a better way of sorting an array of elements?</p>
 <p>Take some minutes to think and come back…</p>
-<h2 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h2><p>A more efficient algorithm is the Merge sort. It uses the principle of divide and conquer to solve the problem faster. The idea is the follows:</p>
+<h3 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h3><p>A more efficient algorithm is the Merge sort. It uses the principle of divide and conquer to solve the problem faster. The idea is the follows:</p>
 <img src="/images/mergesort.gif" class="">
 
 <ul>
@@ -369,7 +369,7 @@ ga('send', 'pageview');
 Insertion Sort | O(n) | O(n^2) | O(n^2) | O(1)
 Merge sort | O(n log(n)) | O(n log(n)) | O(n log(n)) | O(n)</p>
 <p>Notice that the table has also the space complexity. How much space does the algorithms take is also an important parameter to compare algorithms. The merge sort uses an additional array that’s way its space complexity is <code>O(n)</code>, however, the insertion sort uses <code>O(1)</code> because it does the sorting in-place.</p>
-<h1 id="Big-O-Notation"><a href="#Big-O-Notation" class="headerlink" title="Big O Notation"></a>Big O Notation</h1><p>Big O is defined as the asymptotic upper limit of a function. In plain english, it means that is a function that cover the maximum values a function could take. As we saw a little earlier this notation help us to predict performance and compare algorithms.</p>
+<h2 id="Big-O-Notation"><a href="#Big-O-Notation" class="headerlink" title="Big O Notation"></a>Big O Notation</h2><p>Big O is defined as the asymptotic upper limit of a function. In plain english, it means that is a function that cover the maximum values a function could take. As we saw a little earlier this notation help us to predict performance and compare algorithms.</p>
 <table>
 <thead>
 <tr>
@@ -676,7 +676,7 @@ for(c=0; c&lt;n; c++){
           
             <h3 class="toc-title">Contents</h3>
             <div>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Sorting-Algorithms"><span class="toc-number">1.</span> <span class="toc-text">Sorting Algorithms</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Merge-Sort"><span class="toc-number">1.1.</span> <span class="toc-text">Merge Sort</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Big-O-Notation"><span class="toc-number">2.</span> <span class="toc-text">Big O Notation</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sorting-Algorithms"><span class="toc-number">1.</span> <span class="toc-text">Sorting Algorithms</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Merge-Sort"><span class="toc-number">1.1.</span> <span class="toc-text">Merge Sort</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Big-O-Notation"><span class="toc-number">2.</span> <span class="toc-text">Big O Notation</span></a></li></ol>
             </div>
 
             <!-- 300x600 -->
@@ -733,8 +733,8 @@ for(c=0; c&lt;n; c++){
       <div class="container">
         <div class="p-y-2">
           &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
-            v.qfy393
+          <span class="muted m-x-4" title="Mon Aug 31 2020 17:01:13 GMT-0400 (Eastern Daylight Time)">
+            v.qfy521
           </span>
         </div>
       </div>

@@ -346,7 +346,7 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <a id="more"></a>
 
 <p><strong>The Twelve Factor Principles</strong></p>
-<h1 id="One-codebase-per-app-multiple-deployments"><a href="#One-codebase-per-app-multiple-deployments" class="headerlink" title="One codebase per app, multiple deployments"></a>One codebase per app, multiple deployments</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="One-codebase-per-app-multiple-deployments"><a href="#One-codebase-per-app-multiple-deployments" class="headerlink" title="One codebase per app, multiple deployments"></a>One codebase per app, multiple deployments</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>One codebase to rule all deployment environments: production, staging, local and so on and differentiate them from config files (see #3).</li>
 </ul>
@@ -354,7 +354,7 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <ul>
 <li>Multiple apps sharing the same code. INSTEAD the common code should be extracted from a library and included through a dependency manager.</li>
 </ul>
-<h1 id="Declare-and-isolate-dependencies"><a href="#Declare-and-isolate-dependencies" class="headerlink" title="Declare and isolate dependencies"></a>Declare and isolate dependencies</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Declare-and-isolate-dependencies"><a href="#Declare-and-isolate-dependencies" class="headerlink" title="Declare and isolate dependencies"></a>Declare and isolate dependencies</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>Have a dependency declaration manifest (e.g. packages.json, Gemfile)</li>
 <li>Execute dependencies in isolation per app (e.g. bundle exec).</li>
@@ -363,7 +363,7 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <ul>
 <li>Rely on implicit existence of system-wide packages (e.g. curl, ImageMagik). INSTEAD vendor them into the app.</li>
 </ul>
-<h1 id="Store-the-config-in-the-environment"><a href="#Store-the-config-in-the-environment" class="headerlink" title="Store the config in the environment"></a>Store the config in the environment</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Store-the-config-in-the-environment"><a href="#Store-the-config-in-the-environment" class="headerlink" title="Store the config in the environment"></a>Store the config in the environment</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>Separate app’s config (AWS S3, passwords, Google/Fb/Tw/APIs credentials, deployment hostname) from the code.</li>
 <li>Keep the code ready in a way that if were open source, it wouldn’t compromise any credentials.</li>
@@ -373,16 +373,16 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <ul>
 <li>Group config variables by environment (e.g. AWS_S3_PRODUCTION, AWS_S3_TEST, AWS_S3_QA, AWS_S3_STAGING, AWS_S3_JOE…). INSTEAD use clean environment variables (e.g. AWS_S3) that are managed individually per deploy.</li>
 </ul>
-<h1 id="Swappable-local-and-third-party-services"><a href="#Swappable-local-and-third-party-services" class="headerlink" title="Swappable local and third party services"></a>Swappable local and third party services</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Swappable-local-and-third-party-services"><a href="#Swappable-local-and-third-party-services" class="headerlink" title="Swappable local and third party services"></a>Swappable local and third party services</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>Services like databases (e.g. MongoDB, PostgreSQL), message queues (e.g. RabbitMQ, Beanstalkd) should be accessed via URL or locator/credential stored in config.</li>
 <li>Swapping local to production services should be done without any code changes.</li>
 </ul>
-<h1 id="Build-and-runtime"><a href="#Build-and-runtime" class="headerlink" title="Build and runtime"></a>Build and runtime</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Build-and-runtime"><a href="#Build-and-runtime" class="headerlink" title="Build and runtime"></a>Build and runtime</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>Code changes flows in one direction only development -&gt; build -&gt; run time environments.</li>
 </ul>
-<h1 id="Execute-the-app-as-share-nothing-stateless-processes"><a href="#Execute-the-app-as-share-nothing-stateless-processes" class="headerlink" title="Execute the app as share-nothing stateless processes"></a>Execute the app as share-nothing stateless processes</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Execute-the-app-as-share-nothing-stateless-processes"><a href="#Execute-the-app-as-share-nothing-stateless-processes" class="headerlink" title="Execute the app as share-nothing stateless processes"></a>Execute the app as share-nothing stateless processes</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>Store any persistent data in external services (such as databases)</li>
 </ul>
@@ -390,11 +390,11 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <ul>
 <li>Use the filesystem/memory to save states. INSTEAD any instance of the app should be able to handle requests.</li>
 </ul>
-<h1 id="Export-services-via-port-binding"><a href="#Export-services-via-port-binding" class="headerlink" title="Export services via port binding"></a>Export services via port binding</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Export-services-via-port-binding"><a href="#Export-services-via-port-binding" class="headerlink" title="Export services via port binding"></a>Export services via port binding</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>App is completely self-contained and communicates with other processes through port binding.</li>
 </ul>
-<h1 id="Scale-out-the-app-horizontally"><a href="#Scale-out-the-app-horizontally" class="headerlink" title="Scale out the app horizontally"></a>Scale out the app horizontally</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Scale-out-the-app-horizontally"><a href="#Scale-out-the-app-horizontally" class="headerlink" title="Scale out the app horizontally"></a>Scale out the app horizontally</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>Scale app horizontally since the app is a stateless and share-nothing model.</li>
 </ul>
@@ -402,12 +402,12 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <ul>
 <li>Daemonize. INSTEAD use operating system manager such as Upstart or init and Foreman in development.</li>
 </ul>
-<h1 id="Fast-startup-and-shutdown"><a href="#Fast-startup-and-shutdown" class="headerlink" title="Fast startup and shutdown"></a>Fast startup and shutdown</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Fast-startup-and-shutdown"><a href="#Fast-startup-and-shutdown" class="headerlink" title="Fast startup and shutdown"></a>Fast startup and shutdown</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>app start in few seconds to serve requests or jobs.</li>
 <li>shut down gracefully after receiving SIGTERM signal  (stop receiving new request/jobs, finish processing current request/job before stopping).</li>
 </ul>
-<h1 id="Keep-development-staging-and-production-as-similar-as-possible"><a href="#Keep-development-staging-and-production-as-similar-as-possible" class="headerlink" title="Keep development, staging, and production as similar as possible"></a>Keep development, staging, and production as similar as possible</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Keep-development-staging-and-production-as-similar-as-possible"><a href="#Keep-development-staging-and-production-as-similar-as-possible" class="headerlink" title="Keep development, staging, and production as similar as possible"></a>Keep development, staging, and production as similar as possible</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>design app for continuous deployment keeping the tools gaps and deployment times as minimum as possible.</li>
 <li>code from development to production should take few hours or just few minutes.</li>
@@ -418,11 +418,11 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <ul>
 <li>use different services on production and development (e.g. development using SQLite and production ProtgreSQL).</li>
 </ul>
-<h1 id="Logs-goes-to-stdout"><a href="#Logs-goes-to-stdout" class="headerlink" title="Logs goes to stdout"></a>Logs goes to stdout</h1><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p>
+<h2 id="Logs-goes-to-stdout"><a href="#Logs-goes-to-stdout" class="headerlink" title="Logs goes to stdout"></a>Logs goes to stdout</h2><p><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <em>DON’T</em></p>
 <ul>
 <li>write logs to a particular location in the filesystem. INSTEAD send them to STDOUT, so they can be routed as will depending the environment (e.g. output to terminal in development and output to log file in production)</li>
 </ul>
-<h1 id="Admin-processes"><a href="#Admin-processes" class="headerlink" title="Admin processes"></a>Admin processes</h1><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
+<h2 id="Admin-processes"><a href="#Admin-processes" class="headerlink" title="Admin processes"></a>Admin processes</h2><p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <em>DO</em></p>
 <ul>
 <li>favor languages/frameworks that use REPL shell out of the box to do admin tasks such as migrating databases, running consoles or running one-time scripts.</li>
 </ul>
@@ -610,7 +610,7 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
           
             <h3 class="toc-title">Contents</h3>
             <div>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#One-codebase-per-app-multiple-deployments"><span class="toc-number">1.</span> <span class="toc-text">One codebase per app, multiple deployments</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Declare-and-isolate-dependencies"><span class="toc-number">2.</span> <span class="toc-text">Declare and isolate dependencies</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Store-the-config-in-the-environment"><span class="toc-number">3.</span> <span class="toc-text">Store the config in the environment</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Swappable-local-and-third-party-services"><span class="toc-number">4.</span> <span class="toc-text">Swappable local and third party services</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Build-and-runtime"><span class="toc-number">5.</span> <span class="toc-text">Build and runtime</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Execute-the-app-as-share-nothing-stateless-processes"><span class="toc-number">6.</span> <span class="toc-text">Execute the app as share-nothing stateless processes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Export-services-via-port-binding"><span class="toc-number">7.</span> <span class="toc-text">Export services via port binding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scale-out-the-app-horizontally"><span class="toc-number">8.</span> <span class="toc-text">Scale out the app horizontally</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Fast-startup-and-shutdown"><span class="toc-number">9.</span> <span class="toc-text">Fast startup and shutdown</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Keep-development-staging-and-production-as-similar-as-possible"><span class="toc-number">10.</span> <span class="toc-text">Keep development, staging, and production as similar as possible</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Logs-goes-to-stdout"><span class="toc-number">11.</span> <span class="toc-text">Logs goes to stdout</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Admin-processes"><span class="toc-number">12.</span> <span class="toc-text">Admin processes</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#One-codebase-per-app-multiple-deployments"><span class="toc-number">1.</span> <span class="toc-text">One codebase per app, multiple deployments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Declare-and-isolate-dependencies"><span class="toc-number">2.</span> <span class="toc-text">Declare and isolate dependencies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Store-the-config-in-the-environment"><span class="toc-number">3.</span> <span class="toc-text">Store the config in the environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Swappable-local-and-third-party-services"><span class="toc-number">4.</span> <span class="toc-text">Swappable local and third party services</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Build-and-runtime"><span class="toc-number">5.</span> <span class="toc-text">Build and runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Execute-the-app-as-share-nothing-stateless-processes"><span class="toc-number">6.</span> <span class="toc-text">Execute the app as share-nothing stateless processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Export-services-via-port-binding"><span class="toc-number">7.</span> <span class="toc-text">Export services via port binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scale-out-the-app-horizontally"><span class="toc-number">8.</span> <span class="toc-text">Scale out the app horizontally</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fast-startup-and-shutdown"><span class="toc-number">9.</span> <span class="toc-text">Fast startup and shutdown</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keep-development-staging-and-production-as-similar-as-possible"><span class="toc-number">10.</span> <span class="toc-text">Keep development, staging, and production as similar as possible</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Logs-goes-to-stdout"><span class="toc-number">11.</span> <span class="toc-text">Logs goes to stdout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Admin-processes"><span class="toc-number">12.</span> <span class="toc-text">Admin processes</span></a></li></ol>
             </div>
 
             <!-- 300x600 -->
@@ -667,8 +667,8 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
       <div class="container">
         <div class="p-y-2">
           &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
-            v.qfy393
+          <span class="muted m-x-4" title="Mon Aug 31 2020 17:01:13 GMT-0400 (Eastern Daylight Time)">
+            v.qfy521
           </span>
         </div>
       </div>

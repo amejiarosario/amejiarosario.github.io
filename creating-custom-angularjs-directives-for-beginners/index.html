@@ -355,7 +355,7 @@ ga('send', 'pageview');
 <p>In the first line, we initialize an angular module called “myApp”.  That will return an “app” instance where we can start defining our Angular app.</p>
 <p>We start by adding a directive called “myTodo”, notice that is different from “my-todo” that we used in the HTML code above. That’s because, by convention in HTML, tags names words are separated by a hyphen like “my-todo”. On the other hand, in Angular they match the same element with words joint together and capitalizing the beginning of each word, except the first one “myTodo”. This style of joining words is known as “camelCase”.</p>
 <p>You will notice that a directive, takes a name “myTodo” and function. The later returns an object with a number of attributes depending on what we would like to accomplish.  In our case, we have three attributes: restrict, templateUrl, and scope. Let’s explain each one in that exact order.</p>
-<h1 id="Restrict"><a href="#Restrict" class="headerlink" title="Restrict"></a>Restrict</h1><p>The “restrict” attribute tells Angular, with one letter, how are we going to create our new directive. It can take four different values ‘E’, ‘A’, ‘C’, ‘M’ or combination of them like ‘EA’. Each one has it’s own meaning:</p>
+<h2 id="Restrict"><a href="#Restrict" class="headerlink" title="Restrict"></a>Restrict</h2><p>The “restrict” attribute tells Angular, with one letter, how are we going to create our new directive. It can take four different values ‘E’, ‘A’, ‘C’, ‘M’ or combination of them like ‘EA’. Each one has it’s own meaning:</p>
 <table>
 <thead>
 <tr>
@@ -387,7 +387,7 @@ ga('send', 'pageview');
 </tbody></table>
 <p>Taking our To-do example, with the combined value ‘EA’, means that will match any element with our directive as an attribute, and also, it will match any element defined as “<my-todo>”</p>
 <p>It is a good practice only to use restrict to either ‘E’ or ‘A’ or both. Classes ‘C’ and comments ‘M’ could be easily misinterpreted. That’s why we are using just EA.</p>
-<h1 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h1><p>Templates are just HTML code that could be reuse multiple times with different values or text. In order to be generic enough, they use placeholders tied to variables that could be easily replaced. Let’s create the “todo.tpl.html” with the following content:</p>
+<h2 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h2><p>Templates are just HTML code that could be reuse multiple times with different values or text. In order to be generic enough, they use placeholders tied to variables that could be easily replaced. Let’s create the “todo.tpl.html” with the following content:</p>
 <figure class="highlight html"><figcaption><span>todo.tpl.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-repeat</span>=<span class="string">&quot;todo in list&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">ng-model</span>=<span class="string">&quot;todo.completed&quot;</span>&gt;</span> &#123;&#123;todo.name&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
@@ -395,7 +395,7 @@ ga('send', 'pageview');
 <p>We just used our first built-in Angular directive, in this tutorial, “ng-repeat”. This directive is going to take an array of elements, like our list and repeat itself for each one of elements and refer to them as “todo”. In other words, if the list contains 4 tasks, we are going to see 4 checkboxes each one with the name of the individual tasks. We are going to explain where “title” and “list” comes in the next section.</p>
 <p>Going back to our directive definition, we could have used “template” attribute instead of “templateUrl” and take inline html code directly, but often is hard to read and we would prefer to use “templateUrl” and defined as a separated file.</p>
 <p>As you might figure it out, “templateUrl” takes the name of the file containing the template. If all templates and code are in the same directory just the name of the file will do. If they are in a different folder you will need to specify the full path to reach it. To keep it simple, we are going to have all files in a single directory.</p>
-<h1 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h1><p>Scopes are key concept to understand Angular. Scope is what glues JavaScript code with HTML and allow us to replace placeholders from templates with real values.</p>
+<h2 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h2><p>Scopes are key concept to understand Angular. Scope is what glues JavaScript code with HTML and allow us to replace placeholders from templates with real values.</p>
 <p>In our directive definition, we are creating a new “isolated scope” with two elements:</p>
 <figure class="highlight javascript"><figcaption><span>Isolated scope</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scope: &#123;</span><br><span class="line">  list: <span class="string">&#x27;=&#x27;</span>,</span><br><span class="line">  title: <span class="string">&#x27;@&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -405,12 +405,12 @@ ga('send', 'pageview');
 <li><code>=</code> Binds to the value of the expression and to the literal value. This means that if we have an attribute list=“todo” and “todo” is equal to 5, then it will be replaced to 5 and not to the literal text “todo”. In our case, “todo” is going to be an array of tasks.</li>
 </ul>
 <p>Bear in mind, that in Angular we can have multiple scopes. So, our directives could be influenced by outer scopes. For instance, another scope could define “todo” as an array of elements. Here is where we introduce another important concept: controllers.</p>
-<h1 id="Controllers"><a href="#Controllers" class="headerlink" title="Controllers"></a>Controllers</h1><p>The main purpose of controllers is to set initial values the scope and also add behavior through functions. We are going to use a controller to define the “todo” list that we want to render with our newly created directive.</p>
+<h2 id="Controllers"><a href="#Controllers" class="headerlink" title="Controllers"></a>Controllers</h2><p>The main purpose of controllers is to set initial values the scope and also add behavior through functions. We are going to use a controller to define the “todo” list that we want to render with our newly created directive.</p>
 <p>The way we create controllers is by attaching the controller to our Angular app instance. Let’s go back to script.js and append the following:</p>
 <figure class="highlight javascript"><figcaption><span>script.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.controller(<span class="string">&#x27;main&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">  $scope.todo = [</span><br><span class="line">    &#123;<span class="attr">name</span>: <span class="string">&#x27;Create a custom directive&#x27;</span>, <span class="attr">completed</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">name</span>: <span class="string">&#x27;Learn about restrict&#x27;</span>, <span class="attr">completed</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">name</span>: <span class="string">&#x27;Master scopes&#x27;</span>, <span class="attr">completed</span>: <span class="literal">false</span>&#125;</span><br><span class="line">  ];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>Noticed that we defined our controller with the name “main” and pass along a function with the “$scope” parameter. This is important since, whatever we attach to the “$scope” variable it will become available in templates and other directives. We just defined our todo list as an array of objects with two properties name and completed.</p>
-<h1 id="To-do-directive"><a href="#To-do-directive" class="headerlink" title="To-do directive"></a>To-do directive</h1><p>So far, we have been preparing the grounds for our directive. We have created:</p>
+<h2 id="To-do-directive"><a href="#To-do-directive" class="headerlink" title="To-do directive"></a>To-do directive</h2><p>So far, we have been preparing the grounds for our directive. We have created:</p>
 <ul>
 <li>“myApp” module</li>
 <li>“myTodo” directive</li>
@@ -428,9 +428,9 @@ ga('send', 'pageview');
 <iframe style="width: 100%; height: 400px;" src="//embed.plnkr.co/7ZDRclRJaJyTtRBKjIa3/" frameborder="0" allowfullscren="allowfullscren"></iframe>
 
 
-<h1 id="Next-steps"><a href="#Next-steps" class="headerlink" title="Next steps"></a>Next steps</h1><p>By now you should be looking at our new To-do list. We can reuse this new directive with new to-do lists as many times as we want. Just passing different values to “list” in our “my-todo” the browser will be able to render it for us. We can also define another controller with a different $scope.todo and our directive will respond accordantly.</p>
+<h2 id="Next-steps"><a href="#Next-steps" class="headerlink" title="Next steps"></a>Next steps</h2><p>By now you should be looking at our new To-do list. We can reuse this new directive with new to-do lists as many times as we want. Just passing different values to “list” in our “my-todo” the browser will be able to render it for us. We can also define another controller with a different $scope.todo and our directive will respond accordantly.</p>
 <p>We just walked through the main attributes to create directives and discuss how to use them. We learnt how to isolate the scope of our directive and just allow certain parameters into our templates such as “list” and “title”. Also, used the “restrict” attribute to allow our directive be created either as a new HTML element or as an attribute. Finally, we explore how to use templates and bind it with our scope variables.</p>
-<h2 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h2><ul>
+<h3 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h3><ul>
 <li><a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/">AngularJS Tutorial for Beginners</a></li>
 <li><a href="/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/">Angular and Node tutorial</a></li>
 </ul>
@@ -617,7 +617,7 @@ ga('send', 'pageview');
           
             <h3 class="toc-title">Contents</h3>
             <div>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Restrict"><span class="toc-number">1.</span> <span class="toc-text">Restrict</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Template"><span class="toc-number">2.</span> <span class="toc-text">Template</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scope"><span class="toc-number">3.</span> <span class="toc-text">Scope</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Controllers"><span class="toc-number">4.</span> <span class="toc-text">Controllers</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#To-do-directive"><span class="toc-number">5.</span> <span class="toc-text">To-do directive</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Next-steps"><span class="toc-number">6.</span> <span class="toc-text">Next steps</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Related-Posts"><span class="toc-number">6.1.</span> <span class="toc-text">Related Posts</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Restrict"><span class="toc-number">1.</span> <span class="toc-text">Restrict</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Template"><span class="toc-number">2.</span> <span class="toc-text">Template</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scope"><span class="toc-number">3.</span> <span class="toc-text">Scope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Controllers"><span class="toc-number">4.</span> <span class="toc-text">Controllers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#To-do-directive"><span class="toc-number">5.</span> <span class="toc-text">To-do directive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next-steps"><span class="toc-number">6.</span> <span class="toc-text">Next steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Related-Posts"><span class="toc-number">6.1.</span> <span class="toc-text">Related Posts</span></a></li></ol></li></ol>
             </div>
 
             <!-- 300x600 -->
@@ -674,8 +674,8 @@ ga('send', 'pageview');
       <div class="container">
         <div class="p-y-2">
           &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Aug 31 2020 16:22:15 GMT-0400 (Eastern Daylight Time)">
-            v.qfy393
+          <span class="muted m-x-4" title="Mon Aug 31 2020 17:01:13 GMT-0400 (Eastern Daylight Time)">
+            v.qfy521
           </span>
         </div>
       </div>
