@@ -61,7 +61,7 @@ We are going to explore how you can measure your code performance using analysis
 
 First, let’s see a real story to learn why this is important.
 
-# An algorithm that saved millions of lives
+## An algorithm that saved millions of lives
 
 
 During War World II, the Germans used <abbr title="AM broadcasting is a radio broadcasting technology, which employs amplitude modulation transmissions.">AM</abbr> radio signals to communicate with troops around Europe. Anybody with an AM frequency radio and some knowledge of Morse code could intercept the message. However, the information was encoded! All the countries that were under attack tried to decode it. Sometimes, they got lucky and were able to make sense of a couple of messages at the end of the day. Unfortunately, the Nazis changed the encoding every single day!
@@ -74,7 +74,7 @@ _The same machine that was going to get shut down as a failure became a live sav
 
 Another popular algorithm is `PageRank` developed in 1998 by Sergey Brin and Larry Page (Google founders). This algorithm was (and is) used by a Google search engine to make sense of trillions of web pages. Google was not the only search engine. However, since their algorithm returned better results most of the competitors faded away. Today it powers most of 3 billion daily searches very quickly. That is the power of algorithms that scale! 🏋🏻‍
 
-# So, why should you learn to write efficient algorithms?
+## So, why should you learn to write efficient algorithms?
 
 There are many advantages; these are just some of them:
 
@@ -85,7 +85,7 @@ There are many advantages; these are just some of them:
 
 Without further ado, let’s step up our game!
 
-# What are algorithms?
+## What are algorithms?
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/y0kt0BI5IZ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -97,7 +97,7 @@ There are "good" and "bad" algorithms. The good ones are fast; the bad ones are 
 
 We are going to explore the basic concepts of algorithms. Also, we are going to learn how to distinguish “fast” from “slow” ones. Even better, you will be able to “measure” the performance of your algorithms and improve them!
 
-# How to improve your coding skills?
+## How to improve your coding skills?
 
 The first step to improving something is to measure it.
 
@@ -109,7 +109,7 @@ How do you do "measure" your code? Would you clock "how long" it takes to run? W
 
 To answer these questions, we need to nail some concepts first, like **time complexity**!
 
-## Time complexity
+### Time complexity
 
 Time complexity (or **running time**) is the estimated time an algorithm takes to run. However, you do not measure time complexity in seconds, but as a **function** of the input.  (I know it's weird but bear with me).
 
@@ -125,7 +125,7 @@ We can say for each algorithm have the following running times:
 
 We usually care more about the **worst-case time complexity** (We are hoping for the best but preparing for the _worst_).
 
-# Calculating time complexity
+## Calculating time complexity
 
 Here's a code example of how you can calculate the time complexity: *Find the smallest number in an array*.
 
@@ -160,7 +160,7 @@ All in all, we have `3` operations outside the loop and `2` inside the `forEach`
 
 However, this expression is somewhat too specific and hard to compare algorithms with it. We are going to apply the **asymptotic analysis** to simplify this expression further.
 
-## Asymptotic analysis
+### Asymptotic analysis
 
 Asymptotic analysis is just evaluating functions as their value approximate to the infinite. In our previous example `2(n) + 3`, we can generalize it as `k(n) + c`. As the value of `n` grows, the value `c` is less and less significant, as you can see in the following table:
 
@@ -182,7 +182,7 @@ Going back to our example, `getMin`, we can say that this function has a time co
 
 We are interested in the big picture here, and we are going to use the asymptotic analysis to help us with that. With this framework, comparing algorithms, it is much more comfortable. We can compare running times with their most significant term: \`n^2\` or \`n\` or \`2^n\`.
 
-## Big-O notation and Growth rate of Functions
+### Big-O notation and Growth rate of Functions
 
 The Big O notation combines what we learned in the last two sections about **worst-case time complexity** and **asymptotic analysis**.
 

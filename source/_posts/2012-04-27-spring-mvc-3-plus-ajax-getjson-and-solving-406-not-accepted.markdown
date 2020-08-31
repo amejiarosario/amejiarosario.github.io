@@ -8,7 +8,7 @@ toc: true
 pageviews__total: 18511
 pageviews__recent: 11
 pageviews__avg_time: 466
-# categories: [spring mvc, j2ee, jquery, ajax]
+## categories: [spring mvc, j2ee, jquery, ajax]
 alias: /blog/2012/04/27/spring-mvc-3-plus-ajax-getjson-and-solving-406-not-accepted/
 tutorial__order: 0
 tags:
@@ -24,7 +24,7 @@ categories:
 
 <p>After I follow the instructions in <a href="http://blog.springsource.org/2010/01/25/ajax-simplifications-in-spring-3-0/%20" target="_blank">AJAX in Spring 3.0</a> I got some error "406 Not Accepted", so let's explain how to make it work:</p>
 
-# Server Side
+## Server Side
 
 <p>First you need to setup the actions/methods that the ajax client will call and provide that data in a request. In the server side we are going to use Spring MVC and reply using a JSON format.</p>
 <p>1. You need the annotation <strong>&lt;mvc:annotation-driven /&gt;</strong> in your spring.xml or servelet-web-context.xml<br />2. Then, you need to create your controller action that will reply to the AJAX invocation. Let's see the following example. E.g. ProductController.java&nbsp;</p>
@@ -45,7 +45,7 @@ public @ResponseBody Product getItemDescription(@RequestParam String id){
 </ol>
 <p>Use maven or download and place this JARs in the lib manually.</p>
 
-# Client Side
+## Client Side
 
 <p>On the client side, I'm using jQuery and the code looks like this:</p>
 
@@ -94,7 +94,7 @@ $(document).ready(function() {
 <p>&nbsp;</p>
 <p>&nbsp;That's all you need.</p>
 
-# Troubleshooting
+## Troubleshooting
 
 <p>As mentioned before the spring mvc blog explain more in details each of the steps but lack some minor details that are key to make it work. I was getting "406 Not Accepted" because I didn't have the jackson jars that the @ResponseBody needs to convert java objects to JSON. And also you need to add the Accept Request header in the controller.</p>
 <p>Using Firebug in Firefox is very tab Net &gt; XHR you can see all your ajax request and reponses. Very useful for debugging. Hope this save you some time and frustration. Any question or suggestion fee free to comment below or contact me.</p>

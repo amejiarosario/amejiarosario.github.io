@@ -11,7 +11,7 @@ alias: /blog/2016/03/23/how-to-scale-a-nodejs-app-based-on-number-of-users/
 photos:
   - /images/scalabilty_matryoshka_small.png
   - /images/scalabilty_matryoshka_large.png
-#categories: [production, scalability, aws, node, nginx]
+##categories: [production, scalability, aws, node, nginx]
 toc: true
 tutorial__order: 0
 tags:
@@ -33,13 +33,13 @@ The examples and solutions will be as practical as possible. We might use refere
 You may notice, that the measurement we are using is "concurrent user", which means all users are hitting the web app at the same time. It's different from the number of users supported (which might be higher) since it's unlikely that all users are hitting the app at the same time. However, we are going to use "concurrent user" since it's easier to explain.
 
 
-# Local host (1 concurrent users)
+## Local host (1 concurrent users)
 
 You are the only one using your app on your localhost.
 
 There is no need to worry about scale.
 
-# Single Server (2 - 9 concurrent users)
+## Single Server (2 - 9 concurrent users)
 
 You deployed your app to the wild! 👏🏻 You and your colleges (and maybe close friends) are the only users so far.
 
@@ -51,7 +51,7 @@ Your app should be a monolith (single app) right now, and it’s fine. No need t
 
 The "Single Server Setup" is the simplest. Web application and database share the same resources (CPU, Memory RAM, I/O).
 
-# Vertical Scaling (10 - 99 concurrent users)
+## Vertical Scaling (10 - 99 concurrent users)
 
 You decided to talk about your app in your social networks 👍🏻. Your friends from Facebook and other social network start clicking the link to your web app at once and you are getting around 100 users.
 
@@ -66,7 +66,7 @@ This setup has several improvements over the previous one:
 - Nginx takes care of users requests and accomplish two functions: static filers server and reverse proxy. It serve by itself all static files (CSS, JS, Images) without touching the web app. The request that needs the app to resolve are redirected it, this is called reverse proxy.
 - Zero-downtime upgrades.
 
-# Horizontal Scaling (100 - 999 concurrent users)
+## Horizontal Scaling (100 - 999 concurrent users)
 
 Looks like the hard work has paid off and your app continue growing to around 1,000 users! 🙌🏻
 
@@ -87,7 +87,7 @@ At this point, it's better to start scaling horizontally rather than vertically.
 
 Since the Node is very efficient, it will spend most of the time waiting for the database to return data. So, the main limitation will be dictated by the network limits. You might need to play also with `/etc/security/limits.d` and `/etc/sysctl.conf` based on your needs. For instance the maximum number of requests queued are determined by `net.core.somaxconn`, which defaults to 128. Change it to `1024` so we can meet the 100 - 999 range of users. From now on, let's handle 1000 users per application server.
 
-# Multi-servers (1,000+ concurrent users)
+## Multi-servers (1,000+ concurrent users)
 
 The app keeps growing and now we need to prepare to support around 10k users!
 
@@ -106,7 +106,7 @@ In this server setup, we started growing horizontally rather than vertically. In
 
 The cons is that getting this setup is more complicated. Furthermore, since app and db are not in the same server performance issues might arise due to network latency or bandwidth limits. It maximize performance, it's recommended to use private networks with low latency and high speed links.
 
-# Microservices (100,000+ concurrent users)
+## Microservices (100,000+ concurrent users)
 
 This is it! We need to plan the infrastructure to allow us to grow to infinity! ∞
 
@@ -118,7 +118,7 @@ It's time to take down our web app monolith and break it down into multiple smal
 
 If you notice, we have three new components that can scale independently as needed: Users, Products Catalog, and Orders for instance. Another advantages of having microservices is that we can have split the database as well.
 
-# Automate Chores (1,000,000+ concurrent users)
+## Automate Chores (1,000,000+ concurrent users)
 
 OMG! That's so many people, get you champagne bottle out and celebrate 🎉after you automate!
 

@@ -31,7 +31,7 @@ A good way to learn a new framework, It's by doing a Todo app. It's an excellent
 
 Let's first setup the dev environment, so we can focus on Vue! 🖖
 
-# Setup
+## Setup
 
 We are going to start with essential HTML elements and CSS files and no JavaScript. You will learn how to add all the JavaScript functionality using Vue.js.
 
@@ -54,7 +54,7 @@ Try to interact with it. You cannot create a new Todos, nor can you delete them 
 
 Open your favorite code editor (I recommend [Code](https://code.visualstudio.com/)) on `vue-todo-app` directory.
 
-## Package.json
+### Package.json
 
 Take a look at the `package.json` dependencies:
 
@@ -71,7 +71,7 @@ Take a look at the `package.json` dependencies:
 
 We installed `Vue` and `VueRouter` dependencies. Also, we have the nice CSS library for Todo apps and `live-server` to serve and reload the page when we make changes. That's all we would need for this tutorial.
 
-## index.html
+### index.html
 
 Open the `index.html` file.  There we have the basic HTML structure for the Todo app that we are going to build upon:
 
@@ -81,7 +81,7 @@ Open the `index.html` file.  There we have the basic HTML structure for the Todo
 
 Now, you know the basic structure where we are going to work on. Let's get started with Vue! 🖖
 
-# Getting started with Vue
+## Getting started with Vue
 
 As you might know...
 
@@ -89,7 +89,7 @@ As you might know...
 
 It's reactive because the data and the DOM are linked. That means, that when data changes, it automatically updates the DOM. Let's try that!
 
-## Vue Data & v-text
+### Vue Data & v-text
 
 Go to `app.js` and type the following:
 
@@ -157,7 +157,7 @@ Let's do the CRUD (Create-Read-Update-Delete) of a Todo application.
 
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/2d1f2e5)
 
-## READ: List rendering with `v-for`
+### READ: List rendering with `v-for`
 
 As you can see everything starting with `v-` is defined by the Vue library.
 
@@ -178,7 +178,7 @@ You can remove the other `<li>` tag that was just a placeholder.
 
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/3dc4871)
 
-## CREATE Todo and event directives
+### CREATE Todo and event directives
 
 We are going to implement the create functionality. We have a textbox, and when we press enter, we would like to add whatever we typed to the list.
 
@@ -213,7 +213,7 @@ On `enter` we are calling `createTodo` method, but it's not defined yet. Let's d
 
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/fcd305c)
 
-## Applying classes dynamically & Vue `v-bind`
+### Applying classes dynamically & Vue `v-bind`
 
 If you click the checkbox (or checkcirlcle) we would like the class `completed` to be applied to the element. We can accomplish this by using the `v-bind` directive.
 
@@ -227,7 +227,7 @@ Now if a Todo list is completed, it will become cross out. However, if we click 
 
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/2145c36)
 
-## Keep DOM and data in sync with Vue v-model
+### Keep DOM and data in sync with Vue v-model
 
 The todos have a property called `isDone` if it's true we want the checkbox to be marked. That's data -> DOM. We also want if we change the DOM (click the checkbox) we want to update the data (DOM -> data). This bi-directional communication is easy to do using `v-model`, it will keep it in sync for you!
 
@@ -244,7 +244,7 @@ todoApp.todos[2].isDone = true
 ```
 You should see the update. Cool!
 
-## UPDATE todo list with a double-click
+### UPDATE todo list with a double-click
 
 We want to double click on any list and that it automatically becomes a checkbox. We have some CSS magic to do that, the only thing we need to do is to apply the `editing` class.
 
@@ -340,7 +340,7 @@ Cancel is pretty straightforward. It just set editing to null.
 
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/4af7d31)
 
-## DELETE todo list on @click event
+### DELETE todo list on @click event
 
 Finally, the last step to complete the CRUD operations is deleting. We are going to listen for click events on the destroy icon:
 
@@ -359,13 +359,13 @@ also, `destroyTodo` implementation is as follows:
 
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/a73e058)
 
-## Trimming inputs
+### Trimming inputs
 
 It's always a good idea to `trim` user inputs, so any accidental whitespace doesn't get in the way with `textbox.value.trim()`.
 
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/45b4eed44abd9a4cfec3b3977b61fe7031ff6c4e)
 
-## Items left count with  `computed` properties
+### Items left count with  `computed` properties
 
 Right now the `item left` count is always 0. We want the number of remaining tasks.  We could do something like this:
 
@@ -400,7 +400,7 @@ Try completing other tasks and verify that the count gets updated.
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/24ae5a0f74c226325d88a2aaecad9e40b35760fb)
 
 
-## Clearing completed tasks & conditional rendering with `v-show`
+### Clearing completed tasks & conditional rendering with `v-show`
 
 We want to show `clear completed` button only if there are any completed task. We can accomplish this with the `v-show` directive:
 
@@ -427,7 +427,7 @@ Also, we have to add the computed property `completedTodos` that we use in the v
 
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/dd7dd90)
 
-# Vue Conditional Rendering: `v-show` vs `v-if`
+## Vue Conditional Rendering: `v-show` vs `v-if`
 
 `v-show` and `v-if` looks very similar, but they work differently. `v-if` removes the element from the DOM and disable events, while `v-show` hides it with the CSS `display: none;`. So, `v-if` is more expensive than `v-show`.
 
@@ -442,7 +442,7 @@ We can hide the footer and central section if there's no todo list.
 
 [review diff](https://github.com/amejiarosario/vue-todo-app/commit/790b241)
 
-# Local Storage
+## Local Storage
 
 On every refresh, our list gets reset. This is useful for dev but not for users. Let's persist our Todos in the local storage.
 
@@ -479,7 +479,7 @@ We have to use `JSON.parse` because everything gets stored as a string and we ne
 
 `getItem` will retrieve the saved todos from the `localstorage`. However, we are saying it yet. Let's see how we can do that.
 
-# Vue Watchers
+## Vue Watchers
 
 For saving, we are going to use the Vue watchers.
 
@@ -510,7 +510,7 @@ The last part to implement is the routing! However, for that, we need to explain
 
 In the next tutorial, we are going to switch gears a little bit and go deeper into Vue Components, Routing, and Local Storage. Stay tuned!
 
-# Summary: Vue cheatsheet
+## Summary: Vue cheatsheet
 
 We learned a lot! Here is a summary:
 

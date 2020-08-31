@@ -9,7 +9,7 @@ pageviews__total: 9936
 pageviews__recent: 15
 pageviews__avg_time: 397
 alias: /blog/2012/02/04/get-started-with-the-web-crawler-apache-nutch-1-x/
-# categories: [how-to, apache, nutch, search engines, web crawlers]
+## categories: [how-to, apache, nutch, search engines, web crawlers]
 photos:
   - /images/apache_nutch_web_crawler_small.png
   - /images/apache_nutch_web_crawler_large.png
@@ -22,7 +22,7 @@ categories:
 <p>Apache Nutch is an open source <strong>scalable</strong> Web crawler written in Java and based on Lucene/Solr for the indexing and search part.&nbsp;It has a highly modular architecture, allowing developers to create plug-ins for media-type parsing, data retrieval, querying and clustering. [<a href="http://en.wikipedia.org/wiki/Nutch">*</a>]</p>
 <!--More-->
 
-# Motivation
+## Motivation
 
 <div>
 	By using Nutch, we can find web page hyperlinks in an automated manner, reduce lots of maintenance work, for example checking broken links, and create a copy of all the visited pages for searching over. That&rsquo;s where Apache Solr comes in. Solr is an open source full text search framework, with Solr we can search the visited pages from Nutch. Luckily, integration between Nutch and Solr is pretty straightforward.</div>
@@ -45,7 +45,7 @@ categories:
 		quality - you can bias the crawling to fetch &ldquo;important&rdquo; pages first</li>
 </ul>
 
-## Basics about Nutch
+### Basics about Nutch
 
 First you need to know that, Nutch data is composed of:
 
@@ -61,14 +61,14 @@ First you need to know that, Nutch data is composed of:
 6.  **crawl_parse** contains the outlink urls, used to update the crawldb
 
 
-## Nutch and Hadoop
+### Nutch and Hadoop
 
 As of the official Nutch 1.3 release the source code architecture has been greatly simplified to allow us to run Nutch in one of two modes; namely local and deploy. By default, Nutch no longer comes with a Hadoop distribution, however when run in local mode e.g. running Nutch in a single process on one machine, then we use Hadoop as a dependency. This may suit you fine if you have a small site to crawl and index, but most people choose Nutch because of its capability to run on in deploy mode, within a Hadoop cluster. This gives you the benefit of a distributed file system (HDFS) and MapReduce processing style. &nbsp;If you are interested in deployed mode <a href="http://wiki.apache.org/nutch/NutchHadoopTutorial" target="_blank">read here</a>.
 
 
-# Getting hands dirt with Nutch
+## Getting hands dirt with Nutch
 
-## Setup Nutch from binary distribution
+### Setup Nutch from binary distribution
 
 <ol>
 	<li>
@@ -82,7 +82,7 @@ As of the official Nutch 1.3 release the source code architecture has been great
 	&nbsp;</div>
 <div>
 
-## Verify your Nutch installation
+### Verify your Nutch installation
 
 <ol>
 	<li>

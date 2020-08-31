@@ -28,7 +28,7 @@ The <abbr title="MongoDB, Express, Angular and Node.js">MEAN</abbr> stack allows
 
 <!-- more -->
 
-# REST API with Node.js
+## REST API with Node.js
 
 We are going to use express generator and create a folder called `server`.
 
@@ -40,7 +40,7 @@ npm i -g express-generator
 
 Note: You should have Node and NPM/Yarn installed.
 
-## REST API using ExpressJS
+### REST API using ExpressJS
 
 Now let's scaffold the app using the generator:
 
@@ -68,7 +68,7 @@ http://localhost:3000/
 
 > Changes: [a3fcacd](https://github.com/amejiarosario/angular-todo-app/commit/a3fcacd) - REST API using ExpressJS: scaffold
 
-## Creating a host alias for the server
+### Creating a host alias for the server
 
 We want to run the server to work regarless of the enviroment where we run it. (It will be useful for Docker later on)
 
@@ -89,7 +89,7 @@ http://server:3000/
 
 (If you have trouble editing the host file take a look [here](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/))
 
-## Creating API routes and responding to requests
+### Creating API routes and responding to requests
 
 Now we are going to create a new route:
 
@@ -149,7 +149,7 @@ This register the new path `/api/todos`. When we get any call on this path, our 
 You can run restart your server, or use nodemon to pick up changes and refresh browser.
 
 ```sh
-# npm i -g nodemon
+## npm i -g nodemon
 nodemon server/bin/www
 ```
 
@@ -158,7 +158,7 @@ That should get running your server, now you can see it in action using CURL:
 
 ```sh
 curl -XGET server:3000/api/todos
-# curl -XGET localhost:3000/api/todos
+## curl -XGET localhost:3000/api/todos
 ```
 
 This command should get you all the lists in JSON format!
@@ -168,7 +168,7 @@ After that, we are going complete the rest of operations (update, delete, create
 
 > [6f8a502](https://github.com/amejiarosario/angular-todo-app/commit/6f8a502) - Creating API routes and responding to requests
 
-# Connecting REST API with Angular App.
+## Connecting REST API with Angular App.
 
 Let's now prepare our angular App to use the server API that just created.
 
@@ -176,7 +176,7 @@ As you might now, when you run `ng serve`, it will trigger a development server.
 However, out API is a completely different server. To be able to connect the two, we need create a proxy.
 
 
-## Creating a proxy in Angular to talk to the API server
+### Creating a proxy in Angular to talk to the API server
 
 Let's create a new file, that will tell Angular when to look for certain HTTP paths.
 In this case, we are going to defer all `/api` to our express server.
@@ -235,7 +235,7 @@ Next, we are going to make use of this new routes!
 > [e81ddb8](https://github.com/amejiarosario/angular-todo-app/commit/e81ddb8) - Creating a proxy in Angular to talk to the API server
 
 
-## Using HTTP Client to talk to server
+### Using HTTP Client to talk to server
 
 To talk to the server we are going to use the `HttpClient` module.
 
@@ -310,14 +310,14 @@ That's it, let's test it out!
 Run this commands on your terminal:
 
 ```sh
-# run node server
+## run node server
 nodemon server/bin/www
 ```
 
 on another terminal session run also:
 
 ```sh
-# run angular app
+## run angular app
 ng serve
 ```
 
@@ -327,7 +327,7 @@ If you are running `nodemon`, you can change the TODOS on `server/routes/todos.j
 
 But, we don't want to have hard-coded tasks. Let's create a proper DB with Mongo.
 
-# Setting up MongoDB
+## Setting up MongoDB
 
 It's time to get MongoDB up and running. If don't have it install, you have a couple of options:
 
@@ -368,7 +368,7 @@ It's time to get MongoDB up and running. If don't have it install, you have a co
 We are going to use docker since it's a nice way to have everything running together with one command.
 Also, you can deploy it to the cloud and scale it easily.
 
-## Dockerizing the MEAN stack
+### Dockerizing the MEAN stack
 
 Let's get everything running (Node Server, Angular and Mongo).
 We are going to create a docker-compose file, where is going to list all our services and we can run them all at once.
@@ -424,7 +424,7 @@ Now we can make use of mongo. Keep docker-compose running and now let's remove t
 
 > [0763db0](https://github.com/amejiarosario/angular-todo-app/commit/0763db0) - docker compose
 
-## Creating MongoDB schema with Mongoose
+### Creating MongoDB schema with Mongoose
 
 Let's install Mongoose, which is a library for managing MongoDB from Node.js.
 
@@ -486,7 +486,7 @@ The `updated_at` will update automatically when we create a new todo.
 
 > [b2674f3](https://github.com/amejiarosario/angular-todo-app/commit/b2674f3) - Creating MongoDB schema with Mongoose
 
-## Adding all all the API routes to modify data in DB
+### Adding all all the API routes to modify data in DB
 
 Let's all the routes to be able to create, read, update and delete data from Mongo.
 
@@ -566,13 +566,13 @@ In the next section, we are going to tests them using `curl` and then integrated
 
 > [f4f2281](https://github.com/amejiarosario/angular-todo-app/commit/f4f2281) - Adding all all the API routes to modify data in DB
 
-## Testing the API CRUD operations
+### Testing the API CRUD operations
 
 Since we install a new package `mongoose`, we have to run `npm install` in the docker containers. Otherwise, file changes are pick up automatically and you don't need to restart.
 
 Stop `docker-compose` and start it again `docker-compose up --build`.
 
-### Creating a new task and getting lists
+#### Creating a new task and getting lists
 
 You can create a new taks using the following command:
 
@@ -594,7 +594,7 @@ You should have got soemthing like this:
 
 You can also check Angular on http://localhost:4200/all. The new task should be there!
 
-### Update data with PUT method
+#### Update data with PUT method
 
 If you remember from your routes file, we are using the method PUT to update tasks.
 
@@ -622,7 +622,7 @@ curl -XPUT server:3000/api/todos/5edc2a6d0c41d60054ad715f -H "Content-Type: appl
 
 As you can see in the last update, we can modified existing field and also add new values like the `note` field.
 
-### Erasing data with DELETE method
+#### Erasing data with DELETE method
 
 For our todo route, we also defined the DELETE method. Similar to update, we need to pass and `id`.
 
@@ -648,14 +648,14 @@ If you check the UI, all tasks will be gone: http://localhost:4200/all.
 
 As much fun as `curl` is, let's move on an complete all these functionalities in Angular.
 
-# Angular Service to talk to server
+## Angular Service to talk to server
 
 There are two main changes that we need to make, in other to use the API server.
 
 1) We need to change the `TodoService` service to use HTTP client.
 2) Change the `TodoComponent` compoenent to use the methods.
 
-## Angular service using HTTP client
+### Angular service using HTTP client
 
 In the following code, we using the HTTP client to make the appropiate calls:
 
@@ -715,7 +715,7 @@ Let's now change the TodoComponent that goes along with these changes.
 > [a93291c](https://github.com/amejiarosario/angular-todo-app/commit/a93291c) - Angular service using HTTP client
 
 
-## Angular TodoComponet updates
+### Angular TodoComponet updates
 
 Here's what your component should look like this:
 
@@ -790,7 +790,7 @@ export class TodoComponent implements OnInit {
 
 Let's go over each part on the next sections.
 
-### Sending Queries with HTTP GET
+#### Sending Queries with HTTP GET
 
 In the component, one the first thing we do is check the route params (path):
 
@@ -822,7 +822,7 @@ To recap, these buttons use the router link. So, every time you click on them, t
 ```
 After we change the url, the next thing we do is to call `getTodos`. Let's see that next.
 
-### Get all todos
+#### Get all todos
 
 We can get all services using the following:
 
@@ -844,7 +844,7 @@ The `getTodos` receives an argument (`route`) with the path which will be one of
 
 > [e33d540](https://github.com/amejiarosario/angular-todo-app/commit/e33d540) - Angular TodoComponet updates
 
-### Modifying the todos
+#### Modifying the todos
 
 All the other operations, like update, clear, toggle are very similar. They trigger an action and then call `getTodos` so the UI is up to date with the latest changes.
 

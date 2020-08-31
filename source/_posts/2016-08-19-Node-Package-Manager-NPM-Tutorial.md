@@ -28,23 +28,23 @@ Node Package Manager (NPM) is a CLI tool to manage dependencies. It also allows 
 
 In this section, we are going to get hands-on NPM. We will cover how to install it to how to download, uninstall, and manage packages. While we are doing this, we will use practical examples to drive the concepts home.
 
-# How to install/update NPM?
+## How to install/update NPM?
 
 <abbr title="Node Package Manager">NPM</abbr> is bundle into the Node installation. So, if you have Node, then you have <abbr title="Node Package Manager">NPM</abbr> already. But, <abbr title="Node Package Manager">NPM</abbr> gets updated more often than Node. So, from time to time you need to get the latest version.
 
 You can check the NPM version and install latest  by running:
 
 ```bash Installing NPM
-# get version
+## get version
 npm -v
 
-# update NPM to latest and greatest
+## update NPM to latest and greatest
 npm install -g npm
 ```
 
 You can also use the shortcut for `npm install` like `npm i`.
 
-# How to start a NodeJs project?
+## How to start a NodeJs project?
 
 Node projects and packages use a particular file called `package.json`. It contains dependencies and more information to run the project. Let's start by creating that using the `npm init` command. We are going to call our project `meanshop2`, but call it whatever you want ;)
 
@@ -72,17 +72,17 @@ This set of commands created a new folder called `meanshop2`. The `init` command
 
 Feel free to edit any of the properties values, such as author, description. Note that the version starts with `1.0.0`. We are going to talk more about versioning later on this tutorial.
 
-# How to download NPM packages?
+## How to download NPM packages?
 
 You can download <abbr title="Node Package Manager">NPM</abbr> packages using `npm install <package_name>`. By default, npm will grab the latest version, but you can also specify an exact version.
 
 Let's install two packages `lodash` and `express` as follows:
 
 ```bash Installing NPM packages
-# install latest and save on package.json
+## install latest and save on package.json
 npm install lodash --save
 
-# install specific version and save dep on package.json
+## install specific version and save dep on package.json
 npm install express@4.14.0 --save
 ```
 
@@ -109,19 +109,19 @@ The `save=true` will make that the packages get auto-installed. `save-exact=true
 To sum up, here are the commands:
 
 ```bash NPM install commands
-# install a package globally
+## install a package globally
 npm install -g <package_name>
 
-# install a package locally (node_modules)
+## install a package locally (node_modules)
 npm install <package_name>
 
-# install a package locally and save it as dependency (package.json)
+## install a package locally and save it as dependency (package.json)
 npm install <package_name> --save-dev
 
-# install package locally, save it as a dependency with the exact version
+## install package locally, save it as a dependency with the exact version
 npm install <package_name> --save   --save-exact
 
-# install all dependencies listed in package.json
+## install all dependencies listed in package.json
 npm install
 ```
 
@@ -129,21 +129,21 @@ Usually, you use `--save-dev` vs. `--save` when you need use package that is not
 
 You can search for all NPM modules on [npmjs.com](https://www.npmjs.com/browse/star)
 
-# How to view my installed NPM packages?
+## How to view my installed NPM packages?
 
 Sometimes it is useful to see the list of packages that you have installed on your system. You can do that with the following commands:
 
 ```bash List packages
-# list all installed dependencies
+## list all installed dependencies
 npm ls --depth=0
 
-# list all installed globally dependencies
+## list all installed globally dependencies
 npm ls -g --depth=0
 ```
 
 You can use `--depth=0` to prevent listing the dependencies' dependencies.
 
-# What is SemVer?
+## What is SemVer?
 
 Semantic Versioning (<abbr title="Semantic Versioning">SemVer</abbr>) is versioning convention composed of three numbers: `Major.Minor.Patch` or also `Breaking.Feature.Patch`:
 
@@ -163,25 +163,25 @@ Like this:
 
 As you could imagine, not all developers respect the Semantic Version rules. Try to follow the rules yourself, but don't trust that all will do. You can have your project working well with a `1.0.8` version and all in a sudden it breaks with `1.0.9`. It happened to me before, so I prefer to use: `--save-exact`, when it makes sense.
 
-# How to uninstall NPM packages?
+## How to uninstall NPM packages?
 
 You can uninstall <abbr title="Node Package Manager">NPM</abbr> packages using the following commands:
 
 ```bash Uninstalling NPM packages
-# uninstall the package and leave it listed as dep
+## uninstall the package and leave it listed as dep
 npm uninstall lodash
 
-# uninstall and remove from dependencies
+## uninstall and remove from dependencies
 npm uninstall --save lodash
 
-# uninstall global package
+## uninstall global package
 npm uninstall -g <package_name>
 
-# remove uninstalled packages from node_modules
+## remove uninstalled packages from node_modules
 npm prune # remove extraneous
 ```
 
-# Summary
+## Summary
 
 <abbr title="Node Package Manager">NPM</abbr> is a powerful tool. It helps us to create Node projects/modules, manage its dependencies, and much more. In this section, we covered the main commands that you would most often.
 

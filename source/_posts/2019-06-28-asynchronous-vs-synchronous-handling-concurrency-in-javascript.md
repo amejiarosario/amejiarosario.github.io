@@ -48,7 +48,7 @@ But not everything is lost! You can use that time to perform other tasks if you 
 
 <hr>
 
-# Synchronous vs. Asynchronous in Node.js
+## Synchronous vs. Asynchronous in Node.js
 
 Let's see how we can develop non-blocking code that squeezes out the performance to the maximum.
 Synchronous code is also called "blocking" because it halts the program until all the resources are available. However, asynchronous code is also known as "non-blocking" because the program continues executing and doesn't wait for external resources (I/O) to be available.
@@ -59,7 +59,7 @@ We are going to compare two different ways of reading files using a blocking I/O
 
 First, consider the following blocking code.
 
-## Synchronous code for reading from a file in Node.js
+### Synchronous code for reading from a file in Node.js
 
 ```js
 const fs = require('fs');
@@ -102,7 +102,7 @@ As you can see, asynchronous functions can handle more operations while it waits
 
 Let's see an example of reading from a file using the asynchronous code.
 
-## Asynchronous code for reading from a file in Node.js
+### Asynchronous code for reading from a file in Node.js
 
 We can read from the file without blocking the rest of the code like this:
 
@@ -144,7 +144,7 @@ The `end` comes before the file output because the program doesn't halt and cont
 
 That's cool, but does it make a lot of difference? It does, let's bigger files and time it!
 
-## Blocking vs. Non-Blocking I/O model Benchmark
+### Blocking vs. Non-Blocking I/O model Benchmark
 
 For this benchmark, let's read a big file. I just went to my downloads and took the heaviest. (You can try this experiment at home and comment your results)
 
@@ -230,7 +230,7 @@ Take a look at this picture:
 
 That async programs will take as long the most time-consuming task. It executes tasks in parallel while the blocking model does it in sequence.
 
-# Advantages of non-blocking code
+## Advantages of non-blocking code
 
 Non-blocking code is much more performant. Blocking code waste around 90% of CPU cycles waiting for the network or disk to get the data. Using non-blocking code is a more straightforward way to have concurrency without having to deal with multiple execution threads.
 

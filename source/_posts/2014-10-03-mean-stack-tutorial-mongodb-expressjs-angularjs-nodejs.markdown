@@ -8,7 +8,7 @@ pageviews__total: 251909
 pageviews__recent: 90
 pageviews__avg_time: 1122
 toc: true
-#categories: [angularjs, javascript, nodejs, mongodb, mean stack]
+##categories: [angularjs, javascript, nodejs, mongodb, mean stack]
 photos:
   - /images/mean_small.png
   - /images/mean_large.png
@@ -38,7 +38,7 @@ MEAN Stack tutorial series:
 
 Before completing the app, let's cover some background about the this stack. If you rather jump to the hands-on part click here to <a href="#start">get started</a>.
 
-# Why MEAN stack?
+## Why MEAN stack?
 
 <a href="#start">TL; DR</a>: NodeJS has been built from bottom up a non-blocking I/O paradigm, which gives you more efficiency per CPU core than using threads in other languages like [Java](http://strongloop.com/strongblog/node-js-is-faster-than-java/).
 
@@ -67,11 +67,11 @@ Some companies like [Paypal](https://www.paypal-engineering.com/2013/11/22/node-
 The community behind Javascript is quite vibrant. It has permeated in almost all the fields of technology: data visualization, server-side, databases, robotics, building tools and many more.
 
 <a id="start"></a>
-# TODO app with MEAN
+## TODO app with MEAN
 
 In this section are going to put together everything that we learnt in the [two](/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/) [previous](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/) tutorials.
 
-## MEAN Backend with MongoDB, ExpressJS and NodeJS
+### MEAN Backend with MongoDB, ExpressJS and NodeJS
 
 In the [previous post](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/), we have gone through the process of building a RESTful API and we are going to be building on top of that. [Repository here](https://github.com/amejiarosario/todoAPIjs).
 
@@ -80,7 +80,7 @@ In the [previous post](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nod
 git clone https://github.com/amejiarosario/todoAPIjs.git
 ```
 
-## MEAN stack front-end with AngularJS
+### MEAN stack front-end with AngularJS
 
 Similarly, we have build a very lean todoApp in the [first part](/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/) of this tutorial. You can [download the file](https://gist.githubusercontent.com/amejiarosario/068143b53e54db43ef38/raw/ngTodo.html) to follow along and see it in action [here](https://cdn.rawgit.com/amejiarosario/068143b53e54db43ef38/raw/ngTodo.html). You might notice the angularJS app is very simple and even it is entirely in one file for simplicity sake. In further tutorials, we are going to make it more modular, split in files, add tests and stylesheets.
 
@@ -109,9 +109,9 @@ The best place to load our `./views/index.ejs`. So let's copy the body content f
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/ebf20f4093aa20c867777b4b3db825429b54a20d)
 
-# Wiring up the App
+## Wiring up the App
 
-## AngularJS Read with $http
+### AngularJS Read with $http
 
 As you might notice, in the factory, we have a fixed array. We need to change it to communicate with the API that we just build.
 
@@ -170,7 +170,7 @@ or if you have it installed
 nodemon
 ```
 
-## AngularJS Read with $resource
+### AngularJS Read with $resource
 
 If you click in one of the Todo elements and get redirected to the detail page, you will not see anything yet. We need to update the `TodoDetailCtrl` first. Even though we already have the GET verb working. We have a different URL requirement for `/todos/:id` for the other methods. There’s an Angular service that has a higher level of abstraction of $http to deal with RESTful requests. It is called `$resource`.
 
@@ -223,7 +223,7 @@ Angular will render an empty `$scope.todos`. but, when `Todos.query()` comes wit
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/2aff6fe004bf7f7b2cd1b91d53e6958c3b158a20)
 
-## AngularJS Create
+### AngularJS Create
 
 We will need to create a new text box, a button to send a `POST` request to server and add it to the `$scope`.
 
@@ -257,7 +257,7 @@ Notice that we are using a new directive `ng-click`, this one executes a functio
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/46dd14023e2d9eff72d1366dbba9c9c8c872e07b)
 
-## Show Todo details
+### Show Todo details
 
 Every time you click a todo link, it is showing an empty fields. Let's fix that. First we need set the real `_id` to the links instead of `$index`.
 
@@ -283,7 +283,7 @@ Now you should be able to see the details :)
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/2484107294163a25621fba3785601adb32229ae9)
 
-## AngularJS Update (in-line editing)
+### AngularJS Update (in-line editing)
 
 This is going to be a very cool feature. Let's meet these new directives:
 
@@ -391,7 +391,7 @@ Similarly, we added an update method. However, this time we do not need to pass 
 
 [diff](https://github.com/amejiarosario/todoAPIjs/commit/b6394448e1e1e8384815877df764507d6562dc4d)
 
-## AngularJS Delete
+### AngularJS Delete
 
 These are the changes added to perform the remove functionality:
 
@@ -431,7 +431,7 @@ When we remove elements from the todos array `$scope.todos.splice(index, 1)` the
 
 > **Congratulations! You are now a MEAN developer!**
 
-# What's next?
+## What's next?
 
 Learn how to use GruntJS to automate repetitive tasks in your MEAN Stack workflow.
 
@@ -439,7 +439,7 @@ Learn how to use GruntJS to automate repetitive tasks in your MEAN Stack workflo
 
 Also, you can learn more about full-stack framework solutions.
 
-## Full-Stack Javascript Web Frameworks
+### Full-Stack Javascript Web Frameworks
 
 What we did in these three series tutorial could have been done with just few keystrokes in the comamnd line ;). However, it's good to know what's going on. But at this point you do. So, I will introduce you to some frameworks that can save you a lot of time.
 
@@ -451,7 +451,7 @@ What we did in these three series tutorial could have been done with just few ke
 
 [MeanJS](http://meanjs.org/) it is a fork from the creator of MEAN.IO, it uses Yeoman generators to generate Angular’s CRUD modules, routes, controllers, views, services, and more. Also has generators for Express: models, controllers, routes and tests. It has excellent documentation.
 
-## Others Frameworks to look at
+### Others Frameworks to look at
 
 * [Meteor](https://www.meteor.com/) - Meteor is an open-source platform for building top-quality web apps in a fraction of the time, whether you're an expert developer or just getting started.
 * [Sails](http://sailsjs.org/) - The web framework of your dreams.

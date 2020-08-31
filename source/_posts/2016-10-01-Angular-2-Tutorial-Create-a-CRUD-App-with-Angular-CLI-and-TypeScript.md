@@ -25,7 +25,7 @@ updated: 2019-11-06 10:46:23
 
 This tutorial gets you off the ground with Angular. We are going to use the official CLI (command line) tool to generate boilerplate code.
 
-# Prerequisites
+## Prerequisites
 
 This tutorial is targeted to people familiar with JavaScript and HTML/CSS. You also will need:
 
@@ -35,9 +35,9 @@ This tutorial is targeted to people familiar with JavaScript and HTML/CSS. You a
 You can verify by typing:
 ```bash
 node --version
-# v12.13.0
+## v12.13.0
 npm --version
-# 6.12.0
+## 6.12.0
 ```
 
 If you get the versions Node 4.x.x and NPM 3.x.x. or higher you are all set. If not, you have to get the latest versions.
@@ -47,18 +47,18 @@ Let's move on to Angular. We are going to create a Todo app. We will be able to 
 - Live Demo: [Angular Todo app preview](https://angular-todo-app-crud.netlify.com)
 - Repository [angular-todo-app](https://github.com/amejiarosario/angular-todo-app)
 
-# Understanding ng new
+## Understanding ng new
 
 Angular CLI is the best way to get us started. We can download the tool and create a new project by running:
 
 ```bash
-# install angular-cli globally
+## install angular-cli globally
 npm install -g @angular/cli@9.1.7
-# npm install -g @angular/cli # get latest
+## npm install -g @angular/cli # get latest
 
-# Check angular CLI is installed
+## Check angular CLI is installed
 ng --version
-# Angular CLI: 9.1.7 ...
+## Angular CLI: 9.1.7 ...
 ```
 
 You can update to the lastest versions in the future using:
@@ -71,7 +71,7 @@ The rest of the steps remain the same regarless of the version.
 
 Scafold the app using the following command.
 ```bash
-# create a new project
+## create a new project
 ng new Todos --style=scss
 ```
 
@@ -89,7 +89,7 @@ Let's run the app!
 
 ```bash
 cd Todos
-# builds the app and run it on port 9000
+## builds the app and run it on port 9000
 ng serve ---port 9000
 ```
 
@@ -97,11 +97,11 @@ Open your browser on http://localhost:9000/, and you should see "Todos app is ru
 
 Now let's dive into the `src` folder and get familiarized with the structure.
 
-## package.json
+### package.json
 
 Open the `package.json` file and take a look at the dependencies. We have all the angular dependencies with the prefix `@angular/...`. Other dependencies (not exclusively for Angular) are also needed, such as RxJS, Zone.js, and some others. We are going to cover them in other posts.
 
-## src/index.html
+### src/index.html
 
 We are building an SPA (single page application), so everything is going to be loaded into the `index.html`. Let's take a look in the `src/index.html`. It's pretty standard HTML5 code, except for two elements that are specific for our app:
 
@@ -112,7 +112,7 @@ We are building an SPA (single page application), so everything is going to be l
 
 `<app-root>` this is not a standard HTML tag. Our Angular App defines it. It's an Angular **component**. More on this later.
 
-## src/main.ts
+### src/main.ts
 
 `main.ts` is where our application starts bootstrapping (loading). Angular can be used not just in browsers, but also on other platforms such as mobile apps or even desktop apps. So, when we start our application, we have to specify what platform we want to target. That's why we import: `platform-browser-dynamic`. Notice that we are also importing the `AppModule` from `./app.module`.
 
@@ -124,7 +124,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 
 We are loading our `AppModule` into the browser platform. Now, let's take a look at the `./app/app.module.ts` directory.
 
-## App directory
+### App directory
 
 The `app` directory contains the components used to mount the rest of the application. In this directory, you can find the app module, component and routing.
 
@@ -132,7 +132,7 @@ If you remember in the `index.html`, there's a  `<app-root>`. This is where this
 
 Let's start by opening `app.module`.
 
-### app.module.ts
+#### app.module.ts
 
 We are going to be using this file often. The most important part is the metadata inside the `@NgModule`. There we have `declarations`, `imports`, `providers` and `bootstrap`.
 
@@ -140,7 +140,7 @@ We are going to be using this file often. The most important part is the metadat
 - **Imports**: routes and modules go here.
 - **Bootstrap**: list the components you want to load when the app starts. In our case is `AppComponent`.
 
-### app.component.ts
+#### app.component.ts
 
 `AppComponent` looks a little similar to the app module, but instead of `@NgModule` we have `@Component`. Again, the most important part is the value of the attributes (metadata). We have `selector`, `templateUrl` and `styleUrls`:
 
@@ -173,7 +173,7 @@ You should see the new message.
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/bf23970">[changes diff]</a>
 
-# Creating a new Component with Angular CLI
+## Creating a new Component with Angular CLI
 
 Let's create a new component to display the tasks. We can quickly create by typing:
 
@@ -211,7 +211,7 @@ If you have `ng serve` running, it should automatically update and show `todo wo
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/64e8060">[changes diff]</a>
 
-# Todo Template
+## Todo Template
 
 "todo works!" is not useful. Let's change that by adding some HTML code to represent our todo tasks. Go to the `src/app/todo/todo.component.html` file and copy-paste this HTML code:
 
@@ -276,7 +276,7 @@ The above HTML code has the general structure about how we want to represent our
 
 Next, let's add some styling!
 
-# Styling the todo app
+## Styling the todo app
 
 We are going to use a community maintained CSS for Todo apps. We can go ahead and download the CSS:
 
@@ -286,7 +286,7 @@ npm install --save todomvc-app-css
 
 This will install a CSS file that we can use to style our Todo app and make it look nice. In the next section, we are going to explain how to use it with the `angular-cli.json`.
 
-# Adding global styles to angular.json
+## Adding global styles to angular.json
 
 `angular.json` is a special file that tells the Angular CLI how to build your application. You can define how to name your root folder, tests and much more. What we care right now, is telling the angular CLI to use our new CSS file from the node modules. You can do it by adding the following line into the `styles` array:
 
@@ -310,7 +310,7 @@ We have the skeleton so far. Now we are going to make it dynamic and allow users
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/d3106d7">[changes diff]</a>
 
-# Todo Service
+## Todo Service
 
 Let's first start by creating a service that contains an initial list of tasks that we want to manage. We are going to use a `service` to manipulate the data. Let's create the service with the CLI by typing:
 
@@ -327,7 +327,7 @@ CREATE src/app/todo/todo.service.ts (133 bytes)
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/9e5d935">[changes diff]</a>
 
-# CRUD Functionality
+## CRUD Functionality
 
 For enabling the create-read-update-delete functionality, we are going to be modifying three files:
 
@@ -337,7 +337,7 @@ For enabling the create-read-update-delete functionality, we are going to be mod
 
 Let's get started!
 
-## READ: Get all tasks
+### READ: Get all tasks
 
 Let's modify the `todo.service` to be able to get tasks:
 
@@ -438,7 +438,7 @@ Now, let's go over what we just did. We can see that we added new data-binding i
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/83c0c17">[changes diff]</a>
 
-## CREATE: using the input form
+### CREATE: using the input form
 
 Let's start with the template this time. We have an input element for creating new tasks. Let's listen to changes in the input form and when we click enter it creates the TODO.
 
@@ -501,7 +501,7 @@ Now it should add new tasks to the list!
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/dd432b4">[changes diff]</a>
 
-## UPDATE: on double click
+### UPDATE: on double click
 
 Let's add an event listener to double-click on each todo. That way, we can change the content. Editing is tricky since we need to display an input form. Then when the user clicks enter it should update the value. Finally, it should hide the input and show the label with the updated value. Let's do that by keeping a temp variable called `editing` which could be true or false.
 
@@ -558,7 +558,7 @@ Now, give it a try again. We can edit tasks! Yay!
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/f1270ef">[changes diff]</a>
 
-## DELETE: clicking X
+### DELETE: clicking X
 
 This is like the other actions. We add an event listenter on the destroy button, on line 20:
 
@@ -594,7 +594,7 @@ Now test it out in the browser!
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/a4aeaa4">[changes diff]</a>
 
-# Routing and Navigation
+## Routing and Navigation
 
 It's time to activate the routing. When we click on the `active` button, we want to show only the ones that are active. Similarly, we want to filter by `completed`. Additionally, we want to the filters to change the route `/active` or `/completed` URLs.
 
@@ -646,7 +646,7 @@ Test the app in the browser and verify that now the URL is by default `http://lo
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/2e2bae9">[changes diff]</a>
 
-## Using routerLink and ActivatedRoute
+### Using routerLink and ActivatedRoute
 
 `routerLink` is the replacement of `href` for our dynamic routes. We have set it up to be `/all`, `/complete` and `/active`. Notice that the expression is an array. You can pass each part of the URL as an element of the collection.
 
@@ -703,7 +703,7 @@ Go to the browser and check out that the URL matches the active button. But, it 
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/b3487a2">[changes diff]</a>
 
-## Filtering data based on the route
+### Filtering data based on the route
 
 To filter todos by active and completed, we need to pass a parameter to the `todoService.get`.
 
@@ -748,7 +748,7 @@ That's pretty much it for filtering and routes, test it out!
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/b87857d">[changes diff]</a>
 
-# Clearing out completed tasks
+## Clearing out completed tasks
 
 One last UI functionality, clearing out completed tasks button. Let's first add the click event on the template:
 
@@ -784,7 +784,7 @@ That's it we have completed all the functionality.
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/30c699b">[changes diff]</a>
 
-# Checking off tasks enhancements
+## Checking off tasks enhancements
 
 When we click on the checkbox, it gets the mark. However, the tasks doesn't get crossout.
 
@@ -827,7 +827,7 @@ We are returning a promise, in case we later want to replace the in-memory array
 
 <a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/0affc59">[changes diff]</a>
 
-# Deploying the app
+## Deploying the app
 
 You can generate all your assets for production running this command:
 
@@ -859,7 +859,7 @@ Replace `/angular-todo-app/` with the name of your project name. Finally, go to 
 
 ![image](https://user-images.githubusercontent.com/418605/43802468-dd515c14-9a63-11e8-8262-b5b837170640.png)
 
-# Troubleshooting
+## Troubleshooting
 
 If when you compile for production you get an error like:
 
@@ -878,7 +878,7 @@ src/app/todo/todo.component.html(7,8): : Property 'newTodo' is private and only 
 Then you need to change `private` to `public` like [this](https://github.com/amejiarosario/angular-todo-app/commit/cbf4e20). This is because the Template in Angular is treated like a separate class.
 
 
-# What's next? Build Server API
+## What's next? Build Server API
 
 Check out this next post to learn how to build an API and connect it with this angular app:
 

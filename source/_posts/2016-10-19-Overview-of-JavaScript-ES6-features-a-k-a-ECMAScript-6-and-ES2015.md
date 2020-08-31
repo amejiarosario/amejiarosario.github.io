@@ -22,7 +22,7 @@ updated: 2016-10-25 12:02:34
 
 JavaScript has changed quite a bit in the last years. These are 12 new features that you can start using today!
 
-# JavaScript History
+## JavaScript History
 
 The new additions to the language are called ECMAScript 6. It is also referred as ES6 or ES2015+.
 
@@ -32,7 +32,7 @@ Since JavaScript conception on 1995, it has been evolving slowly. New additions 
 
 As you can see, there are gaps of 10 and 6 years between the ES3, ES5, and ES6. The new model is to make small incremental changes every year. Instead of doing massive changes at once like happened with ES6.
 
-# Browsers Support
+## Browsers Support
 
 All modern browser and environments support ES6 already!
 
@@ -43,7 +43,7 @@ Chrome, MS Edge, Firefox, Safari, Node and many others have already built-in sup
 
 Let's get started with ECMAScript 6!
 
-# Core ES6 Features
+## Core ES6 Features
 
 You can test all these code snippets on your browser console!
 
@@ -51,7 +51,7 @@ You can test all these code snippets on your browser console!
 
 So don't take my word and test every ES5 and ES6 example. Let's dig in 💪
 
-## Block scope variables
+### Block scope variables
 
 With ES6, we went from declaring variables with `var` to  use `let`/`const`.
 
@@ -165,7 +165,7 @@ You can also use `const` if you don't want a variable to change at all.
 - Use `const` for all your references; avoid using `var`.
 - If you must reassign references, use `let` instead of `const`.
 
-## Template Literals
+### Template Literals
 
 We don't have to do more nesting concatenations when we have template literals. Take a look:
 
@@ -183,7 +183,7 @@ const last = 'Mejia';
 console.log(`Your name is ${first} ${last}.`);
 ```
 
-## Multi-line strings
+### Multi-line strings
 
 We don't have to concatenate strings + `\n` anymore like this:
 
@@ -215,7 +215,7 @@ console.log(template);
 
 Both pieces of code will have exactly the same result.
 
-## Destructuring Assignment
+### Destructuring Assignment
 
 ES6 desctructing is very useful and consise. Follow this examples:
 
@@ -369,7 +369,7 @@ As you can see, destructing is very useful and encourages good coding styles.
 - Use array destructing to get elements out or swap variables. It saves you from creating temporary references.
 - Don't use array destructuring for multiple return values, instead use object destructuring
 
-## Classes and Objects
+### Classes and Objects
 
 With ECMAScript 6, We went from "constructor functions" 🔨 to "classes" 🍸.
 
@@ -415,7 +415,7 @@ As we saw, both styles (ES5/6) produces the same results behind the scenes and a
 - Always use `class` syntax and avoid manipulating the `prototype` directly. Why? because it makes the code more concise and easier to understand.
 - Avoid having an empty constructor. Classes have a default constructor if one is not specified.
 
-## Inheritance
+### Inheritance
 
 Building on the previous `Animal` class. Let's say we want to extend it and define a `Lion` class
 
@@ -469,7 +469,7 @@ Looks how legible this ES6 code looks compared with ES5 and they do exactly the 
 > Best practices:
 - Use the built-in way for inherintance with `extends`.
 
-## Native Promises
+### Native Promises
 
 We went from callback hell 👹 to promises 🙏
 
@@ -514,7 +514,7 @@ printAfterTimeout('Hello ', 2e3).then((result) => {
 
 As you can see, with promises we can use `then` to do something after another function is done. No more need to keep nesting functions.
 
-## Arrow functions
+### Arrow functions
 
 ES6 didn't remove the function expressions but it added a new one called arrow functions.
 
@@ -544,7 +544,7 @@ const ids = [291, 288, 984];
 const messages = ids.map(value => `ID is ${value}`);
 {% endcodeblock %}
 
-## For...of
+### For...of
 
 We went from `for` to `forEach` and then to `for...of`:
 
@@ -572,7 +572,7 @@ for (const element of array) {
 }
 ```
 
-## Default parameters
+### Default parameters
 
 We went from checking if the variable was defined to assign a value to `default parameters`. Have you done something like this before?
 
@@ -629,7 +629,7 @@ point() // 0 -1 true
 
 Now it works as expected when we check for `undefined`.
 
-## Rest parameters
+### Rest parameters
 
 We went from arguments to rest parameters and spread operator.
 
@@ -655,7 +655,7 @@ function printf(format, ...params) {
 printf('%s %d %.2f', 'adrian', 321, Math.PI);
 {% endcodeblock %}
 
-## Spread operator
+### Spread operator
 
 We went from `apply()` to the spread operator. Again we have `...` to the rescue:
 
@@ -695,7 +695,7 @@ const array3 = [false, true, null, undefined];
 console.log([...array1, ...array2, ...array3]);
 {% endcodeblock %}
 
-# Conclusion
+## Conclusion
 
 JavaScript has gone through a lot of changes. This article covers most of the core features that every JavaScript developer should know. Also, we cover some best practices to make your code more concise and easier to reason about.
 

@@ -59,7 +59,7 @@ This post is part of a tutorial series:
 <!-- 1. [Appendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/) -->
 ---
 
-#  Master Theorem
+##  Master Theorem
 
 The Master Theorem is the easiest way of obtaining runtime of recursive algorithms. First, you need to identify three elements:
 
@@ -90,11 +90,11 @@ Finally, we compare the runtime of the split/recursion functions and *`f(n)`*. T
 
 These 3 cases might see a little abstract at first, but after a few examples, it will be more evident.
 
-# Master Theorem Examples
+## Master Theorem Examples
 
 In the [previous post])(/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/) we used Master Method to get the time complexity for the [binary search](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#Binary-search) and [merge sort](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#Mergesort). Both of them fall into the case 2. Let's explore some other examples.
 
-## Case 1 Example
+### Case 1 Example
 
 What's the runtime of this recursion?
 
@@ -137,7 +137,7 @@ Since \`O(n^0.5) > O(1)\` then the runtime is:
 
 
 
-## Case 2 Example
+### Case 2 Example
 
 What would be the runtime of the mergesort if instead of splitting the array in 2 we split it up in 3?
 
@@ -204,7 +204,7 @@ So, this new implementation divides the input into 3 subproblems (`a = 3`). The 
 
 It's the same as merge sort dividing the input into 2 subproblems and half `n`.
 
-## Case 3 Example
+### Case 3 Example
 
 The case 3 of the Master Method is not very common in real life. It implies that most of the work is done in the base case of the recursion. If most work is done outside the recursion, it means that we can re-write the code in a non-recursive way.
 
@@ -226,7 +226,7 @@ Anyways, let's solve this example:
 
 > \` O(n^2) \`
 
-# Master Method Exceptions
+## Master Method Exceptions
 
 The master method is handy but there are certain cases when you cannot use it.
 
@@ -236,6 +236,6 @@ The master method is handy but there are certain cases when you cannot use it.
 
 For these cases, you would have to recursion tree method or substitution method. We are going to explore these methods in future posts after covering the fundamentals.
 
-# Summary
+## Summary
 
 On this post, we provided the tools to quickly obtain the runtime of recursive algorithms that split input by a constant factor. We covered the Master Method and provided examples for each one of its possible cases.

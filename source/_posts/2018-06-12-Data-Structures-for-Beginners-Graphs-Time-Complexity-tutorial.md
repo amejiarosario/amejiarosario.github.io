@@ -74,7 +74,7 @@ isAdjacent (using HashSet) | O(1) | [O(1)](#Matrix.getAdjacents)
 
 
 
-# Graphs Basics
+## Graphs Basics
 
 <!-- http://ccicada.org/wp-content/uploads/2017/06/Community-Detection-with-Hierarchical-Clustering-Algorithms-Feb-3-2017.pdf -->
 
@@ -113,7 +113,7 @@ Not all vertices have to be connected in the graph. You might have isolated node
 For a complete graph, each node should have `#nodes - 1` edges. In the previous example, we have seven vertices, so each node has six edges.
 
 
-# Graph Applications
+## Graph Applications
 
 When edges have values/cost assigned to them, we say we have a **weighted graph**. If the weight is absent, we can assume it's 1.
 
@@ -149,7 +149,7 @@ In general, graphs have many real-world applications like:
 
 We just learned the basics of graphs and some applications. Let's cover how to represent graphs in JavaScript.
 
-# Representing graphs
+## Representing graphs
 
 There are two primary ways of representing graph:
 
@@ -164,7 +164,7 @@ We digraph with 4 nodes. When a vertex has a link to itself (e.g. `a`) is called
 <!-- Notice that `a` has **self-loop**. -->
 <!-- img https://www.ida.liu.se/opendsa/OpenDSA/Books/TDDD86_2014/html/_images/GraphRep.png Graph representation: Adjacency list and matrix  -->
 
-## Adjacency Matrix
+### Adjacency Matrix
 
 The adjacency matrix is one way of representing a graph using a two-dimensional array (NxN matrix). In the intersection of nodes, we add 1 (or other weight) if they are connected and `0` or `-` if they are not connected.
 
@@ -220,7 +220,7 @@ Imagine that you need to represent Facebook network as a graph. You would have t
 
 In general, we deal with sparse graphs so the matrix will waste a lot of space. That's why in most implementation we would use an adjacency list rather than the matrix.
 
-## Adjacency List
+### Adjacency List
 
 Adjacency List is one of the most common ways to represent graphs. Each node has a list of all the nodes connected to it.
 
@@ -245,7 +245,7 @@ What about the space complexity?
 
 > Storing a graph as an adjacency list has a space complexity of *O(n)*, where `n` is the sum of vertices and edges. Also, represented as *O(|V| + |E|)*
 
-# Adjacency List Graph HashMap Implementation
+## Adjacency List Graph HashMap Implementation
 
 The adjacency list is the most common way of representing graphs. There are several ways to implement the adjacency list:
 
@@ -270,7 +270,7 @@ Let's say that we want to remove the vertex `b`. We could do `delete graph['b'];
 
 Every time we remove a node, we would have to iterate through all the nodes' list *O(|V| + |E|)*.  Can we do better? We will answer that soon, but first, let's *implement our list in a more object-oriented way so we can swap implementations easily.
 
-# Adjacency List Graph OO Implementation
+## Adjacency List Graph OO Implementation
 
 Let's start with the `Node` class that holds the vertex's value and its adjacent vertices. We can also have helper functions for adding and removing adjacent nodes from the list.
 
@@ -436,7 +436,7 @@ Since `removeAdjacent` has to go through all the adjacent vertices we have the f
 
 We are going to explore how to search for values from a node.
 
-# Breadth-first search (BFS) - Graph search
+## Breadth-first search (BFS) - Graph search
 
 Breadth-first search is a way to navigate a graph from an initial vertex by visiting all the adjacent nodes first.
 
@@ -492,7 +492,7 @@ This an example of how to use the BFS that we just created:
 
 You can find more illustrstions of usage in the [test cases](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.spec.js). Let's move on to the DFS!
 
-# Depth-first search (DFS)  - Graph search
+## Depth-first search (DFS)  - Graph search
 
 Depth-first search is another way to navigate a graph from an initial vertex by recursively the first adjacent node of each vertex found.
 
@@ -545,7 +545,7 @@ As you can see the graph is the same on BFS and DFS, however, the order how the 
 
 <!--Let's see some applications were DFS and BFS can be useful.
 
-## Find the path in a Graph
+### Find the path in a Graph
 
 Let's say you are exploring your social network and you want to know who can introduce you to Mark Zuckerberg.
 
@@ -573,7 +573,7 @@ Your code use a DFS or BFS and iterate until you find the vertex you are looking
 
 With this function, we get if two nodes are connected or not. However, they don't give us a path.-->
 
-# Graph Time and Space Complexity
+## Graph Time and Space Complexity
 
 We have seen some of the basic operations of a Graph. How to add and remove vertices and edges. Here's a summary of what we have covered so far:
 
@@ -598,7 +598,7 @@ isAdjacent (using HashSet) | O(1) | [O(1)](#Matrix.getAdjacents)
 As you can see, an adjacency list is faster in almost all operations. The only action that the adjacency matrix will outperform the adjacency list is checking if a node is adjacent to other. However, if we change our implementation from Array to a HashSet, we can get it in constant time as well.
 
 
-# Summary
+## Summary
 
 As we saw, Graphs can help to model many real-life scenarios such as airports, social networks, internet and so on. We covered some of the most basic algorithms such as Breadth-First Search (BFS) and Depth-First Search (DFS). Also, we studied about implementations trade-offs such as adjacency list and matrix. Subscribe to my newsletter and don't miss any of my posts, because there are many other applications that we are going to learn soon, such as finding the shortest path between nodes and different exciting graph algorithms!
 

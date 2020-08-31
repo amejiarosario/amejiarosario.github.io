@@ -55,7 +55,7 @@ This post is part of a tutorial series:
 1. [Appendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
 ---
 
-# Trees: basic concepts
+## Trees: basic concepts
 
 A tree is a data structure where a node can have zero or more children. Each node contains a **value**. Like graphs, the connection between nodes is called **edges**. A tree is a type of graph, but not all of them are trees (more on that later).
 
@@ -77,7 +77,7 @@ Here are some properties of trees:
   - `H` has a depth of 2
   - `B` has a depth of 1
 
-## Implementing a simple tree data structure
+### Implementing a simple tree data structure
 
 As we saw earlier, a tree node is just a data structure that has a value and has links to their descendants.
 
@@ -124,11 +124,11 @@ Tree data structures have many applications such as:
 - Querying an LDAP (Lightweight Directory Access Protocol)
 - Representing the Document Object Model (DOM) for HTML on Websites.
 
-# Binary Trees
+## Binary Trees
 
 Trees nodes can have zero or more children. However, when a tree has at the most two children, then it's called **binary tree**.
 
-## Full, Complete and Perfect binary trees
+### Full, Complete and Perfect binary trees
 
 Depending on how nodes are arranged in a binary tree, it can be **full**, **complete** and **perfect**:
 
@@ -165,7 +165,7 @@ These properties are not always mutually exclusive. You can have more than one:
 
 <!-- { img https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/pix/full_complete.bmp caption } -->
 
-# Binary Search Tree (BST)
+## Binary Search Tree (BST)
 
 Binary Search Trees or BST for short are a particular application of binary trees. BST has at most two nodes (like all binary trees). However, the values are in such a way that the left children value must be less than the parent, and the right children is must be higher.
 
@@ -175,7 +175,7 @@ Binary Search Trees or BST for short are a particular application of binary tree
 
 Let's implement a Binary Search Tree!
 
-## BST Implementation
+### BST Implementation
 
 BST are very similar to our previous [implementation of a tree](#Implementing-a-simple-tree-data-structure). However, there are some differences:
 
@@ -239,7 +239,7 @@ class BinarySearchTree {
 
 Let's implementing insertion.
 
-## BST Node Insertion
+### BST Node Insertion
 
 To insert a node in a binary tree, we do the following:
 
@@ -295,7 +295,7 @@ We are using a helper function called `findNodeAndParent`. If we found that the 
 
 `findNodeAndParent` goes through the tree searching for the value. It starts at the root (line 2) and then goes left or right based on the value (line 10). If the value already exists, it will return the node `found` and also the parent. In case that the node doesn't exist, we still return the `parent`.
 
-## BST Node Deletion
+### BST Node Deletion
 
 We know how to insert and search for value. Now, we are going to implement the delete operation. It's a little trickier than adding, so let's explain it with the following cases:
 
@@ -428,7 +428,7 @@ For instance, let's say that we want to combine the following tree and we are ab
 
 Now, and if we make the new subtree the root, then node `30` is no more!
 
-# Binary Tree Transversal
+## Binary Tree Transversal
 
 There are different ways of traversing a Binary Tree, depending on the order that the nodes are visited: in-order, pre-order, and post-order. Also, we can use them
 [DFS](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/#Depth-first-search-DFS-Graph-search)
@@ -530,7 +530,7 @@ Similar to DFS, we can implement a BFS by switching the `Stack` by a `Queue`:
 
 The BFS order is: `10, 5, 30, 4, 15, 40, 3`
 
-# Balanced vs. Non-balanced Trees
+## Balanced vs. Non-balanced Trees
 
 So far, we have discussed how to `add`, `remove` and `find` elements. However, we haven't talked about runtimes. Let's think about the worst-case scenarios.
 
@@ -553,7 +553,7 @@ If we are searching for `7` in the non-balanced tree, we have to go from 1 to 7.
 
 We are going to solve this issue in the next post using self-balanced trees (AVL trees).
 
-# Summary
+## Summary
 
 We have covered much ground for trees. Let's sum it up with bullets:
 

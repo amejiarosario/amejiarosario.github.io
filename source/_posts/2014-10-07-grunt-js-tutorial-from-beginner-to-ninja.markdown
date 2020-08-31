@@ -8,7 +8,7 @@ toc: true
 pageviews__total: 54682
 pageviews__recent: 18
 pageviews__avg_time: 268
-# categories: [javascript, nodejs, gruntjs, build tools]
+## categories: [javascript, nodejs, gruntjs, build tools]
 alias: /blog/2014/10/07/grunt-js-tutorial-from-beginner-to-ninja/
 photos:
   - /images/gruntjs_small.png
@@ -26,21 +26,21 @@ Sometimes you find yourself doing the same tasks again and again, especially dur
 
 <!-- More -->
 
-# Beginner: Grunt.js 101
+## Beginner: Grunt.js 101
 
 Grunt.js is a Javascript task runner. At its bare core it does file manipulation (mkdir, reads, write, copy), print messages and helper methods to organize and configure multiple tasks. It takes care of differences among Operating Systems for you. However, the real power comes in with the number of available plugins ready to use. Usually named `grunt-contrib-*`. Let’s start from scratch!
 
-# Hello Wold from GruntJS
+## Hello Wold from GruntJS
 
 You need to [install Node.js and NPM](/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/#nodejs) to follow along with this example.
 
 ```bash
 mkdir grunt101 && cd grunt101
 
-# start Node.js project and answer the questions (or leave it in blank)
+## start Node.js project and answer the questions (or leave it in blank)
 npm init
 
-# add Grunt as a dependency
+## add Grunt as a dependency
 npm install grunt  --save-dev
 ```
 
@@ -48,8 +48,8 @@ If you run the grunt command you will get a message like this:
 
 ```bash
 grunt
-# A valid Gruntfile could not be found. Please see the getting started guide for more information on how to configure grunt: http://gruntjs.com/getting-started
-# Fatal error: Unable to find Gruntfile.
+## A valid Gruntfile could not be found. Please see the getting started guide for more information on how to configure grunt: http://gruntjs.com/getting-started
+## Fatal error: Unable to find Gruntfile.
 ```
 
 So, let's create the `Gruntfile.js` file:
@@ -99,17 +99,17 @@ grunt.registerTask('default', ['world', 'hello:adrian']);
 ```
 
 
-# Reference 1: Grunt tasks, config and warnings
+## Reference 1: Grunt tasks, config and warnings
 
 Here are some of the methods that we have used so far and some more that we will use in the next examples:
 
-## Grunt config
+### Grunt config
 
 * [grunt.initConfig(configObject)](http://gruntjs.com/api/grunt.config#grunt.config.init): Initialize a configuration object. It can be accessed by `grunt.config.get`.
 
 * [grunt.config.get([prop])](http://gruntjs.com/api/grunt.config#grunt.config.get):  get the prop value from the `grunt.initConfig`. The property could be deeply nested (e.g. `concat.options.dest`) and the values inside `<% %>` are expanded.
 
-## Grunt tasks
+### Grunt tasks
 
 * [grunt.registerTask(taskName[, description], taskFunction)](http://gruntjs.com/api/grunt.task#grunt.task.registertask): register a task.
     *  **taskName**: required to register the task and it allows the task to be e executed with `grunt taskName` or called by other grunt task.
@@ -154,13 +154,13 @@ Running "print:hello" (print) task
 hello: world
 ```
 
-## Grunt Errors and Warnings
+### Grunt Errors and Warnings
 
 * [grunt.fail.warn(error [, errorcode])](http://gruntjs.com/api/grunt.fail#grunt.fail.warn): prints to STDOUT a message and abort grunt executions. It can be override using `--force` and it can show the stack trace if `--stack` is given. e.g. `grunt taskName --force --stack`.
 
 * [grunt.fail.fatal(error [, errorcode])](http://gruntjs.com/api/grunt.fail#grunt.fail.fatal): similar to `warn`, displays message to STDOUT and terminate Grunt. Cannot be `--force`ed and it emits a beep unless `--no-color` parameter is passed. It also accepts `--stack`. E.g. `grunt taskName --no-color --stack`.
 
-# Example: Forex and grunt multiple async calls handling
+## Example: Forex and grunt multiple async calls handling
 
 The idea is get conversion rates from a base currency (e.g. USD) to a target currency (e.g. EUR). We are using a `registerMultiTask`, so the taskName 'currency' matches its property in the `config.init`. Notice that we can has additional arbitrary data such as endpoint URL.
 
@@ -219,9 +219,9 @@ module.exports = function(grunt){
 ```
 
 
-# Reference 2: Grunt Files and logs
+## Reference 2: Grunt Files and logs
 
-## Grunt logs
+### Grunt logs
 
 All them stars with the prefix `grunt.log` and accepts a `msg` which is displayed to STDOUT (usually the screen). Here are the differences between them:
 
@@ -232,7 +232,7 @@ The following methods adds a ">>" before the message in the screen which could b
 * `grunt.log.error([msg])`: print message prefixed with a RED ">>".
 * `grunt.log.ok([msg])`: print message prefixed with a GREEN ">>".
 
-## Grunt files
+### Grunt files
 
 **Files**
 
@@ -250,7 +250,7 @@ All has an optional attributes `options` that could be `encoding` among others.
 * [grunt.file.expand([options, ] patterns)](http://gruntjs.com/api/grunt.file#grunt.file.expand): returns an array with all the files matching a pattern. It can also accept and array of patterns. Preceding a patter with `!` will negate them. E.g. `['**/*.js', !**/*spec.js]` => get all javascript (including subdirectories) but NOT the ones that ends with spec.js.
 * [grunt.file.recurse(rootdir, callback)](http://gruntjs.com/api/grunt.file#grunt.file.recurse): expand path and return a callback function with the following signature `callback(abspath, rootdir, subdir, filename)`.
 
-# Example 2: Gruntfile for files manipulation
+## Example 2: Gruntfile for files manipulation
 
 GruntJS comes with built-in functions for basic [file system handling](https://github.com/gruntjs/grunt/blob/master/lib/grunt/file.js). To see the function in action. Create four directories: `stylesheets`, `javascripts`, `templates` and put files on first three. The idea is to concatenate all the files into one index.html and placed it a newly created `public` folder.
 
@@ -302,7 +302,7 @@ module.exports = function(grunt){
 
 A more complete example can be found in the repository where we have the join and open function as well.
 
-## Reference 3: Inside Grunt tasks
+### Reference 3: Inside Grunt tasks
 
 Inside all Grunt task there are number of functions available through `this`:
 
@@ -365,23 +365,23 @@ module.exports = function(grunt){
 
 ```bash Output example
 grunt multiTaskName
-# Running "multiTaskName:target1" (multiTaskName) task
-# this.options { gzip: false }
-# this.data { src: 'stylesheets/*.css', dest: 'public', ext: '.min.css' }
-# this.files [ { src: [Getter],
-#     dest: 'public',
-#     ext: '.min.css',
-#     orig: { src: [Object], dest: 'public', ext: '.min.css' } } ]
-# this.filesSrc [ 'stylesheets/h1.css', 'stylesheets/h2.css' ]
-#
-# Running "multiTaskName:target2" (multiTaskName) task
-# this.options { gzip: false }
-# this.data { src: '*.js', dest: 'public', ext: '.min.js' }
-# this.files [ { src: [Getter],
-#     dest: 'public',
-#     ext: '.min.js',
-#     orig: { src: [Object], dest: 'public', ext: '.min.js' } } ]
-# this.filesSrc [ 'Gruntfile.js' ]
+## Running "multiTaskName:target1" (multiTaskName) task
+## this.options { gzip: false }
+## this.data { src: 'stylesheets/*.css', dest: 'public', ext: '.min.css' }
+## this.files [ { src: [Getter],
+##     dest: 'public',
+##     ext: '.min.css',
+##     orig: { src: [Object], dest: 'public', ext: '.min.css' } } ]
+## this.filesSrc [ 'stylesheets/h1.css', 'stylesheets/h2.css' ]
+##
+## Running "multiTaskName:target2" (multiTaskName) task
+## this.options { gzip: false }
+## this.data { src: '*.js', dest: 'public', ext: '.min.js' }
+## this.files [ { src: [Getter],
+##     dest: 'public',
+##     ext: '.min.js',
+##     orig: { src: [Object], dest: 'public', ext: '.min.js' } } ]
+## this.filesSrc [ 'Gruntfile.js' ]
 ```
 
 * [this.target](http://gruntjs.com/inside-tasks#this.target): name of the target current target. If you call it `grunt multiTaskName`, it will run like multiple tasks calling each target one at a time. `this.target` will be equal to `target1` and then `target2`.
@@ -392,11 +392,11 @@ grunt multiTaskName
 
 * [this.data](http://gruntjs.com/inside-tasks#this.data): contains the raw data of the target parameters.
 
-# Intermediate: Using Grunt.js plugins
+## Intermediate: Using Grunt.js plugins
 
 Chances are that there is a plugin for most of your needs. Last time I checked there were 3,638 plugins for grunt. This are the 10 most popular:
 
-## Installing a grunt plugin
+### Installing a grunt plugin
 
 Let's say we want to install jshint.
 
@@ -418,7 +418,7 @@ or
 
 `grunt.loadNpmTasks('grunt-contrib-YOUR-PLUGIN');`
 
-## 10 most popular grunt plugins
+### 10 most popular grunt plugins
 
 1- [jshint](https://github.com/gruntjs/grunt-contrib-jshint): Validate files with JSHint. Uses `.jshintrc` to settings.
 

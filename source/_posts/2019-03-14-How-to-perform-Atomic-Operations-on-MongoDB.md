@@ -38,7 +38,7 @@ If you want to jump into the NoSQL database, you should consider [MongoDB certif
 ---
 
 
-# Introduction to Atomic Operations
+## Introduction to Atomic Operations
 
 The atomic operations in database terminology is a chained and sophisticated database operations series. In this series, either all aspects of the series will be affected, or nothing will be altered. In atomic operations, there is no such thing as a partial database change.
 
@@ -53,13 +53,13 @@ We can explain atomic operations in MongoDB clearly with the use of ACID, a.k.a.
 - Finally, the *durability* property will come into play. This property ensures the permanency of the database after each database transaction regardless of errors, crashes, and power loss.
 
 
-# Modeling e-Commerce Products in MongoDB
+## Modeling e-Commerce Products in MongoDB
 
 We should maintain atomicity in MongoDB by compiling all the related information in a single document, which will update consistently. We can create such type of consistency via embedded documents. The embedded is for ensuring that every single update that takes place in the document is atomic.
 
 Here is how the document looks like for representing item purchase information.
 
-## Creating a new product
+### Creating a new product
 
 Let's say we have an e-Commerce app and we want to model a product on MongoDB with atomic operations. We can do something like this:
 
@@ -105,7 +105,7 @@ db.AtominMongoDB.find().pretty();
 
 In the above document, we have created a model, embedded document. We have produced a report from the purchase in the item_bought_by field. This single document will manage everything about the purchase and the stock. In this document, it will see whether the item that the customer orders are in the stock or not. The customer’s order processes through the item_available field.
 
-## Decreasing count on a purchase
+### Decreasing count on a purchase
 
 In the case of availability, we will subtract the `item_available` field by 1. After we complete that part, we will record the information of the customer, and, i.e., name and the purchase date, in the item_bought_by field. We will again look at another document where we will be using the `findAndmodify` statement to fulfill this purpose.
 By using `findAndmodify` statement, the document will perform search and update activity simultaneously in the report.
@@ -176,7 +176,7 @@ Finally, we print the full information with the function, find and pretty method
 
 One more example to make you more precise about the use of atomic operations in MongoDB
 
-## Modeling books on MongoDB and performing atomic operations
+### Modeling books on MongoDB and performing atomic operations
 
 In the above case, we dealt mainly with the product order and the record keeping of customers. In this example, we will be using the function of the simple book store and make it work out in MongoDB via atomic operations.
 
@@ -227,7 +227,7 @@ The `matchedCount` field is responsible for comparing the condition for updates.
 
 There could also be the case where no documents are matched, according to the update condition. In that situation, both the `matchedCount` and `modifiedCount` field would be 0. What this means is that you will not be able to purchase the book and continue with a checkout process.
 
-# Final Say
+## Final Say
 
 Finally, we have finished the topic of how you can use atomic operations via MongoDB. It was not that difficult, was it? Although it is not possible to work out with multi-document tasks, but using atomic operations in MongoDB is simple. With that said, MongoDB starting from version 4.0 will be supporting atomic operations in numerous scenarios.
 

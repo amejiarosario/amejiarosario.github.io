@@ -38,7 +38,7 @@ In this section, we are going to cover how to create Node modules and each one o
 - Module (module.exports vs. export)
 - Import
 
-# Require
+## Require
 
 `require` are used to consume modules. It allows you to include modules in your programs. You can add built-in core Node.js modules, community-based modules (`node_modules`), and local modules.
 
@@ -63,7 +63,7 @@ The `require` function will look for files in the following order:
 
 Let's now explain each in little more details with
 
-## Built-in Modules
+### Built-in Modules
 
 When you install node, it comes with many built-in modules. Node comes with batteries included ;)
 
@@ -76,7 +76,7 @@ Some of the most used core modules are:
 
 These you don't have to install it, you can import them and use them in your programs.
 
-## NPM Modules
+### NPM Modules
 
 NPM modules are 3rd-party modules that you can use after you install them. To name a few:
 
@@ -96,12 +96,12 @@ and then you can reference them like built-in modules, but this time they are go
 const express = require('express');
 ```
 
-## Creating your own Nodejs modules
+### Creating your own Nodejs modules
 
 If you can't find a built-in or 3rd-party library that does what you want, you will have to develop it yourself.
 In the following sections, you are going to learn how to do that using `exports`.
 
-# Exports
+## Exports
 
 The `exports` keyword gives you the chance to "export" your objects and methods. Let's do an example:
 
@@ -127,7 +127,7 @@ console.log(`Circle with radius ${r} has
 
 Noticed that this time we prefix the module name with `./`. That indicates that the module is a local file.
 
-# Module Wrapper
+## Module Wrapper
 
 You can think of each Node.js module as a self-contained function like the following one:
 
@@ -152,7 +152,7 @@ For instance, for our `./circle.js` module, it would be something like this:
 
 Ok, we have covered `exports`, `require`, `__filename`, and `__dirname`. The only one we haven't covered is `module`. Let's go for it!
 
-# Module.exports vs. Exports
+## Module.exports vs. Exports
 
 The `module` is not global; it is local for each module. It contains metadata about a module like id, exports, parent, children, and so on.
 
@@ -192,7 +192,7 @@ Use `module.exports` to:
 2. If you prefer to return a single object that exposes multiple assignments. e.g.`module.exports = {area, circumference};`
 
 
-# Imports
+## Imports
 
 Starting with version 8.5.0+, Node.js supports ES modules natively with a feature flag and new file extension `*.mjs`.
 
@@ -233,9 +233,9 @@ If you don't like experimental modules, another alternative is to use a transpil
 [Babel](https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs), and
 [Rollup](https://rollupjs.org/guide/en#importing).
 
-## Troubleshooting `import` and `require` issues
+### Troubleshooting `import` and `require` issues
 
-### Experimental Flag
+#### Experimental Flag
 If you don't use the experimental flag `node --experimental-modules` and you try to use `import` you will get an error like this:
 
 ```
@@ -246,7 +246,7 @@ internal/modules/cjs/loader.js:819
 Error [ERR_REQUIRE_ESM]: Must use import to load ES Module: bla bla blah
 ```
 
-### File extension .mjs vs .js (or .cjs)
+#### File extension .mjs vs .js (or .cjs)
 
 If you have a `*.mjs` file you cannot use `require` or it will throw an error (`ReferenceError: require is not defined`).
 `.mjs` is for `import` ECMAScript Modules and `.js` is for regular `require` modules.
@@ -268,6 +268,6 @@ console.log(cat.makeSound());
 
 Notice that `cat.js` is using commonJS modules.
 
-# Summary
+## Summary
 
 We learned about how to create Node.js modules and used it in our code.  Modules allow us to reuse code easily. They provide functionality that is isolated from other modules. The `require` function is used to load modules. The `exports` and `module.exports` allow us to define what parts of our code we want to expose. We also explored the difference between `module.exports` and `exports`. Finally, we took a quick pick about what's coming up for modules using `imports`.

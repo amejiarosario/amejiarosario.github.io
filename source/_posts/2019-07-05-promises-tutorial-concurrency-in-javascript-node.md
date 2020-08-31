@@ -36,7 +36,7 @@ _NOTE: I'd like this post to be up-to-date with the most common use cases for pr
 
 <hr>
 
-# JavaScript Promises
+## JavaScript Promises
 
 A promise is an object that allows you to handle asynchronous operations. It's an alternative to plain old callbacks.
 

@@ -64,7 +64,7 @@ We start by adding a directive called “myTodo”, notice that is different fro
 
 You will notice that a directive, takes a name “myTodo” and function. The later returns an object with a number of attributes depending on what we would like to accomplish.  In our case, we have three attributes: restrict, templateUrl, and scope. Let’s explain each one in that exact order.
 
-# Restrict
+## Restrict
 
 The "restrict" attribute tells Angular, with one letter, how are we going to create our new directive. It can take four different values 'E', 'A', 'C', 'M' or combination of them like ‘EA’. Each one has it’s own meaning:
 
@@ -81,7 +81,7 @@ It is a good practice only to use restrict to either 'E' or 'A' or both. Classes
 
 
 
-# Template
+## Template
 
 Templates are just HTML code that could be reuse multiple times with different values or text. In order to be generic enough, they use placeholders tied to variables that could be easily replaced. Let’s create the “todo.tpl.html” with the following content:
 
@@ -101,7 +101,7 @@ Going back to our directive definition, we could have used "template" attribute 
 
 As you might figure it out, “templateUrl” takes the name of the file containing the template. If all templates and code are in the same directory just the name of the file will do. If they are in a different folder you will need to specify the full path to reach it. To keep it simple, we are going to have all files in a single directory.
 
-# Scope
+## Scope
 
 Scopes are key concept to understand Angular. Scope is what glues JavaScript code with HTML and allow us to replace placeholders from templates with real values.
 
@@ -122,7 +122,7 @@ If you remember from our template, these are exactly the two placeholders that w
 Bear in mind, that in Angular we can have multiple scopes. So, our directives could be influenced by outer scopes. For instance, another scope could define “todo” as an array of elements. Here is where we introduce another important concept: controllers.
 
 
-# Controllers
+## Controllers
 The main purpose of controllers is to set initial values the scope and also add behavior through functions. We are going to use a controller to define the “todo” list that we want to render with our newly created directive.
 
 The way we create controllers is by attaching the controller to our Angular app instance. Let’s go back to script.js and append the following:
@@ -139,7 +139,7 @@ The way we create controllers is by attaching the controller to our Angular app 
 
 Noticed that we defined our controller with the name “main” and pass along a function with the “$scope” parameter. This is important since, whatever we attach to the “$scope” variable it will become available in templates and other directives. We just defined our todo list as an array of objects with two properties name and completed.
 
-# To-do directive
+## To-do directive
 
 So far, we have been preparing the grounds for our directive. We have created:
   - “myApp” module
@@ -181,13 +181,13 @@ That’s all you need to make it work. Now try it!
 <iframe style="width: 100%; height: 400px;" src="//embed.plnkr.co/7ZDRclRJaJyTtRBKjIa3/" frameborder="0" allowfullscren="allowfullscren"></iframe>
 
 
-# Next steps
+## Next steps
 
 By now you should be looking at our new To-do list. We can reuse this new directive with new to-do lists as many times as we want. Just passing different values to “list” in our “my-todo” the browser will be able to render it for us. We can also define another controller with a different $scope.todo and our directive will respond accordantly.
 
 We just walked through the main attributes to create directives and discuss how to use them. We learnt how to isolate the scope of our directive and just allow certain parameters into our templates such as “list” and “title”. Also, used the “restrict” attribute to allow our directive be created either as a new HTML element or as an attribute. Finally, we explore how to use templates and bind it with our scope variables.
 
-## Related Posts
+### Related Posts
 
   - [AngularJS Tutorial for Beginners](/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/)
   - [Angular and Node tutorial](/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/)

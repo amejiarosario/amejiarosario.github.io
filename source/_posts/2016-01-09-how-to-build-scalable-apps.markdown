@@ -28,7 +28,7 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 
 **The Twelve Factor Principles**
 
-# One codebase per app, multiple deployments
+## One codebase per app, multiple deployments
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * One codebase to rule all deployment environments: production, staging, local and so on and differentiate them from config files (see #3).
@@ -36,7 +36,7 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> *DON'T*
   * Multiple apps sharing the same code. INSTEAD the common code should be extracted from a library and included through a dependency manager.
 
-# Declare and isolate dependencies
+## Declare and isolate dependencies
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * Have a dependency declaration manifest (e.g. packages.json, Gemfile)
@@ -45,7 +45,7 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> *DON'T*
   * Rely on implicit existence of system-wide packages (e.g. curl, ImageMagik). INSTEAD vendor them into the app.
 
-# Store the config in the environment
+## Store the config in the environment
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * Separate app's config (AWS S3, passwords, Google/Fb/Tw/APIs credentials, deployment hostname) from the code.
@@ -56,19 +56,19 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
   * Group config variables by environment (e.g. AWS_S3_PRODUCTION, AWS_S3_TEST, AWS_S3_QA, AWS_S3_STAGING, AWS_S3_JOE...). INSTEAD use clean environment variables (e.g. AWS_S3) that are managed individually per deploy.
 
 
-# Swappable local and third party services
+## Swappable local and third party services
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * Services like databases (e.g. MongoDB, PostgreSQL), message queues (e.g. RabbitMQ, Beanstalkd) should be accessed via URL or locator/credential stored in config.
   * Swapping local to production services should be done without any code changes.
 
 
-# Build and runtime
+## Build and runtime
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * Code changes flows in one direction only development -> build -> run time environments.
 
-# Execute the app as share-nothing stateless processes
+## Execute the app as share-nothing stateless processes
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * Store any persistent data in external services (such as databases)
@@ -76,12 +76,12 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> *DON'T*
   * Use the filesystem/memory to save states. INSTEAD any instance of the app should be able to handle requests.
 
-# Export services via port binding
+## Export services via port binding
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * App is completely self-contained and communicates with other processes through port binding.
 
-# Scale out the app horizontally
+## Scale out the app horizontally
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * Scale app horizontally since the app is a stateless and share-nothing model.
@@ -89,13 +89,13 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> *DON'T*
   * Daemonize. INSTEAD use operating system manager such as Upstart or init and Foreman in development.
 
-# Fast startup and shutdown
+## Fast startup and shutdown
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * app start in few seconds to serve requests or jobs.
   * shut down gracefully after receiving SIGTERM signal  (stop receiving new request/jobs, finish processing current request/job before stopping).
 
-# Keep development, staging, and production as similar as possible
+## Keep development, staging, and production as similar as possible
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * design app for continuous deployment keeping the tools gaps and deployment times as minimum as possible.
@@ -106,13 +106,13 @@ The Twelve steps are a compilation of guidelines to ensure apps can scale up wit
 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> *DON'T*
   * use different services on production and development (e.g. development using SQLite and production ProtgreSQL).
 
-# Logs goes to stdout
+## Logs goes to stdout
 
 
 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> *DON'T*
   * write logs to a particular location in the filesystem. INSTEAD send them to STDOUT, so they can be routed as will depending the environment (e.g. output to terminal in development and output to log file in production)
 
-# Admin processes
+## Admin processes
 
 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> *DO*
   * favor languages/frameworks that use REPL shell out of the box to do admin tasks such as migrating databases, running consoles or running one-time scripts.

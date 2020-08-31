@@ -24,26 +24,26 @@ We are going to do a **static file server** in Node.js. This web server is going
 
 <!-- more -->
 
-# HTTP Web Servers
+## HTTP Web Servers
 
 Node's HTTP module is versatile. You can use it as a client, to grab content from websites or as a server. We are going to use it server files from our file system.
 
 If you are familiar with Ruby or Python or http-server package. It's the equivalent of this:
 
 ```bash Existing HTTP Servers Implementations
-# python HTTP server
+## python HTTP server
 python -m SimpleHTTPServer 9000
 
-# ruby HTTP server
+## ruby HTTP server
 ruby -run -e httpd . -p 9000
 
-# Node HTTP server (npm install http-server)
+## Node HTTP server (npm install http-server)
 http-server . -p 9000
 ```
 
 Let's do our own. It's not that hard.
 
-# Simple HTTP Server
+## Simple HTTP Server
 
 One of the simplest servers that you can create in Node, looks like this:
 
@@ -77,7 +77,7 @@ Finally, the listening part. It allows you to set the port that you want your se
 
 
 
-# Node.js HTTP static file server with ES6+
+## Node.js HTTP static file server with ES6+
 
 Let's now proceed to do the static web server. We want to parse the URL path and get the file matching that path. For instance, if we get a request like `localhost:9000/example/server.js`. We want to look for a file in `./example/server.js`.
 
@@ -165,13 +165,13 @@ We are using Node.js core `path.parse` libraries to get the extensions from the 
 Give it a try with:
 
 ```bash Command lines to test the server
-# run server
+## run server
 node server.js
 
-# get the javascript file with
+## get the javascript file with
 curl -i localhost:9000/server.js
 
-# testing with non-existing file
+## testing with non-existing file
 curl -i localhost:9000/invalid-file.doc
 ```
 
@@ -181,21 +181,21 @@ For the first one, you will get a 200 OK response, while for the 2nd one you wil
 You can also download the code from this repo and try out with the test files:
 
 ```bash Testing with different file types
-# Get Repository
+## Get Repository
 git clone https://github.com/amejiarosario/meanshop.git
 cd meanshop
-# Load the specific version
+## Load the specific version
 git checkout static-server
 
-# start the server (requires Node 4+)
+## start the server (requires Node 4+)
 npm start
 
-# test it in your browser with the following paths:
+## test it in your browser with the following paths:
 open http://localhost:9000/
 open http://localhost:9000/index.html
 open http://localhost:9000/test/meanshop-book.png
 ```
 
-# Summary
+## Summary
 
 In this post, we went through the basics about `http` module to create a server. We talk about the MIME types and how the help the browser to render properly. Finally, we put all together to accomplish our static file server with Node.js!

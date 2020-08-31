@@ -22,7 +22,7 @@ date: 2018-04-05 16:10:09
 updated: 2019-09-19 11:39:53
 ---
 
-# Summary
+## Summary
 
 Learn how to compare algorithms and develop code that scales! In this post, we cover 8 big o notations and provide an example or 2 for each. We are going to learn the top algorithm's running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it's handy to compare multiple solutions for the same problem. By the end of it, you would be able to eyeball different implementations and know which one will perform better without running the code!
 
@@ -30,7 +30,7 @@ Learn how to compare algorithms and develop code that scales! In this post, we c
 
 In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/), we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money, and enable new technology. So, this is paramount to know how to measure algorithms' performance.
 
-## What is time complexity?
+### What is time complexity?
 
 To recap **time complexity** estimates how an algorithm performs regardless kind of machine it runs on. You can get the time complexity by "counting" the number of operations performed by your code. This time complexity is defined as a function of the input size `n` using Big-O notation. `n` indicates the size of the input, while O is the worst-case scenario growth rate function.
 
@@ -124,7 +124,7 @@ This post is part of a tutorial series:
 
 <!-- table: time complexities -->
 
-# O(1) - Constant time
+## O(1) - Constant time
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mnv6sV-Ih8s?rel=0&start=520" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -140,7 +140,7 @@ For instance, if a function takes the identical time to process ten elements as 
 
 For our discussion, we are going to implement the first and last example.
 
-## Odd or Even
+### Odd or Even
 
 Find if a number is odd or even.
 
@@ -167,7 +167,7 @@ Primitive operations like sum, multiplication, subtraction, division, modulo, bi
 
  This example was easy. Let's do another one.
 
-## Look-up table
+### Look-up table
 
 Given a string, find its word frequency data.
 
@@ -186,7 +186,7 @@ Again, we can be sure that even if the dictionary has 10 or 1 million words, it 
 
 > Only a hash table with a perfect *hash function* will have a worst-case runtime of *O(1)*. The ideal hash function is not practical, so there will be some collisions and workarounds that leads to a worst-case runtime of *O(n)*. Still, on *average*, the lookup time is *O(1)*.
 
-# O(n) - Linear time
+## O(n) - Linear time
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mnv6sV-Ih8s?rel=0&start=732" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -201,7 +201,7 @@ Linear time complexity _`O(n)`_ means that as the input grows, the algorithms ta
 
 Let's implement the first example.
 
-## The largest item on an unsorted array
+### The largest item on an unsorted array
 
 Let's say you want to find the maximum value from an unsorted array.
 
@@ -257,7 +257,7 @@ Now imagine that you have an array of one million items. Do you think it will ta
 
 {% img /images/linear-running-time-o(n).jpg 'Linear Running time O(n) example' %}
 
-# O(n^2) - Quadratic time
+## O(n^2) - Quadratic time
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZRCTMYv2fRU?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -270,7 +270,7 @@ Here are some **examples of quadratic algorithms**:
 
 Let's implement the first two.
 
-## Has duplicates
+### Has duplicates
 
 You want to find duplicate words in an array. A naïve solution will be the following:
 
@@ -354,7 +354,7 @@ As you can probably guess, two inner loops translate to O(n^2) since it has to g
 
 Usually, we want to stay away from polynomial running times (quadratic, cubic, O(n^c), etc.) since they take longer to compute as the input grows fast. However, they are not the worst. Let's something that takes even longer.
 
-## Quicksort
+### Quicksort
 ---
 
 Expand:
@@ -364,14 +364,14 @@ Expand:
 ---
 -->
 
-# O(n^c) - Polynomial time
+## O(n^c) - Polynomial time
 
 Polynomial running is represented as O(n<sup>c</sup>), when `c > 1`. As you already saw, two inner loops almost translate to O(n<sup>2</sup>) since it has to go through the array twice in most cases. Are three nested loops cubic? If each one visit all elements, then yes!
 
 Usually, we want to stay away from polynomial running times (quadratic, cubic, n<sup>c</sup>, etc.) since they take longer to compute as the input grows fast. However, they are not the worst.
 
 
-## Triple nested loops
+### Triple nested loops
 Let's say you want to find the solutions for a multi-variable equation that looks like this:
 
 > 3x + 9y + 8z = 79
@@ -402,7 +402,7 @@ This algorithm has a cubic running time: `O(n^3)`.
 
 **Note:** We could do a more efficient solution to solve multi-variable equations but this works for the purpose of showing an example of a cubic runtime.
 
-# O(log n) - Logarithmic time
+## O(log n) - Logarithmic time
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cCPOayp1vek?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -420,7 +420,7 @@ Algorithm B:
 
 Which one is faster? The first algorithms go word by word _O(n)_, while the algorithm B split the problem in half on each iteration _O(log n)_. This 2nd algorithm is a **binary search**.
 
-## Binary search
+### Binary search
 
 Find the index of an element in a sorted array.
 
@@ -454,7 +454,7 @@ Calculating the time complexity of `indexOf` is not as straightforward as the pr
 
 There are several ways to analyze recursive algorithms. For simplicity, we are going to use the `Master Method`.
 
-## Master Method for recursive algorithms
+### Master Method for recursive algorithms
 
 Finding the runtime of recursive algorithms is not as easy as counting the operations. This method helps us to determine the runtime of recursive algorithms. We are going to explain this solution using the `indexOf` function as an illustration.
 
@@ -512,7 +512,7 @@ If <code>n<sup>log<sub>b</sub>a</sup></code> < `f(n)`,
 
 Now, let's combine everything we learned here to get the running time of our binary search function `indexOf`.
 
-## Master Method for Binary Search
+### Master Method for Binary Search
 
 The binary search algorithm slit `n` on half until a solution is found or array is exhausted. So, using the Master Method:
 
@@ -564,7 +564,7 @@ https://math.stackexchange.com/questions/tagged/recursive-algorithms+algorithms
 https://stackoverflow.com/q/13467674/684957
 https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms) -->
 
-# O(n log n) - Linearithmic
+## O(n log n) - Linearithmic
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PADwBMuehYc?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -573,7 +573,7 @@ Linearithmic time complexity it's slightly slower than a linear algorithm. Howev
 **Examples of Linearithmic algorithms:**
 - Efficient sorting algorithms like merge sort, quicksort and others.
 
-## Mergesort
+### Mergesort
 
 What's the best way to sort an array?  Before, we proposed a solution using bubble sort that has a time complexity of O(n<sup>2</sup>). Can we do better?
 
@@ -636,7 +636,7 @@ function merge(array1 = [], array2 = []) {
 ```
 As you can see, it has two functions `sort` and `merge`. Merge is an auxiliary function that runs once through the collection `a` and `b`, so it's running time is O(n). Let's apply the Master Method to find the running time.
 
-## Master Method for Mergesort
+### Master Method for Mergesort
 
 We are going to apply the <a href="#Master-Method-for-recursive-algorithms">Master Method that we explained above</a> to find the runtime:
 
@@ -665,7 +665,7 @@ n<sup>1</sup> = n
 <i>O(n log(n))</i> **👈 this is running time of the merge sort**
 
 
-# O(2^n) - Exponential time
+## O(2^n) - Exponential time
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LDwZK4I6QDc?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -676,7 +676,7 @@ Exponential (base 2) running time means that the calculations performed by an al
 - Fibonacci.
 - Travelling salesman problem using dyanmic programming.
 
-## Power Set
+### Power Set
 
 To understand the power set, let's imagine you are buying a pizza.
 The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pineapple.
@@ -736,7 +736,7 @@ As expected, if you plot `n` and `f(n)`, you will notice that it would be exactl
 
 **Note:** You should avoid functions with exponential running times (if possible) since they don't scale well. The time it takes to process the output doubles with every additional input size. But exponential running time is not the worst yet; others go even slower. Let's see one more example in the next section.
 
-# O(n!) - Factorial time
+## O(n!) - Factorial time
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/snBRcJlrnVw?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -756,7 +756,7 @@ As you might guess, you want to stay away if possible from algorithms that have 
 
 Let's solve the first example.
 
-## Permutations
+### Permutations
 
 Write a function that computes all the different words that can be formed given a string. E.g.
 
@@ -803,16 +803,16 @@ I tried with a string with a length of 10. It took around 8 seconds!
 
 ```sh
 time node ./lib/permutations.js
-# getPermutations('abcdefghij') // => abcdefghij, abcdefghji, abcdefgihj, abcdefgijh, abcdefgjhi, abcdefgjih, abcdefhgij...
-# // n = 10, f(n) = 3,628,800;
-# ./lib/permutations.js  8.06s user 0.63s system 101% cpu 8.562 total
+## getPermutations('abcdefghij') // => abcdefghij, abcdefghji, abcdefgihj, abcdefgijh, abcdefgjhi, abcdefgjih, abcdefhgij...
+## // n = 10, f(n) = 3,628,800;
+## ./lib/permutations.js  8.06s user 0.63s system 101% cpu 8.562 total
 ```
 
 I have a little homework for you:
 
 > Can you try with a permutation with 11 characters? ;) Comment below what happened to your computer!
 
-# All running complexities graphs
+## All running complexities graphs
 
 We explored the most common algorithms running times with one or two examples each! They should give you an idea of how to calculate your running times when developing your projects. Below you can find a chart with a graph of all the time complexities that we covered:
 

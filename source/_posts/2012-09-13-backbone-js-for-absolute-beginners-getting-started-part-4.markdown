@@ -8,7 +8,7 @@ pageviews__total: 70559
 pageviews__recent: 35
 pageviews__avg_time: 213
 toc: true
-#categories: [backbonejs, javascript]
+##categories: [backbonejs, javascript]
 alias: /blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/
 photos:
 - /images/Backbone_for_beginners_part4_small.png
@@ -35,7 +35,7 @@ BackboneJS Tutorial series:
 1. [Backbone.js for absolute beginners - getting started (part 3: CRUD)](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/)
 1. Backbone.js for absolute beginners - getting started (part 4: Routers) **👈 you are here**
 
-# Backbone.Router
+## Backbone.Router
 
 You could build web application without using the routers.  However, if you want to make reference to certain ‘state’ or location of the web application, you need a reference (link/URL) to it. This is where routers come to rescue.
 
@@ -47,7 +47,7 @@ where the `#inbox/139c0d48e11d986b ` is the hash-tag which reference some email 
 
 In backbone, routes are hash maps that match URL patterns to functions. You can use parameter parts, such as `todos/:id`, or using splats `file/*path` you will match all the parameters from the splat on. For that reason, the splat parameter should be always the last matcher.
 
-## Initializing the Router
+### Initializing the Router
 
 In our Todo app, we are going to use routers to filter between the tasks that are pending and the ones that have been completed. So, let's initialize the routes this way:
 
@@ -82,7 +82,7 @@ Now, you need to initialize it, adding this lines:
 
 You can test that you router is working just typing `#anything/that/you/want` and seeing the parameter in you browser's console.
 
-## 2.6.1 Processing the routes
+### 2.6.1 Processing the routes
 
 Before rendering the list of items, you need to check the parameters to wether show only the pending ones, or the completed or show them all. As shown in the code snipet below.
 
@@ -160,7 +160,7 @@ Well, that's all! If completed these 4 parts tutorial you will be familiar with 
   * [Backbone's Source code - it's the ultimate source of true](https://github.com/documentcloud/backbone/blob/master/backbone.js)
   * [Official documentation](http://backbonejs.org/?utm_source=adrianmejia.com)
 
-# What's next?
+## What's next?
 
 Write a server API in NodeJS to apply the learned here:
 

@@ -60,7 +60,7 @@ This post is part of a tutorial series:
 
 Let's start by defining what is a "balanced tree" and the pitfalls of an "unbalanced tree".
 
-# Balanced vs. Unbalanced Binary Search Tree
+## Balanced vs. Unbalanced Binary Search Tree
 
 As discussed in the
 [previous post](/blog/2018/06/11/data-structures-for-beginners-trees-binary-search-tree-tutorial/)
@@ -74,7 +74,7 @@ Again, this might not look like a big difference, but when you have a million no
 
 "Ok, I'm sold. How do I keep the tree balanced?" I'm glad you asked 😉. Well, let's first learn when to tell that a tree is unbalanced.
 
-# When a tree is balanced/non-balanced?
+## When a tree is balanced/non-balanced?
 
 Take a look at the following trees and tell which one is balanced and which one is not.
 
@@ -147,11 +147,11 @@ If we take the same tree as before and move `50` to the place of `60` we get the
 ```
 After rotating `60` to the right, It's balanced! Let's learn all about it in the next section.
 
-# Tree rotations
+## Tree rotations
 
 Before throwing any line of code, let's spend some time thinking about how to balance small trees using rotations.
 
-## Left Rotation
+### Left Rotation
 
 Let's say that we have the following tree with ascending values: `1-2-3`
 
@@ -234,7 +234,7 @@ function swapParentChild(oldChild, newChild, parent) {
 
 We are using this function to make `1` the parent of `3`. We are going to use it rotation right as well.
 
-## Right Rotation
+### Right Rotation
 
 We have the following tree with descending values `4-3-2-1`:
 
@@ -279,7 +279,7 @@ The `rightRotation` does the following:
 
 Now that know how single rotations work to the left and right we can combine them: left-right and right-left rotations.
 
-## Left-Right Rotation
+### Left-Right Rotation
 
 If we insert values on a BST in this order: 3-1-2. We will get an unbalanced tree. To balance the tree, we have to do a `leftRightRotation(3)`.
 
@@ -319,7 +319,7 @@ function leftRightRotation(node) {
 
 The code is straightforward since we leverage the `leftRotation` and `rightRotation` that we did before.
 
-## Right-Left Rotation
+### Right-Left Rotation
 
 When we insert nodes on the following order: `1-3-2`, we need to perform a `rightLeftRotation(1)` to balance the tree.
 
@@ -342,7 +342,7 @@ function rightLeftRotation(node) {
 
 We know all the rotations needed to balanced any binary tree. Let's go ahead, use the AVL algorithm to keep it balanced on insertions/deletions.
 
-# AVL Tree Overview
+## AVL Tree Overview
 
 **AVL Tree** was the first self-balanced tree invented. It is named after the two inventors **A**delson-**V**elsky and **L**andis. In their self-balancing algorithm if one subtree differs from the other by at most one, then rebalancing is done using rotations.
 
@@ -402,7 +402,7 @@ One of the easiest ways to implement subtree heights is by using recursion. Let'
 
 To understand better what's going on, let's do some examples.
 
-## Tree with one node
+### Tree with one node
 
 Let's start with a single root node:
 
@@ -415,7 +415,7 @@ Let's start with a single root node:
 - Height is `Math.max(this.leftSubtreeHeight, this.rightSubtreeHeight)` which is  `Math.max(0, 0)`, so height is `0`.
 - Balance factor is also zero since `0 - 0 = 0`.
 
-## Tree with multiple nodes
+### Tree with multiple nodes
 
 Let's try with multiple nodes:
 
@@ -459,7 +459,7 @@ Before the height of the tree (from the root) was 3, now it's only 2.
 
 Let's put all together and explain how we can keep a binary search tree balanced on insertion and deletion.
 
-# AVL Tree Insertion and Deletion
+## AVL Tree Insertion and Deletion
 
 AVL tree is just a layer on top of a regular Binary Search Tree (BST). The add/remove operations are the same as in the BST, the only difference is that we run the `balance` function after each change.
 
@@ -532,7 +532,7 @@ That's all folks!
 
 <!-- However, perfect binary trees are not very common in the real world. We want to guarantee a search time of *`O(log n)`*. Relaxing a little bit the definition we can say that -->
 
-# Summary
+## Summary
 
 In this post, we explored the AVL tree, which is a particular binary search tree that self-balance itself after insertions and deletions of nodes. The operations of balancing a tree involve rotations, and they can be single or double rotations.
 

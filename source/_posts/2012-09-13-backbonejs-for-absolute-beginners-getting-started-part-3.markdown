@@ -8,7 +8,7 @@ pageviews__total: 94842
 pageviews__recent: 58
 pageviews__avg_time: 227
 toc: true
-#categories: [backbonejs, javascript
+##categories: [backbonejs, javascript
 alias: /blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/
 photos:
 - /images/Backbone_for_beginners_part3_small.png
@@ -34,16 +34,16 @@ BackboneJS Tutorial series:
 1. Backbone.js for absolute beginners - getting started (part 3: CRUD) **👈 you are here**
 1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/)
 
-# Todo item list CRUD
+## Todo item list CRUD
 There are a couple of features that we could improve. Let’s implement the CRUD (Create-Read-Update-Delete) for the item list.
 
-## C-reate
+### C-reate
 
 
 We are already can create item list from the console (2.3) and also from the UI (2.4.3). So, it’s done.
 
 
-## U-pdate
+### U-pdate
 
 
 What if you make a mistake and want to change the text on some of your to-do list. Furthermore, you can notice that the checkboxes states are not persistent when you reload the pages. Let’s fix both problems.
@@ -112,7 +112,7 @@ You can find the [diff](https://github.com/amejiarosario/Backbone-tutorial/commi
 
 [Here](https://github.com/amejiarosario/Backbone-tutorial/commit/19fa69e654ae5d370385675e4ffed615532b9934) are the changes to fix the update for the checkboxes.
 
-## D-elete
+### D-elete
 
 To be able to remove to-do items, we need to add a remove button in each item and listen to the click event on it, which will trigger the destroy function in the selected todo object.
 
@@ -172,6 +172,6 @@ To be able to remove to-do items, we need to add a remove button in each item an
 
 You can download the full working code so far in [here](https://raw.github.com/amejiarosario/Backbone-tutorial/1267e531ae3ef508eb32e5308c2cc965f02d1b45/backbone-tutorial.html) and you can visualize the changes needed to implement the delete feature in [here](https://github.com/amejiarosario/Backbone-tutorial/commit/1267e531ae3ef508eb32e5308c2cc965f02d1b45)
 
-# What's next?
+## What's next?
 
 Continue with the [4th part](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/) and learn about Backbone's Routes!

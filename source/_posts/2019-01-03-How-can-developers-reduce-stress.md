@@ -26,17 +26,17 @@ Most professions nowadays involve a certain degree of stress. We have deadlines,
 
 <!-- more -->
 
-# Background
+## Background
 
 There was a time in my life, back in 2015, where I went through severe stress crisis. I was juggling too many things at once: writing my first book, traveling to the USA interviewing for new jobs, getting a work visa, and planning a wedding while keeping up with a full-time job and also the sole programmer on two attempts of startups. It was the busiest time of my life, and my health suffered a lot! I dreamt about source code. Some nights I couldn’t sleep, so I worked instead. I went to the ER multiple times with heart palpitations. I knew I could not keep living in that way.
 
 I’ve been experimenting with different things to see helped and what not. This post is a compilation of the ones that helped. I'll start with general things that applies to anybody working in front of a computer and end with some more specific tips for web and software developers.
 
-# Ideas to handle stress
+## Ideas to handle stress
 
 I've been incorporating the following techniques and it had helped me a lot to cope with stress! Hope they can help you, too!
 
-## Move 🚶‍♂️
+### Move 🚶‍♂️
 
 Have you noticed that after a long time sitting your energy levels and concentration starts to drop?
 
@@ -99,13 +99,13 @@ At one point I also notice that my eyesight was getting worse, so I also incorpo
 <hr>
 </details>
 
-## Brainstorm 🧠
+### Brainstorm 🧠
 
 Have you felt stressed when you get stuck on something for a while? (e.g., No syntax errors and still the code is not working as intendeded). Well, it’s time to take a step back and put things in perspective. There might be a straighter line to get to your goal. **List all the alternatives** or different ways you can solve the same problem. Whatever you can think of (don’t label them as “good” or “bad”. Put down the “smart” ideas and especially the “dumb” ones. At the end, choose the ones that you think will work best. Work smarter, not harder!
 
 If you are going to cut a tree is essential to sharpen your ax first and then get to it. Not just will you cut the tree faster but also with less effort. Likewise, it’s vital that you take some time to do a little planning before jumping right into the task in hand. Beware of not overdoing it, set a time limit for this exercise. If you spend all the time sharpening the ax and never cut the tree is not good either ;)
 
-## Subtask ✌️
+### Subtask ✌️
 
 **Divide a big task into smaller ones**. Completing some small tasks will motivate you to get more done. Also keeps the stress away since you feel you are making progress. Another benefit of sub tasking is that makes estimations more accurate.
 
@@ -113,13 +113,13 @@ Even the most ambitious projects and tallest buildings started with laying down 
 
 Tackling a small task is less daunting to deal with the project as a whole, so you will be less likely to procrastinate and stress about it.
 
-## Prioritize 🎯
+### Prioritize 🎯
 
 Most of us have an endless TO DO list where things get added a lot faster than we can check them off. An infinite list of things to do stress us big time. What if I tell you, that in most cases you only need to **complete the 20%** of list to reap 80% of the benefits? 😲
 
 If you can't do it all, then prioritize. Do what matters the most upfront. The 20% of the task might account for 80% of the result (Pareto Principle). Find that critical 20% and execute on that first. For the rest of the list, you can apply the 80/20 principle recursively. Find the next 20% that matters the most and for the rest apply Pareto again, delegate or re-evaluate if is still needed.
 
-## Ask 🗣
+### Ask 🗣
 
 If you have more on your plate more than you can chew, then share with others. Don't choke alone. **Ask for help**.
 
@@ -131,7 +131,7 @@ When you request for help, the other person usually feels good. You are creating
 When we neglect our body the proper care we also can become sick which will take productivity to the floor. The following tips will help our body to cope with stress and keep the health.
 <hr>
 
-## Drink 🚰
+### Drink 🚰
 
 Stay hydrated. **Your brain is mostly water so don't let it dry**. A good rule of thumb is to drink half of your weight in ounces (e.g., 170lb -> 85 oz. water).
 
@@ -158,7 +158,7 @@ Another way to know if you are hydrated is monitoring how often your pee (crazy,
 <hr>
 </details>
 
-## Nourish 🥦
+### Nourish 🥦
 
 How productive are you when you are sick? Exactly! You get almost nothing done. On top of that, your stress increases and the deadlines get closer. A well-nourish body gets sick less and has more energy. You would be more productive!
 
@@ -178,13 +178,13 @@ Supplement yourself with **vitamin C** & fruits.  Vitamin C helps your body to q
 <hr>
 </details>
 
-## Stretch 🙆‍♀️
+### Stretch 🙆‍♀️
 
 Prolonged sitting is the new smoke. It might increase your body weight, back, and neck pain. Even if you exercise an hour before/after work, still you are hurting yourself for sitting too long at once. You have to break sitting often.
 
 As discussed before, try to break sitting every 25 minutes or an hour with some stretching session. Our bodies are not designed to stay 8 hours per day sitting still. It was designed to move. Indeed, great ideas happen when you are on the move (showering/walking). If you are stuck with some task, take a little walk, stretch out and might give you some perspective.
 
-## Workout 🏋️‍♀️
+### Workout 🏋️‍♀️
 
 Move your butt often, get some sweat in your forehead. Working out releases endorphins that increase your sense of well-being.
 
@@ -208,7 +208,7 @@ Working out your muscles can help you release tension and reduce your mental str
 <hr>
 </details>
 
-## Breath 💨
+### Breath 💨
 
 If you are reading this, it means you are breathing (of course!). However, not all breaths are equal!  👀
 
@@ -239,7 +239,7 @@ I have use Spire. I think it's useful to know track receive feedback when I was 
 <hr>
 </details>
 
-## Meditate 🧘‍♀️
+### Meditate 🧘‍♀️
 
 Meditation is trending but still sounds a little strange for some people. It's not about doing the lotus position. Simply put, meditation is focusing on the "now" because most of the time we get carried away fearing "future" situations that might never happen or worrying about a "past" that we can't change. All we got is "now".
 
@@ -294,7 +294,7 @@ One of the best ways to be present is **being aware of your breathing**. It's al
 
 
 
-## Play 🎮
+### Play 🎮
 
 After a long session of work, what's your reward? If you go home to continue working and or doing mentally taxing activities, then you will burn out quickly!
 
@@ -306,7 +306,7 @@ Solution? Have some **planned** downtime! After some time of work well done, rew
 
 Have some fun and plan for it!
 
-## Write ✍️
+### Write ✍️
 
 Journaling is one thing that helped me the most to calm my racing mind before going to sleep.
 
@@ -349,7 +349,7 @@ http://www.gurl.com/2016/09/08/tips-on-how-to-make-the-most-perfect-bullet-journ
   <hr>
 </details>
 
-## Sleep 😴
+### Sleep 😴
 
 I neglected this one for some time. The truth is that we sometimes we think if we sleep less we would have more time to get stuff done. However, that's not usually true. Your productivity/creativity decreases so much. If you are well-rested, you can solve problems in much less time.
 
@@ -385,11 +385,11 @@ Do you know having a good night sleep start during the day? For most people, it'
 An Additional bonus for Software Developers
 <hr>
 
-# Stress management for Software Developers
+## Stress management for Software Developers
 
 All the recommendations above could apply to anyone working at an office. In this section, we are going to give some more for people working with technology that changes very fast (like Software Developers).
 
-## Information overload 🤯
+### Information overload 🤯
 
 Innovation in tech is happening at unprecedented pace and it will keep accelerating. Try to focus on the foundations and principles very well, since they are not changing anytime soon. Don't feel like to have to learn everything new that comes out.
 
@@ -399,11 +399,11 @@ For backend and devOps there are paradigm changes from time to time. E.g. from m
 
 All in all, don't feel like you need to rearchitect your stack right away and throw what's working for something new. Prefer battle-tested solution for production env to shiny ones. Don't follow the hype evaluate your use cases carefully. What worked for Google/Facebook don't necessarily be the right tool for you. You can benchmark multiple tools before going all in and make a decision based on data rather than hype.
 
-## Testing 🐞
+### Testing 🐞
 
 Test your code. Unit test and integration/e2e tests are not nice to have, they are a must if you want to sleep well at night. Even if your company has a QA team, try to write automated tests. Add test coverage tools and try to keep it as close to 100% as possible. That will reduce you a lot of stress chasing bugs in production and unexpected angry customers.
 
-## Refactoring 🛠
+### Refactoring 🛠
 
 I have been battling my perfectionism for years. Every code I see that could be better, I feel the urge to modify it. Initially I did, and my number of changes got so big that when something broke it was hard to tell what's wrong :(
 

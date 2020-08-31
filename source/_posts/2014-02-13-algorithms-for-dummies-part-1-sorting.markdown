@@ -8,7 +8,7 @@ toc: true
 pageviews__total: 95052
 pageviews__recent: 123
 pageviews__avg_time: 1175
-#categories: [algorithms, big-o, sorting, merge sort]
+##categories: [algorithms, big-o, sorting, merge sort]
 alias: /blog/2014/02/13/algorithms-for-dummies-part-1-sorting/
 photos:
   - /images/AlgorithmsForDummies_small.png
@@ -30,7 +30,7 @@ How do you know a piece of code that you just wrote is good enough?  When you mo
 
 How to measure them? We could count the number of seconds it takes to execute and compare it with other one. However, it's not just troublesome to timers around code but if we run it in different hardware (e.g. supercomputer) it will seem like more efficient when indeed it's exactly the same program. Let's illustrate a better way with an example. Let's say you want to sort an array of n integers.
 
-# Sorting Algorithms
+## Sorting Algorithms
 
 ``` java
   void sort(int[] arr){
@@ -50,7 +50,7 @@ We are not living in an ideal world. So O(n^2) will be probably the average time
 
 Take some minutes to think and come back...
 
-## Merge Sort
+### Merge Sort
 
 A more efficient algorithm is the Merge sort. It uses the principle of divide and conquer to solve the problem faster. The idea is the follows:
 
@@ -112,7 +112,7 @@ Merge sort | O(n log(n)) | O(n log(n)) | O(n log(n)) | O(n)
 
 Notice that the table has also the space complexity. How much space does the algorithms take is also an important parameter to compare algorithms. The merge sort uses an additional array that's way its space complexity is `O(n)`, however, the insertion sort uses `O(1)` because it does the sorting in-place.
 
-# Big O Notation
+## Big O Notation
 
 Big O is defined as the asymptotic upper limit of a function. In plain english, it means that is a function that cover the maximum values a function could take. As we saw a little earlier this notation help us to predict performance and compare algorithms.
 

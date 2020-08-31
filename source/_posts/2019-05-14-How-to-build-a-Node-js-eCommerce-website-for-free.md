@@ -44,7 +44,7 @@ A 10,000-feet view description would be something like this:
 This diagram shows how each part interacts with each other:
 ![nodejs e-commerce app](/images/e-commerce-app-nodejs3.png)
 
-# Automating the generation of the assets (PDF)
+## Automating the generation of the assets (PDF)
 
 I have Github repository where the book docs and code live:
 
@@ -54,14 +54,14 @@ Every time I made a change (or somebody in the community), it triggers some proc
 
 Generating assets automatically is useful because I want every buyer to get the latest copy.
 
-# Hosting e-Commerce site
+## Hosting e-Commerce site
 
 I always want to try out new JavaScript/CSS frameworks. However, I resisted the temptation and asked my self: Does a page for selling a book need to be dynamic? Nope. So, it will be more performant if I use plain old CSS and HTML. That's what I did.
 Static pages also have the advantage that can be cached and served from a CDN.
 
 I used Netlify to host the static website for free. One single `git push`  will update the site on the domain name of choice (e.g. [books.adrianmejia.com](https://books.adrianmejia.com)). It also uses a global CDN so your page loads faster from anywhere in the world!
 
-# Processing Payments
+## Processing Payments
 
 The next part is to add a `Buy` button. Stripe provides a helpful checkout page that they host themselves and take care of the PCI compliance when dealing with credit cards. So, I used that, and they process the payment for me.
 
@@ -103,7 +103,7 @@ app.route('*', async (req, res) => {
 
 And that brings us to the next part, the Node.js server to take care of the rest.
 
-# Backend processing
+## Backend processing
 
 I created a Node.js server that listened for webhook requests.  When a customer paid for the book an event with the details is sent to this server, and the document pipeline is kicked off.
 
@@ -120,11 +120,11 @@ async function sendPdfToBuyer(webhookEvent) {
 }
 ```
 
-# Sending emails
+## Sending emails
 
 Sending emails was a little trickier than I thought.
 
-## DNS settings and authentication
+### DNS settings and authentication
 
 First, I was using my domain name, so I have to set up the DNS settings to make it work. However, I notice all my test emails to myself ended up on the junk mail.
 
@@ -132,13 +132,13 @@ Reading more about the topic I realized that I have to authenticate emails using
 
 I set up the setting initially with Sendgrid but was still getting my emails to the junk folder. I moved to Mailgun and got better results. For some reason, `hotmail.com` would always reject the emails. As I learned unless you pay for a dedicated IP address the email service provider would use a "shared" IP in many accounts. If for some reason the IP gets a bad reputation then your emails will go to spam folder even if you have never sent an email before! I got this fixed by opening a support ticket and after they changed the IP it was working fine with any address.
 
-## Email Templates
+### Email Templates
 
 The final part related to emails is doing a template. I have never done it before. The difference between HTML for email templates and web pages HTML is that on the email you should embed everything into the message itself. Spam filters don't like external link loading additional resources. So, every CSS should be inline and has to also be responsible.
 
 Well, there you have it: an e-commerce store that collects the payments and sends digital goods to buyers. Let's close talking about the cost of maintenance.
 
-# Cost of running the e-Commerce store
+## Cost of running the e-Commerce store
 
 This is the breakdown of the monthly costs:
 

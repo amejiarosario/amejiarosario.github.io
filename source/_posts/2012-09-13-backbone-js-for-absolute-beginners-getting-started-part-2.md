@@ -12,7 +12,7 @@ photos:
   - /images/BackbonesforBeginners_large.png
 toc: true
 alias: /blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/
-#categories: [backbonejs, javascript]
+##categories: [backbonejs, javascript]
 tutorial__order: 2
 tags:
   - backbonejs
@@ -35,7 +35,7 @@ BackboneJS Tutorial series:
 1. [Backbone.js for absolute beginners - getting started (part 3: CRUD)](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/)
 1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/)
 
-# Todo App in Backbone
+## Todo App in Backbone
 
 After completing this example app, you will have experience and basic understanding of all the modules of Backbone!
 
@@ -62,7 +62,7 @@ Let's start again with the initial [HTML file](https://raw.github.com/amejiarosa
 
 We are going to implement a To-do list, which is basically un-ordered list (ul) of elements with checkboxes.
 
-# Backbone.Model
+## Backbone.Model
 
 Models are the heart of every application. It contains the interactive data and the logic surrounding it, such as data validation, getters and setters, default values, data initialization, conversions and so on.
 For our example, we are going to create a model called `Todo`, which will store a string of text (title) and whether the task has been completed or not.
@@ -95,7 +95,7 @@ todo.set('created_at', Date());
 todo.get('created_at'); // "Wed Sep 12 2012 12:51:17 GMT-0400 (EDT)"
 {% endcodeblock %}
 
-# Backbone.Collection
+## Backbone.Collection
 
 As its name indicates, collections are ordered sets of models, where you can get and set models in the collection, listen for events when any element in the collection changes, and fetching for model’s data from the server.
 
@@ -139,11 +139,11 @@ JSON.stringify(todoList);    // "[{"title":"Learn Backbone's Collection","comple
 {% endcodeblock %}
 
 
-# Backbone.View
+## Backbone.View
 
 As mentioned in [1.2](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/#1.2), Views doesn’t have the HTML markups for our application, but instead (It's like the controller in MVC frameworks) process data and link it to templates and it finally render HTML based on events or data changes.
 
-## Basic Properties
+### Basic Properties
 
 There are 4 basic properties in a view: el, initialize, render, and events.
 
@@ -167,22 +167,22 @@ We have already seen the first 3 and will see later the fourth one. Do you remem
 {% endcodeblock %}
 
 
-## `view.el`
+### `view.el`
 
 
 Every view needs to reference a DOM at all times. Therefore, the view will inject content into this element. This is the `el` property. `this.el` is created from view’s `el`,`tagName`, `className`, `id` or `attributes` properties. If none of these are specified, then this.el is an empty `div`. The `view.$el` it’s a cached jQuery object of the view’s element (view.el).
 
 
-## Initialize/constructor
+### Initialize/constructor
 
 
 Here you have the option to pass parameters that will be attached to a model, collection or view.el.
 
-## `render`
+### `render`
 
 This function injects the markup into the elements. Not all views require having a render function, as you are going to see in the sample code, they can call other view’s render functions.
 
-## delegated events
+### delegated events
 
 Events are written in the following format:
 
@@ -197,7 +197,7 @@ in jQuery it would be something like:
 `$('#new-todo').keypress(createTodoOnEnter);`
 
 
-# Todo View
+## Todo View
 
 Now back to our To-do application: We need a view that renders each of the todo model objects into the page. The `item-template` and `app.TodoView` will render each todo item.
 
@@ -234,7 +234,7 @@ When we instanciate a Backbone View, it can receive any parameter that we need. 
 
 Also notice that our view is using a `tagName: li` instead of the just `el` from before. This means that the new render elements will be wrapped around a `<li></li>`
 
-# Backbone.Events
+## Backbone.Events
 
 This module can be mixed with any object and give it the pub/sub (observer patter) behaviour. Events provides a couple of methods from which we are going to discuss: `on`, `off` and `trigger`. (If this you are familiar with then in jQuery, they will work the same way + some nice built-in features)
 
@@ -261,7 +261,7 @@ object.on("my_event", callback);
 object.trigger("my_event", "my custom event");
 {% endcodeblock %}
 
-# App View
+## App View
 
 Now, we need another view that take a collection and render each of the individual items. We are going to call it ‘AppView’. This is a new large chunk of code so read it closely. Take a look through this code and try to identify each of the elements (we have already describe them in the previous sections).
 
@@ -312,5 +312,5 @@ Now, we need another view that take a collection and render each of the individu
 {% endcodeblock %}
 
 
-# What's next?
+## What's next?
  Continue with the [3rd part](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/) and learn how to make CRUD for your models!

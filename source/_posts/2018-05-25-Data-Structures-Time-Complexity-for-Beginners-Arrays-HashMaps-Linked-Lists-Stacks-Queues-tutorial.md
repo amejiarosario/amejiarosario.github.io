@@ -57,7 +57,7 @@ This post is part of a tutorial series:
 ---
 
 
-# Data Structures Big-O Cheatsheet
+## Data Structures Big-O Cheatsheet
 
 The following table is a summary of everything that we are going to cover.
 
@@ -84,7 +84,7 @@ Set (using Binary Search Tree) | O(log(n)) | - |  O(log(n)) |  O(log(n)) | Imple
 
 Note: **Binary search trees** and trees, in general, will be cover in the next post. Also, graph data structures.
 
-# Primitive Data Types
+## Primitive Data Types
 
 Primitive data types are the most basic elements where all the other data structures are built upon. Some primitives are:
 
@@ -101,7 +101,7 @@ JavaScript specific primitives:
 
 Note: Objects are not primitive since it's a collection of zero or more primitives and other objects.
 
-# Array
+## Array
 
 Arrays are collections of zero or more elements. Arrays are one of the most used data structure because of its simplicity and fast way of retrieving information.
 
@@ -119,7 +119,7 @@ When you want to search for something you can go directly to the bin number. Tha
 
 Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to predefine the size of the array and the data type. In JavaScript, it would automatically increase the size of the array when needed.
 
-## Arrays built-in operations
+### Arrays built-in operations
 
 Depending on the programming language, the implementation would be slightly different.
 
@@ -137,7 +137,7 @@ Function|Runtime|Description
 [array.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) |O(n)|Returns a copy of the array from `beginning` to `end`.
 [array.splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) |O(n)| Changes (add/remove) the array
 
-## Insert element on an array
+### Insert element on an array
 
 <!-- https://stackoverflow.com/a/22615787/684957 -->
 <!-- https://tc39.github.io/ecma262/#sec-array.prototype.push -->
@@ -179,7 +179,7 @@ What do you think is the runtime of the `insertToHead` function? Looks the same 
 
 > The `Array.unshift` runtime is an *O(n)*
 
-## Access an element in an array
+### Access an element in an array
 
 If you know the index for the element that you are looking for, then you can access the element directly like this:
 
@@ -199,7 +199,7 @@ As you can see in the code above, accessing an element on an array has a constan
 
 *Note: You can also change any value at a given index in constant time.*
 
-## Search an element in an array
+### Search an element in an array
 
 If you don't know the index of the data that you want from an array. Then you have to iterate through each element on the array until we find what we are looking for.
 
@@ -221,7 +221,7 @@ Given the for-loop, we have:
 
 > Array search runtime is *O(n)*
 
-## Deleting elements from an array
+### Deleting elements from an array
 
 What do you think is the running time of deleting an element from an array?
 
@@ -248,7 +248,7 @@ We take the worst case scenario:
 
 > Deleting an item from an array is *O(n)*.
 
-## Array operations time complexity
+### Array operations time complexity
 
 We can sum up the arrays time complexity as follows:
 
@@ -263,7 +263,7 @@ Search (for value) | *`O(n)`*
 Delete (`Array.splice`) | *`O(n)`*
 
 
-# HashMaps
+## HashMaps
 
 <!-- https://en.wikipedia.org/wiki/Hash_table -->
 <!-- https://en.wikipedia.org/wiki/Associative_array -->
@@ -297,7 +297,7 @@ As you can see in the image, each key gets translated into a **hash code**. Sinc
 
 Now, What do you think about covering each of the HashMap components in details? Let's start with the **hash function**.
 
-## HashMap vs. Array
+### HashMap vs. Array
 
 Why go through the trouble of converting the key into an index and not using an array directly you might ask. Well, the main difference is that the Array's index doesn't have any relationship with the data. You have to know where your data is.
 
@@ -317,7 +317,7 @@ Differences between HashMap and Array
 
 
 
-## Hash Function
+### Hash Function
 
 The first step to implement a HashMap is to have a hash function. This function will map every key to its value.
 
@@ -327,7 +327,7 @@ Ideal hashing algorithms allow *constant time* access/lookup. However, it's hard
 
 Collisions in HashMaps are unavoidable when using an array-like underlying data structure. At some point, data can't fit in a HashMap will reuse data slots. One way to deal with collisions is to store multiple values in the same bucket using a linked list or another array (more on this later). When we try to access the key's value and found various values, we iterate over the values *O(n)*. However, in most implementations, the hash adjusts the size dynamically to avoid too many collisions. So, we can say that the **amortized** lookup time is *O(1)*. We are going to explain what we mean by amortized runtime later on this post with an example.
 
-## Naïve HashMap implementation
+### Naïve HashMap implementation
 
 <a id="NaiveHashMap"></a>
 A simple (and bad) hash function would be this one:
@@ -415,7 +415,7 @@ This will cause a lot of collisions.
 Did you guess any? ☝️
 
 
-## Improving Hash Function
+### Improving Hash Function
 
 > The primary purpose of a HashMap is to reduce the search/access time of an Array from *`O(n)`* to *`O(1)`*.
 
@@ -524,7 +524,7 @@ Yay!!! 🎉 we have a much better hash function!
 
 We also can change the initial capacity of the array to minimize collisions. Let's put all of that together in the next section.
 
-## Decent HashMap Implementation
+### Decent HashMap Implementation
 
 Using our optimized hash function we can now do much better.
 
@@ -686,7 +686,7 @@ Having a bigger bucket size is excellent to avoid collisions, but it consumes **
 
 Wouldn't it be great, if we can have a HashMap that automatically increases its size as needed? Well, that's called **rehash**, and we are going to do it next!
 
-## Optimal HashMap Implementation
+### Optimal HashMap Implementation
 
 If we have a big enough bucket we won't have collisions thus the search time would be *`O(1)`*. However, how do we know how big a hash map capacity should big? 100? 1,000? A million?
 
@@ -887,7 +887,7 @@ To sum up, the performance of a HashMap will be given by:
 
 We nailed both 🔨. We have a decent hash function that produces different output for different data. Two distinct data will never return the same code. Also, we have a rehash function that automatically grows the capacity as needed. That's great!
 
-## Insert element on a HashMap runtime
+### Insert element on a HashMap runtime
 
 Inserting an element on a HashMap requires two things: a key and a value. We could use our [DecentHashMap](#DecentHashMap) data structure that we develop or use the built-in as follows:
 
@@ -921,7 +921,7 @@ Behind the scenes, the `Map.set` just insert elements into an array (take a look
 
 Our implementation with [rehash](#HashMapWithRehash) functionality will keep collisions to the minimum. The rehash operation takes *`O(n)`* but it doesn't happen all the time only when is needed.
 
-## Search/Access an element on a HashMap runtime
+### Search/Access an element on a HashMap runtime
 
 This is the `HashMap.get` function that we use to get the value associated with a key. Let's evaluate the implementation from [`DecentHashMap.get`](#DecentHashMap)):
 
@@ -944,13 +944,13 @@ If there's no collision, then `values` will only have one value and the access t
 
 **Advanced Note:** Another idea to reduce the time to get elements from *O(n)* to *O(log n)* is to use a *binary search tree* instead of an array. Actually, [Java's HashMap implementation](http://hg.openjdk.java.net/jdk9/jdk9/jdk/file/f08705540498/src/java.base/share/classes/java/util/HashMap.java#l145) switches from an array to a tree when a bucket has more than [8 elements](http://hg.openjdk.java.net/jdk9/jdk9/jdk/file/f08705540498/src/java.base/share/classes/java/util/HashMap.java#l257).
 
-## Edit/Delete element on a HashMap runtime
+### Edit/Delete element on a HashMap runtime
 
 Editing (`HashMap.set`) and deleting (`HashMap.delete`) key/value pairs have an **amortized** runtime of *`O(1)`*. In the case of many collisions, we could face an *`O(n)`* as a worst case. However, with our rehash operation, we can mitigate that risk.
 
 > HashMap edits and delete operations has a runtime of *`O(1)`* on average and worst-case of *`O(n)`*.
 
-## HashMap operations time complexity
+### HashMap operations time complexity
 
 We can sum up the arrays time complexity as follows:
 
@@ -962,7 +962,7 @@ Access/Search (`HashMap.get`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme cas
 Insert/Edit (`HashMap.set`) | *`O(n)`* | *`O(1)`* | *`O(n)`* only happens with rehash when the Hash is 0.75 full
 Delete (`HashMap.delete`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case when there are too many collisions
 
-# Sets
+## Sets
 
 Sets are very similar to arrays. The difference is that they don't allow duplicates.
 
@@ -970,7 +970,7 @@ How can we implement a Set (array without duplicates)? Well, we could use an arr
 
 <!-- The best way to learn how something works is to implement it ourselves. We are also going to explore the built-in `Set` in JavaScript. -->
 
-## Set Implementation
+### Set Implementation
 
 We could use the JavaScript built-in `Set`. However, if we implement it by ourselves, it's more logic to deduct the runtimes. We are going to use the [optimized HashMap](#HashMapWithRehash) with rehash functionality.
 
@@ -1040,7 +1040,7 @@ assert.equal(set.size, 1);
 
 You should be able to use `MySet` and the built-in `Set` interchangeably for these examples.
 
-## Set Operations runtime
+### Set Operations runtime
 
 From our Set implementation using a HashMap we can sum up the time complexity as follows (very similar to the HashMap):
 
@@ -1052,7 +1052,7 @@ Access/Search (`Set.has`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case wh
 Insert/Edit (`Set.add`) | *`O(n)`* | *`O(1)`* | *`O(n)`* only happens with *rehash* when the Hash is 0.75 full
 Delete (`Set.delete`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case when there are too many collisions
 
-# Linked Lists
+## Linked Lists
 
 Linked List is a data structure where every element is connected to the next one.
 
@@ -1071,7 +1071,7 @@ class Node {
 
 When we have a chain of nodes where each one points to the next one we a **Singly Linked list**.
 
-## Singly Linked Lists
+### Singly Linked Lists
 
 For a singly linked list, we only have to worry about every element having a reference to the next one.
 
@@ -1235,7 +1235,7 @@ This function finds the first element with the given value.
 
 > The runtime for searching an element in a linked list is *O(n)*
 
-## Singly Linked Lists time complexity
+### Singly Linked Lists time complexity
 
 Singly Linked List time complexity per function is as follows.
 
@@ -1255,7 +1255,7 @@ Notice that every time we are adding/removing from the last position the operati
 
 We are going to add the last reference in the next section!
 
-## Doubly Linked Lists
+### Doubly Linked Lists
 
 When we have a chain of nodes where each one points to the next one we a **Singly Linked list**. When we have a linked list where each node leads to the **next** and the **previous** element we a **Doubly Linked List**
 
@@ -1422,7 +1422,7 @@ If we have an insertion in the middle of the array, then we have to update the `
 
 > Adding an element anywhere within the list is *O(n)*.
 
-## Doubly Linked Lists time complexity
+### Doubly Linked Lists time complexity
 
 Doubly Linked List time complexity per function is as follows:
 
@@ -1443,7 +1443,7 @@ Doubly linked lists are a significant improvement compared to the singly linked 
 
 Removing first/last can be done in constant-time; however, eliminating in the middle of the array is still *O(n)*.
 
-# Stacks
+## Stacks
 
 <!-- https://docs.oracle.com/javase/10/docs/api/java/util/Stack.html -->
 
@@ -1490,7 +1490,7 @@ The first in (`a`) as the last to get out. We can also implement stack using a l
 
 That's all!
 
-# Queues
+## Queues
 
 <!-- https://docs.oracle.com/javase/10/docs/api/java/util/Queue.html -->
 <!-- https://stackoverflow.com/a/22615787/684957 -->
@@ -1502,7 +1502,7 @@ It's like a line of people at the movies, the first to come in is the first to c
 
 We could implement a Queue using an array, very similar to how we implemented the Stack.
 
-## Queue implemented with Array(s)
+### Queue implemented with Array(s)
 
 A naive implementation would be this one using `Array.push` and `Array.shift`:
 
@@ -1578,7 +1578,7 @@ If the output has already some elements, then the remove operation is constant *
 We can achieve a `Queue` with a pure constant if we use a LinkedList. Let's see what it is in the next section!
 <!-- **[[usages]]** -->
 
-## Queue implemented with a Doubly Linked List
+### Queue implemented with a Doubly Linked List
 
 We can achieve the best performance for a `queue` using a linked list rather than an array.
 
@@ -1608,7 +1608,7 @@ class Queue {
 
 Using a doubly linked list with the last element reference we achieve an `add` of *O(1)*. That's the importance of using the right tool for the right job 💪
 
-# Summary
+## Summary
 
 We explored most of the linear data structures. We saw that depending on how we implement the data structures there are different runtimes.
 

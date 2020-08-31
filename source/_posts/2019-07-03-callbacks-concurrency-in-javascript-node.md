@@ -38,7 +38,7 @@ JavaScript is an event-driven language. Instead of waiting for things to happen,
 
 <hr>
 
-# JavaScript callbacks
+## JavaScript callbacks
 
 > A callback is a function that is passed as an argument to another function.
 

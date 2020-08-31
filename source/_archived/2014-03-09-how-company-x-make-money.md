@@ -22,7 +22,7 @@ Have you ever wonder how the companies that offer free services make money? Such
 
 <a href="#start">TL; DR</a>: Go to the interactive company revenue checker.</a>
 
-### Revenues Models
+## Revenues Models
 
 Let’s start first giving some perspective what models are actually giving the most revenues. In 2013, App Store, reported that free apps brought the 71% of the revenue! Even more than paid apps… how’s that even possible!?
 

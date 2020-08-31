@@ -40,11 +40,11 @@ MEAN Stack tutorial series:
 We are going to start building all the examples in a single HTML file! It embedded JavaScript and NO styles/CSS for **simplicity**. Don't worry, in the next tutorials, we will learn how to split use Angular modules. We are going to break down the code, add testing to it and styles.
 
 
-# What is Angular.js?
+## What is Angular.js?
 
 Angular.js is a MVW (Model-View-Whatever) open-source JavaScript web framework that facilitates the creation of single-page applications (SPA) and data-driven apps.
 
-## AngularJS vs jQuery vs BackboneJS vs EmberJS
+### AngularJS vs jQuery vs BackboneJS vs EmberJS
 
 <a href="#start">TL; DR</a>: AngularJS is awesome for building testable single page applications (SPA). Also, excel with data-driven and CRUD apps. <a href="#start">Show me the code!.</a>
 
@@ -72,11 +72,11 @@ Without further ado, let’s dive in!
 
 <a id="start"></a>
 
-# AngularJS Main Components
+## AngularJS Main Components
 
 AngularJS has an <a href="https://docs.angularjs.org/api" target="_blank">extensive API</a> and components. In this tutorial we are going to focus on the most important ones, such as directives, modules, services, controllers and related concepts.
 
-## AngularJS Directives
+### AngularJS Directives
 
 The first concept you need to know about AngularJS is what are directives.
 
@@ -114,7 +114,7 @@ Data binding AngularJS example:
 
 You can create your own directives. Checkout the this tutorial for more: [creating-custom-angularjs-directives-for-beginners](/blog/2016/04/08/creating-custom-angularjs-directives-for-beginners/). It will go deeper into directives.
 
-## AngularJS Data Binding
+### AngularJS Data Binding
 
 **Data binding** is an AngularJS feature that synchronizes your model data with your HTML. That’s great because models are the "single source of truth". You do not have to worry about updating them. Here’s a graph from <a href="http://docs.angularjs.org" target="_blank">docs.angularjs.org</a>.
 
@@ -122,13 +122,13 @@ You can create your own directives. Checkout the this tutorial for more: [creati
 
 Whenever the HTML is changed, the model gets updated. Wherever the model gets updated it is reflected in HTML.
 
-## AngularJS Scope
+### AngularJS Scope
 
 `$scope` it is an object that contains all the data to which HTML is bound. They are the glue your javascript code (controllers) and the view (HTML). Everything that is attached to the `$scope`, it is  `$watch`ed by AngularJS and updated.
 
 Scopes can be bound to javascript functions. Also, you could have more than one `$scope` and inherit from outer ones. More on this, in the controller's section.
 
-## AngularJS Controllers
+### AngularJS Controllers
 
 Angular.js **controllers** are code that "controls" certain sections containing DOM elements. They encapsulate the behavior, callbacks and glue `$scope` models with views. Let's see an example to drive the concept home:
 
@@ -170,7 +170,7 @@ As you might notice we have new friends: `ng-controller`, `ng-repeat` and `$scop
 
 * **`ng-model`** notice that the checkbox is bound to the `todo.completed`. If `todo.completed` is true, then the checkbox is going to be checked and vice versa.
 
-## AngularJS Modules
+### AngularJS Modules
 
 Modules are a way to encapsulate different parts of your application. They allow reusing code in other places.  Here's an example of how to rewrite our controller using modules.
 
@@ -193,7 +193,7 @@ Notice the `<html ng-app="app">` in the example below
 
 Using modules brings many advantages. They can be loaded in any order, and parallel dependency loading. Also, tests can only load the required modules and keep it fast, clear view of the dependencies.
 
-## AngularJS Templates
+### AngularJS Templates
 
 Templates contain HTML and Angular elements (directives, markup, filters or form controls). They can be cached and referenced by an id.
 
@@ -214,7 +214,7 @@ Does the code inside looks familiar? ;)
 
 Notice they are inside the `script` and has a type of `text/ng-template`.
 
-## AngularJS Routes (ngRoutes)
+### AngularJS Routes (ngRoutes)
 
 ngRoutes module allows changing what we see in the app depending on the URL (route). It, usually, uses templates to inject the HTML into the app.
 
@@ -242,7 +242,7 @@ angular.module('app', ['ngRoute'])
 
 * `ngView` is a directive used by `$routeProvider` to render HTML into it. Every time the URL changes, it will inject a new HTML template and controller into ngView.
 
-## AngularJS Services (Factories)
+### AngularJS Services (Factories)
 
 Notice that if you want to create a 2nd controller and share $scope.todos it is not possible right now. That is when services become handy. Services are a way to inject data dependencies into controllers. They are created through factories. Let's see it in action:
 
@@ -288,7 +288,7 @@ This is what is happening:
 
 NOTE: in codepen, you will not see the URL. If you want to see it changing, you can download the whole example an open it from <a href="https://gist.github.com/amejiarosario/f0a82c7a0eec4786f1c9" target="_blank">here</a>.
 
-## AngularJS Filters
+### AngularJS Filters
 
 Filters allow you to format and transform data. They change the output of expressions inside the curly braces. AngularJS comes with a bunch of useful filters.
 
@@ -325,7 +325,7 @@ Notice that we are using `search.name` in the `ng-model` for search. That will l
 
 <p data-height="268" data-theme-id="0" data-slug-hash="ahwbz" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/ahwbz/'>ahwbz</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-# What's next?
+## What's next?
 
 Congrats! You have completed part 1 of this [3 part series](/tags/Tutorial-MEAN-Stack/). We are going to build upon the things learned in here, in the next post we are going to setup a backend in NodeJS and MongoDB and connect it to AngularJS to provide a full featured CRUD app. Continue with:
 
@@ -337,7 +337,7 @@ I also have created BackboneJS tutorials check it out:
 
 * [BackboneJS Tutorials](/blog/categories/backbonejs)
 
-### ng-test
+#### ng-test
 
 Congrats, you have reached this far! It is time to test what you have learned. Test-Driven Learning (TDL) ;). Here's the challenge: open <a href="https://gist.githubusercontent.com/amejiarosario/26751cb85d088fd59c28/raw/c2dde0797c8d47d359c2137fc9a15a9228c272ca/index.html" target="_blank">this file</a> on your favorite code editor. Copy the boilerplate code and built the full app that we just build in the previous examples. Of course, you can take a peek from time to time if you get stuck ;)
 
@@ -351,7 +351,7 @@ Fork and edit online:
 
 <p data-height="268" data-theme-id="0" data-slug-hash="degzC" data-default-tab="result" data-user="amejiarosario" class='codepen'>See the Pen <a href='http://codepen.io/amejiarosario/pen/degzC/'>degzC</a> by Adrian Mejia (<a href='http://codepen.io/amejiarosario'>@amejiarosario</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
-### ng-solution
+#### ng-solution
 
 This is the full solution and you can see it <a href="https://cdn.rawgit.com/amejiarosario/068143b53e54db43ef38/raw/b703b591bc84f2d59a2a483169294e2fb232419d/ngTodo.html#/" target="_blank">live in here</a>.
 
