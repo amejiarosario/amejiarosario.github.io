@@ -5,9 +5,9 @@ created: 1310520455000
 updated: 1310520455000
 comments: true
 toc: true
-pageviews__total: 65579
-pageviews__recent: 8189
-pageviews__avg_time: 475
+pageviews__total: 202672
+pageviews__recent: 6050
+pageviews__avg_time: 533
 tutorial__order: 0
 photos:
  - /images/samba-filesharing-with-windows-ubuntu-mac-small.jpg
