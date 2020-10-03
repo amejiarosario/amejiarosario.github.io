@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>How to find time complexity of an algorithm? | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Finding out the time complexity of your code can help you develop better programs that run faster. Some functions are easy to analyze, but when you have loops, and recursion might get a little trickier when you have recursion. After reading this post, you are able to derive the time complexity of any code." />
+    <meta property="og:image" content="https://adrianmejia.com/images/from-code-to-big-o-algorithms-large.jpg" />
+    <meta property="og:title" content="How to find time complexity of an algorithm?" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "How to find time complexity of an algorithm?",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/from-code-to-big-o-algorithms-large.jpg",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2020-10-03T08:53:32-04:00",
+  "dateModified": "2020-10-03T08:53:32-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "Finding out the time complexity of your code can help you develop better programs that run faster. Some functions are easy to analyze, but when you have loops, and recursion might get a little trickier when you have recursion. After reading this post, you are able to derive the time complexity of any code."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/programming/">Programming</a> > <a class="category-link" href="/categories/programming/data-structures-and-algorithms-dsa/">Data Structures and Algorithms (DSA)</a>
+    </div>
+
+    <h1>How to find time complexity of an algorithm?</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2020-10-03T12:53:32.000Z" itemprop="dateUpdated">October 3rd 2020</time>
+      </span>
+
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithms/" rel="tag">algorithms</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/big-o-notation/" rel="tag">big-o notation</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-algorithms/" rel="tag">tutorial_algorithms</a><span class="tag-list-count">9</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #F4F0EF">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/from-code-to-big-o-algorithms-large.jpg">
+        <source srcset="/images/from-code-to-big-o-algorithms-small.jpg">
+        <img src="/images/from-code-to-big-o-algorithms-large.jpg" alt="How to find time complexity of an algorithm?">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>Finding out the time complexity of your code can help you develop better programs that run faster. Some functions are easy to analyze, but when you have loops, and recursion might get a little trickier when you have recursion. After reading this post, you are able to derive the time complexity of any code.</p>
+<a id="more"></a>
+
+<p>In general, you can determine the time complexity by analyzing the program’s statements (go line by line).
+However, you have to be mindful how are the statements arranged. Suppose they are inside a loop or have function calls or even recursion. All these factors affect the runtime of your code. Let’s see how to deal with these cases.</p>
+<h2 id="Big-O-Notation"><a href="#Big-O-Notation" class="headerlink" title="Big O Notation"></a>Big O Notation</h2><p>How to calculate time complexity of any algorithm or program? The most common metric it’s using Big O notation.</p>
+<p>Here are some highlights about Big O Notation:</p>
+<ul>
+<li>Big O notation is a framework to analyze and compare algorithms.</li>
+<li>Amount of work the CPU has to do (time complexity) as the input size grows (towards infinity).</li>
+<li>Big O = Big Order function. Drop constants and lower order terms. E.g. <code>O(3*n^2 + 10n + 10)</code> becomes <code>O(n^2)</code>.</li>
+<li>Big O notation cares about the worst-case scenario. E.g., when you want to sort and elements in the array are in reverse order for some sorting algorithms.</li>
+</ul>
+<p>For instance, if you have a function that takes an array as an input, if you increase the number of elements in the collection, you still perform the same operations; you have a constant runtime. On the other hand, if the CPU’s work grows proportionally to the input array size, you have a linear runtime <code>O(n)</code>.</p>
+<p>If we plot the <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">most common Big O notation examples</a>, we would have graph like this:</p>
+<img src="/images/time-complexity-examples.png" class="" title="Time Complexity">
+
+<p>As you can see, you want to lower the time complexity function to have better performance.</p>
+<p>Let’s take a look, how do we translate code into time complexity.</p>
+<h2 id="Sequential-Statements"><a href="#Sequential-Statements" class="headerlink" title="Sequential Statements"></a>Sequential Statements</h2><p>If we have statements with basic operations like comparisons, assignments, reading a variable.
+We can assume they take constant time each <code>O(1)</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">statement1;</span><br><span class="line">statement2;</span><br><span class="line">...</span><br><span class="line">statementN;</span><br></pre></td></tr></table></figure>
+
+<p>If we calculate the total time complexity, it would be something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">total &#x3D; time(statement1) + time(statement2) + ... time (statementN)</span><br></pre></td></tr></table></figure>
+
+<p>Let’s use <code>T(n)</code> as the total time in function of the input size <code>n</code>, and <code>t</code> as the time complexity taken by a statement or group of statements.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) &#x3D; t(statement1) + t(statement2) + ... + t(statementN);</span><br></pre></td></tr></table></figure>
+
+<p>If each statement executes a basic operation, we can say it takes constant time <code>O(1)</code>. As long as you have a fixed number of operations, it will be constant time, even if we have 1 or 100 of these statements.</p>
+<p>Example:</p>
+<p>Let’s say we can compute the square sum of 3 numbers.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">squareSum</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> sa = a * a;</span><br><span class="line">  <span class="keyword">const</span> sb = b * b;</span><br><span class="line">  <span class="keyword">const</span> sc = c * c;</span><br><span class="line">  <span class="keyword">const</span> sum = sa + sb + sc;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>As you can see, each statement is a basic operation (math and assignment). Each line takes constant time <code>O(1)</code>. If we add up all statements’ time it will still be <code>O(1)</code>. It doesn’t matter if the numbers are <code>0</code> or <code>9,007,199,254,740,991</code>, it will perform the same number of operations.</p>
+<blockquote>
+<p>⚠️ Be careful with function calls. You will have to go to the implementation and check their run time. More on that later.</p>
+</blockquote>
+<h2 id="Conditional-Statements"><a href="#Conditional-Statements" class="headerlink" title="Conditional Statements"></a>Conditional Statements</h2><p>Very rarely, you have a code without any conditional statement.
+How do you calculate the time complexity? Remember that we care about the worst-case with Big O so that we will take the maximum possible runtime.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isValid) &#123;</span><br><span class="line">  statement1;</span><br><span class="line">  statement2;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  statement3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Since we are after the worst-case we take whichever is larger:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) &#x3D; Math.max([t(statement1) + t(statement2)], [time(statement3)])</span><br></pre></td></tr></table></figure>
+
+<p>Example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isValid) &#123;</span><br><span class="line">  array.sort();</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>What’s the runtime? The <code>if</code> block has a runtime of <code>O(n log n)</code> (that’s common runtime for <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#Mergesort">efficient sorting algorithms</a>). The <code>else</code> block has a runtime of <code>O(1)</code>.</p>
+<p>So we have the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O([n log n] + [n]) &#x3D;&gt; O(n log n)</span><br></pre></td></tr></table></figure>
+
+<p>Since <code>n log n</code> has a higher order than <code>n</code>, we can express the time complexity as <code>O(n log n)</code>.</p>
+<h2 id="Loop-Statements"><a href="#Loop-Statements" class="headerlink" title="Loop Statements"></a>Loop Statements</h2><p>Another prevalent scenario is loops like for-loops or while-loops.</p>
+<h3 id="Linear-Time-Loops"><a href="#Linear-Time-Loops" class="headerlink" title="Linear Time Loops"></a>Linear Time Loops</h3><p>For any loop, we find out the runtime of the block inside them and multiply it by the number of times the program will repeat the loop.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">  statement1;</span><br><span class="line">  statement2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>For this example, the loop is executed <code>array.length</code>, assuming <code>n</code> is the length of the array, we get the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) &#x3D; n * [ t(statement1) + t(statement2) ]</span><br></pre></td></tr></table></figure>
+
+<p>All loops that grow proportionally to the input size have a linear time complexity <code>O(n)</code>. If you loop through only half of the array, that’s still <code>O(n)</code>. Remember that we drop the constants so <code>1/2 n =&gt; O(n)</code>.</p>
+<h3 id="Constant-Time-Loops"><a href="#Constant-Time-Loops" class="headerlink" title="Constant-Time Loops"></a>Constant-Time Loops</h3><p>However, if a constant number bounds the loop, let’s say 4 (or even 400). Then, the runtime is constant <code>O(4) -&gt; O(1)</code>. See the following example.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">  statement1;</span><br><span class="line">  statement2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>That code is <code>O(1)</code> because it no longer depends on the input size. It will always run statement 1 and 2 four times.</p>
+<h3 id="Logarithmic-Time-Loops"><a href="#Logarithmic-Time-Loops" class="headerlink" title="Logarithmic Time Loops"></a>Logarithmic Time Loops</h3><p>Consider the following code, where we divide an array in half on each iteration (binary search):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">array, target, low = <span class="number">0</span>, high = array.length - <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> mid;</span><br><span class="line">  <span class="keyword">while</span> ( low &lt;= high ) &#123;</span><br><span class="line">    mid = ( low + high ) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> ( target &lt; array[mid] )</span><br><span class="line">      high = mid - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( target &gt; array[mid] )</span><br><span class="line">      low = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> mid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This function divides the array by its <code>mid</code>dle point on each iteration. The while loop will execute the amount of times that we can divide <code>array.length</code> in half. We can calculate this using the <code>log</code> function.
+E.g. If the array’s length is 8, then we the while loop will execute 3 times because <code>log<sub>2</sub>(8) = 3</code>.</p>
+<h2 id="Nested-loops-statements"><a href="#Nested-loops-statements" class="headerlink" title="Nested loops statements"></a>Nested loops statements</h2><p>Sometimes you might need to visit all the elements on a 2D array (grid/table). For such cases, you might find yourself with two nested loops.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  statement1;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">    statement2;</span><br><span class="line">    statement3;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>For this case, you would have something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) &#x3D; n * [t(statement1) + m * t(statement2...3)]</span><br></pre></td></tr></table></figure>
+
+<p>Assuming the statements from 1 to 3 are <code>O(1)</code>, we would have a runtime of <code>O(n * m)</code>.
+If instead of <code>m</code>, you had to iterate on <code>n</code> again, then it would be <code>O(n^2)</code>. Another typical case is having a function inside a loop. Let’s see how to deal with that next.</p>
+<h2 id="Function-call-statements"><a href="#Function-call-statements" class="headerlink" title="Function call statements"></a>Function call statements</h2><p>When you calculate your programs’ time complexity and invoke a function, you need to be aware of its runtime. If you created the function, that might be a simple inspection of the implementation. If you are using a library function, you might need to check out the language/library documentation or source code.</p>
+<p>Let’s say you have the following program:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">  fn1();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">    fn2();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> k = <span class="number">0</span>; k &lt; n; k++) &#123;</span><br><span class="line">      fn3();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Depending on the runtime of fn1, fn2, and fn3, you would have different runtimes.</p>
+<ul>
+<li>If they all are constant <code>O(1)</code>, then the final runtime would be <code>O(n^3)</code>.</li>
+<li>However, if only <code>fn1</code> and <code>fn2</code> are constant and <code>fn3</code> has a runtime of <code>O(n^2)</code>, this program will have a runtime of <code>O(n^5)</code>. Another way to look at it is, if <code>fn3</code> has two nested and you replace the invocation with the actual implementation, you would have five nested loops.</li>
+</ul>
+<p>In general, you will have something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) &#x3D; n * [ t(fn1()) + n * [ t(fn2()) + n * [ t(fn3()) ] ] ]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Recursive-Functions-Statements"><a href="#Recursive-Functions-Statements" class="headerlink" title="Recursive Functions Statements"></a>Recursive Functions Statements</h2><p>Analyzing the runtime of recursive functions might get a little tricky. There are different ways to do it. One intuitive way is to explore the recursion tree.</p>
+<p>Let’s say that we have the following program:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (n &lt; <span class="number">2</span>) <span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> fn(n - <span class="number">1</span>) + fn(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>You can represent each function invocation as a bubble (or node).</p>
+<p>Let’s do some examples:</p>
+<ul>
+<li>When you n = 2, you have 3 function calls. First <code>fn(2)</code> which in turn calls <code>fn(1)</code> and <code>fn(0)</code>.</li>
+<li>For <code>n = 3</code>, you have 5 function calls. First <code>fn(3)</code>, which in turn calls <code>fn(2)</code> and <code>fn(1)</code> and so on.</li>
+<li>For <code>n = 4</code>, you have 9 function calls. First <code>fn(4)</code>, which in turn calls <code>fn(3)</code> and <code>fn(2)</code> and so on.</li>
+</ul>
+<p>Since it’s a binary tree, we can sense that every time <code>n</code> increases by one, we would have to perform at most the double of operations.</p>
+<p>Here’s the graphical representation of the 3 examples:</p>
+<img src="/images/big-o-recursive-example.png" class="" title="recursive-function-example">
+
+
+<p>If you take a look at the generated tree calls, the leftmost nodes go down in descending order: <code>fn(4)</code>, <code>fn(3)</code>, <code>fn(2)</code>, <code>fn(1)</code>, which means that the height of the tree (or the number of levels) on the tree will be <code>n</code>.</p>
+<p>The total number of calls, in a complete binary tree, is <code>2^n - 1</code>. As you can see in <code>fn(4)</code>, the tree is not complete. The last level will only have two nodes, <code>fn(1)</code> and <code>fn(0)</code>, while a complete tree would have 8 nodes. But still, we can say the runtime would be exponential <code>O(2^n)</code>. It won’t get any worst because <code>2^n</code> is the upper bound.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this chapter, we learned how to calculate the time complexity of our code when we have the following elements:</p>
+<ul>
+<li>Basic operations like assignments, bit, and math operators.</li>
+<li>Loops and nested loops</li>
+<li>Function invocations and recursions.</li>
+</ul>
+<p>If you want to see more code examples for <code>O(n log n)</code>, <code>O(n^2)</code>, <code>O(n!)</code>, check out the <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course">most common time complexities that every developer should know</a>.</p>
+<!--
+References:
+- https://stackoverflow.com/q/11032015/684957
+
+-->
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <!-- <a href="/support">support</a>  -->
+            support and share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+          
+            <a href="/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
+      Currently working at Cisco as a Software Engineer.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+              
+                <div class="container">
+                <h1 class="capitalize">tutorial algorithms Series</h1>
+                <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/">
+    
+      <img src="/images/graph-interview-questions-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation/">
+    
+      <img src="/images/from-code-to-big-o-algorithms-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How to find time complexity of an algorithm?</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">
+    
+      <img src="/images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How you can change the world by learning Data Structures and Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">
+    
+      <img src="/images/data-structures-must-know-algorithms-running-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>8 time complexities that every programmer should know</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/">
+    
+      <img src="/images/data-structures-time-complexity-lists-arrays-stacks-queues-hash-maps-sets-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Data Structures in JavaScript: Arrays, HashMaps, and Lists</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">
+    
+      <img src="/images/graph-data-structures-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Graph Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">
+    
+      <img src="/images/data-structures-for-beginners-trees-binary-search-tree-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Tree Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">
+    
+      <img src="/images/data-structures-algorithms-avl-binary-search-trees-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Self-balanced Binary Search Trees with AVL in JavaScript</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Analysis-of-Recursive-Algorithms/">
+    
+      <img src="/images/data-structures-analysis-of-recursive-algorithms-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Analysis of Recursive Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Big-O-Notation"><span class="toc-number">1.</span> <span class="toc-text">Big O Notation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sequential-Statements"><span class="toc-number">2.</span> <span class="toc-text">Sequential Statements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditional-Statements"><span class="toc-number">3.</span> <span class="toc-text">Conditional Statements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Loop-Statements"><span class="toc-number">4.</span> <span class="toc-text">Loop Statements</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linear-Time-Loops"><span class="toc-number">4.1.</span> <span class="toc-text">Linear Time Loops</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Constant-Time-Loops"><span class="toc-number">4.2.</span> <span class="toc-text">Constant-Time Loops</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logarithmic-Time-Loops"><span class="toc-number">4.3.</span> <span class="toc-text">Logarithmic Time Loops</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested-loops-statements"><span class="toc-number">5.</span> <span class="toc-text">Nested loops statements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function-call-statements"><span class="toc-number">6.</span> <span class="toc-text">Function call statements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recursive-Functions-Statements"><span class="toc-number">7.</span> <span class="toc-text">Recursive Functions Statements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">8.</span> <span class="toc-text">Summary</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation/';
+      this.page.identifier = 'https://adrianmejia.com/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Sat Oct 03 2020 14:02:39 GMT-0400 (Eastern Daylight Time)">
+            v.qhn0sf
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>
