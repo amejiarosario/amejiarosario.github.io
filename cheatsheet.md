@@ -18,7 +18,7 @@ hexo clean && hexo algolia # index search
 
 hexo d -g
 
-# https://app.netlify.com/sites/angry-engelbart-d10917/overview # Check is deployed
+# https://app.netlify.com/sites/adrian-mejia-com/deploys # Check is deployed
 
 ### ----------
 
