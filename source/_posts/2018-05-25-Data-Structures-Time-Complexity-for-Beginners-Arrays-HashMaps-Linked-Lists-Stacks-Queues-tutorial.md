@@ -469,8 +469,8 @@ Now let's try again, this time with hex numbers so we can see the offset.
 
 ```js
 // r = 114 or 0x72; a = 97 or 0x61; t = 116 or 0x74
-hash('rat'); // 7,627,122 (r: 114 * 1 + a: 97 * 256 + t: 116 * 65,536) or in hex: 0x726174 (r: 0x72 + a: 0x6100 + t: 0x740000)
-hash('art'); // 7,631,457 or 0x617274
+hash('rat'); // 7,627,122 (r: 114 * 1 + a: 97 * 256 + t: 116 * 65,536) or in hex: 0x746172 (r: 0x72 + a: 0x6100 + t: 0x740000)
+hash('art'); // 7,631,457 or 0x747261
 ```
 
 What about different types?
