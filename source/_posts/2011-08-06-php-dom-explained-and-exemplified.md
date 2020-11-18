@@ -4,9 +4,9 @@ title: "PHP DOM: explained and exemplified"
 created: 1312663045000
 updated: 1312663045000
 comments: true
-pageviews__total: 2362
-pageviews__recent: 6
-pageviews__avg_time: 197
+pageviews__total: 1932
+pageviews__recent: 43
+pageviews__avg_time: 195
 tutorial__order: 0
 alias: /blog/2011/08/06/php-dom-explained-and-exemplified/
 tags:
