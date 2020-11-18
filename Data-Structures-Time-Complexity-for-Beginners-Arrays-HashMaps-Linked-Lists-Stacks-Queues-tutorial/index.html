@@ -306,7 +306,7 @@ ga('send', 'pageview');
       
         <span class="m-x-2" title="Pageviews">
           <i class="fa fa-eye" aria-hidden="true"></i>
-          70.9k
+          75.2k
         </span>
       
 
@@ -725,7 +725,7 @@ A simple (and bad) hash function would be this one:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hash(key) &#123;</span><br><span class="line">  <span class="keyword">let</span> hashValue = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> stringKey = <span class="string">`<span class="subst">$&#123;key&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; stringKey.length; index++) &#123;</span><br><span class="line">    <span class="keyword">const</span> charCode = stringKey.charCodeAt(index);</span><br><span class="line">    hashValue += charCode &lt;&lt; (index * <span class="number">8</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> hashValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Now let’s try again, this time with hex numbers so we can see the offset.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// r = 114 or 0x72; a = 97 or 0x61; t = 116 or 0x74</span></span><br><span class="line">hash(<span class="string">&#x27;rat&#x27;</span>); <span class="comment">// 7,627,122 (r: 114 * 1 + a: 97 * 256 + t: 116 * 65,536) or in hex: 0x726174 (r: 0x72 + a: 0x6100 + t: 0x740000)</span></span><br><span class="line">hash(<span class="string">&#x27;art&#x27;</span>); <span class="comment">// 7,631,457 or 0x617274</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// r = 114 or 0x72; a = 97 or 0x61; t = 116 or 0x74</span></span><br><span class="line">hash(<span class="string">&#x27;rat&#x27;</span>); <span class="comment">// 7,627,122 (r: 114 * 1 + a: 97 * 256 + t: 116 * 65,536) or in hex: 0x746172 (r: 0x72 + a: 0x6100 + t: 0x740000)</span></span><br><span class="line">hash(<span class="string">&#x27;art&#x27;</span>); <span class="comment">// 7,631,457 or 0x747261</span></span><br></pre></td></tr></table></figure>
 
 <p>What about different types?</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hash(<span class="number">1</span>); <span class="comment">// 49</span></span><br><span class="line">hash(<span class="string">&#x27;1&#x27;</span>); <span class="comment">// 49</span></span><br><span class="line"></span><br><span class="line">hash(<span class="string">&#x27;1,2,3&#x27;</span>); <span class="comment">// 741485668</span></span><br><span class="line">hash([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); <span class="comment">// 741485668</span></span><br><span class="line"></span><br><span class="line">hash(<span class="string">&#x27;undefined&#x27;</span>) <span class="comment">// 3402815551</span></span><br><span class="line">hash(<span class="literal">undefined</span>) <span class="comment">// 3402815551</span></span><br></pre></td></tr></table></figure>
@@ -1719,8 +1719,8 @@ https://www.yuque.com/ruanyf/share/issue-10
       <div class="container">
         <div class="p-y-2">
           &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Sat Oct 03 2020 14:20:33 GMT-0400 (Eastern Daylight Time)">
-            v.qhn1m9
+          <span class="muted m-x-4" title="Tue Nov 17 2020 20:18:15 GMT-0500 (Eastern Standard Time)">
+            v.qjywyf
           </span>
         </div>
       </div>
