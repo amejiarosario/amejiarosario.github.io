@@ -6,9 +6,9 @@ title: >-
 comments: true
 unlisted: true
 toc: true
-pageviews__total: 2675
-pageviews__recent: 56
-pageviews__avg_time: 71
+pageviews__total: 2874
+pageviews__recent: 74
+pageviews__avg_time: 74
 tutorial__order: 0
 photos:
   - /images/graph-interview-questions-small.png

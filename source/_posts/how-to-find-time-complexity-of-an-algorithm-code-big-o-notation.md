@@ -2,9 +2,9 @@
 layout: post
 title: How to find time complexity of an algorithm?
 comments: true
-pageviews__total: 0
-pageviews__recent: 0
-pageviews__avg_time: 0
+pageviews__total: 403
+pageviews__recent: 248
+pageviews__avg_time: 138
 tutorial__order: 0
 toc: true
 photos:
