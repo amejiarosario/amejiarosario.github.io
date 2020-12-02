@@ -5,8 +5,8 @@ title: >-
 comments: true
 toc: true
 pageviews__total: 58922
-pageviews__recent: 555
-pageviews__avg_time: 1786
+pageviews__recent: 463
+pageviews__avg_time: 1792
 tutorial__order: 1
 photos:
 - /images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg
