@@ -23,16 +23,16 @@ updated: 2020-02-27 18:51:28
 ---
 
 
-The <abbr title="MongoDB, Express, Angular and Node.js">MEAN</abbr> stack allows you to build complete applications using one programming language: JavaScript. In this tutorial, we built upon the first part ([Creating an Angular app](/angular-2-tutorial-create-a-crud-app-with-angular-cli-and-typescript/)) which built the front-end, and this part builds the backend with a RESTful API and Database.
+The <abbr title="MongoDB, Express, Angular and Node.js">MEAN</abbr> stack allows you to build complete applications using one programming language: JavaScript. In this tutorial, we made upon the first part ([Creating an Angular app](/angular-2-tutorial-create-a-crud-app-with-angular-cli-and-typescript/)) which built the front-end, and this part builds the backend with a RESTful API and Database.
 
 
 <!-- more -->
 
 ## REST API with Node.js
 
-We are going to use the express generator and create a folder called `server`.
+We are going to use express-generator and create a folder called `server`.
 
-First install the generator packages:
+First, install the generator packages:
 
 ```js
 npm i -g express-generator
@@ -42,7 +42,7 @@ Note: You should have Node and NPM/Yarn installed.
 
 ### REST API using ExpressJS
 
-Now let's scaffold the app using the generator:
+Now let's scaffold the App using the generator:
 
 ```sh
 express server -e
@@ -61,7 +61,7 @@ npm start
 ```
 <!-- env DEBUG="server:*" npm start -->
 
-Go to localhost on port 3000 and make sure you can see a "Welcome to Express"
+Go to localhost on port 3000 and make sure you can see a "Welcome to Express."
 
 http://localhost:3000/
 
@@ -70,7 +70,7 @@ http://localhost:3000/
 
 ### Creating a host alias for the server
 
-We want to run the server to work regardless of the enviroment, where we run it. (It will be useful for Docker later on)
+We want to run the server to work regardless of the environment where we run it. (It will be useful for Docker later on)
 
 For that we can create an alias by editing the `hosts`:
 
@@ -87,7 +87,7 @@ Now you should be able to access the server by visiting:
 
 http://server:3000/
 
-(If you have trouble editing the host file take a look [here](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/))
+(If you have trouble editing the host file, take a look [here](https://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/))
 
 ### Creating API routes and responding to requests
 
@@ -130,8 +130,8 @@ router.get('/', async (req, res) => {
 module.exports = router;
 ```
 
-All this is doing, is replying to the GET commands and returning a hard-coded list of todos.
-We will replace it later, to get data from mongo instead.
+All this is doing is replying to the GET commands and returning a hard-coded list of todos.
+We will replace it later to get data from mongo instead.
 
 Then we need to register the route as follows:
 
@@ -143,17 +143,17 @@ var todosRouter = require('./routes/todos');
 app.use('/api/todos', todosRouter);
 ```
 
-This registers the new path `/api/todos`. When we get any call on this path, our `todosRouter` will handle it.
+The method `use` registers the new path `/api/todos`. When we get any call on this path, our `todosRouter` will handle it.
 
 
-You can run restart your server, or use nodemon to pick up changes and refresh browser.
+You can restart your server or use nodemon to pick up changes and refresh the browser.
 
 ```sh
 ## npm i -g nodemon
 nodemon server/bin/www
 ```
 
-That should get your server running, now you can see it in action using CURL:
+That should get your server running. Now you can see it in action using cURL:
 
 
 ```sh
@@ -163,8 +163,8 @@ curl -XGET server:3000/api/todos
 
 This command should get you all the lists in JSON format!
 
-In the next step, we are going to query the server using Angular intead of `curl`.
-After that, we are going to complete the rest of operations (update, delete, create).
+In the next step, we will query the server using Angular instead of `curl`.
+After that, we will complete the rest of the operations (update, delete, create).
 
 > [6f8a502](https://github.com/amejiarosario/angular-todo-app/commit/6f8a502) - Creating API routes and responding to requests
 
@@ -172,13 +172,13 @@ After that, we are going to complete the rest of operations (update, delete, cre
 
 Let's now prepare our angular App to use the server API that we just created.
 
-As you might now, when you run `ng serve`, it will trigger a development server.
-However, out API is a completely different server. To be able to connect the two, we need create a proxy.
+As you might know, when you run `ng serve`, it will trigger a development server.
+However, our API is an entirely different server. To be able to connect the two, we need to create a proxy.
 
 
 ### Creating a proxy in Angular to talk to the API server
 
-Let's create a new file, that will tell Angular when to look for certain HTTP paths.
+Let's create a new file that will tell Angular when to look for specific HTTP paths.
 In this case, we are going to defer all `/api` to our express server.
 
 ```js src/proxy.conf.json
@@ -192,7 +192,7 @@ In this case, we are going to defer all `/api` to our express server.
 
 (This will need the [host alias](#Creating-a-host-alias-for-the-server) from the step before)
 
-Then, we have to tell Angular to load this file, when we are serving the app.
+Then, we have to tell Angular to load this file when we are serving the App.
 We are going to do that in the `angular.json` file.
 
 If you are using the same version of angular CLI, you need to insert this on line 71:
@@ -227,7 +227,7 @@ For some context, here are the surrounding elements:
 }
 ```
 
-Now our app, will pass all requests that start with `/api` to `http://localhost:3000` (or whatever path you specified on the proxy.conf).
+Now our App will pass all requests that start with `/api` to `http://localhost:3000` (or whatever path you specified on the proxy.conf).
 
 Next, we are going to make use of these new routes!
 
@@ -235,9 +235,9 @@ Next, we are going to make use of these new routes!
 > [e81ddb8](https://github.com/amejiarosario/angular-todo-app/commit/e81ddb8) - Creating a proxy in Angular to talk to the API server
 
 
-### Using HTTP Client to talk to server
+### Using HTTP Client to talk to the server
 
-To talk to the server we are going to use the `HttpClient` module.
+To talk to the server, we are going to use the `HttpClient` module.
 
 Let's go to the app.module and let's import it:
 
@@ -264,7 +264,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class AppModule { }
 ```
 
-Now that the HttpClient is available in our app, let's add it to the service and make use of it.
+Now that the HttpClient is available in our App let's add it to the service and make use of it.
 
 ```ts src/app/todo/todo.service.ts
 import { HttpClient } from '@angular/common/http';
@@ -289,10 +289,10 @@ export class TodoService {
   // ...
 ```
 
-We change the `TodoService.get` to use http client. However, the component was responding to a Promise and the http.get returns an Observable. So, let's change it.
+We change the `TodoService.get` to use HTTP client. However, the component was responding to a Promise, and the HTTP.get returns an Observable. So, let's change it.
 
 
-Change the getTodos method from the old one, to use this one that handles an observable.
+Change the getTodos method from the old one to use this one that handles an observable.
 
 ```ts src/app/todo/todo.component.ts
   getTodos(query = '') {
@@ -303,11 +303,11 @@ Change the getTodos method from the old one, to use this one that handles an obs
   }
 ```
 
-The main difference is that instad of a `.then`, we are using `.subscribe`. Everything else remains the same (for now).
+The main difference is that instead of a `.then`, we are using `.subscribe`. Everything else remains the same (for now).
 
 That's it, let's test it out!
 
-Run this commands on your terminal:
+Run these commands on your terminal:
 
 ```sh
 ## run node server
@@ -317,13 +317,13 @@ nodemon server/bin/www
 on another terminal session run also:
 
 ```sh
-## run angular app
+## run angular App
 ng serve
 ```
 
-Once you have both running, you can go to http://localhost:4200/all and you can verify that it's coming from your server!
+Once you have both running, you can go to http://localhost:4200/all, and you can verify that it's coming from your server!
 
-If you are running `nodemon`, you can change the TODOS on `server/routes/todos.js` and refresh the browser and see how it changes.
+If you are running `nodemon`, you can change the TODOS on `server/routes/todos.js` and refresh the browser, and see how it changes.
 
 But, we don't want to have hard-coded tasks. Let's create a proper DB with Mongo.
 
@@ -365,13 +365,13 @@ It's time to get MongoDB up and running. If don't have it installed, you have a 
 
 </details>
 
-We are going to use docker since it's a nice way to have everything running together with one command.
-Also, you can deploy it to the cloud and scale it easily.
+We are going to use Docker since it's an excellent way to have everything running together with one command.
+Also, you can deploy it to the cloud and scale it quickly.
 
 ### Dockerizing the MEAN stack
 
-Let's get everything running (Node Server, Angular and Mongo).
-We are going to create a docker-compose file, which is going to list all our services and we can run them all at once.
+Let's get everything running (Node Server, Angular, and Mongo).
+We will create a docker-compose file, which is going to list all our services, and we can run them all at once.
 
 ```yml docker-compose.yml
 version: "3.7"
@@ -408,17 +408,16 @@ services:
     image: mongo
 ```
 
-All right, now we can get the whole full-stack app running with one command:
+All right, now we can get the whole full-stack App running with one command:
 
 ```sh
 docker-compose up --build
 ```
 
-NOTE: close other terminals running node or angular, so the ports don't conflict.
+NOTE: close other terminals running a web server so the ports don't conflict.
+The docker-compose command will create 3 containers for our Angular App, Node Server, and Mongo DB. You can also see all the logs in one place.
 
-This will create 3 containers for our Angular App, Node Server and Mongo DB. You can also see all the logs in one place.
-
-After you wait a minute or so you should be able to open the app on http://localhost:4200/.
+After you wait a minute or so, you should be able to open the App on http://localhost:4200/.
 
 Now we can make use of mongo. Keep docker-compose running and now let's remove the hard-coded tests and use the database.
 
@@ -432,7 +431,7 @@ Let's install Mongoose, which is a library for managing MongoDB from Node.js.
 cd server && npm i mongoose@5.9.18
 ```
 
-NOTE: make sure you installed it on the `./server/package.json`, rather than the client side packages `./packages.json`.
+NOTE: make sure you installed it on the `./server/package.json`, rather than the client-side packages `./packages.json`.
 
 
 The first thing we need to do is to connect to Mongo when our server starts. Go to `server/app.js` and add the following code:
@@ -459,9 +458,9 @@ mongoose.connect(DB_STRING, config)
 > [15f6e25](https://github.com/amejiarosario/angular-todo-app/commit/15f6e25) - add db string to connect to mongo
 
 
-We can pass some ENV variables like `MONGO_HOST`. If we run it locally, it will use localhost, but if run it on docker we want to pass a hostname. You can see that in the `docker-compose.yml` file.
+We can pass some ENV variables like `MONGO_HOST`. If we run it locally, it will use localhost, but if you run it on Docker, we want to pass a hostname. You can see that in the `docker-compose.yml` file.
 
-Now, let's define our data model for Mongo. Let's create a folder `models` inside `server` and add file called "todos.js".
+Now, let's define our data model for Mongo. Let's create a folder `models` inside `server` and add a file called "todos.js".
 
 ```js server/models/todo.js
 const mongoose = require('mongoose');
@@ -478,7 +477,7 @@ const TodoSchema = new Schema({
 module.exports = model('Todo', TodoSchema);
 ```
 
-This is basically defining what fields we want to store and what are the types.
+The new schema is defining what fields we want to store and what the types are.
 The `updated_at` will update automatically when we create a new todo.
 
 
@@ -488,17 +487,17 @@ The `updated_at` will update automatically when we create a new todo.
 
 ### Adding all the API routes to modify data in the DB
 
-Let's add all the routes to be able to create, read, update and delete data from Mongo.
+Let's add all the routes to create, read, update, and delete data from Mongo.
 
-The Mongoose library provides some convenience methods to do CRUD operations:
-- **Todo.find**: find data matching a given query. (`{}`, get all, while `{isDone: true}` get only completed tasks).
-- **Todo.create**: Create a new todo
-- **Todo.findByIdAndUpdate**: Find todo by given id and update its content.
-- **Todo.findByIdAndDelete**: Find todo by given id and delete it.
-- **Todo.deleteMany**: Delete everything matching a given query.
+The Mongoose library provides some convenient methods to do CRUD operations:
+- ** Todo.find**: find data matching a given query. (`{}`, get all, while `{isDone: true}` get only completed tasks).
+- ** Todo.create**: Create a new todo
+- ** Todo.findByIdAndUpdate**: Find Todo by given id and update its content.
+- ** Todo.findByIdAndDelete**: Find Todo by given id and delete it.
+- ** Todo.deleteMany**: Delete everything matching a given query.
 
 
-Here's the routes by their matching HTTP verb (GET, PUT, POST, DELETE). In the next sections we are going to tests all these routes and go over some more details.
+Here are the routes by their matching HTTP verb (GET, PUT, POST, DELETE). In the next sections, we will test all these routes and go over some more details.
 
 ```js server/routes/todos.js
 const express = require('express');
@@ -561,14 +560,14 @@ router.delete('/', async (req, res) => {
 module.exports = router;
 ```
 
-We added many routes on this step, take your time to go through them.
-In the next section, we are going to tests them using `curl` and then integrated with Angular.
+We added many routes to this step. Take your time to go through them.
+In the next section, we will test them using `curl` and then integrated them with Angular.
 
 > [f4f2281](https://github.com/amejiarosario/angular-todo-app/commit/f4f2281) - Adding all all the API routes to modify data in DB
 
 ### Testing the API CRUD operations
 
-Since we installed a new package `mongoose`, we have to run `npm install` in the docker containers. Otherwise, file changes are picked up automatically and you don't need to restart.
+Since we installed a new package, `mongoose`, we have to run `npm install` in the docker containers. Otherwise, file changes are picked up automatically, and you don't need to restart.
 
 Stop `docker-compose` and start it again `docker-compose up --build`.
 
@@ -586,7 +585,7 @@ Now, let's see if it's there:
 curl -XGET server:3000/api/todos
 ```
 
-You should have got soemthing like this:
+You should have got something like this:
 
 ```
 [{"_id":"5edc2a6d0c41d60054ad715f","title":"CRUD API","isDone":false,"updated_at":"2020-06-06T23:44:45.966Z","__v":0}]⏎
@@ -620,11 +619,11 @@ For updating a task you need the `_id`. You can get it from the previous step, w
 curl -XPUT server:3000/api/todos/5edc2a6d0c41d60054ad715f -H "Content-Type: application/json" -d '{"title": "Finish PUT API", "isDone": true, "note": "New Field"}'
 ```
 
-As you can see in the last update, we can modify existing fields and also add new values like the `note` field.
+As you can see in the last update, we can modify existing fields and add new values like the `note` field.
 
-#### Erasing data with DELETE method
+#### Erasing data with the DELETE method
 
-For our todo route, we also defined the DELETE method. Similar to update, we need to pass and `id`.
+For our todo route, we also defined the DELETE method. Similar to the update, we need to pass and `id`.
 
 ```js server/routes/todos.js
 /* DELETE /api/todos */
@@ -646,16 +645,16 @@ curl -X DELETE server:3000/api/todos/5edc2a6d0c41d60054ad715f
 
 If you check the UI, all tasks will be gone: http://localhost:4200/all.
 
-As much fun as `curl` is, let's move on an complete all these functionalities in Angular.
+As much fun as `curl` is, let's move on and complete all these functionalities in Angular.
 
-## Angular Service to talk to server
+## Angular Service to talk to the server
 
-There are two main changes that we need to make, in other to use the API server.
+There are two main changes that we need to make in other to use the API server.
 
 1) We need to change the `TodoService` service to use HTTP client.
-2) Change the `TodoComponent` compoenent to use the methods.
+2) Change the `TodoComponent` component to use the methods.
 
-### Angular service using HTTP client
+### Angular service using the HTTP client
 
 In the following code, we are using the HTTP client, to make the appropriate calls:
 
@@ -707,7 +706,7 @@ export class TodoService {
 }
 ```
 
-This basically, matches the HTTP verbs that we used in curl and passes the payloads.
+The Todo service matches the HTTP verbs that we used in curl and passes the payloads.
 
 Let's now change the TodoComponent that goes along with these changes.
 
@@ -788,7 +787,7 @@ export class TodoComponent implements OnInit {
 }
 ```
 
-Let's go over each part on the next sections.
+Let's go over each part in the next sections.
 
 #### Sending Queries with HTTP GET
 
@@ -803,7 +802,7 @@ In the component, one the first thing we do is check the route params (path):
   }
 ```
 
-When you click on the buttons `All`, `Active` and `Completed`, that will trigger a route change.
+When you click on the buttons `All`, `Active`, and `Completed`, that will trigger a route change.
 
 To recap, these buttons use the router link. So, every time you click on them, they will change the URL.
 
@@ -820,7 +819,7 @@ To recap, these buttons use the router link. So, every time you click on them, t
       </li>
     </ul>
 ```
-After we change the url, the next thing we do is to call `getTodos`. Let's see that next.
+After we change the URL, the next thing we do is to call `getTodos`. Let's see that next.
 
 #### Get all todos
 
@@ -838,14 +837,14 @@ We can get all services using the following:
   }
 ```
 
-We `this.todoService.get` will issue an HTTP get and retrive all the tasks from the database and update the todos. It also updates the number of active tasks (the ones that are not done).
+We `this.todoService.get` will issue an HTTP get and retrieve all the tasks from the database and update the todos. It also updates the number of active tasks (the ones that are not done).
 
-The `getTodos` receives an argument (`route`) with the path that will be one of these: `all`, `active` or `complete`. However, MongoDb doesn't understand these words. We have to map it (`mapToQuery`) to something a proper query like `{ isDone: true }`. This MongoDB will understand.
+The `getTodos` receives an argument (`route`) with the path that will be one of these: `all`, `active`, or `complete`. However, MongoDB doesn't understand these words. We have to map it (`mapToQuery`) to something a proper query like `{ isDone: true }`. This MongoDB will understand.
 
 > [e33d540](https://github.com/amejiarosario/angular-todo-app/commit/e33d540) - Angular TodoComponet updates
 
 #### Modifying the todos
 
-All the other operations, like update, clear, toggle are very similar. They trigger an action and then call `getTodos` so the UI is up to date with the latest changes.
+All the other operations, like the update, clear, toggle, are very similar. They trigger an action and then call `getTodos`, so the UI is up to date with the latest changes.
 
 That's all!
