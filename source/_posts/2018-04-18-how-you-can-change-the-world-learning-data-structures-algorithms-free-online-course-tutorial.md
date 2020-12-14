@@ -68,7 +68,7 @@ During War World II, the Germans used <abbr title="AM broadcasting is a radio br
 
 A brilliant mathematician called Alan Turing joined the British military to crack the German "Enigma" code. He knew they would never get ahead if they keep doing the calculations by pen and paper. So after many months of hard work, they built a machine. Unfortunately, the first version of the device took to long to decode a message! So, it was not very useful.
 
-Alan's team found out that every encrypted message ended with the same string: "Heil Hitler" Aha! After changing the algorithm, the machine was able to decode transmissions a lot faster! They used it the info to finish the war quicker and save millions of lives!
+Alan's team found out that every encrypted message ended with the same string: "Heil Hitler" Aha! After changing the algorithm, the machine was able to decode transmissions a lot faster! They used the info to finish the war quicker and save millions of lives!
 
 _The same machine that was going to get shut down as a failure became a live saver. Likewise, you can do way more with your computing resources when you write efficient code. That is what we are going to learn in this post series!_
 
