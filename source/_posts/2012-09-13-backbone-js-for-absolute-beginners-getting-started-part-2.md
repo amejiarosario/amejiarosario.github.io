@@ -272,6 +272,10 @@ Now, we need another view that take a collection and render each of the individu
       el: '#todoapp',
       initialize: function () {
         this.input = this.$('#new-todo');
+	
+        // instance of the Collection
+        app.todoList = new app.TodoList();
+  
         // when new elements are added to the collection render then with addOne
         app.todoList.on('add', this.addOne, this);
         app.todoList.on('reset', this.addAll, this);
