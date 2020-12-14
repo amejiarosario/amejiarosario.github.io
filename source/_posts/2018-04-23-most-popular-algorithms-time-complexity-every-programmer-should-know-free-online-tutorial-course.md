@@ -32,7 +32,7 @@ In the [previous post](/blog/2018/04/04/how-you-can-change-the-world-learning-da
 
 ### What is time complexity?
 
-To recap **time complexity** estimates how an algorithm performs regardless kind of machine it runs on. You can get the time complexity by "counting" the number of operations performed by your code. This time complexity is defined as a function of the input size `n` using Big-O notation. `n` indicates the size of the input, while O is the worst-case scenario growth rate function.
+To recap **time complexity** estimates how an algorithm performs regardless of the kind of machine it runs on. You can get the time complexity by "counting" the number of operations performed by your code. This time complexity is defined as a function of the input size `n` using Big-O notation. `n` indicates the size of the input, while O is the worst-case scenario growth rate function.
 
 We use the Big-O notation to classify algorithms based on their running time or space (memory used) as the input grows. The `O` function is the growth rate in function of the input size `n`.
 
