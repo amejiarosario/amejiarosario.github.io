@@ -1257,7 +1257,7 @@ We are going to add the last reference in the next section!
 
 ### Doubly Linked Lists
 
-When we have a chain of nodes where each one points to the next one we a **Singly Linked list**. When we have a linked list where each node leads to the **next** and the **previous** element we a **Doubly Linked List**
+When we have a chain of nodes where each one points to the next one we a **Singly Linked list**. When we have a linked list where each node leads to the **next** and the **previous** element, we have a **Doubly Linked List**
 
 {% img /images/doubly-linked-list.jpg "Doubly Linked List" %}
 
