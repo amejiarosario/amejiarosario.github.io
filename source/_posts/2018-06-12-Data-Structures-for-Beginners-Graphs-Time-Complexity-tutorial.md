@@ -178,7 +178,7 @@ c - - - 1 -
 d - 1 1 - -
 {% endcodeblock %}
 
-As you can see, the matrix list all nodes horizontally and vertically. If there a few connections we called **sparse graph** if there are many connections (close to the max number of links) we called it **dense graph**. If all possible connections are reached, then we have a **complete graph**.
+As you can see, the matrix list all nodes horizontally and vertically. If there are a few connections, we call it a **sparse graph**. If there are many connections (close to the max number of links) we call it a **dense graph**. If all possible connections are reached, then we have a **complete graph**.
 
 It's important to notice that for undirected graphs the adjacency matrix will **always** be symmetrical by the diagonal. However, that's not always the case on a digraph (like our example).
 

@@ -1203,7 +1203,7 @@ Removing an element anywhere in the list leverage the `removeLast` and `removeFi
         if(!current.next) { // if it doesn't have next it means that it is the last
           return this.removeLast();
         }
-        current.previous = current.next;
+        current.previous.next = current.next;
         this.size--;
         return current.value;
       }
@@ -1257,7 +1257,7 @@ We are going to add the last reference in the next section!
 
 ### Doubly Linked Lists
 
-When we have a chain of nodes where each one points to the next one we a **Singly Linked list**. When we have a linked list where each node leads to the **next** and the **previous** element, we have a **Doubly Linked List**
+When we have a chain of nodes where each one points to the next one, we have a **Singly Linked list**. When we have a linked list where each node leads to the **next** and the **previous** element, we have a **Doubly Linked List**
 
 {% img /images/doubly-linked-list.jpg "Doubly Linked List" %}
 
