@@ -8,8 +8,8 @@ pageviews__avg_time: 219
 tutorial__order: 0
 toc: true
 photos:
-  - /images/from-code-to-big-o-algorithms-small.jpg
-  - /images/from-code-to-big-o-algorithms-large.jpg
+  - /images/from-code-to-big-o-algorithms-small.png
+  - /images/from-code-to-big-o-algorithms-large.png
 photos__background_color: '#F4F0EF'
 tags:
   - big-o notation
