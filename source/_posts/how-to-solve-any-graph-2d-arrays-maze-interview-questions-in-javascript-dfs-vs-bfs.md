@@ -4,7 +4,7 @@ title: >-
   How to solve any graph/Maze interview questions in JavaScript? DFS
   vs. BFS
 comments: true
-unlisted: true
+unlisted: false
 toc: true
 pageviews__total: 2952
 pageviews__recent: 94

@@ -5,16 +5,22 @@ document.addEventListener("DOMContentLoaded", () => {
       tocTree = [];
       currentActives = [];
 
-      constructor(activeClass = 'active', tocLevelPrefixClass = '.toc-level-', maxLevel = 6) {
+      constructor({ activeClass = 'active',
+          tocLevelPrefixClass = '.toc-level-',
+          maxLevel = 6,
+          debug = false} = {}) {
         this.tocLevelPrefixClass = tocLevelPrefixClass;
         this.activeClass = activeClass;
         this.maxLevel = maxLevel;
+        this.debug = debug;
+        if (this.debug) console.log({activeClass, tocLevelPrefixClass, maxLevel, debug});
       }
 
       getTocItems() {
         // revese needed for easy find last on #setActiveClasses
         const traverseTree = el => Array.from((el?.children[1]?.children || [])).map(child => ({item: child, children: traverseTree(child) })).reverse(); // .toc-child > .toc-item
         this.tocTree = Array.from(document.querySelectorAll('.toc > .toc-item')).map(item => ({item, children: traverseTree(item) })).reverse();
+        if (this.debug) console.log({ tocTree: this.tocTree });
       }
 
       calculateDocItemsOffsets() {
@@ -57,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const scrollSpy = new ScrollSpy();
+    // const scrollSpy = new ScrollSpy({debug: true});
     scrollSpy.getTocItems();
     scrollSpy.calculateDocItemsOffsets();
 
