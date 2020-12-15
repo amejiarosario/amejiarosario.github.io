@@ -11,9 +11,15 @@ document.addEventListener("DOMContentLoaded", function () {
   try {
     var ScrollSpy = /*#__PURE__*/function () {
       function ScrollSpy() {
-        var activeClass = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'active';
-        var tocLevelPrefixClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '.toc-level-';
-        var maxLevel = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 6;
+        var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+            _ref$activeClass = _ref.activeClass,
+            activeClass = _ref$activeClass === void 0 ? 'active' : _ref$activeClass,
+            _ref$tocLevelPrefixCl = _ref.tocLevelPrefixClass,
+            tocLevelPrefixClass = _ref$tocLevelPrefixCl === void 0 ? '.toc-level-' : _ref$tocLevelPrefixCl,
+            _ref$maxLevel = _ref.maxLevel,
+            maxLevel = _ref$maxLevel === void 0 ? 6 : _ref$maxLevel,
+            _ref$debug = _ref.debug,
+            debug = _ref$debug === void 0 ? false : _ref$debug;
 
         _classCallCheck(this, ScrollSpy);
 
@@ -22,6 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
         this.tocLevelPrefixClass = tocLevelPrefixClass;
         this.activeClass = activeClass;
         this.maxLevel = maxLevel;
+        this.debug = debug;
+        if (this.debug) console.log({
+          activeClass: activeClass,
+          tocLevelPrefixClass: tocLevelPrefixClass,
+          maxLevel: maxLevel,
+          debug: debug
+        });
       }
 
       _createClass(ScrollSpy, [{
@@ -46,14 +59,17 @@ document.addEventListener("DOMContentLoaded", function () {
               children: traverseTree(item)
             };
           }).reverse();
+          if (this.debug) console.log({
+            tocTree: this.tocTree
+          });
         }
       }, {
         key: "calculateDocItemsOffsets",
         value: function calculateDocItemsOffsets() {
           var traverseTree = function traverseTree(root) {
-            root.forEach(function (_ref) {
-              var item = _ref.item,
-                  children = _ref.children;
+            root.forEach(function (_ref2) {
+              var item = _ref2.item,
+                  children = _ref2.children;
               var id = item.querySelector('.toc-link').href.split('#')[1];
               var el = document.getElementById(decodeURIComponent(id)); // in case of emoji was used
 
@@ -110,7 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
       return ScrollSpy;
     }();
 
-    var scrollSpy = new ScrollSpy();
+    var scrollSpy = new ScrollSpy(); // const scrollSpy = new ScrollSpy({debug: true});
+
     scrollSpy.getTocItems();
     scrollSpy.calculateDocItemsOffsets();
     window.addEventListener("scroll", function () {
