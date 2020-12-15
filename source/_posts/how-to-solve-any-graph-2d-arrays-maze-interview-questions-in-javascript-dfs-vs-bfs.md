@@ -654,6 +654,7 @@ Most BFS problems follow the same pattern:
 
 #### BFS Template
 
+
 ```js
 function bfs(target) {
   const queue = [[0, 0]]; // 1. Initialize queue with Node and current distance 0
@@ -676,8 +677,6 @@ function getNeighbors(node) {
 }
 ```
 
-  </div>
-</details>
 
 Here's another exercise to practice
 
