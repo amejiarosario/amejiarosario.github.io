@@ -1203,7 +1203,7 @@ Removing an element anywhere in the list leverage the `removeLast` and `removeFi
         if(!current.next) { // if it doesn't have next it means that it is the last
           return this.removeLast();
         }
-        current.previous = current.next;
+        current.previous.next = current.next;
         this.size--;
         return current.value;
       }
