@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://adrianmejia.com/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/</loc>
+    
+    <lastmod>2020-12-16T00:36:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://adrianmejia.com/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/</loc>
+    
+    <lastmod>2020-12-15T23:46:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/</loc>
     
     <lastmod>2020-12-15T00:58:31.740Z</lastmod>
@@ -82,13 +96,6 @@
     <loc>https://adrianmejia.com/angular-todo-mean-stack-node-mongodb-typescript-tutorial/</loc>
     
     <lastmod>2020-02-27T23:51:28.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://adrianmejia.com/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/</loc>
-    
-    <lastmod>2019-11-26T01:17:40.000Z</lastmod>
     
   </url>
   
@@ -180,13 +187,6 @@
     <loc>https://adrianmejia.com/Vue-js-Tutorial-for-beginners-Create-a-Todo-App/</loc>
     
     <lastmod>2018-08-05T01:30:22.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://adrianmejia.com/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/</loc>
-    
-    <lastmod>2018-05-14T09:19:22.000Z</lastmod>
     
   </url>
   
