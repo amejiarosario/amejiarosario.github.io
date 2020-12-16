@@ -19,16 +19,16 @@ categories:
   - Coding
   - Data Structures and Algorithms (DSA)
 date: 2018-05-14 05:19:22
-updated: 2018-05-14 05:19:22
+updated: 2020-12-15 19:36:22
 ---
 
 In this post, we are going to explore non-linear data structures like graphs. Also, we'll cover the central concepts and typical applications.
 
-You are probably using programs with graphs and trees. Let's say for instance that you want to know the shortest path between your workplace and home, you can use graph algorithms to get the answer! We are going to look into this and other fun challenges.
+You are probably using programs with graphs and trees. For instance, let's say that you want to know the shortest path between your workplace and home. You can use graph algorithms to get the answer! We are going to look into this and other fun challenges.
 
 <!-- more -->
 
-In the previous post, we explore linear data structures like arrays, linked lists, sets, stacks and so on. This one builds on top of what we learned.
+In the previous post, we explore linear data structures like arrays, linked lists, sets, stacks, etc. This one builds on top of what we learned.
 
 You can find all these implementations and more in the Github repo:
 [https://github.com/amejiarosario/dsa.js](https://github.com/amejiarosario/dsa.js)
@@ -90,22 +90,22 @@ The connection between two nodes is called **edge**. Nodes can also be called **
 
 The **degree** is the number of edges connected to a vertex. E.g., the `purple` vertex has a degree of 3 while the `blue` one has a degree of 1.
 
-If the edges are bi-directional, then we have an **undirected graph**. But, if the edges have a direction, then we have a **directed graph** or **di-graph** for short. You can think of it as a one-way street (directed) or two-way street (undirected).
+If the edges are bi-directional, then we have an **undirected graph**. If the edges have a direction, then we have a **directed graph** or **di-graph** for short. You can think of it as a one-way street (directed) or two-way street (undirected).
 
 <!-- image of graph behind a map: edges is POI and edges are the streets -->
 <!-- { img https://koenig-media.raywenderlich.com/uploads/2017/01/graph6.png "Directed and Undirected graphs" } -->
 {% img /images/directed-vs-undirected-graph.jpg "Directed vs Undirected graph" %}
 
-Vertex can have edges that go to itself (e.g., `blue` node), this is called **self-loop**.
+Vertex can have edges that go to itself (e.g., `blue` node). This is called **self-loop**.
 
-A graph can have **cycles** which means that if you traverse through the node, you could get the same node more than once. The graph without cycles is called **acyclic graph**.
+A graph can have **cycles**, which means you could get the same node more than once. The graph without cycles is called **acyclic graph**.
 
 <!-- { img http://apprize.info/php/hadoop_1/hadoop_1.files/image190.jpg Acyclic vs Cyclic Graphs } -->
 {% img /images/cyclic-vs-acyclic-directed-graph.jpg "Cyclic vs Acyclic directed graph" %}
 
-Also, acyclic undirected graphs are called **tree**. We are going to cover trees in depth in the next post.
+Also, acyclic undirected graphs are called **tree**. We are going to cover trees in-depth in the next post.
 
-Not all vertices have to be connected in the graph. You might have isolated nodes or even separated subgraphs. If all nodes  have at least one edge, then we have a **connected graph**. When all nodes are connected to all other nodes, then we have a **complete graph**.
+Not all vertices have to be connected in the graph. You might have isolated nodes or even separated subgraphs. If all nodes have at least one edge, then we have a **connected graph**. When all nodes are connected to all other nodes, then we have a **complete graph**.
 
 <!-- { img /images/digraph-subgraph.png digraph with isolated subgraphs } -->
 {% img /images/connected-vs-complete-graph.jpg Complete vs Connected graph %}
@@ -151,7 +151,7 @@ We just learned the basics of graphs and some applications. Let's cover how to r
 
 ## Representing graphs
 
-There are two primary ways of representing graph:
+There are two primary ways of representing a graph:
 
 1. Adjacency list
 2. Adjacency Matrix
@@ -178,9 +178,9 @@ c - - - 1 -
 d - 1 1 - -
 {% endcodeblock %}
 
-As you can see, the matrix list all nodes horizontally and vertically. If there are a few connections, we call it a **sparse graph**. If there are many connections (close to the max number of links) we call it a **dense graph**. If all possible connections are reached, then we have a **complete graph**.
+As you can see, the matrix list all nodes horizontally and vertically. If there are a few connections, we call it a **sparse graph**. If there are many connections (close to the max number of links), we call it a **dense graph**. If all possible connections are reached, then we have a **complete graph**.
 
-It's important to notice that for undirected graphs the adjacency matrix will **always** be symmetrical by the diagonal. However, that's not always the case on a digraph (like our example).
+It's important to notice that the adjacency matrix will **always** be symmetrical by the diagonal for undirected graphs. However, that's not always the case on a digraph (like our example).
 
 What is the time complexity of finding connections of two vertices?
 
@@ -204,7 +204,7 @@ The vertices are stored as a *`V`*x*`V`* matrix. So, every time a vertex is adde
 
 What about getting the adjacent nodes?
 
-Since the matrix has a VxV matrix, to get all the adjacent nodes to a given vertex, we would have to go to the node row and get all its edges with the other nodes.
+Since the matrix has a VxV matrix, we would have to go to the node row to get all the adjacent nodes to a given vertex and get all its edges with the other nodes.
 
 In our previous example, let's say we want all the adjacent nodes to `b`. We have to get the full row where b is with all the other nodes.
 ```
@@ -216,15 +216,15 @@ We have to visit all nodes so,
 
 > Getting adjacent nodes on an adjacency matrix is *O(|V|)*
 
-Imagine that you need to represent Facebook network as a graph. You would have to create a matrix of 2 billion x 2 billion, where most of it would be empty! Nobody would know everybody else just a few thousands at most.
+Imagine that you need to represent the Facebook network as a graph. You would have to create a matrix of 2 billion x 2 billion, where most of it would be empty! Nobody would know everybody else, just a few thousand at most.
 
-In general, we deal with sparse graphs so the matrix will waste a lot of space. That's why in most implementation we would use an adjacency list rather than the matrix.
+In general, we deal with sparse graphs so that the matrix will waste a lot of space. That's why, in most implementations, we would use an adjacency list rather than the matrix.
 
 ### Adjacency List
 
 Adjacency List is one of the most common ways to represent graphs. Each node has a list of all the nodes connected to it.
 
-Graphs can be represented as an adjacency list using an Array (or HashMap) containing the nodes. Each of these node entries includes a list (array, linked list, set, etc.) that list its adjacent nodes.
+Graphs can be represented as an adjacency list using an Array (or HashMap) containing the nodes. Each node includes a list (Array, linked list, set, etc.) that lists its adjacent nodes.
 
 For instance, in the graph above we have that `a` has a connection to `b` and also a self-loop to itself. In turn, `b` has a connection to `c` and so on:
 
@@ -235,13 +235,13 @@ c -> { d }
 d -> { b c }
 {% endcodeblock %}
 
-As you can imagine if you want to know if a node is connected to another node, you would have to go through the list.
+As you can imagine, if you want to know if a node is connected to another node, you would have to go through the list.
 
 > Querying if two nodes are connected in an adjacency list is *O(n)*, where `n` is the number of vertices. Also represented as *O(|V|)*
 
 <a id="List.space"></a>
 
-What about the space complexity?
+What about space complexity?
 
 > Storing a graph as an adjacency list has a space complexity of *O(n)*, where `n` is the sum of vertices and edges. Also, represented as *O(|V| + |E|)*
 
@@ -249,7 +249,7 @@ What about the space complexity?
 
 The adjacency list is the most common way of representing graphs. There are several ways to implement the adjacency list:
 
-One of them is using a HashMap. The `key` is the value of the node, and the `value` is an array of adjacency.
+One of them is using a HashMap. The `key` is the node's value, and the `value` is an array of adjacency.
 
 {% codeblock Adjacency List as a Hashmap lang:js%}
 const graph = {
@@ -266,13 +266,13 @@ Graph usually needs the following operations:
 
 Adding and removing vertices involves updating the adjacency list.
 
-Let's say that we want to remove the vertex `b`. We could do `delete graph['b'];`, however, we still have to remove the references on the adjacency list on `d` and `a`.
+Let's say that we want to remove the vertex `b`. We could do `delete graph['b'];`. However, we still have to remove the references on the adjacency list on `d` and `a`.
 
-Every time we remove a node, we would have to iterate through all the nodes' list *O(|V| + |E|)*.  Can we do better? We will answer that soon, but first, let's *implement our list in a more object-oriented way so we can swap implementations easily.
+Every time we remove a node, we would have to iterate through all the nodes' list *O(|V| + |E|)*.  Can we do better? We will answer that soon, but first, let's *implement our list in a more object-oriented way to swap implementations easily.
 
 ## Adjacency List Graph OO Implementation
 
-Let's start with the `Node` class that holds the vertex's value and its adjacent vertices. We can also have helper functions for adding and removing adjacent nodes from the list.
+Let's start with the `Node` class that holds the vertex's value and adjacent vertices. We can also have helper functions for adding and removing adjacent nodes from the list.
 
 <a id="Node.getAdjacents"></a>
 
@@ -305,11 +305,11 @@ class Node {
 }
 {% endcodeblock %}
 
-Notice that `adjacent` runtime is *O(1)*, while `remove adjacent` is *O(|E|)*. What if instead of an array use a HashSet 🧐? It could be *O(1)*. But, let first get it working and later we can make it faster.
+Notice that `adjacent` runtime is *O(1)*, while `remove adjacent` is *O(|E|)*. What if, instead of an array, use a HashSet 🧐? It could be *O(1)*. But, let first get it working, and later we can make it faster.
 
 > Make it work. Make it right. Make it faster.
 
-Ok, now that we have the `Node` class, let's build the Graph class that can perform operations such as adding/removing vertices and edges.
+Ok, now that we have the `Node` class, let's build the Graph class to perform operations such as adding/removing vertices and edges.
 
 **Graph.constructor**
 
@@ -332,7 +332,7 @@ The first thing that we need to know is if the graph is directed or undirected. 
 
 **Graph.addEdge**
 
-To add an edge we need two nodes. One is the source, and the other is the destination.
+To add an edge, we need two nodes. One is the source, and the other is the destination.
 
 {% codeblock Graph.addEdge lang:js mark:7 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
   addEdge(source, destination) {
@@ -349,7 +349,7 @@ To add an edge we need two nodes. One is the source, and the other is the destin
   }
 {% endcodeblock %}
 
-We add an edge from the source vertex to the destination. If we have an undirected graph, then we also add from target node to source since it's bidirectional.
+We add an edge from the source vertex to the destination. If we have an undirected graph, we also add from target node to source since it's bidirectional.
 
 > The runtime of adding an edge from a graph adjacency list is: *O(1)*
 
@@ -359,7 +359,7 @@ If we try to add an edge and the nodes don't exist, we need to create them first
 
 **Graph.addVertex**
 
-<!-- If you take a look at the constructor, you will notice that we created a HashMap to hold all the nodes in the graph. We use the hashMap to know if the vertex already exists and get it quickly. -->
+<!-- If you look at the constructor, you will notice that we created a HashMap to hold all the nodes in the graph. We use the hashMap to know if the vertex already exists and get it quickly. -->
 
 The way we create a node is that we add it to the `this.nodes` Map. The map store a key/value pair, where the `key` is the vertex's value while the map `value` is the instance of the node class. Take a look at line 5-6:
 
@@ -375,7 +375,7 @@ The way we create a node is that we add it to the `this.nodes` Map. The map stor
   }
 {% endcodeblock %}
 
-If the node already exists we don't want to overwrite it. So, we first check if it already exists and if it doesn't, then we create it.
+If the node already exists, we don't want to overwrite it. So, we first check if it already exists, and if it doesn't, then we create it.
 
 > The runtime of adding a vertex from a graph adjacency list is: *O(1)*
 
@@ -430,7 +430,7 @@ The main difference between `addEdge` and `removeEdge` is that:
 - If the vertices don't exist, we won't create them.
 - We use `Node.removeAdjacent` instead of `Node.addAdjacent`.
 
-Since `removeAdjacent` has to go through all the adjacent vertices we have the following runtime:
+Since `removeAdjacent` has to go through all the adjacent vertices, we have the following runtime:
 
 > The runtime of removing an edge from a graph adjacency list is *O(|E|)*
 
@@ -440,7 +440,7 @@ We are going to explore how to search for values from a node.
 
 Breadth-first search is a way to navigate a graph from an initial vertex by visiting all the adjacent nodes first.
 
-{% img https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif Breadth First Search in a graph %}
+{% img https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif Breadth-First Search in a graph %}
 
 Let's see how we can accomplish this in code:
 
@@ -462,9 +462,9 @@ Let's see how we can accomplish this in code:
   }
 {% endcodeblock %}
 
-As you can see, we are using a `Queue` where the first node in is also the first node to be visited (FIFO). You can find the [Queue implementation here](https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/5628a2772513a05ceb3f088976b81914c9951fd2/src/data-structures/queues/queue.js#L47).
+As you can see, we are using a `Queue` where the first node is also the first node to be visited (FIFO). You can find the [Queue implementation here](https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/5628a2772513a05ceb3f088976b81914c9951fd2/src/data-structures/queues/queue.js#L47).
 
-We are as well using [JavaScript generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator), notice the `*` in front of the function. This generator iterates one value at a time. That's useful for large graphs (millions of nodes) because in most cases you don't need to visit every single node.
+We are using [JavaScript generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator), notice the `*` in front of the function. This generator iterates one value at a time. That's useful for large graphs (millions of nodes) because you don't need to visit every single node in most cases.
 
 This an example of how to use the BFS that we just created:
 
@@ -490,7 +490,7 @@ This an example of how to use the BFS that we just created:
   // ...
 ```
 
-You can find more illustrstions of usage in the [test cases](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.spec.js). Let's move on to the DFS!
+You can find more illustrations of usage in the [test cases](https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.spec.js). Let's move on to the DFS!
 
 ## Depth-first search (DFS)  - Graph search
 
@@ -541,17 +541,17 @@ We can test our graph as follow.
   console.log(values); // [1, 4, 8, 3, 7, 6, 10, 2, 5, 9]
 ```
 
-As you can see the graph is the same on BFS and DFS, however, the order how the nodes were visited is very different. BFS went from 1 to 10 in that order, while DFS went as deep as it could on each node.
+As you can see, the graph is the same on BFS and DFS. However, the order of how the nodes were visited is very different. BFS went from 1 to 10 in that order, while DFS went as deep as it could on each node.
 
-<!--Let's see some applications were DFS and BFS can be useful.
+<!--Let's see some applications where DFS and BFS can be useful.
 
 ### Find the path in a Graph
 
-Let's say you are exploring your social network and you want to know who can introduce you to Mark Zuckerberg.
+Let's say you are exploring your social network, and you want to know who can introduce you to Mark Zuckerberg.
 
 { img /images/you-mark-connections-graph2.png "Friends graph between you and Mark Zuckerberg" %}
 
-Your code use a DFS or BFS and iterate until you find the vertex you are looking for (e.g., Mark). It will indicate us if two vertices are **connected**. Let's start with that
+Your code uses a DFS or BFS and iterates until you find the vertex you are looking for (e.g., Mark). It will indicate to us if two vertices are **connected**. Let's start with that.
 
 { codeblock Graph.areConnected lang:js mark:6 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js Full Code }
   areConnected(source, destination) {
@@ -595,12 +595,12 @@ isAdjacent (using HashSet) | O(1) | [O(1)](#Matrix.getAdjacents)
 
 <!-- areConnected | | -->
 
-As you can see, an adjacency list is faster in almost all operations. The only action that the adjacency matrix will outperform the adjacency list is checking if a node is adjacent to other. However, if we change our implementation from Array to a HashSet, we can get it in constant time as well.
+As you can see, an adjacency list is faster in almost all operations. The only action that the adjacency matrix will outperform the adjacency list is checking if a node is adjacent to another. However, if we change our implementation from Array to a HashSet, we can get it in constant time.
 
 
 ## Summary
 
-As we saw, Graphs can help to model many real-life scenarios such as airports, social networks, internet and so on. We covered some of the most basic algorithms such as Breadth-First Search (BFS) and Depth-First Search (DFS). Also, we studied about implementations trade-offs such as adjacency list and matrix. Subscribe to my newsletter and don't miss any of my posts, because there are many other applications that we are going to learn soon, such as finding the shortest path between nodes and different exciting graph algorithms!
+As we saw, Graphs can help to model many real-life scenarios such as airports, social networks, the internet, and so on. We covered some of the most fundamental algorithms, such as Breadth-First Search (BFS) and Depth-First Search (DFS). Also, we studied implementation trade-offs such as adjacency lists and matrix. Subscribe to my newsletter and don't miss any of my posts because there are many other applications that we will learn soon, such as finding the shortest path between nodes and different exciting graph algorithms!
 
 
 <!-- https://www.slideshare.net/hafsakomal/graphs-49204527 -->
