@@ -351,11 +351,11 @@ Either way is ok as long as you keep the binary search tree property: `left < pa
 **Deleting the root.**
 
 ```
-    30*                            50
-  /     \       remove(30)      /     \
- 15      50     --------->     15      35
-        /
-       35
+    30*                            15
+  /     \       remove(30)            \
+ 15      50     --------->             50
+        /                             /
+       35                            35
 ```
 
 Deleting the root is very similar to removing nodes with 0, 1, or 2 children that we discussed earlier. The only difference is that afterward, we need to update the reference of the root of the tree.
