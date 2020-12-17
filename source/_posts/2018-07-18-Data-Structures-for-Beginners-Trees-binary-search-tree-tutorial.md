@@ -538,7 +538,7 @@ Let's say that we want to add numbers in ascending order.
 
 {% img /images/bst-asc.gif Inserting values in ascending order in a Binary Search Tree %}
 
-We will end up with all the nodes on the left side! This unbalanced tree is no better than a LinkedList, so finding an element would take *O(n)*. 😱
+We will end up with all the nodes on the right side! This unbalanced tree is no better than a LinkedList, so finding an element would take *O(n)*. 😱
 
 Looking for something in an unbalanced tree is like looking for a word in the dictionary page by page. When the tree is balanced, you can open the dictionary in the middle and from there you know if you have to go left or right depending on the alphabet and the word you are looking for.
 
