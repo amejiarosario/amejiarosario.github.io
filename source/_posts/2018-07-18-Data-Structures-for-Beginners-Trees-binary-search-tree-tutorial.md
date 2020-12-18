@@ -24,11 +24,11 @@ updated: 2019-05-23 15:17:30
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
-Tree data structures have many uses, and it's good to have a basic understanding of how they work. Trees are the basis for other very used data structures like Maps and Sets. Also, they are used on databases to perform quick searches. The HTML DOM uses a tree data structure to represents the hierarchy of elements.  In this post, we are going to explore the different types of trees like a binary tree, binary search trees, and how to implement them.
+Tree data structures have many uses, and it's good to have a basic understanding of how they work. Trees are the basis for other very used data structures like Maps and Sets. Also, they are used on databases to perform quick searches. The HTML DOM uses a tree data structure to represents the hierarchy of elements.  This post will explore the different types of trees like binary trees, binary search trees, and how to implement them.
 
 <!-- more -->
 
-In the [previous post](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/), we explored the Graph data structures, which are a generalized case of trees. Let's get started learning what tree data structures are!
+We explored [Graph data structures](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/) in the previous post, which are a generalized case of trees. Let's get started learning what tree data structures are!
 
 ---
 This post is part of a tutorial series:
@@ -57,7 +57,7 @@ This post is part of a tutorial series:
 
 ## Trees: basic concepts
 
-A tree is a data structure where a node can have zero or more children. Each node contains a **value**. Like graphs, the connection between nodes is called **edges**. A tree is a type of graph, but not all of them are trees (more on that later).
+A tree is a data structure where a node can have zero or more children. Each node contains a **value**. Like graphs, the connection between nodes is called **edges**. A tree is a type of graph, but not all graphs are trees (more on that later).
 
 These data structures are called "trees" because the data structure resembles a tree 🌳. It starts with a **root** node and **branch** off with its descendants, and finally, there are **leaves**.
 
@@ -79,7 +79,7 @@ Here are some properties of trees:
 
 ### Implementing a simple tree data structure
 
-As we saw earlier, a tree node is just a data structure that has a value and has links to their descendants.
+As we saw earlier, a tree node is just a data structure with a value and links to its descendants.
 
 Here's an example of a tree node:
 
@@ -111,7 +111,7 @@ That's all; we have a tree data structure!
 
 {% img /images/simpson2-tree.jpg "Simpson tree data structure" %}
 
-The node `abe` is the **root** and `bart`, `lisa` and `maggie` are the **leaf** nodes of the tree. Notice that the tree's node can have a different number of descendants: 0, 1, 3, or any other value.
+The node `abe` is the **root** and `bart`, `lisa` and `maggie` are the **leaf** nodes of the tree. Notice that the tree's node can have different descendants: 0, 1, 3, or any other value.
 
 Tree data structures have many applications such as:
 
@@ -128,7 +128,7 @@ Tree data structures have many applications such as:
 
 Trees nodes can have zero or more children. However, when a tree has at the most two children, then it's called **binary tree**.
 
-### Full, Complete and Perfect binary trees
+### Full, Complete, and Perfect binary trees
 
 Depending on how nodes are arranged in a binary tree, it can be **full**, **complete** and **perfect**:
 
@@ -161,17 +161,17 @@ These properties are not always mutually exclusive. You can have more than one:
   - Like in our "complete" example, since it has a parent with only one child. If we remove the rightmost gray node, then we would have a **complete** and **full** tree but not perfect.
 - A full tree is not always complete and perfect.
 
-<!-- If each non-leaf node on a binary tree has two descendants then we say is a **complete tree** -->
+<!-- If each non-leaf node on a binary tree has two descendants, then we say it is a **complete tree** -->
 
 <!-- { img https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/pix/full_complete.bmp caption } -->
 
 ## Binary Search Tree (BST)
 
-Binary Search Trees or BST for short are a particular application of binary trees. BST has at most two nodes (like all binary trees). However, the values are in such a way that the left children value must be less than the parent, and the right children is must be higher.
+Binary Search Trees or BST for short are a particular application of binary trees. BST has at most two nodes (like all binary trees). However, the values are so that the left children value must be less than the parent, and the right children must be higher.
 
 <!-- ---BST vs non-BST--- -->
 
-**Duplicates:** Some BST doesn't allow duplicates while others add the same values as a right child. Other implementations might keep a count on a case of the duplicity (we are going to do this one later).
+**Duplicates:** Some BST doesn't allow duplicates while others add the same values as a right child. Other implementations might keep a count on a case of duplicity (we are going to do this one later).
 
 Let's implement a Binary Search Tree!
 
@@ -179,10 +179,10 @@ Let's implement a Binary Search Tree!
 
 BST are very similar to our previous [implementation of a tree](#Implementing-a-simple-tree-data-structure). However, there are some differences:
 
-- Nodes can have at most, only two children: left and right.
+- Nodes can have, at most, only two children: left and right.
 - Nodes values has to be ordered as `left < parent < right`.
 
-Here's the tree node. Very similar to what we did before, but we added some handy getters and setters for left and right children. Notice that is also keeping a reference to the parent and we update it every time add children.
+Here's the tree node. Very similar to what we did before, but we added some handy getters and setters for left and right children. Notice is also keeping a reference to the parent, and we update it every time we add children.
 
 {% codeblock TreeNode.js lang:js mark:1-2,8,12,16,18,23,27,29 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-node.js Code %}
 const LEFT = 0;
@@ -219,7 +219,7 @@ class TreeNode {
 }
 {% endcodeblock %}
 
-Ok, so far we can add a left and right child. Now, let's do the BST class that enforces the `left < parent < right` rule.
+Ok, so far, we can add a left and right child. Now, let's do the BST class that enforces the `left < parent < right` rule.
 
 {% codeblock BinarySearchTree.js lang:js linkUrl linkText %}
 
@@ -243,8 +243,8 @@ Let's implementing insertion.
 
 To insert a node in a binary tree, we do the following:
 
-1. If a tree is empty, the first node becomes the **root** and you are done.
-1. Compare root/parent's value if it's *higher* go **right**, if it's *lower* go **left**. If it's the same, then the value already exists so you can increase the duplicate count (multiplicity).
+1. If a tree is empty, the first node becomes the **root**, and you are done.
+1. Compare root/parent's value if it's *higher* go **right**, if it's *lower* go **left**. If it's the same, then the value already exists so that you can increase the duplicate count (multiplicity).
 1. Repeat #2 until we found an empty slot to insert the new node.
 
 Let's do an illustration how to insert 30, 40, 10, 15, 12, 50:
@@ -293,7 +293,7 @@ We are using a helper function called `findNodeAndParent`. If we found that the 
   }
 {% endcodeblock %}
 
-`findNodeAndParent` goes through the tree searching for the value. It starts at the root (line 2) and then goes left or right based on the value (line 10). If the value already exists, it will return the node `found` and also the parent. In case that the node doesn't exist, we still return the `parent`.
+`findNodeAndParent` goes through the tree, searching for the value. It starts at the root (line 2) and then goes left or right based on the value (line 10). If the value already exists, it will return the node `found` and also the parent. In case that the node doesn't exist, we still return the `parent`.
 
 ### BST Node Deletion
 
@@ -310,7 +310,7 @@ We know how to insert and search for value. Now, we are going to implement the d
   /
 12*
 ```
-We just remove the reference from node's parent (15) to be null.
+We remove the reference from the node's parent (15) to be null.
 
 **Deleting a node with one child.**
 
@@ -322,7 +322,7 @@ We just remove the reference from node's parent (15) to be null.
   15  35   50                         35   50
 ```
 
-In this case, we go to the parent (30) and replace the child (10), with a child's child (15).
+In this case, we go to the parent (30) and replace the child (10) with a child's child (15).
 
 **Deleting a node with two children**
 
@@ -334,9 +334,9 @@ In this case, we go to the parent (30) and replace the child (10), with a child'
       35   50                         35
 ```
 
-We are removing node 40, that has two children (35 and 50). We replace the parent's (30) child (40) with the child's right child (50). Then we keep the left child (35) in the same place it was before, so we have to make it the left child of 50.
+We are removing node 40, which has two children (35 and 50). We replace the parent's (30) child (40) with the child's right child (50). Then we keep the left child (35) in the same place before, so we have to make it the left child of 50.
 
-Another way to do it to remove node 40, is to move the left child (35) up and then keep the right child (50) where it was.
+Another way to remove node 40 is to move the left child (35) up and then keep the right child (50) where it was.
 
 ```
      30
@@ -352,20 +352,20 @@ Either way is ok as long as you keep the binary search tree property: `left < pa
 
 ```
     30*                            50
-  /     \       remove(30)        /    
- 15      50     --------->       35     
-        /                       /    
-       35                      15     
+  /     \       remove(30)        /
+ 15      50     --------->       35
+        /                       /
+       35                      15
 ```
 
-Deleting the root is very similar to removing nodes with 0, 1, or 2 children that we discussed earlier. The only difference is that afterward, we need to update the reference of the root of the tree.
+Deleting the root is very similar to removing nodes with 0, 1, or 2 children discussed earlier. The only difference is that afterward, we need to update the reference of the root of the tree.
 
 
 Here's an animation of what we discussed.
 
 {% img /images/bst-remove.gif Removing a node with 0, 1, 2 children from a binary search tree %}
 
-In the animation, it moves up the left child/subtree and keeps the right child/subtree in place.
+The animation moves up the left child/subtree and keeps the right child/subtree in place.
 
 Now that we have a good idea how it should work, let's implement it:
 
@@ -397,7 +397,7 @@ Now that we have a good idea how it should work, let's implement it:
 
 Here are some highlights of the implementation:
 
-- First, we search if the node exists. If it doesn't, we return false and we are done!
+- First, we search if the node exists. If it doesn't, we return false, and we are done!
 - If the node to remove exists, then combine left and right children into one subtree.
 - Replace node to delete with the combined subtree.
 
@@ -414,7 +414,7 @@ The function that combines left into right subtree is the following:
   }
 {% endcodeblock %}
 
-For instance, let's say that we want to combine the following tree and we are about to delete node `30`. We want to mix 30's left subtree into the right one. The result is this:
+For instance, let's say that we want to combine the following tree, and we are about to delete node `30`. We want to mix the 30's left subtree into the right one. The result is this:
 
 ```
       30*                             40
@@ -426,7 +426,7 @@ For instance, let's say that we want to combine the following tree and we are ab
                                     15
 ```
 
-Now, and if we make the new subtree the root, then node `30` is no more!
+If we make the new subtree the root, then node `30` is no more!
 
 ## Binary Tree Transversal
 
@@ -508,7 +508,7 @@ Pre-order traversal would print out the following values: `10, 5, 4, 3, 30, 15, 
   }
 {% endcodeblock %}
 
-If you need a refresher on DFS, we covered in details on [Graph post](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/#Depth-first-search-DFS-Graph-search).
+If you need a refresher on DFS, we covered it in detail on [Graph post](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/#Depth-first-search-DFS-Graph-search).
 
 **Breadth-First Search (BFS)**
 
@@ -532,7 +532,7 @@ The BFS order is: `10, 5, 30, 4, 15, 40, 3`
 
 ## Balanced vs. Non-balanced Trees
 
-So far, we have discussed how to `add`, `remove` and `find` elements. However, we haven't talked about runtimes. Let's think about the worst-case scenarios.
+So far, we have discussed how to `add`, `remove`, and `find` elements. However, we haven't talked about runtimes. Let's think about the worst-case scenarios.
 
 Let's say that we want to add numbers in ascending order.
 
@@ -540,16 +540,16 @@ Let's say that we want to add numbers in ascending order.
 
 We will end up with all the nodes on the right side! This unbalanced tree is no better than a LinkedList, so finding an element would take *O(n)*. 😱
 
-Looking for something in an unbalanced tree is like looking for a word in the dictionary page by page. When the tree is balanced, you can open the dictionary in the middle and from there you know if you have to go left or right depending on the alphabet and the word you are looking for.
+Looking for something in an unbalanced tree is like looking for a word in the dictionary page by page. When the tree is balanced, you can open the dictionary in the middle, and from there, you know if you have to go left or right depending on the alphabet and the word you are looking for.
 
 We need to find a way to balance the tree!
 
-If the tree was **balanced**, then we could find elements in *O(log n)* instead of going through each node. Let's talk about what balanced tree means.
+If the tree was **balanced**, we could find elements in *O(log n)* instead of going through each node. Let's talk about what a balanced tree means.
 
 <!-- { img http://www.stoimen.com/blog/wp-content/uploads/2012/07/3.-Balanced-vs.-Non-Balanced.png Balanced vs unbalanced Tree } -->
 {% img /images/balanced-vs-non-balanced-tree.jpg Balanced vs unbalanced Tree %}
 
-If we are searching for `7` in the non-balanced tree, we have to go from 1 to 7. However, in the balanced tree, we visit: `4`, `6`, and `7`. It gets even worse with larger trees. If you have one million nodes, searching for a non-existing element might require to visit all million while on a balanced tree it just requires 20 visits! That's a huge difference!
+If we search for `7` in the non-balanced tree, we have to go from 1 to 7. However, in the balanced tree, we visit: `4`, `6`, and `7`. It gets even worse with larger trees. If you have one million nodes, searching for a non-existing element might require you to visit all million while on a balanced tree. It just needs 20 visits! That's a huge difference!
 
 We are going to solve this issue in the next post using self-balanced trees (AVL trees).
 
@@ -560,7 +560,7 @@ We have covered much ground for trees. Let's sum it up with bullets:
 - The tree is a data structure where a node has 0 or more descendants/children.
 - Tree nodes don't have cycles (acyclic). If it has cycles, it is a [Graph data structure](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/) instead.
 - Trees with two children or less are called: Binary Tree
-- When a Binary Tree is sorted in a way that the left value is less than the parent and the right children is higher, then and only then we have a **Binary Search Tree**.
+- When a Binary Tree is sorted so that the left value is less than the parent and the right children is higher, then and only then we have a **Binary Search Tree**.
 - You can visit a tree in a pre/post/in-order fashion.
 - An unbalanced has a time complexity of *O(n)*. 🤦🏻‍
 - A balanced has a time complexity of *O(log n)*. 🎉
