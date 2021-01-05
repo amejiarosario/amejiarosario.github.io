@@ -87,12 +87,12 @@ Here's an example of a tree node:
 class TreeNode {
   constructor(value) {
     this.value = value;
-    this.descendents = [];
+    this.descendants = [];
   }
 }
 ```
 
-We can create a tree with 3 descendents as follows:
+We can create a tree with 3 descendants as follows:
 
 ```js
 // create nodes with values
@@ -102,9 +102,9 @@ const bart = new TreeNode('Bart');
 const lisa = new TreeNode('Lisa');
 const maggie = new TreeNode('Maggie');
 
-// associate root with is descendents
-abe.descendents.push(homer);
-homer.descendents.push(bart, lisa, maggie);
+// associate root with is descendants
+abe.descendants.push(homer);
+homer.descendants.push(bart, lisa, maggie);
 ```
 
 That's all; we have a tree data structure!
@@ -191,27 +191,27 @@ const RIGHT = 1;
 class TreeNode {
   constructor(value) {
     this.value = value;
-    this.descendents = [];
+    this.descendants = [];
     this.parent = null;
   }
 
   get left() {
-    return this.descendents[LEFT];
+    return this.descendants[LEFT];
   }
 
   set left(node) {
-    this.descendents[LEFT] = node;
+    this.descendants[LEFT] = node;
     if (node) {
       node.parent = this;
     }
   }
 
   get right() {
-    return this.descendents[RIGHT];
+    return this.descendants[RIGHT];
   }
 
   set right(node) {
-    this.descendents[RIGHT] = node;
+    this.descendants[RIGHT] = node;
     if (node) {
       node.parent = this;
     }
@@ -481,7 +481,7 @@ Post-order traversal would print out the following values: `3, 4, 5, 15, 40, 30,
 
 **Pre-Order Traversal and DFS**
 
-In-order traversal visit nodes on this order: parent, left, right.
+Pre-order traversal visit nodes on this order: parent, left, right.
 
 {% codeblock BinarySearchTree.prototype.preOrderTraversal lang:js https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js Full Code %}
   * preOrderTraversal(node = this.root) {
@@ -503,7 +503,7 @@ Pre-order traversal would print out the following values: `10, 5, 4, 3, 30, 15, 
       const node = stack.remove();
       yield node;
       // reverse array, so left gets removed before right
-      node.descendents.reverse().forEach(child => stack.add(child));
+      node.descendants.reverse().forEach(child => stack.add(child));
     }
   }
 {% endcodeblock %}
@@ -523,7 +523,7 @@ Similar to DFS, we can implement a BFS by switching the `Stack` by a `Queue`:
     while (!queue.isEmpty()) {
       const node = queue.remove();
       yield node;
-      node.descendents.forEach(child => queue.add(child));
+      node.descendants.forEach(child => queue.add(child));
     }
   }
 {% endcodeblock %}
