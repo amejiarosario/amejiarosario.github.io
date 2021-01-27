@@ -66,7 +66,7 @@ Backbone.js has hard dependency on underscore.js and a soft dependency on jQuery
 
 **Shut up and show me the code!**
 
-Alright! the way we are going to explore all of these modules is through examples. This is a practical tutorial that I wished I had it when I stared learning. This is a fat-free walkthrough of Backbone.js, as simple as possible, with all the code in one file for didactical purposes (no hidden magic tricks, all cards are on the table).
+Alright! the way we are going to explore all of these modules is through examples. This is a practical tutorial that I wished I had it when I started learning. This is a fat-free walkthrough of Backbone.js, as simple as possible, with all the code in one file for didactical purposes (no hidden magic tricks, all cards are on the table).
 
 The first example is a ‘Hello World’ app in Backbone and the second is a 'to do' app. After working through these two example apps, you’ll see every Backbone module and have a practical understanding about them.
 
