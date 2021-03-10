@@ -36,7 +36,7 @@ This post is part of a tutorial series:
 
 **Learning Data Structures and Algorithms (DSA) for Beginners**
 1. [Intro to algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
-<!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here** -->
+<!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here-->
 
 1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
 <!-- 1. Eight time complexities that every programmer should know **👈 you are here** -->
@@ -107,7 +107,7 @@ Arrays are collections of zero or more elements. Arrays are one of the most used
 
 You can think of an array as a drawer where you can store things in the bins.
 
-** Array is like a drawer that stores things on bins**
+**Array is like a drawer that stores things on bins**
 {% img /images/array-drawer.jpg "Array is like a drawer that stores things on bins" %}
 
 
