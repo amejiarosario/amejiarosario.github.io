@@ -285,7 +285,7 @@ In arrays, the data is referenced using a numeric index (relatively to the posit
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 
 There are at least two ways to implement hashmap:
-1. ** Array**: Using a hash function to map a key to the array index value. Worst: `O(n)`, Average: `O(1)`
+1. **Array**: Using a hash function to map a key to the array index value. Worst: `O(n)`, Average: `O(1)`
 2. **Binary Search Tree**: using a self-balancing binary search tree to look up for values (more on this later). Worst: *`O(log n)`*, Average: *`O(log n)`*.
 
 We will cover Trees & Binary Search Trees, so don't worry about it for now. The most common implementation of Maps is using an **array** and `hash` function. So, that's the one we are going to focus on.
