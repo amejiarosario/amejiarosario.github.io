@@ -24,7 +24,7 @@ categories:
   - Backbone
 ---
 
-This tutorial builts on top of the [first part](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/) and continue with BacboneJS's Models, Collections and Views.
+This tutorial builds on top of the [first part](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/) and continue with BacboneJS's Models, Collections and Views.
 
 <!--More-->
 
@@ -80,7 +80,7 @@ For our example, we are going to create a model called `Todo`, which will store 
 
 {% endcodeblock %}
 
-Notice, that for convention classes names are capitalize, while instance variables and objects are not. Another important aspect of models it’s that their properties are dynamic; they can be created on the fly and doesn’t have any specific type associated.
+Notice, that by convention classes names are capitalized, while instance variables and objects are not. Another important aspect of models is that their properties are dynamic; they can be created on the fly and don’t have any specific types associated with them.
 
 **Test what you just coded!**
 
