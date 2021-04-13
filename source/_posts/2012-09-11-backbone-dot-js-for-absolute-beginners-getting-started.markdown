@@ -87,7 +87,7 @@ Your entire js app will be loaded here:
 
 ### Backbone's Views
 
-Backbone's Views are the equivalent of ‘controllers’ on MVC frameworks (like Ruby on Rails), if you are not familiar with MVC frameworks, that's okay. Backbone's Views glue together user events (clicks, pressed keys, etc.), render HTML views and templates, and interact with models which contains the data of the application.
+Backbone's Views are the equivalent of ‘controllers’ in MVC frameworks (like Ruby on Rails), if you are not familiar with MVC frameworks, that's okay. Backbone's Views glue together user events (clicks, pressed keys, etc.), render HTML views and templates, and interact with models which contains the data of the application.
 
 Here is an example of a Backbone.view: READ THE CODE AND COMMENTS, then insert this code in the javascript block of the HTML file you downloaded.
 
