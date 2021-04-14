@@ -26,7 +26,7 @@ When we are developing software, we have to store data in memory. However, many 
 
 <!-- more -->
 
-In this section, we will focus on linear data structures: Arrays, Lists, Sets, Stacks, and Queues.
+This section will focus on linear data structures: Arrays, Lists, Sets, Stacks, and Queues.
 
 You can find all these implementations and more in the Github repo:
 [https://github.com/amejiarosario/dsa.js](https://github.com/amejiarosario/dsa.js)
@@ -36,22 +36,16 @@ This post is part of a tutorial series:
 
 **Learning Data Structures and Algorithms (DSA) for Beginners**
 1. [Intro to algorithm's time complexity and Big O notation](/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/)
-<!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here-->
 
 1. [Eight time complexities that every programmer should know](/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/)
-<!-- 1. Eight time complexities that every programmer should know **👈 you are here** -->
 
 1. Data Structures for Beginners: Arrays, HashMaps, and Lists **👈 you are here**
-<!-- 1. [Data Structures for Beginners: Arrays, HashMaps, and Lists](/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/) -->
 
 1. [Graph Data Structures for Beginners](/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/)
-<!-- 1. Graph Data Structures for Beginners **👈 you are here** -->
 
 1. [Trees Data Structures for Beginners](/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/)
-<!-- 1. Trees Data Structures for Beginners **👈 you are here** -->
 
 1. [Self-balanced Binary Search Trees](/blog/2018/07/16/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/)
-<!-- 1. Self-balanced Binary Search Trees  **👈 you are here** -->
 
 1. [Appendix I: Analysis of Recursive Algorithms](/blog/2018/04/24/Analysis-of-Recursive-Algorithms/)
 ---
@@ -99,7 +93,7 @@ JavaScript specific primitives:
 - `Symbol`
 - `Number`
 
-Note: Objects are not primitive since they are composed of zero or more primitives and other objects.
+*Note*: Objects are not primitive since they are composed of zero or more primitives and other objects.
 
 ## Array
 
@@ -117,7 +111,7 @@ When you want to search for something, you can go directly to the bin number. Th
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 <!-- https://cdn2.iconfinder.com/data/icons/furniture-12/48/drawer-cabinet-closet-shelf-cabin-cupboard-furntiure-512.png -->
 
-Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to predefine the size of the Array and the data type. In JavaScript, it would automatically increase the size of the Array when needed.
+Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to predefine the Array size and the data type. In JavaScript, it would automatically increase the size of the Array when needed.
 
 ### Arrays built-in operations
 
@@ -278,7 +272,7 @@ Going back to the drawer analogy, bins have a label rather than a number.
 **HashMap is like a drawer that stores things on bins and labels them**
 {% img /images/hashmap-drawer.jpg "HashMap is like a drawer that stores things on bins and labels them" %}
 
-In this example, if you are looking for the [DSA.js book](https://books.adrianmejia.com), you don't have to open the bin 1, 2, and 3 to see what's inside. You go directly to the container labeled as "books". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
+In this example, if you are looking for the book, you don't have to open bin 1, 2, and 3. You go directly to the container labeled as "books". That's a huge gain! Search time goes from *O(n)* to *O(1)*.
 
 In arrays, the data is referenced using a numeric index (relatively to the position). However, HashMaps uses labels that could be a string, number, Object, or anything. Internally, the HashMap uses an Array, and it maps the labels to array indexes using a *hash function*.
 
@@ -299,7 +293,7 @@ Now, What do you think about covering each of the HashMap components in detail? 
 
 ### HashMap vs. Array
 
-Why go through the trouble of converting the key into an index and not using an array directly, you might ask. The main difference is that the Array's index doesn't have any relationship with the data. You have to know where your data is.
+Why go through the trouble of converting the key into an index and not using an array directly, you might ask. The main difference is that Array's index doesn't have any relationship with the data. You have to know where your data is.
 
 Let's say you want to count how many times words are used in a text. How would you implement that?
 
@@ -308,7 +302,7 @@ Let's say you want to count how many times words are used in a text. How would y
 
 What is the runtime of approach #1 using **two arrays**? If we say, the number of words in the text is *`n`*. Then we have to `search` if the word in the array `A`  and then increment the value on array `B` matching that index. For every word on `n`, we have to test if it's already on array `A`. This double loop leave use with a runtime of <code>O(n<sup>2</sup>)</code>.
 
-What is the runtime of approach #2 using a **HashMap**? Well, we iterate through each word on the text once and increment the value if there is something there or set it to 1 if that word is seen for the first time. The runtime would be `O(n)`, which is much more performant than approach #1.
+What is the runtime of approach #2 using a **HashMap**? We iterate through each word on the text once and increment the value if there is something there or set it to 1 if that word is seen for the first time. The runtime would be `O(n)`, which is much more performant than approach #1.
 
 Differences between HashMap and Array
 - Search on an array is *O(n)* while on a HashMap is *O(1)*
@@ -612,7 +606,7 @@ assert.equal(hashMap.get('dog'), 1); // Good. Didn't got overwritten by art
 
 This `DecentHashMap` gets the job done, but there are still some issues. We are using a decent hash function that doesn't produce duplicate values, and that's great. However, we have two values in `bucket#0` and two more in `bucket#1`. How is that possible?
 
-Since we are using a limited bucket size of 2, we use modulus `%` to loop through the number of available buckets. So, even if the hash code is different, all values will fit on the size of the Array: bucket#0 or bucket#1.
+Since we are using a limited bucket size of 2, we use modulus `%` to loop through the number of available buckets. So, even if the hash code is different, all values will fit on the Array size: bucket#0 or bucket#1.
 
 <!-- [{"key":"cat","hash":3789411390},{"key":"dog","hash":3788563007},{"key":"rat","hash":3789411405},{"key":"art","hash":3789415740}] -->
 
@@ -1054,7 +1048,7 @@ Delete (`Set.delete`) | *`O(n)`* | *`O(1)`* | *`O(n)`* is an extreme case when t
 
 ## Linked Lists
 
-Linked List is a data structure where every element is connected to the next one.
+A linked list is a data structure where every element is connected to the next one.
 
 {% img /images/linked-list.jpg "LinkedList" %}
 
@@ -1441,7 +1435,7 @@ Doubly linked lists are a significant improvement compared to the singly linked 
 - Adding a reference to the previous element.
 - Holding a reference to the last item in the list.
 
-Removing first/last can be done in constant-time; however, eliminating in the middle of the Array is still *O(n)*.
+Removing first/last can be done in constant time; however, eliminating in the middle of the Array is still *O(n)*.
 
 ## Stacks
 
