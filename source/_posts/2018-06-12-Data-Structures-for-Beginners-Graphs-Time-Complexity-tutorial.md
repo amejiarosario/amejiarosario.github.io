@@ -2,9 +2,9 @@
 layout: post
 title: 'Graph Data Structures in JavaScript for Beginners'
 comments: true
-pageviews__total: 40343
-pageviews__recent: 576
-pageviews__avg_time: 831
+pageviews__total: 46933
+pageviews__recent: 1409
+pageviews__avg_time: 746
 tutorial__order: 5
 toc: true
 photos:

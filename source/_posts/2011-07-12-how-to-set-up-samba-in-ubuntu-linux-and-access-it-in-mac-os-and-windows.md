@@ -5,8 +5,8 @@ created: 1310520455000
 updated: 1310520455000
 comments: true
 toc: true
-pageviews__total: 215877
-pageviews__recent: 4804
+pageviews__total: 238200
+pageviews__recent: 5623
 pageviews__avg_time: 533
 tutorial__order: 0
 photos:
