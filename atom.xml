@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://adrianmejia.com/"/>
-  <updated>2020-10-03T12:53:32.000Z</updated>
+  <updated>2021-01-02T22:55:24.000Z</updated>
   <id>https://adrianmejia.com/</id>
   
   <author>
@@ -14,6 +14,113 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2020 recap and how I got my dream job</title>
+    <link href="https://adrianmejia.com/2020-recap-and-how-i-got-my-dream-job/"/>
+    <id>https://adrianmejia.com/2020-recap-and-how-i-got-my-dream-job/</id>
+    <published>2021-01-02T22:55:24.000Z</published>
+    <updated>2021-01-02T22:55:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is the first time I write a post about reviewing a year. I usually keep my posts about technical topics or tutorials, but this year has been unusual so let’s do unusual things!</p>
+<a id="more"></a>
+
+<p>Most of 2020, besides my day job, I spend it preparing for job interviews and being interviewed. Since I didn’t have to commute to work anymore, I used the extra 2 hours daily for studying.</p>
+<p>So here’s a little backstory that leads me to this point.</p>
+<h2 id="The-dream"><a href="#The-dream" class="headerlink" title="The dream"></a>The dream</h2><p>Since 2011, one of my dream jobs has been to work at Google. I was fascinated by the number of innovative products they released, the Ester eggs, free food, and amenities on the offices. So, I did manage to get an interview with them. I bombed my first interview very badly, as I was transitioning from Electronics engineering to Software. My data structures knowledge only encompassed arrays and strings. However, my interview was about a linked list implementation, so I had to improvise. After my big failure, I still wanted to try again in the future. I knew I had to study computer science topics and learn Data Structures and Algorithms (DSA) for real. However, those topics are tedious to study. Eventually, I got other jobs, and I procrastinated studying DSA for years.</p>
+<p>I still had the dream but didn’t find the time to put in the work. In 2018, I had an idea to motivate myself. I started writing posts about my learnings. That way, I can keep myself motivated. I wrote a couple of posts: <a href="https://adrianmejia.com/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">1</a>, <a href="https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">2</a>, <a href="https://adrianmejia.com/data-structures-time-complexity-for-beginners-arrays-hashmaps-linked-lists-stacks-queues-tutorial/">3</a>, <a href="https://adrianmejia.com/data-structures-for-beginners-graphs-time-complexity-tutorial/">4</a>, <a href="https://adrianmejia.com/data-structures-for-beginners-trees-binary-search-tree-tutorial/">5</a>, <a href="https://adrianmejia.com/self-balanced-binary-search-trees-with-avl-tree-data-structure-for-beginners/">6</a>, <a href="https://adrianmejia.com/analysis-of-recursive-algorithms/">7</a>. I noticed it got some traction, so I got another crazy idea. Would people be interested in an ebook version of my content? It takes so much time to write an eBook, so I had to see if people were willing to pre-buy the book first. It turned out around 50 people got interested and pre-bought the book! That kept me motivated to start the book. Halfway through, I was very tempted to abandon the project because I had many issues producing a book in PDF and ePub format. However, I didn’t want to let down all the people that believed in me and bought the book. So, I pushed through the finish line and delivered what I promised.</p>
+<h2 id="Tech-Interview-Process"><a href="#Tech-Interview-Process" class="headerlink" title="Tech Interview Process"></a>Tech Interview Process</h2><p>In March of 2020, I got an email from a Facebook recruiter. So, I thought: Hmm, I’m ready to get into a top tech company this time. E.g., FAANG (Facebook, Apple, Amazon, Netflix, Google). I was aware of how hard the interviews were to maximize my chances, I applied everywhere I was interested.</p>
+<p>The first interview was with Amazon. It was an online assessment. I thought I was ready since I was studying algorithms on-and-off for a couple of years. The first exercise I was to complete it, finding the most common word in a paragraph and some other things. The second problem was hard. It was a graph algorithm, and I was able to do a brute force solution. Unfortunately, It was not good enough, so I was rejected.</p>
+<p><strong>Lesson learned: to do well in interviews, you not only need to know the theoretical concepts, but you must be able to apply them on time.</strong></p>
+<p>I doubled down on doing exercises so that I can do better on my next interviews. Indeed I was getting better after a couple of months of doing Leetcode.com exercises every single day. When I interview with Facebook, I got two questions that I had to solve in under 35 minutes. There’s one that I had seen before (or at least was similar). However, I got nervous and only did the brute force solution. I was rejected again! Also, I was frustrated because I practiced hard this time and still ended up using the same brute force solution I knew before preparing.</p>
+<p><strong>Lesson learned: Learning is not a straight line. If you want knowledge to stick in your head, you need to use an iterative approach. Use spaced repetition. Learn and quiz yourself again after a couple of days.</strong></p>
+<p>I started writing down my sticky points and learn from my failures daily. I kept a spreadsheet of the last time I attempted an exercise and how long it took me to finish it. After a month or so of doing that, I started seeing a noticeable improvement in myself. I was learning, and the knowledge was sticking with me for the long run.</p>
+<p>My next interviews went well, and I got offers!!</p>
+<h3 id="Interview-Results"><a href="#Interview-Results" class="headerlink" title="Interview Results"></a>Interview Results</h3><p>To sum up the whole process:</p>
+<ul>
+<li>Applied positions: <strong><code>13</code></strong></li>
+<li>Interested: <strong><code>8</code></strong> (2 never replied, 3 said no, 8 said yes)</li>
+<li>Interviewed w/recruiter: <strong><code>7</code></strong> (1 replied too late in the process)</li>
+<li>Phone screens: <strong><code>6</code></strong></li>
+<li>Onsite interviews: <strong><code>3</code></strong></li>
+<li>Offers: <strong><code>2</code></strong> </li>
+</ul>
+<p>I accepted my dream job at Google!</p>
+<h2 id="After-Getting-the-Job"><a href="#After-Getting-the-Job" class="headerlink" title="After Getting the Job"></a>After Getting the Job</h2><p>There was a small problem. I have been doing mostly frontend development (Angular/Node/TypeScript/JavaScript) for eight years. At Google, I’ll be using C++. As you can imagine, search products need to be blazing fast and memory efficient. That’s when algorithms and C++ come in handy. I became a beginner once again but was very excited about all the new things I was going to learn.</p>
+<p>I took a month off between my previous job and the new one. I used that time to study and get up to speed on C++. I read a couple of books on the topic and tried to solve algorithms using C++ instead of JavaScript. It helped me!</p>
+<p>Once I joined Google, I kept learning. Everything was so jaw-dropping! However, everything was so different from what I did before that I felt overwhelmed by the number of new things I needed to learn. Not just the programming language was foreign to me, but also the build system, CI, version system (perforce/mercurial-like instead of git), and many internal tools. I made a list of new things and have been going through it. After a month or so, I feel like I can do things now. I submitted my first change to production, and my 2nd one is on the way. It’s great to work on something that billions of people use daily. I feel like what I do matters. Of course, there’s so much to learn, but I’m enjoying the new journey.</p>
+<h3 id="Lessons-learned"><a href="#Lessons-learned" class="headerlink" title="Lessons learned"></a>Lessons learned</h3><ul>
+<li>Data Structures and Algorithms (DSA) are essential when your code runs on thousands of servers worldwide. Inefficient code won’t scale well and cost more CPU-time.</li>
+<li>Systems design is critical too. I need to keep learning more about this topic. I might do a couple of posts about what I’m learning.</li>
+<li>Design patterns and learning to refactor code is a very needed skill. Projects that have decades of ever-increasing requirements need to be revisited and improved every now and then.</li>
+<li>Be always learning. Don’t be afraid of starting from scratch. Failure is an option. Learning is a choice. Consistent tries (failures + learning) leads to success eventually.</li>
+</ul>
+<h2 id="2020-Highlights"><a href="#2020-Highlights" class="headerlink" title="2020 Highlights"></a>2020 Highlights</h2><h3 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h3><ul>
+<li>Studied Data Structures and Algorithms (DSA) and did exercises:</li>
+<li>Leetcode submissions: <img src="/images/leetcode-profile-2020.png" alt="leetcode profile"></li>
+<li>903 submission of 202 problems (I repeated many every few weeks). Did 90 easy, 100 medium, and 12 hard problems. I participated in 6 programming contests.</li>
+<li>I noticed many of the things I learned I forgot in a few weeks. So, I kept a spreadsheet (Notion Database) to keep track of my mistakes, learnings, and make sure I was learning for the long term.</li>
+</ul>
+<h3 id="Open-source-contributions"><a href="#Open-source-contributions" class="headerlink" title="Open-source contributions"></a>Open-source contributions</h3><ul>
+<li>Github contributions: <img src="/images/github-contribution-2020.png" alt="github contributions"></li>
+<li><a href="https://amejiarosario/dsa.js-data-structures-algorithms-javascript">amejiarosario/dsa.js-data-structures-algorithms-javascript</a>: Added most frequently asked interview problems for each chapter.</li>
+<li><a href="https://github.com/xaizek/zograscopev">xaizek/zograscope</a>.</li>
+</ul>
+<h3 id="Books"><a href="#Books" class="headerlink" title="Books"></a>Books</h3><ul>
+<li>(Still reading) <a href="https://www.amazon.com/Software-Engineering-Google-Lessons-Programming/dp/1492082791">Software Engineering at Google: Lessons Learned from Programming Over Time</a> by Titus Winters</li>
+<li>Elements of Programming Interviews (EPI)</li>
+<li>A tour of C++ by Bjarne Stroustrup</li>
+<li>How Google Works by Eric Schmidt</li>
+</ul>
+<h3 id="Audiobooks"><a href="#Audiobooks" class="headerlink" title="Audiobooks"></a>Audiobooks</h3><ul>
+<li>Why we sleep by Matthew Walker</li>
+<li>Zero to One by Peter Thiel</li>
+<li>Atomic Habits by James Clear</li>
+<li>Quit like a millionaire by Kristy Shen</li>
+<li>Principles by Ray Dalio</li>
+<li>Financial Peace Revisited by Dave Ramsey</li>
+<li>The Magnolia Story by Chip Gaines</li>
+<li>Capital Gaines by Chip Gaines</li>
+<li>The 10x Rule by Grant Cardone</li>
+<li>Think and Grow Rich by Napoleon Hill</li>
+<li>Happy Money by Ken Honda</li>
+<li>The Infinite Game by Simon Sinek</li>
+<li>Becoming Supernatural by Joe Dispenza</li>
+<li>Breaking the Habit of being yourself by Joe Dispenza</li>
+<li>Trillion Dollar Coach by Eric Schmidt</li>
+<li>The millionarie next door by Thomas J. Stanley</li>
+<li>Sapiens by Yuval Noah Harari</li>
+<li>The Little Book of Common Sense Investing</li>
+<li>The Richest Man in Babylon by George Clason</li>
+<li>You are a badass by Jen Sincero</li>
+<li>You are a badass of making money by Jen Sincero</li>
+</ul>
+<h3 id="Games"><a href="#Games" class="headerlink" title="Games"></a>Games</h3><ul>
+<li>Factorio</li>
+<li>Shapez.io</li>
+<li>Satisfactory</li>
+<li>Crysis 3</li>
+<li>Chess 5D</li>
+<li>Among Us</li>
+</ul>
+<h3 id="Workout"><a href="#Workout" class="headerlink" title="Workout"></a>Workout</h3><ul>
+<li>Weightlifting (before gyms were closed): <a href="https://stronglifts.com/5x5/https://stronglifts.com/5x5/https://stronglifts.com/5x5/v">Stronglifts 5x5</a></li>
+<li>Focus T25 (after gyms were closed).</li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Considering the uncertain global situation, there are still ways to use circunstances for good. For instance, we can use the extra time at home to study and spend more time with family.</p>
+<p>Failure is natural when you go out of your comfort zone. Try to learn from your mistakes and keep trying new things until you succeed. Don’t give up on your dreams and try to enjoy the journey. Always keep learning, and don’t be afraid of starting over.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This is the first time I write a post about reviewing a year. I usually keep my posts about technical topics or tutorials, but this year has been unusual so let’s do unusual things!&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="year-recap" scheme="https://adrianmejia.com/tags/year-recap/"/>
+    
+  </entry>
   
   <entry>
     <title>How to find time complexity of an algorithm?</title>
@@ -993,6 +1100,8 @@ We are passing <code>&#123; new: true &#125;</code> so we can return the updated
     
     
       <category term="angular" scheme="https://adrianmejia.com/tags/angular/"/>
+    
+      <category term="angularjs" scheme="https://adrianmejia.com/tags/angularjs/"/>
     
       <category term="mean stack" scheme="https://adrianmejia.com/tags/mean-stack/"/>
     
@@ -3043,10 +3152,10 @@ You can <code>star</code> it to keep it handy.</p>
 </ul>
 <h3 id="Implementing-a-simple-tree-data-structure"><a href="#Implementing-a-simple-tree-data-structure" class="headerlink" title="Implementing a simple tree data structure"></a>Implementing a simple tree data structure</h3><p>As we saw earlier, a tree node is just a data structure with a value and links to its descendants.</p>
 <p>Here’s an example of a tree node:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = value;</span><br><span class="line">    <span class="built_in">this</span>.descendents = [];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = value;</span><br><span class="line">    <span class="built_in">this</span>.descendants = [];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>We can create a tree with 3 descendents as follows:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create nodes with values</span></span><br><span class="line"><span class="keyword">const</span> abe = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Abe&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> homer = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Homer&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> bart = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Bart&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> lisa = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Lisa&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> maggie = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Maggie&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// associate root with is descendents</span></span><br><span class="line">abe.descendents.push(homer);</span><br><span class="line">homer.descendents.push(bart, lisa, maggie);</span><br></pre></td></tr></table></figure>
+<p>We can create a tree with 3 descendants as follows:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create nodes with values</span></span><br><span class="line"><span class="keyword">const</span> abe = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Abe&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> homer = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Homer&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> bart = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Bart&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> lisa = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Lisa&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> maggie = <span class="keyword">new</span> TreeNode(<span class="string">&#x27;Maggie&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// associate root with is descendants</span></span><br><span class="line">abe.descendants.push(homer);</span><br><span class="line">homer.descendants.push(bart, lisa, maggie);</span><br></pre></td></tr></table></figure>
 
 <p>That’s all; we have a tree data structure!</p>
 <img src="/images/simpson2-tree.jpg" class="" title="Simpson tree data structure">
@@ -3113,7 +3222,7 @@ You can <code>star</code> it to keep it handy.</p>
 <li>Nodes values has to be ordered as <code>left &lt; parent &lt; right</code>.</li>
 </ul>
 <p>Here’s the tree node. Very similar to what we did before, but we added some handy getters and setters for left and right children. Notice is also keeping a reference to the parent, and we update it every time we add children.</p>
-<figure class="highlight js"><figcaption><span>TreeNode.js</span><a href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-node.js">Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line marked"><span class="keyword">const</span> LEFT = <span class="number">0</span>;</span><br><span class="line marked"><span class="keyword">const</span> RIGHT = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = value;</span><br><span class="line">    <span class="built_in">this</span>.descendents = [];</span><br><span class="line marked">    <span class="built_in">this</span>.parent = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title">left</span>() &#123;</span><br><span class="line marked">    <span class="keyword">return</span> <span class="built_in">this</span>.descendents[LEFT];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">set</span> <span class="title">left</span>(<span class="params">node</span>) &#123;</span><br><span class="line marked">    <span class="built_in">this</span>.descendents[LEFT] = node;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line marked">      node.parent = <span class="built_in">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title">right</span>() &#123;</span><br><span class="line marked">    <span class="keyword">return</span> <span class="built_in">this</span>.descendents[RIGHT];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">set</span> <span class="title">right</span>(<span class="params">node</span>) &#123;</span><br><span class="line marked">    <span class="built_in">this</span>.descendents[RIGHT] = node;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line marked">      node.parent = <span class="built_in">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>TreeNode.js</span><a href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/tree-node.js">Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line marked"><span class="keyword">const</span> LEFT = <span class="number">0</span>;</span><br><span class="line marked"><span class="keyword">const</span> RIGHT = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = value;</span><br><span class="line">    <span class="built_in">this</span>.descendants = [];</span><br><span class="line marked">    <span class="built_in">this</span>.parent = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title">left</span>() &#123;</span><br><span class="line marked">    <span class="keyword">return</span> <span class="built_in">this</span>.descendants[LEFT];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">set</span> <span class="title">left</span>(<span class="params">node</span>) &#123;</span><br><span class="line marked">    <span class="built_in">this</span>.descendants[LEFT] = node;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line marked">      node.parent = <span class="built_in">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title">right</span>() &#123;</span><br><span class="line marked">    <span class="keyword">return</span> <span class="built_in">this</span>.descendants[RIGHT];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">set</span> <span class="title">right</span>(<span class="params">node</span>) &#123;</span><br><span class="line marked">    <span class="built_in">this</span>.descendants[RIGHT] = node;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line marked">      node.parent = <span class="built_in">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Ok, so far, we can add a left and right child. Now, let’s do the BST class that enforces the <code>left &lt; parent &lt; right</code> rule.</p>
 <figure class="highlight js"><figcaption><span>BinarySearchTree.js linkUrl linkText</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinarySearchTree</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="built_in">this</span>.root = <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>.size = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  add(value) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  find(value) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  remove(value) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  getMax() &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  getMin() &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -3197,16 +3306,16 @@ Let’s go through each one.</p>
 
 <p>Post-order traversal would print out the following values: <code>3, 4, 5, 15, 40, 30, 10</code>.</p>
 <p><strong>Pre-Order Traversal and DFS</strong></p>
-<p>In-order traversal visit nodes on this order: parent, left, right.</p>
+<p>Pre-order traversal visit nodes on this order: parent, left, right.</p>
 <figure class="highlight js"><figcaption><span>BinarySearchTree.prototype.preOrderTraversal</span><a href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* preOrderTraversal(node = <span class="built_in">this</span>.root) &#123;</span><br><span class="line">  <span class="keyword">yield</span> node;</span><br><span class="line">  <span class="keyword">if</span> (node.left) &#123; <span class="keyword">yield</span>* <span class="built_in">this</span>.preOrderTraversal(node.left); &#125;</span><br><span class="line">  <span class="keyword">if</span> (node.right) &#123; <span class="keyword">yield</span>* <span class="built_in">this</span>.preOrderTraversal(node.right); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Pre-order traversal would print out the following values: <code>10, 5, 4, 3, 30, 15, 40</code>. This order of numbers is the same result that we would get if we run the Depth-First Search (DFS).</p>
-<figure class="highlight js"><figcaption><span>BinarySearchTree.prototype.dfs</span><a href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">* dfs() &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = <span class="keyword">new</span> Stack();</span><br><span class="line"></span><br><span class="line">  stack.add(<span class="built_in">this</span>.root);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">    <span class="keyword">const</span> node = stack.remove();</span><br><span class="line">    <span class="keyword">yield</span> node;</span><br><span class="line">    <span class="comment">// reverse array, so left gets removed before right</span></span><br><span class="line">    node.descendents.reverse().forEach(<span class="function"><span class="params">child</span> =&gt;</span> stack.add(child));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>BinarySearchTree.prototype.dfs</span><a href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">* dfs() &#123;</span><br><span class="line">  <span class="keyword">const</span> stack = <span class="keyword">new</span> Stack();</span><br><span class="line"></span><br><span class="line">  stack.add(<span class="built_in">this</span>.root);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">    <span class="keyword">const</span> node = stack.remove();</span><br><span class="line">    <span class="keyword">yield</span> node;</span><br><span class="line">    <span class="comment">// reverse array, so left gets removed before right</span></span><br><span class="line">    node.descendants.reverse().forEach(<span class="function"><span class="params">child</span> =&gt;</span> stack.add(child));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>If you need a refresher on DFS, we covered it in detail on <a href="/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/#Depth-first-search-DFS-Graph-search">Graph post</a>.</p>
 <p><strong>Breadth-First Search (BFS)</strong></p>
 <p>Similar to DFS, we can implement a BFS by switching the <code>Stack</code> by a <code>Queue</code>:</p>
-<figure class="highlight js"><figcaption><span>BinarySearchTree.prototype.bfs</span><a href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">* bfs() &#123;</span><br><span class="line">  <span class="keyword">const</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line"></span><br><span class="line">  queue.add(<span class="built_in">this</span>.root);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">    <span class="keyword">const</span> node = queue.remove();</span><br><span class="line">    <span class="keyword">yield</span> node;</span><br><span class="line">    node.descendents.forEach(<span class="function"><span class="params">child</span> =&gt;</span> queue.add(child));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>BinarySearchTree.prototype.bfs</span><a href="https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/trees/binary-search-tree.js">Full Code</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">* bfs() &#123;</span><br><span class="line">  <span class="keyword">const</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line"></span><br><span class="line">  queue.add(<span class="built_in">this</span>.root);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">    <span class="keyword">const</span> node = queue.remove();</span><br><span class="line">    <span class="keyword">yield</span> node;</span><br><span class="line">    node.descendants.forEach(<span class="function"><span class="params">child</span> =&gt;</span> queue.add(child));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>The BFS order is: <code>10, 5, 30, 4, 15, 40, 3</code></p>
 <h2 id="Balanced-vs-Non-balanced-Trees"><a href="#Balanced-vs-Non-balanced-Trees" class="headerlink" title="Balanced vs. Non-balanced Trees"></a>Balanced vs. Non-balanced Trees</h2><p>So far, we have discussed how to <code>add</code>, <code>remove</code>, and <code>find</code> elements. However, we haven’t talked about runtimes. Let’s think about the worst-case scenarios.</p>
@@ -3720,7 +3829,7 @@ With this function, we get if two nodes are connected or not. However, they don'
     <content type="html"><![CDATA[<p>When we are developing software, we have to store data in memory. However, many types of data structures, such as arrays, maps, sets, lists, trees, graphs, etc., and choosing the right one for the task can be tricky. This series of posts will help you know the trade-offs so that you can use the right tool for the job!</p>
 <a id="more"></a>
 
-<p>In this section, we will focus on linear data structures: Arrays, Lists, Sets, Stacks, and Queues.</p>
+<p>This section will focus on linear data structures: Arrays, Lists, Sets, Stacks, and Queues.</p>
 <p>You can find all these implementations and more in the Github repo:
 <a href="https://github.com/amejiarosario/dsa.js">https://github.com/amejiarosario/dsa.js</a></p>
 <hr>
@@ -3728,22 +3837,16 @@ With this function, we get if two nodes are connected or not. However, they don'
 <p><strong>Learning Data Structures and Algorithms (DSA) for Beginners</strong></p>
 <ol>
 <li><p><a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">Intro to algorithm’s time complexity and Big O notation</a></p>
-<!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here** -->
 </li>
 <li><p><a href="/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">Eight time complexities that every programmer should know</a></p>
-<!-- 1. Eight time complexities that every programmer should know **👈 you are here** -->
 </li>
 <li><p>Data Structures for Beginners: Arrays, HashMaps, and Lists <strong>👈 you are here</strong></p>
-<!-- 1. [Data Structures for Beginners: Arrays, HashMaps, and Lists](/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/) -->
 </li>
 <li><p><a href="/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">Graph Data Structures for Beginners</a></p>
-<!-- 1. Graph Data Structures for Beginners **👈 you are here** -->
 </li>
 <li><p><a href="/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">Trees Data Structures for Beginners</a></p>
-<!-- 1. Trees Data Structures for Beginners **👈 you are here** -->
 </li>
 <li><p><a href="/blog/2018/07/16/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">Self-balanced Binary Search Trees</a></p>
-<!-- 1. Self-balanced Binary Search Trees  **👈 you are here** -->
 </li>
 <li><p><a href="/blog/2018/04/24/Analysis-of-Recursive-Algorithms/">Appendix I: Analysis of Recursive Algorithms</a></p>
 </li>
@@ -3878,10 +3981,10 @@ With this function, we get if two nodes are connected or not. However, they don'
 <li><code>Symbol</code></li>
 <li><code>Number</code></li>
 </ul>
-<p>Note: Objects are not primitive since they are composed of zero or more primitives and other objects.</p>
+<p><em>Note</em>: Objects are not primitive since they are composed of zero or more primitives and other objects.</p>
 <h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>Arrays are collections of zero or more elements. Arrays are one of the most used data structures because of their simplicity and fast way of retrieving information.</p>
 <p>You can think of an array as a drawer where you can store things in the bins.</p>
-<p>** Array is like a drawer that stores things on bins**</p>
+<p><strong>Array is like a drawer that stores things on bins</strong></p>
 <img src="/images/array-drawer.jpg" class="" title="Array is like a drawer that stores things on bins">
 
 
@@ -3889,7 +3992,7 @@ With this function, we get if two nodes are connected or not. However, they don'
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 <!-- https://cdn2.iconfinder.com/data/icons/furniture-12/48/drawer-cabinet-closet-shelf-cabin-cupboard-furntiure-512.png -->
 
-<p>Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to predefine the size of the Array and the data type. In JavaScript, it would automatically increase the size of the Array when needed.</p>
+<p>Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to predefine the Array size and the data type. In JavaScript, it would automatically increase the size of the Array when needed.</p>
 <h3 id="Arrays-built-in-operations"><a href="#Arrays-built-in-operations" class="headerlink" title="Arrays built-in operations"></a>Arrays built-in operations</h3><p>Depending on the programming language, the implementation would be slightly different.</p>
 <p>For instance, in JavaScript, we can accomplish append to end with <code>push</code> and append to the beginning with <code>unshift</code>. But also, we have <code>pop</code> and <code>shift</code> to remove from an array. Let’s describe some everyday operations that we are going to use through this post.</p>
 <p><strong>Common JS Array built-in functions</strong></p>
@@ -4024,13 +4127,13 @@ With this function, we get if two nodes are connected or not. However, they don'
 <p><strong>HashMap is like a drawer that stores things on bins and labels them</strong></p>
 <img src="/images/hashmap-drawer.jpg" class="" title="HashMap is like a drawer that stores things on bins and labels them">
 
-<p>In this example, if you are looking for the <a href="https://books.adrianmejia.com/">DSA.js book</a>, you don’t have to open the bin 1, 2, and 3 to see what’s inside. You go directly to the container labeled as “books”. That’s a huge gain! Search time goes from <em>O(n)</em> to <em>O(1)</em>.</p>
+<p>In this example, if you are looking for the book, you don’t have to open bin 1, 2, and 3. You go directly to the container labeled as “books”. That’s a huge gain! Search time goes from <em>O(n)</em> to <em>O(1)</em>.</p>
 <p>In arrays, the data is referenced using a numeric index (relatively to the position). However, HashMaps uses labels that could be a string, number, Object, or anything. Internally, the HashMap uses an Array, and it maps the labels to array indexes using a <em>hash function</em>.</p>
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 
 <p>There are at least two ways to implement hashmap:</p>
 <ol>
-<li>** Array**: Using a hash function to map a key to the array index value. Worst: <code>O(n)</code>, Average: <code>O(1)</code></li>
+<li><strong>Array</strong>: Using a hash function to map a key to the array index value. Worst: <code>O(n)</code>, Average: <code>O(1)</code></li>
 <li><strong>Binary Search Tree</strong>: using a self-balancing binary search tree to look up for values (more on this later). Worst: <em><code>O(log n)</code></em>, Average: <em><code>O(log n)</code></em>.</li>
 </ol>
 <p>We will cover Trees &amp; Binary Search Trees, so don’t worry about it for now. The most common implementation of Maps is using an <strong>array</strong> and <code>hash</code> function. So, that’s the one we are going to focus on.</p>
@@ -4039,14 +4142,14 @@ With this function, we get if two nodes are connected or not. However, they don'
 
 <p>As you can see in the image, each key gets translated into a <strong>hash code</strong>. Since the array size is limited (e.g., 10), we have to loop through the available buckets using the modulus function. In the buckets, we store the key/value pair, and if there’s more than one, we use a collection to hold them.</p>
 <p>Now, What do you think about covering each of the HashMap components in detail? Let’s start with the <strong>hash function</strong>.</p>
-<h3 id="HashMap-vs-Array"><a href="#HashMap-vs-Array" class="headerlink" title="HashMap vs. Array"></a>HashMap vs. Array</h3><p>Why go through the trouble of converting the key into an index and not using an array directly, you might ask. The main difference is that the Array’s index doesn’t have any relationship with the data. You have to know where your data is.</p>
+<h3 id="HashMap-vs-Array"><a href="#HashMap-vs-Array" class="headerlink" title="HashMap vs. Array"></a>HashMap vs. Array</h3><p>Why go through the trouble of converting the key into an index and not using an array directly, you might ask. The main difference is that Array’s index doesn’t have any relationship with the data. You have to know where your data is.</p>
 <p>Let’s say you want to count how many times words are used in a text. How would you implement that?</p>
 <ol>
 <li>You can use two arrays (let’s call it <code>A</code> and <code>B</code>). One for storing the word and another for storing how many times they have seen (frequency).</li>
 <li>You can use a HashMap. They <em><code>key</code></em> is the word, and the <em><code>value</code></em> is the word’s frequency.</li>
 </ol>
 <p>What is the runtime of approach #1 using <strong>two arrays</strong>? If we say, the number of words in the text is <em><code>n</code></em>. Then we have to <code>search</code> if the word in the array <code>A</code>  and then increment the value on array <code>B</code> matching that index. For every word on <code>n</code>, we have to test if it’s already on array <code>A</code>. This double loop leave use with a runtime of <code>O(n<sup>2</sup>)</code>.</p>
-<p>What is the runtime of approach #2 using a <strong>HashMap</strong>? Well, we iterate through each word on the text once and increment the value if there is something there or set it to 1 if that word is seen for the first time. The runtime would be <code>O(n)</code>, which is much more performant than approach #1.</p>
+<p>What is the runtime of approach #2 using a <strong>HashMap</strong>? We iterate through each word on the text once and increment the value if there is something there or set it to 1 if that word is seen for the first time. The runtime would be <code>O(n)</code>, which is much more performant than approach #1.</p>
 <p>Differences between HashMap and Array</p>
 <ul>
 <li>Search on an array is <em>O(n)</em> while on a HashMap is <em>O(1)</em></li>
@@ -4135,7 +4238,7 @@ Yay!!! 🎉 We have a much better hash function!</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Usage:</span></span><br><span class="line"><span class="keyword">const</span> assert = <span class="built_in">require</span>(<span class="string">&#x27;assert&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> hashMap = <span class="keyword">new</span> DecentHashMap();</span><br><span class="line"></span><br><span class="line">hashMap.set(<span class="string">&#x27;cat&#x27;</span>, <span class="number">2</span>);</span><br><span class="line">hashMap.set(<span class="string">&#x27;rat&#x27;</span>, <span class="number">7</span>);</span><br><span class="line">hashMap.set(<span class="string">&#x27;dog&#x27;</span>, <span class="number">1</span>);</span><br><span class="line">hashMap.set(<span class="string">&#x27;art&#x27;</span>, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;collisions: &#x27;</span>, hashMap.collisions); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(hashMap.buckets);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  bucket #0: [ &#123; key: &#x27;cat&#x27;, value: 2 &#125;, &#123; key: &#x27;art&#x27;, value: 8 &#125; ]</span></span><br><span class="line"><span class="comment">  bucket #1: [ &#123; key: &#x27;rat&#x27;, value: 7 &#125;, &#123; key: &#x27;dog&#x27;, value: 1 &#125; ]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">assert.equal(hashMap.get(<span class="string">&#x27;art&#x27;</span>), <span class="number">8</span>); <span class="comment">// this one is ok</span></span><br><span class="line">assert.equal(hashMap.get(<span class="string">&#x27;cat&#x27;</span>), <span class="number">2</span>); <span class="comment">// Good. Didn&#x27;t got overwritten by art</span></span><br><span class="line">assert.equal(hashMap.get(<span class="string">&#x27;rat&#x27;</span>), <span class="number">7</span>); <span class="comment">// Good. Didn&#x27;t got overwritten by art</span></span><br><span class="line">assert.equal(hashMap.get(<span class="string">&#x27;dog&#x27;</span>), <span class="number">1</span>); <span class="comment">// Good. Didn&#x27;t got overwritten by art</span></span><br></pre></td></tr></table></figure>
 
 <p>This <code>DecentHashMap</code> gets the job done, but there are still some issues. We are using a decent hash function that doesn’t produce duplicate values, and that’s great. However, we have two values in <code>bucket#0</code> and two more in <code>bucket#1</code>. How is that possible?</p>
-<p>Since we are using a limited bucket size of 2, we use modulus <code>%</code> to loop through the number of available buckets. So, even if the hash code is different, all values will fit on the size of the Array: bucket#0 or bucket#1.</p>
+<p>Since we are using a limited bucket size of 2, we use modulus <code>%</code> to loop through the number of available buckets. So, even if the hash code is different, all values will fit on the Array size: bucket#0 or bucket#1.</p>
 <!-- [{"key":"cat","hash":3789411390},{"key":"dog","hash":3788563007},{"key":"rat","hash":3789411405},{"key":"art","hash":3789415740}] -->
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hash(<span class="string">&#x27;cat&#x27;</span>) =&gt; <span class="number">3789411390</span>; <span class="function"><span class="params">bucketIndex</span> =&gt;</span> <span class="number">3789411390</span> % <span class="number">2</span> = <span class="number">0</span></span><br><span class="line">hash(<span class="string">&#x27;art&#x27;</span>) =&gt; <span class="number">3789415740</span>; <span class="function"><span class="params">bucketIndex</span> =&gt;</span> <span class="number">3789415740</span> % <span class="number">2</span> = <span class="number">0</span></span><br><span class="line">hash(<span class="string">&#x27;dog&#x27;</span>) =&gt; <span class="number">3788563007</span>; <span class="function"><span class="params">bucketIndex</span> =&gt;</span> <span class="number">3788563007</span> % <span class="number">2</span> = <span class="number">1</span></span><br><span class="line">hash(<span class="string">&#x27;rat&#x27;</span>) =&gt; <span class="number">3789411405</span>; <span class="function"><span class="params">bucketIndex</span> =&gt;</span> <span class="number">3789411405</span> % <span class="number">2</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
@@ -4294,7 +4397,7 @@ Yay!!! 🎉 We have a much better hash function!</p>
 <td><em><code>O(n)</code></em> is an extreme case when there are too many collisions</td>
 </tr>
 </tbody></table>
-<h2 id="Linked-Lists"><a href="#Linked-Lists" class="headerlink" title="Linked Lists"></a>Linked Lists</h2><p>Linked List is a data structure where every element is connected to the next one.</p>
+<h2 id="Linked-Lists"><a href="#Linked-Lists" class="headerlink" title="Linked Lists"></a>Linked Lists</h2><p>A linked list is a data structure where every element is connected to the next one.</p>
 <img src="/images/linked-list.jpg" class="" title="LinkedList">
 
 <p>The linked list is the first data structure that we are going to implement without using an array. Instead, we will use a <code>node</code> that holds a <code>value</code> and points to the next element.</p>
@@ -4493,7 +4596,7 @@ Yay!!! 🎉 We have a much better hash function!</p>
 <li>Adding a reference to the previous element.</li>
 <li>Holding a reference to the last item in the list.</li>
 </ul>
-<p>Removing first/last can be done in constant-time; however, eliminating in the middle of the Array is still <em>O(n)</em>.</p>
+<p>Removing first/last can be done in constant time; however, eliminating in the middle of the Array is still <em>O(n)</em>.</p>
 <h2 id="Stacks"><a href="#Stacks" class="headerlink" title="Stacks"></a>Stacks</h2><!-- https://docs.oracle.com/javase/10/docs/api/java/util/Stack.html -->
 
 <p>Stacks is a data structure where the last entered data is the first to come out. Also know as Last-in, First-out (LIFO).</p>
@@ -6182,6 +6285,8 @@ You can fix that by making all the variables that are used on the template <code
     
       <category term="angular" scheme="https://adrianmejia.com/tags/angular/"/>
     
+      <category term="angularjs" scheme="https://adrianmejia.com/tags/angularjs/"/>
+    
       <category term="todo app" scheme="https://adrianmejia.com/tags/todo-app/"/>
     
   </entry>
@@ -6465,7 +6570,7 @@ In the following sections, you are going to learn how to do that using <code>exp
     <link href="https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/"/>
     <id>https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/</id>
     <published>2016-06-25T19:14:49.000Z</published>
-    <updated>2020-12-15T00:58:31.740Z</updated>
+    <updated>2021-04-14T22:05:49.500Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm run</span><br><span class="line">yarn run</span><br><span class="line">grunt --<span class="built_in">help</span></span><br><span class="line">gulp --tasks</span><br><span class="line">rake --tasks</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -7208,369 +7313,6 @@ for your next web application.</li>
     
     
       <category term="todo app" scheme="https://adrianmejia.com/tags/todo-app/"/>
-    
-      <category term="nodejs" scheme="https://adrianmejia.com/tags/nodejs/"/>
-    
-      <category term="mongodb" scheme="https://adrianmejia.com/tags/mongodb/"/>
-    
-      <category term="tutorial_mean-stack" scheme="https://adrianmejia.com/tags/tutorial-mean-stack/"/>
-    
-      <category term="express" scheme="https://adrianmejia.com/tags/express/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II)</title>
-    <link href="https://adrianmejia.com/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/"/>
-    <id>https://adrianmejia.com/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/</id>
-    <published>2014-10-01T21:26:42.000Z</published>
-    <updated>2016-10-14T19:50:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to this tutorial about RESTful API using Node.js (Express.js) and MongoDB (mongoose)! We are going to learn how to install and use each component individually and then proceed to create a RESTful API.</p>
-<a id="more"></a>
-
-<blockquote>
-<p>Check out the updated version of this post with Angular 9+, Node.js 12+ in here: <a href="/angular-todo-mean-stack-node-mongodb-typescript-tutorial/">Modern MEAN Stack Tutorial with Docker</a></p>
-</blockquote>
-<p>MEAN Stack tutorial series:</p>
-<ol>
-<li><a href="/blog/2014/09/28/angularjs-tutorial-for-beginners-with-nodejs-expressjs-and-mongodb/">AngularJS tutorial for beginners (Part I)</a></li>
-<li>Creating RESTful APIs with NodeJS and MongoDB Tutorial (Part II) <strong>👈 you are here</strong></li>
-<li><a href="/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs/">MEAN Stack Tutorial: MongoDB, ExpressJS, AngularJS and NodeJS (Part III)</a></li>
-</ol>
-<h2 id="What-is-a-RESTful-API"><a href="#What-is-a-RESTful-API" class="headerlink" title="What is a RESTful API?"></a>What is a RESTful API?</h2><p>REST stands for Representational State Transfer. It is an architecture that allows <code>client-server</code> communication through a uniform interface. REST is <code>stateless</code>, <code>cachable</code> and has property called <code>idempotence</code>. It means that the side effect of identical requests have the same side-effect as a single request.</p>
-<p>HTTP RESTful API’s are compose of:</p>
-<ul>
-<li>HTTP methods, e.g. GET, PUT, DELETE, PATCH, POST, …</li>
-<li>Base URI, e.g. <code>http://adrianmejia.com</code></li>
-<li>URL path, e.g. <code>/blog/2014/10/01/creating-a-restful-api-tutorial-with-nodejs-and-mongodb/</code></li>
-<li>Media type, e.g. <code>html</code>, <code>JSON</code>, <code>XML</code>, <code>Microformats</code>, <code>Atom</code>, <code>Images</code>…</li>
-</ul>
-<p>Here is a summary what we want to implement:</p>
-<table>
-<thead>
-<tr>
-<th>Resource (URI)</th>
-<th>POST (create)</th>
-<th>GET (read)</th>
-<th>PUT (update)</th>
-<th>DELETE (destroy)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>/todos</td>
-<td>create new task</td>
-<td>list tasks</td>
-<td>N/A (update all)</td>
-<td>N/A (destroy all)</td>
-</tr>
-<tr>
-<td>/todos/1</td>
-<td>error</td>
-<td>show task ID 1</td>
-<td>update task ID 1</td>
-<td>destroy task ID 1</td>
-</tr>
-</tbody></table>
-<p><strong>NOTE</strong> for this tutorial:</p>
-<ul>
-<li>Format will be JSON.</li>
-<li>Bulk updates and bulk destroys are not safe, so we will not be implementing those.</li>
-<li><strong>CRUD</strong> functionality: POST == <strong>C</strong>REATE, GET == <strong>R</strong>EAD, PUT == <strong>U</strong>PDATE, DELETE == <strong>D</strong>ELETE.</li>
-</ul>
-<h2 id="Installing-the-MEAN-Stack-Backend"><a href="#Installing-the-MEAN-Stack-Backend" class="headerlink" title="Installing the MEAN Stack Backend"></a>Installing the MEAN Stack Backend</h2><p>In this section, we are going to install the backend components of the MEAN stack: MongoDB, NodeJS and ExpressJS. If you already are familiar with them, then jump to <a href="#wiring-up-the-mean-stack">wiring the stack</a>. Otherwise, enjoy the ride!</p>
-<h3 id="Installing-MongoDB"><a href="#Installing-MongoDB" class="headerlink" title="Installing MongoDB"></a>Installing MongoDB</h3><p>MongoDB is a document-oriented NoSQL database (Big Data ready). It stores data in JSON-like format and allows users to perform SQL-like queries against it.</p>
-<p>You can install MongoDB following the <a href="http://docs.mongodb.org/manual/installation/" target="_blank">instructions here</a>.</p>
-<p>If you have a <strong>Mac</strong> and <a href="http://brew.sh/" target="_blank">brew</a> it’s just:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install mongodb &amp;&amp; mongod</span><br></pre></td></tr></table></figure>
-
-<p>In <strong>Ubuntu</strong>:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install mongodb</span><br></pre></td></tr></table></figure>
-
-
-<p>After you have them installed, check version as follows:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Mac</span></span><br><span class="line">mongod --version</span><br><span class="line"><span class="comment">## =&gt; db version v2.6.4</span></span><br><span class="line"><span class="comment">## =&gt; 2014-10-01T19:07:26.649-0400 git version: nogitversion</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Ubuntu</span></span><br><span class="line">mongod --version</span><br><span class="line"><span class="comment">## =&gt; db version v2.0.4, pdfile version 4.5</span></span><br><span class="line"><span class="comment">## =&gt; Wed Oct  1 23:06:54 git version: nogitversion</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Installing-NodeJS"><a href="#Installing-NodeJS" class="headerlink" title="Installing NodeJS"></a>Installing NodeJS</h3><p>The Node official definition is:</p>
-<blockquote><p>Node.js® is a JavaScript runtime built on Chrome’s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js’ package ecosystem, npm, is the largest ecosystem of open source libraries in the world.</p>
-<footer><strong>Node.js Website</strong><cite><a href="https://nodejs.org">nodejs.org</a></cite></footer></blockquote>
-
-<p>In short, NodeJS allows you to run Javascript outside the browser, in this case, on the web server. <abbr title="Node Package Manager">NPM</abbr> allows you to install/publish node packages with ease.</p>
-<p>To install it, you can go to the <a href="http://nodejs.org/" target="_blank">NodeJS Website</a>.</p>
-<p>Since Node versions changes very often. You can use the <abbr title="Node Version Manager">NVM</abbr> (Node Version Manager) on <strong>Ubuntu</strong> and Mac with:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## download NPM</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash</span><br><span class="line"></span><br><span class="line"><span class="comment">## load NPM</span></span><br><span class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">&quot;<span class="variable">$HOME</span>/.nvm&quot;</span></span><br><span class="line">[ -s <span class="string">&quot;<span class="variable">$NVM_DIR</span>/nvm.sh&quot;</span> ] &amp;&amp; . <span class="string">&quot;<span class="variable">$NVM_DIR</span>/nvm.sh&quot;</span> <span class="comment"># This loads nvm</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Install latest stable version</span></span><br><span class="line">nvm install stable</span><br></pre></td></tr></table></figure>
-
-<p>Check out <a href="https://github.com/creationix/nvm" target="_blank">https://github.com/creationix/nvm</a> for more details.</p>
-<p>Also, on <strong>Mac</strong> and <a href="http://brew.sh" target="_blank">brew</a> you can do:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nodejs</span><br></pre></td></tr></table></figure>
-
-
-<p>After you got it installed, check node version and npm (node package manager) version:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line"><span class="comment">## =&gt; v6.2.2</span></span><br><span class="line"></span><br><span class="line">npm -v</span><br><span class="line"><span class="comment">## =&gt; 3.9.5</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Installing-ExpressJS"><a href="#Installing-ExpressJS" class="headerlink" title="Installing ExpressJS"></a>Installing ExpressJS</h3><p>ExpressJS is a web application framework that runs on NodeJS. It allows you to build web applications and API endpoints. (more details on this later).</p>
-<p>We are going to create a project folder first, and then add <code>express</code> as a dependency.
-Let’s use <abbr title="Node Package Manager">NPM</abbr> init command to get us started.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## create project folder</span></span><br><span class="line">mkdir todo-app</span><br><span class="line"></span><br><span class="line"><span class="comment">## move to the folder and initialize the project</span></span><br><span class="line"><span class="built_in">cd</span> todo-app</span><br><span class="line">npm init .  <span class="comment"># press enter multiple times to accept all defaults</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## install express v4.14 and save it as dependency</span></span><br><span class="line">npm install express@4.14 --save</span><br></pre></td></tr></table></figure>
-
-<p>Notice that after the last command, <code>express</code> should be added to package.json with the version <code>4.14.x</code>.</p>
-<h2 id="Using-MongoDB-with-Mongoose"><a href="#Using-MongoDB-with-Mongoose" class="headerlink" title="Using MongoDB with Mongoose"></a>Using MongoDB with Mongoose</h2><p>Mongoose is an <abbr title="Node Package Manager">NPM</abbr> package that allows you to interact with MongoDB. You can install it as follows:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install mongoose@4.5.8 --save</span><br></pre></td></tr></table></figure>
-
-<p>If you followed the previous steps, you should have all you need to complete this tutorial. We are going to build an API that allow users to CRUD (Create-Read-Update-Delete) Todo tasks from database.</p>
-<h3 id="Mongoose-CRUD"><a href="#Mongoose-CRUD" class="headerlink" title="Mongoose CRUD"></a>Mongoose CRUD</h3><p>CRUD == <strong>C</strong>reate-<strong>R</strong>ead-<strong>U</strong>pdate-<strong>D</strong>elete</p>
-<p>We are going to create, read, update and delete data from MongoDB using Mongoose/Node. First, you need to have mongodb up and running:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## run mongo daemon</span></span><br><span class="line">mongod</span><br></pre></td></tr></table></figure>
-
-<p>Keep mongo running in a terminal window and while in the folder <code>todoApp</code> type <code>node</code> to enter the node CLI. Then:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Load mongoose package</span></span><br><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Connect to MongoDB and create/use database called todoAppTest</span></span><br><span class="line">mongoose.connect(<span class="string">&#x27;mongodb://localhost/todoAppTest&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a schema</span></span><br><span class="line"><span class="keyword">var</span> TodoSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  name: <span class="built_in">String</span>,</span><br><span class="line">  completed: <span class="built_in">Boolean</span>,</span><br><span class="line">  note: <span class="built_in">String</span>,</span><br><span class="line">  updated_at: &#123; <span class="attr">type</span>: <span class="built_in">Date</span>, <span class="attr">default</span>: <span class="built_in">Date</span>.now &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a model based on the schema</span></span><br><span class="line"><span class="keyword">var</span> Todo = mongoose.model(<span class="string">&#x27;Todo&#x27;</span>, TodoSchema);</span><br></pre></td></tr></table></figure>
-
-<p>Great! Now, let’s test that we can save and edit data.</p>
-<h3 id="Mongoose-Create"><a href="#Mongoose-Create" class="headerlink" title="Mongoose Create"></a>Mongoose Create</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Create a todo in memory</span></span><br><span class="line"><span class="keyword">var</span> todo = <span class="keyword">new</span> Todo(&#123;<span class="attr">name</span>: <span class="string">&#x27;Master NodeJS&#x27;</span>, <span class="attr">completed</span>: <span class="literal">false</span>, <span class="attr">note</span>: <span class="string">&#x27;Getting there...&#x27;</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Save it to database</span></span><br><span class="line">todo.save(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(err)</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">console</span>.log(todo);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>If you take a look to Mongo you will notice that we just created an entry. You can easily visualize data using <a href="https://robomongo.org/" target="_blank">Robomongo</a>:</p>
-<img src="https://i.imgur.com/DI6Vxwq.png" class="" title="Viewing data with Robomongo">
-
-<p>You can also build the object and save it in one step using <code>create</code>:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Todo.create(&#123;<span class="attr">name</span>: <span class="string">&#x27;Create something with Mongoose&#x27;</span>, <span class="attr">completed</span>: <span class="literal">true</span>, <span class="attr">note</span>: <span class="string">&#x27;this is one&#x27;</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, todo</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(err) <span class="built_in">console</span>.log(err);</span><br><span class="line">  <span class="keyword">else</span> <span class="built_in">console</span>.log(todo);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="Mongoose-Read-and-Query"><a href="#Mongoose-Read-and-Query" class="headerlink" title="Mongoose Read and Query"></a>Mongoose Read and Query</h3><p>So far we have been able to save data, now we are going explore how to query the information.
-There are multiple options for reading/querying data:</p>
-<ul>
-<li>Model.find(conditions, [fields], [options], [callback])</li>
-<li>Model.findById(id, [fields], [options], [callback])</li>
-<li>Model.findOne(conditions, [fields], [options], [callback])</li>
-</ul>
-<p>Some examples:</p>
-<figure class="highlight javascript"><figcaption><span>Find all</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Find all data in the Todo collection</span></span><br><span class="line">Todo.find(<span class="function"><span class="keyword">function</span> (<span class="params">err, todos</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">return</span> <span class="built_in">console</span>.error(err);</span><br><span class="line">  <span class="built_in">console</span>.log(todos)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>The result is something like this:</p>
-<figure class="highlight plain"><figcaption><span>results</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[ &#123; _id: 57a6116427f107adef36c2f2,</span><br><span class="line">    name: &#39;Master NodeJS&#39;,</span><br><span class="line">    completed: false,</span><br><span class="line">    note: &#39;Getting there...&#39;,</span><br><span class="line">    __v: 0,</span><br><span class="line">    updated_at: 2016-08-06T16:33:40.606Z &#125;,</span><br><span class="line">  &#123; _id: 57a6142127f107adef36c2f3,</span><br><span class="line">    name: &#39;Create something with Mongoose&#39;,</span><br><span class="line">    completed: true,</span><br><span class="line">    note: &#39;this is one&#39;,</span><br><span class="line">    __v: 0,</span><br><span class="line">    updated_at: 2016-08-06T16:45:21.143Z &#125; ]</span><br></pre></td></tr></table></figure>
-
-<p>You can also add queries</p>
-<figure class="highlight javascript"><figcaption><span>Find with queries</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// callback function to avoid duplicating it all over</span></span><br><span class="line"><span class="keyword">var</span> callback = <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123; <span class="keyword">return</span> <span class="built_in">console</span>.error(err); &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123; <span class="built_in">console</span>.log(data); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get ONLY completed tasks</span></span><br><span class="line">Todo.find(&#123;<span class="attr">completed</span>: <span class="literal">true</span> &#125;, callback);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get all tasks ending with `JS`</span></span><br><span class="line">Todo.find(&#123;<span class="attr">name</span>: <span class="regexp">/JS$/</span> &#125;, callback);</span><br></pre></td></tr></table></figure>
-
-<p>You can chain multiple queries, e.g.:</p>
-<figure class="highlight javascript"><figcaption><span>Chaining queries</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> oneYearAgo = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">oneYearAgo.setYear(oneYearAgo.getFullYear() - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get all tasks staring with `Master`, completed</span></span><br><span class="line">Todo.find(&#123;<span class="attr">name</span>: <span class="regexp">/^Master/</span>, completed: <span class="literal">true</span> &#125;, callback);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get all tasks staring with `Master`, not completed and created from year ago to now...</span></span><br><span class="line">Todo.find(&#123;<span class="attr">name</span>: <span class="regexp">/^Master/</span>, completed: <span class="literal">false</span> &#125;).where(<span class="string">&#x27;updated_at&#x27;</span>).gt(oneYearAgo).exec(callback);</span><br></pre></td></tr></table></figure>
-
-<p>MongoDB query language is very powerful. We can combine regular expressions, date comparison and more!</p>
-<h3 id="Mongoose-Update"><a href="#Mongoose-Update" class="headerlink" title="Mongoose Update"></a>Mongoose Update</h3><p>Moving on, we are now going to explore how to update data.</p>
-<p>Each model has an <code>update</code> method which accepts multiple updates (for batch updates, because it doesn’t return an array with data).</p>
-<ul>
-<li>Model.update(conditions, update, [options], [callback])</li>
-<li>Model.findByIdAndUpdate(id, [update], [options], [callback])</li>
-<li>Model.findOneAndUpdate([conditions], [update], [options], [callback])</li>
-</ul>
-<p>Alternatively, the method <code>findOneAndUpdate</code> could be used to update just one and return an object.</p>
-<figure class="highlight javascript"><figcaption><span>Todo.update and Todo.findOneAndUpdate</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Model.update(conditions, update, [options], [callback])</span></span><br><span class="line"><span class="comment">// update `multi`ple tasks from complete false to true</span></span><br><span class="line"></span><br><span class="line">Todo.update(&#123; <span class="attr">name</span>: <span class="regexp">/master/i</span> &#125;, &#123; <span class="attr">completed</span>: <span class="literal">true</span> &#125;, &#123; <span class="attr">multi</span>: <span class="literal">true</span> &#125;, callback);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Model.findOneAndUpdate([conditions], [update], [options], [callback])</span></span><br><span class="line">Todo.findOneAndUpdate(&#123;<span class="attr">name</span>: <span class="regexp">/JS$/</span> &#125;, &#123;<span class="attr">completed</span>: <span class="literal">false</span>&#125;, callback);</span><br></pre></td></tr></table></figure>
-
-<p>As you might noticed the batch updates (<code>multi: true</code>) doesn’t show the data, rather shows the number of fields that were modified.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">ok</span>: <span class="number">1</span>, <span class="attr">nModified</span>: <span class="number">1</span>, <span class="attr">n</span>: <span class="number">1</span> &#125;</span><br></pre></td></tr></table></figure>
-
-<p>Here is what they mean:</p>
-<ul>
-<li><code>n</code> means the number of records that matches the query</li>
-<li><code>nModified</code> represents the number of documents that were modified with update query.</li>
-</ul>
-<h3 id="Mongoose-Delete"><a href="#Mongoose-Delete" class="headerlink" title="Mongoose Delete"></a>Mongoose Delete</h3><p><code>update</code> and <code>remove</code> mongoose API are identical, the only difference it is that no elements are returned. Try it on your own ;)</p>
-<ul>
-<li>Model.remove(conditions, [callback])</li>
-<li>Model.findByIdAndRemove(id, [options], [callback])</li>
-<li>Model.findOneAndRemove(conditions, [options], [callback])</li>
-</ul>
-<h2 id="ExpressJS-and-Middlewares"><a href="#ExpressJS-and-Middlewares" class="headerlink" title="ExpressJS and Middlewares"></a>ExpressJS and Middlewares</h2><p>ExpressJS is a complete web framework solution. It has HTML template solutions (jade, ejs, handlebars, hogan.js) and CSS precompilers (less, stylus, compass). Through middlewares layers, it handles: cookies, sessions, caching, CSRF, compression and many more.</p>
-<p><strong>Middlewares</strong> are pluggable processors that runs on each request made to the server. You can have any number of middlewares that will process the request one by one in a serial fashion. Some middlewares might alter the request input. Others, might create log outputs, add data and pass it to the <code>next()</code> middleware in the chain.</p>
-<p>We can use the middlewares using <code>app.use</code>. That will apply for all request. If you want to be more specific, you can use <code>app.verb</code>. For instance: app.get, app.delete, app.post, app.update, …</p>
-<p><img src="/images/express-middlewares.png" alt="ExpressJS Middlewares"></p>
-<p>Let’s give some examples of middlewares to drive the point home.</p>
-<p>Say you want to log the IP of the client on each request:</p>
-<figure class="highlight javascript"><figcaption><span>Log the client IP on every request</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ip = req.headers[<span class="string">&#x27;x-forwarded-for&#x27;</span>] || req.connection.remoteAddress;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Client IP:&#x27;</span>, ip);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>Notice that each middleware has 3 parameters:</p>
-<ul>
-<li><code>req</code>: contain all the requests objects like URLs, path, …</li>
-<li><code>res</code>: is the response object where we can send the reply back to the client.</li>
-<li><code>next</code>: continue with the next middleware in the chain.</li>
-</ul>
-<p>You can also specify a path that you want the middleware to activate on.</p>
-<figure class="highlight javascript"><figcaption><span>Middleware mounted on "/todos/:id" and log the request method</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">&#x27;/todos/:id&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Request Type:&#x27;</span>, req.method);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>And finally you can use <code>app.get</code> to catch GET requests with matching routes, reply the request with a <code>response.send</code> and end the middleware chain. Let’s use what we learned on <a href="#mongoose-read-and-query">mongoose read</a> to reply with the user’s data that matches the <code>id</code>.</p>
-<figure class="highlight javascript"><figcaption><span>Middleware mounted on "/todos/:id" and returns</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">&#x27;/todos/:id&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  Todo.findById(req.params.id, <span class="function"><span class="keyword">function</span>(<span class="params">err, todo</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err) res.send(err);</span><br><span class="line">    res.json(todo);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>Notice that all previous middlewares called <code>next()</code> except this last one, because it sends a response (in JSON) to the client with the requested <code>todo</code> data.</p>
-<p>Hopefully, you don’t have to develop a bunch of middlewares besides routes, since ExpressJS has a bunch of middlewares available.</p>
-<h3 id="Default-Express-4-0-middlewares"><a href="#Default-Express-4-0-middlewares" class="headerlink" title="Default Express 4.0 middlewares"></a>Default Express 4.0 middlewares</h3><ul>
-<li><p><a href="https://github.com/expressjs/morgan" target="_blank">morgan</a>: logger</p>
-</li>
-<li><p><a href="https://github.com/expressjs/body-parser" target="_blank">body-parser</a>: parse the body so you can access parameters in requests in <code>req.body</code>. e.g. <code>req.body.name</code>.</p>
-</li>
-<li><p><a href="https://github.com/expressjs/cookie-parser" target="_blank">cookie-parser</a>: parse the cookies so you can access parameters in cookies <code>req.cookies</code>. e.g. <code>req.cookies.name</code>.</p>
-</li>
-<li><p><a href="https://github.com/expressjs/serve-favicon" target="_blank">serve-favicon</a>: exactly that, serve favicon from route <code>/favicon.ico</code>. Should be call on the top before any other routing/middleware takes place to avoids unnecessary parsing.</p>
-</li>
-</ul>
-<h3 id="Other-ExpressJS-Middlewares"><a href="#Other-ExpressJS-Middlewares" class="headerlink" title="Other ExpressJS Middlewares"></a>Other ExpressJS Middlewares</h3><p>The following middlewares are not added by default, but it’s nice to know they exist at least:</p>
-<ul>
-<li><p><a href="https://github.com/expressjs/compression" target="_blank">compression</a>: compress all request. e.g. <code>app.use(compression())</code></p>
-</li>
-<li><p><a href="https://github.com/expressjs/session" target="_blank">session</a>: create sessions. e.g. <code>app.use(session(&#123;secret: &#39;Secr3t&#39;&#125;))</code></p>
-</li>
-<li><p><a href="https://github.com/expressjs/method-override" target="_blank">method-override</a>: <code>app.use(methodOverride(&#39;_method&#39;))</code> Override methods to the one specified on the <code>_method</code> param. e.g. <code>GET /resource/1?_method=DELETE</code> will become <code>DELETE /resource/1</code>.</p>
-</li>
-<li><p><a href="https://github.com/expressjs/response-time" target="_blank">response-time</a>: <code>app.use(responseTime())</code> adds <code>X-Response-Time</code> header to responses.</p>
-</li>
-<li><p><a href="https://github.com/expressjs/errorhandler" target="_blank">errorhandler</a>: Aid development, by sending full error stack traces to the client when an error occurs. <code>app.use(errorhandler())</code>. It is good practice to surround it with an if statement to check <code>process.env.NODE_ENV === &#39;development&#39;</code>.</p>
-</li>
-<li><p><a href="https://github.com/expressjs/vhost" target="_blank">vhost</a>: Allows you to use different stack of middlewares depending on the request <code>hostname</code>. e.g. <code>app.use(vhost(&#39;*.user.local&#39;, userapp))</code> and <code>app.use(vhost(&#39;assets-*.example.com&#39;, staticapp))</code> where <code>userapp</code> and <code>staticapp</code> are different express instances with different middlewares.</p>
-</li>
-<li><p><a href="https://github.com/expressjs/csurf" target="_blank">csurf</a>: Adds a <strong>C</strong>ross-<strong>s</strong>ite <strong>r</strong>equest <strong>f</strong>orgery (CSRF) protection by adding a token to responds either via <code>session</code> or <code>cookie-parser</code> middleware. <code>app.use(csrf());</code></p>
-</li>
-<li><p><a href="https://github.com/expressjs/timeout" target="_blank">timeout</a>: halt execution if it takes more that a given time. e.g. <code>app.use(timeout(&#39;5s&#39;));</code>. However you need to check by yourself under every request with a middleware that checks <code>if (!req.timedout) next();</code>.</p>
-</li>
-</ul>
-<h2 id="Wiring-up-the-MEAN-Stack"><a href="#Wiring-up-the-MEAN-Stack" class="headerlink" title="Wiring up the MEAN Stack"></a>Wiring up the MEAN Stack</h2><p>In the next sections, we are going to put together everything that we learn from and build an API. They can be consume by browsers, mobile apps and even other servers.</p>
-<img src="/images/api_uses.png" class="" title="API Consumers">
-
-<h3 id="Bootstrapping-ExpressJS"><a href="#Bootstrapping-ExpressJS" class="headerlink" title="Bootstrapping ExpressJS"></a>Bootstrapping ExpressJS</h3><p>After a detour in the land of Node, MongoDB, Mongoose, and middlewares, we are back to our express todoApp. This time to create the routes and finalize our RESTful API.</p>
-<p>Express has a separate package called <code>express-generator</code>, which can help us to get started with out API.</p>
-<figure class="highlight bash"><figcaption><span>Install and run "express-generator"</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## install it globally using -g</span></span><br><span class="line">npm install express-generator -g</span><br><span class="line"></span><br><span class="line"><span class="comment">## create todo-app API with EJS views (instead the default Jade)</span></span><br><span class="line">express todo-api -e</span><br><span class="line"></span><br><span class="line"><span class="comment">##   create : todo-api</span></span><br><span class="line"><span class="comment">##   create : todo-api/package.json</span></span><br><span class="line"><span class="comment">##   create : todo-api/app.js</span></span><br><span class="line"><span class="comment">##   create : todo-api/public</span></span><br><span class="line"><span class="comment">##   create : todo-api/public/javascripts</span></span><br><span class="line"><span class="comment">##   create : todo-api/routes</span></span><br><span class="line"><span class="comment">##   create : todo-api/routes/index.js</span></span><br><span class="line"><span class="comment">##   create : todo-api/routes/users.js</span></span><br><span class="line"><span class="comment">##   create : todo-api/public/stylesheets</span></span><br><span class="line"><span class="comment">##   create : todo-api/public/stylesheets/style.css</span></span><br><span class="line"><span class="comment">##   create : todo-api/views</span></span><br><span class="line"><span class="comment">##   create : todo-api/views/index.ejs</span></span><br><span class="line"><span class="comment">##   create : todo-api/views/layout.ejs</span></span><br><span class="line"><span class="comment">##   create : todo-api/views/error.ejs</span></span><br><span class="line"><span class="comment">##   create : todo-api/public/images</span></span><br><span class="line"><span class="comment">##   create : todo-api/bin</span></span><br><span class="line"><span class="comment">##   create : todo-api/bin/www</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">##   install dependencies:</span></span><br><span class="line"><span class="comment">##     $ cd todo-api &amp;&amp; npm install</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">##   run the app on Linux/Mac:</span></span><br><span class="line"><span class="comment">##     $ DEBUG=todo-app:* npm start</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">##   run the app on Windows:</span></span><br><span class="line"><span class="comment">##     $ SET DEBUG=todo-api:* &amp; npm start</span></span><br></pre></td></tr></table></figure>
-
-<p>This will create a new folder called <code>todo-api</code>. Let’s go ahead and install the dependencies and run the app:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## install dependencies</span></span><br><span class="line"><span class="built_in">cd</span> todo-api &amp;&amp; npm install</span><br><span class="line"></span><br><span class="line"><span class="comment">## run the app on Linux/Mac</span></span><br><span class="line">PORT=4000 npm start</span><br><span class="line"></span><br><span class="line"><span class="comment">## run the app on Windows</span></span><br><span class="line">SET PORT=4000 &amp; npm start</span><br></pre></td></tr></table></figure>
-
-
-<p>Use your browser to go to <a href="http://0.0.0.0:4000/">http://0.0.0.0:4000</a>, and you should see a message “Welcome to Express”</p>
-<h3 id="Connect-ExpressJS-to-MongoDB"><a href="#Connect-ExpressJS-to-MongoDB" class="headerlink" title="Connect ExpressJS to MongoDB"></a>Connect ExpressJS to MongoDB</h3><p>In this section we are going to access MongoDB using our newly created express app. Hopefully, you have installed MongoDB in the <a href="#mongodb">setup section</a>, and you can start it by typing (if you haven’t yet):</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod</span><br></pre></td></tr></table></figure>
-
-<p>Install the MongoDB driver for NodeJS called mongoose:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install mongoose --save</span><br></pre></td></tr></table></figure>
-
-<p>Notice <code>--save</code>. It will add it to the <code>todo-api/package.json</code></p>
-<p>Next, you need to require mongoose in the <code>todo-api/app.js</code></p>
-<figure class="highlight javascript"><figcaption><span>Add to app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// load mongoose package</span></span><br><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use native Node promises</span></span><br><span class="line">mongoose.Promise = <span class="built_in">global</span>.Promise;</span><br><span class="line"></span><br><span class="line"><span class="comment">// connect to MongoDB</span></span><br><span class="line">mongoose.connect(<span class="string">&#x27;mongodb://localhost/todo-api&#x27;</span>)</span><br><span class="line">  .then(<span class="function">() =&gt;</span>  <span class="built_in">console</span>.log(<span class="string">&#x27;connection succesful&#x27;</span>))</span><br><span class="line">  .catch(<span class="function">(<span class="params">err</span>) =&gt;</span> <span class="built_in">console</span>.error(err));</span><br></pre></td></tr></table></figure>
-
-<p>Now, When you run <code>npm start</code> or <code>./bin/www</code>, you will notice the message <code>connection successful</code>. Great!</p>
-<p>You can find the repository <a href="https://github.com/amejiarosario/todoAPIjs">here</a> and the diff code at this point:
-<a href="https://github.com/amejiarosario/todoAPIjs/commit/948a32391d208dd1303d67b443456a377e93fb8d">diff</a></p>
-<h3 id="Creating-the-Todo-model-with-Mongoose"><a href="#Creating-the-Todo-model-with-Mongoose" class="headerlink" title="Creating the Todo model with Mongoose"></a>Creating the Todo model with Mongoose</h3><p>It’s show time! All the above was setup and preparation for this moment. Let bring the API to life.</p>
-<p>Create a <code>models</code> directory and a <code>Todo.js</code> model:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir models</span><br><span class="line">touch models/Todo.js</span><br></pre></td></tr></table></figure>
-
-<p>In the <code>models/Todo.js</code>:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> TodoSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  name: <span class="built_in">String</span>,</span><br><span class="line">  completed: <span class="built_in">Boolean</span>,</span><br><span class="line">  note: <span class="built_in">String</span>,</span><br><span class="line">  updated_at: &#123; <span class="attr">type</span>: <span class="built_in">Date</span>, <span class="attr">default</span>: <span class="built_in">Date</span>.now &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = mongoose.model(<span class="string">&#x27;Todo&#x27;</span>, TodoSchema);</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://github.com/amejiarosario/todoAPIjs/commit/afc908027339b22f10de3b77518ac0728668d470">diff</a></p>
-<p>What’s going on up there? Isn’t MongoDB suppose to be schemaless? Well, it is schemaless and very flexible indeed. However, very often we want bring sanity to our API/WebApp through validations and enforcing a schema to keep a consistent structure. Mongoose does that for us, which is nice.</p>
-<p>You can use the following types:</p>
-<ul>
-<li>String</li>
-<li>Boolean</li>
-<li>Date</li>
-<li>Array</li>
-<li>Number</li>
-<li>ObjectId</li>
-<li>Mixed</li>
-<li>Buffer</li>
-</ul>
-<h2 id="API-clients-Browser-Postman-and-curl"><a href="#API-clients-Browser-Postman-and-curl" class="headerlink" title="API clients (Browser, Postman and curl)"></a>API clients (Browser, Postman and curl)</h2><p>I know you have not created any route yet. However, in the next sections you will. These are just three ways to retrieve, change and delete data from your future API.</p>
-<h3 id="Curl"><a href="#Curl" class="headerlink" title="Curl"></a>Curl</h3><figure class="highlight bash"><figcaption><span>Create tasks</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Create task</span></span><br><span class="line">curl -XPOST http://localhost:3000/todos -d <span class="string">&#x27;name=Master%20Routes&amp;completed=false&amp;note=soon...&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## List tasks</span></span><br><span class="line">curl -XGET http://localhost:3000/todos</span><br></pre></td></tr></table></figure>
-
-<h3 id="Browser-and-Postman"><a href="#Browser-and-Postman" class="headerlink" title="Browser and Postman"></a>Browser and Postman</h3><p>If you open your browser and type <code>localhost:3000/todos</code> you will see all the tasks (when you implement it). However, you cannot do post commands by default. For further testing let’s use a Chrome plugin called <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en" target="_blank">Postman</a>. It allows you to use all the HTTP VERBS easily and check <code>x-www-form-urlencoded</code> for adding parameters.</p>
-<img src="/images/postman_post.png" class="" title="Postman POST example">
-
-<blockquote>
-<p>Don’t forget to check <code>x-www-form-urlencoded</code> or it won’t work ;)</p>
-</blockquote>
-<h3 id="Websites-and-Mobile-Apps"><a href="#Websites-and-Mobile-Apps" class="headerlink" title="Websites and Mobile Apps"></a>Websites and Mobile Apps</h3><p>Probably these are the main consumers of APIs. You can interact with RESTful APIs using jQuery’s <code>$ajax</code> and its wrappers, BackboneJS’s Collections/models, AngularJS’s <code>$http</code> or <code>$resource</code>, among many other libraries/frameworks and mobile clients.</p>
-<p>In the end, we are going to explain how to use AngularJS to interact with this API.</p>
-<h2 id="ExpressJS-Routes"><a href="#ExpressJS-Routes" class="headerlink" title="ExpressJS Routes"></a>ExpressJS Routes</h2><p>To sum up we want to achieve the following:</p>
-<table>
-<thead>
-<tr>
-<th>Resource (URI)</th>
-<th>POST (create)</th>
-<th>GET (read)</th>
-<th>PUT (update)</th>
-<th>DELETE (destroy)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>/todos</td>
-<td>create new task</td>
-<td>list tasks</td>
-<td>error</td>
-<td>error</td>
-</tr>
-<tr>
-<td>/todos/:id</td>
-<td>error</td>
-<td>show task :id</td>
-<td>update task :id</td>
-<td>destroy task ID 1</td>
-</tr>
-</tbody></table>
-<p>Let’s setup the routes</p>
-<p>```bash Create a new route called <code>todos.js</code> in the <code>routes</code> folder or rename <code>users.js</code>
-mv routes/users.js routes/todos.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">In &#96;app.js&#96; add new &#96;todos&#96; route, or just replace &#96;.&#x2F;routes&#x2F;users&#96; for &#96;.&#x2F;routes&#x2F;todos&#96;</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96; javascript Adding todos routes</span><br><span class="line">var todos &#x3D; require(&#39;.&#x2F;routes&#x2F;todos&#39;);</span><br><span class="line">app.use(&#39;&#x2F;todos&#39;, todos);</span><br></pre></td></tr></table></figure>
-
-<p>All set! Now, let’s go back and edit our <code>routes/todos.js</code>.</p>
-<h3 id="List-GET-todos"><a href="#List-GET-todos" class="headerlink" title="List: GET /todos"></a>List: GET /todos</h3><p>Remember <a href="#mongoose-read-and-query"> mongoose query api</a>? Here’s how to use it in this context:</p>
-<figure class="highlight javascript"><figcaption><span>routes/todos.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">&#x27;mongoose&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> Todo = <span class="built_in">require</span>(<span class="string">&#x27;../models/Todo.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* GET /todos listing. */</span></span><br><span class="line">router.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  Todo.find(<span class="function"><span class="keyword">function</span> (<span class="params">err, todos</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> next(err);</span><br><span class="line">    res.json(todos);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
-
-<p>Harvest time! We don’t have any task in database but at least we verify it is working:</p>
-<figure class="highlight bash"><figcaption><span>Testing all together</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Start database</span></span><br><span class="line">mongod</span><br><span class="line"></span><br><span class="line"><span class="comment">## Start Webserver (in other terminal tab)</span></span><br><span class="line">npm start</span><br><span class="line"></span><br><span class="line"><span class="comment">## Test API (in other terminal tab)</span></span><br><span class="line">curl localhost:3000/todos</span><br><span class="line"><span class="comment">## =&gt; []%</span></span><br></pre></td></tr></table></figure>
-
-<p><a href="https://github.com/amejiarosario/todoAPIjs/commit/54ab912ea9aa2b6633ae12816beb6e6c3d2702e6">diff</a></p>
-<p>If it returns an empty array <code>[]</code> you are all set. If you get errors, try going back and making sure you didn’t forget anything, or you can comment at the end of the post for help.</p>
-<h3 id="Create-POST-todos"><a href="#Create-POST-todos" class="headerlink" title="Create: POST /todos"></a>Create: POST /todos</h3><p>Back in <code>routes/todos.js</code>, we are going to add the ability to create using <a href="#mongoose-create">mongoose create</a>. Can you make it work before looking at the next example?</p>
-<figure class="highlight javascript"><figcaption><span>routes/todos.js (showing just create route)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* POST /todos */</span></span><br><span class="line">router.post(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  Todo.create(req.body, <span class="function"><span class="keyword">function</span> (<span class="params">err, post</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> next(err);</span><br><span class="line">    res.json(post);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://github.com/amejiarosario/todoAPIjs/commit/28b60c4bf9c6d8b08c3351f725e17c7f40a077be">diff</a></p>
-<p>A few things:</p>
-<ul>
-<li>We are using the <code>router.post</code> instead of <code>router.get</code>.</li>
-<li>You have to stop and run the server again: <code>npm start</code>.</li>
-</ul>
-<p>Everytime you change a file you have to stop and start the web server. Let’s fix that using <code>nodemon</code> to refresh automatically:</p>
-<figure class="highlight bash"><figcaption><span>Nodemon</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## install nodemon globally</span></span><br><span class="line">npm install nodemon -g</span><br><span class="line"></span><br><span class="line"><span class="comment">## Run web server with nodemon</span></span><br><span class="line">nodemon</span><br></pre></td></tr></table></figure>
-
-<h3 id="Show-GET-todos-id"><a href="#Show-GET-todos-id" class="headerlink" title="Show: GET /todos/:id"></a>Show: GET /todos/:id</h3><p>This is a snap with <a href="#mongoose-read-and-query"><code>Todo.findById</code></a> and <code>req.params</code>. Notice that <code>params</code> matches the placeholder name we set while defining the route. <code>:id</code> in this case.</p>
-<figure class="highlight javascript"><figcaption><span>routes/todos.js (showing just show route)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* GET /todos/id */</span></span><br><span class="line">router.get(<span class="string">&#x27;/:id&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  Todo.findById(req.params.id, <span class="function"><span class="keyword">function</span> (<span class="params">err, post</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> next(err);</span><br><span class="line">    res.json(post);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://github.com/amejiarosario/todoAPIjs/commit/7d8bc67178a4f162858395845c076d9223926bf8">diff</a></p>
-<p>Let’s test what we have so far!</p>
-<figure class="highlight bash"><figcaption><span>Testing the API with Curl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Start Web Server on port 4000 (default is 3000)</span></span><br><span class="line">PORT=4000 nodemon</span><br><span class="line"></span><br><span class="line"><span class="comment">## Create a todo using the API</span></span><br><span class="line">curl -XPOST http://localhost:4000/todos -d <span class="string">&#x27;name=Master%20Routes&amp;completed=false&amp;note=soon...&#x27;</span></span><br><span class="line"><span class="comment">## =&gt; &#123;&quot;__v&quot;:0,&quot;name&quot;:&quot;Master Routes&quot;,&quot;completed&quot;:false,&quot;note&quot;:&quot;soon...&quot;,&quot;_id&quot;:&quot;57a655997d2241695585ecf8&quot;&#125;%</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Get todo by ID (use the _id from the previous request, in my case &quot;57a655997d2241695585ecf8&quot;)</span></span><br><span class="line">curl -XGET http://localhost:4000/todos/57a655997d2241695585ecf8</span><br><span class="line">&#123;<span class="string">&quot;_id&quot;</span>:<span class="string">&quot;57a655997d2241695585ecf8&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;Master Routes&quot;</span>,<span class="string">&quot;completed&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;note&quot;</span>:<span class="string">&quot;soon...&quot;</span>,<span class="string">&quot;__v&quot;</span>:0&#125;%</span><br><span class="line"></span><br><span class="line"><span class="comment">## Get all elements (notice it is an array)</span></span><br><span class="line">curl -XGET http://localhost:4000/todos</span><br><span class="line">[&#123;<span class="string">&quot;_id&quot;</span>:<span class="string">&quot;57a655997d2241695585ecf8&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;Master Routes&quot;</span>,<span class="string">&quot;completed&quot;</span>:<span class="literal">false</span>,<span class="string">&quot;note&quot;</span>:<span class="string">&quot;soon...&quot;</span>,<span class="string">&quot;__v&quot;</span>:0&#125;]%</span><br></pre></td></tr></table></figure>
-
-<h3 id="Update-PUT-todos-id"><a href="#Update-PUT-todos-id" class="headerlink" title="Update: PUT /todos/:id"></a>Update: PUT /todos/:id</h3><p>Back in <code>routes/todos.js</code>, we are going to update tasks. This one you can do without looking at the example below, review <a href="#mongoose-update">findByIdAndUpdate</a> and give it a try!</p>
-<figure class="highlight javascript"><figcaption><span>routes/todos.js (showing just update route)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* PUT /todos/:id */</span></span><br><span class="line">router.put(<span class="string">&#x27;/:id&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  Todo.findByIdAndUpdate(req.params.id, req.body, <span class="function"><span class="keyword">function</span> (<span class="params">err, post</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> next(err);</span><br><span class="line">    res.json(post);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://github.com/amejiarosario/todoAPIjs/commit/00dafe491e0d0b59fa53e86d8c187c42d7824200">diff</a></p>
-<figure class="highlight bash"><figcaption><span>curl update</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Use the ID from the todo, in my case 57a655997d2241695585ecf8</span></span><br><span class="line">curl -XPUT http://localhost:4000/todos/57a655997d2241695585ecf8 -d <span class="string">&quot;note=hola&quot;</span></span><br><span class="line"><span class="comment">## =&gt; &#123;&quot;_id&quot;:&quot;57a655997d2241695585ecf8&quot;,&quot;name&quot;:&quot;Master Routes&quot;,&quot;completed&quot;:true,&quot;note&quot;:&quot;hola&quot;,&quot;__v&quot;:0&#125;%</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Destroy-DELETE-todos-id"><a href="#Destroy-DELETE-todos-id" class="headerlink" title="Destroy: DELETE /todos/:id"></a>Destroy: DELETE /todos/:id</h3><p>Finally, the last one! Almost identical to <code>update</code>, use <a href="#mongoose-delete"><code>findByIdAndRemove</code></a>.</p>
-<figure class="highlight javascript"><figcaption><span>routes/todos.js (showing just update route)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* DELETE /todos/:id */</span></span><br><span class="line">router.delete(<span class="string">&#x27;/:id&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  Todo.findByIdAndRemove(req.params.id, req.body, <span class="function"><span class="keyword">function</span> (<span class="params">err, post</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">return</span> next(err);</span><br><span class="line">    res.json(post);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://github.com/amejiarosario/todoAPIjs/commit/cbf5366e2b4e1a683ed50d2148ed6a548616d3f8">diff</a></p>
-<p>Is it working? Cool, you are done then!
-Is NOT working? take a look at the <a href="https://github.com/amejiarosario/todoAPIjs">full repository</a>.</p>
-<h2 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h2><p>Connecting AngularJS with this endpoint. Check out the <a href="/blog/2014/10/03/mean-stack-tutorial-mongodb-expressjs-angularjs-nodejs">third</a> tutorial in this series.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to this tutorial about RESTful API using Node.js (Express.js) and MongoDB (mongoose)! We are going to learn how to install and use each component individually and then proceed to create a RESTful API.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Coding" scheme="https://adrianmejia.com/categories/coding/"/>
-    
-      <category term="Web Development" scheme="https://adrianmejia.com/categories/coding/web-development/"/>
-    
-      <category term="Angular" scheme="https://adrianmejia.com/categories/coding/web-development/angular/"/>
-    
     
       <category term="nodejs" scheme="https://adrianmejia.com/tags/nodejs/"/>
     

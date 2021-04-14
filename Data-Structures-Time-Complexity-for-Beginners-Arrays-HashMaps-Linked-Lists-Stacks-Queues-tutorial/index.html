@@ -306,7 +306,7 @@ ga('send', 'pageview');
       
         <span class="m-x-2" title="Pageviews">
           <i class="fa fa-eye" aria-hidden="true"></i>
-          77.1k
+          89.7k
         </span>
       
 
@@ -342,7 +342,7 @@ ga('send', 'pageview');
         <p>When we are developing software, we have to store data in memory. However, many types of data structures, such as arrays, maps, sets, lists, trees, graphs, etc., and choosing the right one for the task can be tricky. This series of posts will help you know the trade-offs so that you can use the right tool for the job!</p>
 <a id="more"></a>
 
-<p>In this section, we will focus on linear data structures: Arrays, Lists, Sets, Stacks, and Queues.</p>
+<p>This section will focus on linear data structures: Arrays, Lists, Sets, Stacks, and Queues.</p>
 <p>You can find all these implementations and more in the Github repo:
 <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js">https://github.com/amejiarosario/dsa.js</a></p>
 <hr>
@@ -350,22 +350,16 @@ ga('send', 'pageview');
 <p><strong>Learning Data Structures and Algorithms (DSA) for Beginners</strong></p>
 <ol>
 <li><p><a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">Intro to algorithm’s time complexity and Big O notation</a></p>
-<!-- 1. Intro to Algorithm's Time Complexity and Big O Notation **👈 you are here** -->
 </li>
 <li><p><a href="/blog/2018/04/05/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">Eight time complexities that every programmer should know</a></p>
-<!-- 1. Eight time complexities that every programmer should know **👈 you are here** -->
 </li>
 <li><p>Data Structures for Beginners: Arrays, HashMaps, and Lists <strong>👈 you are here</strong></p>
-<!-- 1. [Data Structures for Beginners: Arrays, HashMaps, and Lists](/blog/2018/04/28/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/) -->
 </li>
 <li><p><a href="/blog/2018/05/14/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">Graph Data Structures for Beginners</a></p>
-<!-- 1. Graph Data Structures for Beginners **👈 you are here** -->
 </li>
 <li><p><a href="/blog/2018/06/11/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">Trees Data Structures for Beginners</a></p>
-<!-- 1. Trees Data Structures for Beginners **👈 you are here** -->
 </li>
 <li><p><a href="/blog/2018/07/16/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">Self-balanced Binary Search Trees</a></p>
-<!-- 1. Self-balanced Binary Search Trees  **👈 you are here** -->
 </li>
 <li><p><a href="/blog/2018/04/24/Analysis-of-Recursive-Algorithms/">Appendix I: Analysis of Recursive Algorithms</a></p>
 </li>
@@ -500,10 +494,10 @@ ga('send', 'pageview');
 <li><code>Symbol</code></li>
 <li><code>Number</code></li>
 </ul>
-<p>Note: Objects are not primitive since they are composed of zero or more primitives and other objects.</p>
+<p><em>Note</em>: Objects are not primitive since they are composed of zero or more primitives and other objects.</p>
 <h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>Arrays are collections of zero or more elements. Arrays are one of the most used data structures because of their simplicity and fast way of retrieving information.</p>
 <p>You can think of an array as a drawer where you can store things in the bins.</p>
-<p>** Array is like a drawer that stores things on bins**</p>
+<p><strong>Array is like a drawer that stores things on bins</strong></p>
 <img src="/images/array-drawer.jpg" class="" title="Array is like a drawer that stores things on bins">
 
 
@@ -511,7 +505,7 @@ ga('send', 'pageview');
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 <!-- https://cdn2.iconfinder.com/data/icons/furniture-12/48/drawer-cabinet-closet-shelf-cabin-cupboard-furntiure-512.png -->
 
-<p>Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to predefine the size of the Array and the data type. In JavaScript, it would automatically increase the size of the Array when needed.</p>
+<p>Depending on the programming language, arrays have some differences. For some dynamic languages like JavaScript and Ruby, an array can contain different data types: numbers, strings, words, objects, and even functions. In typed languages like Java/C/C++, you have to predefine the Array size and the data type. In JavaScript, it would automatically increase the size of the Array when needed.</p>
 <h3 id="Arrays-built-in-operations"><a href="#Arrays-built-in-operations" class="headerlink" title="Arrays built-in operations"></a>Arrays built-in operations</h3><p>Depending on the programming language, the implementation would be slightly different.</p>
 <p>For instance, in JavaScript, we can accomplish append to end with <code>push</code> and append to the beginning with <code>unshift</code>. But also, we have <code>pop</code> and <code>shift</code> to remove from an array. Let’s describe some everyday operations that we are going to use through this post.</p>
 <p><strong>Common JS Array built-in functions</strong></p>
@@ -646,13 +640,13 @@ ga('send', 'pageview');
 <p><strong>HashMap is like a drawer that stores things on bins and labels them</strong></p>
 <img src="/images/hashmap-drawer.jpg" class="" title="HashMap is like a drawer that stores things on bins and labels them">
 
-<p>In this example, if you are looking for the <a target="_blank" rel="noopener" href="https://books.adrianmejia.com/">DSA.js book</a>, you don’t have to open the bin 1, 2, and 3 to see what’s inside. You go directly to the container labeled as “books”. That’s a huge gain! Search time goes from <em>O(n)</em> to <em>O(1)</em>.</p>
+<p>In this example, if you are looking for the book, you don’t have to open bin 1, 2, and 3. You go directly to the container labeled as “books”. That’s a huge gain! Search time goes from <em>O(n)</em> to <em>O(1)</em>.</p>
 <p>In arrays, the data is referenced using a numeric index (relatively to the position). However, HashMaps uses labels that could be a string, number, Object, or anything. Internally, the HashMap uses an Array, and it maps the labels to array indexes using a <em>hash function</em>.</p>
 <!-- http://apprize.info/javascript/20lessons/20lessons.files/image052.jpg -->
 
 <p>There are at least two ways to implement hashmap:</p>
 <ol>
-<li>** Array**: Using a hash function to map a key to the array index value. Worst: <code>O(n)</code>, Average: <code>O(1)</code></li>
+<li><strong>Array</strong>: Using a hash function to map a key to the array index value. Worst: <code>O(n)</code>, Average: <code>O(1)</code></li>
 <li><strong>Binary Search Tree</strong>: using a self-balancing binary search tree to look up for values (more on this later). Worst: <em><code>O(log n)</code></em>, Average: <em><code>O(log n)</code></em>.</li>
 </ol>
 <p>We will cover Trees &amp; Binary Search Trees, so don’t worry about it for now. The most common implementation of Maps is using an <strong>array</strong> and <code>hash</code> function. So, that’s the one we are going to focus on.</p>
@@ -661,14 +655,14 @@ ga('send', 'pageview');
 
 <p>As you can see in the image, each key gets translated into a <strong>hash code</strong>. Since the array size is limited (e.g., 10), we have to loop through the available buckets using the modulus function. In the buckets, we store the key/value pair, and if there’s more than one, we use a collection to hold them.</p>
 <p>Now, What do you think about covering each of the HashMap components in detail? Let’s start with the <strong>hash function</strong>.</p>
-<h3 id="HashMap-vs-Array"><a href="#HashMap-vs-Array" class="headerlink" title="HashMap vs. Array"></a>HashMap vs. Array</h3><p>Why go through the trouble of converting the key into an index and not using an array directly, you might ask. The main difference is that the Array’s index doesn’t have any relationship with the data. You have to know where your data is.</p>
+<h3 id="HashMap-vs-Array"><a href="#HashMap-vs-Array" class="headerlink" title="HashMap vs. Array"></a>HashMap vs. Array</h3><p>Why go through the trouble of converting the key into an index and not using an array directly, you might ask. The main difference is that Array’s index doesn’t have any relationship with the data. You have to know where your data is.</p>
 <p>Let’s say you want to count how many times words are used in a text. How would you implement that?</p>
 <ol>
 <li>You can use two arrays (let’s call it <code>A</code> and <code>B</code>). One for storing the word and another for storing how many times they have seen (frequency).</li>
 <li>You can use a HashMap. They <em><code>key</code></em> is the word, and the <em><code>value</code></em> is the word’s frequency.</li>
 </ol>
 <p>What is the runtime of approach #1 using <strong>two arrays</strong>? If we say, the number of words in the text is <em><code>n</code></em>. Then we have to <code>search</code> if the word in the array <code>A</code>  and then increment the value on array <code>B</code> matching that index. For every word on <code>n</code>, we have to test if it’s already on array <code>A</code>. This double loop leave use with a runtime of <code>O(n<sup>2</sup>)</code>.</p>
-<p>What is the runtime of approach #2 using a <strong>HashMap</strong>? Well, we iterate through each word on the text once and increment the value if there is something there or set it to 1 if that word is seen for the first time. The runtime would be <code>O(n)</code>, which is much more performant than approach #1.</p>
+<p>What is the runtime of approach #2 using a <strong>HashMap</strong>? We iterate through each word on the text once and increment the value if there is something there or set it to 1 if that word is seen for the first time. The runtime would be <code>O(n)</code>, which is much more performant than approach #1.</p>
 <p>Differences between HashMap and Array</p>
 <ul>
 <li>Search on an array is <em>O(n)</em> while on a HashMap is <em>O(1)</em></li>
@@ -757,7 +751,7 @@ Yay!!! 🎉 We have a much better hash function!</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Usage:</span></span><br><span class="line"><span class="keyword">const</span> assert = <span class="built_in">require</span>(<span class="string">&#x27;assert&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> hashMap = <span class="keyword">new</span> DecentHashMap();</span><br><span class="line"></span><br><span class="line">hashMap.set(<span class="string">&#x27;cat&#x27;</span>, <span class="number">2</span>);</span><br><span class="line">hashMap.set(<span class="string">&#x27;rat&#x27;</span>, <span class="number">7</span>);</span><br><span class="line">hashMap.set(<span class="string">&#x27;dog&#x27;</span>, <span class="number">1</span>);</span><br><span class="line">hashMap.set(<span class="string">&#x27;art&#x27;</span>, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;collisions: &#x27;</span>, hashMap.collisions); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(hashMap.buckets);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  bucket #0: [ &#123; key: &#x27;cat&#x27;, value: 2 &#125;, &#123; key: &#x27;art&#x27;, value: 8 &#125; ]</span></span><br><span class="line"><span class="comment">  bucket #1: [ &#123; key: &#x27;rat&#x27;, value: 7 &#125;, &#123; key: &#x27;dog&#x27;, value: 1 &#125; ]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">assert.equal(hashMap.get(<span class="string">&#x27;art&#x27;</span>), <span class="number">8</span>); <span class="comment">// this one is ok</span></span><br><span class="line">assert.equal(hashMap.get(<span class="string">&#x27;cat&#x27;</span>), <span class="number">2</span>); <span class="comment">// Good. Didn&#x27;t got overwritten by art</span></span><br><span class="line">assert.equal(hashMap.get(<span class="string">&#x27;rat&#x27;</span>), <span class="number">7</span>); <span class="comment">// Good. Didn&#x27;t got overwritten by art</span></span><br><span class="line">assert.equal(hashMap.get(<span class="string">&#x27;dog&#x27;</span>), <span class="number">1</span>); <span class="comment">// Good. Didn&#x27;t got overwritten by art</span></span><br></pre></td></tr></table></figure>
 
 <p>This <code>DecentHashMap</code> gets the job done, but there are still some issues. We are using a decent hash function that doesn’t produce duplicate values, and that’s great. However, we have two values in <code>bucket#0</code> and two more in <code>bucket#1</code>. How is that possible?</p>
-<p>Since we are using a limited bucket size of 2, we use modulus <code>%</code> to loop through the number of available buckets. So, even if the hash code is different, all values will fit on the size of the Array: bucket#0 or bucket#1.</p>
+<p>Since we are using a limited bucket size of 2, we use modulus <code>%</code> to loop through the number of available buckets. So, even if the hash code is different, all values will fit on the Array size: bucket#0 or bucket#1.</p>
 <!-- [{"key":"cat","hash":3789411390},{"key":"dog","hash":3788563007},{"key":"rat","hash":3789411405},{"key":"art","hash":3789415740}] -->
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hash(<span class="string">&#x27;cat&#x27;</span>) =&gt; <span class="number">3789411390</span>; <span class="function"><span class="params">bucketIndex</span> =&gt;</span> <span class="number">3789411390</span> % <span class="number">2</span> = <span class="number">0</span></span><br><span class="line">hash(<span class="string">&#x27;art&#x27;</span>) =&gt; <span class="number">3789415740</span>; <span class="function"><span class="params">bucketIndex</span> =&gt;</span> <span class="number">3789415740</span> % <span class="number">2</span> = <span class="number">0</span></span><br><span class="line">hash(<span class="string">&#x27;dog&#x27;</span>) =&gt; <span class="number">3788563007</span>; <span class="function"><span class="params">bucketIndex</span> =&gt;</span> <span class="number">3788563007</span> % <span class="number">2</span> = <span class="number">1</span></span><br><span class="line">hash(<span class="string">&#x27;rat&#x27;</span>) =&gt; <span class="number">3789411405</span>; <span class="function"><span class="params">bucketIndex</span> =&gt;</span> <span class="number">3789411405</span> % <span class="number">2</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
@@ -916,7 +910,7 @@ Yay!!! 🎉 We have a much better hash function!</p>
 <td><em><code>O(n)</code></em> is an extreme case when there are too many collisions</td>
 </tr>
 </tbody></table>
-<h2 id="Linked-Lists"><a href="#Linked-Lists" class="headerlink" title="Linked Lists"></a>Linked Lists</h2><p>Linked List is a data structure where every element is connected to the next one.</p>
+<h2 id="Linked-Lists"><a href="#Linked-Lists" class="headerlink" title="Linked Lists"></a>Linked Lists</h2><p>A linked list is a data structure where every element is connected to the next one.</p>
 <img src="/images/linked-list.jpg" class="" title="LinkedList">
 
 <p>The linked list is the first data structure that we are going to implement without using an array. Instead, we will use a <code>node</code> that holds a <code>value</code> and points to the next element.</p>
@@ -1115,7 +1109,7 @@ Yay!!! 🎉 We have a much better hash function!</p>
 <li>Adding a reference to the previous element.</li>
 <li>Holding a reference to the last item in the list.</li>
 </ul>
-<p>Removing first/last can be done in constant-time; however, eliminating in the middle of the Array is still <em>O(n)</em>.</p>
+<p>Removing first/last can be done in constant time; however, eliminating in the middle of the Array is still <em>O(n)</em>.</p>
 <h2 id="Stacks"><a href="#Stacks" class="headerlink" title="Stacks"></a>Stacks</h2><!-- https://docs.oracle.com/javase/10/docs/api/java/util/Stack.html -->
 
 <p>Stacks is a data structure where the last entered data is the first to come out. Also know as Last-in, First-out (LIFO).</p>
@@ -1416,9 +1410,9 @@ https://www.yuque.com/ruanyf/share/issue-10
 <section class="bio-box">
   <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
   <article class="p-x-1" style="display: flex; flex-direction:column;">
-    <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
-      Currently working at Google as a Software Engineer.
-      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
+    <p class="muted">Adrian Mejia is a Software Engineer located in Boston, MA.
+      Currently working at Google.
+      Adrian enjoys writing posts about Algorithms, programming, JavaScript, and Web Dev.
       Also, he likes to travel ✈️ and biking 🚴‍.
       <!-- Find out more <a href="/#about">here</a>. -->
     </p>
@@ -1718,9 +1712,9 @@ https://www.yuque.com/ruanyf/share/issue-10
     <footer class="page-footer">
       <div class="container">
         <div class="p-y-2">
-          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Thu Dec 17 2020 20:04:24 GMT-0500 (Eastern Standard Time)">
-            v.qligbc
+          &copy; 2021 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Wed Apr 14 2021 18:06:14 GMT-0400 (Eastern Daylight Time)">
+            v.qrkqqe
           </span>
         </div>
       </div>

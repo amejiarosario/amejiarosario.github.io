@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/</loc>
+    
+    <lastmod>2021-04-14T22:05:49.500Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://adrianmejia.com/backbone-dot-js-for-absolute-beginners-getting-started/</loc>
+    
+    <lastmod>2021-04-14T21:38:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://adrianmejia.com/2020-recap-and-how-i-got-my-dream-job/</loc>
+    
+    <lastmod>2021-01-02T22:55:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://adrianmejia.com/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/</loc>
     
     <lastmod>2020-12-16T00:36:22.000Z</lastmod>
@@ -12,13 +33,6 @@
     <loc>https://adrianmejia.com/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/</loc>
     
     <lastmod>2020-12-15T23:46:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/</loc>
-    
-    <lastmod>2020-12-15T00:58:31.740Z</lastmod>
     
   </url>
   
@@ -58,14 +72,14 @@
   </url>
   
   <url>
-    <loc>https://adrianmejia.com/stylesheets/company_revenue.css</loc>
+    <loc>https://adrianmejia.com/support/index.html</loc>
     
     <lastmod>2020-08-31T19:57:48.580Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://adrianmejia.com/support/index.html</loc>
+    <loc>https://adrianmejia.com/stylesheets/company_revenue.css</loc>
     
     <lastmod>2020-08-31T19:57:48.580Z</lastmod>
     
@@ -299,13 +313,6 @@
     <loc>https://adrianmejia.com/backbone-js-for-absolute-beginners-getting-started-part-2/</loc>
     
     <lastmod>2012-09-13T04:08:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://adrianmejia.com/backbone-dot-js-for-absolute-beginners-getting-started/</loc>
-    
-    <lastmod>2012-09-12T02:50:00.000Z</lastmod>
     
   </url>
   
