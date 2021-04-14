@@ -24,25 +24,25 @@ categories:
   - Backbone
 ---
 
-This tutorial builds on top of the [first part](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/) and continue with BacboneJS's Models, Collections and Views.
+This tutorial builds on top of the [first part](/backbone-dot-js-for-absolute-beginners-getting-started/) and continue with BacboneJS's Models, Collections and Views.
 
 <!--More-->
 
 BackboneJS Tutorial series:
 
-1. [Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/)
+1. [Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)](/backbone-dot-js-for-absolute-beginners-getting-started/)
 1. Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views) **👈 you are here**
-1. [Backbone.js for absolute beginners - getting started (part 3: CRUD)](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/)
-1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/)
+1. [Backbone.js for absolute beginners - getting started (part 3: CRUD)](/backbonejs-for-absolute-beginners-getting-started-part-3/)
+1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/backbone-js-for-absolute-beginners-getting-started-part-4/)
 
 ## Todo App in Backbone
 
-After completing this example app, you will have experience and basic understanding of all the modules of Backbone!
+After completing this example app, you will have experience and a basic understanding of Backbone modules!
 
 (Updated: 2013-02-02, 2013-11-24)
-Notice: This tutorial was written using Backbone v.0.9.x, now version 1.1.x or later are out. However, all the principles explained here applies for both.
+*Notice*: This tutorial was written using Backbone v.0.9.x, now version 1.1.x or later are out. However, all the principles explained here apply to both.
 
-**Todo app Boiler plate**
+**Todo app Boilerplate**
 
 Let's start again with the initial [HTML file](https://raw.github.com/amejiarosario/Backbone-tutorial/439ff34409dfc01adca7f9f96efcd726295f1aac/backbone-tutorial.html) used on 1.1. Now, instead of div#container let's add the following HTML code:
 
@@ -60,11 +60,11 @@ Let's start again with the initial [HTML file](https://raw.github.com/amejiarosa
 
 {% endcodeblock %}
 
-We are going to implement a To-do list, which is basically un-ordered list (ul) of elements with checkboxes.
+We will implement a Todo list, basically an unordered list (ul) of elements with checkboxes.
 
 ## Backbone.Model
 
-Models are the heart of every application. It contains the interactive data and the logic surrounding it, such as data validation, getters and setters, default values, data initialization, conversions and so on.
+Models are the heart of every application. It contains the interactive data and the logic surrounding it, such as data validation, getters and setters, default values, data initialization, conversions, etc.
 For our example, we are going to create a model called `Todo`, which will store a string of text (title) and whether the task has been completed or not.
 
 {% codeblock Todo Model lang:js https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html Full Code %}
@@ -80,7 +80,7 @@ For our example, we are going to create a model called `Todo`, which will store 
 
 {% endcodeblock %}
 
-Notice, that by convention classes names are capitalized, while instance variables and objects are not. Another important aspect of models is that their properties are dynamic; they can be created on the fly and don’t have any specific types associated with them.
+Notice that by convention, class names are capitalized, while instance variables and objects are not. Another important aspect of models is that their properties are dynamic; they can be created on the fly and don’t have any specific types associated with them.
 
 **Test what you just coded!**
 
@@ -97,18 +97,18 @@ todo.get('created_at'); // "Wed Sep 12 2012 12:51:17 GMT-0400 (EDT)"
 
 ## Backbone.Collection
 
-As its name indicates, collections are ordered sets of models, where you can get and set models in the collection, listen for events when any element in the collection changes, and fetching for model’s data from the server.
+As its name indicates, collections are ordered sets of models. You can get and set models in the collection, listen for events when any element in the array changes, and fetch for model’s data from the server.
 
 E.g.: `todoList.fetch();`
 
 
-Collections allows to save data (in database, file, memory), and it requires a reference to it. Therefore, you need to specify the `url` parameter with a relative url, where the model’s resource would be located on the server. Otherwise, you will get errors like:
+Collections allow to save data (in database, file, memory), and it requires a reference to it. Therefore, you need to specify the `url` parameter with a relative URL, where the model’s resource would be located on the server. Otherwise, you will get errors like:
 
 
 `A "url" property or function must be specified`
 
 
-We are not going to use a backend server for simplicity (I will do a new post for that); instead we are going to use HTML5’s local storage for persistence through a Backbone’s plugin. So, we need to define the localStorage property instead of URL. You need to include the backbone-localstorage.js with the rest of your libs as [shown in the full code](https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html):
+We are not going to use a backend server for simplicity (I will do a new post for that); instead, we will use HTML5’s local storage for persistence through a Backbone’s plugin. So, we need to define the localStorage property instead of the URL. You need to include the backbone-localstorage.js with the rest of your libs as [shown in the full code](https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html):
 
 `<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.0/backbone.localStorage-min.js" type="text/javascript">`
 
@@ -124,7 +124,7 @@ We are not going to use a backend server for simplicity (I will do a new post fo
 
 {% endcodeblock %}
 
-**Test what you just your coded!**
+**Test what you just coded!**
 
 (Google's Chrome console shortcuts: ctrl+shift+i -or- ⌘+alt+i)
 
@@ -141,13 +141,13 @@ JSON.stringify(todoList);    // "[{"title":"Learn Backbone's Collection","comple
 
 ## Backbone.View
 
-As mentioned in [1.2](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/#1.2), Views doesn’t have the HTML markups for our application, but instead (It's like the controller in MVC frameworks) process data and link it to templates and it finally render HTML based on events or data changes.
+As mentioned in [1.2](/backbone-dot-js-for-absolute-beginners-getting-started/#1.2), Views doesn’t have the HTML markups for our application, but instead (It's like the controller in MVC frameworks) process data and link it to templates. It finally render HTML based on events or data changes.
 
 ### Basic Properties
 
-There are 4 basic properties in a view: el, initialize, render, and events.
+There are four basic properties in a view: el, initialize, render, and events.
 
-We have already seen the first 3 and will see later the fourth one. Do you remember the Hello World View from [1.2](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/#1.2)?
+We have already seen the first three and will see later the fourth one. Do you remember the Hello World View from [1.2](/backbone-dot-js-for-absolute-beginners-getting-started/#1.2)?
 
 {% codeblock Example of a Backbone.View lang:js %}
     var AppView = Backbone.View.extend({
@@ -176,11 +176,11 @@ Every view needs to reference a DOM at all times. Therefore, the view will injec
 ### Initialize/constructor
 
 
-Here you have the option to pass parameters that will be attached to a model, collection or view.el.
+Here you can pass parameters that will be attached to a model, collection, or view.el.
 
 ### `render`
 
-This function injects the markup into the elements. Not all views require having a render function, as you are going to see in the sample code, they can call other view’s render functions.
+This function injects the markup into the elements. Not all views require having a render function. As you are going to see in the sample code, they can call other view’s render functions.
 
 ### delegated events
 
@@ -199,20 +199,20 @@ in jQuery it would be something like:
 
 ## Todo View
 
-Now back to our To-do application: We need a view that renders each of the todo model objects into the page. The `item-template` and `app.TodoView` will render each todo item.
+Now back to our Todo application: We need a view that renders each of the todo model objects into the page. The `item-template` and `app.TodoView` will generate each todo item.
 
 {% codeblock item-template lang:html https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html Full Code %}
 
-	  <script type="text/template" id="item-template">
-	    <div class="view">
-	      <input class="toggle" type="checkbox">
-	      <label><%- title %></label>
-	    </div>
-	  </script>
+    <script type="text/template" id="item-template">
+      <div class="view">
+        <input class="toggle" type="checkbox">
+        <label><%- title %></label>
+      </div>
+    </script>
 
 {% endcodeblock%}
 
-In the following block of code we have the Backbone.View which uses the above template (`#item-template`) to fill it out the title from the `model` we pass along.
+In the following block of code, we have the Backbone.View which uses the above template (`#item-template`) to fill out the title from the `model` we pass along.
 
 {% codeblock Todo View lang:js https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html Full Code %}
 
@@ -228,25 +228,25 @@ In the following block of code we have the Backbone.View which uses the above te
 
 {% endcodeblock %}
 
-When we instanciate a Backbone View, it can receive any parameter that we need. In this case, since we call the parameter `model` let's instanciate it with a Backbone Model (e.g. todo):
+When we instantiate a Backbone View, it can receive any parameter that we need. In this case, since we call the parameter `model` let's instantiate it with a Backbone Model (e.g. todo):
 
 `var view = new app.TodoView({model: todo});`
 
-Also notice that our view is using a `tagName: li` instead of the just `el` from before. This means that the new render elements will be wrapped around a `<li></li>`
+Also, notice that our view uses a `tagName: li` instead of just `el` from before. This means that the new rendered elements will be wrapped around a `<li></li>`
 
 ## Backbone.Events
 
-This module can be mixed with any object and give it the pub/sub (observer patter) behaviour. Events provides a couple of methods from which we are going to discuss: `on`, `off` and `trigger`. (If this you are familiar with then in jQuery, they will work the same way + some nice built-in features)
+This module can be mixed with any object and give it the pub/sub (observer pattern) behavior. Events provide a couple of methods from which we will discuss: `on`, `off` and `trigger`. (If this you are familiar with, then in jQuery, they will work the same way + some excellent built-in features)
 
 **Subscribing to Events with on**
 `object.on(event, callback, [context])`
 
-Also called bind. It binds an object to an event and a callback. When that event it's triggered it executes the callback.
+Also called bind. It binds an object to an event and a callback. When that event it's triggered, it executes the callback.
 
 E.g.
 `todoList.on('add', this.addAll, this);`
 
-Everytime a new item is `add`ed to a Backbone.Collection the built-in event `add` ([docs for add](http://backbonejs.org/#Collection-add) is triggered. In the example above, after the custom event is triggered, the todoList's callback `addAll()` is executed and the current object is passed with `this` as a `context`.
+Every time a new item is `add`ed to a Backbone.Collection the built-in event `add` ([docs for add](http://backbonejs.org/#Collection-add) is triggered. In the example above, after the custom event is triggered, the todoList's callback `addAll()` is executed. Also, the current object is passed with `this` as a `context`.
 
 Events can also be set on arbitrary objects using underscore.js `extend` function:
 
@@ -263,7 +263,7 @@ object.trigger("my_event", "my custom event");
 
 ## App View
 
-Now, we need another view that take a collection and render each of the individual items. We are going to call it ‘AppView’. This is a new large chunk of code so read it closely. Take a look through this code and try to identify each of the elements (we have already describe them in the previous sections).
+Now, we need another view that takes a collection and renders each of the individual items. We are going to call it ‘AppView’. This is a new large chunk of code so read it closely. Please take a look through this code and identify each of the elements.
 
 {% codeblock Todo View lang:js https://raw.github.com/amejiarosario/Backbone-tutorial/fe0efb0fd0c4c3c4cb5fd61e9917165082f9a562/backbone-tutorial.html Full Code %}
 
@@ -272,10 +272,10 @@ Now, we need another view that take a collection and render each of the individu
       el: '#todoapp',
       initialize: function () {
         this.input = this.$('#new-todo');
-	
+
         // instance of the Collection
         app.todoList = new app.TodoList();
-  
+
         // when new elements are added to the collection render then with addOne
         app.todoList.on('add', this.addOne, this);
         app.todoList.on('reset', this.addAll, this);
@@ -317,4 +317,4 @@ Now, we need another view that take a collection and render each of the individu
 
 
 ## What's next?
- Continue with the [3rd part](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/) and learn how to make CRUD for your models!
+ Continue with the [3rd part](/backbonejs-for-absolute-beginners-getting-started-part-3/) and learn how to make CRUD for your models!

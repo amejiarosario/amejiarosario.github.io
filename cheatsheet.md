@@ -157,10 +157,10 @@ MEAN Stack tutorial series:
 
 BackboneJS Tutorial series:
 
-1. [Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)](/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/)
-1. [Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/)
-1. [Backbone.js for absolute beginners - getting started (part 3: CRUD)](/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/)
-1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/)
+1. [Backbone.js for Absolute Beginners - Getting started (Part 1: Intro)](/backbone-dot-js-for-absolute-beginners-getting-started/)
+1. [Backbone.js for absolute beginners - getting started (part 2: Models, Collections and Views)](/backbone-js-for-absolute-beginners-getting-started-part-2/)
+1. [Backbone.js for absolute beginners - getting started (part 3: CRUD)](/backbonejs-for-absolute-beginners-getting-started-part-3/)
+1. [Backbone.js for absolute beginners - getting started (part 4: Routers)](/backbone-js-for-absolute-beginners-getting-started-part-4/)
 
 
 "Learning Angular 2 tutorial" series:

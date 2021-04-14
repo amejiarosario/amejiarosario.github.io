@@ -335,7 +335,7 @@ Congrats! You have completed part 1 of this [3 part series](/tags/Tutorial-MEAN-
 
 I also have created BackboneJS tutorials check it out:
 
-* [BackboneJS Tutorials](/blog/categories/backbonejs)
+* [BackboneJS Tutorials](/tags/backbonejs)
 
 #### ng-test
 

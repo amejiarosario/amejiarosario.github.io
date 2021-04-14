@@ -13,6 +13,7 @@ photos:
 photos__background_color: '#1F77B4'
 tags:
   - angular
+  - angularjs
   - mean stack
 categories:
   - Coding

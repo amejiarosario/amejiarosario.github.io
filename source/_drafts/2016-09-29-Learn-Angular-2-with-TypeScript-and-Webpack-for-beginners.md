@@ -16,6 +16,7 @@ tags:
   - angular
   - angular 2+
   - javascript
+  - angularjs
 categories:
   - Programming
   - Web Development
