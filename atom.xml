@@ -5337,7 +5337,7 @@ This is how mergesort works:</p>
 <ol>
 <li><p>Let’s find the values of: <code>T(n) = a T(n/b) + f(n)</code></p>
 <ul>
-<li><code>a</code>: The number of sub-problems is 2 (line 12). So, <code>a = 2</code>.</li>
+<li><code>a</code>: The number of sub-problems is 2 (line 20). So, <code>a = 2</code>.</li>
 <li><code>b</code>: Each of the sub-problems divides <code>n</code> in half. So, <code>b = 2</code></li>
 <li><code>f(n)</code>: The work done outside the recursion is the function <code>merge</code>, which has a runtime of <code>O(n)</code> since it visits all the elements on the given arrays.</li>
 </ul>
