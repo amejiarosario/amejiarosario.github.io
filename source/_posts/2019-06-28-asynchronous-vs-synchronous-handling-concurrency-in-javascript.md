@@ -35,7 +35,7 @@ Take a look at the following graph to see the average time this system event tak
 
 As you can see in the chart above, one CPU can execute an instruction every one ns (approx.). However, if are in NYC and you make a request to a website in San Francisco, the CPU will "waste" 157 million cycles waiting for it to come back!
 
-But not everything is lost! You can use that time to perform other tasks if you use a non-blocking (asynchronous) code in your programs! That's exactly what are you going to learn on this post.
+But not everything is lost! You can use that time to perform other tasks if you use a non-blocking (asynchronous) code in your programs! That's exactly what you are going to learn in this post.
 
 **⚠️ NOTE**: Most programs on your operating system are non-blocking so a single CPU can perform many tasks while it waits for others to complete. Also, modern processors have multiple cores to increase the parallelism.
 
