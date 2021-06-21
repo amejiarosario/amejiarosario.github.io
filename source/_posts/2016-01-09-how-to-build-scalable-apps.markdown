@@ -4,9 +4,9 @@ title: "How to build scalable apps?"
 date: 2016-01-09 10:43:27 -0500
 updated: 2016-01-09 10:43:27 -0500
 comments: true
-pageviews__total: 3857
-pageviews__recent: 8
-pageviews__avg_time: 150
+pageviews__total: 3880
+pageviews__recent: 5
+pageviews__avg_time: 149
 toc: true
 # tags: [production, scalability]
 photos__background_color: '#9B59B6'

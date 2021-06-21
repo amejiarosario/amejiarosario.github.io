@@ -2,9 +2,9 @@
 layout: post
 title: 'Vue.js Tutorial for beginners'
 comments: true
-pageviews__total: 17560
-pageviews__recent: 56
-pageviews__avg_time: 412
+pageviews__total: 17758
+pageviews__recent: 53
+pageviews__avg_time: 404
 tutorial__order: 0
 toc: true
 photos:
