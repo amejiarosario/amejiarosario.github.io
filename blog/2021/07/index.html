@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Archives: 2021/7 | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/blog/2021/07/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/blog/2021/07/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms." />
+    <meta property="og:image" content="https://adrianmejia.com/images/logo.png" />
+    <meta property="og:title" content="Adrian Mejia Blog" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <div class="container">
+  
+
+  <h1>Blog Archives: 2021/7</h1>
+
+  <div class="row">
+    <section class="col-md-9 p-a-2">
+      <div class="row">
+        <!--.sort('pageviews__total', -1)-->
+        
+          <article class="col-md-4 col-sm-6 card">
+  <a href="/priority-queue-data-structure-and-heaps-time-complexity-javascript-implementation/">
+    
+      <img src="/images/priority-queue-pq-heaps-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Priority Queue Data Structure and Heaps Implemented in JavaScript</h3>
+      </section>
+    
+  </a>
+</article>
+
+        
+      </div>
+    </section>
+
+    <aside class="col-md-3 p-a-2">
+      
+        
+  <section>
+    <h3>Tagcloud</h3>
+    <a href="/tags/algorithms/" style="font-size: 20px;">algorithms</a> <a href="/tags/angular/" style="font-size: 11.67px;">angular</a> <a href="/tags/angularjs/" style="font-size: 15px;">angularjs</a> <a href="/tags/backbonejs/" style="font-size: 15px;">backbonejs</a> <a href="/tags/big-o-notation/" style="font-size: 13.33px;">big-o notation</a> <a href="/tags/drupal/" style="font-size: 10px;">drupal</a> <a href="/tags/express/" style="font-size: 11.67px;">express</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/gruntjs/" style="font-size: 11.67px;">gruntjs</a> <a href="/tags/gulpjs/" style="font-size: 10px;">gulpjs</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 16.67px;">javascript</a> <a href="/tags/javascript-es6/" style="font-size: 10px;">javascript es6</a> <a href="/tags/mean-stack/" style="font-size: 10px;">mean stack</a> <a href="/tags/mongodb/" style="font-size: 13.33px;">mongodb</a> <a href="/tags/nodejs/" style="font-size: 20px;">nodejs</a> <a href="/tags/php/" style="font-size: 11.67px;">php</a> <a href="/tags/productivity/" style="font-size: 15px;">productivity</a> <a href="/tags/raspberrypi/" style="font-size: 10px;">raspberrypi</a> <a href="/tags/regex/" style="font-size: 10px;">regex</a> <a href="/tags/ruby-on-rails/" style="font-size: 10px;">ruby on rails</a> <a href="/tags/scaling/" style="font-size: 11.67px;">scaling</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/startups/" style="font-size: 11.67px;">startups</a> <a href="/tags/todo-app/" style="font-size: 16.67px;">todo app</a> <a href="/tags/troubleshooting/" style="font-size: 16.67px;">troubleshooting</a> <a href="/tags/tutorial-algorithms/" style="font-size: 18.33px;">tutorial_algorithms</a> <a href="/tags/tutorial-async-javascript/" style="font-size: 13.33px;">tutorial_async-javascript</a> <a href="/tags/tutorial-backbonejs/" style="font-size: 15px;">tutorial_backbonejs</a> <a href="/tags/tutorial-mean-stack/" style="font-size: 13.33px;">tutorial_mean-stack</a> <a href="/tags/vuejs/" style="font-size: 10px;">vuejs</a> <a href="/tags/year-recap/" style="font-size: 10px;">year-recap</a>
+  </section>
+
+
+      
+        
+  <section>
+    <h3>Categories</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/coding/">Coding</a><span class="category-list-count">49</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/coding/data-structures-and-algorithms-dsa/">Data Structures and Algorithms (DSA)</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/coding/web-development/">Web Development</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/coding/web-development/angular/">Angular</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/coding/web-development/backbone/">Backbone</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/coding/web-development/ruby-on-rails/">Ruby on Rails</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/coding/web-development/vue/">Vue</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/learnings/">Learnings</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">Programming</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/data-structures-and-algorithms-dsa/">Data Structures and Algorithms (DSA)</a><span class="category-list-count">3</span></li></ul></li></ul>
+    <!-- <ul>
+
+      
+        <li>
+          <a href="/categories/programming/">
+            Programming <sup>3</sup>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories/programming/data-structures-and-algorithms-dsa/">
+            Data Structures and Algorithms (DSA) <sup>3</sup>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories/coding/">
+            Coding <sup>49</sup>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories/learnings/">
+            Learnings <sup>5</sup>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories/coding/web-development/">
+            Web Development <sup>13</sup>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories/coding/data-structures-and-algorithms-dsa/">
+            Data Structures and Algorithms (DSA) <sup>9</sup>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories/coding/web-development/backbone/">
+            Backbone <sup>4</sup>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories/coding/web-development/angular/">
+            Angular <sup>6</sup>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories/coding/web-development/ruby-on-rails/">
+            Ruby on Rails <sup>1</sup>
+          </a>
+        </li>
+      
+        <li>
+          <a href="/categories/coding/web-development/vue/">
+            Vue <sup>1</sup>
+          </a>
+        </li>
+      
+    </ul> -->
+  </section>
+
+
+      
+        
+  <section>
+    <h3>Archives</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/2021/07/">July 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2021/01/">January 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2020/10/">October 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2019/07/">July 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2018/04/">April 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2016/03/">March 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2014/10/">October 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2014/02/">February 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2012/09/">September 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2012/05/">May 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2012/04/">April 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2012/01/">January 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2011/11/">November 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2011/08/">August 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/2011/07/">July 2011</a><span class="archive-list-count">4</span></li></ul>
+  </section>
+
+
+      
+    </aside>
+  </div>
+
+  <section class="row p-a-4">
+    <span class="page-number current">1</span>
+  </section>
+</div>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2021 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Thu Jul 08 2021 20:14:52 GMT-0400 (Eastern Daylight Time)">
+            v.qvybcs
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+  </body>
+</html>

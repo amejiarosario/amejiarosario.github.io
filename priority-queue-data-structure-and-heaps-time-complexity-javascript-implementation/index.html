@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="Adrian Mejia">
+    <link rel="author" href="humans.txt" />
+    <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
+
+    
+    <title>Priority Queue Data Structure and Heaps Implemented in JavaScript | Adrian Mejia Blog</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Adrian Mejia's Blog"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=https://adrianmejia.com/atom.xml" />
+
+    <link rel="canonical" href="https://adrianmejia.com/priority-queue-data-structure-and-heaps-time-complexity-javascript-implementation/" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://adrianmejia.com/priority-queue-data-structure-and-heaps-time-complexity-javascript-implementation/" />
+    <meta property="og:site_name" content="Adrian Mejia Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="A priority queue is a versatile data structure that is good to have under your algorithmic toolbelt. In this post, we discuss, what it is, real-world applications, and we explore two different implementations, the latter one being more robust." />
+    <meta property="og:image" content="https://adrianmejia.com/images/priority-queue-pq-heaps-large.jpg" />
+    <meta property="og:title" content="Priority Queue Data Structure and Heaps Implemented in JavaScript" />
+    <meta property="fb:app_id" content="761831487293468" />
+    <meta property="fb:admins" content="895685163"/>
+    <!-- /Open Graph -->
+
+    <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-24183929-4', 'auto');
+ga('send', 'pageview');
+</script><script async defer src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <!-- Critical Styles -->
+    <style media="screen">
+      .overlay { display: none }
+    </style>
+    
+<link rel="stylesheet" href="/stylesheets/main.css">
+
+    <!-- loadDeferredStyles -->
+    <noscript id="deferred-styles">
+      
+<link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    </noscript>
+
+    <script>
+      var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+          webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+  <meta name="generator" content="Hexo 5.0.2"></head>
+  <body>
+    <header class="titlebar mdl-shadow--2dp">
+      <div class="container align-center flexbox--space-between">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-md-12"> -->
+            <span class="hidden-mobile-up">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </span>
+
+            <a href="/" class="align-center m-y-2">
+              <img src="/images/adrianmejia-logo.png" alt="Adrian Mejia Logo" class="animation--bounce-in"/>
+              <h1 class="hidden-mobile-down hidden">
+                Adrian Mejia
+              </h1>
+            </a>
+
+            <nav class="hidden-mobile-down navbar">
+              
+                <a href="/#home" class="animation--radial-out" id="Home" onclick="track('/#home', 'menu', true)">Home</a>
+              
+                <a href="/#trending-posts" class="animation--radial-out" id="Trending" onclick="track('/#trending-posts', 'menu', true)">Trending</a>
+              
+                <a href="/#popular-posts" class="animation--radial-out" id="Popular" onclick="track('/#popular-posts', 'menu', true)">Popular</a>
+              
+                <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
+              
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
+              
+            </nav>
+
+            <a href="#" id="search-modal" onclick="track('#search', 'search', true)" class="open-overlay">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+
+<div id="search-overlay" class="overlay" aria-hidden="true">
+
+  <script id="movie" type="text/x-handlebars-template">
+    <article class="movie">
+      {{#photos.0}}
+      <a href="/{{path}}">
+        <img class="movie-image" src="{{photos.0}}" />
+      </a>
+      {{/photos.0}}
+
+      <div class="movie-meta">
+        <div class="movie-title">
+          <a href="/{{path}}">
+            {{{_highlightResult.title.value}}}
+          </a>
+          <span class="movie-year">
+            {{updatedYear}}
+          </span>
+        </div>
+
+        <div class="movie-rating">
+          {{#stars}}
+            <span class="ais-star-rating--star{{^.}}__empty{{/.}}">
+            </span>
+          {{/stars}}
+        </div>
+
+        <p>
+          {{{_highlightResult.excerptStrip.value}}}
+        </p>
+
+        <div class="movie-genres">
+          {{#tags}}
+            <div class="movie-genre">
+              {{.}}
+            </div>
+          {{/tags}}
+        </div>
+      </div>
+    </article>
+  </script>
+
+  <div class="search-container">
+
+    <div class="top">
+      <div class="search-button">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="input-container">
+        <input type="text" id="search-box" />
+        <div id="stats"></div>
+      </div>
+      <a href="#" class="close-overlay">
+        <i class="fa fa-times"></i>
+      </a>
+    </div>
+
+    <div class="content">
+      <div class="facets">
+
+        <div class="facet">
+          <div id="clear-all" class="facet-title"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-tags" aria-hidden="true"></i> Tags
+          </div>
+          <div id="tags"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            Categories
+          </div>
+          <div id="categories"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Views
+          </div>
+          <div id="ratings"></div>
+        </div>
+
+        <div class="facet">
+          <div class="facet-title">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            Year
+          </div>
+          <div id="year"></div>
+        </div>
+      </div>
+
+      <div class="canvas">
+        <div id="hits"></div>
+
+        <div id="pagination"></div>
+
+        <div>Powered by <img src="/images/Algolia_logo_bg-white.svg" height="30" alt="Algolia search"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/search.babel.js"></script>
+
+
+      </div>
+    </header>
+    <nav class="hidden-mobile-up mdl-shadow--2dp">
+      <div class="container flexbox--space-between navbar">
+        
+          <a href="/#home" class="animation--underline-from-center">Home</a>
+        
+          <a href="/#trending-posts" class="animation--underline-from-center">Trending</a>
+        
+          <a href="/#popular-posts" class="animation--underline-from-center">Popular</a>
+        
+          <a href="/#about" class="animation--underline-from-center">About</a>
+        
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
+        
+      </div>
+    </nav>
+
+    <main>
+      <!--https://developers.google.com/search/docs/data-types/articles-->
+<!--http://schema.org/BlogPosting-->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "headline": "Priority Queue Data Structure and Heaps Implemented in JavaScript",
+  
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://adrianmejia.com/images/priority-queue-pq-heaps-large.jpg",
+    "height": 360,
+    "width": 728
+  },
+  
+  "datePublished": "2021-07-05T18:29:39-04:00",
+  "dateModified": "2021-07-05T18:29:39-04:00",
+  "author": {
+    "@type": "Person",
+    "name": "Adrian Mejia"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Adrian Mejia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adrianmejia.com/images/logo.png",
+      "width": 347,
+      "height": 50
+    }
+  },
+  "description": "A priority queue is a versatile data structure that is good to have under your algorithmic toolbelt. In this post, we discuss, what it is, real-world applications, and we explore two different implementations, the latter one being more robust."
+}
+</script>
+
+
+<article class="container post">
+
+  <section class="hero">
+    <div class="muted">
+      <a class="category-link" href="/categories/programming/">Programming</a> > <a class="category-link" href="/categories/programming/data-structures-and-algorithms-dsa/">Data Structures and Algorithms (DSA)</a>
+    </div>
+
+    <h1>Priority Queue Data Structure and Heaps Implemented in JavaScript</h1>
+
+    <div class="muted">
+      <span title="Last time this post was updated">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        Last updated
+        <time datetime="2021-07-05T22:29:39.000Z" itemprop="dateUpdated">July 5th 2021</time>
+      </span>
+
+      
+
+      <span class="m-x-2" title="Click to go to the comments section">
+        <a href="#disqus_thread">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="disqus-comment-count" data-disqus-url="https://adrianmejia.com/priority-queue-data-structure-and-heaps-time-complexity-javascript-implementation/">0</span>
+        </a>
+      </span>
+
+      
+        <span>
+          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithms/" rel="tag">algorithms</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/big-o-notation/" rel="tag">big-o notation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tutorial-algorithms/" rel="tag">tutorial_algorithms</a><span class="tag-list-count">10</span></li></ul>
+        </span>
+      
+    </div>
+  </section>
+
+  <div class="art-container" style="background-color: #fbe000db">
+    
+      <picture>
+        <source media="(min-width: 728px)" srcset="/images/priority-queue-pq-heaps-large.jpg">
+        <source srcset="/images/priority-queue-pq-heaps-small.png">
+        <img src="/images/priority-queue-pq-heaps-large.jpg" alt="Priority Queue Data Structure and Heaps Implemented in JavaScript">
+      </picture>
+    
+  </div>
+
+  <div class="row">
+    <section class="col-sm-8 p-x-2">
+
+      <div class="post-content  toc-content ">
+        <p>A priority queue is a versatile data structure that is good to have under your algorithmic toolbelt. In this post, we discuss, what it is, real-world applications, and we explore two different implementations, the latter one being more robust.</p>
+<a id="more"></a>
+
+
+<h2 id="What’s-a-Priority-Queue-PQ"><a href="#What’s-a-Priority-Queue-PQ" class="headerlink" title="What’s a Priority Queue (PQ)?"></a>What’s a Priority Queue (PQ)?</h2><p>A priority queue is a data structure that extends the queue by a priority dimension. Let’s expand both terms. The <strong>queue</strong> is a list of elements taken in the same order as they arrived. For instance, a line of people waiting to pay at the Supermarket behaves like a queue: first-in, first-served, or FIFO (first in, first out).</p>
+<p>The <em>priority queue</em> adds a priority to each element’s value. If we go back to the example of a line of people in a supermarket. You can add preferred lanes, for example, Seniors (65+ years old) and pregnant women. If you have Seniors in the line, you will take them first, even if other people arrived before them. That’s what a priority queue (PQ) does. If all elements in a PQ have the same priority, then it will behave like a regular queue.</p>
+<p><img src="/images/priority-queue-pq-heap.png" alt="priority queue as line of people"></p>
+<p>Why a priority queue? Can’t we just have different queues for each priority? That only works if you have a few priorities, but sometimes you have infinite possibilities (e.g., the distance between two points, ETA, etc.). Later in this post, we will explore how we can implement an efficient solution for these cases.</p>
+<h2 id="What-is-a-priority-queue-good-for-Applications"><a href="#What-is-a-priority-queue-good-for-Applications" class="headerlink" title="What is a priority queue good for? / Applications"></a>What is a priority queue good for? / Applications</h2><p>There are many real-world applications for priority queues, such as:</p>
+<ul>
+<li>System to triage hospital patients and attend them by their severity order.</li>
+<li>Forward network packages in order of urgency (e.g., “real-time video call” should go before “time sync checks,” so to speak)</li>
+<li>Scheduling tasks in a system: “critical” goes before “shadow drawing” for instance.</li>
+<li>Asynchronous control flows like firing events (or notifying observers) in a certain order.</li>
+<li>Keeping track of top k elements efficiently</li>
+<li>Keeping track of median numbers in constant time</li>
+<li>Used in some graph algorithms like Dijkstra for finding the shortest path between two points. The distance among points is used as a priority.</li>
+</ul>
+<p>Some priority queue JavaScript implementations on the wild:</p>
+<ul>
+<li><strong>closure-library</strong>: <a target="_blank" rel="noopener" href="https://github.com/google/closure-library/blob/master/closure/goog/structs/heap.js">heap.js</a>, <a target="_blank" rel="noopener" href="https://github.com/google/closure-library/blob/master/closure/goog/structs/priorityqueue.js">priorityqueue.js</a></li>
+<li><strong>dsa.js</strong>: <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/heaps/heap.js">heap.js</a>, <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/heaps/priority-queue.js">priority-queue.js</a>, <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/heaps/min-heap.js">min-heap.js</a>, <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/heaps/max-heap.js">max-heap.js</a></li>
+<li><strong>async</strong> : <a target="_blank" rel="noopener" href="https://github.com/caolan/async/blob/master/lib/priorityQueue.js">priorityQueue.js</a>, <a target="_blank" rel="noopener" href="https://github.com/caolan/async/blob/master/lib/internal/Heap.js">Heap.js</a>.</li>
+<li><strong>datastructures-js</strong>: <a target="_blank" rel="noopener" href="https://github.com/datastructures-js/heap/blob/master/src/heap.js">heap.js</a>, <a target="_blank" rel="noopener" href="https://github.com/datastructures-js/priority-queue/blob/master/src/priorityQueue.js">priorityQueue.js</a></li>
+</ul>
+<p>This tutorial will start with a simple implementation and then build it to a robust implementation while making it easy to follow.</p>
+<!--
+### Implementing a Priority Queue (PQ) in C++
+
+The best way to understand a data structure is to try to implement one yourself. Even if you ended up using the standard API (and you should), it's good to spend some time trying to understand how it works in the most basic form.
+
+That's why are going to implement it here. However, later we are going to cover how to use the standard API. Whenever possible use standard/core APIs rather than your own or custom ones. The former will be more battle-tested and account for edge cases that you might didn't consider. However, your own is still good for your own learning, and believe it or not will help you make better use of the standard API.
+-->
+
+<h3 id="Implementing-a-Priority-Queue-PQ-in-JavaScript"><a href="#Implementing-a-Priority-Queue-PQ-in-JavaScript" class="headerlink" title="Implementing a Priority Queue (PQ) in JavaScript"></a>Implementing a Priority Queue (PQ) in JavaScript</h3><p>JavaScript standard doesn’t provide a default implementation that we can use. So, we are going to define our own. But, even if you use another language that has it in their standard API, it’s still good to know how it works so you can reason about the time complexity of their operations.</p>
+<p>Without any further ado, let’s get to it!</p>
+<h3 id="Priority-Queue-operations"><a href="#Priority-Queue-operations" class="headerlink" title="Priority Queue operations"></a>Priority Queue operations</h3><p>As always, there are many ways to solve the same problem. We are going to brainstorm some approaches along with their pros and cons. Yes, there’s never a perfect approach. However, we can learn to analyze the trade-offs and how we can improve our algorithms better.</p>
+<p>The essential operations of the priority queue are:</p>
+<ul>
+<li>enqueue: insert elements on the queue</li>
+<li>dequeue: remove elements from the queue in the same order they were inserted.</li>
+</ul>
+<p>Priority queue usually has a comparison function. Since our data could be simple (just an array of numbers where the value and priority are the same) or compound, where we have multiple fields (e.g. the priority could be the age of a student object). The comparator function tells our PQ what we can use as a priority. Here’s an example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pq= <span class="keyword">new</span> PriorityQueue(<span class="function">(<span class="params">x, y</span>) =&gt;</span> y.age - x.age);</span><br><span class="line">pq.enqueue(&#123; <span class="attr">name</span>: <span class="string">&#x27;Maria&#x27;</span>, <span class="attr">age</span>: <span class="number">23</span> &#125;);</span><br><span class="line">pq.enqueue(&#123; <span class="attr">name</span>: <span class="string">&#x27;Nushi&#x27;</span>, <span class="attr">age</span>: <span class="number">42</span> &#125;);</span><br><span class="line">pq.enqueue(&#123; <span class="attr">name</span>: <span class="string">&#x27;Jose&#x27;</span>, <span class="attr">age</span>: <span class="number">32</span> &#125;);</span><br><span class="line"></span><br><span class="line">pq.dequeue(); <span class="comment">// &#123; name: &#x27;Nushi&#x27;, age: 42 &#125;</span></span><br><span class="line">pq.dequeue(); <span class="comment">// &#123; name: &#x27;Jose&#x27;, age: 32 &#125;</span></span><br><span class="line">pq.dequeue(); <span class="comment">// &#123; name: &#x27;Maria&#x27;, age: 23 &#125;</span></span><br></pre></td></tr></table></figure>
+<p>As you can see, the comparator function dequeue elements with the highest age first. This is called a Max-PQ. We can invert the minuend and subtrahend to get a Min-PQ. Another possibility to use the name as a priority.</p>
+<p>Now that we have a general idea of how a PQ API works let’s explore how we can implement it.</p>
+<h4 id="Naive-Priority-Queue-implemented-using-Array-Sorting"><a href="#Naive-Priority-Queue-implemented-using-Array-Sorting" class="headerlink" title="Naive: Priority Queue implemented using Array + Sorting"></a>Naive: Priority Queue implemented using Array + Sorting</h4><p>You can implement a regular queue using an array or linked list. However, priority queues have a new dimension: It needs to sort elements by priority. So, can we just sort a regular array queue every time we insert a new element? Yes, we can! But let’s see how it will perform.</p>
+<p><strong>Enqueue</strong></p>
+<p>Every time we insert a new element, we need to sort the elements. That’s <strong>O(n log n)</strong>.</p>
+<p>Complexity</p>
+<ul>
+<li>Time: O(n log n), insertion into an array is constant but sorting takes n log n.</li>
+<li>Space: O(n), the space used in memory will grow proportionally to the number of elements in the queue.</li>
+</ul>
+<p>Here’s the implementation of the Enqueue method:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NaivePQ</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(comparator = (a, b) =&gt; a - b) &#123;</span><br><span class="line">    <span class="built_in">this</span>.array = [];</span><br><span class="line">    <span class="built_in">this</span>.comparator = comparator;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Insert element</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@runtime </span>O(n log n)</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param <span class="type">&#123;any&#125;</span> <span class="variable">value</span></span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  add(value) &#123;</span><br><span class="line">    <span class="built_in">this</span>.array.push(value);</span><br><span class="line">    <span class="built_in">this</span>.array.sort(<span class="built_in">this</span>.comparator);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Dequeue</strong></p>
+<p>Dequeue removes elements from the PQ. We need to find the element with the highest priority and then return that. The highest number will be first element, so that’s O(1) operation. However, we need to move the rest of the elements to fill the gap. That’s <strong>O(n)</strong>.</p>
+<p>Complexity</p>
+<ul>
+<li>Time: O(n), finding the top element.</li>
+<li>Space: O(n), space is technically O(n-1). However, we just care about the “higher order” term, so O(n).</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Retrieves and removes the head or returns null if this Heap is empty.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@runtime </span>O(n)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">remove() &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">this</span>.size) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">const</span> value = <span class="built_in">this</span>.array.shift(); <span class="comment">// remove element</span></span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Improving PQ implementation</strong></p>
+<p>Can we do better? We could do nothing after insertion <strong>O(1)</strong> and then delegate the finding of the element with the highest priority to <strong>dequeue</strong> (if max-heap). That would be <strong>O(n).</strong></p>
+<p><strong>O(n)</strong> as time complexity is not bad. It’s better than sorting all elements on every insertion <strong>O(n log n)</strong>. Still, how can we improve this? If we use a data structure that keeps the max element at the top in less than O(n), that would be great! Good news, that’s what a heap is for!</p>
+<h4 id="Priority-Queue-implemented-using-a-Heap"><a href="#Priority-Queue-implemented-using-a-Heap" class="headerlink" title="Priority Queue implemented using a Heap"></a>Priority Queue implemented using a Heap</h4><p>A <strong>heap</strong> is a tree data structure that keeps to max or min element at the root. So you can have a max-heap or min-heap. Regardless, they have two basic operations: insert and remove.</p>
+<p>Conceptually the heaps can be represented as a complete binary tree. With the following rules or invariants:</p>
+<ol>
+<li>The parent node should be smaller (or equal) than the two children for a Min-Heap. For a max-heap is the opposite, the parent node should be bigger (or equal) than the two children.</li>
+<li>The binary tree should be complete (all levels are completely filled. The only exception is the last level which might not be full, but the ones filled comes from left to right without gaps)</li>
+</ol>
+<p><img src="/images/min-heap-vs-max-heap.png" alt="Min-Heap vs Max-Heap"></p>
+<p>Even though a heap is conceptually a binary tree, it can be implemented using an array since it’s a complete tree. The first element on the array is the <strong>root</strong>. The following two elements are the root’s children, the 4th and 5th elements are the 2nd element’s children, and so on.</p>
+<p><img src="/images/tree-to-array-representation.png" alt="Tree/Heap to Array Representation"></p>
+<p>You can calculate the following formula to translate tree to array:</p>
+<ul>
+<li>parent(i) = Math.ceil(i / 2 - 1)</li>
+<li>leftChild(i) = 2 * i + 1</li>
+<li>rightChild2(i) = 2 * i + 1</li>
+</ul>
+<p><strong>What’s the time complexity of heaps and Priority Queue?</strong></p>
+<p>Again the PQ has two primary operations: enqueue and dequeue. So, let’s see how we can do this with a heap.</p>
+<p><strong>Enqueue</strong></p>
+<p>The algorithm to insert an element in a heap is as follows:</p>
+<ol>
+<li>Insert the element into the next empty position (tail).</li>
+<li>From that position, “bubble up” the element to keep the min-heap invariant “parent should be smaller than any children” (the opposite if max-heap). If the invariant is broken, fix it by swapping the node with its parent and repeat the process all the way to the root node if necessary.</li>
+</ol>
+<p>Here’s an implementation of the Heap. Also we are using a comparator function so we can define the priority.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Heap</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(comparator = (a, b) =&gt; a - b) &#123;</span><br><span class="line">    <span class="built_in">this</span>.array = [];</span><br><span class="line">    <span class="built_in">this</span>.comparator = <span class="function">(<span class="params">i1, i2</span>) =&gt;</span> comparator(<span class="built_in">this</span>.array[i1], <span class="built_in">this</span>.array[i2]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Insert element</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@runtime </span>O(log n)</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param <span class="type">&#123;any&#125;</span> <span class="variable">value</span></span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  add(value) &#123;</span><br><span class="line">    <span class="built_in">this</span>.array.push(value);</span><br><span class="line">    <span class="built_in">this</span>.bubbleUp();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Move new element upwards on the Heap, if it&#x27;s out of order</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@runtime </span>O(log n)</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  bubbleUp() &#123;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="built_in">this</span>.size - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> parent = <span class="function">(<span class="params">i</span>) =&gt;</span> <span class="built_in">Math</span>.ceil(i / <span class="number">2</span> - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">while</span> (parent(index) &gt;= <span class="number">0</span> &amp;&amp; <span class="built_in">this</span>.comparator(parent(index), index) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">this</span>.swap(parent(index), index);</span><br><span class="line">      index = parent(index);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This algorithm can keep a heap sorted in O(<strong>log n</strong>) because it only visits half of the tree at most.</p>
+<p><em>“Why <strong>log n?</strong>“**</em>,**  you asked.</p>
+<p>Because that’s the maximum number of swaps that you would have to bubble up the newly inserted element.</p>
+<details>
+  <summary>I see, but where did you that <i>log n</i> from?</summary>
+
+
+
+<p><img src="/images/binary-tree-parts.png" alt="binary tree parts"></p>
+<p>Well, in a complete binary tree, you double the number of nodes at each level. If you use some intuition and math you can find the following relationship:</p>
+<ul>
+<li>Level 0: 2<sup>0</sup> = 1 node (root)</li>
+<li>Level 1: 2<sup>1</sup> = 2 nodes</li>
+<li>Level 2: 2<sup>2</sup> = 4 nodes</li>
+<li>Level 3: 2<sup>3</sup> = 8 nodes</li>
+<li>…</li>
+<li>Level h: 2<sup>h</sup> = 2<sup>h</sup> nodes</li>
+</ul>
+<hr>
+<ul>
+<li>Total number of nodes, n: 1 + 2 + 4 + 8 + … + 2<sup>h</sup></li>
+</ul>
+<p>So, we have a formula that relates the total number of nodes with the tree’s height. The height is essential because that will be the maximum number of times we would swap nodes when we insert a new element in the Heap.</p>
+<p>Using <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Geometric_progression">geometric progression</a> and the total number of nodes formulas we have:</p>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<p>` 2^{0}+2^{1}+2^{2}+2^{3}+\cdots +2^{k-1} = \sum _{i=0}^{k-1}2^{i} = 2^{k}-1 `</p>
+<p>` n = 2^{h + 1} - 1 `</p>
+<p>` \log _{2}(n + 1) = h + 1 `</p>
+<p>` h = \log _{2}(n + 1) - 1 `</p>
+<p>Well, there you have it. That’s where the <strong>log n</strong> comes from.</p>
+</details>
+
+<p>Complexity:</p>
+<ul>
+<li>Time: O(log n), in the worst case, you will have to bubble up the inserted element up to the root of the tree. These will involve log n swaps, where n is the total number of nodes.</li>
+<li>Space: O(n)</li>
+</ul>
+<p><strong>Dequeue</strong></p>
+<p>The algorithms for dequeuing an element from a PQ is the following:</p>
+<ol>
+<li>Remove the root element</li>
+<li>Since the root element is gone, you need to fill the hole by promoting a child to take its place. This process is called “heapify” or <code>bubbleDown</code>. You choose the child that has the min value for min-heap (or max value for max-heap). You do this recursively until you found a leaf (node without children).</li>
+</ol>
+<p>Complexity:</p>
+<ul>
+<li>Time: O(log n), The maximum number of swaps is given by the tree’s height, which is log n.</li>
+<li>Space: O(n).</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Retrieves and removes the head of this Heap or returns null if this Heap is empty.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@runtime </span>O(log n)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">remove(index = <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">this</span>.size) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  <span class="built_in">this</span>.swap(index, <span class="built_in">this</span>.size - <span class="number">1</span>); <span class="comment">// swap with last</span></span><br><span class="line">  <span class="keyword">const</span> value = <span class="built_in">this</span>.array.pop(); <span class="comment">// remove element</span></span><br><span class="line">  <span class="built_in">this</span>.bubbleDown(index);</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * After removal, moves element downwards on the Heap, if it&#x27;s out of order</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@runtime </span>O(log n)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">bubbleDown(index = <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> curr = index;</span><br><span class="line">  <span class="keyword">const</span> left = <span class="function">(<span class="params">i</span>) =&gt;</span> <span class="number">2</span> * i + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">const</span> right = <span class="function">(<span class="params">i</span>) =&gt;</span> <span class="number">2</span> * i + <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">const</span> getTopChild = <span class="function">(<span class="params">i</span>) =&gt;</span> (right(i) &lt; <span class="built_in">this</span>.size</span><br><span class="line">    &amp;&amp; <span class="built_in">this</span>.comparator(left(i), right(i)) &gt; <span class="number">0</span> ? right(i) : left(i));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (left(curr) &lt; <span class="built_in">this</span>.size &amp;&amp; <span class="built_in">this</span>.comparator(curr, getTopChild(curr)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> next = getTopChild(curr);</span><br><span class="line">    <span class="built_in">this</span>.swap(curr, next);</span><br><span class="line">    curr = next;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>You can find the full implementation at:
+<a target="_blank" rel="noopener" href="https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/heaps/heap.js">https://github.com/amejiarosario/dsa.js-data-structures-algorithms-javascript/blob/master/src/data-structures/heaps/heap.js</a></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In these post we learned about the usages of a priority queue and how to implement it with an array+sorting and using array-based heap. We also explored it’s time complexity for each implementation so we can verify that the heap implementation is more efficient.</p>
+<!--
+#### Implementing a Heap in C++
+
+We discussed two different approaches of how to heap using an array and sorting and using heaps. The latter is more efficient, so we are going to implement that one.
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;classname T, P&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PriorityQueue</span> &#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  PriorityQueue(P cmp) cmp_(cmp) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Enqueue</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    data_.push_back(value);</span><br><span class="line">    BubbleUp(data.length - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">T <span class="title">Dequeue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    T value = data_[<span class="number">0</span>];</span><br><span class="line">    Heapify(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">  &#125;</span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">vector</span>&lt;T&gt; data_;</span><br><span class="line">  P cmp_;</span><br><span class="line">  <span class="comment">//std::function&lt;int(T a, T b)&gt; cmp_;</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">GetParent</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= data_.size()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">floor</span>((i - <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">GetChild</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index = i * <span class="number">2</span> + j;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= data_.size() || j &gt; <span class="number">2</span> || j &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">Comparator</span><span class="params">(i, j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// TODO</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">BubbleUp</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> parent = GetParent(i);</span><br><span class="line">    <span class="keyword">if</span> (parent &gt; <span class="number">0</span> &amp;&amp; Comparator(parent, i)) &#123;</span><br><span class="line">      <span class="built_in">std</span>::swap(data, parent, i); <span class="comment">// FIX</span></span><br><span class="line">      BubbleUp(parent);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Heapify</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> child1 = GetChild(i, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> child2 = GetChid(i, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> (child1 &amp;&amp; Comparator(child1, child2)) &#123;</span><br><span class="line">      <span class="built_in">std</span>::swap(data, i, child1);</span><br><span class="line">      Heapify(child1);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (child2 &amp;&amp; Comparator(child2, child1)) &#123;</span><br><span class="line">      <span class="built_in">std</span>::swap(data, i, child2)</span><br><span class="line">      Heapify(child2);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>–&gt;</p>
+
+      </div>
+
+      <!-- after post -->
+      <div class="hidden-mobile-down">
+        <h3>Now, your turn!</h3>
+        Thanks for reading this far. Here are some things you can do next:
+
+        <ul>
+          <li>Found a typo?
+            <a target="_blank" rel="noopener" href="https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/priority-queue-data-structure-and-heaps-time-complexity-javascript-implementation.md">
+              Edit this post</a>.
+          </li>
+          <li>Got questions?
+            <a href="#comments-section">comment</a>
+            below.
+          </li>
+          <li>
+            Was it useful? Show your
+            <!-- <a href="/support">support</a>  -->
+            support and share it.
+            <!-- <a target="_blank" href="http://paypal.me/amejiarosario">Paypal</a>, -->
+            <!-- <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZLFWQAFENN7W&source=url">Paypal</a>,
+            <a target="_blank" href="https://bitaps.com/3A8xanut3wddz1jJ7JWSw8nwwpUahLJpZi">Bitcoin</a>,
+            <a target="_blank" href="https://www.patreon.com/amejiarosario">Patreon</a>. -->
+          </li>
+        </ul>
+      </div>
+
+      <div class="hidden-mobile-up">
+        <a target="_blank" rel="noopener" href="https://books.adrianmejia.com">
+          <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+          <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+        </a>
+      </div>
+
+      <!-- Next and previous posts -->
+      
+        <div class="article-nav m-y-4">
+          
+          
+            <a href="/2020-recap-and-how-i-got-my-dream-job/" class="article-nav-older" class="article-nav-link-wrap">
+              <strong class="article-nav-caption">older <i class="fa fa-chevron-right"></i></strong>
+              <div class="article-nav-title">2020 recap and how I got my dream job</div>
+            </a>
+          
+        </div>
+      
+
+      
+
+        <!-- Related -->
+        <footer>
+          <!-- subscribe -->
+          <div class="m-y-4">
+            <!-- Begin MailChimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="//adrianmejia.us2.list-manage.com/subscribe/post?u=2294bb28c5931a6f2338d2474&amp;id=52678e825b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<label for="mce-EMAIL">Subscribe &amp; stay up to date!</label>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2294bb28c5931a6f2338d2474_52678e825b" tabindex="-1" value=""></div>
+    <div class="clear">&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<!--End mc_embed_signup-->
+
+<script type="text/javascript">
+  var form = document.getElementById('mc-embedded-subscribe-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'newsletter', 'signup', 'page', {
+      hitCallback: createFunctionWithTimeout(function() {
+        form.submit();
+      })
+    });
+  });
+</script>
+
+          </div>
+
+          <!-- Author Bio -->
+          <b>About the author</b>
+          
+              <!-- Adrian Mejia Bio -->
+            
+<section class="bio-box">
+  <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
+  <article class="p-x-1" style="display: flex; flex-direction:column;">
+    <p class="muted">Adrian Mejia is a Software Engineer located in Boston, MA.
+      Currently working at Google.
+      Adrian enjoys writing posts about Algorithms, programming, JavaScript, and Web Dev.
+      Also, he likes to travel ✈️ and biking 🚴‍.
+      <!-- Find out more <a href="/#about">here</a>. -->
+    </p>
+    <!-- <p class="m-y-0"><a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a target="_blank" rel="noopener" href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
+  </article>
+</section>
+
+          
+
+          <div class="m-y-4">
+            
+              
+                <div class="container">
+                <h1 class="capitalize">tutorial algorithms Series</h1>
+                <div class="row">
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-to-find-time-complexity-of-an-algorithm-code-big-o-notation/">
+    
+      <img src="/images/from-code-to-big-o-algorithms-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How to find time complexity of an algorithm?</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-to-solve-any-graph-2d-arrays-maze-interview-questions-in-javascript-dfs-vs-bfs/">
+    
+      <img src="/images/graph-interview-questions-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How to solve any graph/Maze interview questions in JavaScript? DFS vs. BFS</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/priority-queue-data-structure-and-heaps-time-complexity-javascript-implementation/">
+    
+      <img src="/images/priority-queue-pq-heaps-small.png" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Priority Queue Data Structure and Heaps Implemented in JavaScript</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">
+    
+      <img src="/images/data-structures-algorithms-time-complexity-big-o-notation-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>How you can change the world by learning Data Structures and Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/">
+    
+      <img src="/images/data-structures-must-know-algorithms-running-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>8 time complexities that every programmer should know</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/">
+    
+      <img src="/images/data-structures-time-complexity-lists-arrays-stacks-queues-hash-maps-sets-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Data Structures in JavaScript: Arrays, HashMaps, and Lists</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Graphs-Time-Complexity-tutorial/">
+    
+      <img src="/images/graph-data-structures-time-complexity-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Graph Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Data-Structures-for-Beginners-Trees-binary-search-tree-tutorial/">
+    
+      <img src="/images/data-structures-for-beginners-trees-binary-search-tree-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Tree Data Structures in JavaScript for Beginners</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Self-balanced-Binary-Search-Trees-with-AVL-tree-Data-Structure-for-beginners/">
+    
+      <img src="/images/data-structures-algorithms-avl-binary-search-trees-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Self-balanced Binary Search Trees with AVL in JavaScript</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+            
+              
+
+              <!-- <ol> -->
+              <article class="col-md-6 col-sm-6 card">
+  <a href="/Analysis-of-Recursive-Algorithms/">
+    
+      <img src="/images/data-structures-analysis-of-recursive-algorithms-small.jpg" width="300" height="250">
+      <section class="p-a-1">
+        <h3>Analysis of Recursive Algorithms</h3>
+      </section>
+    
+  </a>
+</article>
+
+              <!-- </ol> -->
+
+              
+              </div><!-- .row -->
+              </div><!-- .container -->
+              
+            
+          </div>
+
+          <!-- 726x88 -->
+          <!---->
+          <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_non_responsive.js"></script>-->
+<!--           <div class="hidden-mobile-down">
+            <script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/728x90_responsive.js"></script>
+          </div> -->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+
+
+          <!-- last working ads -->
+          <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+
+        </footer>
+
+      <!-- if(page.layout !== 'snippet') -->
+    </section>
+
+    <!-- Asides (Ads, TOC, ...) -->
+    <aside class="col-sm-4 p-x-2 col-xs-order-1">
+      <section>
+
+        <!-- 300x250 -->
+        <!---->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_non_responsive.js"></script>-->
+        <!--<div class="hidden-mobile-down">-->
+          <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/300x250_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!--<div class="hidden-mobile-up">-->
+        <!--<script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/336x280_responsive.js"></script>-->
+        <!--</div>-->
+
+        <!-- last working ads -->
+        <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/336x280_responsive.js"></script> -->
+
+      </section>
+
+      <section class="sticky-element--start">
+        <div class="muted">
+          <div class="p-y-1">
+            <a href="#" class=""><span id="back-to-top" title="Go back to the top of this page">
+              <i class="fa fa-arrow-up"></i> Top
+            </span></a>
+
+            <a href="#" class="p-x-3" title="Improve this post" onclick="track('https://github.com/amejiarosario/amejiarosario.github.io/edit/source/source/_posts/priority-queue-data-structure-and-heaps-time-complexity-javascript-implementation.md')">
+              <i class="fa fa-pencil"></i> Edit this post
+            </a>
+            <!-- <a href="#" title="Share this post"><i class="fa fa-share"></i> Share</a> -->
+            <!--<div class="p-y-1">-->
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            <!--</div>-->
+          </div>
+
+          
+            <h3 class="toc-title">Contents</h3>
+            <div>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What%E2%80%99s-a-Priority-Queue-PQ"><span class="toc-number">1.</span> <span class="toc-text">What’s a Priority Queue (PQ)?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-a-priority-queue-good-for-Applications"><span class="toc-number">2.</span> <span class="toc-text">What is a priority queue good for? &#x2F; Applications</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Implementing-a-Priority-Queue-PQ-in-JavaScript"><span class="toc-number">2.1.</span> <span class="toc-text">Implementing a Priority Queue (PQ) in JavaScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Priority-Queue-operations"><span class="toc-number">2.2.</span> <span class="toc-text">Priority Queue operations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Naive-Priority-Queue-implemented-using-Array-Sorting"><span class="toc-number">2.2.1.</span> <span class="toc-text">Naive: Priority Queue implemented using Array + Sorting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Priority-Queue-implemented-using-a-Heap"><span class="toc-number">2.2.2.</span> <span class="toc-text">Priority Queue implemented using a Heap</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">3.</span> <span class="toc-text">Summary</span></a></li></ol>
+            </div>
+
+            <!-- 300x600 -->
+            <!---->
+            <!--<script data-cfasync="false" type="text/javascript" src="(DISABLED)//www.eboundservices.com/ads/300x600_non_responsive.js"></script>-->
+            <div class="hidden-mobile-down">
+              <!-- last working ads -->
+              <!-- <script data-cfasync="false" type="text/javascript" src="//www.eboundservices.com/ads/dfp/160x600_responsive.js"></script> -->
+
+              <a href="https://books.adrianmejia.com" target="_blank">
+                <!-- <img src="/images/data-structure-algorithms-javascript-presell.jpg" alt="Data Structure and Algorithms in JavaScript eBook"> -->
+                <img src="/images/data-structure-algorithms-banner.jpg" alt="Data Structure and Algorithms in JavaScript eBook">
+              </a>
+            </div>
+          
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- comments -->
+  <a id="comments-section"></a>
+  <footer class="row sticky-element--end">
+    <div class="col-xs-12">
+      <section>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://adrianmejia.com/priority-queue-data-structure-and-heaps-time-complexity-javascript-implementation/';
+      this.page.identifier = 'https://adrianmejia.com/priority-queue-data-structure-and-heaps-time-complexity-javascript-implementation/';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//adrianmejia.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+    </div>
+  </footer>
+</article>
+
+    </main>
+
+    <!-- uxa -->
+    <!-- <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1"> -->
+    <!-- <script async defer src="//data.uxeranalytics.com/uxa.js"></script> -->
+    <!-- /uxa -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <div class="p-y-2">
+          &copy; 2021 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Thu Jul 08 2021 20:14:52 GMT-0400 (Eastern Daylight Time)">
+            v.qvybcs
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    
+<script src="/js/main.babel.js"></script>
+    <script id="dsq-count-scr" src="//adrianmejia.disqus.com/count.js" async></script>
+    <!-- Algolia Search -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    
+<link rel="stylesheet" href="/stylesheets/55_search.css">
+
+
+
+    <!-- social scripts -->
+    <script async defer src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    
+      <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+
+      <!-- adthis -->
+      <script type="text/javascript">
+        var addthis_config = {
+          data_ga_property: 'UA-24183929-4',
+          data_ga_social : true
+        };
+      </script>
+      <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-579cb31b46e2f7e6"></script>
+
+      
+<script src="/js/posts.babel.js"></script>
+      
+<script src="/js/posts2.babel.js"></script>
+    
+  </body>
+</html>
