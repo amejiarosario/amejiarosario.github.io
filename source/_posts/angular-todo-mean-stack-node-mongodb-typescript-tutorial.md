@@ -2,9 +2,9 @@
 layout: draft
 title: Modern MEAN Stack Tutorial with Docker (Angular, Node, Typescript and Mongodb)
 comments: true
-pageviews__total: 2724
-pageviews__recent: 181
-pageviews__avg_time: 1321
+pageviews__total: 2831
+pageviews__recent: 209
+pageviews__avg_time: 1332
 tutorial__order: 0
 toc: true
 photos:

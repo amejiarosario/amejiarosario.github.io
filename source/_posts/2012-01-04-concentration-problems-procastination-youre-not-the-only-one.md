@@ -4,9 +4,9 @@ title: Concentration problems? Procastination? You're not the only one.
 created: 1325695584000
 updated: 1325695584000
 comments: true
-pageviews__total: 510
-pageviews__recent: 2
-pageviews__avg_time: 114
+pageviews__total: 507
+pageviews__recent: 1
+pageviews__avg_time: 115
 tutorial__order: 0
 alias: /blog/2012/01/04/concentration-problems-procastination-youre-not-the-only-one/
 #categories: [concentration, procrastination, attention]

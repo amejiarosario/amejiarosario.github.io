@@ -6,8 +6,8 @@ title: >-
 comments: true
 unlisted: false
 toc: true
-pageviews__total: 5004
-pageviews__recent: 211
+pageviews__total: 5156
+pageviews__recent: 219
 pageviews__avg_time: 80
 tutorial__order: 0
 photos:
