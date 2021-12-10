@@ -180,7 +180,7 @@ You can calculate the following formula to translate tree to array:
 
 - parent(i) = Math.ceil(i / 2 - 1)
 - leftChild(i) = 2 * i + 1
-- rightChild2(i) = 2 * i + 1
+- rightChild2(i) = 2 * i + 2
 
 **What's the time complexity of heaps and Priority Queue?**
 
