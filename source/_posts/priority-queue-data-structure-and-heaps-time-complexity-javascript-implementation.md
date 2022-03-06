@@ -234,7 +234,7 @@ This algorithm can keep a heap sorted in O(**log n**) because it only visits hal
 Because that's the maximum number of swaps that you would have to bubble up the newly inserted element.
 
 <details>
-  <summary>I see, but where did you that <i>log n</i> from?</summary>
+  <summary>I see, but where did you get that <i>log n</i> from?</summary>
 
 
 
