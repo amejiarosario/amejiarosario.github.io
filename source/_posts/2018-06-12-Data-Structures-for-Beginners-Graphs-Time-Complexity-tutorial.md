@@ -322,8 +322,8 @@ class Graph {
   // ...
 }
 
-Graph.UNDIRECTED = Symbol('directed graph'); // two-ways edges
-Graph.DIRECTED = Symbol('undirected graph'); // one-way edges
+Graph.UNDIRECTED = Symbol('undirected graph'); // two-ways edges
+Graph.DIRECTED = Symbol('directed graph'); // one-way edges
 {% endcodeblock %}
 
 The first thing that we need to know is if the graph is directed or undirected. That makes a difference when we are adding edges.
