@@ -4,7 +4,7 @@ The main objective is:
 
 1. Reminder of how to do things in Software Engineering (e.g. learn briefly Angular, Node or CSS layout)
 2. Experiment on new technology (doing and teaching is the best way to learn).
-3. Earn money: Attract users, grow newsletter, sell books, personal marketing.
+<!-- 3. Earn money: Attract users, grow newsletter, sell books, personal marketing. -->
 
 # Media types
 
