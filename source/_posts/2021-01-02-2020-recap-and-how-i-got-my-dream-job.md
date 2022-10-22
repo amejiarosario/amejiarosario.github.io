@@ -2,9 +2,9 @@
 layout: post
 title: 2020 recap and how I got my dream job
 comments: true
-pageviews__total: 533
-pageviews__recent: 66
-pageviews__avg_time: 243
+pageviews__total: 1283
+pageviews__recent: 43
+pageviews__avg_time: 196
 tutorial__order: 0
 toc: true
 photos:

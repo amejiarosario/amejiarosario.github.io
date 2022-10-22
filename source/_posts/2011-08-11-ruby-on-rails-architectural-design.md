@@ -4,9 +4,9 @@ title: Ruby on Rails Architectural Design
 created: 1313082237000
 updated: 1313082237000
 comments: true
-pageviews__total: 57495
-pageviews__recent: 227
-pageviews__avg_time: 419
+pageviews__total: 61192
+pageviews__recent: 187
+pageviews__avg_time: 442
 toc: true
 # categories: [ruby on rails, software architecture, web frameworks, web development, agile frameworks, twitter]
 photos:

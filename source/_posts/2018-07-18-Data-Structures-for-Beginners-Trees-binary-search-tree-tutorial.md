@@ -2,9 +2,9 @@
 layout: post
 title: 'Tree Data Structures in JavaScript for Beginners'
 comments: true
-pageviews__total: 65618
-pageviews__recent: 2742
-pageviews__avg_time: 427
+pageviews__total: 106311
+pageviews__recent: 1955
+pageviews__avg_time: 455
 tutorial__order: 6
 toc: true
 photos:

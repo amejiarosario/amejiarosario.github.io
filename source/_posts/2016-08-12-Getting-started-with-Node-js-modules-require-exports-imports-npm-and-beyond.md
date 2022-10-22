@@ -3,9 +3,9 @@ layout: post
 title: "Getting started with Node.js modules: require, exports, imports and beyond"
 comments: true
 toc: true
-pageviews__total: 321043
-pageviews__recent: 3171
-pageviews__avg_time: 944
+pageviews__total: 366118
+pageviews__recent: 1868
+pageviews__avg_time: 934
 tutorial__order: 0
 photos__background_color: '#333'
 alias: /blog/2016/08/12/Getting-started-with-Node-js-modules-require-exports-imports-npm-and-beyond/

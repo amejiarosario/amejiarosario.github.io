@@ -3,9 +3,9 @@ layout: draft
 title: >-
   Priority Queue Data Structure and Heaps Implemented in JavaScript
 comments: true
-pageviews__total: 0
-pageviews__recent: 0
-pageviews__avg_time: 0
+pageviews__total: 6753
+pageviews__recent: 317
+pageviews__avg_time: 225
 tutorial__order: 0
 toc: true
 photos:

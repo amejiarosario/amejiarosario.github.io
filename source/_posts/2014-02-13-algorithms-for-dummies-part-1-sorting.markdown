@@ -5,9 +5,9 @@ date: 2014-02-13 09:28:51 -0400
 updated: 2014-02-13 09:28:51 -0400
 comments: true
 toc: true
-pageviews__total: 98931
-pageviews__recent: 224
-pageviews__avg_time: 1329
+pageviews__total: 101789
+pageviews__recent: 232
+pageviews__avg_time: 1214
 ##categories: [algorithms, big-o, sorting, merge sort]
 alias: /blog/2014/02/13/algorithms-for-dummies-part-1-sorting/
 photos:

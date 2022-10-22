@@ -11,18 +11,23 @@ The main objective is:
 There are different kinds of "posts" on this site:
 
 ## Posts
+
 Posts are the most basic unit. Present a single topic and 2 or 3 main ideas to support it. It has an introduction and conclusion.
 They could be supported by a video.
 
 ## Tutorials
+
 Tutorials They are composed about multiple posts related to a single topic.
 
 ## Books
+
 Books multiple tutorials related to a technology or multiple technologies aim to achieve a goal (e.g. Building an E-commerce site).
 
 ## Snippets
+
 Snippets are short posts. Usually quick problem-solution format. A daily "Today I Learn". Interesting tweets, pro tips...
 e.g.
+
 ```
 List available tasks:
 
@@ -32,11 +37,11 @@ grunt --help
 rake -T
 ```
 
-
 # Classification of content
 
 ## Categories
 
+```
 Coding 45
   Data Structures and Algorithms (DSA) 9
   Web Development 12
@@ -45,10 +50,11 @@ Coding 45
     Ruby on Rails 1
     Vue 1
 Learnings 6
-
+```
 
 ## Tags
 
+```
 Tutorial_MEAN-Stack
 algorithms
 angular
@@ -78,7 +84,7 @@ troubleshooting
 tutorial_algorithms
 tutorial_backbonejs
 vuejs
-
+```
 
 <!--
 
@@ -86,6 +92,7 @@ vuejs
 
 This list changes as I evolve over time:
 
+```
 - Web Development
   - HTML/CSS/JS
   - scaling
@@ -104,7 +111,7 @@ This list changes as I evolve over time:
 - Human trends
   - most sold/used books, cars, games, apps, websites, movies, music, videos,...
   - History of humanity
-
+```
 
 ## Categories
 

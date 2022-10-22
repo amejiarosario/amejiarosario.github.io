@@ -5,9 +5,9 @@ date: 2016-04-08 16:41:32 -0400
 updated: 2016-04-08 16:41:32 -0400
 comments: true
 toc: true
-pageviews__total: 38071
-pageviews__recent: 55
-pageviews__avg_time: 472
+pageviews__total: 38608
+pageviews__recent: 24
+pageviews__avg_time: 463
 photos:
   - /images/angularjs_directives_small.png
   - /images/angularjs_directives_large.png
