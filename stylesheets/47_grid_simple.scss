@@ -1,0 +1,35 @@
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+.simple-row {
+  display: flex;
+  flex-direction: column;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .simple-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .simple-row {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+}

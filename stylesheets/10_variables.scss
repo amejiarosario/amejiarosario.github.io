@@ -1,0 +1,69 @@
+// fonts
+// @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro|Noto+Sans|Noto+Serif);
+// alt: @import url(https://fonts.googleapis.com/css?family=Noto|Roboto+Slab|Orbitron);
+// all @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro|Noto+Sans|Noto+Serif|Roboto|Roboto+Slab|Roboto+Mono|Orbitron);
+// @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+
+// ------------------------
+// varaibles
+// ------------------------
+
+// Colors
+$light-background: #f9f9f9;
+$dark-background: #424242;
+$content-padding: 0em 1.5em;
+
+$body-color: #555;
+$muted-color: #777;
+$headers-color: #333;
+$emphasis-color: #444;
+
+$primary-color: #59A4D0; // 59A4D0  | 0E557E
+$accent-color: #7E8183;
+
+// Fonts
+// $font-copy: "Roboto", "Helvetica", "Arial", sans-serif;
+$font-copy: "Helvetica", "Arial", sans-serif;
+// 'Noto Sans', 'Roboto', Helvetica, Arial, sans-serif;
+$font-header: Georgia, serif;
+// 'Noto Serif', 'Roboto Slab', Georgia, serif;
+$font-mono: 'Source Code Pro', Consolas, Monaco, Menlo, monospace;
+// 'Source Code Pro', 'Roboto Mono', Consolas, Monaco, Menlo, Consolas, monospace;
+$font-logo: 'Orbitron', fantasy;
+
+// Break points
+$font-base: 18; //16px = 1em
+$xs-breakpoint: 300/$font-base * 1em;
+$sm-breakpoint: 544/$font-base * 1em;
+$md-breakpoint: 768/$font-base * 1em;
+$lg-breakpoint: 992/$font-base * 1em;
+$xl-breakpoint: 1300/$font-base * 1em;
+
+// Grid
+
+// Break points
+$font-base: 16; //16px = 1em
+// $xs-breakpoint: 360/$font-base * 1em;
+// $sm-breakpoint: 768/$font-base * 1em;
+// $md-breakpoint: 1336/$font-base * 1em;
+// $lg-breakpoint: 1960/$font-base * 1em;
+// $xl-breakpoint: 2880/$font-base * 1em;
+$xs-breakpoint: 360px;
+$sm-breakpoint: 768px;
+$md-breakpoint: 1336px;
+$lg-breakpoint: 1960px;
+$xl-breakpoint: 2880px;
+
+
+// Grid definition map
+$grid-breakpoints: ( // Extra small screen / phone: 0 / 320
+xs: (breakpoint: $xs-breakpoint, columns: 12, gutter: 16px), // Small screen / phone / Tablet: 544 / 768px
+sm: (breakpoint: $sm-breakpoint, columns: 12, gutter: 24px), // Medium screen / desktop: 768 / 1336px
+md: (breakpoint: $md-breakpoint, columns: 12, gutter: 24px), // Large screen / desktop: 992 / 1920px
+lg: (breakpoint: $lg-breakpoint, columns: 12, gutter: 24px), // Extra large screen / wide desktop: 1200 / 2880px
+xl: (breakpoint: $xl-breakpoint, columns: 12, gutter: 24px));
+
+// How much is the max-width compared to breakpoint.
+// 1.0 means max-width of the container is set to the break point
+$max-width-factor: 1.1;

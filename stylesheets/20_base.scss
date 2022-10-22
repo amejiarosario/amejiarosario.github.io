@@ -1,0 +1,215 @@
+// ------------------------
+// Base styles
+// ------------------------
+
+html {
+  box-sizing: border-box;
+  font-size: 18px;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+// ------------------------
+// Body
+// ------------------------
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font-family: $font-copy;
+  color: $body-color;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  font-family: $font-header;
+  color: $headers-color;
+}
+
+h1 {
+  font-size: 2.5em; // 34px
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 2em; // 34px
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 1.5em; // 24px
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 1em; // 16 px
+}
+
+p {
+  line-height: 1.5;
+}
+
+.display-1 {
+  font-size: 2.5em; // 34px
+  font-weight: 300;
+  margin-top: 2.5em;
+}
+
+.display-2 {
+  font-size: 2em; // 34px
+  font-weight: 300;
+  margin-top: 2em;
+}
+
+.display-3 {
+  font-size: 1.5em; // 24px
+  font-weight: 300;
+  margin-top: 1.5em;
+}
+
+.display-4 {
+  font-size: 1em; // 16 px
+  margin-top: 1em;
+}
+
+.figcaption {
+  font-size: 0.8em;
+  text-align: center;
+}
+
+// acronym, abbr
+.post-content a:hover {
+  border-bottom: 1px $primary-color dotted;
+}
+
+//
+// links
+//
+a {
+  color: $primary-color;
+}
+
+.highlight a {
+  color: gray;
+  text-decoration: underline;
+
+  &:hover {
+    color: lightgray;
+  }
+}
+
+a.button-link-red {
+    background-color: red;
+    box-shadow: 0 5px 0 darkred;
+    color: white !important;
+    padding: 1em 1.5em;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+
+  &:hover {
+    background-color: #ce0606;
+    cursor: pointer;
+  }
+
+  &:active {
+    box-shadow: none;
+    top: 5px;
+  }
+}
+
+a.button-link-primary {
+  background-color: cadetblue;
+  box-shadow: 0 5px 0 darken( cadetblue, 10%);
+  color: white !important;
+  padding: 1em 1.5em;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+
+&:hover {
+  background-color: darken( cadetblue, 5%);
+  cursor: pointer;
+}
+
+&:active {
+  box-shadow: none;
+  top: 5px;
+}
+}
+
+
+b, em, strong {
+  color: $emphasis-color;
+}
+
+pre {
+  text-rendering: optimizeLegibility;
+}
+
+li{
+  margin: 10px 0;
+}
+
+// blockquote
+
+blockquote{
+  display:block;
+  padding: 15px 20px 15px 45px;
+  margin: 0 0 20px;
+  position: relative;
+
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #666;
+  text-align: justify;
+
+  /*Borders - (Optional)*/
+  //border-left: 5px solid $primary-color;
+  //border-right: 1px solid $primary-color;
+  border-left: 10px solid $primary-color;
+
+  /*Box Shadow - (Optional)*/
+  //-moz-box-shadow: 2px 2px 15px #ccc;
+  //-webkit-box-shadow: 2px 2px 15px #ccc;
+  //box-shadow: 2px 2px 15px #ccc;
+  background: #f9f9f9;
+}
+
+blockquote::before{
+  content: "\201C"; /*Unicode for Left Double Quote*/
+
+  /*Font*/
+  font-family: Georgia, serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #999;
+
+  /*Positioning*/
+  position: absolute;
+  left: 10px;
+  top:5px;
+}
+
+blockquote::after{
+  /*Reset to make sure*/
+  content: "";
+}
+
+blockquote a{
+  text-decoration: none;
+  background: #eee;
+  cursor: pointer;
+  padding: 0 3px;
+  color: $primary-color;
+}
+
+blockquote a:hover{
+  color: #666;
+}
+
+blockquote em{
+  font-style: italic;
+}

@@ -1,0 +1,207 @@
+.capitalize {
+  text-transform: capitalize;
+}
+
+// paddings and margins
+
+@for $i from 0 through 12 {
+  // margins
+  .m-x-#{$i} {
+    margin-left: $i * 0.5em;
+    margin-right: $i * 0.5em;
+  }
+
+  .m-y-#{$i} {
+    margin-top: $i * 0.5em;
+    margin-bottom: $i * 0.5em;
+  }
+
+  .m-a-#{$i} {
+    margin: $i * 0.5em;
+  }
+
+  // paddings
+  .p-x-#{$i} {
+    padding-left: $i * 0.5em;
+    padding-right: $i * 0.5em;
+  }
+
+  .p-y-#{$i} {
+    padding-top: $i * 0.5em;
+    padding-bottom: $i * 0.5em;
+  }
+
+  .p-a-#{$i} {
+    padding: $i * 0.5em;
+  }
+}
+
+.m-b-0 {
+  margin-bottom: 0;
+}
+
+.m-t-0 {
+  margin-top: 0;
+}
+
+// Shaddows
+.mdl-shadow--2dp {
+  // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 0 1px -2px rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.mdl-shadow--3dp {
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
+}
+.mdl-shadow--4dp {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+.mdl-shadow--6dp {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+.mdl-shadow--8dp {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+.mdl-shadow--16dp {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+.mdl-shadow--24dp {
+  box-shadow: 0 9px 46px 8px rgba(0, 0, 0, 0.14), 0 11px 15px -7px rgba(0, 0, 0, 0.12), 0 24px 38px 3px rgba(0, 0, 0, 0.2);
+}
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+.flexbox--space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+// https://github.com/IanLunn/Hover/blob/master/css/hover.css#L258
+/* Bounce In */
+.animation--bounce-in {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  &:hover,
+  &:focus,
+  &:active {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+  }
+}
+// https://github.com/IanLunn/Hover/blob/master/css/hover.css#L2448
+/* Underline From Center */
+.animation--underline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    right: 50%;
+    bottom: 0px;
+    background: $primary-color;
+    height: 4px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    &:before {
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+// https://github.com/IanLunn/Hover/blob/master/css/hover.css#L1802
+/* Radial Out */
+.animation--radial-out {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow: hidden;
+  // background: #e1e1e1;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // background: #2098d1;
+    background: $primary-color;
+    border-radius: 100%;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  &:hover, &:focus, &:active {
+    color: white;
+  }
+  &:hover:before, &:focus:before, &:active:before {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+  }
+}
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.not-scaled {
+  width: 100px;
+  height: 100px;
+}
+
+.overflow--hidden {
+  overflow: hidden;
+}
+
+.img-responsive {
+  max-width: 100%;
+}

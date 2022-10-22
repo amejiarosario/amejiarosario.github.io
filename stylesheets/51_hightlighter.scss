@@ -1,0 +1,281 @@
+// https://github.com/chriskempson/tomorrow-theme
+$highlight-background: #2d3748;
+$highlight-current-line: #393939;
+$highlight-selection: #515151;
+$highlight-foreground: #cccccc;
+$highlight-comment: #999999;
+$highlight-red: #f2777a;
+$highlight-orange: #f99157;
+$highlight-yellow: #ffcc66;
+$highlight-green: #99cc99;
+$highlight-aqua: #66cccc;
+$highlight-blue: #6699cc;
+$highlight-purple: #cc99cc;
+
+$article-padding: 20px;
+$color-border: #ddd;
+$font-size: 0.85em;
+$line-height: 1.6em;
+$font-family: "Fira Code", "Ubuntu Mono", "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+
+// @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+article {
+  pre {
+    background: $highlight-background;
+    margin: 0 -8px;
+    padding: 15px 20px;
+    border-style: solid;
+    border-color: #ddd;
+    border-width: 1px 0;
+    overflow: auto;
+    color: #ccc;
+    line-height: 22.400000000000002px;
+  }
+  // code block
+  .highlight {
+    border-radius: 10px;
+    background: $highlight-background;
+    margin: 0 -8px;
+    padding: 15px 20px;
+    border-style: solid;
+    border-color: #ddd;
+    border-width: 1px 0;
+    overflow: auto;
+    color: #ccc;
+    line-height: 22.400000000000002px;
+    .gutter pre {
+      color: #666;
+      font-size: $font-size;
+    }
+  }
+  .gist .gist-file .gist-data .line-numbers {
+    color: #666;
+    font-size: $font-size;
+  }
+  pre {
+    font-family: $font-family;
+  }
+  // hightlighted inline words `someting`
+  code {
+    font-family: $font-family;
+    background: rgba(27,31,35,.05);
+    text-shadow: 0 1px #fff;
+    padding: .2em .4em;
+    font-size: $font-size;
+    border-radius: 3px;
+    color: #f2777a;
+  }
+  pre code {
+    background: none;
+    text-shadow: none;
+    padding: 0;
+    border: 1px solid red;
+  }
+  .highlight {
+    pre {
+      border: none;
+      margin: 0;
+      padding: 0;
+      padding-right: 10px; // so code has some padding
+    }
+    table {
+      margin: 0;
+      width: auto;
+    }
+    td {
+      border: none;
+      padding: 0;
+    }
+    figcaption {
+      font-size: $font-size;
+      color: #999;
+      line-height: 1em;
+      margin-bottom: 1em;
+      &:before {
+        content: "";
+        display: table;
+      }
+      &:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      a {
+        float: right;
+      }
+    }
+    .gutter pre {
+      text-align: right;
+      padding-right: 20px;
+    }
+    .line {
+      height: 22.400000000000002px;
+      &.marked {
+        background: #515151;
+      }
+    }
+  }
+  .gist {
+    margin: 0 -20px;
+    border-style: solid;
+    border-color: #ddd;
+    border-width: 1px 0;
+    // background: $highlight-background;
+    padding: 15px 20px 15px 0;
+    .gist-file {
+      border: none;
+      font-family: $font-family;
+      margin: 0;
+      .gist-data {
+        background: none;
+        border: none;
+        .line-numbers {
+          background: none;
+          border: none;
+          padding: 0 20px 0 0;
+        }
+        .line-data {
+          padding: 0 !important;
+        }
+      }
+      .highlight {
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+      .gist-meta {
+        // background: $highlight-background;
+        color: #999;
+        font: 0.85em "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-shadow: 0 0;
+        padding: 0;
+        margin-top: 1em;
+        margin-left: 20px;
+        a {
+          color: #258fb8;
+          font-weight: normal;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+pre {
+  font-size: $font-size;
+
+  .comment, .title {
+    color: #999;
+  }
+  .variable, .attribute, .tag, .regexp, .ruby .constant {
+    color: #f2777a;
+  }
+  .xml {
+    .tag .title, .pi, .doctype {
+      color: #f2777a;
+    }
+  }
+  .html .doctype {
+    color: #f2777a;
+  }
+  .css {
+    .id, .class, .pseudo {
+      color: #f2777a;
+    }
+  }
+  .number, .preprocessor, .built_in, .literal, .params, .constant {
+    color: #f99157;
+  }
+  .class, .ruby .class .title, .css .rules .attribute, .string, .value, .inheritance, .header, .ruby .symbol, .xml .cdata {
+    color: #9c9;
+  }
+  .css .hexcolor {
+    color: #6cc;
+  }
+  .function {
+    color: #69c;
+  }
+  .python {
+    .decorator, .title {
+      color: #69c;
+    }
+  }
+  .ruby {
+    .function .title, .title .keyword {
+      color: #69c;
+    }
+  }
+  .perl .sub, .javascript .title, .coffeescript .title {
+    color: #69c;
+  }
+  .keyword, .javascript .function {
+    color: #c9c;
+  }
+}
+
+// copy code to clipboard
+
+.copy-btn {
+  position: relative;
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #333;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #eee;
+  background-image: linear-gradient(#fcfcfc, #eee);
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  user-select: none;
+}
+
+.copy-btn::before {
+  font-family: 'FontAwesome'; font-weight: 400; content: "\f0ea";
+}
+
+.checkMark {
+  background-color: #99cc99;
+  background-image: none;
+}
+
+.checkMark::before {
+  font-family: 'FontAwesome';
+  font-weight: 400;
+  content: "\f00c";
+}
+
+.highlight {
+  position: relative;
+}
+
+.highlight .copy-btn {
+  transition: opacity .3s ease-in-out;
+  opacity: 0;
+  padding: 2px 6px;
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+}
+
+.highlight:hover .copy-btn,
+.highlight .copy-btn:focus {
+  opacity: 1;
+}
+
+
+// runkit
+
+pre.runkit, pre.clear {
+  border: none;
+  background-color: inherit;
+  overflow: hidden;
+  color: inherit;
+}

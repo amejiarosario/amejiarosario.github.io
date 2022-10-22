@@ -1,0 +1,142 @@
+// ----------- variables defaults -----------
+// Break points
+$font-base: 16 !default; //16px = 1em
+$xs-breakpoint: 320/$font-base * 1em !default;
+$sm-breakpoint: 768/$font-base * 1em !default;
+$md-breakpoint: 1336/$font-base * 1em !default;
+$lg-breakpoint: 1960/$font-base * 1em !default;
+$xl-breakpoint: 2880/$font-base * 1em !default;
+
+// Grid definition map
+$grid-breakpoints: ( // Extra small screen / phone: 0 / 320
+xs: (breakpoint: $xs-breakpoint, columns: 12, gutter: 16px), // Small screen / phone / Tablet: 544 / 768px
+sm: (breakpoint: $sm-breakpoint, columns: 12, gutter: 24px), // Medium screen / desktop: 768 / 1336px
+md: (breakpoint: $md-breakpoint, columns: 12, gutter: 24px), // Large screen / desktop: 992 / 1920px
+lg: (breakpoint: $lg-breakpoint, columns: 12, gutter: 24px), // Extra large screen / wide desktop: 1200 / 2880px
+xl: (breakpoint: $xl-breakpoint, columns: 12, gutter: 24px)) !default;
+
+// How much is the max-width compared to breakpoint.
+// 1.0 means max-width of the container is set to the break point
+$max-width-factor: 1.3 !default;
+
+$columns-list: 1 2 3 4 5 6 7 8 9 10 11 12;
+
+// Flexbox attributes
+$flexbox-parent: (
+  justify-content: flex-start flex-end center space-between space-around,
+  flex-wrap: nowrap wrap wrap-reverse
+);
+
+$flexbox-child: (
+  order: $columns-list,
+  align-self: auto flex-start flex-end center baseline stretch
+);
+
+// ----------- /variables -----------
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// creates grid cell
+@mixin make-grid-column($col, $columns, $gutter) {
+  // border: 2px solid blue;
+
+  width: calc(#{$col}/#{$columns} * 100%);
+  // gutter
+  // padding: 0 $gutter/2;
+  margin: $gutter/2 0;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // equal size
+  align-self: stretch;
+
+  order: 12;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  // default
+  justify-content: space-between;
+  // justify-content: space-around;
+
+  // collapsed rows used all space
+  flex-direction: column;
+
+  // default columns (media query only target theirs, so we need to define all to use all width by default)
+  @each $size in map-keys($grid-breakpoints) {
+    @each $col in $columns-list {
+      .col-#{$size}-#{$col} {
+        @include make-grid-column(12, 12, 16px)
+      }
+    }
+  }
+
+} // .row
+
+// flexbox parent helpers
+@each $prop in map-keys($flexbox-parent) {
+  $list: map-get($flexbox-parent, $prop);
+  @each $attr in $list {
+    .row-#{$prop}--#{$attr} {
+      #{$prop}: #{$attr};
+    }
+  }
+} // @each $prop in map-keys($flexbox-parent)
+
+@each $size in map-keys($grid-breakpoints) {
+  $values: map-get($grid-breakpoints, $size);
+  $breakpoint: map-get($values, 'breakpoint');
+  $columns: map-get($values, 'columns');
+  $gutter: map-get($values, 'gutter');
+  $max-width: 90%;
+
+  @media screen and (min-width: $breakpoint) {
+    // if container is specified
+    .container {
+      // border: 2px solid violet;
+
+      width: $max-width;
+      max-width: 1336px;
+      padding-left:  ($gutter / 2);
+      padding-right: ($gutter / 2);
+      margin-left: auto;
+      margin-right: auto;
+
+      .row {
+        // border: 2px solid goldenrod;
+
+        // set grid system (rows)
+        flex-direction: row;
+        // use % of the width based on the column number
+        @for $col from 1 through $columns {
+          .col-#{$size}-#{$col} {
+            @include make-grid-column($col, $columns, $gutter);
+          }
+        } // @for
+        // use 100% width for extra columns
+        @if($columns < 12) {
+          @for $col from $columns + 1 through 12 {
+            .col-#{$size}-#{$col} {
+              /* filler */
+              @include make-grid-column($columns, $columns, $gutter);
+            }
+          } // @for
+        } // @if
+      } // .row
+
+      // flexbox child properties
+      @each $prop in map-keys($flexbox-child) {
+        $list: map-get($flexbox-child, $prop);
+        @each $attr in $list {
+          .col-#{$size}-#{$prop}--#{$attr} {
+            #{$prop}: #{$attr};
+          }
+        }
+      } // @each $prop in map-keys($flexbox-child)
+    } // .container
+  } // @media
+} // @each
