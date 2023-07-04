@@ -682,9 +682,9 @@ Wouldn't it be great if we can have a HashMap that automatically increases its s
 
 ### Optimal HashMap Implementation
 
-If we have a big enough bucket, we won't have collisions; thus, the search time would be *`O(1)`*. However, how do we know how big a hash map capacity should big? 100? 1,000? A million?
+If we have a big enough bucket, we won't have collisions; thus, the search time would be *`O(1)`*. However, how do we know how big a hash map capacity should be? 100? 1,000? A million?
 
-Having allocated massive amounts of memory is impractical. So, we can automatically have the hash map resize itself based on a load factor. This operation is called ** rehash**.
+Having allocated massive amounts of memory is impractical. So, we can automatically have the hash map resize itself based on a load factor. This operation is called **rehash**.
 
 The **load factor** is the measurement of how full is a hash map. We can get the load factor by dividing the number of items by the bucket size.
 
