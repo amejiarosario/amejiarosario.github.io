@@ -383,7 +383,7 @@ If the node already exists, we don't want to overwrite it. So, we first check if
 
 **Graph.removeVertex**
 
-Removing a node from the graph, it's a little bit more involved. We have to check if the node to be deleted it's in use as an adjacent node.
+Removing a node from the graph, it's a little bit more involved. We have to check if the node to be deleted is in use as an adjacent node.
 
 {% codeblock Graph.removeVertex lang:js mark:5,8 https://github.com/amejiarosario/dsa.js/blob/master/src/data-structures/graphs/graph.js  Full Code %}
   removeVertex(value) {
@@ -401,7 +401,7 @@ We have to go through each vertex and then each adjacent node (edges).
 
 > The runtime of removing a vertex from a graph adjacency list is *O(|V| + |E|)*
 
-Finally, let's remove implement removing an edge!
+Finally, let's implement removing an edge!
 
 <a id="Graph.removeEdge"></a>
 
