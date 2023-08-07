@@ -673,7 +673,7 @@ Exponential (base 2) running time means that the calculations performed by an al
 
 **Examples of exponential runtime algorithms:**
 - Power Set: finding all the subsets on a set.
-- Fibonacci.
+- Fibonacci using a recursive algorithm.
 - Travelling salesman problem using dynamic programming.
 
 ### Power Set
