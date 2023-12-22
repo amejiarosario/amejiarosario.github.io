@@ -465,7 +465,7 @@ fs.readFile('file.txt', 'utf8')
 ```
 
 In this example, we read file 1 and write it to the output file. Later, we read file 2 and append it to the output file again.
-As you can see, `writeFile` promise returns the content of the file, and you can use it in the next `then` clause.
+As you can see, `readFile` promise returns the content of the file, and you can use it in the next `then` clause.
 
 ### How do I chain multiple conditional promises?
 
