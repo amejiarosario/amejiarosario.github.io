@@ -123,7 +123,7 @@ Changing `var` for `let` makes things work as expected. If the `if` block is not
 
 **IIFE**
 
-Let's show an example before explaining <abbr title="immediately-invoked function expressionn">IIFE</abbr>. Take a look here:
+Let's show an example before explaining <abbr title="immediately-invoked function expression">IIFE</abbr>. Take a look here:
 
 {% codeblock lang:js mark:2 ES5 %}
 {
@@ -133,7 +133,7 @@ Let's show an example before explaining <abbr title="immediately-invoked functio
 console.log(private); // 1
 {% endcodeblock %}
 
-As you can see, `private` leaks out. You need to use <abbr title="immediately-invoked function expressionn">IIFE</abbr> (immediately-invoked function expression) to contain it:
+As you can see, `private` leaks out. You need to use <abbr title="immediately-invoked function expression">IIFE</abbr> (immediately-invoked function expression) to contain it:
 
 {% codeblock lang:js mark:1,3 ES5 %}
 (function(){
